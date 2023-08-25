@@ -4,5 +4,5 @@ import react from '@vitejs/plugin-react-swc'
 // base: 'https://devrod.site',/
 export default defineConfig({
   plugins: [react()],
-  base: 'https://github.com/Jonybebunio/la-casa-de-burger.git',
+  base: 'http://jonybebunio.github.io/la-casa-de-burger',
 })

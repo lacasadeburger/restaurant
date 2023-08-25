@@ -1,7 +1,7 @@
 {
   "name": "restaurante",
   "private": true,
-  "homepage":"http://Jonybebunio.github.io/la-casa-de-burger",
+  "homepage":"http://jonybebunio.github.io/la-casa-de-burger",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
