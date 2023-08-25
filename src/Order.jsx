@@ -55,7 +55,7 @@ export default function Order({ cart, removeFromCart }) {
       })
     };
     
-    fetch('https://lacasadeburger.es/api/payment', requestOptions)
+    fetch('https://jonybebunio.github.io/la-casa-de-burger/api/payment', requestOptions)
       .then(response => response.json())
       .then(data => {
         console.log(data);
