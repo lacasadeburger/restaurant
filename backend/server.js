@@ -7,8 +7,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
-
-app.post('/api/payment', async (req, res) => {
+//api/payment
+app.post('/', async (req, res) => {
   const { token, amount } = req.body;
 
   try {

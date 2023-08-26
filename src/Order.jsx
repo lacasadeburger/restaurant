@@ -54,8 +54,8 @@ export default function Order({ cart, removeFromCart }) {
         amount: getTotalPrice() // Aquí debes pasar el monto total a pagar
       })
     };
-    
-    fetch('https://jonybebunio.github.io/la-casa-de-burger/api/payment', requestOptions) 
+    //api/payment
+    fetch('https://jonybebunio.github.io/la-casa-de-burger/', requestOptions) 
       .then(response => response.json())
       .then(data => {
         console.log(data);
