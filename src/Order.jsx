@@ -55,7 +55,7 @@ export default function Order({ cart, removeFromCart }) {
       })
     };
     //api/payment
-    fetch('https://casa-de-burger.onrender.com/', requestOptions) 
+    fetch('https://casa-de-burger.onrender.com/checkout', requestOptions) 
       .then(response => response.json())
       .then(data => {
         console.log(data);

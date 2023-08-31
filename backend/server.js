@@ -8,7 +8,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
 //api/payment
-app.post('/', async (req, res) => {
+app.post('/checkout', async (req, res) => {
   const { token, amount } = req.body;
 
   try {
