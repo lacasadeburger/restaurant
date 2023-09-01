@@ -6,5 +6,5 @@ import react from '@vitejs/plugin-react-swc'
 //https://jonybebunio.github.io/la-casa-de-burger
 export default defineConfig({
   plugins: [react()],
-  base: 'https://jonybebunio.github.io/la-casa-de-burger',
+  base: 'https://lacasadeburger.es',
 })

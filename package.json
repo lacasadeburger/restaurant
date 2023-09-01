@@ -1,11 +1,11 @@
 {
   "name": "restaurante",
   "private": true,
-  "homepage":"https://jonybebunio.github.io/la-casa-de-burger",
+  "homepage":"https://lacasadeburger.es",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "predeploy":"npm run build && echo jonybebunio.github.io/la-casa-de-burger > ./dist/CNAME",
+    "predeploy":"npm run build && echo lacasadeburger.es > ./dist/CNAME",
     "deploy": "gh-pages -d dist",
     "dev": "vite",
     "build": "vite build",
