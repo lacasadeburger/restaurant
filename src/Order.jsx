@@ -61,6 +61,14 @@ export default function Order({ cart, removeFromCart }) {
         console.log(data);
         setPaymentOption("Tarjeta de crédito");
         setPaymentOptionText("Tarjeta de crédito");
+
+        if (data.success) {
+        // El pago fue exitoso
+        Swal.fire("¡Pago exitoso!");
+      } else {
+        // El servidor falló, muestra un mensaje de error al usuario
+        Swal.fire("La transacción no pudo ser exitosa");
+      }
       })
       .catch(error => {
         console.log(error);
@@ -195,7 +203,7 @@ export default function Order({ cart, removeFromCart }) {
             </button>
             <StripeCheckout
               token={handleToken}
-              stripeKey="pk_test_51NYAhRCTQdBdq2KhM9EaWgTjihAtpYSuf1zyeIppTk2D0Air2Bca1dx1lHSar0e0XaNpvAAbj8bNWgewLXntzSgr00OZQaX9O8"
+              stripeKey="pk_live_51NYAhRCTQdBdq2KhcrQfbD5S62f5r8V8VQl4WjrWo65D4VzMNn2Jsst6loXEhjM5bxrkxvgFBJ5sFdZICnl9RkMr00jGa9kM3V"
               amount={getTotalPrice() * 100}
               name={name}
               disabled={paymentOption === "Efectivo"}
