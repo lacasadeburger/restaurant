@@ -105,7 +105,7 @@ export default function CardMenu(props) {
                           }, 1000);
                         }}
                       >
-                        Normal
+                        Agregar
                         <h4 className="center">{props.precio}</h4>
                       </button>
                       
