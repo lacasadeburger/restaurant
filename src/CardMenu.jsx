@@ -96,7 +96,7 @@ export default function CardMenu(props) {
                   ) : (
                     <>
                       <button
-                        className={`add-btn ${clickedButton === props.object ? "clicked" : ""}`}
+                        className={`add-btn ${clickedButton === props.object ? "clicked" : ""}centered`}
                         onClick={() => {
                           props.addToCart(props);
                           setClickedButton(props.object);
