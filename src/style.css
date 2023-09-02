@@ -119,7 +119,13 @@ p {
   font-size: 14px;
 }
 
-
+/* Media query para pantallas más pequeñas (teléfonos) */
+@media (max-width: 768px) {
+  .logo-container {
+    flex-direction: column; /* Muestra las imágenes una debajo de la otra */
+    align-items: center; /* Centra las imágenes */
+  }
+}
 
 /* Sección del menú */
 .menuBurgers {
