@@ -10,6 +10,9 @@ import background1 from "../src/assets/inglesa.png";
 import background2 from "../src/assets/marroqi.png";
 import fb from "../src/assets/FB.png";
 import instagram from "../src/assets/INST.png";
+import Postre from "../src/assets/postre.png";
+import Burger from "../src/assets/burger.png";
+import Drink from "../src/assets/drink.png";
 
 
 const backgrounds = [background, background1, background2];
@@ -35,11 +38,11 @@ function Body() {
       <p>¡Ven y prueba las hamburguesas con queso Francés!</p>
       <div className="button-container">
                  
-        <a href="https://www.facebook.com/profile.php?id=100090023714230" target="_blank"><img src={fb} alt="facebook" className="round-button"/></a>
+        <a href="https://www.facebook.com/profile.php?id=100094610793536" target="_blank"><img src={fb} alt="facebook" className="round-button"/></a>
         
        
           
-        <a href="https://www.instagram.com/_la_casa_de_burger/?fbclid=IwAR0xxVUGtmcpizgzcZJw_bzZ-XitXogchncVns5qnWtZs9RDFGGCw3h1eSQ" target="_blank"><img src={instagram} alt="instagram" className="round-button"/></a>
+        <a href="https://www.instagram.com/lacasadeburger.es/?igshid=NGVhN2U2NjQ0Yg%3D%3D" target="_blank"><img src={instagram} alt="instagram" className="round-button"/></a>
         
       </div>
     </div>
@@ -80,6 +83,9 @@ function TitleOrder() {
 
 export default function App() {
   const [cart, setCart] = useState([]);
+  const [showCardPostres, setShowCardPostres] = useState(false); // Estado para controlar si mostrar cardPostres *
+  const [showCardBurger, setShowCardBurger] = useState(false);
+  const [showCardDrink, setShowCardDrink] = useState(false);
 
   const addToCart = (item) => {
     setCart([...cart, item]);
@@ -127,7 +133,7 @@ export default function App() {
     return (
       <CardMenu
         key={item.id}
-        image={item.image}
+         image={item.image}
         object={item.object}
         description={item.description}
         precio={item.precio}
@@ -138,24 +144,98 @@ export default function App() {
     );
   });
 
+  const toggleCardPostres = () => {
+    setShowCardPostres(!showCardPostres); // Cambia el estado cuando se hace clic en el botón
+  };
+
+  const toggleCardBurger = () => {
+    setShowCardBurger(!showCardBurger); // Cambia el estado cuando se hace clic en el botón
+  };
+
+  const toggleCardDrink = () => {
+    setShowCardDrink(!showCardDrink); // Cambia el estado cuando se hace clic en el botón
+  };
+
+
   return (
     <div>
       <Nav />
       <br/><br/>
       <Body />
+      {/*----------------------------------------------------------------------------------------*/}
       <TitleBurger />
-      <section className="menu-items">{card}</section>
-
+      <section className="menu-items">
+        {showCardBurger ? (
+          // Si showCardPostres es verdadero, muestra cardPostres
+          <div style={{ textAlign: "center",}} >
+            <span className="menu-items">
+              {card}
+            </span> 
+            <span style={{display:"flex", justifyContent: "center"}}>
+              <button onClick={toggleCardBurger} style={{alignItems:"center", justifyContent:"center"}}>Ocultar menú</button>
+            </span>           
+            
+          </div>
+        ) : (
+          // Si showCardPostres es falso, muestra el botón para mostrar cardPostres
+          <div style={{display:"flex", justifyContent:"center"}}>
+            <img src={Burger} alt="Imagen" style={{ maxWidth: "75%", height: "auto" }}/>
+            <button onClick={toggleCardBurger}>Ver menú</button>
+          </div>
+        )}
+      </section>
+      {/*----------------------------------------------------------------------------------------*/}    
       <TitlePostre />
-      <section className="menu-items">{cardPostres}</section>
-
+      <section className="menu-items">
+        {showCardPostres ? (
+          // Si showCardPostres es verdadero, muestra cardPostres
+          <div style={{ textAlign: "center",}} >
+            <span className="menu-items">
+              {cardPostres}
+            </span>
+            <span style={{display:"flex", justifyContent: "center"}}>
+              <button onClick={toggleCardPostres} style={{alignItems:"center", justifyContent:"center"}}>Ocultar menú</button>
+            </span>
+            
+          </div>
+        ) : (
+          // Si showCardPostres es falso, muestra el botón para mostrar cardPostres
+          <div style={{display:"flex", justifyContent: "center"}} >
+            <img src={Postre} alt="Imagen" style={{ maxWidth: "75%", height: "auto" }}/>
+            <button onClick={toggleCardPostres}>Ver menú</button>
+          </div>
+        )}
+      </section>
+        {/*----------------------------------------------------------------------------------------*/}
       <TitleDrinks />
-      <section className="menu-items">{cardDrinks}</section>      
+      <section className="menu-items">
+        {showCardDrink ? (
+          // Si showCardPostres es verdadero, muestra cardPostres
+          <div style={{ textAlign: "center",}} >
+            <span className="menu-items">
+              {cardDrinks}
+            </span>  
+            <span style={{display:"flex", justifyContent: "center"}}>
+              <button onClick={toggleCardDrink} style={{alignItems:"center", justifyContent:"center"}}>Ocultar menú</button>
+            </span>          
+            
+          </div>
+        ) : (
+          // Si showCardPostres es falso, muestra el botón para mostrar cardPostres
+          <div style={{display:"flex", justifyContent: "center"}}>
+            <img src={Drink} alt="Imagen" style={{ maxWidth: "75%", height: "auto" }}/>
+            <button onClick={toggleCardDrink}>Ver menú</button>
+          </div>
+        )}
+      </section>   
+          {/*----------------------------------------------------------------------------------------*/}
 
       <TitleOrder />
+
       <Order  cart={cart} removeFromCart={removeFromCart} />
 
       <Footer />
     </div>
   );
 }
+/*Punto de partida*/
