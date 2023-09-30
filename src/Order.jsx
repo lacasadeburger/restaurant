@@ -55,7 +55,7 @@ export default function Order({ cart, removeFromCart }) {
       })
     };
     //api/payment
-    fetch('https://stripe-payment-lack.onrender.com/checkout', requestOptions) 
+    fetch('https://stripe-payment-fyiz.onrender.com/checkout', requestOptions) 
       .then(response => response.json())
       .then(data => {
         console.log(data);
