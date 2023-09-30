@@ -12,7 +12,7 @@ export default function Order({ cart, removeFromCart }) {
   const [paymentOption, setPaymentOption] = useState("");
   const [paymentOptionText, setPaymentOptionText] = useState("");
 
-  // Opciones adicionales para el pedido
+  // Opciones adicionales para el pedido 
   const backOptions = [
     "extra huevo",
     "extra queso",
