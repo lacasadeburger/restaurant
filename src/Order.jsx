@@ -55,7 +55,7 @@ export default function Order({ cart, removeFromCart }) {
       })
     };
     //api/payment
-    fetch('https://stripe-payment-lack.onrender.com', requestOptions) 
+    fetch('https://stripe-payment-lack.onrender.com/checkout', requestOptions) 
       .then(response => response.json())
       .then(data => {
         console.log(data);
@@ -200,6 +200,8 @@ export default function Order({ cart, removeFromCart }) {
                 onChange={() => {}}
               />
               Pago en efectivo
+              {/*pk_live_51NYAhRCTQdBdq2KhcrQfbD5S62f5r8V8VQl4WjrWo65D4VzMNn2Jsst6loXEhjM5bxrkxvgFBJ5sFdZICnl9RkMr00jGa9kM3V*/}
+              {/*sk_test_51NYAhRCTQdBdq2KheKW5xUqYeqjRfcgajJiP889K1nRu5t0g79WVtwHKJm1HLSvI8LMjb4hd0TYZCMmny6zizFdO00SVyXjznJ*/}
             </button>
             <StripeCheckout
               token={handleToken}

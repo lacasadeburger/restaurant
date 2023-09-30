@@ -306,5 +306,14 @@ export default [
         description: "Lata de cerveza 33cl",
         precio: "€2.60" ,  
         category: "drink"       
-    }    
+    },
+    {
+        id:"prod_OOtXPLkWN0UdII",
+        image: mohau,
+        object: "Cerveza Mahou Clasica",
+        description: "Lata de cerveza 33cl",
+        precio: "€0.10" ,  
+        category: "drink"       
+    }     
+
 ]
