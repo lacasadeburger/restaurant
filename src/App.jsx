@@ -35,12 +35,9 @@ export default function App() {
     return () => clearInterval(interval);
   }, []);
 
-  // --- FONCTION PANIER / SCROLL ---
   const scrollToOrder = () => {
     const element = document.getElementById("order");
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
+    if (element) element.scrollIntoView({ behavior: "smooth" });
   };
 
   const scrollToMenu = () => {
@@ -84,11 +81,10 @@ export default function App() {
         .grid-cards { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; padding: 20px 0 120px; animation: fadeIn 0.6s ease; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         .floating-close { position: fixed; bottom: 25px; left: 50%; transform: translateX(-50%); background: #ff4757; color: #fff; border: 2px solid #fff; padding: 15px 35px; border-radius: 50px; font-weight: 900; z-index: 10000; cursor: pointer; box-shadow: 0 10px 30px rgba(0,0,0,0.6); text-transform: uppercase; font-size: 1.1rem; }
-        .footer-keywords { color: #555; font-size: 0.65rem; max-width: 1100px; margin: 25px auto; line-height: 1.6; text-align: justify; border-top: 1px solid #222; padding-top: 20px; }
-        .whatsapp-float { position: fixed; bottom: 30px; right: 20px; background: #25D366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 2.2rem; box-shadow: 0 5px 15px rgba(0,0,0,0.4); z-index: 9999; text-decoration: none; }
+        .footer-keywords { color: #666; font-size: 0.65rem; max-width: 1100px; margin: 25px auto; line-height: 1.6; text-align: justify; border-top: 1px solid #222; padding-top: 20px; }
+        .whatsapp-float { position: fixed; bottom: 30px; right: 20px; background: #25D366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; box-shadow: 0 5px 15px rgba(0,0,0,0.4); z-index: 9999; }
       `}</style>
 
-      {/* Le composant Nav reçoit la fonction scrollToOrder pour le panier */}
       <Nav scrollToOrder={scrollToOrder} cartLength={cart.length} />
 
       <header style={{ padding: '140px 20px 80px', textAlign: 'center', backgroundColor: '#000', borderRadius: '0 0 50px 50px', borderBottom: '4px solid #ff4757', position: 'relative' }}>
@@ -102,26 +98,26 @@ export default function App() {
       </header>
 
       <main className="menu-page-container">
-        <section><SectionTitle id="sec-burgers">Burgers</SectionTitle>
+        <section><SectionTitle id="sec-burgers">{lang === 'es' ? 'Nuestras Burgers' : 'Our Burgers'}</SectionTitle>
           {showCardBurger ? <div className="grid-cards">{renderCards(burgers, "food")}</div> : <div className="promo-container" onClick={() => setShowCardBurger(true)}><img src={Burger} className="promo-img" alt="Menu Burgers" /><button className="btn-overlay">VER CARTA</button></div>}
         </section>
-        <section><SectionTitle id="sec-postres">Postres</SectionTitle>
+        <section><SectionTitle id="sec-postres">{lang === 'es' ? 'Postres Caseros' : 'Homemade Desserts'}</SectionTitle>
           {showCardPostres ? <div className="grid-cards">{renderCards(postres, "postre")}</div> : <div className="promo-container" onClick={() => setShowCardPostres(true)}><img src={Postre} className="promo-img" alt="Menu Postres" /><button className="btn-overlay">VER POSTRES</button></div>}
         </section>
-        <section><SectionTitle id="sec-drinks">Bebidas</SectionTitle>
+        <section><SectionTitle id="sec-drinks">{lang === 'es' ? 'Bebidas' : 'Drinks'}</SectionTitle>
           {showCardDrink ? <div className="grid-cards">{renderCards(drinks, "drink")}</div> : <div className="promo-container" onClick={() => setShowCardDrink(true)}><img src={Drink} className="promo-img" alt="Menu Drinks" /><button className="btn-overlay">VER BEBIDAS</button></div>}
         </section>
-        <section id="order"><SectionTitle>Tu Pedido</SectionTitle><Order cart={cart} removeFromCart={removeFromCart} /></section>
+        <section id="order"><SectionTitle>{lang === 'es' ? 'Tu Pedido' : 'Your Order'}</SectionTitle><Order cart={cart} removeFromCart={removeFromCart} /></section>
       </main>
 
       <footer style={{ padding: '60px 20px', backgroundColor: '#000', color: '#fff', textAlign: 'center', borderTop: '4px solid #ff4757' }}>
         <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
           <div style={{ display: 'flex', justifyContent: 'center', gap: '25px', marginBottom: '35px', flexWrap: 'wrap', alignItems: 'center' }}>
-            <a href="https://www.facebook.com/share/1FZ8EswJS/" target="_blank" rel="noreferrer"><img src={fb} style={{ width: '40px' }} alt="Facebook"/></a>
+            <a href="https://www.facebook.com/profile.php?id=100094610793536" target="_blank" rel="noreferrer"><img src={fb} style={{ width: '40px' }} alt="Facebook"/></a>
             <a href="https://www.instagram.com/lacasadeburger.es/" target="_blank" rel="noreferrer"><img src={instagramIcon} style={{ width: '40px' }} alt="Instagram"/></a>
             <a href="https://es.restaurantguru.com/La-Casa-de-Burger-Torrevieja" target="_blank" rel="noreferrer" style={{ border: '2px solid #ff4757', padding: '10px 20px', borderRadius: '50px', color: '#fff', textDecoration: 'none', fontWeight: 'bold' }}>Restaurant Guru 2026</a>
-            <a href="https://maps.google.com" target="_blank" rel="noreferrer"><img src={google} style={{ width: '130px' }} alt="Google Reviews" /></a>
-            <a href="https://www.tripadvisor.es/Restaurant_Review-g187531-d26656728-Reviews-La_Casa_de_Burger-Torrevieja_Province_of_Alicante_Valencian_Community.html" target="_blank" rel="noreferrer"><img src={tripadvisor} style={{ width: '130px' }} alt="Tripadvisor Reviews" /></a>
+            <a href="http://googleusercontent.com/maps.google.com/3" target="_blank" rel="noreferrer"><img src={google} style={{ width: '130px' }} alt="Google Reviews" /></a>
+            <a href="https://www.tripadvisor.es/Restaurant_Review-g187527-d26835169-Reviews-La_Casa_De_Burger-Torrevieja_Costa_Blanca_Province_of_Alicante_Valencian_Communi.html" target="_blank" rel="noreferrer"><img src={tripadvisor} style={{ width: '130px' }} alt="Tripadvisor Reviews" /></a>
           </div>
 
           <div className="footer-keywords">
@@ -139,12 +135,10 @@ export default function App() {
         </div>
       </footer>
 
-      {/* WHATSAPP FLOAT */}
       <a href="https://wa.me/34602597210" target="_blank" rel="noreferrer" className="whatsapp-float">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" style={{width: '100%'}} alt="WhatsApp" />
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" style={{width: '60px'}} alt="WhatsApp" />
       </a>
 
-      {/* BOUTON FERMER CENTRÉ */}
       {(showCardBurger || showCardPostres || showCardDrink) && (
         <button className="floating-close" onClick={closeAllMenus}>✕ CERRAR CARTA</button>
       )}
