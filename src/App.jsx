@@ -77,7 +77,7 @@ export default function App() {
         .promo-container { position: relative; cursor: pointer; display: inline-block; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.5); transition: 0.5s; max-width: 500px; width: 100%; margin-bottom: 20px; }
         .promo-container:hover { transform: scale(1.03); }
         .promo-img { width: 100%; display: block; opacity: 0.85; }
-        .btn-overlay { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #ff4757; color: white; padding: 15px 25px; border-radius: 50px; font-weight: 900; border: none; pointer-events: none; font-size: 1.5rem; box-shadow: 0 5px 20px rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center; }
+        .btn-overlay { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #ff4757; color: white; padding: 12px 25px; border-radius: 50px; font-weight: 900; border: none; pointer-events: none; font-size: 1.1rem; box-shadow: 0 5px 20px rgba(0,0,0,0.4); }
         .grid-cards { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; padding: 20px 0 120px; animation: fadeIn 0.6s ease; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         .floating-close { position: fixed; bottom: 25px; left: 50%; transform: translateX(-50%); background: #ff4757; color: #fff; border: 2px solid #fff; padding: 15px 35px; border-radius: 50px; font-weight: 900; z-index: 10000; cursor: pointer; box-shadow: 0 10px 30px rgba(0,0,0,0.6); text-transform: uppercase; font-size: 1.1rem; }
@@ -92,10 +92,19 @@ export default function App() {
         <div style={{ position: 'absolute', top: '110px', right: '10%', background: '#FFD700', color: '#000', padding: '5px 15px', borderRadius: '50px', fontWeight: 'bold', fontSize: '0.8rem', transform: 'rotate(5deg)', zIndex: 10 }}>🏆 #1 Gourmet Burger Torrevieja</div>
         <h1 style={{ fontSize: '2.5rem', fontWeight: '900' }}>La Casa de Burger <span style={{color:'#ff4757'}}>Torrevieja</span></h1>
         <p style={{ fontSize: '1.2rem', color: '#ccc' }}>{lang === 'es' ? 'La referencia de la hamburguesa artesanal.' : 'The reference for handcrafted burgers.'}</p>
-        <div style={{ marginTop: '30px', display: 'flex', justifyContent: 'center', gap: '15px', flexWrap: 'wrap' }}>
+
+        <div style={{ marginTop: '30px', display: 'flex', justifyContent: 'center', gap: '15px', flexWrap: 'wrap', alignItems: 'center' }}>
           <a href="tel:+34602597210" style={{ backgroundColor: '#fff', color: '#111', padding: '15px 30px', borderRadius: '50px', textDecoration: 'none', fontWeight: 'bold' }}>📞 LLAMAR</a>
-          {/* On garde bien VER CARTA ici */}
-          <button onClick={scrollToMenu} style={{ backgroundColor: '#ff4757', color: '#fff', padding: '15px 30px', borderRadius: '50px', border: 'none', fontWeight: 'bold', cursor: 'pointer' }}>{lang === 'es' ? 'VER CARTA' : 'VIEW MENU'}</button>
+
+          {/* Bouton VER CARTA classique */}
+          <button onClick={scrollToMenu} style={{ backgroundColor: '#fff', color: '#111', padding: '15px 30px', borderRadius: '50px', border: 'none', fontWeight: 'bold', cursor: 'pointer' }}>
+            {lang === 'es' ? 'VER CARTA' : 'VIEW MENU'}
+          </button>
+
+          {/* Bouton PANIER (Caddie) qui remplace le pedir ahora du header */}
+          <button onClick={scrollToOrder} style={{ backgroundColor: '#ff4757', color: '#fff', width: '60px', height: '60px', borderRadius: '50%', border: 'none', fontSize: '1.8rem', cursor: 'pointer', display: 'flex', justifyContent: 'center', alignItems: 'center', boxShadow: '0 4px 10px rgba(255,71,87,0.4)' }}>
+            🛒
+          </button>
         </div>
       </header>
 
@@ -104,8 +113,7 @@ export default function App() {
           {showCardBurger ? <div className="grid-cards">{renderCards(burgers, "food")}</div> : (
             <div className="promo-container" onClick={() => setShowCardBurger(true)}>
               <img src={Burger} className="promo-img" alt="Menu Burgers" />
-              {/* Le bouton sur l'image devient un Caddie géant */}
-              <button className="btn-overlay">🛒</button>
+              <button className="btn-overlay">VER CARTA</button>
             </div>
           )}
         </section>
@@ -114,7 +122,7 @@ export default function App() {
           {showCardPostres ? <div className="grid-cards">{renderCards(postres, "postre")}</div> : (
             <div className="promo-container" onClick={() => setShowCardPostres(true)}>
               <img src={Postre} className="promo-img" alt="Menu Postres" />
-              <button className="btn-overlay">🛒</button>
+              <button className="btn-overlay">VER POSTRES</button>
             </div>
           )}
         </section>
@@ -123,7 +131,7 @@ export default function App() {
           {showCardDrink ? <div className="grid-cards">{renderCards(drinks, "drink")}</div> : (
             <div className="promo-container" onClick={() => setShowCardDrink(true)}>
               <img src={Drink} className="promo-img" alt="Menu Drinks" />
-              <button className="btn-overlay">🛒</button>
+              <button className="btn-overlay">VER BEBIDAS</button>
             </div>
           )}
         </section>
