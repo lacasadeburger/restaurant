@@ -7,12 +7,13 @@ import data from "./data";
 
 // --- ASSETS ---
 import fb from "./assets/FB.png";
-import instagram from "./assets/instagram.png";
 import Postre from "./assets/postre.png";
 import Burger from "./assets/burger.png";
 import Drink from "./assets/drink.png";
 import tripadvisor from "./assets/tripadvisor.png";
 import google from "./assets/google.png";
+
+const instagramIcon = "https://cdn-icons-png.flaticon.com/512/2111/2111463.png";
 
 const SectionTitle = ({ children, id }) => (
   <header className="menuBurgers" id={id} style={{ margin: '40px 0 20px' }}>
@@ -32,6 +33,33 @@ export default function App() {
       setLang((prev) => (prev === 'es' ? 'en' : 'es'));
     }, 4500);
     return () => clearInterval(interval);
+  }, []);
+
+  // SEO SCHEMA JSON-LD
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.innerHTML = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Restaurant",
+      "name": "La Casa de Burger Torrevieja",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Av. Diego Ramírez Pastor, 142",
+        "addressLocality": "Torrevieja",
+        "addressRegion": "Alicante",
+        "postalCode": "03181",
+        "addressCountry": "ES"
+      },
+      "telephone": "+34602597210",
+      "servesCuisine": ["Gourmet Burgers", "Smash Burgers", "American Cuisine"],
+      "priceRange": "$$",
+      "openingHoursSpecification": [
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], "opens": "13:00", "closes": "22:30" }
+      ],
+      "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "reviewCount": "180" }
+    });
+    document.head.appendChild(script);
   }, []);
 
   const scrollToOrder = () => {
@@ -81,8 +109,7 @@ export default function App() {
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         .floating-close { position: fixed; bottom: 25px; left: 50%; transform: translateX(-50%); background: #ff4757; color: #fff; border: 2px solid #fff; padding: 15px 35px; border-radius: 50px; font-weight: 900; z-index: 10000; cursor: pointer; box-shadow: 0 10px 30px rgba(0,0,0,0.6); text-transform: uppercase; font-size: 1.1rem; }
         .footer-keywords { color: #555; font-size: 0.65rem; max-width: 1100px; margin: 25px auto; line-height: 1.6; text-align: justify; border-top: 1px solid #222; padding-top: 20px; }
-        .round-button { width: 40px; transition: transform 0.3s ease; }
-        .whatsapp-float { position: fixed; bottom: 30px; right: 20px; background: #25D366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 2rem; box-shadow: 0 5px 15px rgba(0,0,0,0.4); z-index: 9999; text-decoration: none; }
+        .whatsapp-float { position: fixed; bottom: 30px; right: 20px; background: #25D366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 2.2rem; box-shadow: 0 5px 15px rgba(0,0,0,0.4); z-index: 9999; text-decoration: none; }
       `}</style>
 
       <Nav scrollToOrder={scrollToOrder} />
@@ -112,22 +139,34 @@ export default function App() {
 
       <footer style={{ padding: '60px 20px', backgroundColor: '#000', color: '#fff', textAlign: 'center', borderTop: '4px solid #ff4757' }}>
         <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
-          <div style={{ display: 'flex', justifyContent: 'center', gap: '25px', marginBottom: '35px', flexWrap: 'wrap' }}>
-            <a href="https://facebook.com" target="_blank" rel="noreferrer"><img src={fb} className="round-button" alt="Facebook"/></a>
-            <a href="https://instagram.com" target="_blank" rel="noreferrer"><img src={instagram} className="round-button" alt="Instagram"/></a>
-            <img src={google} style={{ width: '120px' }} alt="Google Reviews" />
-            <img src={tripadvisor} style={{ width: '120px' }} alt="Tripadvisor Reviews" />
+          <div style={{ display: 'flex', justifyContent: 'center', gap: '25px', marginBottom: '35px', flexWrap: 'wrap', alignItems: 'center' }}>
+            <a href="https://www.facebook.com/share/1FZ8EswJS/" target="_blank" rel="noreferrer"><img src={fb} style={{ width: '40px' }} alt="Facebook"/></a>
+            <a href="https://www.instagram.com/lacasadeburger.es/" target="_blank" rel="noreferrer"><img src={instagramIcon} style={{ width: '40px' }} alt="Instagram"/></a>
+            <a href="https://es.restaurantguru.com/La-Casa-de-Burger-Torrevieja" target="_blank" rel="noreferrer" style={{ border: '2px solid #ff4757', padding: '10px 20px', borderRadius: '50px', color: '#fff', textDecoration: 'none', fontWeight: 'bold' }}>Restaurant Guru 2026</a>
+            <a href="https://www.google.com/maps/place/?q=place_id:ChIJMadejbCpYw0R_vfChL1f9og" target="_blank" rel="noreferrer"><img src={google} style={{ width: '130px' }} alt="Google Reviews" /></a>
+            <a href="https://www.tripadvisor.es/Restaurant_Review-g187531-d26656728-Reviews-La_Casa_de_Burger-Torrevieja_Province_of_Alicante_Valencian_Community.html" target="_blank" rel="noreferrer"><img src={tripadvisor} style={{ width: '130px' }} alt="Tripadvisor Reviews" /></a>
           </div>
+
           <div className="footer-keywords">
-            <strong>Variantes:</strong> Hamburguesería Torrevieja, Smash Burguers, Gourmet Burger near me, Hamburguesas artesanas, Takeaway Torrevieja. <strong>Français:</strong> Meilleur burger Torrevieja, Livraison burger rapide. <strong>Svenska:</strong> Bästa burgare i Torrevieja, Hemleverans mat. <strong>Русский:</strong> Кращі бургери Торрев'єха, Доставка їжі. <strong>Zonas:</strong> Playa del Cura, Los Locos, Paseo Marítimo, Centro Ciudad, Cabo Roig, Orihuela Costa. <strong>Tags:</strong> Black Angus, Brioche, Smash, Take Away.
+            <strong>Variantes (Español/English):</strong> Hamburguesería Torrevieja, Smash Burguers, Gourmet Burger near me, Hamburguesas artesanas, Takeaway Torrevieja, Delivery fast food.
+            <strong> Français:</strong> Meilleur burger Torrevieja, Hamburgers artisanaux, Restaurant de burgers centre-ville, Livraison burger rapide, Cuisine américaine.
+            <strong> Svenska/Norsk:</strong> Bästa burgare i Torrevieja, Hamburgare restaurang, Hemleverans mat, Smashburgare, Godaste burgaren nära Playa del Cura.
+            <strong> Русский/Українська:</strong> Кращі бургери Торрев'єха, Бургерна поруч, Доставка їжі Торрев'єха, Смачні гамбургери, Лучшие бургеры Торревьеха, Заказать бургер с доставкой.
+            <strong> Zonas:</strong> Playa del Cura, Los Locos, Paseo Marítimo, La Siesta, Aguas Nuevas, Los Balcones, Punta Prima, Torre del Moro, Centro Ciudad, Cabo Roig, Orihuela Costa.
+            <strong> Tags:</strong> Black Angus, Brioche, Smash, Take Away, #1 Quality, Real 4.9 stars Google.
           </div>
+
           <p style={{ marginTop: '40px', fontSize: '0.8rem', color: '#666', borderTop: '1px solid #222', paddingTop: '20px' }}>
             © {new Date().getFullYear()} La Casa de Burger - Torrevieja | <strong>Mejor Hamburguesería</strong> | <strong>Best Burgers in Town</strong>.
           </p>
         </div>
       </footer>
 
-      <a href="https://wa.me/34602597210" target="_blank" rel="noreferrer" className="whatsapp-float"><i className="fab fa-whatsapp"></i></a>
+      {/* BOUTONS FLOTTANTS */}
+      <a href="https://wa.me/34602597210" target="_blank" rel="noreferrer" className="whatsapp-float">
+        <img src="https://cdn-icons-png.flaticon.com/512/3670/3670051.png" style={{width: '100%'}} alt="WhatsApp" />
+      </a>
+
       {(showCardBurger || showCardPostres || showCardDrink) && (
         <button className="floating-close" onClick={closeAllMenus}>✕ CERRAR CARTA</button>
       )}
