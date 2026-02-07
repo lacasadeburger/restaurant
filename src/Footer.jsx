@@ -1,5 +1,5 @@
 import React from 'react';
-import navLogo from "../src/assets/Logo.jpeg";
+import navLogo from "../src/assets/Logo.jpg";
 import devrod from "../src/assets/devrod.png";
 
 export default function Footer() {
@@ -9,11 +9,11 @@ export default function Footer() {
         <div className="logo-container">
           <img src={navLogo} alt="logo" className="logoFooter" />
           <a href="https://devrod.site/"><img src={devrod} alt="disenadores web" className="logoFooter" /></a>
-          
+
         </div>
         <div className="info-container">
           <p>
-            Direccion: 700,0 m · Av. Diego Ramírez Pastor, 142<br />
+            Direccion: Av. Diego Ramírez Pastor, 142<br />
             Telefono: 602 59 72 10<br />
             WhatsApp: 602 59 72 10<br />
             Pedidos a domicilio, para llevar<br />

@@ -2,229 +2,155 @@ import React, { useState } from "react";
 import "./style.css";
 import Nav from "./Nav";
 import Swal from "sweetalert2";
-import StripeCheckout from "react-stripe-checkout";
 
 export default function Order({ cart, removeFromCart }) {
-  // Estados para manejar los datos del cliente y opciones de pago
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
   const [paymentOption, setPaymentOption] = useState("");
-  const [paymentOptionText, setPaymentOptionText] = useState("");
 
-  // Opciones adicionales para el pedido
-  const backOptions = [
-    "extra huevo",
-    "extra queso",
-    "tocino extra",
-    "salsa picante",
-    "sin tomate",
-    "sin ensalada",
-    "sin pepinillos",
-    "sin salsa",
-    "sin queso",
-    "sin ajo",
-    "sin perejil",
-    "sin comino"
-  ];
-
-  // Función para calcular el total a pagar
   const getTotalPrice = () => {
     let total = 0;
     cart.forEach((item) => {
-      total += Number(item.precio.replace(/[^0-9\.-]+/g, ""));
+      if (item.precio) {
+        total += Number(item.precio.replace(/[^0-9\.-]+/g, ""));
+      }
     });
     return total.toFixed(2);
   };
 
-  // Función para manejar el clic en el botón "Pago en efectivo" o "Tarjeta de crédito"
-  const handleButtonClick = () => {
-    const selectedOption = paymentOption === "Efectivo" ? "" : "Efectivo";
-    setPaymentOption(selectedOption);
-    setPaymentOptionText(selectedOption === "Efectivo" ? "Efectivo" : "Tarjeta de crédito");
-  };
-
-  // Función para manejar el token de pago con tarjeta recibido de Stripe
-  const handleToken = (token) => {
-    const requestOptions = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        token: token,
-        amount: getTotalPrice() // Aquí debes pasar el monto total a pagar
-      })
-    };
-    //api/payment
-    fetch('https://stripe-payment-lack.onrender.com', requestOptions) 
-      .then(response => response.json())
-      .then(data => {
-        console.log(data);
-        setPaymentOption("Tarjeta de crédito");
-        setPaymentOptionText("Tarjeta de crédito");
-
-        if (data.success) {
-        // El pago fue exitoso
-        Swal.fire("¡Pago exitoso!");
-      } else {
-        // El servidor falló, muestra un mensaje de error al usuario
-        Swal.fire("La transacción no pudo ser exitosa");
-      }
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  };
-  
-
-  // Función para verificar si se ha seleccionado alguna opción de pago
-  const isPaymentSelected = () => {
-    return paymentOption === "Efectivo" || paymentOption === "Tarjeta de crédito";
-  };
-
-  // Función para manejar el envío del pedido
   const handleOrder = (e) => {
     e.preventDefault();
-    let orderList = "";
-    cart.forEach((item) => {
-      orderList += `${item.object} - ${item.precio}\n`;
-    });
-    const message = `Nombre del cliente: ${name}\nNúmero de teléfono: ${phone}\nDirección: ${address}\n\nLista de productos:\n${orderList}\n\nTotal a pagar:\n${getTotalPrice()}\n\nOpción de pago: ${paymentOptionText}`;
-    console.log(message);
 
     if (!name || !phone) {
       Swal.fire("Por favor ingrese su nombre y teléfono.");
       return;
     }
 
-    const whatsappLink = `https://api.whatsapp.com/send/?phone=34602597210&text=${encodeURIComponent(
-      message
-    )}`;
+    if (!paymentOption) {
+      Swal.fire("Por favor seleccione método de pago (Efectivo o Tarjeta).");
+      return;
+    }
+
+    let orderList = "";
+    cart.forEach((item, index) => {
+      orderList += `\n*${index + 1}. ${item.object.toUpperCase()}* - ${item.precio}\n`;
+      if (item.removed && item.removed.length > 0) {
+        orderList += `    ❌ SIN: ${item.removed.join(", ").toUpperCase()}\n`;
+      }
+    });
+
+    const message = `*NUEVO PEDIDO - LA CASA DE BURGER*\n\n` +
+                    `👤 *Cliente:* ${name}\n` +
+                    `📞 *Tel:* ${phone}\n` +
+                    `📍 *Entrega:* ${address || "Recogida en local"}\n\n` +
+                    `📝 *DETALLE DU PEDIDO:*\n${orderList}\n` +
+                    `💰 *TOTAL:* ${getTotalPrice()}€\n` +
+                    `💳 *PAGO:* ${paymentOption.toUpperCase()}`;
+
+    const whatsappLink = `https://api.whatsapp.com/send/?phone=34602597210&text=${encodeURIComponent(message)}`;
     window.open(whatsappLink, "_blank");
 
-    // Limpiar los campos y resetear las opciones de pago
-    setName("");
-    setPhone("");
-    setAddress("");
-    setPaymentOption("");
-    setPaymentOptionText("");
+    setName(""); setPhone(""); setAddress(""); setPaymentOption("");
     removeFromCart([]);
   };
 
   return (
-    <div className="container-items">
-      {/* Componente de navegación que muestra el total a pagar */}
+    <div className="container-items" id="order" style={{ padding: '10px' }}>
       <Nav totalPrice={getTotalPrice()} />
 
-      <div className="item menuBurgers" style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-        {/* Lista de elementos en el carrito */}
-        <ul
-          
-        >
+      <div className="item menuBurgers" style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        width: '100%',
+        margin: '0 auto'
+      }}>
+        {/* Liste des produits - TEXTE EN ROUGE VIF */}
+        <ul style={{
+          padding: 0,
+          width: '100%',
+          maxWidth: '600px',
+          margin: '0 auto'
+        }}>
           {cart.map((item, index) => (
             <li
               key={index}
               style={{
-                fontSize: backOptions.includes(item.object.toLowerCase())
-                  ? "20px" 
-                  : "25px",
-                color: backOptions.includes(item.object.toLowerCase())
-                  ? "red" 
-                  : "white",
+                fontSize: "18px",
+                color: "#ff4757", // CHANGEMENT : ROUGE VIF pour le texte principal
                 listStyle: "none",
-                textAlign: "left"
+                textAlign: "left",
+                padding: "15px 10px",
+                borderBottom: "1px solid #444",
+                display: "flex",
+                flexDirection: "column",
+                gap: "5px",
+                width: '100%',
+                boxSizing: 'border-box',
+                fontWeight: "bold" // Ajout de gras pour encore plus de visibilité
               }}
             >
-              {item.object} - {item.precio}
-              <button
-                className="btn-cart"
-                onClick={() => removeFromCart(index)}
-              >
-                x
-              </button>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
+                <span style={{ flex: 1, paddingRight: '10px' }}>{item.object}</span>
+                <button className="btn-cart" onClick={() => removeFromCart(index)} style={{ minWidth: '30px' }}>✕</button>
+              </div>
+
+              {item.removed && item.removed.length > 0 && (
+                <span style={{ fontSize: "14px", color: "#ffffff", backgroundColor: "#ff4757", padding: "2px 8px", borderRadius: "4px", width: "fit-content" }}>
+                  ❌ SIN: {item.removed.join(", ")}
+                </span>
+              )}
+
+              <span style={{ fontSize: "16px", color: "#ff4757", opacity: 0.9 }}>{item.precio}</span>
             </li>
           ))}
         </ul>
 
-        <div className="info-product">
-          <p style={{color:"blue"}}>Total a pagar: {getTotalPrice()}</p>
+        {/* Formulaire et Total */}
+        <div className="info-product" style={{ width: '100%', maxWidth: '500px', padding: '0 10px', boxSizing: 'border-box' }}>
+          <p style={{color:"#ff4757", fontWeight: '900', fontSize: '1.8rem', marginBottom: '15px', textAlign: 'center', textTransform: 'uppercase'}}>
+            Total: {getTotalPrice()}€
+          </p>
 
-          {/* Formulario para ingresar los datos del cliente */}
-          <label htmlFor="name" className="cart-Order">
-            Nombre del cliente
-          </label>
-          <input
-            id="name"
-            type="text"
-            placeholder="Escriba su nombre"
-            className="placeholder"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-          <br />
+          <input type="text" placeholder="Tu Nombre" className="placeholder" style={{ width: '100%', border: '1px solid #ff4757' }} value={name} onChange={(e) => setName(e.target.value)} />
+          <input type="text" placeholder="Tu Teléfono" className="placeholder" style={{ width: '100%', border: '1px solid #ff4757' }} value={phone} onChange={(e) => setPhone(e.target.value)} />
+          <textarea placeholder="Dirección (Vacío para recoger)" className="placeholder" style={{ width: '100%', minHeight: '80px', border: '1px solid #ff4757' }} value={address} onChange={(e) => setAddress(e.target.value)}></textarea>
 
-          <label htmlFor="phone" className="cart-Order">
-            Número de teléfono
-          </label>
-          <input
-            type="text"
-            placeholder="Número de teléfono"
-            className="placeholder"
-            value={phone}
-            onChange={(e) => setPhone(e.target.value)}
-          />
-          <br />
-
-          <label htmlFor="address">Dirección</label>
-          <br />
-          <textarea
-            name="address"
-            cols="30"
-            rows="4"
-            className="placeholder"
-            placeholder="Escriba su dirección si su orden es para entrega a domicilio"
-            value={address}
-            onChange={(e) => setAddress(e.target.value)}
-          ></textarea>
-          <br />
-
-          {/* Opciones de pago */}
-          <div className="payment-btn">
-            <button
-              className="payment-btn1"
-              onClick={handleButtonClick}
-              disabled={paymentOption === "Tarjeta de crédito"}
-            >
-              <input
-                type="checkbox"
-                checked={paymentOption === "Efectivo"}
-                onChange={() => {}}
-              />
-              Pago en efectivo
-            </button>
-            <StripeCheckout
-              token={handleToken}
-              stripeKey="pk_live_51NYAhRCTQdBdq2KhcrQfbD5S62f5r8V8VQl4WjrWo65D4VzMNn2Jsst6loXEhjM5bxrkxvgFBJ5sFdZICnl9RkMr00jGa9kM3V"
-              amount={getTotalPrice() * 100}
-              name={name}
-              disabled={paymentOption === "Efectivo"}
-              style={{ background: "#FF0000", color: "#FFFFFF" }}
-              
-            >
-              <button disabled={paymentOption === "Efectivo"}>
-                Tarjeta de crédito
-              </button>
-            </StripeCheckout>
+          <div style={{ marginTop: '20px', width: '100%' }}>
+            <p style={{ color: 'white', marginBottom: '10px', textAlign: 'center', fontWeight: 'bold' }}>¿Cómo pagarás?</p>
+            <div style={{ display: 'flex', gap: '10px' }}>
+              <button
+                onClick={() => setPaymentOption("Efectivo")}
+                style={{ flex: 1, padding: '15px 5px', borderRadius: '8px', border: '2px solid #ff4757', backgroundColor: paymentOption === "Efectivo" ? "#ff4757" : "transparent", color: 'white', fontWeight: 'bold', cursor: 'pointer', fontSize: '14px' }}
+              >💵 Efectivo</button>
+              <button
+                onClick={() => setPaymentOption("Tarjeta")}
+                style={{ flex: 1, padding: '15px 5px', borderRadius: '8px', border: '2px solid #ff4757', backgroundColor: paymentOption === "Tarjeta" ? "#ff4757" : "transparent", color: 'white', fontWeight: 'bold', cursor: 'pointer', fontSize: '14px' }}
+              >💳 Tarjeta</button>
+            </div>
           </div>
         </div>
-        <br/>
 
-        {/* Botón para enviar el pedido */}
         <button
           className="add-btn2"
           onClick={handleOrder}
-          disabled={!isPaymentSelected()}
+          disabled={!paymentOption}
+          style={{
+            marginTop: '30px',
+            padding: '20px 20px',
+            width: '95%',
+            maxWidth: '400px',
+            backgroundColor: paymentOption ? '#25D366' : '#444',
+            color: 'white',
+            fontSize: '18px',
+            fontWeight: '900',
+            borderRadius: '50px',
+            border: 'none',
+            boxShadow: paymentOption ? '0 4px 15px rgba(37, 211, 102, 0.4)' : 'none'
+          }}
         >
-          Enviar Orden
+          {paymentOption ? "🚀 ENVIAR POR WHATSAPP" : "ELIJA MÉTODO DE PAGO"}
         </button>
       </div>
     </div>

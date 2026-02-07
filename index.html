@@ -1,34 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
-    <meta charset="UTF-8" />
-    
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital@1&display=swap" rel="stylesheet">
+    <meta charset="utf-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="theme-color" content="#ff4757" />
+
+    <title>La Casa de Burger Torrevieja | #1 Smash Burger & Gourmet</title>
+    <meta name="description" content="La mejor hamburguesería de Torrevieja. Smash burgers artesanales, carne Black Angus y postres caseros. ¡Pide online o visítanos cerca de Playa del Cura!" />
+    <meta name="author" content="La Casa de Burger" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://lacasadeburger.es/" />
+    <meta property="og:title" content="La Casa de Burger Torrevieja | Gourmet & Smash" />
+    <meta property="og:description" content="¡Las burgers más premiadas de Torrevieja! Calidad real 4.9/5. Servicio a domicilio rápido." />
+    <meta property="og:image" content="/logo512.png" />
+
+    <link
+      rel="preload"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    </noscript>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital@1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Sacramento&display=swap" rel="stylesheet">
+    <link rel="apple-touch-icon" href="/logo192.png" />
+    <link rel="manifest" href="/manifest.json" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Sacramento&family=Ysabeau:wght@200&display=swap" rel="stylesheet">
-<!--<base href="https://lacasadeburger.es" />-->
-    
-    <title>La casa de Burger</title>
-    <link rel="icon" href="src/assets/india.png" >
+    <style>
+      /* Petit hack de proprio : évite le flash blanc au chargement sur mobile */
+      body { background-color: #111; margin: 0; padding: 0; overflow-x: hidden; }
+    </style>
   </head>
   <body>
-      <div id="root"></div>
-      <script src="https://js.stripe.com/v3/"></script>
-      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-      <script type="module" src="src/main.jsx"></script>
-      
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

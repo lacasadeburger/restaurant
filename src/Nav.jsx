@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import navLogo from "../src/assets/Logo.jpeg";
+import navLogo from "../src/assets/Logo.jpg";
 import carrito from "../src/assets/carrito.png";
 
 export default function Nav({ totalPrice }) {
