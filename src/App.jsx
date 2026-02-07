@@ -35,36 +35,12 @@ export default function App() {
     return () => clearInterval(interval);
   }, []);
 
-  // SEO SCHEMA JSON-LD
-  useEffect(() => {
-    const script = document.createElement('script');
-    script.type = 'application/ld+json';
-    script.innerHTML = JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "Restaurant",
-      "name": "La Casa de Burger Torrevieja",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Av. Diego Ramírez Pastor, 142",
-        "addressLocality": "Torrevieja",
-        "addressRegion": "Alicante",
-        "postalCode": "03181",
-        "addressCountry": "ES"
-      },
-      "telephone": "+34602597210",
-      "servesCuisine": ["Gourmet Burgers", "Smash Burgers", "American Cuisine"],
-      "priceRange": "$$",
-      "openingHoursSpecification": [
-        { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], "opens": "13:00", "closes": "22:30" }
-      ],
-      "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "reviewCount": "180" }
-    });
-    document.head.appendChild(script);
-  }, []);
-
+  // --- FONCTION PANIER / SCROLL ---
   const scrollToOrder = () => {
     const element = document.getElementById("order");
-    if (element) element.scrollIntoView({ behavior: "smooth" });
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   const scrollToMenu = () => {
@@ -112,7 +88,8 @@ export default function App() {
         .whatsapp-float { position: fixed; bottom: 30px; right: 20px; background: #25D366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 2.2rem; box-shadow: 0 5px 15px rgba(0,0,0,0.4); z-index: 9999; text-decoration: none; }
       `}</style>
 
-      <Nav scrollToOrder={scrollToOrder} />
+      {/* Le composant Nav reçoit la fonction scrollToOrder pour le panier */}
+      <Nav scrollToOrder={scrollToOrder} cartLength={cart.length} />
 
       <header style={{ padding: '140px 20px 80px', textAlign: 'center', backgroundColor: '#000', borderRadius: '0 0 50px 50px', borderBottom: '4px solid #ff4757', position: 'relative' }}>
         <div style={{ position: 'absolute', top: '110px', right: '10%', background: '#FFD700', color: '#000', padding: '5px 15px', borderRadius: '50px', fontWeight: 'bold', fontSize: '0.8rem', transform: 'rotate(5deg)', zIndex: 10 }}>🏆 #1 Gourmet Burger Torrevieja</div>
@@ -143,17 +120,17 @@ export default function App() {
             <a href="https://www.facebook.com/share/1FZ8EswJS/" target="_blank" rel="noreferrer"><img src={fb} style={{ width: '40px' }} alt="Facebook"/></a>
             <a href="https://www.instagram.com/lacasadeburger.es/" target="_blank" rel="noreferrer"><img src={instagramIcon} style={{ width: '40px' }} alt="Instagram"/></a>
             <a href="https://es.restaurantguru.com/La-Casa-de-Burger-Torrevieja" target="_blank" rel="noreferrer" style={{ border: '2px solid #ff4757', padding: '10px 20px', borderRadius: '50px', color: '#fff', textDecoration: 'none', fontWeight: 'bold' }}>Restaurant Guru 2026</a>
-            <a href="https://www.google.com/maps/place/?q=place_id:ChIJMadejbCpYw0R_vfChL1f9og" target="_blank" rel="noreferrer"><img src={google} style={{ width: '130px' }} alt="Google Reviews" /></a>
+            <a href="https://maps.google.com" target="_blank" rel="noreferrer"><img src={google} style={{ width: '130px' }} alt="Google Reviews" /></a>
             <a href="https://www.tripadvisor.es/Restaurant_Review-g187531-d26656728-Reviews-La_Casa_de_Burger-Torrevieja_Province_of_Alicante_Valencian_Community.html" target="_blank" rel="noreferrer"><img src={tripadvisor} style={{ width: '130px' }} alt="Tripadvisor Reviews" /></a>
           </div>
 
           <div className="footer-keywords">
             <strong>Variantes (Español/English):</strong> Hamburguesería Torrevieja, Smash Burguers, Gourmet Burger near me, Hamburguesas artesanas, Takeaway Torrevieja, Delivery fast food.
-            <strong> Français:</strong> Meilleur burger Torrevieja, Hamburgers artisanaux, Restaurant de burgers centre-ville, Livraison burger rapide, Cuisine américaine.
-            <strong> Svenska/Norsk:</strong> Bästa burgare i Torrevieja, Hamburgare restaurang, Hemleverans mat, Smashburgare, Godaste burgaren nära Playa del Cura.
-            <strong> Русский/Українська:</strong> Кращі бургери Торрев'єха, Бургерна поруч, Доставка їжі Торрев'єха, Смачні гамбургери, Лучшие бургеры Торревьеха, Заказать бургер с доставкой.
-            <strong> Zonas:</strong> Playa del Cura, Los Locos, Paseo Marítimo, La Siesta, Aguas Nuevas, Los Balcones, Punta Prima, Torre del Moro, Centro Ciudad, Cabo Roig, Orihuela Costa.
-            <strong> Tags:</strong> Black Angus, Brioche, Smash, Take Away, #1 Quality, Real 4.9 stars Google.
+            <br /><strong> Français:</strong> Meilleur burger Torrevieja, Hamburgers artisanaux, Restaurant de burgers centre-ville, Livraison burger rapide, Cuisine américaine.
+            <br /><strong> Svenska/Norsk:</strong> Bästa burgare i Torrevieja, Hamburgare restaurang, Hemleverans mat, Smashburgare, Godaste burgaren nära Playa del Cura.
+            <br /><strong> Русский/Українська:</strong> Кращі бургери Торрев'єха, Бургерна поруч, Доставка їжі Торрев'єха, Смачні гамбургери, Лучшие бургеры Торревьеха, Заказать бургер с доставкой.
+            <br /><strong> Zonas:</strong> Playa del Cura, Los Locos, Paseo Marítimo, La Siesta, Aguas Nuevas, Los Balcones, Punta Prima, Torre del Moro, Centro Ciudad, Cabo Roig, Orihuela Costa.
+            <br /><strong> Tags:</strong> Black Angus, Brioche, Smash, Take Away, #1 Quality, Real 4.9 stars Google.
           </div>
 
           <p style={{ marginTop: '40px', fontSize: '0.8rem', color: '#666', borderTop: '1px solid #222', paddingTop: '20px' }}>
@@ -162,11 +139,12 @@ export default function App() {
         </div>
       </footer>
 
-      {/* BOUTONS FLOTTANTS */}
+      {/* WHATSAPP FLOAT */}
       <a href="https://wa.me/34602597210" target="_blank" rel="noreferrer" className="whatsapp-float">
-        <img src="https://cdn-icons-png.flaticon.com/512/3670/3670051.png" style={{width: '100%'}} alt="WhatsApp" />
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" style={{width: '100%'}} alt="WhatsApp" />
       </a>
 
+      {/* BOUTON FERMER CENTRÉ */}
       {(showCardBurger || showCardPostres || showCardDrink) && (
         <button className="floating-close" onClick={closeAllMenus}>✕ CERRAR CARTA</button>
       )}
