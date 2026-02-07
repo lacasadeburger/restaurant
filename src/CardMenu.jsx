@@ -62,6 +62,24 @@ export default function CardMenu(props) {
       <style>{`
         .image-container { width: 100%; height: 200px; display: flex; align-items: center; justify-content: center; position: relative; }
         .product-img { width: 100%; height: 100%; object-fit: contain; z-index: 2; }
+
+        /* Nouveau Price Tag Diamant sur l'image */
+        .price-badge-overlay {
+          position: absolute;
+          top: 15px;
+          right: 15px;
+          background: #ff4757;
+          color: white;
+          padding: 5px 12px;
+          border-radius: 8px;
+          font-weight: 900;
+          font-size: 1.2rem;
+          z-index: 10;
+          border: 2px solid #000;
+          box-shadow: 4px 4px 0px #000;
+          transform: rotate(3deg);
+        }
+
         .card-content { padding: 15px; display: flex; flex-direction: column; gap: 10px; flex-grow: 1; }
 
         /* Bloc Titre + Description encadré */
@@ -83,8 +101,9 @@ export default function CardMenu(props) {
         .add-btn-modern { background: #000; color: #fff; border: none; padding: 10px 15px; font-weight: 900; cursor: pointer; text-transform: uppercase; border-radius: 4px; }
       `}</style>
 
-      {/* Image du produit sur le fond journal */}
+      {/* Image du produit avec le badge de prix par-dessus */}
       <div className="image-container">
+        <div className="price-badge-overlay">{totalPrice}€</div>
         <img src={image} alt={object} className="product-img" />
       </div>
 
