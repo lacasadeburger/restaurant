@@ -11,7 +11,7 @@ import Postre from "./assets/postre.png";
 import Burger from "./assets/burger.png";
 import Drink from "./assets/drink.png";
 import tripadvisor from "./assets/tripadvisor.png";
-import google from "./assets/google.png";
+import googleIcon from "./assets/google.png";
 
 const instagramIcon = "https://cdn-icons-png.flaticon.com/512/2111/2111463.png";
 
@@ -81,7 +81,8 @@ export default function App() {
         .grid-cards { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; padding: 20px 0 120px; animation: fadeIn 0.6s ease; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         .floating-close { position: fixed; bottom: 25px; left: 50%; transform: translateX(-50%); background: #ff4757; color: #fff; border: 2px solid #fff; padding: 15px 35px; border-radius: 50px; font-weight: 900; z-index: 10000; cursor: pointer; box-shadow: 0 10px 30px rgba(0,0,0,0.6); text-transform: uppercase; font-size: 1.1rem; }
-        .footer-keywords { color: #666; font-size: 0.65rem; max-width: 1100px; margin: 25px auto; line-height: 1.6; text-align: justify; border-top: 1px solid #222; padding-top: 20px; }
+        .footer-info { background: rgba(255,255,255,0.05); padding: 25px; border-radius: 20px; margin-bottom: 30px; border: 1px solid #333; }
+        .footer-keywords { color: #555; font-size: 0.65rem; max-width: 1100px; margin: 25px auto; line-height: 1.6; text-align: justify; border-top: 1px solid #222; padding-top: 20px; }
         .whatsapp-float { position: fixed; bottom: 30px; right: 20px; background: #25D366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; box-shadow: 0 5px 15px rgba(0,0,0,0.4); z-index: 9999; }
       `}</style>
 
@@ -112,14 +113,24 @@ export default function App() {
 
       <footer style={{ padding: '60px 20px', backgroundColor: '#000', color: '#fff', textAlign: 'center', borderTop: '4px solid #ff4757' }}>
         <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
+
+          {/* SEO SUPER GOLD - INFOS RESTAURANT */}
+          <div className="footer-info">
+             <h3 style={{ color: '#ff4757', marginBottom: '15px', textTransform: 'uppercase' }}>La Casa de Burger Torrevieja</h3>
+             <p style={{ marginBottom: '10px' }}>📍 <strong>Dirección:</strong> Av. Diego Ramirez Pastor, 142, 03181 Torrevieja, Alicante, España</p>
+             <p style={{ marginBottom: '10px' }}>📞 <strong>Teléfono / WhatsApp:</strong> <a href="tel:+34602597210" style={{ color: '#fff', textDecoration: 'none' }}>+34 602 59 72 10</a></p>
+             <p>🕒 <strong>Horario:</strong> Abierto de lunes a sabado de 13:00 a 23:00</p>
+          </div>
+
           <div style={{ display: 'flex', justifyContent: 'center', gap: '25px', marginBottom: '35px', flexWrap: 'wrap', alignItems: 'center' }}>
             <a href="https://www.facebook.com/profile.php?id=100094610793536" target="_blank" rel="noreferrer"><img src={fb} style={{ width: '40px' }} alt="Facebook"/></a>
             <a href="https://www.instagram.com/lacasadeburger.es/" target="_blank" rel="noreferrer"><img src={instagramIcon} style={{ width: '40px' }} alt="Instagram"/></a>
             <a href="https://es.restaurantguru.com/La-Casa-de-Burger-Torrevieja" target="_blank" rel="noreferrer" style={{ border: '2px solid #ff4757', padding: '10px 20px', borderRadius: '50px', color: '#fff', textDecoration: 'none', fontWeight: 'bold' }}>Restaurant Guru 2026</a>
-            <a href="http://googleusercontent.com/maps.google.com/3" target="_blank" rel="noreferrer"><img src={google} style={{ width: '130px' }} alt="Google Reviews" /></a>
+            <a href="https://www.google.com/maps/place/La+Casa+de+Burger/@37.9780026,-0.6811221,17z/data=!4m8!3m7!1s0xd63aa1f623690d7:0xa9542a2754d9c733!8m2!3d37.9780026!4d-0.6785472!9m1!1b1!16s%2Fg%2F11vhh2v_37" target="_blank" rel="noreferrer"><img src={googleIcon} style={{ width: '130px' }} alt="Google Reviews" /></a>
             <a href="https://www.tripadvisor.es/Restaurant_Review-g187527-d26835169-Reviews-La_Casa_De_Burger-Torrevieja_Costa_Blanca_Province_of_Alicante_Valencian_Communi.html" target="_blank" rel="noreferrer"><img src={tripadvisor} style={{ width: '130px' }} alt="Tripadvisor Reviews" /></a>
           </div>
 
+          {/* MOTS CLÉS MULTILINGUES */}
           <div className="footer-keywords">
             <strong>Variantes (Español/English):</strong> Hamburguesería Torrevieja, Smash Burguers, Gourmet Burger near me, Hamburguesas artesanas, Takeaway Torrevieja, Delivery fast food.
             <br /><strong> Français:</strong> Meilleur burger Torrevieja, Hamburgers artisanaux, Restaurant de burgers centre-ville, Livraison burger rapide, Cuisine américaine.
