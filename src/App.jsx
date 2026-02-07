@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import Nav from "./Nav";
 import Order from "./Order";
 import CardMenu from "./CardMenu";
@@ -28,15 +28,17 @@ export default function App() {
   const [showCardDrink, setShowCardDrink] = useState(false);
   const [lang, setLang] = useState('es');
 
+  // Calcul du prix total avec useMemo pour garantir la synchronisation immédiate
+  const totalPrice = useMemo(() => {
+    return cart.reduce((acc, item) => acc + (Number(item.price) || 0), 0).toFixed(2);
+  }, [cart]);
+
   useEffect(() => {
     const interval = setInterval(() => {
       setLang((prev) => (prev === 'es' ? 'en' : 'es'));
     }, 4500);
     return () => clearInterval(interval);
   }, []);
-
-  // --- CALCUL DU TOTAL EN TEMPS RÉEL ---
-  const totalPrice = cart.reduce((acc, item) => acc + (item.price || 0), 0);
 
   const scrollToOrder = () => {
     const element = document.getElementById("order");
@@ -58,7 +60,7 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const addToCart = (item) => setCart([...cart, item]);
+  const addToCart = (item) => setCart([...cart, { ...item, uniqueId: Date.now() }]);
   const removeFromCart = (index) => {
     const updatedCart = [...cart];
     updatedCart.splice(index, 1);
@@ -72,6 +74,9 @@ export default function App() {
   const renderCards = (items, type) => items.map((item) => (
     <CardMenu key={item.id} {...item} isDrinkCard={type === "drink"} isPostreCard={type === "postre"} addToCart={addToCart} />
   ));
+
+  // LIEN GOOGLE MAPS ROBUSTE (Remplace l'ancien lien 404)
+  const googleMapsUrl = "https://www.google.com/maps/search/?api=1&query=La+Casa+de+Burger+Torrevieja";
 
   return (
     <div className="app-main-wrapper" style={{ position: 'relative', backgroundColor: '#111', color: '#fff' }}>
@@ -87,13 +92,15 @@ export default function App() {
         .footer-info { background: rgba(255,255,255,0.05); padding: 25px; border-radius: 20px; margin-bottom: 30px; border: 1px solid #333; line-height: 1.8; text-align: left; }
         .footer-keywords { color: #555; font-size: 0.65rem; max-width: 1100px; margin: 25px auto; line-height: 1.6; text-align: justify; border-top: 1px solid #222; padding-top: 20px; }
         .whatsapp-float { position: fixed; bottom: 30px; right: 20px; background: #25D366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; box-shadow: 0 5px 15px rgba(0,0,0,0.4); z-index: 9999; }
+        .header-cart-btn { background: #ff4757; color: #fff; min-width: 100px; height: 60px; padding: 0 20px; border-radius: 50px; border: none; fontSize: 1.2rem; fontWeight: bold; cursor: pointer; display: flex; justify-content: center; alignItems: center; gap: 10px; box-shadow: 0 4px 10px rgba(255,71,87,0.4); transition: 0.3s; }
+        .header-cart-btn:hover { transform: scale(1.05); background: #ff6b81; }
       `}</style>
 
-      {/* --- NAV AVEC TOTAL DU PRIX ET CADDIE --- */}
+      {/* NAV DIAMANT - Le prix est passé ici */}
       <Nav
         scrollToOrder={scrollToOrder}
         cartLength={cart.length}
-        totalPrice={totalPrice.toFixed(2)}
+        totalPrice={totalPrice}
       />
 
       <header style={{ padding: '140px 20px 80px', textAlign: 'center', backgroundColor: '#000', borderRadius: '0 0 50px 50px', borderBottom: '4px solid #ff4757', position: 'relative' }}>
@@ -108,14 +115,16 @@ export default function App() {
             {lang === 'es' ? 'VER CARTA' : 'VIEW MENU'}
           </button>
 
-          <button onClick={scrollToOrder} style={{ backgroundColor: '#ff4757', color: '#fff', width: 'auto', minWidth: '80px', height: '60px', padding: '0 20px', borderRadius: '50px', border: 'none', fontSize: '1.2rem', fontWeight: 'bold', cursor: 'pointer', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '10px', boxShadow: '0 4px 10px rgba(255,71,87,0.4)' }}>
-            <span>🛒</span>
-            <span>{totalPrice.toFixed(2)}€</span>
+          {/* Bouton Caddie Header sync avec le prix */}
+          <button onClick={scrollToOrder} className="header-cart-btn">
+            <span style={{fontSize: '1.5rem'}}>🛒</span>
+            <span style={{fontWeight: '900'}}>{totalPrice}€</span>
           </button>
         </div>
       </header>
 
       <main className="menu-page-container">
+        {/* Sections du menu (Burgers, Postres, Drinks) */}
         <section><SectionTitle id="sec-burgers">{lang === 'es' ? 'Nuestras Burgers' : 'Our Burgers'}</SectionTitle>
           {showCardBurger ? <div className="grid-cards">{renderCards(burgers, "food")}</div> : (
             <div className="promo-container" onClick={() => setShowCardBurger(true)}>
@@ -160,21 +169,18 @@ export default function App() {
             <a href="https://www.facebook.com/profile.php?id=100094610793536" target="_blank" rel="noreferrer"><img src={fb} style={{ width: '40px' }} alt="Facebook"/></a>
             <a href="https://www.instagram.com/lacasadeburger.es/" target="_blank" rel="noreferrer"><img src={instagramIcon} style={{ width: '40px' }} alt="Instagram"/></a>
             <a href="https://es.restaurantguru.com/La-Casa-de-Burger-Torrevieja" target="_blank" rel="noreferrer" style={{ border: '2px solid #ff4757', padding: '10px 20px', borderRadius: '50px', color: '#fff', textDecoration: 'none', fontWeight: 'bold' }}>Restaurant Guru 2026</a>
-            <a href="https://www.google.com/maps/place/La+Casa+de+Burger/@37.9806443,-0.6806733,17z" target="_blank" rel="noreferrer"><img src={googleIcon} style={{ width: '130px' }} alt="Google Maps" /></a>
+            {/* LIEN GOOGLE CORRIGÉ ICI */}
+            <a href={googleMapsUrl} target="_blank" rel="noreferrer"><img src={googleIcon} style={{ width: '130px' }} alt="Google Maps" /></a>
             <a href="https://www.tripadvisor.es/Restaurant_Review-g187527-d26835169-Reviews-La_Casa_De_Burger-Torrevieja_Costa_Blanca_Province_of_Alicante_Valencian_Communi.html" target="_blank" rel="noreferrer"><img src={tripadvisor} style={{ width: '130px' }} alt="Tripadvisor Reviews" /></a>
           </div>
 
           <div className="footer-keywords">
-            <strong>Variantes (Español/English):</strong> Hamburguesería Torrevieja, Smash Burguers, Gourmet Burger near me, Hamburguesas artesanas, Takeaway Torrevieja, Delivery fast food.
-            <br /><strong> Français:</strong> Meilleur burger Torrevieja, Hamburgers artisanaux, Restaurant de burgers centre-ville, Livraison burger rapide, Cuisine américaine.
-            <br /><strong> Svenska/Norsk:</strong> Bästa burgare i Torrevieja, Hamburgare restaurang, Hemleverans mat, Smashburgare, Godaste burgaren nära Playa del Cura.
-            <br /><strong> Русский/Українська:</strong> Кращі бургери Торрев'єха, Бургерна поруч, Доставка їжі Торрев'єха, Смачні гамбургери, Лучшие бургеры Торревьеха, Заказать бургер з доставкой.
-            <br /><strong> Zonas:</strong> Playa del Cura, Los Locos, Paseo Marítimo, La Siesta, Aguas Nuevas, Los Balcones, Punta Prima, Torre del Moro, Centro Ciudad, Cabo Roig, Orihuela Costa.
-            <br /><strong> Tags:</strong> Black Angus, Brioche, Smash, Take Away, #1 Quality, Real 4.9 stars Google.
+            <strong>Variantes:</strong> Hamburguesería Torrevieja, Smash Burguers, Gourmet Burger, Hamburguesas artesanas, Takeaway Torrevieja, Delivery.
+            <br /><strong>Français/Svenska/Русский:</strong> Meilleur burger, Bästa burgare, Кращі бургери Torrevieja.
           </div>
 
           <p style={{ marginTop: '40px', fontSize: '0.8rem', color: '#666', borderTop: '1px solid #222', paddingTop: '20px' }}>
-            © {new Date().getFullYear()} La Casa de Burger - Torrevieja | <strong>Mejor Hamburguesería</strong> | <strong>Best Burgers in Town</strong>.
+            © {new Date().getFullYear()} La Casa de Burger - Torrevieja.
           </p>
         </div>
       </footer>
