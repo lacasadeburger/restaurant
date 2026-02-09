@@ -213,7 +213,7 @@ export default function App() {
             <a href="https://www.facebook.com/profile.php?id=100094610793536" target="_blank" rel="noreferrer"><img src={fb} width="45" alt="Facebook" /></a>
             <a href="https://www.instagram.com/lacasadeburger.es/" target="_blank" rel="noreferrer"><img src={instagramIcon} width="45" alt="Instagram" /></a>
             <a href="https://es.restaurantguru.com/La-Casa-de-Burger-Torrevieja" target="_blank" rel="noreferrer" style={{ background: GOLD_GRADIENT, color: '#000', padding: '12px 25px', borderRadius: '50px', textDecoration: 'none', fontWeight: 'bold', border: '2px solid #000' }}>GURU 2026</a>
-            <a href="https://maps.app.goo.gl/m37hREbB7Wn8uPst9" target="_blank" rel="noreferrer"><img src={googleIcon} width="140" alt="Google Maps" /></a>
+            <a href="https://maps.app.goo.gl/5FRkjpDFaQWeqp21A" target="_blank" rel="noreferrer"><img src={googleIcon} width="140" alt="Google Maps" /></a>
             <a href="https://www.tripadvisor.es/Restaurant_Review-g187527-d26835169-Reviews-La_Casa_De_Burger-Torrevieja_Costa_Blanca_Province_of_Alicante_Valencian_Communi.html" target="_blank" rel="noreferrer"><img src={tripadvisor} width="140" alt="Tripadvisor" /></a>
           </div>
 
