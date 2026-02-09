@@ -55,28 +55,31 @@ export default function App() {
   const drinks = data.filter(i => i.category === "drink");
   const postres = data.filter(i => i.category === "postre");
 
+  // CONFIGURATION DES COULEURS OR 24K ÉCLATANT
+  const GOLD_BRIGHT = "#FFD700";
+  const GOLD_GRADIENT = "linear-gradient(135deg, #BF953F 0%, #FCF6BA 45%, #B38728 55%, #FBF5B7 100%)";
+  const GOLD_SHADOW = "0 4px 0px #8A6D3B";
+
   return (
     <div className="app-main-wrapper" style={{ position: 'relative', backgroundColor: '#111', color: '#fff' }}>
       <style>{`
         .menu-page-container { max-width: 1200px; margin: 0 auto; padding: 0 20px; text-align: center; }
 
-        /* PROMO CONTAINERS GOURMET */
         .promo-container {
           position: relative; cursor: pointer; display: inline-block; border-radius: 20px;
-          overflow: hidden; box-shadow: 0 15px 35px rgba(0,0,0,0.7); transition: 0.5s;
-          max-width: 500px; width: 100%; margin-bottom: 20px; border: 2px solid rgba(212, 175, 55, 0.2);
+          overflow: hidden; box-shadow: 0 15px 35px rgba(0,0,0,0.8); transition: 0.5s;
+          max-width: 500px; width: 100%; margin-bottom: 20px; border: 2px solid rgba(255, 215, 0, 0.3);
         }
-        .promo-container:hover { transform: translateY(-5px); border-color: #D4AF37; }
+        .promo-container:hover { transform: translateY(-5px); border-color: ${GOLD_BRIGHT}; }
         .promo-img { width: 100%; display: block; opacity: 1; transition: 0.5s; }
         .promo-container:hover .promo-img { opacity: 0.7; transform: scale(1.05); }
 
-        /* BOUTON OVERLAY GOLD MÉTALLIQUE */
         .btn-overlay {
           position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
-          background: linear-gradient(135deg, #D4AF37 0%, #F1D18A 50%, #C5A028 100%);
-          color: #000; padding: 12px 30px; border-radius: 8px; font-weight: 950;
+          background: ${GOLD_GRADIENT};
+          color: #000 !important; padding: 12px 30px; border-radius: 8px; font-weight: 950;
           border: 2px solid #000; pointer-events: none; font-size: 1.1rem;
-          box-shadow: 0 4px 15px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,255,255,0.4);
+          box-shadow: 0 4px 15px rgba(0,0,0,0.6);
           text-transform: uppercase; z-index: 5; white-space: nowrap;
         }
 
@@ -84,9 +87,11 @@ export default function App() {
         .floating-close { position: fixed; bottom: 85px; left: 50%; transform: translateX(-50%); background: #ff4757; color: #fff; border: 3px solid #000; padding: 12px 25px; border-radius: 10px; font-weight: 900; z-index: 9998; cursor: pointer; box-shadow: 4px 4px 0px #000; text-transform: uppercase; font-size: 1rem; }
         .whatsapp-float { position: fixed; bottom: 20px; right: 20px; background: #25D366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; z-index: 9999; box-shadow: 0 5px 15px rgba(0,0,0,0.4); }
 
-        /* TÉMOIGNAGES AVEC BORDURE OR */
-        .testimonial-card { background: rgba(255,255,255,0.05); padding: 20px; border-radius: 15px; border-left: 4px solid #D4AF37; text-align: left; transition: 0.3s; }
-        .testimonial-card:hover { background: rgba(255,255,255,0.08); border-left-width: 8px; }
+        .testimonial-card { background: rgba(255,255,255,0.05); padding: 20px; border-radius: 15px; border-left: 4px solid ${GOLD_BRIGHT}; text-align: left; transition: 0.3s; }
+        .testimonial-card:hover { background: rgba(255,255,255,0.08); border-left-width: 8px; border-left-color: #fff68f; }
+
+        @keyframes pulse-gold { 0% { transform: rotate(5deg) scale(1); } 50% { transform: rotate(5deg) scale(1.05); } 100% { transform: rotate(5deg) scale(1); } }
+        .pulse-badge { animation: pulse-gold 2s infinite ease-in-out; }
       `}</style>
 
       <h1 style={{ position: 'absolute', left: '-9999px' }}>Mejor Hamburguesería en Torrevieja - Smash Burgers & Gourmet Delivery</h1>
@@ -94,10 +99,9 @@ export default function App() {
       <Nav scrollToOrder={scrollToOrder} cartLength={cart.length} totalPrice={totalPrice} lang={lang} />
 
       <header style={{ padding: '140px 20px 80px', textAlign: 'center', backgroundColor: '#000', borderRadius: '0 0 50px 50px', borderBottom: '4px solid #ff4757', position: 'relative' }}>
-        {/* BADGE TOP GOURMET */}
-        <div style={{
+        <div className="pulse-badge" style={{
           position: 'absolute', top: '110px', right: '10%',
-          background: 'linear-gradient(135deg, #D4AF37 0%, #C5A028 100%)',
+          background: GOLD_GRADIENT,
           color: '#000', padding: '6px 18px', borderRadius: '50px',
           fontWeight: '950', fontSize: '0.85rem', transform: 'rotate(5deg)',
           zIndex: 10, border: '2px solid #000', boxShadow: '3px 3px 0px rgba(0,0,0,0.5)'
@@ -109,12 +113,11 @@ export default function App() {
         </p>
 
         <div style={{ marginTop: '30px', display: 'flex', justifyContent: 'center', gap: '15px', flexWrap: 'wrap' }}>
-          {/* BOUTONS D'ENTRÉE GOURMET */}
           <a href="tel:+34602597210" style={{
-            background: 'linear-gradient(135deg, #D4AF37 0%, #C5A028 100%)',
+            background: GOLD_GRADIENT,
             color: '#000', padding: '15px 35px', borderRadius: '50px',
             textDecoration: 'none', fontWeight: '950', border: '2px solid #000',
-            boxShadow: '0 4px 0px #9A7B1F'
+            boxShadow: GOLD_SHADOW
           }}>📞 {lang === 'es' ? 'PEDIR AHORA' : 'ORDER NOW'}</a>
 
           <button onClick={scrollToMenu} style={{
@@ -135,7 +138,7 @@ export default function App() {
         <section style={{ padding: '40px 0 20px' }}>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px', marginTop: '20px' }}>
             <div className="testimonial-card">
-              <div style={{ color: '#D4AF37', marginBottom: '10px', fontSize: '1.2rem' }}>⭐⭐⭐⭐⭐</div>
+              <div style={{ color: GOLD_BRIGHT, marginBottom: '10px', fontSize: '1.2rem' }}>⭐⭐⭐⭐⭐</div>
               <p style={{ fontStyle: 'italic', fontSize: '0.95rem' }}>
                 {lang === 'es'
                   ? '"¡La mejor Smash Burger de Torrevieja! Carne de calidad y entrega súper rápida."'
@@ -144,7 +147,7 @@ export default function App() {
               <p style={{ fontWeight: 'bold', marginTop: '10px', color: '#ff4757' }}>— Carlos R.</p>
             </div>
             <div className="testimonial-card">
-              <div style={{ color: '#D4AF37', marginBottom: '10px', fontSize: '1.2rem' }}>⭐⭐⭐⭐⭐</div>
+              <div style={{ color: GOLD_BRIGHT, marginBottom: '10px', fontSize: '1.2rem' }}>⭐⭐⭐⭐⭐</div>
               <p style={{ fontStyle: 'italic', fontSize: '0.95rem' }}>
                 {lang === 'es'
                   ? '"Increíble atención. Las patatas caseras son obligatorias. ¡Repetiremos seguro!"'
@@ -197,7 +200,6 @@ export default function App() {
         </section>
       </main>
 
-      {/* FOOTER LUXE PRESERVÉ */}
       <footer style={{ padding: '80px 20px 40px', backgroundColor: '#000', color: '#fff', textAlign: 'center', borderTop: '4px solid #ff4757' }}>
         <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '30px', textAlign: 'left', marginBottom: '40px', background: 'rgba(255,255,255,0.03)', padding: '30px', borderRadius: '20px' }}>
@@ -206,26 +208,26 @@ export default function App() {
                 <p>{lang === 'es' ? 'La mejor hamburguesería artesanal de Torrevieja. Smash Burgers, carne fresca y productos locales.' : 'The best handcrafted burger shop in Torrevieja. Smash Burgers, fresh meat and local products.'}</p>
               </div>
               <div>
-                <h4 style={{ color: '#D4AF37' }}>📍 {lang === 'es' ? 'Ubicación et Contacto' : 'Location & Contact'}</h4>
+                <h4 style={{ color: GOLD_BRIGHT }}>📍 {lang === 'es' ? 'Ubicación y Contacto' : 'Location & Contact'}</h4>
                 <p>Av. Diego Ramírez Pastor, 142, 03181 Torrevieja, Alicante</p>
                 <p>📞 <a href="tel:+34602597210" style={{ color: '#fff', textDecoration: 'none' }}>+34 602 59 72 10</a></p>
               </div>
               <div>
-                <h4 style={{ color: '#D4AF37' }}>🕒 {lang === 'es' ? 'Horario Gourmet' : 'Gourmet Hours'}</h4>
+                <h4 style={{ color: GOLD_BRIGHT }}>🕒 {lang === 'es' ? 'Horario Gourmet' : 'Gourmet Hours'}</h4>
                 <p>{lang === 'es' ? 'Lunes a Sábado: 13:00 – 22:30' : 'Monday to Saturday: 1:00 PM – 10:30 PM'}</p>
                 <p>{lang === 'es' ? 'Domingo: Cerrado' : 'Sunday: Closed'}</p>
               </div>
           </div>
 
-          <div style={{ width: '100%', maxWidth: '800px', margin: '0 auto 50px', borderRadius: '15px', overflow: 'hidden', border: '3px solid #D4AF37' }}>
+          <div style={{ width: '100%', maxWidth: '800px', margin: '0 auto 50px', borderRadius: '15px', overflow: 'hidden', border: `3px solid ${GOLD_BRIGHT}` }}>
             <iframe width="100%" height="400" src="https://www.youtube.com/embed/qN6VZYBojLs" title="Mejor Burger Torrevieja" frameBorder="0" allowFullScreen></iframe>
           </div>
 
           <div style={{ display: 'flex', justifyContent: 'center', gap: '25px', flexWrap: 'wrap', marginBottom: '40px', alignItems: 'center' }}>
             <a href="https://www.facebook.com/profile.php?id=100094610793536" target="_blank" rel="noreferrer"><img src={fb} width="45" alt="Facebook" /></a>
             <a href="https://www.instagram.com/lacasadeburger.es/" target="_blank" rel="noreferrer"><img src={instagramIcon} width="45" alt="Instagram" /></a>
-            <a href="https://es.restaurantguru.com/La-Casa-de-Burger-Torrevieja" target="_blank" rel="noreferrer" style={{ background: 'linear-gradient(135deg, #D4AF37 0%, #C5A028 100%)', color: '#000', padding: '12px 25px', borderRadius: '50px', textDecoration: 'none', fontWeight: 'bold', border: '2px solid #000' }}>GURU 2026</a>
-            <a href="https://www.google.com/maps/search/?api=1&query=La+Casa+de+Burger+Torrevieja" target="_blank" rel="noreferrer"><img src={googleIcon} width="140" alt="Google Maps" /></a>
+            <a href="https://es.restaurantguru.com/La-Casa-de-Burger-Torrevieja" target="_blank" rel="noreferrer" style={{ background: GOLD_GRADIENT, color: '#000', padding: '12px 25px', borderRadius: '50px', textDecoration: 'none', fontWeight: 'bold', border: '2px solid #000' }}>GURU 2026</a>
+            <a href="https://www.google.com/maps?q=La+Casa+de+Burger+Torrevieja" target="_blank" rel="noreferrer"><img src={googleIcon} width="140" alt="Google Maps" /></a>
             <a href="https://www.tripadvisor.es/Restaurant_Review-g187527-d26835169-Reviews-La_Casa_De_Burger-Torrevieja_Costa_Blanca_Province_of_Alicante_Valencian_Communi.html" target="_blank" rel="noreferrer"><img src={tripadvisor} width="140" alt="Tripadvisor" /></a>
           </div>
 
@@ -233,13 +235,20 @@ export default function App() {
             <p style={{ color: '#777', fontSize: '0.8rem', lineHeight: '1.8', margin: 0 }}>
               <strong>🇪🇸 ESPAÑOL:</strong> Hamburguesería en Torrevieja, mejores hamburguesas Alicante, Smash Burger cerca de mí, comida a domicilio, Playa del Cura.
               <br /><strong>🇬🇧 ENGLISH:</strong> Best burgers in Torrevieja, gourmet restaurant, takeaway near me, Smash burgers Costa Blanca, Playa de los Locos.
-              <br /><strong>ZONAS DE REPARTO:</strong> Playa del Cura, Playa de los Locos, Paseo Marítimo, La Siesta, Aguas Nuevas, Los Balcones, Punta Prima, La Mata, Los Altos, El Acequión, La Veleta, San Roque, Rocío del Mar.
+              <br /><strong>🇩🇪 DEUTSCH:</strong> Beste Burger Torrevieja, Smash Burger Alicante, Restaurant Lieferservice, Gourmet Essen in der Nähe.
+              <br /><strong>🇳🇱 NEDERLANDS:</strong> Beste hamburgers Torrevieja, ambachtelijke burger, eten bestellen, bezorging in de buurt, Costa Blanca.
+              <br /><strong>🇫🇷 FRANÇAIS:</strong> Meilleur burger Torrevieja, cuisine artisanale, livraison rapide, Torrevieja centre, Smash burger.
+              <br /><strong>🇸🇪 SVENSKA / 🇳🇴 NORSK:</strong> Bästa burgare i Torrevieja, restaurang nära stranden, smashburgaren Alicante, matleverans.
+              <br /><strong>🇵🇱 POLSKI:</strong> Najlepsze burgery w Torrevieja, dostawa jedzenia, prawdziwe burgery wołowe, restauracja blisko plaży.
+              <br /><strong>🇷🇺 РУССКИЙ:</strong> Лучшие бургеры в Торревьехе, заказать еду, доставка бургеров Торревьеха, Смаш бургер.
+              <br /><br />
+              <strong>ZONAS DE REPARTO:</strong> Playa del Cura, Playa de los Locos, Paseo Marítimo, La Siesta, Aguas Nuevas, Los Balcones, Punta Prima, La Mata, Los Altos, El Acequión, La Veleta, San Roque, Rocío del Mar.
             </p>
           </div>
 
           <div style={{ marginTop: '40px', paddingTop: '20px', borderTop: '1px solid rgba(255,255,255,0.05)', fontSize: '0.75rem', color: '#555', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '8px' }}>
             <span>© 2026</span>
-            <span style={{ color: '#D4AF37', fontWeight: 'bold', letterSpacing: '1px' }}>LA CASA DE BURGER</span>
+            <span style={{ color: GOLD_BRIGHT, fontWeight: 'bold', letterSpacing: '1px' }}>LA CASA DE BURGER</span>
             <span style={{ opacity: 0.3 }}>|</span>
             <span>{lang === 'es' ? 'TODOS LOS DERECHOS RESERVADOS' : 'ALL RIGHTS RESERVED'}</span>
           </div>
