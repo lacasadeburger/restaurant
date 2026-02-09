@@ -4,98 +4,208 @@ import background from "./assets/newspaper8.jpg";
 
 export default function CardMenu(props) {
   const [isReversed, setIsReversed] = useState(false);
-  const [clickedButton, setClickedButton] = useState(null);
   const [clickedButtons, setClickedButtons] = useState([]);
+  const [clickedButton, setClickedButton] = useState(null);
 
   const handleFlip = (e) => {
-    if (e.target.classList.contains("add-btn") || e.target.parentElement.classList.contains("add-btn")) {
+    if (
+      e.target.classList.contains("add-btn") ||
+      e.target.parentElement.classList.contains("add-btn")
+    ) {
       setIsReversed(true);
-    } else if (e.target.classList.contains("flip-btn") && !props.isDrinkCard) {
+    } else if (
+      e.target.classList.contains("flip-btn") &&
+      !props.isDrinkCard
+    ) {
       setIsReversed(!isReversed);
     }
   };
 
   const handleAddToCart = (name, price) => {
-    props.addToCart({ object: name, precio: price });
+    const item = {
+      object: name,
+      precio: price,
+    };
+    props.addToCart(item);
   };
 
-  const handleClickExtra = (name, price) => {
+  const handleClick = (name, price) => {
     if (clickedButtons.includes(name)) {
       setClickedButtons(clickedButtons.filter((button) => button !== name));
     } else {
       setClickedButtons([...clickedButtons, name]);
       handleAddToCart(name, price);
+      setClickedButton(name);
+      setTimeout(() => {
+        setClickedButton(null);
+      }, 1000);
     }
   };
 
   const isDrinkOrPostreCard = props.isDrinkCard || props.isPostreCard;
+  const showSingleButton = ["Patatas Fritas", "Patatas Bravas"].includes(props.object);
 
   return (
     <div className={`menu-items ${isDrinkOrPostreCard ? "centered" : ""}`} style={{ marginBottom: "40px" }}>
-      <div className={`card ${isReversed ? "reversed" : ""}`} onClick={isDrinkOrPostreCard ? undefined : handleFlip}>
+      <div
+        className={`card ${isReversed ? "reversed" : ""}`}
+        onClick={props.isDrinkCard || props.isPostreCard ? undefined : handleFlip}
+      >
         <div className="menu-item card-inner">
-
-          {/* FACE AVANT */}
           <div className="front">
-            <header className="header-Card" style={{ padding: "10px" }}>
+            <header className="header-Card">
               <button
-                className={`add-btn ${clickedButton === props.object ? "clicked" : ""}`}
-                style={{
-                  width: "100%",
-                  backgroundColor: clickedButton === props.object ? "#2ed573" : "#ff4757",
-                  color: "white",
-                  padding: "12px",
-                  borderRadius: "8px",
-                  border: "none",
-                  fontWeight: "900",
-                  fontSize: "1rem",
-                  cursor: "pointer",
-                  boxShadow: "0 4px 10px rgba(0,0,0,0.3)",
-                  transition: "all 0.2s ease",
-                  textTransform: "uppercase"
-                }}
-                onClick={(e) => {
-                  e.stopPropagation(); // Évite de retourner la carte par erreur
+                className={`add-btn ${clickedButton === props.object ? "clicked" : ""} centered`}
+                onClick={() => {
                   props.addToCart(props);
                   setClickedButton(props.object);
-                  setTimeout(() => setClickedButton(null), 1000);
+                  setTimeout(() => {
+                    setClickedButton(null);
+                  }, 1000);
                 }}
               >
-                {clickedButton === props.object ? "✓ ¡AÑADIDO!" : "AÑADIR AL CARRITO"}
-                <span style={{ display: "block", fontSize: "1.2rem", marginTop: "4px" }}>{props.precio}</span>
+                Agregar
+                <h4 className="center">{props.precio}</h4>
               </button>
+              <br />
             </header>
-
-            <div style={{
+            <div
+              style={{
                 backgroundImage: `url(${background})`,
-                backgroundSize: "cover",
-                height: "200px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                overflow: "hidden"
-              }}>
-              <img src={props.image} alt={props.object} style={{ width: "100%", objectFit: "contain" }} />
+                backgroundSize: "350px",
+                backgroundRepeat: "no-repeat",
+              }}
+            >
+              <img
+                src={props.image}
+                alt="Burger 1"
+                style={{
+                  width: "100%",
+                }}
+              />
             </div>
-
-            <h1 className="center" style={{ margin: "15px 0 5px" }}>{props.object}</h1>
-            <p style={{ padding: "0 15px", fontSize: "0.9rem", color: "#444" }}>{props.description}</p>
+            <h1 className="center">{props.object}</h1>
+            <p>{props.description}</p>
+            <footer className="precio-card"></footer>
           </div>
-
-          {/* FACE ARRIÈRE (OPTIONS) */}
           <div className="back">
-            <h3 style={{ marginTop: "15px", color: "#ff4757" }}>Personaliza tu Burger</h3>
+            <br></br>
             <ul className="backList">
-              <li>Extra Huevo <button className="add-btn2" onClick={() => handleClickExtra("Extra Huevo", "€0.80")}>+0.80€</button></li>
-              <li>Extra Bacon <button className="add-btn2" onClick={() => handleClickExtra("Extra Tocino", "€1.00")}>+1.00€</button></li>
-              <li>Sin Tomate <button className="add-btn2" onClick={() => handleClickExtra("Sin Tomate", "€0.00")}>Sin</button></li>
-              <li>Sin Cebolla <button className="add-btn2" onClick={() => handleClickExtra("Sin Cebolla", "€0.00")}>Sin</button></li>
+              <li>
+                Extra Huevo {""}
+                <button
+                  className={`add-btn2 ${clickedButtons.includes("Extra Huevo") ? "clicked" : ""}`}
+                  onClick={() => handleClick("Extra Huevo", "€0.80")}
+                >
+                  {clickedButton === "Extra Huevo" ? "Agregado" : "€0.80"}
+                </button>
+              </li>
+              <li>
+                Extra Carne y Queso {""}
+                <button
+                  className={`add-btn2 ${clickedButtons.includes("Extra Carne y Queso") ? "clicked" : ""}`}
+                  onClick={() => handleClick("Extra Carne y Queso", "€3.00")}
+                >
+                  {clickedButton === "Extra Carne y Queso" ? "Agregado" : "€3.00"}
+                </button>
+              </li>
+              <li>
+                Extra Tocino {""}
+                <button
+                  className={`add-btn2 ${clickedButtons.includes("Extra Tocino") ? "clicked" : ""}`}
+                  onClick={() => handleClick("Extra Tocino", "€1.00")}
+                >
+                  {clickedButton === "Extra Tocino" ? "Agregado" : "€1.00"}
+                </button>
+              </li>
+              <li>
+                Salsa Picante {""}
+                <button
+                  className={`add-btn2 ${clickedButtons.includes("Salsa Picante") ? "clicked" : ""}`}
+                  onClick={() => handleClick("Salsa Picante", "€0.50")}
+                >
+                  {clickedButton === "Salsa Picante" ? "Agregado" : "€0.50"}
+                </button>
+              </li>
+              <li>
+                Sin Tomate {""}
+                <button
+                  className={`add-btn2 ${clickedButtons.includes("Sin Tomate") ? "clicked" : ""}`}
+                  onClick={() => handleClick("Sin Tomate", "€0.00")}
+                >
+                  {clickedButton === "Sin Tomate" ? "Agregado" : "€0.00"}
+                </button>
+              </li>
+              <li>
+                Sin Lechuga {""}
+                <button
+                  className={`add-btn2 ${clickedButtons.includes("Sin Lechuga") ? "clicked" : ""}`}
+                  onClick={() => handleClick("Sin Lechuga", "€0.00")}
+                >
+                  {clickedButton === "Sin Lechuga" ? "Agregado" : "€0.00"}
+                </button>
+              </li>
+              <li>
+                Sin Pepinillos {""}
+                <button
+                  className={`add-btn2 ${clickedButtons.includes("Sin Pepinillos") ? "clicked" : ""}`}
+                  onClick={() => handleClick("Sin Pepinillos", "€0.00")}
+                >
+                  {clickedButton === "Sin Pepinillos" ? "Agregado" : "€0.00"}
+                </button>
+              </li>
+              <li>
+                Sin Salsa {""}
+                <button
+                  className={`add-btn2 ${clickedButtons.includes("Sin Salsa") ? "clicked" : ""}`}
+                  onClick={() => handleClick("Sin Salsa", "€0.00")}
+                >
+                  {clickedButton === "Sin Salsa" ? "Agregado" : "€0.00"}
+                </button>
+              </li>
+              <li>
+                Sin Queso {""}
+                <button
+                  className={`add-btn2 ${clickedButtons.includes("Sin Queso") ? "clicked" : ""}`}
+                  onClick={() => handleClick("Sin Queso", "€0.00")}
+                >
+                  {clickedButton === "Sin Queso" ? "Agregado" : "€0.00"}
+                </button>
+              </li>
+              <li>
+                Sin Ajo {""}
+                <button
+                  className={`add-btn2 ${clickedButtons.includes("Sin Ajo") ? "clicked" : ""}`}
+                  onClick={() => handleClick("Sin Ajo", "€0.00")}
+                >
+                  {clickedButton === "Sin Ajo" ? "Agregado" : "€0.00"}
+                </button>
+              </li>
+              <li>
+                Sin Hierbas {""}
+                <button
+                  className={`add-btn2 ${clickedButtons.includes("Sin Hierbas") ? "clicked" : ""}`}
+                  onClick={() => handleClick("Sin Hierbas", "€0.00")}
+                >
+                  {clickedButton === "Sin Hierbas" ? "Agregado" : "€0.00"}
+                </button>
+              </li>
+              <li>
+                Sin Especias {""}
+                <button
+                  className={`add-btn2 ${clickedButtons.includes("Sin Especias") ? "clicked" : ""}`}
+                  onClick={() => handleClick("Sin Especias", "€0.00")}
+                >
+                  {clickedButton === "Sin Especias" ? "Agregado" : "€0.00"}
+                </button>
+              </li>
             </ul>
-            <button className="flip-btn add-btn2" onClick={handleFlip} style={{ backgroundColor: "#333", color: "white", marginTop: "20px" }}>
-              CONFIRMAR Y VOLVER
-            </button>
+            {!props.isDrinkCard && (
+              <button className="flip-btn add-btn2" onClick={handleFlip}>
+                Agregar Otra
+              </button>
+            )}
           </div>
-
         </div>
       </div>
     </div>
