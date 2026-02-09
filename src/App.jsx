@@ -239,7 +239,11 @@ export default function App() {
         </div>
         {/* Section Logo tout en bas */}
 <div className="footer-logo-container">
-  <img src="/logo.jpg" alt="La Casa de Burger Logo" className="footer-logo" />
+<img
+src="/logo.jpg"
+alt="La Casa de Burger Logo" 
+style={{ height: "80px", width: "auto", marginTop: "20px", borderRadius: "10px" }}
+/>
   <p className="footer-copyright">© 2026 La Casa de Burger - Tous droits réservés</p>
 </div>
       </footer>
