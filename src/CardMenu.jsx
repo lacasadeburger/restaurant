@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from "react";
 // Import de la nouvelle image de fond
-import bgCard from "./assets/bg-c.png";
+import bgCard from "./assets/bg-c.jpg";
 
 export default function CardMenu(props) {
   const { image, object, description, precio, addToCart, isDrinkCard, isPostreCard } = props;
