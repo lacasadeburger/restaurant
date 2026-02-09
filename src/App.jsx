@@ -66,7 +66,6 @@ export default function App() {
         .promo-img { width: 100%; display: block; opacity: 1; transition: 0.3s; }
         .promo-container:hover .promo-img { opacity: 0.75; }
 
-        /* BOUTON POSITIONNÉ TOUT EN BAS */
         .btn-overlay {
           position: absolute;
           bottom: 10px;
@@ -163,9 +162,10 @@ export default function App() {
           )}
         </section>
 
+        {/* MODIFICATION ICI : On passe la langue (lang) au composant Order */}
         <section id="order">
           <SectionTitle>{lang === 'es' ? 'Tu Pedido' : 'Your Order'}</SectionTitle>
-          <Order cart={cart} removeFromCart={removeFromCart} />
+          <Order cart={cart} removeFromCart={removeFromCart} lang={lang} />
         </section>
       </main>
 
@@ -176,8 +176,8 @@ export default function App() {
                 <h3 style={{ color: '#ff4757' }}>La Casa de Burger Torrevieja</h3>
                 <p>
                   {lang === 'es'
-                    ? 'La mejor hamburguesería artesanal de Torrevieja. Smash Burgers, carne Fresca et produits locaux.'
-                    : 'The best handcrafted burger shop in Torrevieja. Smash Burgers, Fresh Meet and local products.'}
+                    ? 'La mejor hamburguesería artesanal de Torrevieja. Smash Burgers, carne Fresca y productos locales.'
+                    : 'The best handcrafted burger shop in Torrevieja. Smash Burgers, Fresh Meat and local products.'}
                 </p>
               </div>
               <div>
@@ -201,7 +201,7 @@ export default function App() {
             <a href="https://www.instagram.com/lacasadeburger.es/" target="_blank" rel="noreferrer"><img src={instagramIcon} width="45" alt="Instagram" /></a>
             <a href="https://es.restaurantguru.com/La-Casa-de-Burger-Torrevieja" target="_blank" rel="noreferrer" style={{ background: '#fff', color: '#000', padding: '12px 25px', borderRadius: '50px', textDecoration: 'none', fontWeight: 'bold' }}>GURU 2026</a>
             <a href="https://www.google.com/maps/search/?api=1&query=La+Casa+de+Burger+Torrevieja" target="_blank" rel="noreferrer"><img src={googleIcon} width="140" alt="Google Maps" /></a>
-            <a href="https://www.tripadvisor.es" target="_blank" rel="noreferrer"><img src={tripadvisor} width="140" alt="Tripadvisor" /></a>
+            <a href="https://www.tripadvisor.es/Restaurant_Review-g187527-d26835169-Reviews-La_Casa_De_Burger-Torrevieja_Costa_Blanca_Province_of_Alicante_Valencian_Communi.html" target="_blank" rel="noreferrer"><img src={tripadvisor} width="140" alt="Tripadvisor" /></a>
           </div>
         </div>
       </footer>
