@@ -78,25 +78,24 @@ export default function App() {
 
         .promo-container:hover { transform: scale(1.02); border-color: #f1c40f; }
 
-        /* Image nette pour bien voir le produit au centre */
         .promo-img { width: 100%; display: block; opacity: 1; transition: 0.3s; }
-        .promo-container:hover .promo-img { opacity: 0.7; }
+        .promo-container:hover .promo-img { opacity: 0.75; }
 
-        /* BOUTON REPOSITIONNÉ EN BAS (LIBÈRE LE CENTRE) */
+        /* BOUTON POSITIONNÉ TOUT EN BAS */
         .btn-overlay {
           position: absolute;
-          bottom: 25px;
+          bottom: 10px; /* Positionné à seulement 10px du bord bas */
           left: 50%;
           transform: translateX(-50%);
           background: #f1c40f;
           color: #000;
-          padding: 12px 30px;
-          border-radius: 8px;
+          padding: 10px 25px;
+          border-radius: 6px;
           font-weight: 950;
           border: 3px solid #000;
           pointer-events: none;
-          font-size: 1.1rem;
-          box-shadow: 4px 4px 0px #000;
+          font-size: 1rem;
+          box-shadow: 3px 3px 0px #000;
           text-transform: uppercase;
           z-index: 5;
           white-space: nowrap;
@@ -145,7 +144,6 @@ export default function App() {
       </header>
 
       <main className="menu-page-container">
-        {/* SECTION BURGERS */}
         <section>
           <SectionTitle id="sec-burgers">Burgers Gourmet</SectionTitle>
           {showCardBurger ? (
@@ -158,7 +156,6 @@ export default function App() {
           )}
         </section>
 
-        {/* SECTION BEBIDAS */}
         <section>
           <SectionTitle id="sec-bebidas">Bebidas & Cocktails</SectionTitle>
           {showCardDrink ? (
@@ -171,7 +168,6 @@ export default function App() {
           )}
         </section>
 
-        {/* SECTION POSTRES */}
         <section>
           <SectionTitle id="sec-postres">Postres Caseros</SectionTitle>
           {showCardPostres ? (
@@ -192,42 +188,23 @@ export default function App() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '30px', textAlign: 'left', marginBottom: '40px', background: 'rgba(255,255,255,0.03)', padding: '30px', borderRadius: '20px' }}>
               <div>
                 <h3 style={{ color: '#ff4757' }}>La Casa de Burger Torrevieja</h3>
-                <p>La mejor hamburguesería artesanal de Torrevieja. Smash Burgers, carne Black Angus y productos frescos locales. Gourmet Take Away & Delivery.</p>
+                <p>La mejor hamburguesería artesanal de Torrevieja. Smash Burgers, carne Black Angus et produits locaux.</p>
               </div>
               <div>
-                <h4 style={{ color: '#fff' }}>📍 Ubicación y Contacto</h4>
-                <p>Calle Diego Ramírez Pastor, 142, 03181 Torrevieja, Alicante</p>
-                <p>📞 <a href="tel:+34602597210" style={{ color: '#fff', textDecoration: 'none' }}>+34 602 59 72 10</a></p>
+                <h4 style={{ color: '#fff' }}>📍 Ubicación</h4>
+                <p>Calle Diego Ramírez Pastor, 142, Torrevieja</p>
+                <p>📞 +34 602 59 72 10</p>
               </div>
               <div>
-                <h4 style={{ color: '#fff' }}>🕒 Horario Gourmet</h4>
-                <p>Lunes a Sábado: 13:00 – 22:30</p>
-                <p>Domingo: Cerrado</p>
+                <h4 style={{ color: '#fff' }}>🕒 Horario</h4>
+                <p>Lun - Sáb: 13:00 – 22:30</p>
               </div>
-          </div>
-
-          <div style={{ width: '100%', maxWidth: '800px', margin: '0 auto 50px', borderRadius: '15px', overflow: 'hidden', border: '3px solid #ff4757' }}>
-            <iframe width="100%" height="400" src="https://www.youtube.com/embed/qN6VZYBojLs" title="Mejor Burger Torrevieja" frameBorder="0" allowFullScreen></iframe>
           </div>
 
           <div style={{ display: 'flex', justifyContent: 'center', gap: '25px', flexWrap: 'wrap', marginBottom: '40px', alignItems: 'center' }}>
-            <a href="https://www.facebook.com/profile.php?id=100094610793536" target="_blank" rel="noreferrer"><img src={fb} width="45" alt="Facebook" /></a>
-            <a href="https://www.instagram.com/lacasadeburger.es/" target="_blank" rel="noreferrer"><img src={instagramIcon} width="45" alt="Instagram" /></a>
-            <a href="https://es.restaurantguru.com/La-Casa-de-Burger-Torrevieja" target="_blank" rel="noreferrer" style={{ background: '#fff', color: '#000', padding: '12px 25px', borderRadius: '50px', textDecoration: 'none', fontWeight: 'bold' }}>GURU 2026</a>
-            <a href="https://www.google.com/maps/search/?api=1&query=La+Casa+de+Burger+Torrevieja" target="_blank" rel="noreferrer"><img src={googleIcon} width="140" alt="Google Maps" /></a>
-            <a href="https://www.tripadvisor.es" target="_blank" rel="noreferrer"><img src={tripadvisor} width="140" alt="Tripadvisor" /></a>
-          </div>
-
-          <div style={{ backgroundColor: '#0a0a0a', padding: '30px', borderRadius: '15px', border: '1px solid #222', textAlign: 'justify' }}>
-            <p style={{ color: '#777', fontSize: '0.8rem', lineHeight: '1.8' }}>
-              <strong>🇪🇸 ESPAÑOL:</strong> Hamburguesería en Torrevieja, mejores hamburguesas Alicante, Smash Burger cerca de mí, comida a domicile, Playa del Cura.
-              <br /><strong>🇬🇧 ENGLISH:</strong> Best burgers in Torrevieja, gourmet restaurant, takeaway near me, Smash burgers Costa Blanca, Playa de los Locos.
-              <br /><strong>🇫🇷 FRANÇAIS:</strong> Meilleur burger Torrevieja, cuisine artisanale, livraison rapide, Torrevieja centre.
-              <br /><strong>🇸🇪 SVENSKA:</strong> Bästa burgare i Torrevieja, restaurang nära stranden, smashburgaren Alicante.
-              <br /><strong>🇷🇺 РУССКИЙ:</strong> Лучшие бургеры в Торревьехе, заказать еду, доставка бургеров Торревьеха.
-              <br /><br />
-              <strong>ZONAS:</strong> Playa del Cura, Playa de los Locos, Paseo Marítimo, La Siesta, Aguas Nuevas, Los Balcones, Punta Prima, La Mata, Los Altos, El Acequión, La Veleta.
-            </p>
+            <a href="https://www.facebook.com/" target="_blank" rel="noreferrer"><img src={fb} width="45" alt="Facebook" /></a>
+            <a href="https://www.instagram.com/" target="_blank" rel="noreferrer"><img src={instagramIcon} width="45" alt="Instagram" /></a>
+            <a href="http://google.com" target="_blank" rel="noreferrer"><img src={googleIcon} width="140" alt="Google Maps" /></a>
           </div>
         </div>
       </footer>
