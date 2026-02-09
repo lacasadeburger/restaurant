@@ -250,6 +250,7 @@ export default function App() {
           {lang === 'es' ? '✕ CERRAR CARTA' : '✕ CLOSE MENU'}
         </button>
       )}
+      
     </div>
   );
 }
