@@ -182,7 +182,7 @@ export default function App() {
               </div>
               <div>
                 <h4 style={{ color: '#fff' }}>📍 {lang === 'es' ? 'Ubicación y Contacto' : 'Location & Contact'}</h4>
-                <p>Calle Diego Ramírez Pastor, 142, 03181 Torrevieja, Alicante</p>
+                <p>Av. Diego Ramírez Pastor, 142, 03181 Torrevieja, Alicante</p>
                 <p>📞 <a href="tel:+34602597210" style={{ color: '#fff', textDecoration: 'none' }}>+34 602 59 72 10</a></p>
               </div>
               <div>
