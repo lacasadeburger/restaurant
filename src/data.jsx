@@ -43,17 +43,9 @@ const data = [
     category: "food"
   },
   {
-    id: "prod_combo2",
-    image: combo2,
-    object: "El COMBO 2",
-    description: "La Inglesa + Patatas Fritas caseras + 3 Alitas de Pollo Caseras",
-    precio: "€18.00",
-    category: "food"
-  },
-  {
     id: "prod_combo3",
     image: combo3,
-    object: "El COMBO 3",
+    object: "El COMBO 2",
     description: "La Inglesa + Patatas Fritas caseras + 3 Croquetas Caseras",
     precio: "€18.00",
     category: "food"
