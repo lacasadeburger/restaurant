@@ -12,6 +12,7 @@ import Burger from "./assets/burger.png";
 import Drink from "./assets/drink.png";
 import tripadvisor from "./assets/tripadvisor.png";
 import googleIcon from "./assets/google.png";
+import logo from "./assets/logo.jpg";
 
 const instagramIcon = "https://cdn-icons-png.flaticon.com/512/2111/2111463.png";
 
@@ -28,6 +29,7 @@ export default function App() {
   const [showCardDrink, setShowCardDrink] = useState(false);
   const [lang, setLang] = useState('es');
 
+  // Calcul du prix total ultra-précis (gestion des virgules et points)
   const totalPrice = useMemo(() => {
     return cart.reduce((acc, item) => {
       const val = item.precio || item.price || 0;
@@ -36,6 +38,7 @@ export default function App() {
     }, 0).toFixed(2);
   }, [cart]);
 
+  // Alternance automatique des langues pour le dynamisme
   useEffect(() => {
     const interval = setInterval(() => setLang(l => l === 'es' ? 'en' : 'es'), 4500);
     return () => clearInterval(interval);
@@ -55,7 +58,7 @@ export default function App() {
   const drinks = data.filter(i => i.category === "drink");
   const postres = data.filter(i => i.category === "postre");
 
-  // CONFIGURATION DES COULEURS OR 24K ÉCLATANT
+  // DESIGN SYSTEM OR 24K
   const GOLD_BRIGHT = "#FFD700";
   const GOLD_GRADIENT = "linear-gradient(135deg, #BF953F 0%, #FCF6BA 45%, #B38728 55%, #FBF5B7 100%)";
   const GOLD_SHADOW = "0 4px 0px #8A6D3B";
@@ -64,7 +67,6 @@ export default function App() {
     <div className="app-main-wrapper" style={{ position: 'relative', backgroundColor: '#111', color: '#fff' }}>
       <style>{`
         .menu-page-container { max-width: 1200px; margin: 0 auto; padding: 0 20px; text-align: center; }
-
         .promo-container {
           position: relative; cursor: pointer; display: inline-block; border-radius: 20px;
           overflow: hidden; box-shadow: 0 15px 35px rgba(0,0,0,0.8); transition: 0.5s;
@@ -73,38 +75,33 @@ export default function App() {
         .promo-container:hover { transform: translateY(-5px); border-color: ${GOLD_BRIGHT}; }
         .promo-img { width: 100%; display: block; opacity: 1; transition: 0.5s; }
         .promo-container:hover .promo-img { opacity: 0.7; transform: scale(1.05); }
-
         .btn-overlay {
           position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
-          background: ${GOLD_GRADIENT};
-          color: #000 !important; padding: 12px 30px; border-radius: 8px; font-weight: 950;
-          border: 2px solid #000; pointer-events: none; font-size: 1.1rem;
-          box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+          background: ${GOLD_GRADIENT}; color: #000 !important; padding: 12px 30px; border-radius: 8px; font-weight: 950;
+          border: 2px solid #000; pointer-events: none; font-size: 1.1rem; box-shadow: 0 4px 15px rgba(0,0,0,0.6);
           text-transform: uppercase; z-index: 5; white-space: nowrap;
         }
-
         .grid-cards { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; padding: 20px 0 120px; }
         .floating-close { position: fixed; bottom: 85px; left: 50%; transform: translateX(-50%); background: #ff4757; color: #fff; border: 3px solid #000; padding: 12px 25px; border-radius: 10px; font-weight: 900; z-index: 9998; cursor: pointer; box-shadow: 4px 4px 0px #000; text-transform: uppercase; font-size: 1rem; }
         .whatsapp-float { position: fixed; bottom: 20px; right: 20px; background: #25D366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; z-index: 9999; box-shadow: 0 5px 15px rgba(0,0,0,0.4); }
-
-        .testimonial-card { background: rgba(255,255,255,0.05); padding: 20px; border-radius: 15px; border-left: 4px solid ${GOLD_BRIGHT}; text-align: left; transition: 0.3s; }
-        .testimonial-card:hover { background: rgba(255,255,255,0.08); border-left-width: 8px; border-left-color: #fff68f; }
-
+        .testimonial-card { background: rgba(255,255,255,0.05); padding: 20px; border-radius: 15px; border-left: 4px solid ${GOLD_BRIGHT}; text-align: left; transition: 0.3s; margin-bottom: 10px; }
+        .testimonial-card:hover { background: rgba(255,255,255,0.08); border-left-width: 8px; }
         @keyframes pulse-gold { 0% { transform: rotate(5deg) scale(1); } 50% { transform: rotate(5deg) scale(1.05); } 100% { transform: rotate(5deg) scale(1); } }
         .pulse-badge { animation: pulse-gold 2s infinite ease-in-out; }
       `}</style>
 
+      {/* SEO STRATÉGIQUE GOOGLE */}
       <h1 style={{ position: 'absolute', left: '-9999px' }}>Mejor Hamburguesería en Torrevieja - Smash Burgers & Gourmet Delivery</h1>
 
-      <Nav scrollToOrder={scrollToOrder} cartLength={cart.length} totalPrice={totalPrice} lang={lang} />
+      {/* NAV AVEC LOGO INJECTÉ */}
+      <Nav scrollToOrder={scrollToOrder} cartLength={cart.length} totalPrice={totalPrice} lang={lang} logo={logo} />
 
+      {/* HERO SECTION */}
       <header style={{ padding: '140px 20px 80px', textAlign: 'center', backgroundColor: '#000', borderRadius: '0 0 50px 50px', borderBottom: '4px solid #ff4757', position: 'relative' }}>
         <div className="pulse-badge" style={{
           position: 'absolute', top: '110px', right: '10%',
-          background: GOLD_GRADIENT,
-          color: '#000', padding: '6px 18px', borderRadius: '50px',
-          fontWeight: '950', fontSize: '0.85rem', transform: 'rotate(5deg)',
-          zIndex: 10, border: '2px solid #000', boxShadow: '3px 3px 0px rgba(0,0,0,0.5)'
+          background: GOLD_GRADIENT, color: '#000', padding: '6px 18px', borderRadius: '50px',
+          fontWeight: '950', fontSize: '0.85rem', transform: 'rotate(5deg)', zIndex: 10, border: '2px solid #000', boxShadow: '3px 3px 0px rgba(0,0,0,0.5)'
         }}>🏆 #1 RESTAURANTE TORREVIEJA 2026</div>
 
         <h2 style={{ fontSize: '2.8rem', fontWeight: '900', textTransform: 'uppercase' }}>La Casa de Burger <span style={{color:'#ff4757'}}>Torrevieja</span></h2>
@@ -113,51 +110,36 @@ export default function App() {
         </p>
 
         <div style={{ marginTop: '30px', display: 'flex', justifyContent: 'center', gap: '15px', flexWrap: 'wrap' }}>
-          <a href="tel:+34602597210" style={{
-            background: GOLD_GRADIENT,
-            color: '#000', padding: '15px 35px', borderRadius: '50px',
-            textDecoration: 'none', fontWeight: '950', border: '2px solid #000',
-            boxShadow: GOLD_SHADOW
-          }}>📞 {lang === 'es' ? 'PEDIR AHORA' : 'ORDER NOW'}</a>
-
-          <button onClick={scrollToMenu} style={{
-            backgroundColor: '#fff', color: '#111', padding: '15px 35px',
-            borderRadius: '50px', border: '2px solid #111', fontWeight: '950',
-            cursor: 'pointer', boxShadow: '0 4px 0px #ccc'
-          }}>{lang === 'es' ? 'CARTA ONLINE' : 'ONLINE MENU'}</button>
-
-          <button onClick={scrollToOrder} style={{
-            backgroundColor: '#ff4757', color: '#fff', padding: '15px 35px',
-            borderRadius: '50px', border: '2px solid #000', fontWeight: '950',
-            cursor: 'pointer', boxShadow: '0 4px 0px #b33939'
-          }}>🛒 {totalPrice}€</button>
+          <a href="tel:+34602597210" style={{ background: GOLD_GRADIENT, color: '#000', padding: '15px 35px', borderRadius: '50px', textDecoration: 'none', fontWeight: '950', border: '2px solid #000', boxShadow: GOLD_SHADOW }}>
+            📞 {lang === 'es' ? 'PEDIR AHORA' : 'ORDER NOW'}
+          </a>
+          <button onClick={scrollToMenu} style={{ backgroundColor: '#fff', color: '#111', padding: '15px 35px', borderRadius: '50px', border: '2px solid #111', fontWeight: '950', cursor: 'pointer', boxShadow: '0 4px 0px #ccc' }}>
+            {lang === 'es' ? 'CARTA ONLINE' : 'ONLINE MENU'}
+          </button>
+          <button onClick={scrollToOrder} style={{ backgroundColor: '#ff4757', color: '#fff', padding: '15px 35px', borderRadius: '50px', border: '2px solid #000', fontWeight: '950', cursor: 'pointer', boxShadow: '0 4px 0px #b33939' }}>
+            🛒 {totalPrice}€
+          </button>
         </div>
       </header>
 
       <main className="menu-page-container">
+        {/* TESTIMONIALS COMPLET */}
         <section style={{ padding: '40px 0 20px' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px', marginTop: '20px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px' }}>
             <div className="testimonial-card">
               <div style={{ color: GOLD_BRIGHT, marginBottom: '10px', fontSize: '1.2rem' }}>⭐⭐⭐⭐⭐</div>
-              <p style={{ fontStyle: 'italic', fontSize: '0.95rem' }}>
-                {lang === 'es'
-                  ? '"¡La mejor Smash Burger de Torrevieja! Carne de calidad y entrega súper rápida."'
-                  : '"The best Smash Burger in Torrevieja! High quality meat and super fast delivery."'}
-              </p>
+              <p style={{ fontStyle: 'italic', fontSize: '0.95rem' }}>{lang === 'es' ? '¡La mejor Smash Burger de Torrevieja! Carne de calidad y entrega súper rápida.' : 'The best Smash Burger in Torrevieja! High quality meat and super fast delivery.'}</p>
               <p style={{ fontWeight: 'bold', marginTop: '10px', color: '#ff4757' }}>— Carlos R.</p>
             </div>
             <div className="testimonial-card">
               <div style={{ color: GOLD_BRIGHT, marginBottom: '10px', fontSize: '1.2rem' }}>⭐⭐⭐⭐⭐</div>
-              <p style={{ fontStyle: 'italic', fontSize: '0.95rem' }}>
-                {lang === 'es'
-                  ? '"Increíble atención. Las patatas caseras son obligatorias. ¡Repetiremos seguro!"'
-                  : '"Amazing service. The homemade fries are a must. We will definitely repeat!"'}
-              </p>
+              <p style={{ fontStyle: 'italic', fontSize: '0.95rem' }}>{lang === 'es' ? 'Increíble atención. Las patatas caseras son obligatorias. ¡Repetiremos seguro!' : 'Amazing service. The homemade fries are a must. We will definitely repeat!'}</p>
               <p style={{ fontWeight: 'bold', marginTop: '10px', color: '#ff4757' }}>— Sarah M.</p>
             </div>
           </div>
         </section>
 
+        {/* SECTIONS MENU (BURGERS, DRINKS, POSTRES) */}
         <section>
           <SectionTitle id="sec-burgers">{lang === 'es' ? 'Burgers Gourmet' : 'Gourmet Burgers'}</SectionTitle>
           {showCardBurger ? (
@@ -227,38 +209,38 @@ export default function App() {
             <a href="https://www.facebook.com/profile.php?id=100094610793536" target="_blank" rel="noreferrer"><img src={fb} width="45" alt="Facebook" /></a>
             <a href="https://www.instagram.com/lacasadeburger.es/" target="_blank" rel="noreferrer"><img src={instagramIcon} width="45" alt="Instagram" /></a>
             <a href="https://es.restaurantguru.com/La-Casa-de-Burger-Torrevieja" target="_blank" rel="noreferrer" style={{ background: GOLD_GRADIENT, color: '#000', padding: '12px 25px', borderRadius: '50px', textDecoration: 'none', fontWeight: 'bold', border: '2px solid #000' }}>GURU 2026</a>
-            <a href="https://www.google.com/maps?q=La+Casa+de+Burger+Torrevieja" target="_blank" rel="noreferrer"><img src={googleIcon} width="140" alt="Google Maps" /></a>
-            <a href="https://www.tripadvisor.es/Restaurant_Review-g187527-d26835169-Reviews-La_Casa_De_Burger-Torrevieja_Costa_Blanca_Province_of_Alicante_Valencian_Communi.html" target="_blank" rel="noreferrer"><img src={tripadvisor} width="140" alt="Tripadvisor" /></a>
+            <a href="https://maps.google.com" target="_blank" rel="noreferrer"><img src={googleIcon} width="140" alt="Google Maps" /></a>
+            <a href="https://www.tripadvisor.es" target="_blank" rel="noreferrer"><img src={tripadvisor} width="140" alt="Tripadvisor" /></a>
           </div>
 
-          <div style={{ backgroundColor: '#0a0a0a', padding: '30px', borderRadius: '15px', border: '1px solid #222', textAlign: 'justify', marginTop: '30px' }}>
+          {/* --- BLOC SEO POWER --- */}
+          <div style={{ backgroundColor: '#0a0a0a', padding: '30px', borderRadius: '15px', border: '1px solid #222', textAlign: 'justify' }}>
             <p style={{ color: '#777', fontSize: '0.8rem', lineHeight: '1.8', margin: 0 }}>
-              <strong>🇪🇸 ESPAÑOL:</strong> Hamburguesería en Torrevieja, mejores hamburguesas Alicante, Smash Burger cerca de mí, comida a domicilio, Playa del Cura.
-              <br /><strong>🇬🇧 ENGLISH:</strong> Best burgers in Torrevieja, gourmet restaurant, takeaway near me, Smash burgers Costa Blanca, Playa de los Locos.
-              <br /><strong>🇩🇪 DEUTSCH:</strong> Beste Burger Torrevieja, Smash Burger Alicante, Restaurant Lieferservice, Gourmet Essen in der Nähe.
-              <br /><strong>🇳🇱 NEDERLANDS:</strong> Beste hamburgers Torrevieja, ambachtelijke burger, eten bestellen, bezorging in de buurt, Costa Blanca.
-              <br /><strong>🇫🇷 FRANÇAIS:</strong> Meilleur burger Torrevieja, cuisine artisanale, livraison rapide, Torrevieja centre, Smash burger.
-              <br /><strong>🇸🇪 SVENSKA / 🇳🇴 NORSK:</strong> Bästa burgare i Torrevieja, restaurang nära stranden, smashburgaren Alicante, matleverans.
-              <br /><strong>🇵🇱 POLSKI:</strong> Najlepsze burgery w Torrevieja, dostawa jedzenia, prawdziwe burgery wołowe, restauracja blisko plaży.
-              <br /><strong>🇷🇺 РУССКИЙ:</strong> Лучшие бургеры в Торревьехе, заказать еду, доставка бургеров Торревьеха, Смаш бургер.
+              <strong>🇪🇸 ESPAÑOL:</strong> Hamburguesería en Torrevieja, mejores hamburguesas Alicante, Smash Burger cerca de mí, comida a domicile, Playa del Cura, Playa de los Locos.
+              <br /><strong>🇬🇧 ENGLISH:</strong> Best burgers in Torrevieja, gourmet restaurant, takeaway near me, Smash burgers Costa Blanca.
+              <br /><strong>🇩🇪 DEUTSCH:</strong> Beste Burger Torrevieja, Smash Burger Alicante, Restaurant Lieferservice, Gourmet Essen.
+              <br /><strong>🇳🇱 NEDERLANDS:</strong> Beste hamburgers Torrevieja, ambachtelijke burger, eten bestellen, bezorging in de buurt.
+              <br /><strong>🇫🇷 FRANÇAIS:</strong> Meilleur burger Torrevieja, cuisine artisanale, livraison rapide, Torrevieja centre.
+              <br /><strong>🇸🇪 SVENSKA:</strong> Bästa burgare i Torrevieja, restaurang nära stranden, matleverans Alicante.
+              <br /><strong>🇵🇱 POLSKI:</strong> Najlepsze burgery w Torrevieja, dostawa jedzenia, prawdziwe burgery wołowe.
+              <br /><strong>🇷🇺 РУССКИЙ:</strong> Лучшие бургеры в Торревьехе, заказать еду, доставка бургеров.
               <br /><br />
               <strong>ZONAS DE REPARTO:</strong> Playa del Cura, Playa de los Locos, Paseo Marítimo, La Siesta, Aguas Nuevas, Los Balcones, Punta Prima, La Mata, Los Altos, El Acequión, La Veleta, San Roque, Rocío del Mar.
             </p>
           </div>
 
-          <div style={{ marginTop: '40px', paddingTop: '20px', borderTop: '1px solid rgba(255,255,255,0.05)', fontSize: '0.75rem', color: '#555', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '8px' }}>
-            <span>© 2026</span>
-            <span style={{ color: GOLD_BRIGHT, fontWeight: 'bold', letterSpacing: '1px' }}>LA CASA DE BURGER</span>
-            <span style={{ opacity: 0.3 }}>|</span>
-            <span>{lang === 'es' ? 'TODOS LOS DERECHOS RESERVADOS' : 'ALL RIGHTS RESERVED'}</span>
+          <div style={{ marginTop: '40px', paddingTop: '20px', borderTop: '1px solid rgba(255,255,255,0.05)', fontSize: '0.75rem', color: '#555' }}>
+            © 2026 <span style={{ color: GOLD_BRIGHT, fontWeight: 'bold' }}>LA CASA DE BURGER</span> | {lang === 'es' ? 'TODOS LOS DERECHOS RESERVADOS' : 'ALL RIGHTS RESERVED'}
           </div>
         </div>
       </footer>
 
+      {/* WHATSAPP FLOAT */}
       <a href="https://wa.me/34602597210" target="_blank" rel="noreferrer" className="whatsapp-float">
         <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="40" alt="WhatsApp" />
       </a>
 
+      {/* BOUTON FERMER CARTA */}
       {(showCardBurger || showCardPostres || showCardDrink) && (
         <button className="floating-close" onClick={closeAllMenus}>
           {lang === 'es' ? '✕ CERRAR CARTA' : '✕ CLOSE MENU'}
