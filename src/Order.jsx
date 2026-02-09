@@ -1,19 +1,38 @@
 import React, { useState } from "react";
 import "./style.css";
-// On n'importe plus Nav ici car il est déjà géré par App.jsx de manière globale
 import Swal from "sweetalert2";
 
-export default function Order({ cart, removeFromCart }) {
+// Ajout de lang dans les props ici
+export default function Order({ cart, removeFromCart, lang }) {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
   const [paymentOption, setPaymentOption] = useState("");
 
+  // --- SYSTÈME DE TRADUCTION INTERNE ---
+  const isEn = lang === 'en';
+  const t = {
+    empty: isEn ? "Your cart is empty" : "Tu carrito está vacío",
+    total: "Total",
+    placeholderName: isEn ? "Full Name" : "Tu Nombre",
+    placeholderPhone: isEn ? "Phone Number" : "Tu Teléfono",
+    placeholderAddress: isEn ? "Address (Empty for local pickup)" : "Dirección (Vacío para recoger en local)",
+    payTitle: isEn ? "How will you pay?" : "¿Cómo pagarás?",
+    cash: isEn ? "💵 Cash" : "💵 Efectivo",
+    card: isEn ? "💳 Card" : "💳 Tarjeta",
+    btnSend: isEn ? "🚀 SEND VIA WHATSAPP" : "🚀 ENVIAR POR WHATSAPP",
+    btnSelectPay: isEn ? "CHOOSE PAYMENT METHOD" : "ELIJA MÉTODO DE PAGO",
+    sin: isEn ? "WITHOUT" : "SIN",
+    alertTitle: isEn ? "Missing information" : "Falta información",
+    alertText: isEn ? "Please enter your name and phone." : "Por favor ingrese su nombre y teléfono.",
+    alertPayTitle: isEn ? "Payment Method" : "Método de pago",
+    alertPayText: isEn ? "Please select a payment method." : "Por favor seleccione método de pago.",
+  };
+
   const getTotalPrice = () => {
     let total = 0;
     cart.forEach((item) => {
       if (item.precio) {
-        // Nettoyage robuste du prix pour éviter les erreurs NaN
         const priceValue = Number(item.precio.toString().replace(/[^0-9,.]+/g, "").replace(",", "."));
         total += priceValue;
       }
@@ -26,8 +45,8 @@ export default function Order({ cart, removeFromCart }) {
 
     if (!name || !phone) {
       Swal.fire({
-        title: "Falta información",
-        text: "Por favor ingrese su nombre y teléfono.",
+        title: t.alertTitle,
+        text: t.alertText,
         icon: "warning",
         confirmButtonColor: "#ff4757"
       });
@@ -36,8 +55,8 @@ export default function Order({ cart, removeFromCart }) {
 
     if (!paymentOption) {
       Swal.fire({
-        title: "Método de pago",
-        text: "Por favor seleccione método de pago (Efectivo o Tarjeta).",
+        title: t.alertPayTitle,
+        text: t.alertPayText,
         icon: "warning",
         confirmButtonColor: "#ff4757"
       });
@@ -48,56 +67,43 @@ export default function Order({ cart, removeFromCart }) {
     cart.forEach((item, index) => {
       orderList += `\n*${index + 1}. ${item.object.toUpperCase()}* - ${item.precio}\n`;
       if (item.removed && item.removed.length > 0) {
-        orderList += `   ❌ SIN: ${item.removed.join(", ").toUpperCase()}\n`;
+        orderList += `    ❌ ${t.sin}: ${item.removed.join(", ").toUpperCase()}\n`;
       }
     });
 
     const message = `*NUEVO PEDIDO - LA CASA DE BURGER*\n\n` +
-                    `👤 *Cliente:* ${name}\n` +
+                    `👤 *${isEn ? 'Customer' : 'Cliente'}:* ${name}\n` +
                     `📞 *Tel:* ${phone}\n` +
-                    `📍 *Entrega:* ${address || "Recogida en local"}\n\n` +
-                    `📝 *DETALLE DU PEDIDO:*\n${orderList}\n` +
+                    `📍 *${isEn ? 'Delivery' : 'Entrega'}:* ${address || (isEn ? "Pickup at local" : "Recogida en local")}\n\n` +
+                    `📝 *${isEn ? 'ORDER DETAILS' : 'DETALLE DEL PEDIDO'}:*\n${orderList}\n` +
                     `💰 *TOTAL:* ${getTotalPrice()}€\n` +
-                    `💳 *PAGO:* ${paymentOption.toUpperCase()}`;
+                    `💳 *${isEn ? 'PAYMENT' : 'PAGO'}:* ${paymentOption.toUpperCase()}`;
 
-    // Utilisation de wa.me (plus moderne et rapide)
     const whatsappLink = `https://wa.me/34602597210?text=${encodeURIComponent(message)}`;
     window.open(whatsappLink, "_blank");
 
-    // Reset après commande
     setName(""); setPhone(""); setAddress(""); setPaymentOption("");
-    // Optionnel : On vide le panier après l'envoi
-    // removeFromCart("all");
   };
 
   return (
     <div className="container-items" id="order" style={{ padding: '20px 10px' }}>
-      {/* Suppression du <Nav /> ici pour éviter les doublons avec App.jsx */}
-
       <div className="item menuBurgers" style={{
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         width: '100%',
         margin: '0 auto',
-        backgroundColor: '#1a1a1a', // Fond légèrement plus clair pour détacher la section
+        backgroundColor: '#1a1a1a',
         borderRadius: '20px',
         padding: '20px 0'
       }}>
 
-        <ul style={{
-          padding: 0,
-          width: '100%',
-          maxWidth: '600px',
-          margin: '0 auto'
-        }}>
+        <ul style={{ padding: 0, width: '100%', maxWidth: '600px', margin: '0 auto' }}>
           {cart.length === 0 ? (
-            <p style={{color: '#888', fontStyle: 'italic'}}>(Tu carrito está vacío / Votre panier est vide)</p>
+            <p style={{color: '#888', fontStyle: 'italic'}}>({t.empty})</p>
           ) : (
             cart.map((item, index) => (
-              <li
-                key={index}
-                style={{
+              <li key={index} style={{
                   fontSize: "18px",
                   color: "#ff4757",
                   listStyle: "none",
@@ -110,8 +116,7 @@ export default function Order({ cart, removeFromCart }) {
                   width: '100%',
                   boxSizing: 'border-box',
                   fontWeight: "bold"
-                }}
-              >
+                }}>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
                   <span style={{ flex: 1, paddingRight: '10px' }}>{item.object}</span>
                   <button className="btn-cart" onClick={() => removeFromCart(index)} style={{ minWidth: '30px', cursor: 'pointer' }}>✕</button>
@@ -119,7 +124,7 @@ export default function Order({ cart, removeFromCart }) {
 
                 {item.removed && item.removed.length > 0 && (
                   <span style={{ fontSize: "13px", color: "#ffffff", backgroundColor: "#ff4757", padding: "4px 10px", borderRadius: "50px", width: "fit-content", marginTop: '5px' }}>
-                    ❌ SIN: {item.removed.join(", ")}
+                    ❌ {t.sin}: {item.removed.join(", ")}
                   </span>
                 )}
 
@@ -135,21 +140,21 @@ export default function Order({ cart, removeFromCart }) {
               Total: {getTotalPrice()}€
             </p>
 
-            <input type="text" placeholder="Tu Nombre" className="placeholder" style={{ width: '100%', border: '1px solid #ff4757', marginBottom: '10px', padding: '12px' }} value={name} onChange={(e) => setName(e.target.value)} />
-            <input type="text" placeholder="Tu Teléfono" className="placeholder" style={{ width: '100%', border: '1px solid #ff4757', marginBottom: '10px', padding: '12px' }} value={phone} onChange={(e) => setPhone(e.target.value)} />
-            <textarea placeholder="Dirección (Vacío para recoger en local)" className="placeholder" style={{ width: '100%', minHeight: '80px', border: '1px solid #ff4757', padding: '12px' }} value={address} onChange={(e) => setAddress(e.target.value)}></textarea>
+            <input type="text" placeholder={t.placeholderName} className="placeholder" style={{ width: '100%', border: '1px solid #ff4757', marginBottom: '10px', padding: '12px' }} value={name} onChange={(e) => setName(e.target.value)} />
+            <input type="text" placeholder={t.placeholderPhone} className="placeholder" style={{ width: '100%', border: '1px solid #ff4757', marginBottom: '10px', padding: '12px' }} value={phone} onChange={(e) => setPhone(e.target.value)} />
+            <textarea placeholder={t.placeholderAddress} className="placeholder" style={{ width: '100%', minHeight: '80px', border: '1px solid #ff4757', padding: '12px' }} value={address} onChange={(e) => setAddress(e.target.value)}></textarea>
 
             <div style={{ marginTop: '20px', width: '100%' }}>
-              <p style={{ color: 'white', marginBottom: '15px', textAlign: 'center', fontWeight: 'bold', fontSize: '1.1rem' }}>¿Cómo pagarás?</p>
+              <p style={{ color: 'white', marginBottom: '15px', textAlign: 'center', fontWeight: 'bold', fontSize: '1.1rem' }}>{t.payTitle}</p>
               <div style={{ display: 'flex', gap: '15px' }}>
                 <button
                   onClick={() => setPaymentOption("Efectivo")}
                   style={{ flex: 1, padding: '15px 5px', borderRadius: '12px', border: '2px solid #ff4757', backgroundColor: paymentOption === "Efectivo" ? "#ff4757" : "transparent", color: 'white', fontWeight: 'bold', cursor: 'pointer', fontSize: '14px', transition: '0.3s' }}
-                >💵 Efectivo</button>
+                >{t.cash}</button>
                 <button
                   onClick={() => setPaymentOption("Tarjeta")}
                   style={{ flex: 1, padding: '15px 5px', borderRadius: '12px', border: '2px solid #ff4757', backgroundColor: paymentOption === "Tarjeta" ? "#ff4757" : "transparent", color: 'white', fontWeight: 'bold', cursor: 'pointer', fontSize: '14px', transition: '0.3s' }}
-                >💳 Tarjeta</button>
+                >{t.card}</button>
               </div>
             </div>
 
@@ -169,10 +174,9 @@ export default function Order({ cart, removeFromCart }) {
                 border: 'none',
                 cursor: (paymentOption && cart.length > 0) ? 'pointer' : 'not-allowed',
                 boxShadow: (paymentOption && cart.length > 0) ? '0 6px 20px rgba(37, 211, 102, 0.4)' : 'none',
-                transition: 'transform 0.2s active'
               }}
             >
-              {paymentOption ? "🚀 ENVIAR POR WHATSAPP" : "ELIJA MÉTODO DE PAGO"}
+              {paymentOption ? t.btnSend : t.btnSelectPay}
             </button>
           </div>
         )}
