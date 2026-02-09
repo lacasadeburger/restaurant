@@ -176,8 +176,8 @@ export default function App() {
                 <h3 style={{ color: '#ff4757' }}>La Casa de Burger Torrevieja</h3>
                 <p>
                   {lang === 'es'
-                    ? 'La mejor hamburguesería artesanal de Torrevieja. Smash Burgers, carne Black Angus et produits locaux.'
-                    : 'The best handcrafted burger shop in Torrevieja. Smash Burgers, Black Angus beef and local products.'}
+                    ? 'La mejor hamburguesería artesanal de Torrevieja. Smash Burgers, carne Fresca et produits locaux.'
+                    : 'The best handcrafted burger shop in Torrevieja. Smash Burgers, Fresh Meet and local products.'}
                 </p>
               </div>
               <div>
