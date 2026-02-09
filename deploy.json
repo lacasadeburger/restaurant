@@ -1,0 +1,20 @@
+const FtpDeploy = require("ftp-deploy");
+const ftpDeploy = new FtpDeploy();
+
+const config = {
+    user: "ton-identifiant-ovh",
+    password: "ton-mot-de-pago-ovh",
+    host: "ftp.clusterXXX.ovh.net", // Ton hôte FTP OVH
+    port: 21,
+    localRoot: __dirname + "/dist",
+    remoteRoot: "/www/", // Le dossier sur OVH (souvent /www/)
+    include: ["*", "**/*"],
+    deleteRemote: true, // Supprime les anciens fichiers avant d'envoyer
+    forcePasv: true,
+    sftp: false
+};
+
+ftpDeploy
+    .deploy(config)
+    .then((res) => console.log("🚀 Succès : Site mis à jour sur OVH !"))
+    .catch((err) => console.log("❌ Erreur :", err));
