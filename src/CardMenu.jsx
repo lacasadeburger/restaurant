@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./style.css";
-import background from "../assets/newspaper8.jpg";
+import background from "./assets/newspaper8.jpg";
 
 export default function CardMenu(props) {
   const [isReversed, setIsReversed] = useState(false);
