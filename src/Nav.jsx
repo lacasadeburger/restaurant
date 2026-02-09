@@ -1,13 +1,18 @@
 import React from "react";
 
 /**
- * Nav Component - Mise à jour 09/02/2026
- * - Point 2 : Ajout Badge FOMO "Abierto" avec pulsation
- * - Point 3 : Ajout Animation Vibrante sur Panier si rempli
+ * Nav Component - Version Finale Gourmet Gold
+ * - Harmonisation avec App.jsx (Or 24K)
+ * - Badge FOMO dynamique
+ * - Animation Panier Vibrant
  */
 
 export default function Nav({ scrollToOrder, cartLength, totalPrice, lang }) {
   const isEn = lang === 'en';
+
+  // --- CONFIGURATION OR ÉCLATANT ---
+  const GOLD_GRADIENT = "linear-gradient(135deg, #BF953F 0%, #FCF6BA 45%, #B38728 55%, #FBF5B7 100%)";
+  const GOLD_BRIGHT = "#FFD700";
 
   return (
     <nav style={{
@@ -15,63 +20,66 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang }) {
       top: 0,
       left: 0,
       width: '100%',
-      height: '70px',
-      backgroundColor: 'rgba(0, 0, 0, 0.95)',
-      backdropFilter: 'blur(10px)',
-      WebkitBackdropFilter: 'blur(10px)',
+      height: '75px',
+      backgroundColor: 'rgba(0, 0, 0, 0.98)',
+      backdropFilter: 'blur(15px)',
+      WebkitBackdropFilter: 'blur(15px)',
       display: 'flex',
       justifyContent: 'space-between',
       alignItems: 'center',
-      padding: '0 10px',
+      padding: '0 15px',
       zIndex: 2000,
-      borderBottom: '2px solid #ff4757',
-      boxSizing: 'border-box'
+      borderBottom: '3px solid #ff4757', // Ligne rouge signature
+      boxSizing: 'border-box',
+      boxShadow: '0 4px 20px rgba(0,0,0,0.5)'
     }}>
 
-      {/* CÔTÉ GAUCHE : TÉLÉPHONE */}
+      {/* GAUCHE : APPEL DIRECT (Style Or) */}
       <div style={{ display: 'flex', alignItems: 'center', flexShrink: 0 }}>
         <a href="tel:+34602597210" style={{
-          color: '#fff',
+          color: '#000',
           textDecoration: 'none',
-          fontWeight: '900',
+          fontWeight: '950',
           fontSize: '0.85rem',
           display: 'flex',
           alignItems: 'center',
           gap: '6px',
-          background: 'rgba(255, 255, 255, 0.1)',
-          padding: '8px 10px',
-          borderRadius: '8px',
-          border: '1px solid #f1c40f',
-          transition: 'all 0.2s ease'
+          background: GOLD_GRADIENT,
+          padding: '8px 12px',
+          borderRadius: '10px',
+          border: '1px solid #000',
+          transition: '0.2s ease',
+          boxShadow: '0 2px 10px rgba(212, 175, 55, 0.3)'
         }}>
           <span style={{ fontSize: '1.1rem' }}>📞</span>
           <span style={{ whiteSpace: 'nowrap' }}>602 59 72 10</span>
         </a>
       </div>
 
-      {/* CENTRE : BADGE D'URGENCE (FOMO) */}
+      {/* CENTRE : STATUS "ABIERTO" (FOMO) */}
       <div className="fomo-badge" style={{
         display: 'flex',
         alignItems: 'center',
-        gap: '5px',
-        backgroundColor: 'rgba(46, 213, 115, 0.15)',
-        padding: '5px 10px',
-        borderRadius: '20px',
+        gap: '8px',
+        backgroundColor: 'rgba(46, 213, 115, 0.1)',
+        padding: '6px 12px',
+        borderRadius: '50px',
         border: '1px solid #2ed573',
       }}>
         <span className="dot-pulse"></span>
         <span style={{
           color: '#2ed573',
-          fontSize: '0.65rem',
+          fontSize: '0.7rem',
           fontWeight: '900',
           textTransform: 'uppercase',
-          whiteSpace: 'nowrap'
+          whiteSpace: 'nowrap',
+          letterSpacing: '0.5px'
         }}>
           {isEn ? "Open - 30min delivery" : "Abierto - Entrega 30min"}
         </span>
       </div>
 
-      {/* CÔTÉ DROIT : LE PANIER (VIBRANT SI CARTLENGTH > 0) */}
+      {/* DROITE : PANIER (VIBRANT & BORDURE OR) */}
       <div
         onClick={scrollToOrder}
         className={`cart-button ${cartLength > 0 ? 'pulse-active' : ''}`}
@@ -81,32 +89,32 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang }) {
           alignItems: 'center',
           gap: '10px',
           backgroundColor: '#ff4757',
-          padding: '6px 14px',
-          borderRadius: '50px',
+          padding: '6px 15px',
+          borderRadius: '12px',
           transition: 'transform 0.2s ease',
-          boxShadow: '0 4px 12px rgba(255, 71, 87, 0.4)',
-          border: '1px solid #000',
+          boxShadow: '0 4px 15px rgba(255, 71, 87, 0.4)',
+          border: `2px solid ${GOLD_BRIGHT}`,
           flexShrink: 0
         }}
         onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
         onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
       >
-        <span style={{ fontSize: '1.2rem' }}>🛒</span>
+        <span style={{ fontSize: '1.3rem' }}>🛒</span>
 
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
           <span style={{
             color: '#fff',
             fontWeight: '950',
-            fontSize: '1rem',
+            fontSize: '1.1rem',
             lineHeight: '1'
           }}>
             {totalPrice}€
           </span>
           <span style={{
             color: 'rgba(255,255,255,0.9)',
-            fontSize: '0.6rem',
+            fontSize: '0.65rem',
             textTransform: 'uppercase',
-            fontWeight: 'bold',
+            fontWeight: '900',
             whiteSpace: 'nowrap'
           }}>
             {cartLength} {cartLength > 1 ? (isEn ? 'items' : 'unidades') : (isEn ? 'item' : 'unidad')}
@@ -115,7 +123,7 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang }) {
       </div>
 
       <style>{`
-        /* Animation du point lumineux (Abierto) */
+        /* Animation du point lumineux vert */
         .dot-pulse {
           width: 8px;
           height: 8px;
@@ -131,27 +139,28 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang }) {
           100% { box-shadow: 0 0 0 0 rgba(46, 213, 115, 0); }
         }
 
-        /* Animation du Panier (Heartbeat vibrant) */
+        /* Animation du Panier vibrant quand il n'est pas vide */
         .pulse-active {
-          animation: cart-vibration 1.5s ease-in-out infinite;
+          animation: cart-vibration 2s ease-in-out infinite;
         }
 
         @keyframes cart-vibration {
           0% { transform: scale(1); }
-          5% { transform: scale(1.1); }
+          5% { transform: scale(1.15); }
           10% { transform: scale(1); }
-          15% { transform: scale(1.1); }
+          15% { transform: scale(1.15); }
           20% { transform: scale(1); }
           100% { transform: scale(1); }
         }
 
-        @media (max-width: 430px) {
-          .fomo-badge { display: none !important; } /* Masqué sur très petits écrans pour éviter le chevauchement */
+        /* Responsive : On cache le badge central sur mobile étroit pour éviter l'écrasement */
+        @media (max-width: 480px) {
+          .fomo-badge { display: none !important; }
         }
 
         @media (max-width: 360px) {
-          nav { padding: 0 5px; }
-          a[href^="tel"] { padding: 6px 8px; font-size: 0.75rem; }
+          nav { padding: 0 8px; }
+          .cart-button { padding: 5px 10px; }
         }
       `}</style>
     </nav>
