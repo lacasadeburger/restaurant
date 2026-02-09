@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect } from "react";
-import bgCard from "./assets/bg-c.jpg";
+import bgCard from "./assets/bg-c.png";
 
 export default function CardMenu(props) {
   const { image, object, description, precio, addToCart, isDrinkCard, isPostreCard } = props;
@@ -13,7 +13,6 @@ export default function CardMenu(props) {
 
   const removableList = ["Tomate", "Lechuga", "Pepinillos", "Salsa", "Queso", "Ajo", "Hierbas", "Especias"];
 
-  // --- LOGIQUE DE SAUVEGARDE POUR LE SWITCH DE LANGUE ---
   const storageKeyExtras = `extras_${object}`;
   const storageKeyRemoved = `removed_${object}`;
 
@@ -100,24 +99,21 @@ export default function CardMenu(props) {
 
         .card-content { padding: 10px 15px; display: flex; flex-direction: column; gap: 12px; flex-grow: 1; }
 
-        .info-box {
-          background: #fffdf2;
+        /* NOUVEAU DÉGRADÉ HARMONISÉ AVEC BG-C (Version plus claire) */
+        .info-box, .options-box {
+          background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(240,240,240,0.85) 100%);
           padding: 12px;
           border-radius: 2px;
           border: 3px solid #000;
-          box-shadow: 5px 5px 0px rgba(0,0,0,0.1);
-          transform: rotate(-1deg);
+          box-shadow: 4px 4px 0px rgba(0,0,0,0.15);
         }
-        .card-title { font-size: 1.25rem; font-weight: 950; color: #000; margin: 0; text-transform: uppercase; }
-        .card-description { font-size: 0.8rem; font-weight: 700; color: #444; margin-top: 5px; }
 
-        .options-box {
-          background: #f8f8f8;
-          padding: 10px;
-          border-radius: 2px;
-          border: 2px solid #000;
-          box-shadow: 4px 4px 0px #000;
-        }
+        .info-box { transform: rotate(-0.5deg); }
+        .options-box { transform: rotate(0.5deg); }
+
+        .card-title { font-size: 1.25rem; font-weight: 950; color: #000; margin: 0; text-transform: uppercase; }
+        .card-description { font-size: 0.8rem; font-weight: 700; color: #333; margin-top: 5px; }
+
         .option-group-label {
           font-size: 0.7rem; font-weight: 900; text-transform: uppercase;
           background: #000; color: #fff; padding: 2px 6px;
@@ -126,7 +122,7 @@ export default function CardMenu(props) {
 
         .chips-container { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
         .chip { padding: 5px 8px; border-radius: 4px; font-size: 0.65rem; font-weight: 900; cursor: pointer; border: 2px solid #000; background: #fff; transition: all 0.1s; }
-        .chip.active { background: #ffd32a; transform: translate(-2px, -2px); box-shadow: 2px 2px 0px #000; }
+        .chip.active { background: #ffd32a; transform: translate(-1px, -1px); box-shadow: 2px 2px 0px #000; }
         .chip.remove.active { background: #ff4757; color: #fff; text-decoration: line-through; box-shadow: 2px 2px 0px #000; }
 
         .card-footer { padding: 10px 15px 20px 15px; margin-top: auto; }
@@ -161,7 +157,7 @@ export default function CardMenu(props) {
               ))}
             </div>
             <span className="option-group-label">Quitar</span>
-            <div className="chips-container">
+            <div className="chips-container) ">
               {removableList.map(ing => (
                 <button key={ing} type="button" className={`chip remove ${removedIngredients.includes(ing) ? 'active' : ''}`} onClick={() => toggleRemove(ing)}>
                   {ing}
