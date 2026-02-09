@@ -237,6 +237,11 @@ export default function App() {
             © 2026 <span style={{ color: GOLD_BRIGHT, fontWeight: 'bold' }}>LA CASA DE BURGER</span> | {lang === 'es' ? 'TODOS LOS DERECHOS RESERVADOS' : 'ALL RIGHTS RESERVED'}
           </div>
         </div>
+        {/* Section Logo tout en bas */}
+<div className="footer-logo-container">
+  <img src="/logo.jpg" alt="La Casa de Burger Logo" className="footer-logo" />
+  <p className="footer-copyright">© 2026 La Casa de Burger - Tous droits réservés</p>
+</div>
       </footer>
 
       {/* WHATSAPP FLOAT */}
@@ -250,7 +255,7 @@ export default function App() {
           {lang === 'es' ? '✕ CERRAR CARTA' : '✕ CLOSE MENU'}
         </button>
       )}
-      
+
     </div>
   );
 }
