@@ -213,8 +213,6 @@ export default function App() {
                 <br /><br />
                 <strong>ZONAS:</strong> Playa del Cura, Playa de los Locos, Paseo Marítimo, La Siesta, Aguas Nuevas, Los Balcones, Punta Prima, La Mata, Los Altos, El Acequión, La Veleta.
               </p>
-
-          </div>
         </div>
       </footer>
 
