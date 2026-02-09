@@ -237,14 +237,28 @@ export default function App() {
             © 2026 <span style={{ color: GOLD_BRIGHT, fontWeight: 'bold' }}>LA CASA DE BURGER</span> | {lang === 'es' ? 'TODOS LOS DERECHOS RESERVADOS' : 'ALL RIGHTS RESERVED'}
           </div>
         </div>
-        {/* Section Logo tout en bas */}
-<div className="footer-logo-container">
-<img
-src="/logo.jpg"
-alt="La Casa de Burger Logo" 
-style={{ height: "80px", width: "auto", marginTop: "20px", borderRadius: "10px" }}
-/>
-  <p className="footer-copyright">© 2026 La Casa de Burger - Tous droits réservés</p>
+        <div style={{
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'center',
+  width: '100%',
+  padding: '40px 0',
+  marginTop: '20px'
+}}>
+  <img
+    src="/logo.jpg"
+    alt="La Casa de Burger Logo"
+    style={{
+      height: "150px", // J'ai augmenté la taille ici (c'était 80px avant)
+      width: "auto",
+      borderRadius: "15px",
+      boxShadow: "0 4px 15px rgba(0,0,0,0.1)" // Petit effet d'ombre pour le relief
+    }}
+  />
+  <p style={{ marginTop: '15px', fontSize: '0.9rem', opacity: 0.7 }}>
+    © 2026 La Casa de Burger - Tous droits réservés
+  </p>
 </div>
       </footer>
 
