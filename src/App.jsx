@@ -65,46 +65,9 @@ export default function App() {
         .promo-container:hover { transform: scale(1.02); border-color: #f1c40f; }
         .promo-img { width: 100%; display: block; opacity: 1; transition: 0.3s; }
         .promo-container:hover .promo-img { opacity: 0.75; }
-
-        .btn-overlay {
-          position: absolute;
-          bottom: 10px;
-          left: 50%;
-          transform: translateX(-50%);
-          background: #f1c40f;
-          color: #000;
-          padding: 10px 25px;
-          border-radius: 6px;
-          font-weight: 950;
-          border: 3px solid #000;
-          pointer-events: none;
-          font-size: 1rem;
-          box-shadow: 3px 3px 0px #000;
-          text-transform: uppercase;
-          z-index: 5;
-          white-space: nowrap;
-        }
-
+        .btn-overlay { position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); background: #f1c40f; color: #000; padding: 10px 25px; border-radius: 6px; font-weight: 950; border: 3px solid #000; pointer-events: none; font-size: 1rem; box-shadow: 3px 3px 0px #000; text-transform: uppercase; z-index: 5; white-space: nowrap; }
         .grid-cards { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; padding: 20px 0 120px; }
-
-        .floating-close {
-          position: fixed;
-          bottom: 85px;
-          left: 50%;
-          transform: translateX(-50%);
-          background: #ff4757;
-          color: #fff;
-          border: 3px solid #000;
-          padding: 12px 25px;
-          border-radius: 10px;
-          font-weight: 900;
-          z-index: 9998;
-          cursor: pointer;
-          box-shadow: 4px 4px 0px #000;
-          text-transform: uppercase;
-          font-size: 1rem;
-        }
-
+        .floating-close { position: fixed; bottom: 85px; left: 50%; transform: translateX(-50%); background: #ff4757; color: #fff; border: 3px solid #000; padding: 12px 25px; border-radius: 10px; font-weight: 900; z-index: 9998; cursor: pointer; box-shadow: 4px 4px 0px #000; text-transform: uppercase; font-size: 1rem; }
         .whatsapp-float { position: fixed; bottom: 20px; right: 20px; background: #25D366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; z-index: 9999; box-shadow: 0 5px 15px rgba(0,0,0,0.4); }
       `}</style>
 
@@ -129,7 +92,7 @@ export default function App() {
         <section>
           <SectionTitle id="sec-burgers">{lang === 'es' ? 'Burgers Gourmet' : 'Gourmet Burgers'}</SectionTitle>
           {showCardBurger ? (
-            <div className="grid-cards">{burgers.map(item => <CardMenu key={item.id + Math.random()} {...item} addToCart={addToCart} />)}</div>
+            <div className="grid-cards">{burgers.map(item => <CardMenu key={item.id} {...item} addToCart={addToCart} lang={lang} />)}</div>
           ) : (
             <div className="promo-container" onClick={() => setShowCardBurger(true)}>
               <img src={Burger} className="promo-img" alt="Smash Burger Torrevieja" />
@@ -141,7 +104,7 @@ export default function App() {
         <section>
           <SectionTitle id="sec-bebidas">{lang === 'es' ? 'Bebidas & Cocktails' : 'Drinks & Cocktails'}</SectionTitle>
           {showCardDrink ? (
-            <div className="grid-cards">{drinks.map(item => <CardMenu key={item.id + Math.random()} {...item} isDrinkCard={true} addToCart={addToCart} />)}</div>
+            <div className="grid-cards">{drinks.map(item => <CardMenu key={item.id} {...item} isDrinkCard={true} addToCart={addToCart} lang={lang} />)}</div>
           ) : (
             <div className="promo-container" onClick={() => setShowCardDrink(true)}>
               <img src={Drink} className="promo-img" alt="Drinks Torrevieja" />
@@ -153,7 +116,7 @@ export default function App() {
         <section>
           <SectionTitle id="sec-postres">{lang === 'es' ? 'Postres Caseros' : 'Homemade Desserts'}</SectionTitle>
           {showCardPostres ? (
-            <div className="grid-cards">{postres.map(item => <CardMenu key={item.id + Math.random()} {...item} isPostreCard={true} addToCart={addToCart} />)}</div>
+            <div className="grid-cards">{postres.map(item => <CardMenu key={item.id} {...item} isPostreCard={true} addToCart={addToCart} lang={lang} />)}</div>
           ) : (
             <div className="promo-container" onClick={() => setShowCardPostres(true)}>
               <img src={Postre} className="promo-img" alt="Desserts Torrevieja" />
@@ -162,7 +125,6 @@ export default function App() {
           )}
         </section>
 
-        {/* MODIFICATION ICI : On passe la langue (lang) au composant Order */}
         <section id="order">
           <SectionTitle>{lang === 'es' ? 'Tu Pedido' : 'Your Order'}</SectionTitle>
           <Order cart={cart} removeFromCart={removeFromCart} lang={lang} />
@@ -171,14 +133,11 @@ export default function App() {
 
       <footer style={{ padding: '80px 20px 40px', backgroundColor: '#000', color: '#fff', textAlign: 'center', borderTop: '4px solid #ff4757' }}>
         <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
+
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '30px', textAlign: 'left', marginBottom: '40px', background: 'rgba(255,255,255,0.03)', padding: '30px', borderRadius: '20px' }}>
               <div>
                 <h3 style={{ color: '#ff4757' }}>La Casa de Burger Torrevieja</h3>
-                <p>
-                  {lang === 'es'
-                    ? 'La mejor hamburguesería artesanal de Torrevieja. Smash Burgers, carne Fresca y productos locales.'
-                    : 'The best handcrafted burger shop in Torrevieja. Smash Burgers, Fresh Meat and local products.'}
-                </p>
+                <p>{lang === 'es' ? 'La mejor hamburguesería artesanal de Torrevieja. Smash Burgers, carne fresca y productos locales.' : 'The best handcrafted burger shop in Torrevieja. Smash Burgers, fresh meat and local products.'}</p>
               </div>
               <div>
                 <h4 style={{ color: '#fff' }}>📍 {lang === 'es' ? 'Ubicación y Contacto' : 'Location & Contact'}</h4>
@@ -203,23 +162,31 @@ export default function App() {
             <a href="https://www.google.com/maps/search/?api=1&query=La+Casa+de+Burger+Torrevieja" target="_blank" rel="noreferrer"><img src={googleIcon} width="140" alt="Google Maps" /></a>
             <a href="https://www.tripadvisor.es/Restaurant_Review-g187527-d26835169-Reviews-La_Casa_De_Burger-Torrevieja_Costa_Blanca_Province_of_Alicante_Valencian_Communi.html" target="_blank" rel="noreferrer"><img src={tripadvisor} width="140" alt="Tripadvisor" /></a>
           </div>
-        </div>
-        {/* --- BLOC SEO MULTILINGUE INTERNATIONAL --- */}
-                  <div style={{ backgroundColor: '#0a0a0a', padding: '30px', borderRadius: '15px', border: '1px solid #222', textAlign: 'justify', marginTop: '30px' }}>
-                    <p style={{ color: '#777', fontSize: '0.8rem', lineHeight: '1.8', margin: 0 }}>
-                      <strong>🇪🇸 ESPAÑOL:</strong> Hamburguesería en Torrevieja, mejores hamburguesas Alicante, Smash Burger cerca de mí, comida a domicilio, Playa del Cura.
-                      <br /><strong>🇬🇧 ENGLISH:</strong> Best burgers in Torrevieja, gourmet restaurant, takeaway near me, Smash burgers Costa Blanca, Playa de los Locos.
-                      <br /><strong>🇩🇪 DEUTSCH:</strong> Beste Burger Torrevieja, Smash Burger Alicante, Restaurant Lieferservice, Gourmet Essen in der Nähe.
-                      <br /><strong>🇳🇱 NEDERLANDS:</strong> Beste hamburgers Torrevieja, ambachtelijke burger, eten bestellen, bezorging in de buurt, Costa Blanca.
-                      <br /><strong>🇫🇷 FRANÇAIS:</strong> Meilleur burger Torrevieja, cuisine artisanale, livraison rapide, Torrevieja centre, Smash burger.
-                      <br /><strong>🇸🇪 SVENSKA / 🇳🇴 NORSK:</strong> Bästa burgare i Torrevieja, restaurang nära stranden, smashburgaren Alicante, matleverans.
-                      <br /><strong>🇵🇱 POLSKI:</strong> Najlepsze burgery w Torrevieja, dostawa jedzenia, prawdziwe burgery wołowe, restauracja blisko plaży.
-                      <br /><strong>🇷🇺 РУССКИЙ:</strong> Лучшие бургеры в Торревьехе, заказать еду, доставка бургеров Торревьеха, Смаш бургер.
-                      <br /><br />
-                      <strong>ZONAS DE REPARTO:</strong> Playa del Cura, Playa de los Locos, Paseo Marítimo, La Siesta, Aguas Nuevas, Los Balcones, Punta Prima, La Mata, Los Altos, El Acequión, La Veleta, San Roque, Rocío del Mar.
-                    </p>
-                  </div>
 
+          {/* --- BLOC SEO MULTILINGUE INTERNATIONAL COMPLET --- */}
+          <div style={{ backgroundColor: '#0a0a0a', padding: '30px', borderRadius: '15px', border: '1px solid #222', textAlign: 'justify', marginTop: '30px' }}>
+            <p style={{ color: '#777', fontSize: '0.8rem', lineHeight: '1.8', margin: 0 }}>
+              <strong>🇪🇸 ESPAÑOL:</strong> Hamburguesería en Torrevieja, mejores hamburguesas Alicante, Smash Burger cerca de mí, comida a domicilio, Playa del Cura.
+              <br /><strong>🇬🇧 ENGLISH:</strong> Best burgers in Torrevieja, gourmet restaurant, takeaway near me, Smash burgers Costa Blanca, Playa de los Locos.
+              <br /><strong>🇩🇪 DEUTSCH:</strong> Beste Burger Torrevieja, Smash Burger Alicante, Restaurant Lieferservice, Gourmet Essen in der Nähe.
+              <br /><strong>🇳🇱 NEDERLANDS:</strong> Beste hamburgers Torrevieja, ambachtelijke burger, eten bestellen, bezorging in de buurt, Costa Blanca.
+              <br /><strong>🇫🇷 FRANÇAIS:</strong> Meilleur burger Torrevieja, cuisine artisanale, livraison rapide, Torrevieja centre, Smash burger.
+              <br /><strong>🇸🇪 SVENSKA / 🇳🇴 NORSK:</strong> Bästa burgare i Torrevieja, restaurang nära stranden, smashburgaren Alicante, matleverans.
+              <br /><strong>🇵🇱 POLSKI:</strong> Najlepsze burgery w Torrevieja, dostawa jedzenia, prawdziwe burgery wołowe, restauracja blisko plaży.
+              <br /><strong>🇷🇺 РУССКИЙ:</strong> Лучшие бургеры в Торревьехе, заказать еду, доставка бургеров Торревьеха, Смаш бургер.
+              <br /><br />
+              <strong>ZONAS DE REPARTO:</strong> Playa del Cura, Playa de los Locos, Paseo Marítimo, La Siesta, Aguas Nuevas, Los Balcones, Punta Prima, La Mata, Los Altos, El Acequión, La Veleta, San Roque, Rocío del Mar.
+            </p>
+          </div>
+
+          {/* --- COPYRIGHT BAR (DESIGN FINAL) --- */}
+          <div style={{ marginTop: '40px', paddingTop: '20px', borderTop: '1px solid rgba(255,255,255,0.05)', fontSize: '0.75rem', color: '#555', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '8px' }}>
+            <span>© 2026</span>
+            <span style={{ color: '#ff4757', fontWeight: 'bold', letterSpacing: '1px' }}>LA CASA DE BURGER</span>
+            <span style={{ opacity: 0.3 }}>|</span>
+            <span>{lang === 'es' ? 'TODOS LOS DERECHOS RESERVADOS' : 'ALL RIGHTS RESERVED'}</span>
+          </div>
+        </div>
       </footer>
 
       <a href="https://wa.me/34602597210" target="_blank" rel="noreferrer" className="whatsapp-float">
