@@ -11,10 +11,8 @@ export default function CardMenu(props) {
     { name: "Salsa Picante", price: 0.50 }
   ];
 
-  // MODIFICATION ICI : "Salsa" supprimé et remplacé par "Cebolla"
   const removableList = ["Tomate", "Lechuga", "Pepinillos", "Cebolla", "Queso", "Ajo", "Hierbas", "Especias"];
 
-  // --- LOGIQUE DE SAUVEGARDE (ANTI-RESET LANGUE) ---
   const storageKeyExtras = `extras_${object}`;
   const storageKeyRemoved = `removed_${object}`;
 
@@ -65,10 +63,8 @@ export default function CardMenu(props) {
     };
     addToCart(itemToAdd);
     setIsAdded(true);
-
     localStorage.removeItem(storageKeyExtras);
     localStorage.removeItem(storageKeyRemoved);
-
     setTimeout(() => {
       setIsAdded(false);
       setExtraIngredients([]);
@@ -93,6 +89,7 @@ export default function CardMenu(props) {
         .image-container { width: 100%; height: 170px; display: flex; align-items: center; justify-content: center; position: relative; }
         .product-img { width: 80%; height: 80%; object-fit: contain; z-index: 2; filter: drop-shadow(0 10px 10px rgba(0,0,0,0.4)); }
 
+        /* PRIX EN HAUT À DROITE SUR L'IMAGE */
         .price-badge-overlay {
           position: absolute; top: 10px; right: 15px; background: #ff4757 !important; color: white !important;
           padding: 6px 14px; border-radius: 4px; font-weight: 950; font-size: 1.4rem;
@@ -101,46 +98,38 @@ export default function CardMenu(props) {
         }
 
         .card-content { padding: 10px 15px; display: flex; flex-direction: column; gap: 12px; flex-grow: 1; }
-
         .info-box, .options-box {
           background: linear-gradient(135deg, rgba(139, 0, 0, 0.85) 0%, rgba(40, 0, 0, 0.95) 100%) !important;
-          padding: 12px;
-          border-radius: 4px;
-          border: 2px solid #000 !important;
-          box-shadow: 0 4px 15px rgba(0,0,0,0.4) !important;
-          backdrop-filter: blur(3px);
+          padding: 12px; border-radius: 4px; border: 2px solid #000 !important;
+          box-shadow: 0 4px 15px rgba(0,0,0,0.4) !important; backdrop-filter: blur(3px);
         }
-
-        .info-box { transform: rotate(-0.5deg); }
-        .options-box { transform: rotate(0.5deg); }
-
         .card-title { font-size: 1.25rem; font-weight: 950; color: #f1c40f !important; margin: 0; text-transform: uppercase; text-shadow: 1px 1px 2px #000; }
         .card-description { font-size: 0.85rem; font-weight: 700; color: #ffffff !important; margin-top: 5px; line-height: 1.2; }
-
-        .option-group-label {
-          font-size: 0.7rem; font-weight: 900; text-transform: uppercase;
-          background: #f1c40f !important; color: #000 !important; padding: 2px 6px;
-          display: inline-block; margin-bottom: 8px; transform: skewX(-10deg);
-        }
-
+        .option-group-label { font-size: 0.7rem; font-weight: 900; text-transform: uppercase; background: #f1c40f !important; color: #000 !important; padding: 2px 6px; display: inline-block; margin-bottom: 8px; transform: skewX(-10deg); }
         .chips-container { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
         .chip { padding: 5px 8px; border-radius: 4px; font-size: 0.65rem; font-weight: 900; cursor: pointer; border: 1px solid #000; background: rgba(255,255,255,0.1); color: #fff; transition: all 0.1s; }
-
         .chip.active { background: #f1c40f !important; color: #000 !important; transform: scale(1.05); border: 2px solid #000; }
         .chip.remove.active { background: #ff4757 !important; color: #fff !important; text-decoration: line-through; border: 2px solid #000; }
 
         .card-footer { padding: 10px 15px 20px 15px; margin-top: auto; }
 
+        /* BOUTON AVEC PRIX À DROITE */
         .add-btn-modern {
-          width: 100%; background: #f1c40f !important; color: #000 !important; border: 3px solid #000 !important; padding: 15px;
+          width: 100%; background: #f1c40f !important; color: #000 !important; border: 3px solid #000 !important; padding: 12px;
           font-weight: 950; cursor: pointer; text-transform: uppercase; border-radius: 8px;
-          font-size: 1.1rem; box-shadow: 0 6px 0px #c49b09; transition: all 0.1s;
+          font-size: 1rem; box-shadow: 0 6px 0px #c49b09; transition: all 0.1s;
+          display: flex; justify-content: space-between; align-items: center;
         }
         .add-btn-modern:active { transform: translateY(3px); box-shadow: 0 2px 0px #c49b09; }
-        .add-btn-modern.success { background: #2ed573 !important; color: white !important; box-shadow: 0 6px 0px #1d914d; }
+        .add-btn-modern.success { background: #2ed573 !important; color: white !important; box-shadow: 0 6px 0px #1d914d; justify-content: center; }
+
+        .price-inside-btn {
+          background: rgba(0,0,0,0.1); padding: 2px 8px; border-radius: 4px; font-size: 0.95rem; border-left: 1px solid rgba(0,0,0,0.2);
+        }
       `}</style>
 
       <div className="image-container">
+        {/* PRIX À DROITE SUR L'IMAGE */}
         <div className="price-badge-overlay">{totalPrice}€</div>
         <img src={image} alt={object} className="product-img" />
       </div>
@@ -175,7 +164,14 @@ export default function CardMenu(props) {
 
       <div className="card-footer">
         <button className={`add-btn-modern ${isAdded ? 'success' : ''}`} onClick={handleAddClick}>
-          {isAdded ? "¡LISTO!" : "AÑADIR AL CARRITO"}
+          {isAdded ? (
+            <span>¡LISTO!</span>
+          ) : (
+            <>
+              <span>AÑADIR</span>
+              <span className="price-inside-btn">{totalPrice}€</span>
+            </>
+          )}
         </button>
       </div>
     </div>
