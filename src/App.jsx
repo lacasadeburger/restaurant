@@ -8,9 +8,9 @@ import { Helmet } from "react-helmet";
 
 // --- ASSETS ---
 import fb from "./assets/FB.png";
-import Postre from "./assets/postre.png";
-import Burger from "./assets/burger.png";
-import Drink from "./assets/drink.png";
+import Postre from "./assets/postre.webp";
+import Burger from "./assets/burger.webp";
+import Drink from "./assets/drink.webp";
 import tripadvisor from "./assets/tripadvisor.png";
 import googleIcon from "./assets/google.png";
 import logo from "./assets/logo.jpg";
