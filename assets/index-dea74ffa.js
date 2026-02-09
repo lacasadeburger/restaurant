@@ -118,7 +118,7 @@ https://sweetalert2.github.io/#ajax-request`),wm(i),typeof i.title=="string"&&(i
 📝 *DETALLE DU PEDIDO:*
 ${P}
 💰 *TOTAL:* ${k()}€
-💳 *PAGO:* ${f.toUpperCase()}`,b=`https://wa.me/34602597210?text=${encodeURIComponent(S)}`;window.open(b,"_blank"),r(""),l(""),d(""),c("")};return v.jsx("div",{className:"container-items",id:"order",style:{padding:"20px 10px"},children:v.jsxs("div",{className:"item menuBurgers",style:{display:"flex",flexDirection:"column",alignItems:"center",width:"100%",margin:"0 auto",backgroundColor:"#1a1a1a",borderRadius:"20px",padding:"20px 0"},children:[v.jsx("ul",{style:{padding:0,width:"100%",maxWidth:"600px",margin:"0 auto"},children:e.length===0?v.jsx("p",{style:{color:"#888",fontStyle:"italic"},children:"(Tu carrito está vacío / Votre panier est vide)"}):e.map((w,P)=>v.jsxs("li",{style:{fontSize:"18px",color:"#ff4757",listStyle:"none",textAlign:"left",padding:"15px 15px",borderBottom:"1px solid #333",display:"flex",flexDirection:"column",gap:"5px",width:"100%",boxSizing:"border-box",fontWeight:"bold"},children:[v.jsxs("div",{style:{display:"flex",justifyContent:"space-between",alignItems:"flex-start"},children:[v.jsx("span",{style:{flex:1,paddingRight:"10px"},children:w.object}),v.jsx("button",{className:"btn-cart",onClick:()=>t(P),style:{minWidth:"30px",cursor:"pointer"},children:"✕"})]}),w.removed&&w.removed.length>0&&v.jsxs("span",{style:{fontSize:"13px",color:"#ffffff",backgroundColor:"#ff4757",padding:"4px 10px",borderRadius:"50px",width:"fit-content",marginTop:"5px"},children:["❌ SIN: ",w.removed.join(", ")]}),v.jsx("span",{style:{fontSize:"16px",color:"#fff",opacity:.8},children:w.precio})]},P))}),e.length>0&&v.jsxs("div",{className:"info-product",style:{width:"100%",maxWidth:"500px",padding:"0 20px",boxSizing:"border-box"},children:[v.jsxs("p",{style:{color:"#ff4757",fontWeight:"900",fontSize:"2.2rem",margin:"25px 0",textAlign:"center",textTransform:"uppercase"},children:["Total: ",k(),"€"]}),v.jsx("input",{type:"text",placeholder:"Tu Nombre",className:"placeholder",style:{width:"100%",border:"1px solid #ff4757",marginBottom:"10px",padding:"12px"},value:n,onChange:w=>r(w.target.value)}),v.jsx("input",{type:"text",placeholder:"Tu Teléfono",className:"placeholder",style:{width:"100%",border:"1px solid #ff4757",marginBottom:"10px",padding:"12px"},value:o,onChange:w=>l(w.target.value)}),v.jsx("textarea",{placeholder:"Dirección (Vacío para recoger en local)",className:"placeholder",style:{width:"100%",minHeight:"80px",border:"1px solid #ff4757",padding:"12px"},value:a,onChange:w=>d(w.target.value)}),v.jsxs("div",{style:{marginTop:"20px",width:"100%"},children:[v.jsx("p",{style:{color:"white",marginBottom:"15px",textAlign:"center",fontWeight:"bold",fontSize:"1.1rem"},children:"¿Cómo pagarás?"}),v.jsxs("div",{style:{display:"flex",gap:"15px"},children:[v.jsx("button",{onClick:()=>c("Efectivo"),style:{flex:1,padding:"15px 5px",borderRadius:"12px",border:"2px solid #ff4757",backgroundColor:f==="Efectivo"?"#ff4757":"transparent",color:"white",fontWeight:"bold",cursor:"pointer",fontSize:"14px",transition:"0.3s"},children:"💵 Efectivo"}),v.jsx("button",{onClick:()=>c("Tarjeta"),style:{flex:1,padding:"15px 5px",borderRadius:"12px",border:"2px solid #ff4757",backgroundColor:f==="Tarjeta"?"#ff4757":"transparent",color:"white",fontWeight:"bold",cursor:"pointer",fontSize:"14px",transition:"0.3s"},children:"💳 Tarjeta"})]})]}),v.jsx("button",{className:"add-btn2",onClick:x,disabled:!f||e.length===0,style:{marginTop:"35px",padding:"20px",width:"100%",backgroundColor:f&&e.length>0?"#25D366":"#444",color:"white",fontSize:"18px",fontWeight:"900",borderRadius:"50px",border:"none",cursor:f&&e.length>0?"pointer":"not-allowed",boxShadow:f&&e.length>0?"0 6px 20px rgba(37, 211, 102, 0.4)":"none",transition:"transform 0.2s active"},children:f?"🚀 ENVIAR POR WHATSAPP":"ELIJA MÉTODO DE PAGO"})]})]})})}function Gi({id:e,name:t,description:n,precio:r,price:o,addToCart:l}){const a=r||o;return v.jsxs("div",{className:"menu-card",children:[v.jsxs("div",{className:"menu-card-content",children:[v.jsx("h3",{className:"menu-card-title",children:t}),v.jsx("p",{className:"menu-card-description",children:n}),v.jsxs("span",{className:"menu-card-price",children:[a,"€"]})]}),v.jsxs("button",{className:"add-to-cart-btn",onClick:()=>l({id:e,name:t,precio:a}),children:[v.jsx("span",{className:"btn-icon",children:"+"})," AÑADIR AL CARRITO"]}),v.jsx("style",{children:`
+💳 *PAGO:* ${f.toUpperCase()}`,b=`https://wa.me/34602597210?text=${encodeURIComponent(S)}`;window.open(b,"_blank"),r(""),l(""),d(""),c("")};return v.jsx("div",{className:"container-items",id:"order",style:{padding:"20px 10px"},children:v.jsxs("div",{className:"item menuBurgers",style:{display:"flex",flexDirection:"column",alignItems:"center",width:"100%",margin:"0 auto",backgroundColor:"#1a1a1a",borderRadius:"20px",padding:"20px 0"},children:[v.jsx("ul",{style:{padding:0,width:"100%",maxWidth:"600px",margin:"0 auto"},children:e.length===0?v.jsx("p",{style:{color:"#888",fontStyle:"italic"},children:"(Tu carrito está vacío / Votre panier est vide)"}):e.map((w,P)=>v.jsxs("li",{style:{fontSize:"18px",color:"#ff4757",listStyle:"none",textAlign:"left",padding:"15px 15px",borderBottom:"1px solid #333",display:"flex",flexDirection:"column",gap:"5px",width:"100%",boxSizing:"border-box",fontWeight:"bold"},children:[v.jsxs("div",{style:{display:"flex",justifyContent:"space-between",alignItems:"flex-start"},children:[v.jsx("span",{style:{flex:1,paddingRight:"10px"},children:w.object}),v.jsx("button",{className:"btn-cart",onClick:()=>t(P),style:{minWidth:"30px",cursor:"pointer"},children:"✕"})]}),w.removed&&w.removed.length>0&&v.jsxs("span",{style:{fontSize:"13px",color:"#ffffff",backgroundColor:"#ff4757",padding:"4px 10px",borderRadius:"50px",width:"fit-content",marginTop:"5px"},children:["❌ SIN: ",w.removed.join(", ")]}),v.jsx("span",{style:{fontSize:"16px",color:"#fff",opacity:.8},children:w.precio})]},P))}),e.length>0&&v.jsxs("div",{className:"info-product",style:{width:"100%",maxWidth:"500px",padding:"0 20px",boxSizing:"border-box"},children:[v.jsxs("p",{style:{color:"#ff4757",fontWeight:"900",fontSize:"2.2rem",margin:"25px 0",textAlign:"center",textTransform:"uppercase"},children:["Total: ",k(),"€"]}),v.jsx("input",{type:"text",placeholder:"Tu Nombre",className:"placeholder",style:{width:"100%",border:"1px solid #ff4757",marginBottom:"10px",padding:"12px"},value:n,onChange:w=>r(w.target.value)}),v.jsx("input",{type:"text",placeholder:"Tu Teléfono",className:"placeholder",style:{width:"100%",border:"1px solid #ff4757",marginBottom:"10px",padding:"12px"},value:o,onChange:w=>l(w.target.value)}),v.jsx("textarea",{placeholder:"Dirección (Vacío para recoger en local)",className:"placeholder",style:{width:"100%",minHeight:"80px",border:"1px solid #ff4757",padding:"12px"},value:a,onChange:w=>d(w.target.value)}),v.jsxs("div",{style:{marginTop:"20px",width:"100%"},children:[v.jsx("p",{style:{color:"white",marginBottom:"15px",textAlign:"center",fontWeight:"bold",fontSize:"1.1rem"},children:"¿Cómo pagarás?"}),v.jsxs("div",{style:{display:"flex",gap:"15px"},children:[v.jsx("button",{onClick:()=>c("Efectivo"),style:{flex:1,padding:"15px 5px",borderRadius:"12px",border:"2px solid #ff4757",backgroundColor:f==="Efectivo"?"#ff4757":"transparent",color:"white",fontWeight:"bold",cursor:"pointer",fontSize:"14px",transition:"0.3s"},children:"💵 Efectivo"}),v.jsx("button",{onClick:()=>c("Tarjeta"),style:{flex:1,padding:"15px 5px",borderRadius:"12px",border:"2px solid #ff4757",backgroundColor:f==="Tarjeta"?"#ff4757":"transparent",color:"white",fontWeight:"bold",cursor:"pointer",fontSize:"14px",transition:"0.3s"},children:"💳 Tarjeta"})]})]}),v.jsx("button",{className:"add-btn2",onClick:x,disabled:!f||e.length===0,style:{marginTop:"35px",padding:"20px",width:"100%",backgroundColor:f&&e.length>0?"#25D366":"#444",color:"white",fontSize:"18px",fontWeight:"900",borderRadius:"50px",border:"none",cursor:f&&e.length>0?"pointer":"not-allowed",boxShadow:f&&e.length>0?"0 6px 20px rgba(37, 211, 102, 0.4)":"none",transition:"transform 0.2s active"},children:f?"🚀 ENVIAR POR WHATSAPP":"ELIJA MÉTODO DE PAGO"})]})]})})}function Gi({id:e,name:t,description:n,precio:r,price:o,addToCart:l,isDrinkCard:a,isPostreCard:d}){const f=r||o;return v.jsxs("div",{className:"menu-card",children:[v.jsxs("div",{className:"menu-card-content",children:[v.jsx("h3",{className:"menu-card-title",children:t}),v.jsx("p",{className:"menu-card-description",children:n}),v.jsxs("span",{className:"menu-card-price",children:[f,"€"]})]}),v.jsxs("button",{className:"add-to-cart-btn",onClick:()=>l({id:e,name:t,precio:f}),children:[v.jsx("span",{className:"btn-icon",children:"+"})," AGREGAR"]}),v.jsx("style",{children:`
         .menu-card {
           background: #1a1a1a;
           border: 1px solid #333;
@@ -127,80 +127,77 @@ ${P}
           width: 280px;
           display: flex;
           flex-direction: column;
-          justify-content: space-between;
-          transition: all 0.3s ease;
+          justify-content: space-between; /* Aligne le bouton en bas */
+          transition: transform 0.3s ease;
           box-shadow: 0 5px 15px rgba(0,0,0,0.3);
           margin: 10px;
-          position: relative;
         }
 
         .menu-card:hover {
-          transform: translateY(-8px);
+          transform: translateY(-5px);
           border-color: #ff4757;
-          box-shadow: 0 10px 25px rgba(255, 71, 87, 0.2);
+        }
+
+        .menu-card-content {
+          margin-bottom: 20px;
+          text-align: left;
         }
 
         .menu-card-title {
           color: #fff;
           font-size: 1.2rem;
-          margin-bottom: 8px;
+          margin-bottom: 10px;
           text-transform: uppercase;
           font-weight: 900;
-          letter-spacing: 0.5px;
         }
 
         .menu-card-description {
           color: #aaa;
-          font-size: 0.85rem;
+          font-size: 0.9rem;
           line-height: 1.4;
           margin-bottom: 15px;
-          min-height: 45px;
+          min-height: 40px;
         }
 
         .menu-card-price {
           display: block;
           color: #ff4757;
-          font-size: 1.5rem;
+          font-size: 1.4rem;
           font-weight: 900;
-          margin-bottom: 15px;
         }
 
         .add-to-cart-btn {
           background: #ff4757;
           color: white;
           border: none;
-          padding: 14px 10px;
-          border-radius: 10px;
+          padding: 12px;
+          border-radius: 8px;
           font-weight: 900;
           cursor: pointer;
           display: flex;
           align-items: center;
           justify-content: center;
-          gap: 8px;
-          transition: background 0.2s ease;
+          gap: 10px;
+          transition: 0.2s;
           width: 100%;
           text-transform: uppercase;
-          font-size: 0.85rem;
-          letter-spacing: 0.5px;
+          letter-spacing: 1px;
         }
 
         .add-to-cart-btn:hover {
-          background: #e03d4e;
+          background: #ff6b81;
+          transform: scale(1.02);
         }
 
         .btn-icon {
-          font-size: 1.1rem;
-          background: rgba(255,255,255,0.15);
-          width: 22px;
-          height: 22px;
+          font-size: 1.2rem;
+          background: rgba(255,255,255,0.2);
+          width: 24px;
+          height: 24px;
           display: flex;
           align-items: center;
           justify-content: center;
-          border-radius: 6px;
-        }
-
-        @media (max-width: 600px) {
-          .menu-card { width: 90%; margin: 10px auto; }
+          border-radius: 50%;
         }
       `})]})}const t0="https://lacasadeburger.es/assets/italiana-5564b50e.png",n0="https://lacasadeburger.es/assets/suiza-5c8e708c.png",r0="https://lacasadeburger.es/assets/marroqi-59657377.png",o0="https://lacasadeburger.es/assets/Espanola-89dac4d7.png",i0="https://lacasadeburger.es/assets/inglesa-7be304cc.png",l0="https://lacasadeburger.es/assets/india-0e9358da.png",s0="https://lacasadeburger.es/assets/Vino Rojo-3ec362f5.png",a0="https://lacasadeburger.es/assets/Agua San Pellegrino-820edab9.png",u0="https://lacasadeburger.es/assets/Aquarius-2b2bcbb7.png",c0="https://lacasadeburger.es/assets/Aquarius naranja-45cd6272.png",d0="https://lacasadeburger.es/assets/Coca-Cola Sabor Original-ed0dc54c.png",f0="https://lacasadeburger.es/assets/Coca-Cola Zero-6723882d.png",p0="https://lacasadeburger.es/assets/fanta-limon-4776c19c.png",m0="https://lacasadeburger.es/assets/Fanta Naranja-995439ce.png",h0="https://lacasadeburger.es/assets/Sprite lata-70be50bf.png",g0="https://lacasadeburger.es/assets/Agua Sin Gas-ab9f391c.png",w0="https://lacasadeburger.es/assets/PatatasFritas-f6bea68f.jpg",y0="https://lacasadeburger.es/assets/bravas-49a2d224.jpg",v0="https://lacasadeburger.es/assets/gofre-ca7b1882.png",x0="https://lacasadeburger.es/assets/mahou-1fe67d07.jpg",k0="https://lacasadeburger.es/assets/colombiana-c528640c.png",C0="https://lacasadeburger.es/assets/francesa1-fe4ee6a9.png",S0="https://lacasadeburger.es/assets/combo-4197d7b6.png",E0="https://lacasadeburger.es/assets/nuggets-5644af38.png",P0="https://lacasadeburger.es/assets/croquetas-fd0f6af8.png",b0="https://lacasadeburger.es/assets/combo2-c1502250.png",j0="https://lacasadeburger.es/assets/Combo3-bd29dc48.png",T0="https://lacasadeburger.es/assets/mexicana-a133abe6.png",A0="https://lacasadeburger.es/assets/smash-79854c5e.png",Zi=[{id:"prod_combo1",image:S0,object:"El COMBO 1",description:"La Inglesa + Patatas Fritas caseras + 3 Nuggets Caseros",precio:"€18.00",category:"food"},{id:"prod_combo2",image:b0,object:"El COMBO 2",description:"La Inglesa + Patatas Fritas caseras + 3 Alitas de Pollo Caseras",precio:"€18.00",category:"food"},{id:"prod_combo3",image:j0,object:"El COMBO 3",description:"La Inglesa + Patatas Fritas caseras + 3 Croquetas Caseras",precio:"€18.00",category:"food"},{id:"prod_india",image:l0,object:" La India",description:"Pollo Marinado con Especias, Cheddar, Tomate, Cebolla, Lechuga, Pepenillos",precio:"€9.00",category:"food"},{id:"prod_francesa",image:C0,object:"La Francesa",description:"Carne y Hierbas Provenciales, Reblochon, Purée de papa y tocino... Tomate, Cebolla, Lechuga, Pepenillos",precio:"€12.00",category:"food"},{id:"prod_inglesa",image:i0,object:"La Inglesa",description:"Carne, Crema de Cheddar Casera y Cheddar, Tomate, Cebolla, Lechuga, Pepenillos",precio:"€10.00",category:"food"},{id:"prod_marroqi",image:r0,object:"La Marroqui",description:"Carne con Ajo, Perejil, Cebolla y Comino, Cheddar y crema de Cheddar Casera, Tomate, Cebolla, Lechuga, Pepenillos",precio:"€12.00",category:"food"},{id:"prod_smash",image:A0,object:"La Smash doble",description:"Carne doble, Bacon, Cheddar y crema de Cheddar Casera, Cebolla y Pepenillos",precio:"€13.00",category:"food"},{id:"prod_italiana",image:t0,object:"La Italiana",description:"Carne y Tomillo, Mozza Burrata, Crema de Champiñon con Trufa, Tomate, Cebolla, Lechuga, Pepenillos",precio:"€13.00",category:"food"},{id:"prod_suiza",image:n0,object:"La Auvergna",description:"Ternera caramelizada con Panela, Salsa de queso Azul de Francia, Tomate, Cebolla, Lechuga, Pepenillos",precio:"€12.00",category:"food"},{id:"prod_espanola",image:o0,object:"La Española",description:"Carne con Pimiento de Padron, Cecina, Huevo Frito, Cheddar, Tomate, Cebolla, Lechuga, Pepenillos",precio:"€14.00",category:"food"},{id:"prod_colombiana",image:k0,object:"La Colombiana",description:"Carne con ajo, perejil, cebolla y comino, Tocino,Papa, Piña, Tomate, Cebolla, Lechuga, Pepenillos, Queso Cheddar",precio:"€14.00",category:"food"},{id:"prod_mexicana",image:T0,object:"La Mexicana",description:"Carne, Salsa de Pimiento Picante Casera, Salsa de Maiz Casera, Cebolla Roja, Tocino, Tomate, Lechuga, Pepenillos, Queso Cheddar",precio:"€14.00",category:"food"},{id:"prod_nuggets",image:E0,object:"Nuggets de Pollo",description:"3 Nuggets Caseros",precio:"€6.00",category:"food"},{id:"prod_croquetas",image:P0,object:"Croquetas de Pollo",description:"3 Croquetas de Pollo con Cheddar",precio:"€6.00",category:"food"},{id:"prod_fritas",image:w0,object:"Patatas Fritas",description:"Papas fritas Caseras",precio:"€4.50",category:"food"},{id:"prod_bravas",image:y0,object:"Patatas Bravas",description:"Patatas Bravas Caseras con Salsa Brava de la Casa (Picante)",precio:"€5.50",category:"food"},{id:"prod_cocacola",image:d0,object:"Coca-Cola ",description:"Sabor Original Lata 330ml",precio:"€2.20",category:"drink"},{id:"prod_cocazero",image:f0,object:"Coca-Cola Zero ",description:"Zero Azúcar Lata 330ml",precio:"€2.20",category:"drink"},{id:"prod_fantalimon",image:p0,object:"Fanta Limón ",description:"Fanta Limón Lata 330ml",precio:"€2.20",category:"drink"},{id:"prod_fantanaranja",image:m0,object:"Fanta Naranja ",description:"Fanta Naranja Lata 33cl",precio:"€2.20",category:"drink"},{id:"prod_sprite",image:h0,object:"Sprite ",description:"Sprite Lata 33cl",precio:"€2.20",category:"drink"},{id:"prod_aquariuslimon",image:u0,object:"Aquarius Limón",description:"Aquarius 33cl.",precio:"€2.80",category:"drink"},{id:"prod_aquariusnaranja",image:c0,object:"Aquarius Naranja",description:"Aquarius Naranja 33cl",precio:"€2.80",category:"drink"},{id:"prod_sanpellegrino",image:a0,object:"Agua ",description:"Agua con Gas 50cl",precio:"€3.00",category:"drink"},{id:"prod_aguasingas",image:g0,object:"Agua Sin Gas 50cl",description:"Agua mineral natural",precio:"€2.50",category:"drink"},{id:"prod_vinorojo",image:s0,object:"Vino tinto",description:"Botella de Vino Bullas 75cl",precio:"€15.00",category:"drink"},{id:"prod_gofre",image:v0,object:"Waffle",description:"Waffle con Nutella o Dulce de Leche o Azucar...Dime cual en Whatsapp",precio:"€6.00",category:"postre"},{id:"prod_mahou",image:x0,object:"Cerveza Mahou Clasica",description:"Lata de cerveza 33cl",precio:"€2.80",category:"drink"}],L0="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABHNCSVQICAgIfAhkiAAAAbdJREFUeJztmLFKA0EQhv9ZEiRdwNLGTotUaqGlNr6A6cQipZURY64MYuFdEBXfIi9gkUZBLPSir2FrCCIYsxZCSIpwEXZnsmS+8hhm/vvYWY4DFEVRFEWZV0g6AGCplrzsGqI9Am3BYtkSCjQh20Vtw2nmnMtm/yVqdnaAzg1gSsOHk97cE4Zx1hhRnJ4BaAMoZdX6ROQE1OP0EgbHgJUYPwa7gHrzeZ+AKvfcSbCuwNHVW5GsucZMXL5/sApY+B4cgrDIOTML5kvQHvDOy4btDqiePy0RYSWrzgLvIFsp9HrtRmO77zsXm4B8Prc6VSGZSnyyduc5zhC2FTBExWnqCr2Ptu8sozDeATTVLI5jP4rYl+CsoAKkA0gz9wK8fJJGSdoCoeyjt7WUxKfrdVf9gjsBAwweXPYLTUD/6/Pn0WXDoARYi9fbxmbXZc+gBAB077pjUAJc7z8QlgDn+w8EJMDH/gOMv6aiJC2D0Mqqc/3fP4tgToAvVIB0AGlUgHQAaVSAdABpVIB0AGlUgHQAaVSAdABpVIB0AGlUgHQAaVSAdABpVIB0AGlUgHQARVEURVEUKX4Bt35SQvAL5xYAAAAASUVORK5CYII=",_0="https://lacasadeburger.es/assets/Postre-b262f9f9.png",z0="https://lacasadeburger.es/assets/Burger-0ca6d09d.png",N0="https://lacasadeburger.es/assets/Drink-a1790408.png",I0="https://lacasadeburger.es/assets/tripadvisor-8db4aee6.png",B0="https://lacasadeburger.es/assets/google-1fb89226.png",O0="https://cdn-icons-png.flaticon.com/512/2111/2111463.png",co=({children:e,id:t})=>v.jsx("header",{className:"menuBurgers",id:t,style:{margin:"40px 0 20px"},children:v.jsx("h2",{style:{textTransform:"uppercase",letterSpacing:"2px",fontSize:"1.8rem"},children:e})});function M0(){const[e,t]=Ee.useState([]),[n,r]=Ee.useState(!1),[o,l]=Ee.useState(!1),[a,d]=Ee.useState(!1),[f,c]=Ee.useState("es"),k=Ee.useMemo(()=>e.reduce((h,C)=>{const T=C.precio||C.price||0,_=String(T).replace(/[^0-9.,]/g,"").replace(",",".");return h+(parseFloat(_)||0)},0).toFixed(2),[e]);Ee.useEffect(()=>{const h=setInterval(()=>c(C=>C==="es"?"en":"es"),4500);return()=>clearInterval(h)},[]);const x=h=>t(C=>[...C,{...h,uniqueKey:Math.random()}]),w=h=>t(C=>C.filter((T,_)=>_!==h)),P=()=>{var h;return(h=document.getElementById("order"))==null?void 0:h.scrollIntoView({behavior:"smooth"})},S=()=>{var h;return window.scrollTo({top:((h=document.getElementById("sec-burgers"))==null?void 0:h.offsetTop)-100,behavior:"smooth"})},b=()=>{l(!1),r(!1),d(!1),window.scrollTo({top:0,behavior:"smooth"})},R=Zi.filter(h=>h.category==="food"),g=Zi.filter(h=>h.category==="drink"),m=Zi.filter(h=>h.category==="postre");return v.jsxs("div",{className:"app-main-wrapper",style:{position:"relative",backgroundColor:"#111",color:"#fff"},children:[v.jsx("style",{children:`
         .menu-page-container { max-width: 1200px; margin: 0 auto; padding: 0 20px; text-align: center; }
