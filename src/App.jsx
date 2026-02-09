@@ -61,16 +61,70 @@ export default function App() {
     <div className="app-main-wrapper" style={{ position: 'relative', backgroundColor: '#111', color: '#fff' }}>
       <style>{`
         .menu-page-container { max-width: 1200px; margin: 0 auto; padding: 0 20px; text-align: center; }
-        .promo-container { position: relative; cursor: pointer; display: inline-block; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.5); transition: 0.5s; max-width: 500px; width: 100%; margin-bottom: 20px; }
-        .promo-container:hover { transform: scale(1.03); }
-        .promo-img { width: 100%; display: block; opacity: 0.85; }
-        .btn-overlay { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #ff4757; color: white; padding: 12px 25px; border-radius: 50px; font-weight: 900; border: none; pointer-events: none; font-size: 1.1rem; box-shadow: 0 5px 20px rgba(0,0,0,0.4); }
+
+        .promo-container {
+          position: relative;
+          cursor: pointer;
+          display: inline-block;
+          border-radius: 20px;
+          overflow: hidden;
+          box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+          transition: 0.5s;
+          max-width: 500px;
+          width: 100%;
+          margin-bottom: 20px;
+          border: 2px solid rgba(255,255,255,0.1);
+        }
+
+        .promo-container:hover { transform: scale(1.02); border-color: #f1c40f; }
+
+        /* Image nette pour bien voir le produit au centre */
+        .promo-img { width: 100%; display: block; opacity: 1; transition: 0.3s; }
+        .promo-container:hover .promo-img { opacity: 0.7; }
+
+        /* BOUTON REPOSITIONNÉ EN BAS (LIBÈRE LE CENTRE) */
+        .btn-overlay {
+          position: absolute;
+          bottom: 25px;
+          left: 50%;
+          transform: translateX(-50%);
+          background: #f1c40f;
+          color: #000;
+          padding: 12px 30px;
+          border-radius: 8px;
+          font-weight: 950;
+          border: 3px solid #000;
+          pointer-events: none;
+          font-size: 1.1rem;
+          box-shadow: 4px 4px 0px #000;
+          text-transform: uppercase;
+          z-index: 5;
+          white-space: nowrap;
+        }
+
         .grid-cards { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; padding: 20px 0 120px; }
-        .floating-close { position: fixed; bottom: 85px; left: 50%; transform: translateX(-50%); background: #ff4757; color: #fff; border: 2px solid #fff; padding: 12px 25px; border-radius: 50px; font-weight: 900; z-index: 9998; cursor: pointer; box-shadow: 0 10px 30px rgba(0,0,0,0.6); text-transform: uppercase; font-size: 1rem; }
+
+        .floating-close {
+          position: fixed;
+          bottom: 85px;
+          left: 50%;
+          transform: translateX(-50%);
+          background: #ff4757;
+          color: #fff;
+          border: 3px solid #000;
+          padding: 12px 25px;
+          border-radius: 10px;
+          font-weight: 900;
+          z-index: 9998;
+          cursor: pointer;
+          box-shadow: 4px 4px 0px #000;
+          text-transform: uppercase;
+          font-size: 1rem;
+        }
+
         .whatsapp-float { position: fixed; bottom: 20px; right: 20px; background: #25D366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; z-index: 9999; box-shadow: 0 5px 15px rgba(0,0,0,0.4); }
       `}</style>
 
-      {/* SEO H1 INVISIBLE POUR GOOGLE */}
       <h1 style={{ position: 'absolute', left: '-9999px' }}>Mejor Hamburguesería en Torrevieja - Smash Burgers & Gourmet Delivery Playa del Cura</h1>
 
       <Nav scrollToOrder={scrollToOrder} cartLength={cart.length} totalPrice={totalPrice} />
@@ -133,24 +187,23 @@ export default function App() {
         <section id="order"><SectionTitle>Tu Pedido</SectionTitle><Order cart={cart} removeFromCart={removeFromCart} /></section>
       </main>
 
-      {/* FOOTER SEO DIAMANT INTERNATIONAL */}
       <footer style={{ padding: '80px 20px 40px', backgroundColor: '#000', color: '#fff', textAlign: 'center', borderTop: '4px solid #ff4757' }}>
         <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '30px', textAlign: 'left', marginBottom: '40px', background: 'rgba(255,255,255,0.03)', padding: '30px', borderRadius: '20px' }}>
-             <div>
-               <h3 style={{ color: '#ff4757' }}>La Casa de Burger Torrevieja</h3>
-               <p>La mejor hamburguesería artesanal de Torrevieja. Smash Burgers, carne Black Angus y productos frescos locales. Gourmet Take Away & Delivery.</p>
-             </div>
-             <div>
-               <h4 style={{ color: '#fff' }}>📍 Ubicación y Contacto</h4>
-               <p>Calle Diego Ramírez Pastor, 142, 03181 Torrevieja, Alicante</p>
-               <p>📞 <a href="tel:+34602597210" style={{ color: '#fff', textDecoration: 'none' }}>+34 602 59 72 10</a></p>
-             </div>
-             <div>
-               <h4 style={{ color: '#fff' }}>🕒 Horario Gourmet</h4>
-               <p>Lunes a Sábado: 13:00 – 22:30</p>
-               <p>Domingo: Cerrado</p>
-             </div>
+              <div>
+                <h3 style={{ color: '#ff4757' }}>La Casa de Burger Torrevieja</h3>
+                <p>La mejor hamburguesería artesanal de Torrevieja. Smash Burgers, carne Black Angus y productos frescos locales. Gourmet Take Away & Delivery.</p>
+              </div>
+              <div>
+                <h4 style={{ color: '#fff' }}>📍 Ubicación y Contacto</h4>
+                <p>Calle Diego Ramírez Pastor, 142, 03181 Torrevieja, Alicante</p>
+                <p>📞 <a href="tel:+34602597210" style={{ color: '#fff', textDecoration: 'none' }}>+34 602 59 72 10</a></p>
+              </div>
+              <div>
+                <h4 style={{ color: '#fff' }}>🕒 Horario Gourmet</h4>
+                <p>Lunes a Sábado: 13:00 – 22:30</p>
+                <p>Domingo: Cerrado</p>
+              </div>
           </div>
 
           <div style={{ width: '100%', maxWidth: '800px', margin: '0 auto 50px', borderRadius: '15px', overflow: 'hidden', border: '3px solid #ff4757' }}>
@@ -167,7 +220,7 @@ export default function App() {
 
           <div style={{ backgroundColor: '#0a0a0a', padding: '30px', borderRadius: '15px', border: '1px solid #222', textAlign: 'justify' }}>
             <p style={{ color: '#777', fontSize: '0.8rem', lineHeight: '1.8' }}>
-              <strong>🇪🇸 ESPAÑOL:</strong> Hamburguesería en Torrevieja, mejores hamburguesas Alicante, Smash Burger cerca de mí, comida a domicilio, Playa del Cura.
+              <strong>🇪🇸 ESPAÑOL:</strong> Hamburguesería en Torrevieja, mejores hamburguesas Alicante, Smash Burger cerca de mí, comida a domicile, Playa del Cura.
               <br /><strong>🇬🇧 ENGLISH:</strong> Best burgers in Torrevieja, gourmet restaurant, takeaway near me, Smash burgers Costa Blanca, Playa de los Locos.
               <br /><strong>🇫🇷 FRANÇAIS:</strong> Meilleur burger Torrevieja, cuisine artisanale, livraison rapide, Torrevieja centre.
               <br /><strong>🇸🇪 SVENSKA:</strong> Bästa burgare i Torrevieja, restaurang nära stranden, smashburgaren Alicante.
