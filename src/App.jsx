@@ -4,6 +4,7 @@ import Order from "./Order";
 import CardMenu from "./CardMenu";
 import "./style.css";
 import data from "./data";
+import { Helmet } from "react-helmet";
 
 // --- ASSETS ---
 import fb from "./assets/FB.png";
@@ -106,6 +107,50 @@ export default function App() {
         .pulse-badge { animation: pulse-gold 2s infinite ease-in-out; }
       `}</style>
 
+            {/* --- BLOC SEO & GOOGLE SCHEMA --- */}
+            <Helmet>
+              <title>La Casa de Burger | Las mejores hamburguesas de Torrevieja</title>
+              <meta name="description" content="Las mejores Smash Burgers de Torrevieja. Carne artesanal, gaufres al Nutella y entrega a domicilio. ¡Pide ahora!" />
+
+              <script type="application/ld+json">
+                {JSON.stringify({
+                  "@context": "https://schema.org",
+                  "@type": "Restaurant",
+                  "name": "La Casa de Burger",
+                  "image": "https://lacasadeburger.es/logo.jpg",
+                  "@id": "https://lacasadeburger.es",
+                  "url": "https://lacasadeburger.es",
+                  "telephone": "+34602597210",
+                  "address": {
+                    "@type": "PostalAddress",
+                    "streetAddress": "Av. Diego Ramírez Pastor, 142",
+                    "addressLocality": "Torrevieja",
+                    "addressRegion": "Alicante",
+                    "postalCode": "03181",
+                    "addressCountry": "ES"
+                  },
+                  "geo": {
+                    "@type": "GeoCoordinates",
+                    "latitude": 37.9822,
+                    "longitude": -0.6782
+                  },
+                  "servesCuisine": ["Burgers", "American", "Waffles"],
+                  "priceRange": "$$",
+                  "openingHoursSpecification": [
+                    {
+                      "@type": "OpeningHoursSpecification",
+                      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+                      "opens": "13:00",
+                      "closes": "22:30"
+                    }
+                  ],
+                  "menu": "https://lacasadeburger.es"
+                })}
+              </script>
+            </Helmet>
+
+            {/* SEO STRATÉGIQUE CACHÉ */}
+            <h1 style={{ position: 'absolute', left: '-9999px' }}>Mejor Hamburguesería en Torrevieja - Smash Burgers & Gourmet Delivery</h1>
       {/* SEO STRATÉGIQUE CACHÉ */}
       <h1 style={{ position: 'absolute', left: '-9999px' }}>Mejor Hamburguesería en Torrevieja - Smash Burgers & Gourmet Delivery</h1>
 
