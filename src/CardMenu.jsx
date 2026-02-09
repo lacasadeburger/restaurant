@@ -1,145 +1,107 @@
-import React, { useState, useMemo } from "react";
-// Importation du fond depuis le dossier assets
-import background from "./assets/newspaper8.jpg";
+import React from "react";
 
-export default function CardMenu(props) {
-  const { image, object, description, precio, addToCart, isDrinkCard, isPostreCard } = props;
-
-  const extrasList = [
-    { name: "Extra Huevo", price: 1.00 },
-    { name: "Extra Carne y Queso", price: 4.50 },
-    { name: "Extra Tocino", price: 1.00 },
-    { name: "Salsa Picante", price: 0.50 }
-  ];
-
-  const removableList = ["Tomate", "Lechuga", "Pepinillos", "Salsa", "Queso", "Ajo", "Hierbas", "Especias"];
-
-  const [extraIngredients, setExtraIngredients] = useState([]);
-  const [removedIngredients, setRemovedIngredients] = useState([]);
-
-  const totalPrice = useMemo(() => {
-    const numericValue = String(precio).replace(/[^0-9.,]/g, "").replace(",", ".");
-    const base = parseFloat(numericValue) || 0;
-    const extrasTotal = extraIngredients.reduce((sum, ingName) => {
-      const ingredient = extrasList.find(item => item.name === ingName);
-      return sum + (ingredient ? ingredient.price : 0);
-    }, 0);
-    return (base + extrasTotal).toFixed(2);
-  }, [precio, extraIngredients]);
-
-  const toggleExtra = (name) => {
-    setExtraIngredients(prev => prev.includes(name) ? prev.filter(i => i !== name) : [...prev, name]);
-  };
-
-  const toggleRemove = (name) => {
-    setRemovedIngredients(prev => prev.includes(name) ? prev.filter(i => i !== name) : [...prev, name]);
-  };
-
-  const handleAddClick = () => {
-    const itemToAdd = {
-      ...props,
-      precio: `${totalPrice}€`,
-      object: extraIngredients.length > 0 ? `${object} (+${extraIngredients.join(", ")})` : object,
-      removed: removedIngredients
-    };
-    addToCart(itemToAdd);
-    setExtraIngredients([]);
-    setRemovedIngredients([]);
-  };
+export default function CardMenu({ id, name, description, precio, price, addToCart, isDrinkCard, isPostreCard }) {
+  // On gère les deux noms de variables possibles pour le prix
+  const finalPrice = precio || price;
 
   return (
-    <div className="card-item" style={{
-      backgroundImage: `url(${background})`,
-      backgroundSize: "cover",
-      borderRadius: "15px",
-      overflow: "hidden",
-      display: "flex",
-      flexDirection: "column",
-      border: "2px solid #000",
-      boxShadow: "0 8px 20px rgba(0,0,0,0.3)",
-      height: "100%"
-    }}>
-      <style>{`
-        .image-container { width: 100%; height: 200px; display: flex; align-items: center; justify-content: center; position: relative; }
-        .product-img { width: 100%; height: 100%; object-fit: contain; z-index: 2; }
+    <div className="menu-card">
+      <div className="menu-card-content">
+        <h3 className="menu-card-title">{name}</h3>
+        <p className="menu-card-description">{description}</p>
+        <span className="menu-card-price">{finalPrice}€</span>
+      </div>
 
-        /* Nouveau Price Tag Diamant sur l'image */
-        .price-badge-overlay {
-          position: absolute;
-          top: 15px;
-          right: 15px;
-          background: #ff4757;
-          color: white;
-          padding: 5px 12px;
-          border-radius: 8px;
-          font-weight: 900;
-          font-size: 1.2rem;
-          z-index: 10;
-          border: 2px solid #000;
-          box-shadow: 4px 4px 0px #000;
-          transform: rotate(3deg);
+      {/* Bouton repositionné en bas pour être intuitif */}
+      <button
+        className="add-to-cart-btn"
+        onClick={() => addToCart({ id, name, precio: finalPrice })}
+      >
+        <span className="btn-icon">+</span> AGREGAR
+      </button>
+
+      <style>{`
+        .menu-card {
+          background: #1a1a1a;
+          border: 1px solid #333;
+          border-radius: 15px;
+          padding: 20px;
+          width: 280px;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between; /* Aligne le bouton en bas */
+          transition: transform 0.3s ease;
+          box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+          margin: 10px;
         }
 
-        .card-content { padding: 15px; display: flex; flex-direction: column; gap: 10px; flex-grow: 1; }
+        .menu-card:hover {
+          transform: translateY(-5px);
+          border-color: #ff4757;
+        }
 
-        /* Bloc Titre + Description encadré */
-        .info-box { background: rgba(255, 255, 255, 0.65); padding: 12px; border-radius: 10px; border: 1.5px solid #000; }
-        .card-title { font-size: 1.4rem; font-weight: 900; color: #000; margin: 0; text-transform: uppercase; }
-        .card-description { font-size: 0.9rem; font-weight: 700; color: #111; margin-top: 5px; line-height: 1.2; }
+        .menu-card-content {
+          margin-bottom: 20px;
+          text-align: left;
+        }
 
-        /* Bloc Options encadré */
-        .options-box { background: rgba(255, 255, 255, 0.45); padding: 10px; border-radius: 10px; border: 1.5px dashed #000; }
-        .option-group-label { font-size: 0.7rem; font-weight: 900; color: #000; text-transform: uppercase; display: block; margin-bottom: 5px; text-decoration: underline; }
+        .menu-card-title {
+          color: #fff;
+          font-size: 1.2rem;
+          margin-bottom: 10px;
+          text-transform: uppercase;
+          font-weight: 900;
+        }
 
-        .chips-container { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 8px; }
-        .chip { padding: 5px 10px; border-radius: 4px; font-size: 0.7rem; font-weight: 800; cursor: pointer; border: 1px solid #000; background: #fff; color: #000; }
-        .chip.extra.active { background: #2ed573; color: #fff; border-color: #000; }
-        .chip.remove.active { background: #ff4757; color: #fff; border-color: #000; text-decoration: line-through; }
+        .menu-card-description {
+          color: #aaa;
+          font-size: 0.9rem;
+          line-height: 1.4;
+          margin-bottom: 15px;
+          min-height: 40px;
+        }
 
-        .card-footer { display: flex; justify-content: space-between; align-items: center; padding-top: 10px; border-top: 2px solid #000; margin-top: auto; }
-        .price-label { font-size: 1.7rem; font-weight: 950; color: #000; }
-        .add-btn-modern { background: #000; color: #fff; border: none; padding: 10px 15px; font-weight: 900; cursor: pointer; text-transform: uppercase; border-radius: 4px; }
+        .menu-card-price {
+          display: block;
+          color: #ff4757;
+          font-size: 1.4rem;
+          font-weight: 900;
+        }
+
+        .add-to-cart-btn {
+          background: #ff4757;
+          color: white;
+          border: none;
+          padding: 12px;
+          border-radius: 8px;
+          font-weight: 900;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 10px;
+          transition: 0.2s;
+          width: 100%;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+        }
+
+        .add-to-cart-btn:hover {
+          background: #ff6b81;
+          transform: scale(1.02);
+        }
+
+        .btn-icon {
+          font-size: 1.2rem;
+          background: rgba(255,255,255,0.2);
+          width: 24px;
+          height: 24px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 50%;
+        }
       `}</style>
-
-      {/* Image du produit avec le badge de prix par-dessus */}
-      <div className="image-container">
-        <div className="price-badge-overlay">{totalPrice}€</div>
-        <img src={image} alt={object} className="product-img" />
-      </div>
-
-      <div className="card-content">
-        {/* BLOC INFO ENCADRÉ */}
-        <div className="info-box">
-          <h3 className="card-title">{object}</h3>
-          <p className="card-description">{description}</p>
-        </div>
-
-        {!isDrinkCard && !isPostreCard && (
-          <div className="options-box">
-            <span className="option-group-label">Extras</span>
-            <div className="chips-container">
-              {extrasList.map(item => (
-                <button key={item.name} className={`chip extra ${extraIngredients.includes(item.name) ? 'active' : ''}`} onClick={() => toggleExtra(item.name)}>
-                  +{item.price.toFixed(2)}€ {item.name}
-                </button>
-              ))}
-            </div>
-            <span className="option-group-label">Quitar</span>
-            <div className="chips-container">
-              {removableList.map(ing => (
-                <button key={ing} className={`chip remove ${removedIngredients.includes(ing) ? 'active' : ''}`} onClick={() => toggleRemove(ing)}>
-                  Sin {ing}
-                </button>
-              ))}
-            </div>
-          </div>
-        )}
-
-        <div className="card-footer">
-          <div className="price-label">{totalPrice}€</div>
-          <button className="add-btn-modern" onClick={handleAddClick}>AGREGAR +</button>
-        </div>
-      </div>
     </div>
   );
 }
