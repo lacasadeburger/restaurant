@@ -7,7 +7,7 @@ export default function CardMenu(props) {
 
   const isEn = lang === 'en';
 
-  // --- TRADUCTION DES INGRÉDIENTS ET LABELS ---
+  // --- TRADUCTION DES INGRÉDIENTS, LABELS ET DESCRIPTIONS ---
   const t = {
     extra: isEn ? "Extras" : "Extras",
     remove: isEn ? "Remove" : "Quitar",
@@ -26,8 +26,41 @@ export default function CardMenu(props) {
       "Ajo": isEn ? "Garlic" : "Ajo",
       "Hierbas": isEn ? "Herbs" : "Hierbas",
       "Especias": isEn ? "Spices" : "Especias"
+    },
+    descriptions: {
+      "El COMBO 1": isEn ? "The English Burger + Homemade Fries + 3 Homemade Nuggets" : "La Inglesa + Patatas Fritas caseras + 3 Nuggets Caseros",
+      "El COMBO 2": isEn ? "The English Burger + Homemade Fries + 3 Homemade Croquettes" : "La Inglesa + Patatas Fritas caseras + 3 Croquetas Caseras",
+      " La India": isEn ? "Spiced Marinated Chicken, Cheddar, Tomato, Onion, Lettuce, Pickles" : "Pollo Marinado con Especias, Cheddar, Tomate, Cebolla, Lechuga, Pepenillos",
+      "La Francesa": isEn ? "Beef with Provencal Herbs, Reblochon Cheese, Potato Puree and Bacon... Tomato, Onion, Lettuce, Pickles" : "Carne y Hierbas Provenciales, Reblochon, Purée de papa y tocino... Tomate, Cebolla, Lechuga, Pepenillos",
+      "La Inglesa": isEn ? "Beef, Homemade Cheddar Cream and Cheddar, Tomato, Onion, Lettuce, Pickles" : "Carne, Crema de Cheddar Casera et Cheddar, Tomate, Cebolla, Lechuga, Pepenillos",
+      "La Marroqui": isEn ? "Beef with Garlic, Parsley, Onion and Cumin, Cheddar and Homemade Cheddar Cream, Tomato, Onion, Lettuce, Pickles" : "Carne con Ajo, Perejil, Cebolla y Comino, Cheddar y crema de Cheddar Casera, Tomate, Cebolla, Lechuga, Pepenillos",
+      "La Smash doble": isEn ? "Double Beef, Bacon, Cheddar and Homemade Cheddar Cream, Onion and Pickles" : "Carne doble, Bacon, Cheddar y crema de Cheddar Casera, Cebolla y Pepenillos",
+      "La Italiana": isEn ? "Beef with Thyme, Burrata Mozzarella, Mushroom and Truffle Cream, Tomato, Onion, Lettuce, Pickles" : "Carne y Tomillo, Mozza Burrata, Crema de Champiñon con Trufa, Tomate, Cebolla, Lechuga, Pepenillos",
+      "La Auvergna": isEn ? "Caramelized Beef with Panela, French Blue Cheese Sauce, Tomato, Onion, Lettuce, Pickles" : "Ternera caramelizada con Panela, Salsa de queso Azul de Francia, Tomate, Cebolla, Lechuga, Pepenillos",
+      "La Española": isEn ? "Beef with Padron Peppers, Cecina (Cured Beef), Fried Egg, Cheddar, Tomato, Onion, Lettuce, Pickles" : "Carne con Pimiento de Padron, Cecina, Huevo Frito, Cheddar, Tomate, Cebolla, Lechuga, Pepenillos",
+      "La Colombiana": isEn ? "Beef with garlic, parsley, onion and cumin, Bacon, Potato, Pineapple, Tomato, Onion, Lettuce, Pickles, Cheddar" : "Carne con ajo, perejil, cebolla y comino, Tocino,Papa, Piña, Tomate, Cebolla, Lechuga, Pepenillos, Queso Cheddar",
+      "La Mexicana": isEn ? "Beef, Homemade Hot Pepper Sauce, Homemade Corn Sauce, Red Onion, Bacon, Tomato, Lettuce, Pickles, Cheddar" : "Carne, Salsa de Pimiento Picante Casera, Salsa de Maiz Casera, Cebolla Roja, Tocino, Tomate, Lechuga, Pepenillos, Queso Cheddar",
+      "Nuggets de Pollo": isEn ? "3 Homemade Nuggets" : "3 Nuggets Caseros",
+      "Croquetas de Pollo": isEn ? "3 Chicken Croquettes with Cheddar" : "3 Croquetas de Pollo con Cheddar",
+      "Patatas Fritas": isEn ? "Homemade French Fries" : "Papas fritas Caseras",
+      "Patatas Bravas": isEn ? "Homemade Potatoes with House Brava Sauce (Spicy)" : "Patatas Bravas Caseras con Salsa Brava de la Casa (Picante)",
+      "Coca-Cola ": isEn ? "Original Taste Can 330ml" : "Sabor Original Lata 330ml",
+      "Coca-Cola Zero ": isEn ? "Zero Sugar Can 330ml" : "Zero Azúcar Lata 330ml",
+      "Fanta Limón ": isEn ? "Lemon Fanta Can 330ml" : "Fanta Limón Lata 330ml",
+      "Fanta Naranja ": isEn ? "Orange Fanta Can 33cl" : "Fanta Naranja Lata 33cl",
+      "Sprite ": isEn ? "Sprite Can 33cl" : "Sprite Lata 33cl",
+      "Aquarius Limón": isEn ? "Aquarius 33cl" : "Aquarius 33cl.",
+      "Aquarius Naranja": isEn ? "Orange Aquarius 33cl" : "Aquarius Naranja 33cl",
+      "Agua ": isEn ? "Sparkling Water 50cl" : "Agua con Gas 50cl",
+      "Agua Sin Gas 50cl": isEn ? "Natural Mineral Water" : "Agua mineral natural",
+      "Vino tinto": isEn ? "Red Wine Bottle Bullas 75cl" : "Botella de Vino Bullas 75cl",
+      "Waffle": isEn ? "Waffle with Nutella or Dulce de Leche or Sugar... Tell me which one on WhatsApp" : "Waffle con Nutella o Dulce de Leche o Azucar...Dime cual en Whatsapp",
+      "Cerveza Mahou Clasica": isEn ? "Beer can 33cl" : "Lata de cerveza 33cl"
     }
   };
+
+  // Sélection dynamique de la description traduite
+  const displayDescription = t.descriptions[object] || description;
 
   const extrasList = [
     { id: "Extra Huevo", name: t.ingredients["Extra Huevo"], price: 1.00 },
@@ -92,7 +125,6 @@ export default function CardMenu(props) {
     const itemToAdd = {
       ...props,
       precio: `${totalPrice}€`,
-      // On garde les noms traduits pour le panier WhatsApp
       object: extraIngredients.length > 0
         ? `${object} (+${extraIngredients.map(id => t.ingredients[id]).join(", ")})`
         : object,
@@ -166,7 +198,8 @@ export default function CardMenu(props) {
       <div className="card-content">
         <div className="info-box">
           <h3 className="card-title">{object}</h3>
-          <p className="card-description">{description}</p>
+          {/* J'ai remplacé {description} par {displayDescription} pour la traduction */}
+          <p className="card-description">{displayDescription}</p>
         </div>
 
         {!isDrinkCard && !isPostreCard && (
