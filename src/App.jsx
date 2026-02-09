@@ -249,6 +249,7 @@ export default function App() {
         <button className="floating-close" onClick={closeAllMenus}>
           {lang === 'es' ? '✕ CERRAR CARTA' : '✕ CLOSE MENU'}
         </button>
+        
       )}
     </div>
   );
