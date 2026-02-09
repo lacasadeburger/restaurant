@@ -1,14 +1,25 @@
 import React from "react";
 
 /**
- * Nav Component - VERSION FINALE CERTIFIÉE
- * - Logo intégral (contain) : aucune découpe ronde
- * - Structure 3 colonnes optimisée mobile
- * - Z-index 9999 pour éviter les superpositions
+ * Nav Component - VERSION AUTOMATISÉE (13h-23h)
+ * - Statut d'ouverture intelligent (13h00 - 23h00)
+ * - Logo intégral (contain)
+ * - Structure 3 colonnes optimisée
  */
 
 export default function Nav({ scrollToOrder, cartLength, totalPrice, lang, logo }) {
   const isEn = lang === 'en';
+
+  // --- LOGIQUE D'OUVERTURE AUTOMATIQUE (13h à 23h) ---
+  const now = new Date();
+  const currentHour = now.getHours();
+  const currentMinute = now.getMinutes();
+  const currentTime = currentHour + currentMinute / 60;
+
+  // Tes horaires : Ouvert si l'heure est entre 13.0 et 23.0
+  const isOpen = currentTime >= 13 && currentTime < 23;
+
+  const statusColor = isOpen ? '#2ed573' : '#ff4757'; // Vert si ouvert, Rouge si fermé
 
   // CONFIGURATION DESIGN OR & ROUGE
   const GOLD_GRADIENT = "linear-gradient(135deg, #BF953F 0%, #FCF6BA 45%, #B38728 55%, #FBF5B7 100%)";
@@ -34,7 +45,7 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang, logo 
       boxShadow: '0 4px 20px rgba(0,0,0,0.8)'
     }}>
 
-      {/* --- COLONNE GAUCHE : BOUTON APPEL (25%) --- */}
+      {/* --- COLONNE GAUCHE : BOUTON APPEL --- */}
       <div style={{ width: '25%', display: 'flex', justifyContent: 'flex-start' }}>
         <a href="tel:+34602597210" style={{
           background: GOLD_GRADIENT,
@@ -53,7 +64,7 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang, logo 
         </a>
       </div>
 
-      {/* --- COLONNE CENTRALE : LOGO COMPLET (40%) --- */}
+      {/* --- COLONNE CENTRALE : LOGO ET STATUT --- */}
       <div style={{
         width: '40%',
         display: 'flex',
@@ -70,27 +81,37 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang, logo 
               maxWidth: '100%',
               width: 'auto',
               height: 'auto',
-              objectFit: 'contain',  // GARANTIE : L'image n'est JAMAIS rognée
+              objectFit: 'contain',
               filter: 'drop-shadow(0px 0px 5px rgba(255, 215, 0, 0.3))'
             }}
           />
         </div>
 
-        {/* Statut d'ouverture compact */}
+        {/* Statut d'ouverture dynamique */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '5px', marginTop: '4px' }}>
-          <div className="dot-online"></div>
+          <div style={{
+            width: '7px',
+            height: '7px',
+            backgroundColor: statusColor,
+            borderRadius: '50%',
+            animation: isOpen ? 'glow-status 2s infinite' : 'none',
+            boxShadow: isOpen ? `0 0 10px ${statusColor}` : 'none'
+          }}></div>
           <span style={{
-            color: '#2ed573',
+            color: statusColor,
             fontSize: '0.65rem',
             fontWeight: '900',
-            textTransform: 'uppercase'
+            textTransform: 'uppercase',
+            letterSpacing: '0.5px'
           }}>
-            {isEn ? "Open Now" : "Abierto"}
+            {isOpen
+              ? (isEn ? "Open Now" : "Abierto")
+              : (isEn ? "Closed" : "Cerrado")}
           </span>
         </div>
       </div>
 
-      {/* --- COLONNE DROITE : PANIER (35%) --- */}
+      {/* --- COLONNE DROITE : PANIER --- */}
       <div
         onClick={scrollToOrder}
         style={{ width: '35%', display: 'flex', justifyContent: 'flex-end', cursor: 'pointer' }}
@@ -112,15 +133,7 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang, logo 
       </div>
 
       <style>{`
-        .dot-online {
-          width: 7px;
-          height: 7px;
-          background-color: #2ed573;
-          border-radius: 50%;
-          animation: glow-green 2s infinite;
-        }
-
-        @keyframes glow-green {
+        @keyframes glow-status {
           0% { box-shadow: 0 0 0 0 rgba(46, 213, 115, 0.7); }
           70% { box-shadow: 0 0 0 6px rgba(46, 213, 115, 0); }
           100% { box-shadow: 0 0 0 0 rgba(46, 213, 115, 0); }
