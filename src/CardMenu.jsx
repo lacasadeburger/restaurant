@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./style.css";
+// Chemin corrigé pour le build
 import background from "./assets/newspaper8.jpg";
 
 export default function CardMenu(props) {
@@ -43,7 +44,6 @@ export default function CardMenu(props) {
   };
 
   const isDrinkOrPostreCard = props.isDrinkCard || props.isPostreCard;
-  const showSingleButton = ["Patatas Fritas", "Patatas Bravas"].includes(props.object);
 
   return (
     <div className={`menu-items ${isDrinkOrPostreCard ? "centered" : ""}`} style={{ marginBottom: "40px" }}>
@@ -78,7 +78,7 @@ export default function CardMenu(props) {
             >
               <img
                 src={props.image}
-                alt="Burger 1"
+                alt={props.object}
                 style={{
                   width: "100%",
                 }}
@@ -88,11 +88,12 @@ export default function CardMenu(props) {
             <p>{props.description}</p>
             <footer className="precio-card"></footer>
           </div>
+
           <div className="back">
-            <br></br>
+            <br />
             <ul className="backList">
               <li>
-                Extra Huevo {""}
+                Extra Huevo{" "}
                 <button
                   className={`add-btn2 ${clickedButtons.includes("Extra Huevo") ? "clicked" : ""}`}
                   onClick={() => handleClick("Extra Huevo", "€0.80")}
@@ -101,7 +102,7 @@ export default function CardMenu(props) {
                 </button>
               </li>
               <li>
-                Extra Carne y Queso {""}
+                Extra Carne y Queso{" "}
                 <button
                   className={`add-btn2 ${clickedButtons.includes("Extra Carne y Queso") ? "clicked" : ""}`}
                   onClick={() => handleClick("Extra Carne y Queso", "€3.00")}
@@ -110,7 +111,7 @@ export default function CardMenu(props) {
                 </button>
               </li>
               <li>
-                Extra Tocino {""}
+                Extra Tocino{" "}
                 <button
                   className={`add-btn2 ${clickedButtons.includes("Extra Tocino") ? "clicked" : ""}`}
                   onClick={() => handleClick("Extra Tocino", "€1.00")}
@@ -119,7 +120,7 @@ export default function CardMenu(props) {
                 </button>
               </li>
               <li>
-                Salsa Picante {""}
+                Salsa Picante{" "}
                 <button
                   className={`add-btn2 ${clickedButtons.includes("Salsa Picante") ? "clicked" : ""}`}
                   onClick={() => handleClick("Salsa Picante", "€0.50")}
@@ -128,7 +129,7 @@ export default function CardMenu(props) {
                 </button>
               </li>
               <li>
-                Sin Tomate {""}
+                Sin Tomate{" "}
                 <button
                   className={`add-btn2 ${clickedButtons.includes("Sin Tomate") ? "clicked" : ""}`}
                   onClick={() => handleClick("Sin Tomate", "€0.00")}
@@ -137,7 +138,7 @@ export default function CardMenu(props) {
                 </button>
               </li>
               <li>
-                Sin Lechuga {""}
+                Sin Lechuga{" "}
                 <button
                   className={`add-btn2 ${clickedButtons.includes("Sin Lechuga") ? "clicked" : ""}`}
                   onClick={() => handleClick("Sin Lechuga", "€0.00")}
@@ -146,57 +147,21 @@ export default function CardMenu(props) {
                 </button>
               </li>
               <li>
-                Sin Pepinillos {""}
+                Sin Cebolla{" "}
+                <button
+                  className={`add-btn2 ${clickedButtons.includes("Sin Cebolla") ? "clicked" : ""}`}
+                  onClick={() => handleClick("Sin Cebolla", "€0.00")}
+                >
+                  {clickedButton === "Sin Cebolla" ? "Agregado" : "€0.00"}
+                </button>
+              </li>
+              <li>
+                Sin Pepinillos{" "}
                 <button
                   className={`add-btn2 ${clickedButtons.includes("Sin Pepinillos") ? "clicked" : ""}`}
                   onClick={() => handleClick("Sin Pepinillos", "€0.00")}
                 >
                   {clickedButton === "Sin Pepinillos" ? "Agregado" : "€0.00"}
-                </button>
-              </li>
-              <li>
-                Sin Salsa {""}
-                <button
-                  className={`add-btn2 ${clickedButtons.includes("Sin Salsa") ? "clicked" : ""}`}
-                  onClick={() => handleClick("Sin Salsa", "€0.00")}
-                >
-                  {clickedButton === "Sin Salsa" ? "Agregado" : "€0.00"}
-                </button>
-              </li>
-              <li>
-                Sin Queso {""}
-                <button
-                  className={`add-btn2 ${clickedButtons.includes("Sin Queso") ? "clicked" : ""}`}
-                  onClick={() => handleClick("Sin Queso", "€0.00")}
-                >
-                  {clickedButton === "Sin Queso" ? "Agregado" : "€0.00"}
-                </button>
-              </li>
-              <li>
-                Sin Ajo {""}
-                <button
-                  className={`add-btn2 ${clickedButtons.includes("Sin Ajo") ? "clicked" : ""}`}
-                  onClick={() => handleClick("Sin Ajo", "€0.00")}
-                >
-                  {clickedButton === "Sin Ajo" ? "Agregado" : "€0.00"}
-                </button>
-              </li>
-              <li>
-                Sin Hierbas {""}
-                <button
-                  className={`add-btn2 ${clickedButtons.includes("Sin Hierbas") ? "clicked" : ""}`}
-                  onClick={() => handleClick("Sin Hierbas", "€0.00")}
-                >
-                  {clickedButton === "Sin Hierbas" ? "Agregado" : "€0.00"}
-                </button>
-              </li>
-              <li>
-                Sin Especias {""}
-                <button
-                  className={`add-btn2 ${clickedButtons.includes("Sin Especias") ? "clicked" : ""}`}
-                  onClick={() => handleClick("Sin Especias", "€0.00")}
-                >
-                  {clickedButton === "Sin Especias" ? "Agregado" : "€0.00"}
                 </button>
               </li>
             </ul>
