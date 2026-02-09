@@ -5,12 +5,13 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "predeploy": "npm run build && echo lacasadeburger.es > ./dist/CNAME",
-    "deploy": "gh-pages -d dist",
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predeploy": "npm run build && echo lacasadeburger.es > ./dist/CNAME",
+    "deploy": "gh-pages -d dist",
+    "ovh-deploy": "npm run build && node deploy.js"
   },
   "dependencies": {
     "gh": "^2.8.9",
