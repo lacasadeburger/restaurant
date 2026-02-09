@@ -1,5 +1,6 @@
 import React, { useState, useMemo, useEffect } from "react";
-import bgCard from "./assets/bg-c.png";
+// CORRECTION ICI : .jpg au lieu de .png
+import bgCard from "./assets/bg-c.jpg";
 
 export default function CardMenu(props) {
   const { image, object, description, precio, addToCart, isDrinkCard, isPostreCard } = props;
@@ -13,6 +14,7 @@ export default function CardMenu(props) {
 
   const removableList = ["Tomate", "Lechuga", "Pepinillos", "Salsa", "Queso", "Ajo", "Hierbas", "Especias"];
 
+  // --- LOGIQUE DE SAUVEGARDE ---
   const storageKeyExtras = `extras_${object}`;
   const storageKeyRemoved = `removed_${object}`;
 
@@ -99,9 +101,8 @@ export default function CardMenu(props) {
 
         .card-content { padding: 10px 15px; display: flex; flex-direction: column; gap: 12px; flex-grow: 1; }
 
-        /* NOUVEAU DÉGRADÉ HARMONISÉ AVEC BG-C (Version plus claire) */
         .info-box, .options-box {
-          background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(240,240,240,0.85) 100%);
+          background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(245,245,240,0.85) 100%);
           padding: 12px;
           border-radius: 2px;
           border: 3px solid #000;
@@ -157,7 +158,7 @@ export default function CardMenu(props) {
               ))}
             </div>
             <span className="option-group-label">Quitar</span>
-            <div className="chips-container) ">
+            <div className="chips-container">
               {removableList.map(ing => (
                 <button key={ing} type="button" className={`chip remove ${removedIngredients.includes(ing) ? 'active' : ''}`} onClick={() => toggleRemove(ing)}>
                   {ing}
