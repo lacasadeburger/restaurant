@@ -7,9 +7,9 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const config = {
-    user: "ton-identifiant-ovh", // À remplacer par tes vrais accès
-    password: "ton-mot-de-pago-ovh", // À remplacer par tes vrais accès
-    host: "ftp.clusterXXX.ovh.net", // À remplacer par ton hôte
+    user: "lacasdt", // À remplacer par tes vrais accès
+    password: "Amordemivida2", // À remplacer par tes vrais accès
+    host: "ftp.cluster129.hosting.ovh.net", // À remplacer par ton hôte
     port: 21,
     localRoot: __dirname + "/dist",
     remoteRoot: "/www/",
