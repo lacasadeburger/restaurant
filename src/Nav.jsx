@@ -17,7 +17,7 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang, logo 
   const currentTime = currentHour + currentMinute / 60;
 
   // Tes horaires : Ouvert si l'heure est entre 13.0 et 23.0
-  const isOpen = currentTime >= 13 && currentTime < 23;
+  const isOpen = currentTime >= 13 && currentTime < 22;
 
   const statusColor = isOpen ? '#2ed573' : '#ff4757'; // Vert si ouvert, Rouge si fermé
 
