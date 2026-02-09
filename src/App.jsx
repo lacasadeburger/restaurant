@@ -69,11 +69,15 @@ export default function App() {
         .grid-cards { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; padding: 20px 0 120px; }
         .floating-close { position: fixed; bottom: 85px; left: 50%; transform: translateX(-50%); background: #ff4757; color: #fff; border: 3px solid #000; padding: 12px 25px; border-radius: 10px; font-weight: 900; z-index: 9998; cursor: pointer; box-shadow: 4px 4px 0px #000; text-transform: uppercase; font-size: 1rem; }
         .whatsapp-float { position: fixed; bottom: 20px; right: 20px; background: #25D366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; z-index: 9999; box-shadow: 0 5px 15px rgba(0,0,0,0.4); }
+
+        /* Styles Témoignages */
+        .testimonial-card { background: rgba(255,255,255,0.05); padding: 20px; border-radius: 15px; border-left: 4px solid #f1c40f; text-align: left; transition: 0.3s; }
+        .testimonial-card:hover { background: rgba(255,255,255,0.08); }
       `}</style>
 
       <h1 style={{ position: 'absolute', left: '-9999px' }}>Mejor Hamburguesería en Torrevieja - Smash Burgers & Gourmet Delivery</h1>
 
-      <Nav scrollToOrder={scrollToOrder} cartLength={cart.length} totalPrice={totalPrice} />
+      <Nav scrollToOrder={scrollToOrder} cartLength={cart.length} totalPrice={totalPrice} lang={lang} />
 
       <header style={{ padding: '140px 20px 80px', textAlign: 'center', backgroundColor: '#000', borderRadius: '0 0 50px 50px', borderBottom: '4px solid #ff4757', position: 'relative' }}>
         <div style={{ position: 'absolute', top: '110px', right: '10%', background: '#FFD700', color: '#000', padding: '5px 15px', borderRadius: '50px', fontWeight: 'bold', fontSize: '0.8rem', transform: 'rotate(5deg)', zIndex: 10 }}>🏆 #1 RESTAURANTE TORREVIEJA 2026</div>
@@ -89,6 +93,30 @@ export default function App() {
       </header>
 
       <main className="menu-page-container">
+        {/* --- SECTION PREUVE SOCIALE (SOCIAL PROOF) --- */}
+        <section style={{ padding: '40px 0 20px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px', marginTop: '20px' }}>
+            <div className="testimonial-card">
+              <div style={{ color: '#f1c40f', marginBottom: '10px' }}>⭐⭐⭐⭐⭐</div>
+              <p style={{ fontStyle: 'italic', fontSize: '0.95rem' }}>
+                {lang === 'es'
+                  ? '"¡La mejor Smash Burger de Torrevieja! Carne de calidad y entrega súper rápida."'
+                  : '"The best Smash Burger in Torrevieja! High quality meat and super fast delivery."'}
+              </p>
+              <p style={{ fontWeight: 'bold', marginTop: '10px', color: '#ff4757' }}>— Carlos R.</p>
+            </div>
+            <div className="testimonial-card">
+              <div style={{ color: '#f1c40f', marginBottom: '10px' }}>⭐⭐⭐⭐⭐</div>
+              <p style={{ fontStyle: 'italic', fontSize: '0.95rem' }}>
+                {lang === 'es'
+                  ? '"Increíble atención. Las patatas caseras son obligatorias. ¡Repetiremos seguro!"'
+                  : '"Amazing service. The homemade fries are a must. We will definitely repeat!"'}
+              </p>
+              <p style={{ fontWeight: 'bold', marginTop: '10px', color: '#ff4757' }}>— Sarah M.</p>
+            </div>
+          </div>
+        </section>
+
         <section>
           <SectionTitle id="sec-burgers">{lang === 'es' ? 'Burgers Gourmet' : 'Gourmet Burgers'}</SectionTitle>
           {showCardBurger ? (
@@ -179,7 +207,6 @@ export default function App() {
             </p>
           </div>
 
-          {/* --- COPYRIGHT BAR (DESIGN FINAL) --- */}
           <div style={{ marginTop: '40px', paddingTop: '20px', borderTop: '1px solid rgba(255,255,255,0.05)', fontSize: '0.75rem', color: '#555', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '8px' }}>
             <span>© 2026</span>
             <span style={{ color: '#ff4757', fontWeight: 'bold', letterSpacing: '1px' }}>LA CASA DE BURGER</span>
