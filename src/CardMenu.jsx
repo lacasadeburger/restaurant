@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./style.css";
-// Chemin corrigé pour le build
+// Chemin corrigé pour ton build
 import background from "./assets/newspaper8.jpg";
 
 export default function CardMenu(props) {
@@ -9,25 +9,12 @@ export default function CardMenu(props) {
   const [clickedButton, setClickedButton] = useState(null);
 
   const handleFlip = (e) => {
-    if (
-      e.target.classList.contains("add-btn") ||
-      e.target.parentElement.classList.contains("add-btn")
-    ) {
-      setIsReversed(true);
-    } else if (
-      e.target.classList.contains("flip-btn") &&
-      !props.isDrinkCard
-    ) {
+    // Si on clique sur un bouton, on ne retourne pas la carte
+    if (e.target.closest("button")) return;
+
+    if (!props.isDrinkCard && !props.isPostreCard) {
       setIsReversed(!isReversed);
     }
-  };
-
-  const handleAddToCart = (name, price) => {
-    const item = {
-      object: name,
-      precio: price,
-    };
-    props.addToCart(item);
   };
 
   const handleClick = (name, price) => {
@@ -35,11 +22,9 @@ export default function CardMenu(props) {
       setClickedButtons(clickedButtons.filter((button) => button !== name));
     } else {
       setClickedButtons([...clickedButtons, name]);
-      handleAddToCart(name, price);
+      props.addToCart({ object: name, precio: price });
       setClickedButton(name);
-      setTimeout(() => {
-        setClickedButton(null);
-      }, 1000);
+      setTimeout(() => setClickedButton(null), 1000);
     }
   };
 
@@ -49,9 +34,11 @@ export default function CardMenu(props) {
     <div className={`menu-items ${isDrinkOrPostreCard ? "centered" : ""}`} style={{ marginBottom: "40px" }}>
       <div
         className={`card ${isReversed ? "reversed" : ""}`}
-        onClick={props.isDrinkCard || props.isPostreCard ? undefined : handleFlip}
+        onClick={handleFlip}
       >
         <div className="menu-item card-inner">
+
+          {/* FACE AVANT (FRONT) */}
           <div className="front">
             <header className="header-Card">
               <button
@@ -59,118 +46,54 @@ export default function CardMenu(props) {
                 onClick={() => {
                   props.addToCart(props);
                   setClickedButton(props.object);
-                  setTimeout(() => {
-                    setClickedButton(null);
-                  }, 1000);
+                  setTimeout(() => setClickedButton(null), 1000);
                 }}
               >
                 Agregar
                 <h4 className="center">{props.precio}</h4>
               </button>
-              <br />
             </header>
-            <div
-              style={{
-                backgroundImage: `url(${background})`,
-                backgroundSize: "350px",
-                backgroundRepeat: "no-repeat",
-              }}
-            >
-              <img
-                src={props.image}
-                alt={props.object}
-                style={{
-                  width: "100%",
-                }}
-              />
+
+            <div className="image-container" style={{ backgroundImage: `url(${background})`, backgroundSize: "350px" }}>
+              <img src={props.image} alt={props.object} style={{ width: "100%" }} />
             </div>
+
             <h1 className="center">{props.object}</h1>
-            <p>{props.description}</p>
-            <footer className="precio-card"></footer>
+            <p className="description-text">{props.description}</p>
           </div>
 
+          {/* FACE ARRIÈRE (BACK) - LE DESIGN AVEC CADRES */}
           <div className="back">
-            <br />
-            <ul className="backList">
-              <li>
-                Extra Huevo{" "}
-                <button
-                  className={`add-btn2 ${clickedButtons.includes("Extra Huevo") ? "clicked" : ""}`}
-                  onClick={() => handleClick("Extra Huevo", "€0.80")}
-                >
-                  {clickedButton === "Extra Huevo" ? "Agregado" : "€0.80"}
-                </button>
-              </li>
-              <li>
-                Extra Carne y Queso{" "}
-                <button
-                  className={`add-btn2 ${clickedButtons.includes("Extra Carne y Queso") ? "clicked" : ""}`}
-                  onClick={() => handleClick("Extra Carne y Queso", "€3.00")}
-                >
-                  {clickedButton === "Extra Carne y Queso" ? "Agregado" : "€3.00"}
-                </button>
-              </li>
-              <li>
-                Extra Tocino{" "}
-                <button
-                  className={`add-btn2 ${clickedButtons.includes("Extra Tocino") ? "clicked" : ""}`}
-                  onClick={() => handleClick("Extra Tocino", "€1.00")}
-                >
-                  {clickedButton === "Extra Tocino" ? "Agregado" : "€1.00"}
-                </button>
-              </li>
-              <li>
-                Salsa Picante{" "}
-                <button
-                  className={`add-btn2 ${clickedButtons.includes("Salsa Picante") ? "clicked" : ""}`}
-                  onClick={() => handleClick("Salsa Picante", "€0.50")}
-                >
-                  {clickedButton === "Salsa Picante" ? "Agregado" : "€0.50"}
-                </button>
-              </li>
-              <li>
-                Sin Tomate{" "}
-                <button
-                  className={`add-btn2 ${clickedButtons.includes("Sin Tomate") ? "clicked" : ""}`}
-                  onClick={() => handleClick("Sin Tomate", "€0.00")}
-                >
-                  {clickedButton === "Sin Tomate" ? "Agregado" : "€0.00"}
-                </button>
-              </li>
-              <li>
-                Sin Lechuga{" "}
-                <button
-                  className={`add-btn2 ${clickedButtons.includes("Sin Lechuga") ? "clicked" : ""}`}
-                  onClick={() => handleClick("Sin Lechuga", "€0.00")}
-                >
-                  {clickedButton === "Sin Lechuga" ? "Agregado" : "€0.00"}
-                </button>
-              </li>
-              <li>
-                Sin Cebolla{" "}
-                <button
-                  className={`add-btn2 ${clickedButtons.includes("Sin Cebolla") ? "clicked" : ""}`}
-                  onClick={() => handleClick("Sin Cebolla", "€0.00")}
-                >
-                  {clickedButton === "Sin Cebolla" ? "Agregado" : "€0.00"}
-                </button>
-              </li>
-              <li>
-                Sin Pepinillos{" "}
-                <button
-                  className={`add-btn2 ${clickedButtons.includes("Sin Pepinillos") ? "clicked" : ""}`}
-                  onClick={() => handleClick("Sin Pepinillos", "€0.00")}
-                >
-                  {clickedButton === "Sin Pepinillos" ? "Agregado" : "€0.00"}
-                </button>
-              </li>
-            </ul>
-            {!props.isDrinkCard && (
-              <button className="flip-btn add-btn2" onClick={handleFlip}>
-                Agregar Otra
+            <div className="back-content">
+
+              {/* SECTION EXTRAS */}
+              <div className="options-section">
+                <h5>EXTRAS</h5>
+                <div className="options-grid">
+                  <button className={`opt-btn ${clickedButtons.includes("Extra Huevo") ? "active" : ""}`} onClick={() => handleClick("Extra Huevo", "€0.80")}>+ Huevo</button>
+                  <button className={`opt-btn ${clickedButtons.includes("Extra Bacon") ? "active" : ""}`} onClick={() => handleClick("Extra Bacon", "€1.00")}>+ Bacon</button>
+                  <button className={`opt-btn ${clickedButtons.includes("Extra Carne") ? "active" : ""}`} onClick={() => handleClick("Extra Carne", "€3.00")}>+ Carne</button>
+                  <button className={`opt-btn ${clickedButtons.includes("Salsa Picante") ? "active" : ""}`} onClick={() => handleClick("Salsa Picante", "€0.50")}>+ Picante</button>
+                </div>
+              </div>
+
+              {/* SECTION QUITAR (LES "SIN") */}
+              <div className="options-section">
+                <h5>QUITAR</h5>
+                <div className="options-grid">
+                  <button className={`opt-btn sin ${clickedButtons.includes("Sin Tomate") ? "active" : ""}`} onClick={() => handleClick("Sin Tomate", "€0.00")}>Tomate</button>
+                  <button className={`opt-btn sin ${clickedButtons.includes("Sin Cebolla") ? "active" : ""}`} onClick={() => handleClick("Sin Cebolla", "€0.00")}>Cebolla</button>
+                  <button className={`opt-btn sin ${clickedButtons.includes("Sin Pepinillos") ? "active" : ""}`} onClick={() => handleClick("Sin Pepinillos", "€0.00")}>Pepinillo</button>
+                  <button className={`opt-btn sin ${clickedButtons.includes("Sin Lechuga") ? "active" : ""}`} onClick={() => handleClick("Sin Lechuga", "€0.00")}>Lechuga</button>
+                </div>
+              </div>
+
+              <button className="flip-btn-close" onClick={() => setIsReversed(false)}>
+                LISTO
               </button>
-            )}
+            </div>
           </div>
+
         </div>
       </div>
     </div>
