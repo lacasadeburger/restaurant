@@ -11,7 +11,8 @@ export default function CardMenu(props) {
     { name: "Salsa Picante", price: 0.50 }
   ];
 
-  const removableList = ["Tomate", "Lechuga", "Pepinillos", "Salsa", "Queso", "Ajo", "Hierbas", "Especias"];
+  // MODIFICATION ICI : "Salsa" supprimé et remplacé par "Cebolla"
+  const removableList = ["Tomate", "Lechuga", "Pepinillos", "Cebolla", "Queso", "Ajo", "Hierbas", "Especias"];
 
   // --- LOGIQUE DE SAUVEGARDE (ANTI-RESET LANGUE) ---
   const storageKeyExtras = `extras_${object}`;
@@ -101,7 +102,6 @@ export default function CardMenu(props) {
 
         .card-content { padding: 10px 15px; display: flex; flex-direction: column; gap: 12px; flex-grow: 1; }
 
-        /* DÉGRADÉ ROUGE PROFOND (RAPPEL BG-C.JPG) */
         .info-box, .options-box {
           background: linear-gradient(135deg, rgba(139, 0, 0, 0.85) 0%, rgba(40, 0, 0, 0.95) 100%) !important;
           padding: 12px;
@@ -114,7 +114,6 @@ export default function CardMenu(props) {
         .info-box { transform: rotate(-0.5deg); }
         .options-box { transform: rotate(0.5deg); }
 
-        /* TEXTE EN BLANC / OR POUR RESSORTIR SUR LE ROUGE SOMBRE */
         .card-title { font-size: 1.25rem; font-weight: 950; color: #f1c40f !important; margin: 0; text-transform: uppercase; text-shadow: 1px 1px 2px #000; }
         .card-description { font-size: 0.85rem; font-weight: 700; color: #ffffff !important; margin-top: 5px; line-height: 1.2; }
 
