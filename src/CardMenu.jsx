@@ -1,7 +1,7 @@
 import React from "react";
 
-export default function CardMenu({ id, name, description, precio, price, addToCart, isDrinkCard, isPostreCard }) {
-  // On gère les deux noms de variables possibles pour le prix
+export default function CardMenu({ id, name, description, precio, price, addToCart }) {
+  // Gestion de la flexibilité du nom de la variable prix
   const finalPrice = precio || price;
 
   return (
@@ -12,12 +12,12 @@ export default function CardMenu({ id, name, description, precio, price, addToCa
         <span className="menu-card-price">{finalPrice}€</span>
       </div>
 
-      {/* Bouton repositionné en bas pour être intuitif */}
+      {/* Bouton optimisé : Texte en Espagnol & Largeur ergonomique */}
       <button
         className="add-to-cart-btn"
         onClick={() => addToCart({ id, name, precio: finalPrice })}
       >
-        <span className="btn-icon">+</span> AGREGAR
+        <span className="btn-icon">+</span> AÑADIR AL CARRITO
       </button>
 
       <style>{`
@@ -29,77 +29,80 @@ export default function CardMenu({ id, name, description, precio, price, addToCa
           width: 280px;
           display: flex;
           flex-direction: column;
-          justify-content: space-between; /* Aligne le bouton en bas */
-          transition: transform 0.3s ease;
+          justify-content: space-between;
+          transition: all 0.3s ease;
           box-shadow: 0 5px 15px rgba(0,0,0,0.3);
           margin: 10px;
+          position: relative;
         }
 
         .menu-card:hover {
-          transform: translateY(-5px);
+          transform: translateY(-8px);
           border-color: #ff4757;
-        }
-
-        .menu-card-content {
-          margin-bottom: 20px;
-          text-align: left;
+          box-shadow: 0 10px 25px rgba(255, 71, 87, 0.2);
         }
 
         .menu-card-title {
           color: #fff;
           font-size: 1.2rem;
-          margin-bottom: 10px;
+          margin-bottom: 8px;
           text-transform: uppercase;
           font-weight: 900;
+          letter-spacing: 0.5px;
         }
 
         .menu-card-description {
           color: #aaa;
-          font-size: 0.9rem;
+          font-size: 0.85rem;
           line-height: 1.4;
           margin-bottom: 15px;
-          min-height: 40px;
+          min-height: 45px;
         }
 
         .menu-card-price {
           display: block;
           color: #ff4757;
-          font-size: 1.4rem;
+          font-size: 1.5rem;
           font-weight: 900;
+          margin-bottom: 15px;
         }
 
         .add-to-cart-btn {
           background: #ff4757;
           color: white;
           border: none;
-          padding: 12px;
-          border-radius: 8px;
+          padding: 14px 10px;
+          border-radius: 10px;
           font-weight: 900;
           cursor: pointer;
           display: flex;
           align-items: center;
           justify-content: center;
-          gap: 10px;
-          transition: 0.2s;
+          gap: 8px;
+          transition: background 0.2s ease;
           width: 100%;
           text-transform: uppercase;
-          letter-spacing: 1px;
+          font-size: 0.85rem;
+          letter-spacing: 0.5px;
         }
 
         .add-to-cart-btn:hover {
-          background: #ff6b81;
-          transform: scale(1.02);
+          background: #e03d4e;
         }
 
         .btn-icon {
-          font-size: 1.2rem;
-          background: rgba(255,255,255,0.2);
-          width: 24px;
-          height: 24px;
+          font-size: 1.1rem;
+          background: rgba(255,255,255,0.15);
+          width: 22px;
+          height: 22px;
           display: flex;
           align-items: center;
           justify-content: center;
-          border-radius: 50%;
+          border-radius: 6px;
+        }
+
+        @media (max-width: 600px) {
+          .menu-card { width: 90%; margin: 10px auto; }
         }
       `}</style>
     </div>
