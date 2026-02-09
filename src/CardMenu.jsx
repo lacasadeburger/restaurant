@@ -1,5 +1,4 @@
 import React, { useState, useMemo } from "react";
-// Importation du fond depuis le dossier assets
 import background from "./assets/newspaper8.jpg";
 
 export default function CardMenu(props) {
@@ -44,8 +43,6 @@ export default function CardMenu(props) {
       removed: removedIngredients
     };
     addToCart(itemToAdd);
-
-    // Feedback visuel du bouton
     setIsAdded(true);
     setTimeout(() => {
       setIsAdded(false);
@@ -62,66 +59,73 @@ export default function CardMenu(props) {
       overflow: "hidden",
       display: "flex",
       flexDirection: "column",
-      border: "2px solid #000",
-      boxShadow: "0 8px 20px rgba(0,0,0,0.3)",
-      height: "100%"
+      border: "3px solid #000",
+      boxShadow: "0 10px 25px rgba(0,0,0,0.4)",
+      height: "100%",
+      position: "relative"
     }}>
       <style>{`
-        .image-container { width: 100%; height: 200px; display: flex; align-items: center; justify-content: center; position: relative; }
-        .product-img { width: 100%; height: 100%; object-fit: contain; z-index: 2; padding: 10px; }
+        .image-container { width: 100%; height: 180px; display: flex; align-items: center; justify-content: center; position: relative; background: rgba(255,255,255,0.2); }
+        .product-img { width: 100%; height: 90%; object-fit: contain; z-index: 2; }
 
         .price-badge-overlay {
           position: absolute;
-          top: 15px;
-          right: 15px;
-          background: #ff4757;
-          color: white;
-          padding: 5px 12px;
-          border-radius: 8px;
-          font-weight: 900;
-          font-size: 1.2rem;
-          z-index: 10;
-          border: 2px solid #000;
-          box-shadow: 4px 4px 0px #000;
-          transform: rotate(3deg);
-        }
-
-        .card-content { padding: 15px; display: flex; flex-direction: column; gap: 10px; flex-grow: 1; }
-
-        .info-box { background: rgba(255, 255, 255, 0.75); padding: 12px; border-radius: 10px; border: 1.5px solid #000; }
-        .card-title { font-size: 1.4rem; font-weight: 900; color: #000; margin: 0; text-transform: uppercase; }
-        .card-description { font-size: 0.9rem; font-weight: 700; color: #111; margin-top: 5px; line-height: 1.2; }
-
-        .options-box { background: rgba(255, 255, 255, 0.55); padding: 10px; border-radius: 10px; border: 1.5px dashed #000; }
-        .option-group-label { font-size: 0.75rem; font-weight: 900; color: #000; text-transform: uppercase; display: block; margin-bottom: 5px; text-decoration: underline; }
-
-        .chips-container { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 8px; }
-        .chip { padding: 5px 10px; border-radius: 4px; font-size: 0.7rem; font-weight: 800; cursor: pointer; border: 1px solid #000; background: #fff; color: #000; transition: 0.2s; }
-        .chip.extra.active { background: #2ed573; color: #fff; border-color: #000; transform: scale(1.05); }
-        .chip.remove.active { background: #ff4757; color: #fff; border-color: #000; text-decoration: line-through; transform: scale(1.05); }
-
-        .card-footer { display: flex; flex-direction: column; gap: 10px; padding-top: 10px; border-top: 2px solid #000; margin-top: auto; }
-
-        /* Bouton Añadir mis à jour */
-        .add-btn-modern {
+          top: 10px;
+          left: 10px;
           background: #000;
           color: #fff;
-          border: none;
-          padding: 12px;
+          padding: 4px 10px;
+          border-radius: 5px;
+          font-weight: 800;
+          font-size: 1.1rem;
+          z-index: 10;
+        }
+
+        .card-content { padding: 12px; display: flex; flex-direction: column; gap: 8px; flex-grow: 1; }
+
+        .info-box { background: rgba(255, 255, 255, 0.85); padding: 10px; border-radius: 8px; border: 2px solid #000; }
+        .card-title { font-size: 1.3rem; font-weight: 950; color: #000; margin: 0; text-transform: uppercase; line-height: 1; }
+        .card-description { font-size: 0.85rem; font-weight: 600; color: #333; margin-top: 4px; }
+
+        .options-box { background: rgba(255, 255, 255, 0.6); padding: 8px; border-radius: 8px; border: 1px dashed #000; }
+        .option-group-label { font-size: 0.7rem; font-weight: 900; color: #000; text-transform: uppercase; display: block; margin-bottom: 4px; }
+
+        .chips-container { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 6px; }
+        .chip { padding: 4px 8px; border-radius: 4px; font-size: 0.65rem; font-weight: 800; cursor: pointer; border: 1px solid #000; background: #fff; }
+        .chip.extra.active { background: #ffd32a; color: #000; box-shadow: 2px 2px 0px #000; }
+        .chip.remove.active { background: #000; color: #fff; text-decoration: line-through; }
+
+        .card-footer { padding: 10px; background: rgba(255,255,255,0.9); border-top: 2px solid #000; margin-top: auto; }
+
+        /* LE BOUTON JAUNE MOUTARDE */
+        .add-btn-modern {
+          width: 100%;
+          background: #f1c40f; /* Jaune Moutarde */
+          color: #000;
+          border: 2px solid #000;
+          padding: 14px;
           font-weight: 900;
           cursor: pointer;
           text-transform: uppercase;
-          border-radius: 8px;
-          font-size: 1rem;
-          transition: 0.3s;
-          box-shadow: 0 4px 0 #333;
+          border-radius: 10px;
+          font-size: 1.1rem;
+          transition: all 0.2s ease;
+          box-shadow: 0 4px 0px #c49b09; /* Ombre plus foncée pour l'effet 3D */
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
         }
-        .add-btn-modern:active { transform: translateY(2px); box-shadow: 0 2px 0 #333; }
-        .add-btn-modern.success { background: #2ed573; }
+
+        .add-btn-modern:hover { transform: translateY(-2px); box-shadow: 0 6px 0px #c49b09; background: #f39c12; }
+        .add-btn-modern:active { transform: translateY(2px); box-shadow: 0 0px 0px #c49b09; }
+
+        .add-btn-modern.success { background: #2ed573; color: #fff; box-shadow: 0 4px 0px #218c53; }
+
+        .btn-price { background: rgba(0,0,0,0.1); padding: 2px 8px; border-radius: 4px; font-size: 1.2rem; border: 1px solid rgba(0,0,0,0.2); }
       `}</style>
 
       <div className="image-container">
-        <div className="price-badge-overlay">{totalPrice}€</div>
+        <div className="price-badge-overlay">BASE: {precio}</div>
         <img src={image} alt={object} className="product-img" />
       </div>
 
@@ -133,33 +137,34 @@ export default function CardMenu(props) {
 
         {!isDrinkCard && !isPostreCard && (
           <div className="options-box">
-            <span className="option-group-label">Extras</span>
+            <span className="option-group-label">Extras (+€)</span>
             <div className="chips-container">
               {extrasList.map(item => (
                 <button key={item.name} className={`chip extra ${extraIngredients.includes(item.name) ? 'active' : ''}`} onClick={() => toggleExtra(item.name)}>
-                  +{item.price.toFixed(2)}€ {item.name}
+                  +{item.price.toFixed(2)} {item.name}
                 </button>
               ))}
             </div>
-            <span className="option-group-label">Quitar</span>
+            <span className="option-group-label">Quitar (Sin)</span>
             <div className="chips-container">
               {removableList.map(ing => (
                 <button key={ing} className={`chip remove ${removedIngredients.includes(ing) ? 'active' : ''}`} onClick={() => toggleRemove(ing)}>
-                  Sin {ing}
+                  {ing}
                 </button>
               ))}
             </div>
           </div>
         )}
+      </div>
 
-        <div className="card-footer">
-          <button
-            className={`add-btn-modern ${isAdded ? 'success' : ''}`}
-            onClick={handleAddClick}
-          >
-            {isAdded ? "✓ ¡AÑADIDO!" : "AÑADIR AL CARRITO"}
-          </button>
-        </div>
+      <div className="card-footer">
+        <button
+          className={`add-btn-modern ${isAdded ? 'success' : ''}`}
+          onClick={handleAddClick}
+        >
+          <span>{isAdded ? "¡LISTO!" : "AÑADIR"}</span>
+          <span className="btn-price">{totalPrice}€</span>
+        </button>
       </div>
     </div>
   );
