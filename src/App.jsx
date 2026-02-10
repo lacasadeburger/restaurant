@@ -145,23 +145,24 @@ export default function App() {
 
           <div style={{ marginTop: '40px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '25px' }}>
             <button
-              onClick={() => { setShowCardBurger(true); setTimeout(scrollToMenu, 100); }}
-              className="pulse-gold-btn"
-              style={{
-                background: GOLD_GRADIENT,
-                color: '#000',
-                padding: '22px 50px',
-                borderRadius: '50px',
-                border: '3px solid #000',
-                fontWeight: '950',
-                cursor: 'pointer',
-                fontSize: '1.5rem',
-                boxShadow: GOLD_SHADOW,
-                textTransform: 'uppercase',
-                width: '90%',
-                maxWidth: '450px'
-              }}
-            >
+            <button
+onClick={() => { setShowCardBurger(true); setTimeout(() => document.getElementById("sec-burgers")?.scrollIntoView({ behavior: "smooth" }), 100); }}
+className="pulse-gold-btn"
+style={{
+  background: GOLD_GRADIENT,
+  color: '#000',
+  padding: '22px 50px',
+  borderRadius: '50px',
+  border: '3px solid #000',
+  fontWeight: '950',
+  cursor: 'pointer',
+  fontSize: '1.5rem',
+  boxShadow: GOLD_SHADOW,
+  textTransform: 'uppercase',
+  width: '90%',
+  maxWidth: '450px'
+}}
+>
               🚀 {lang === 'es' ? 'PEDIR A DOMICILIO' : 'ORDER DELIVERY'}
             </button>
 
