@@ -115,7 +115,7 @@ export default function App() {
         padding: '160px 20px 80px',
         textAlign: 'center',
         position: 'relative',
-        backgroundImage: `linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.9)), url(${BurgerSignature})`,
+        backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)), url(${BurgerSignature})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         borderRadius: '0 0 50px 50px',
