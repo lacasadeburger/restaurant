@@ -115,23 +115,46 @@ export default function App() {
         padding: '160px 20px 80px',
         textAlign: 'center',
         position: 'relative',
-        backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)), url(${BurgerSignature})`,
+        // CHIRURGIE : Réduction drastique du calque (0.1 au lieu de 0.3 et 0.4 au lieu de 0.6)
+        backgroundImage: `linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.4)), url(${BurgerSignature})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
+        filter: 'brightness(1.1)', // Donne du peps aux couleurs de l'image
         borderRadius: '0 0 50px 50px',
-        borderBottom: `5px solid #ff4757`
+        borderBottom: `5px solid #ff4757`,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center'
       }}>
+        {/* Le badge reste bien visible au-dessus */}
         <div className="pulse-badge" style={{ position: 'absolute', top: '110px', right: '10%', background: GOLD_GRADIENT, color: '#000', padding: '6px 18px', borderRadius: '50px', fontWeight: '950', fontSize: '0.8rem', transform: 'rotate(5deg)', zIndex: 10, border: '2px solid #000' }}>🏆 #1 BURGER TORREVIEJA</div>
 
-        <div style={{ position: 'relative', zIndex: 2 }}>
-          <h1 style={{ fontSize: '3.5rem', fontWeight: '900', textTransform: 'uppercase', textShadow: '2px 2px 15px rgba(0,0,0,0.9)', margin: 0 }}>
+        <div style={{ position: 'relative', zIndex: 2, width: '100%' }}>
+          {/* Texte avec ombre renforcée pour contrer la clarté de l'image */}
+          <h1 style={{
+            fontSize: '3.5rem',
+            fontWeight: '900',
+            textTransform: 'uppercase',
+            textShadow: '4px 4px 25px rgba(0,0,0,1), 0 0 10px rgba(0,0,0,0.5)',
+            margin: 0,
+            color: '#fff'
+          }}>
             La Casa de Burger <span style={{color:'#ff4757'}}>Torrevieja</span>
           </h1>
-          <h2 style={{ fontSize: '1.5rem', color: GOLD_BRIGHT, fontWeight: '700', textShadow: '1px 1px 10px rgba(0,0,0,1)', marginTop: '10px' }}>
+
+          <h2 style={{
+            fontSize: '1.5rem',
+            color: GOLD_BRIGHT,
+            fontWeight: '700',
+            textShadow: '2px 2px 15px rgba(0,0,0,1)',
+            marginTop: '10px'
+          }}>
             {lang === 'es' ? 'La Mejor Hamburguesería Artesanal y Smash Gourmet' : 'The Best Artisan Burger & Gourmet Smash Burger'}
           </h2>
 
           <div style={{ marginTop: '40px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '25px' }}>
+            {/* BOUTON PRINCIPAL */}
             <button
               onClick={() => { setShowCardBurger(true); setTimeout(scrollToMenu, 100); }}
               className="pulse-gold-btn"
@@ -147,14 +170,16 @@ export default function App() {
                 boxShadow: GOLD_SHADOW,
                 textTransform: 'uppercase',
                 width: '90%',
-                maxWidth: '450px'
+                maxWidth: '450px',
+                filter: 'brightness(0.9)' // Pour ne pas que le bouton soit trop flash par rapport à l'image
               }}
             >
               🚀 {lang === 'es' ? 'PEDIR A DOMICILIO' : 'ORDER DELIVERY'}
             </button>
 
+            {/* BOUTONS SECONDAIRES */}
             <div style={{ display: 'flex', justifyContent: 'center', gap: '15px', flexWrap: 'wrap' }}>
-              <a href="tel:+34602597210" style={{ background: '#fff', color: '#000', padding: '14px 30px', borderRadius: '50px', textDecoration: 'none', fontWeight: '950', border: '2px solid #000' }}>📞 {lang === 'es' ? 'LLAMAR' : 'CALL'}</a>
+              <a href="tel:+34602597210" style={{ background: '#fff', color: '#000', padding: '14px 30px', borderRadius: '50px', textDecoration: 'none', fontWeight: '950', border: '2px solid #000', boxShadow: '0 4px 10px rgba(0,0,0,0.3)' }}>📞 {lang === 'es' ? 'LLAMAR' : 'CALL'}</a>
               <button onClick={scrollToOrder} style={{ backgroundColor: '#ff4757', color: '#fff', padding: '14px 30px', borderRadius: '50px', border: '2px solid #000', fontWeight: '950', cursor: 'pointer', boxShadow: '0 4px 0px #b33939' }}>🛒 {totalPrice}€</button>
             </div>
           </div>
