@@ -2,7 +2,8 @@ import React, { useState, useMemo, useEffect } from "react";
 import bgCard from "./assets/bg-c.jpg";
 
 export default function CardMenu(props) {
-  const { image, object, description, precio, addToCart, isDrinkCard, isPostreCard, lang } = props;
+  // AJOUT : on récupère hasExtras ici
+  const { image, object, description, precio, addToCart, isDrinkCard, isPostreCard, lang, hasExtras } = props;
   const isEn = lang === 'en';
 
   // --- CONFIGURATION VISUELLE OR (HARMONISÉE APP.JSX) ---
@@ -206,7 +207,8 @@ export default function CardMenu(props) {
           <p className="card-description">{displayDescription}</p>
         </div>
 
-        {!isDrinkCard && !isPostreCard && (
+        {/* MODIFICATION ICI : On vérifie hasExtras */}
+        {!isDrinkCard && !isPostreCard && hasExtras && (
           <div className="options-box">
             <span className="option-group-label">{t.extra}</span>
             <div className="chips-container">
