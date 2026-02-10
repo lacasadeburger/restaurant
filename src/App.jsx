@@ -107,51 +107,42 @@ export default function App() {
         .pulse-badge { animation: pulse-gold 2s infinite ease-in-out; }
       `}</style>
 
-            {/* --- BLOC SEO & GOOGLE SCHEMA --- */}
-            <Helmet>
-              <title>La Casa de Burger | Las mejores hamburguesas de Torrevieja</title>
-              <meta name="description" content="Las mejores Smash Burgers de Torrevieja. Carne artesanal, gaufres al Nutella y entrega a domicilio. ¡Pide ahora!" />
+      <Helmet>
+        <title>La Casa de Burger | Las mejores hamburguesas de Torrevieja</title>
+        <meta name="description" content="Las mejores Smash Burgers de Torrevieja. Carne artesanal, gaufres al Nutella y entrega a domicilio. ¡Pide ahora!" />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Restaurant",
+            "name": "La Casa de Burger",
+            "image": "https://lacasadeburger.es/logo.jpg",
+            "@id": "https://lacasadeburger.es",
+            "url": "https://lacasadeburger.es",
+            "telephone": "+34602597210",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "Av. Diego Ramírez Pastor, 142",
+              "addressLocality": "Torrevieja",
+              "addressRegion": "Alicante",
+              "postalCode": "03181",
+              "addressCountry": "ES"
+            },
+            "geo": { "@type": "GeoCoordinates", "latitude": 37.9822, "longitude": -0.6782 },
+            "servesCuisine": ["Burgers", "American", "Waffles"],
+            "priceRange": "$$",
+            "openingHoursSpecification": [
+              {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+                "opens": "13:00",
+                "closes": "22:30"
+              }
+            ],
+            "menu": "https://lacasadeburger.es"
+          })}
+        </script>
+      </Helmet>
 
-              <script type="application/ld+json">
-                {JSON.stringify({
-                  "@context": "https://schema.org",
-                  "@type": "Restaurant",
-                  "name": "La Casa de Burger",
-                  "image": "https://lacasadeburger.es/logo.jpg",
-                  "@id": "https://lacasadeburger.es",
-                  "url": "https://lacasadeburger.es",
-                  "telephone": "+34602597210",
-                  "address": {
-                    "@type": "PostalAddress",
-                    "streetAddress": "Av. Diego Ramírez Pastor, 142",
-                    "addressLocality": "Torrevieja",
-                    "addressRegion": "Alicante",
-                    "postalCode": "03181",
-                    "addressCountry": "ES"
-                  },
-                  "geo": {
-                    "@type": "GeoCoordinates",
-                    "latitude": 37.9822,
-                    "longitude": -0.6782
-                  },
-                  "servesCuisine": ["Burgers", "American", "Waffles"],
-                  "priceRange": "$$",
-                  "openingHoursSpecification": [
-                    {
-                      "@type": "OpeningHoursSpecification",
-                      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-                      "opens": "13:00",
-                      "closes": "22:30"
-                    }
-                  ],
-                  "menu": "https://lacasadeburger.es"
-                })}
-              </script>
-            </Helmet>
-
-            {/* SEO STRATÉGIQUE CACHÉ */}
-            <h1 style={{ position: 'absolute', left: '-9999px' }}>Mejor Hamburguesería en Torrevieja - Smash Burgers & Gourmet Delivery</h1>
-      {/* SEO STRATÉGIQUE CACHÉ */}
       <h1 style={{ position: 'absolute', left: '-9999px' }}>Mejor Hamburguesería en Torrevieja - Smash Burgers & Gourmet Delivery</h1>
 
       <Nav scrollToOrder={scrollToOrder} cartLength={cart.length} totalPrice={totalPrice} lang={lang} logo={logo} />
@@ -164,7 +155,15 @@ export default function App() {
 
         <div style={{ marginTop: '30px', display: 'flex', justifyContent: 'center', gap: '15px', flexWrap: 'wrap' }}>
           <a href="tel:+34602597210" style={{ background: GOLD_GRADIENT, color: '#000', padding: '15px 35px', borderRadius: '50px', textDecoration: 'none', fontWeight: '950', border: '2px solid #000', boxShadow: GOLD_SHADOW }}>📞 {lang === 'es' ? 'PEDIR AHORA' : 'ORDER NOW'}</a>
-          <button onClick={scrollToMenu} style={{ backgroundColor: '#fff', color: '#111', padding: '15px 35px', borderRadius: '50px', border: '2px solid #111', fontWeight: '950', cursor: 'pointer', boxShadow: '0 4px 0px #ccc' }}>{lang === 'es' ? 'CARTA ONLINE' : 'ONLINE MENU'}</button>
+
+          {/* ACTION MISE À JOUR : OUVRE LE MENU ET SCROLL */}
+          <button
+            onClick={() => { setShowCardBurger(true); setTimeout(scrollToMenu, 100); }}
+            style={{ backgroundColor: '#fff', color: '#111', padding: '15px 35px', borderRadius: '50px', border: '2px solid #111', fontWeight: '950', cursor: 'pointer', boxShadow: '0 4px 0px #ccc' }}
+          >
+            {lang === 'es' ? 'A DOMICILIO' : 'DELIVERY'}
+          </button>
+
           <button onClick={scrollToOrder} style={{ backgroundColor: '#ff4757', color: '#fff', padding: '15px 35px', borderRadius: '50px', border: '2px solid #000', fontWeight: '950', cursor: 'pointer', boxShadow: '0 4px 0px #b33939' }}>🛒 {totalPrice}€</button>
         </div>
       </header>
@@ -228,7 +227,7 @@ export default function App() {
         </section>
       </main>
 
-      {/* FOOTER COMPLET AVEC SEO MASSIVE */}
+      {/* FOOTER - INTEGRALITÉ PRÉSERVÉE */}
       <footer style={{ padding: '80px 20px 40px', backgroundColor: '#000', color: '#fff', textAlign: 'center', borderTop: '4px solid #ff4757' }}>
         <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '30px', textAlign: 'left', marginBottom: '40px', background: 'rgba(255,255,255,0.03)', padding: '30px', borderRadius: '20px' }}>
@@ -248,12 +247,10 @@ export default function App() {
             </div>
           </div>
 
-          {/* VIDÉO YOUTUBE */}
           <div style={{ width: '100%', maxWidth: '800px', margin: '0 auto 50px', borderRadius: '15px', overflow: 'hidden', border: `3px solid ${GOLD_BRIGHT}` }}>
             <iframe width="100%" height="400" src="https://www.youtube.com/embed/qN6VZYBojLs" title="Mejor Burger Torrevieja" frameBorder="0" allowFullScreen></iframe>
           </div>
 
-          {/* SOCIALS & PARTNERS */}
           <div style={{ display: 'flex', justifyContent: 'center', gap: '25px', flexWrap: 'wrap', marginBottom: '40px', alignItems: 'center' }}>
             <a href="https://www.facebook.com/profile.php?id=100094610793536" target="_blank" rel="noreferrer"><img src={fb} width="45" alt="Facebook" /></a>
             <a href="https://www.instagram.com/lacasadeburger.es/" target="_blank" rel="noreferrer"><img src={instagramIcon} width="45" alt="Instagram" /></a>
@@ -262,7 +259,7 @@ export default function App() {
             <a href="https://www.tripadvisor.es/Restaurant_Review-g187527-d26835169-Reviews-La_Casa_De_Burger-Torrevieja_Costa_Blanca_Province_of_Alicante_Valencian_Communi.html" target="_blank" rel="noreferrer"><img src={tripadvisor} width="140" alt="Tripadvisor" /></a>
           </div>
 
-          {/* --- BLOC SEO POWER MULTILINGUE --- */}
+          {/* SEO MULTILINGUE & ZONES (PRÉSERVÉ) */}
           <div style={{ backgroundColor: '#0a0a0a', padding: '30px', borderRadius: '15px', border: '1px solid #222', textAlign: 'justify' }}>
             <p style={{ color: '#777', fontSize: '0.8rem', lineHeight: '1.8', margin: 0 }}>
               <strong>🇪🇸 ESPAÑOL:</strong> Hamburguesería en Torrevieja, mejores hamburguesas Alicante, Smash Burger cerca de mí, comida a domicilio, Playa del Cura, Playa de los Locos.
@@ -278,41 +275,19 @@ export default function App() {
             </p>
           </div>
 
-          <div style={{ marginTop: '40px', paddingTop: '20px', borderTop: '1px solid rgba(255,255,255,0.05)', fontSize: '0.75rem', color: '#555' }}>
-            © 2026 <span style={{ color: GOLD_BRIGHT, fontWeight: 'bold' }}>LA CASA DE BURGER</span> | {lang === 'es' ? 'TODOS LOS DERECHOS RESERVADOS' : 'ALL RIGHTS RESERVED'}
+          <div style={{ marginTop: '40px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <img src={logo} alt="La Casa de Burger Logo" style={{ height: "150px", width: "auto", borderRadius: "15px", boxShadow: "0 4px 15px rgba(0,0,0,0.5)", marginBottom: '15px' }} />
+            <div style={{ fontSize: '0.75rem', color: '#555' }}>
+              © 2026 <span style={{ color: GOLD_BRIGHT, fontWeight: 'bold' }}>LA CASA DE BURGER</span> | {lang === 'es' ? 'TODOS LOS DERECHOS RESERVADOS' : 'ALL RIGHTS RESERVED'}
+            </div>
           </div>
         </div>
-        <div style={{
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  justifyContent: 'center',
-  width: '100%',
-  padding: '40px 0',
-  marginTop: '20px'
-}}>
-  <img
-    src="/logo.jpg"
-    alt="La Casa de Burger Logo"
-    style={{
-      height: "150px", // J'ai augmenté la taille ici (c'était 80px avant)
-      width: "auto",
-      borderRadius: "15px",
-      boxShadow: "0 4px 15px rgba(0,0,0,0.1)" // Petit effet d'ombre pour le relief
-    }}
-  />
-  <p style={{ marginTop: '15px', fontSize: '0.9rem', opacity: 0.7 }}>
-    © 2026 La Casa de Burger - Tous droits réservés
-  </p>
-</div>
       </footer>
 
-      {/* WHATSAPP FLOAT */}
       <a href="https://wa.me/34602597210" target="_blank" rel="noreferrer" className="whatsapp-float">
         <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="40" alt="WhatsApp" />
       </a>
 
-      {/* BOUTON FERMER CARTA */}
       {(showCardBurger || showCardPostres || showCardDrink) && (
         <button className="floating-close" onClick={closeAllMenus}>
           {lang === 'es' ? '✕ CERRAR CARTA' : '✕ CLOSE MENU'}
