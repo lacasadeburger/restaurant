@@ -255,7 +255,7 @@ const data = [
     id: "prod_gofre",
     image: gofre,
     object: "Waffle",
-    description: "Waffle con Nutella",
+    description: "Waffle con Nutella y salsa de chocolate",
     precio: "€6.00",
     category: "postre"
   },
