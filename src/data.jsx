@@ -246,7 +246,7 @@ const data = [
     id: "prod_gofre",
     image: gofre,
     object: "Waffle",
-    description: "Waffle con Nutella o Dulce de Leche o Azucar...Dime cual en Whatsapp",
+    description: "Waffle con Nutella",
     precio: "€6.00",
     category: "postre"
   },
