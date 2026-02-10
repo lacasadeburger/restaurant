@@ -23,7 +23,12 @@ const ALL_REVIEWS = [
   { es: "Increíble atención. Las patatas caseras son obligatorias. 10/10.", en: "Amazing service. Homemade fries are a must. 10/10.", author: "Sarah M." },
   { es: "La burger 'La Casa' es de otro planeta. La mejor que he probado.", en: "The 'La Casa' burger is from another planet. The best I've had.", author: "Juan P." },
   { es: "Sabor auténtico y productos frescos. Se nota la diferencia.", en: "Authentic flavor and fresh products. You can taste the difference.", author: "Elena G." },
-  { es: "Calidad gourmet a un precio muy justo. Repetiremos seguro.", en: "Gourmet quality at a very fair price. We will definitely repeat.", author: "Sonia B." }
+  { es: "Calidad gourmet a un precio muy justo. Repetiremos seguro.", en: "Gourmet quality at a very fair price. We will definitely repeat.", author: "Sonia B." },
+  { es: "He pedido a domicilio y llegó caliente y perfecto. ¡Sigan así!", en: "Ordered delivery and it arrived hot and perfect. Keep it up!", author: "Miguel T." },
+  { es: "La salsa de la casa es adictiva. El pan brioche es súper tierno.", en: "The house sauce is addictive. The brioche bun is super soft.", author: "Laura V." },
+  { es: "Best burgers in the area, hands down. Professional staff.", en: "Las mejores burgers de la zona, sin duda. Personal profesional.", author: "David K." },
+  { es: "¡Brutal! La cocción de la carne en su punto. Muy recomendable.", en: "Brutal! The meat was cooked to perfection. Highly recommended.", author: "Roberto F." },
+  { es: "A hidden gem in Torrevieja. Real ingredients and great taste.", en: "Una joya escondida en Torrevieja. Ingredientes reales y gran sabor.", author: "Emma S." }
 ];
 
 const SectionTitle = ({ children, id }) => (
@@ -55,8 +60,9 @@ export default function App() {
   }, []);
 
   const randomReviews = useMemo(() => {
+    // On mélange la liste de 10 et on prend les 2 premiers résultats
     return [...ALL_REVIEWS].sort(() => 0.5 - Math.random()).slice(0, 2);
-  }, []);
+  }, []); // [] signifie que le mélange change seulement quand on rafraîchit la page
 
   const addToCart = (i) => setCart(p => [...p, { ...i, uniqueKey: Math.random() }]);
   const removeFromCart = (idx) => setCart(p => p.filter((_, i) => i !== idx));
