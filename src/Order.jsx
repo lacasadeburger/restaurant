@@ -2,18 +2,17 @@ import React, { useState } from "react";
 import "./style.css";
 import Swal from "sweetalert2";
 
-// Composant de récapitulatif de commande complet
 export default function Order({ cart, removeFromCart, lang }) {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
   const [paymentOption, setPaymentOption] = useState("");
 
-  // --- SYSTÈME DE TRADUCTION INTERNE ---
+  // --- TRADUCTIONS ---
   const isEn = lang === 'en';
   const t = {
     empty: isEn ? "Your cart is empty" : "Tu carrito está vacío",
-    total: "Total",
+    totalLabel: "Total",
     placeholderName: isEn ? "Full Name" : "Tu Nombre",
     placeholderPhone: isEn ? "Phone Number" : "Tu Teléfono",
     placeholderAddress: isEn ? "Address (Empty for local pickup)" : "Dirección (Vacío para recoger en local)",
@@ -24,21 +23,26 @@ export default function Order({ cart, removeFromCart, lang }) {
     btnSelectPay: isEn ? "CHOOSE PAYMENT METHOD" : "ELIJA MÉTODO DE PAGO",
     sin: isEn ? "WITHOUT" : "SIN",
     alertTitle: isEn ? "Missing information" : "Falta información",
-    alertText: isEn ? "Please enter your name and phone." : "Por favor ingrese su nombre y téléphone.",
+    alertText: isEn ? "Please enter your name and phone." : "Por favor ingrese su nombre y teléfono.",
     alertPayTitle: isEn ? "Payment Method" : "Método de pago",
-    alertPayText: isEn ? "Please select a payment method." : "Por favor seleccione méthode de pago.",
+    alertPayText: isEn ? "Please select a payment method." : "Por favor seleccione método de pago.",
   };
 
-  // --- LOGIQUE DE CALCUL DU TOTAL ---
+  // --- CALCUL DU TOTAL (SÉCURISÉ CONTRE LES TRADUCTEURS) ---
   const getTotalPrice = () => {
     let total = 0;
     cart.forEach((item) => {
-      if (item.precio) {
-        // Cette ligne est la plus importante : elle enlève le "€" qu'il soit au début ou à la fin
-        // et transforme la virgule en point pour que JavaScript puisse faire l'addition.
-        const priceValue = Number(item.precio.toString().replace(/[^0-9,.]+/g, "").replace(",", "."));
-        total += priceValue;
-      }
+      // On récupère la donnée brute (pas celle affichée à l'écran)
+      const rawPrice = item.precio || item.totalPrice || "0";
+
+      // Nettoyage strict : ne garde que chiffres, points et virgules
+      const cleanPrice = rawPrice
+        .toString()
+        .replace(/[^0-9.,]/g, "")
+        .replace(",", ".");
+
+      const priceValue = parseFloat(cleanPrice) || 0;
+      total += priceValue;
     });
     return total.toFixed(2);
   };
@@ -68,25 +72,26 @@ export default function Order({ cart, removeFromCart, lang }) {
 
     let orderList = "";
     cart.forEach((item, index) => {
-      // On garde le format d'origine pour le message WhatsApp
-      orderList += `\n*${index + 1}. ${item.object.toUpperCase()}* - ${item.precio}\n`;
+      const displayPrice = item.precio || item.totalPrice || "0€";
+      orderList += `\n*${index + 1}. ${item.object.toUpperCase()}* - ${displayPrice}\n`;
       if (item.removed && item.removed.length > 0) {
         orderList += `    ❌ ${t.sin}: ${item.removed.join(", ").toUpperCase()}\n`;
       }
     });
 
+    const totalCalculated = getTotalPrice();
     const message = `*NUEVO PEDIDO - LA CASA DE BURGER*\n\n` +
                     `👤 *${isEn ? 'Customer' : 'Cliente'}:* ${name}\n` +
                     `📞 *Tel:* ${phone}\n` +
                     `📍 *${isEn ? 'Delivery' : 'Entrega'}:* ${address || (isEn ? "Pickup at local" : "Recogida en local")}\n\n` +
                     `📝 *${isEn ? 'ORDER DETAILS' : 'DETALLE DEL PEDIDO'}:*\n${orderList}\n` +
-                    `💰 *TOTAL:* ${getTotalPrice()}€\n` +
+                    `💰 *TOTAL:* ${totalCalculated}€\n` +
                     `💳 *${isEn ? 'PAYMENT' : 'PAGO'}:* ${paymentOption.toUpperCase()}`;
 
     const whatsappLink = `https://wa.me/34602597210?text=${encodeURIComponent(message)}`;
     window.open(whatsappLink, "_blank");
 
-    // Reset du formulaire
+    // Reset formulaire
     setName(""); setPhone(""); setAddress(""); setPaymentOption("");
   };
 
@@ -123,7 +128,7 @@ export default function Order({ cart, removeFromCart, lang }) {
                   fontWeight: "bold"
                 }}>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
-                  <span style={{ flex: 1, paddingRight: '10px' }}>{item.object}</span>
+                  <span translate="no" style={{ flex: 1, paddingRight: '10px' }}>{item.object}</span>
                   <button className="btn-cart" onClick={() => removeFromCart(index)} style={{ minWidth: '30px', cursor: 'pointer' }}>✕</button>
                 </div>
 
@@ -133,7 +138,7 @@ export default function Order({ cart, removeFromCart, lang }) {
                   </span>
                 )}
 
-                <span style={{ fontSize: "16px", color: "#fff", opacity: 0.8 }}>{item.precio}</span>
+                <span translate="no" style={{ fontSize: "16px", color: "#fff", opacity: 0.8 }}>{item.precio || item.totalPrice}</span>
               </li>
             ))
           )}
@@ -141,8 +146,8 @@ export default function Order({ cart, removeFromCart, lang }) {
 
         {cart.length > 0 && (
           <div className="info-product" style={{ width: '100%', maxWidth: '500px', padding: '0 20px', boxSizing: 'border-box' }}>
-            {/* AFFICHAGE DU TOTAL CALCULÉ */}
-            <p style={{color:"#ff4757", fontWeight: '900', fontSize: '2.2rem', margin: '25px 0', textAlign: 'center', textTransform: 'uppercase'}}>
+
+            <p translate="no" style={{color:"#ff4757", fontWeight: '900', fontSize: '2.2rem', margin: '25px 0', textAlign: 'center', textTransform: 'uppercase'}}>
               Total: {getTotalPrice()}€
             </p>
 
@@ -154,10 +159,12 @@ export default function Order({ cart, removeFromCart, lang }) {
               <p style={{ color: 'white', marginBottom: '15px', textAlign: 'center', fontWeight: 'bold', fontSize: '1.1rem' }}>{t.payTitle}</p>
               <div style={{ display: 'flex', gap: '15px' }}>
                 <button
+                  type="button"
                   onClick={() => setPaymentOption("Efectivo")}
                   style={{ flex: 1, padding: '15px 5px', borderRadius: '12px', border: '2px solid #ff4757', backgroundColor: paymentOption === "Efectivo" ? "#ff4757" : "transparent", color: 'white', fontWeight: 'bold', cursor: 'pointer', fontSize: '14px', transition: '0.3s' }}
                 >{t.cash}</button>
                 <button
+                  type="button"
                   onClick={() => setPaymentOption("Tarjeta")}
                   style={{ flex: 1, padding: '15px 5px', borderRadius: '12px', border: '2px solid #ff4757', backgroundColor: paymentOption === "Tarjeta" ? "#ff4757" : "transparent", color: 'white', fontWeight: 'bold', cursor: 'pointer', fontSize: '14px', transition: '0.3s' }}
                 >{t.card}</button>
