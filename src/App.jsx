@@ -14,7 +14,7 @@ import Drink from "./assets/drink.webp";
 import tripadvisor from "./assets/tripadvisor.png";
 import googleIcon from "./assets/google.png";
 import logo from "./assets/logo.jpg";
-import BurgerSignature from "./assets/burger-signature-torrevieja.webp";
+import BurgerSignature from "./assets/burger signature torrevieja.webp";
 
 const instagramIcon = "https://cdn-icons-png.flaticon.com/512/2111/2111463.png";
 
