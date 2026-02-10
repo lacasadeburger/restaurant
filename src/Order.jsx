@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./style.css";
 import Swal from "sweetalert2";
 
-// Ajout de lang dans les props ici
+// Composant de récapitulatif de commande
 export default function Order({ cart, removeFromCart, lang }) {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
@@ -29,11 +29,19 @@ export default function Order({ cart, removeFromCart, lang }) {
     alertPayText: isEn ? "Please select a payment method." : "Por favor seleccione método de pago.",
   };
 
+  // --- LOGIQUE DE CALCUL DU TOTAL (CORRIGÉE) ---
   const getTotalPrice = () => {
     let total = 0;
     cart.forEach((item) => {
       if (item.precio) {
-        const priceValue = Number(item.precio.toString().replace(/[^0-9,.]+/g, "").replace(",", "."));
+        // On nettoie la chaîne pour ne garder que les chiffres, points et virgules
+        // Puis on remplace la virgule par un point pour le calcul mathématique
+        const cleanPrice = item.precio
+          .toString()
+          .replace(/[^0-9.,]/g, "")
+          .replace(",", ".");
+
+        const priceValue = parseFloat(cleanPrice) || 0;
         total += priceValue;
       }
     });
@@ -82,6 +90,7 @@ export default function Order({ cart, removeFromCart, lang }) {
     const whatsappLink = `https://wa.me/34602597210?text=${encodeURIComponent(message)}`;
     window.open(whatsappLink, "_blank");
 
+    // Réinitialisation du formulaire après envoi
     setName(""); setPhone(""); setAddress(""); setPaymentOption("");
   };
 
@@ -100,7 +109,7 @@ export default function Order({ cart, removeFromCart, lang }) {
 
         <ul style={{ padding: 0, width: '100%', maxWidth: '600px', margin: '0 auto' }}>
           {cart.length === 0 ? (
-            <p style={{color: '#888', fontStyle: 'italic'}}>({t.empty})</p>
+            <p style={{color: '#888', fontStyle: 'italic', textAlign: 'center'}}>({t.empty})</p>
           ) : (
             cart.map((item, index) => (
               <li key={index} style={{
