@@ -129,6 +129,14 @@ export default function App() {
         @keyframes pulse-gold { 0% { transform: scale(1); } 50% { transform: scale(1.03); } 100% { transform: scale(1); } }
         .pulse-gold-btn { animation: pulse-gold 2s infinite ease-in-out; }
         .pulse-badge { animation: pulse-gold 3s infinite ease-in-out; }
+
+        /* AJOUTE ÇA ICI */
+@keyframes wobble-badge {
+  0% { transform: rotate(8deg) scale(1.1); }
+  50% { transform: rotate(-2deg) scale(1.15); }
+  100% { transform: rotate(8deg) scale(1.1); }
+}
+.wobble-badge { animation: wobble-badge 3s infinite ease-in-out; display: inline-block; }
       `}</style>
 
       <Helmet>
@@ -149,8 +157,26 @@ export default function App() {
         borderRadius: '0 0 50px 50px',
         borderBottom: `5px solid #ff4757`
       }}>
-        <div className="pulse-badge" style={{ position: 'absolute', top: '110px', right: '10%', background: GOLD_GRADIENT, color: '#000', padding: '6px 18px', borderRadius: '50px', fontWeight: '950', fontSize: '0.8rem', transform: 'rotate(5deg)', zIndex: 10, border: '2px solid #000' }}>🏆 #1 BURGER TORREVIEJA</div>
-
+      <div
+        className="wobble-badge"
+        style={{
+          position: 'absolute',
+          top: '110px',
+          right: '5%',
+          background: GOLD_GRADIENT,
+          color: '#000',
+          padding: '10px 25px',
+          borderRadius: '50px',
+          fontWeight: '950',
+          fontSize: '1.1rem',
+          zIndex: 10,
+          border: '3px solid #000',
+          boxShadow: '0 4px 15px rgba(0,0,0,0.5)',
+          whiteSpace: 'nowrap'
+        }}
+      >
+        🏆 #1 BURGER TORREVIEJA
+      </div>
         <div style={{ position: 'relative', zIndex: 2 }}>
           <h1 style={{ fontSize: '3.5rem', fontWeight: '900', textTransform: 'uppercase', textShadow: '2px 2px 15px rgba(0,0,0,0.9)', margin: 0 }}>
             La Casa de Burger <span style={{color:'#ff4757'}}>Torrevieja</span>
