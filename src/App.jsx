@@ -185,18 +185,6 @@ style={{
 
       {/* --- BODY --- */}
       <main className="menu-page-container">
-        {/* Testimonials */}
-        <section style={{ padding: '40px 0 20px' }} aria-label="Reseñas de clientes">
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px' }}>
-            {randomReviews.map((rev, index) => (
-              <div key={index} className="testimonial-card">
-                <div style={{ color: GOLD_BRIGHT, marginBottom: '10px', fontSize: '1.2rem' }}>⭐⭐⭐⭐⭐</div>
-                <p style={{ fontStyle: 'italic', fontSize: '0.95rem' }}>"{lang === 'es' ? rev.es : rev.en}"</p>
-                <p style={{ fontWeight: 'bold', marginTop: '10px', color: '#ff4757' }}>— {rev.author}</p>
-              </div>
-            ))}
-          </div>
-        </section>
 
         {/* Categories */}
         <section id="sec-burgers">
@@ -239,6 +227,32 @@ style={{
           <SectionTitle>{lang === 'es' ? 'Tu Pedido' : 'Your Order'}</SectionTitle>
           <Order cart={cart} removeFromCart={removeFromCart} lang={lang} />
         </section>
+        {/* --- AVIS CLIENTS PLACÉS SOUS LE PANIER --- */}
+<section style={{ padding: '20px 0 80px' }}>
+  <h3 style={{
+    color: GOLD_BRIGHT,
+    textTransform: 'uppercase',
+    marginBottom: '30px',
+    fontSize: '1.4rem',
+    letterSpacing: '1px'
+  }}>
+    {lang === 'es' ? 'Lo que dicen nuestros clientes' : 'What our customers say'}
+  </h3>
+  <div style={{
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+    gap: '20px',
+    textAlign: 'left'
+  }}>
+    {randomReviews.map((rev, index) => (
+      <div key={index} className="testimonial-card">
+        <div style={{ color: GOLD_BRIGHT, marginBottom: '10px', fontSize: '1.2rem' }}>⭐⭐⭐⭐⭐</div>
+        <p style={{ fontStyle: 'italic', fontSize: '0.95rem' }}>"{lang === 'es' ? rev.es : rev.en}"</p>
+        <p style={{ fontWeight: 'bold', marginTop: '10px', color: '#ff4757' }}>— {rev.author}</p>
+      </div>
+    ))}
+  </div>
+</section>
       </main>
 
       {/* --- FOOTER MASTER --- */}
