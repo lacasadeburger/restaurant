@@ -156,6 +156,14 @@ const data = [
     category: "food"
   },
   {
+    id: "prod_gofre",
+    image: gofre,
+    object: "Waffle",
+    description: "Waffle con Nutella",
+    precio: "€6.00",
+    category: "postre"
+  },
+  {
     id: "prod_bravas",
     image: bravas,
     object: "Patatas Bravas",
