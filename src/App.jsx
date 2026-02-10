@@ -223,60 +223,44 @@ style={{
       </header>
 
       {/* --- BODY --- */}
-      <main className="menu-page-container">
+        <main className="menu-page-container">
 
-        {/* Categories */}
-        <section id="sec-burgers">
-  <SectionTitle>{lang === 'es' ? 'Burgers Gourmet' : 'Gourmet Burgers'}</SectionTitle>
-  {showCardBurger ? (
-    <div className="grid-cards">
-      {burgers.map(item => (
-        <CardMenu
-          key={item.id}
-          {...item}
-          addToCart={addToCart}
-          lang={lang}
-          hasExtras={!noExtrasIds.includes(item.id)}
-        />
-      ))}
-    </div>
-  ) : (
-    <div className="promo-container" onClick={() => setShowCardBurger(true)}>
-      <img src={Burger} className="promo-img" alt="Explorar carta de hamburguesas artesanales" />
-      <button className="btn-overlay">{lang === 'es' ? 'VER CARTA' : 'SEE MENU'}</button>
-    </div>
-  )}
-</section>       
-   ) : (
-            <div className="promo-container" onClick={() => setShowCardBurger(true)}>
-              <img src={Burger} className="promo-img" alt="Explorar carta de hamburguesas artesanales" />
-              <button className="btn-overlay">{lang === 'es' ? 'VER CARTA' : 'SEE MENU'}</button>
-            </div>
-          )}
-        </section>
+          {/* Categories */}
+          <section id="sec-burgers">
+            <SectionTitle>{lang === 'es' ? 'Burgers Gourmet' : 'Gourmet Burgers'}</SectionTitle>
+            {showCardBurger ? (
+              <div className="grid-cards">
+                {burgers.map(item => (
+                  <CardMenu
+                    key={item.id}
+                    {...item}
+                    addToCart={addToCart}
+                    lang={lang}
+                    hasExtras={!noExtrasIds.includes(item.id)}
+                  />
+                ))}
+              </div>
+            ) : (
+              <div className="promo-container" onClick={() => setShowCardBurger(true)}>
+                <img src={Burger} className="promo-img" alt="Explorar carta" />
+                <button className="btn-overlay">{lang === 'es' ? 'VER CARTA' : 'SEE MENU'}</button>
+              </div>
+            )}
+          </section>
 
-        <section id="sec-bebidas">
-          <SectionTitle>{lang === 'es' ? 'Bebidas' : 'Drinks'}</SectionTitle>
-          {showCardDrink ? (
-            <div className="grid-cards">{drinks.map(item => <CardMenu key={item.id} {...item} isDrinkCard={true} addToCart={addToCart} lang={lang} />)}</div>
-          ) : (
-            <div className="promo-container" onClick={() => setShowCardDrink(true)}>
-              <img src={Drink} className="promo-img" alt="Refrescos y bebidas frías" />
-              <button className="btn-overlay">{lang === 'es' ? 'BEBIDAS' : 'DRINKS'}</button>
-            </div>
-          )}
-        </section>
-
-        <section id="sec-postres">
-          <SectionTitle>{lang === 'es' ? 'Postres Caseros' : 'Homemade Desserts'}</SectionTitle>
-          {showCardPostres ? (
-            <div className="grid-cards">{postres.map(item => <CardMenu key={item.id} {...item} isPostreCard={true} addToCart={addToCart} lang={lang} />)}</div>
-          ) : (
-            <div className="promo-container" onClick={() => setShowCardPostres(true)}>
-              <img src={Postre} className="promo-img" alt="Postres dulces artesanales" />
-              <button className="btn-overlay">{lang === 'es' ? 'POSTRES' : 'DESSERTS'}</button>
-            </div>
-          )}
+          <section id="sec-bebidas">
+            <SectionTitle>{lang === 'es' ? 'Bebidas' : 'Drinks'}</SectionTitle>
+            {showCardDrink ? (
+              <div className="grid-cards">
+                {drinks.map(item => <CardMenu key={item.id} {...item} isDrinkCard={true} addToCart={addToCart} lang={lang} />)}
+              </div>
+            ) : (
+              <div className="promo-container" onClick={() => setShowCardDrink(true)}>
+                <img src={Drink} className="promo-img" alt="Refrescos" />
+                <button className="btn-overlay">{lang === 'es' ? 'BEBIDAS' : 'DRINKS'}</button>
+              </div>
+            )}
+          </section>
         </section>
 
         <section id="order" style={{ paddingBottom: '100px' }}>
