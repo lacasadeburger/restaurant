@@ -67,16 +67,26 @@ export default function App() {
     if (showCardBurger) {
       setShowCardBurger(false);
       setShowCardDrink(true);
-      setTimeout(() => document.getElementById("sec-bebidas")?.scrollIntoView({ behavior: "smooth" }), 150);
+      // On utilise window.scrollTo pour être sûr que ça remonte au début de la section
+      setTimeout(() => {
+        const el = document.getElementById("sec-bebidas");
+        if(el) window.scrollTo({ top: el.offsetTop - 100, behavior: "smooth" });
+      }, 100);
     }
     else if (showCardDrink) {
       setShowCardDrink(false);
       setShowCardPostres(true);
-      setTimeout(() => document.getElementById("sec-postres")?.scrollIntoView({ behavior: "smooth" }), 150);
+      setTimeout(() => {
+        const el = document.getElementById("sec-postres");
+        if(el) window.scrollTo({ top: el.offsetTop - 100, behavior: "smooth" });
+      }, 100);
     }
     else if (showCardPostres) {
       setShowCardPostres(false);
-      setTimeout(() => document.getElementById("order")?.scrollIntoView({ behavior: "smooth" }), 150);
+      setTimeout(() => {
+        const el = document.getElementById("order");
+        if(el) window.scrollTo({ top: el.offsetTop - 100, behavior: "smooth" });
+      }, 100);
     }
   };
 
