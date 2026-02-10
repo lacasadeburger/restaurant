@@ -145,7 +145,6 @@ export default function App() {
 
           <div style={{ marginTop: '40px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '25px' }}>
             <button
-            <button
 onClick={() => { setShowCardBurger(true); setTimeout(() => document.getElementById("sec-burgers")?.scrollIntoView({ behavior: "smooth" }), 100); }}
 className="pulse-gold-btn"
 style={{
