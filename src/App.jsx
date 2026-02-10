@@ -64,8 +64,15 @@ export default function App() {
     return [...ALL_REVIEWS].sort(() => 0.5 - Math.random()).slice(0, 2);
   }, []); // [] signifie que le mélange change seulement quand on rafraîchit la page
 
-  const addToCart = (i) => setCart(p => [...p, { ...i, uniqueKey: Math.random() }]);
-  const removeFromCart = (idx) => setCart(p => p.filter((_, i) => i !== idx));
+  // IDs des produits qui ne doivent PAS avoir d'extras (ajout direct)
+    const noExtrasIds = ["prod_nuggets", "prod_croquetas", "prod_fritas", "prod_bravas"];
+
+    const addToCart = (item) => {
+      // Si le produit est dans la liste, on l'ajoute direct sans passer par les options
+      // (Cette logique sera utilisée par CardMenu pour savoir s'il doit ouvrir le modal ou non)
+      setCart(prev => [...prev, { ...item, uniqueKey: Math.random() }]);
+    };
+      const removeFromCart = (idx) => setCart(p => p.filter((_, i) => i !== idx));
   const scrollToOrder = () => document.getElementById("order")?.scrollIntoView({ behavior: "smooth" });
   const scrollToMenu = () => window.scrollTo({ top: (document.getElementById("sec-burgers")?.offsetTop || 0) - 100, behavior: "smooth" });
 
@@ -222,8 +229,22 @@ style={{
         <section id="sec-burgers">
           <SectionTitle>{lang === 'es' ? 'Burgers Gourmet' : 'Gourmet Burgers'}</SectionTitle>
           {showCardBurger ? (
-            <div className="grid-cards">{burgers.map(item => <CardMenu key={item.id} {...item} addToCart={addToCart} lang={lang} />)}</div>
-          ) : (
+            {showCardBurger ? (
+              <div className="grid-cards">
+                {burgers.map(item => (
+                  <CardMenu
+                    key={item.id}
+                    {...item}
+                    addToCart={addToCart}
+                    lang={lang}
+                    // On ajoute cette ligne pour désactiver les extras sur les snacks
+                    hasExtras={!["prod_nuggets", "prod_croquetas", "prod_fritas", "prod_bravas"].includes(item.id)}
+                  />
+                ))}
+              </div>
+            ) : (
+              // ... reste du code promo
+            )}          ) : (
             <div className="promo-container" onClick={() => setShowCardBurger(true)}>
               <img src={Burger} className="promo-img" alt="Explorar carta de hamburguesas artesanales" />
               <button className="btn-overlay">{lang === 'es' ? 'VER CARTA' : 'SEE MENU'}</button>
