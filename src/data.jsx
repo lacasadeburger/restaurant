@@ -252,14 +252,6 @@ const data = [
     category: "drink"
   },
   {
-    id: "prod_gofre",
-    image: gofre,
-    object: "Waffle",
-    description: "Waffle con Nutella y salsa de chocolate",
-    precio: "€6.00",
-    category: "postre"
-  },
-  {
     id: "prod_mahou",
     image: mahou,
     object: "Cerveza Mahou Clasica",
