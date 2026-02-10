@@ -158,9 +158,9 @@ const data = [
   {
     id: "prod_gofre",
     image: gofre,
-    object: "Waffle",
-    description: "Waffle con Nutella",
-    precio: "€6.00",
+    object: "Goffre XXL",
+    description: "Goffre Casera con Nutella",
+    precio: "€7.00",
     category: "postre"
   },
   {
