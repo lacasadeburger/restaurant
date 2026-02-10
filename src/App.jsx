@@ -255,87 +255,9 @@ style={{
           )}
         </section>
 
-        {/* --- SECTION PANIER AVEC AVIS ENCADRÉS --- */}
-        <section id="order" style={{ paddingBottom: '100px', position: 'relative' }}>
+        <section id="order" style={{ paddingBottom: '100px' }}>
           <SectionTitle>{lang === 'es' ? 'Tu Pedido' : 'Your Order'}</SectionTitle>
-
-          <div style={{
-            display: 'flex',
-            alignItems: 'flex-start',
-            justifyContent: 'center',
-            gap: '20px',
-            flexWrap: 'wrap',
-            padding: '0 10px'
-          }}>
-
-          {/* --- SECTION PANIER AVEC AVIS ENCADRÉS --- */}
-      <section id="order" style={{ paddingBottom: '100px', position: 'relative' }}>
-        <SectionTitle>{lang === 'es' ? 'Tu Pedido' : 'Your Order'}</SectionTitle>
-
-        <div style={{
-          display: 'flex',
-          alignItems: 'flex-start',
-          justifyContent: 'center',
-          gap: '20px',
-          flexWrap: 'wrap',
-          padding: '0 10px'
-        }}>
-
-          {/* Avis de Gauche */}
-          <div className="testimonial-card" style={{
-            maxWidth: '250px',
-            marginTop: '40px',
-            flex: '1 1 200px',
-            background: 'rgba(255,255,255,0.05)',
-            padding: '15px',
-            borderRadius: '15px',
-            borderLeft: '4px solid #FFD700',
-            marginBottom: '20px' // Ajout de la marge responsive ici
-          }}>
-            <div style={{ color: '#FFD700', fontSize: '1rem' }}>⭐⭐⭐⭐⭐</div>
-            <p style={{ fontStyle: 'italic', fontSize: '0.85rem' }}>"{lang === 'es' ? randomReviews[0]?.es : randomReviews[0]?.en}"</p>
-            <p style={{ fontWeight: 'bold', fontSize: '0.8rem', color: '#ff4757' }}>— {randomReviews[0]?.author}</p>
-          </div>
-
-          {/* LE PANIER (Centre) */}
-          <div style={{ flex: '2 1 400px', maxWidth: '600px', minWidth: '320px' }}>
-            <Order cart={cart} removeFromCart={removeFromCart} lang={lang} />
-          </div>
-
-          {/* Avis de Droite */}
-          <div className="testimonial-card" style={{
-            maxWidth: '250px',
-            marginTop: '80px',
-            flex: '1 1 200px',
-            background: 'rgba(255,255,255,0.05)',
-            padding: '15px',
-            borderRadius: '15px',
-            borderLeft: '4px solid #FFD700',
-            marginBottom: '20px' // Ajout de la marge responsive ici
-          }}>
-            <div style={{ color: '#FFD700', fontSize: '1rem' }}>⭐⭐⭐⭐⭐</div>
-            <p style={{ fontStyle: 'italic', fontSize: '0.85rem' }}>"{lang === 'es' ? randomReviews[1]?.es : randomReviews[1]?.en}"</p>
-            <p style={{ fontWeight: 'bold', fontSize: '0.8rem', color: '#ff4757' }}>— {randomReviews[1]?.author}</p>
-          </div>
-
-        </div>
-      </section>
-
-      {/* --- NOTE : J'AI SUPPRIMÉ L'AUTRE BLOC D'AVIS QUI ÉTAIT ICI POUR ÉVITER LE DOUBLON --- */}
-
-            {/* LE PANIER (Centre) */}
-            <div style={{ flex: '2 1 400px', maxWidth: '600px', minWidth: '320px' }}>
-              <Order cart={cart} removeFromCart={removeFromCart} lang={lang} />
-            </div>
-
-            {/* Avis de Droite */}
-            <div className="testimonial-card" style={{ maxWidth: '250px', marginTop: '80px', flex: '1 1 200px', background: 'rgba(255,255,255,0.05)', padding: '15px', borderRadius: '15px', borderLeft: '4px solid #FFD700' }}>
-              <div style={{ color: '#FFD700', fontSize: '1rem' }}>⭐⭐⭐⭐⭐</div>
-              <p style={{ fontStyle: 'italic', fontSize: '0.85rem' }}>"{lang === 'es' ? randomReviews[1]?.es : randomReviews[1]?.en}"</p>
-              <p style={{ fontWeight: 'bold', fontSize: '0.8rem', color: '#ff4757' }}>— {randomReviews[1]?.author}</p>
-            </div>
-
-          </div>
+          <Order cart={cart} removeFromCart={removeFromCart} lang={lang} />
         </section>
         {/* --- AVIS CLIENTS PLACÉS SOUS LE PANIER --- */}
 <section style={{ padding: '20px 0 80px' }}>
