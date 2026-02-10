@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./style.css";
 import Swal from "sweetalert2";
 
-// Composant de récapitulatif de commande
+// Composant de récapitulatif de commande complet
 export default function Order({ cart, removeFromCart, lang }) {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
@@ -24,32 +24,22 @@ export default function Order({ cart, removeFromCart, lang }) {
     btnSelectPay: isEn ? "CHOOSE PAYMENT METHOD" : "ELIJA MÉTODO DE PAGO",
     sin: isEn ? "WITHOUT" : "SIN",
     alertTitle: isEn ? "Missing information" : "Falta información",
-    alertText: isEn ? "Please enter your name and phone." : "Por favor ingrese su nombre y teléfono.",
+    alertText: isEn ? "Please enter your name and phone." : "Por favor ingrese su nombre y téléphone.",
     alertPayTitle: isEn ? "Payment Method" : "Método de pago",
-    alertPayText: isEn ? "Please select a payment method." : "Por favor seleccione método de pago.",
+    alertPayText: isEn ? "Please select a payment method." : "Por favor seleccione méthode de pago.",
   };
 
-  // --- LOGIQUE DE CALCUL DU TOTAL (ULTRA-SÉCURISÉE) ---
+  // --- LOGIQUE DE CALCUL DU TOTAL ---
   const getTotalPrice = () => {
     let total = 0;
-    cart.forEach((item, index) => {
-      // On vérifie toutes les sources possibles pour le prix
-      const rawPrice = item.precio || item.price || "0";
-
-      // Nettoyage : garde seulement les chiffres, points et virgules
-      const cleanPrice = rawPrice
-        .toString()
-        .replace(/[^0-9.,]/g, "")
-        .replace(",", ".");
-
-      const priceValue = parseFloat(cleanPrice) || 0;
-      total += priceValue;
-
-      // LOG DE DIAGNOSTIC (Visible en faisant F12 dans le navigateur)
-      console.log(`Produit ${index}: ${item.object} | Prix brut: ${rawPrice} | Calculé: ${priceValue}`);
+    cart.forEach((item) => {
+      if (item.precio) {
+        // Cette ligne est la plus importante : elle enlève le "€" qu'il soit au début ou à la fin
+        // et transforme la virgule en point pour que JavaScript puisse faire l'addition.
+        const priceValue = Number(item.precio.toString().replace(/[^0-9,.]+/g, "").replace(",", "."));
+        total += priceValue;
+      }
     });
-
-    console.log("TOTAL FINAL CALCULÉ:", total.toFixed(2));
     return total.toFixed(2);
   };
 
@@ -78,6 +68,7 @@ export default function Order({ cart, removeFromCart, lang }) {
 
     let orderList = "";
     cart.forEach((item, index) => {
+      // On garde le format d'origine pour le message WhatsApp
       orderList += `\n*${index + 1}. ${item.object.toUpperCase()}* - ${item.precio}\n`;
       if (item.removed && item.removed.length > 0) {
         orderList += `    ❌ ${t.sin}: ${item.removed.join(", ").toUpperCase()}\n`;
@@ -95,6 +86,7 @@ export default function Order({ cart, removeFromCart, lang }) {
     const whatsappLink = `https://wa.me/34602597210?text=${encodeURIComponent(message)}`;
     window.open(whatsappLink, "_blank");
 
+    // Reset du formulaire
     setName(""); setPhone(""); setAddress(""); setPaymentOption("");
   };
 
@@ -149,6 +141,7 @@ export default function Order({ cart, removeFromCart, lang }) {
 
         {cart.length > 0 && (
           <div className="info-product" style={{ width: '100%', maxWidth: '500px', padding: '0 20px', boxSizing: 'border-box' }}>
+            {/* AFFICHAGE DU TOTAL CALCULÉ */}
             <p style={{color:"#ff4757", fontWeight: '900', fontSize: '2.2rem', margin: '25px 0', textAlign: 'center', textTransform: 'uppercase'}}>
               Total: {getTotalPrice()}€
             </p>
