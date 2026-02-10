@@ -2,15 +2,12 @@ import React, { useState, useMemo, useEffect } from "react";
 import bgCard from "./assets/bg-c.jpg";
 
 export default function CardMenu(props) {
-  // AJOUT : on récupère hasExtras ici
   const { image, object, description, precio, addToCart, isDrinkCard, isPostreCard, lang, hasExtras } = props;
   const isEn = lang === 'en';
 
-  // --- CONFIGURATION VISUELLE OR (HARMONISÉE APP.JSX) ---
   const GOLD_GRADIENT = "linear-gradient(135deg, #BF953F 0%, #FCF6BA 45%, #B38728 55%, #FBF5B7 100%)";
   const GOLD_BRIGHT = "#FFD700";
 
-  // --- TRADUCTION INTÉGRALE ---
   const t = {
     extra: isEn ? "Extras" : "Extras",
     remove: isEn ? "Remove" : "Quitar",
@@ -141,7 +138,8 @@ export default function CardMenu(props) {
       borderRadius: "20px",
       display: "flex",
       flexDirection: "column",
-      height: "100%",
+      height: "auto", /* MODIFIÉ : laisse la carte s'adapter */
+      minHeight: "350px", /* Optionnel : base minimum */
       position: "relative",
       padding: "10px",
       border: "1px solid rgba(255, 215, 0, 0.2)",
@@ -159,7 +157,7 @@ export default function CardMenu(props) {
           transform: rotate(5deg);
         }
 
-        .card-content { padding: 5px; display: flex; flex-direction: column; gap: 10px; flex-grow: 1; }
+        .card-content { padding: 5px; display: flex; flex-direction: column; gap: 10px; flex-grow: 0; }
 
         .info-box, .options-box {
           background: rgba(0, 0, 0, 0.8) !important;
@@ -182,7 +180,7 @@ export default function CardMenu(props) {
         .chip.active { background: ${GOLD_GRADIENT} !important; color: #000 !important; border: 1px solid #000; font-weight: 950; }
         .chip.remove.active { background: #ff4757 !important; color: #fff !important; text-decoration: line-through; border: 1px solid #000; }
 
-        .card-footer { padding: 10px 5px 15px; }
+        .card-footer { padding: 10px 5px 15px; margin-top: auto; }
 
         .add-btn-gold {
           width: 100%; background: ${GOLD_GRADIENT} !important; color: #000 !important;
@@ -202,18 +200,24 @@ export default function CardMenu(props) {
       </div>
 
       <div className="card-content">
+        {/* translate="no" ajouté pour protéger le nom du produit */}
         <div className="info-box">
-          <h3 className="card-title">{object}</h3>
+          <h3 className="card-title" translate="no">{object}</h3>
           <p className="card-description">{displayDescription}</p>
         </div>
 
-        {/* MODIFICATION ICI : On vérifie hasExtras */}
         {!isDrinkCard && !isPostreCard && hasExtras && (
           <div className="options-box">
             <span className="option-group-label">{t.extra}</span>
             <div className="chips-container">
               {extrasList.map(item => (
-                <button key={item.id} type="button" className={`chip ${extraIngredients.includes(item.id) ? 'active' : ''}`} onClick={() => toggleExtra(item.id)}>
+                <button
+                  key={item.id}
+                  type="button"
+                  translate="no"
+                  className={`chip ${extraIngredients.includes(item.id) ? 'active' : ''}`}
+                  onClick={() => toggleExtra(item.id)}
+                >
                   +{item.price.toFixed(2)} {item.name}
                 </button>
               ))}
@@ -221,7 +225,13 @@ export default function CardMenu(props) {
             <span className="option-group-label">{t.remove}</span>
             <div className="chips-container">
               {removableList.map(ing => (
-                <button key={ing.id} type="button" className={`chip remove ${removedIngredients.includes(ing.id) ? 'active' : ''}`} onClick={() => toggleRemove(ing.id)}>
+                <button
+                  key={ing.id}
+                  type="button"
+                  translate="no"
+                  className={`chip remove ${removedIngredients.includes(ing.id) ? 'active' : ''}`}
+                  onClick={() => toggleRemove(ing.id)}
+                >
                   {ing.name}
                 </button>
               ))}
@@ -231,7 +241,8 @@ export default function CardMenu(props) {
       </div>
 
       <div className="card-footer">
-        <button className={`add-btn-gold ${isAdded ? 'success' : ''}`} onClick={handleAddClick}>
+        {/* translate="no" ici aussi pour garantir le clic sur le bon bouton technique */}
+        <button className={`add-btn-gold ${isAdded ? 'success' : ''}`} onClick={handleAddClick} translate="no">
           {isAdded ? <span>{t.ready}</span> : (
             <>
               <span>{t.add}</span>
