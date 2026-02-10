@@ -115,7 +115,7 @@ export default function App() {
         padding: '160px 20px 80px',
         textAlign: 'center',
         position: 'relative',
-        backgroundImage: `linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.9)), url(${BurgerSignature})`,
+        backgroundImage: `linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.3)), url(${BurgerSignature})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         borderRadius: '0 0 50px 50px',
@@ -252,14 +252,19 @@ export default function App() {
           </div>
 
           <div style={{ backgroundColor: '#0a0a0a', padding: '30px', borderRadius: '15px', border: '1px solid #222', textAlign: 'justify' }}>
-            <p style={{ color: '#777', fontSize: '0.8rem', lineHeight: '1.8', margin: 0 }}>
-              <strong>🇪🇸 ESPAÑOL:</strong> La mejor hamburguesería artesanal de Torrevieja. Smash Burgers, comida a domicilio rápida, hamburguesas gourmet cerca de Playa del Cura.
-              <br /><strong>🇬🇧 ENGLISH:</strong> Best artisan burger shop in Torrevieja. Smash Burgers, fast home delivery, gourmet burgers near Playa del Cura.
-              <br /><strong>🇫🇷 FRANÇAIS:</strong> Meilleur burger artisanal de Torrevieja. Smash Burgers, livraison rapide à domicile.
-              <br /><br />
-              <strong>ZONAS DE REPARTO:</strong> Playa del Cura, Playa de los Locos, Paseo Marítimo, La Siesta, Aguas Nuevas, Los Balcones, Punta Prima, La Mata, Los Altos, El Acequión, La Veleta, San Roque, Rocío del Mar.
-            </p>
-          </div>
+  <p style={{ color: '#777', fontSize: '0.8rem', lineHeight: '1.8', margin: 0 }}>
+    <strong>🇪🇸 ESPAÑOL:</strong> Las mejores hamburguesas de Torrevieja. Smash burgers gourmet, comida para llevar y a domicilio. Playa del Cura, Playa de los Locos, Centro.
+    <br /><strong>🇬🇧 ENGLISH:</strong> Best burgers in Torrevieja, gourmet smash burgers, takeaway near me, food delivery Costa Blanca.
+    <br /><strong>🇫🇷 FRANÇAIS:</strong> Meilleur burger Torrevieja, livraison à domicile, cuisine artisanale et frites maison.
+    <br /><strong>🇩🇪 DEUTSCH:</strong> Beste Burger Torrevieja, Lieferservice, Smash Burger Alicante Region.
+    <br /><strong>🇳🇱 NEDERLANDS:</strong> Beste hamburgers Torrevieja, ambachtelijke burgers, eten bestellen en bezorgen.
+    <br /><strong>🇷🇺 РУССКИЙ:</strong> Лучшие бургеры в Торревьехе, доставка еды на дом, крафтовые бургеры.
+    <br /><strong>🇸🇪 SVENSKA:</strong> Bästa burgarna i Torrevieja, matleverans, takeaway i närheten.
+    <br /><strong>🇵🇱 POLSKI:</strong> Najlepsze burgery w Torrevieja, dostawa do domu, burgery rzemieślnicze.
+    <br /><br />
+    <strong>ZONAS DE REPARTO:</strong> Playa del Cura, Playa de los Locos, Paseo Marítimo, La Siesta, Aguas Nuevas, Los Balcones, Punta Prima, La Mata, Los Altos, El Acequión, La Veleta, San Roque, Rocío del Mar, Torreta, Lago Jardín, El Salado.
+  </p>
+</div>
 
           <div style={{ marginTop: '40px' }}>
             <img src={logo} alt="La Casa de Burger Oficial" style={{ height: "120px", borderRadius: "15px", marginBottom: '15px' }} />
