@@ -1,27 +1,22 @@
 import React from "react";
 
-/**
- * Nav Component - VERSION AUTOMATISÉE (13h-23h)
- * - Statut d'ouverture intelligent (13h00 - 23h00)
- * - Logo intégral (contain)
- * - Structure 3 colonnes optimisée
- */
-
 export default function Nav({ scrollToOrder, cartLength, totalPrice, lang, logo }) {
   const isEn = lang === 'en';
 
-  // --- LOGIQUE D'OUVERTURE AUTOMATIQUE (13h à 23h) ---
+  // --- LOGIQUE D'OUVERTURE AUTOMATIQUE ---
   const now = new Date();
   const currentHour = now.getHours();
   const currentMinute = now.getMinutes();
   const currentTime = currentHour + currentMinute / 60;
 
-  // Tes horaires : Ouvert si l'heure est entre 13.0 et 23.0
-  const isOpen = currentTime >= 13 && currentTime < 22;
+  // AJUSTEMENT : Ouvert de 13h00 à 23h00
+  const isOpen = currentTime >= 13 && currentTime < 23;
 
-  const statusColor = isOpen ? '#2ed573' : '#ff4757'; // Vert si ouvert, Rouge si fermé
+  // Couleurs fixes pour le CSS interne
+  const colorOpen = '#2ed573';
+  const colorClosed = '#ff4757';
+  const statusColor = isOpen ? colorOpen : colorClosed;
 
-  // CONFIGURATION DESIGN OR & ROUGE
   const GOLD_GRADIENT = "linear-gradient(135deg, #BF953F 0%, #FCF6BA 45%, #B38728 55%, #FBF5B7 100%)";
   const GOLD_BRIGHT = "#FFD700";
 
@@ -31,7 +26,7 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang, logo 
       top: 0,
       left: 0,
       width: '100%',
-      height: '80px',
+      height: '90px',
       backgroundColor: 'rgba(0, 0, 0, 0.98)',
       backdropFilter: 'blur(15px)',
       WebkitBackdropFilter: 'blur(15px)',
@@ -45,8 +40,8 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang, logo 
       boxShadow: '0 4px 20px rgba(0,0,0,0.8)'
     }}>
 
-      {/* --- COLONNE GAUCHE : BOUTON APPEL --- */}
-      <div style={{ width: '25%', display: 'flex', justifyContent: 'flex-start' }}>
+      {/* --- GAUCHE : APPEL --- */}
+      <div style={{ width: '20%', display: 'flex', justifyContent: 'flex-start' }}>
         <a href="tel:+34602597210" style={{
           background: GOLD_GRADIENT,
           color: '#000',
@@ -64,79 +59,78 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang, logo 
         </a>
       </div>
 
-      {/* --- COLONNE CENTRALE : LOGO ET STATUT --- */}
+      {/* --- CENTRE : LOGO ET STATUT --- */}
       <div style={{
-        width: '40%',
+        width: '45%',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center'
       }}>
-        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '52px', width: '100%' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '40px', width: '100%' }}>
           <img
             src={logo}
-            alt="La Casa de Burger Logo"
-            style={{
-              maxHeight: '100%',
-              maxWidth: '100%',
-              width: 'auto',
-              height: 'auto',
-              objectFit: 'contain',
-              filter: 'drop-shadow(0px 0px 5px rgba(255, 215, 0, 0.3))'
-            }}
+            alt="Logo"
+            style={{ maxHeight: '100%', maxWidth: '100%', objectFit: 'contain' }}
           />
         </div>
 
-        {/* Statut d'ouverture dynamique */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '5px', marginTop: '4px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginTop: '8px' }}>
           <div style={{
-            width: '7px',
-            height: '7px',
+            width: '10px',
+            height: '10px',
             backgroundColor: statusColor,
             borderRadius: '50%',
-            animation: isOpen ? 'glow-status 2s infinite' : 'none',
-            boxShadow: isOpen ? `0 0 10px ${statusColor}` : 'none'
+            boxShadow: `0 0 12px ${statusColor}`,
+            animation: isOpen ? 'blink-glow 1.5s infinite' : 'none'
           }}></div>
-          <span style={{
-            color: statusColor,
-            fontSize: '0.65rem',
-            fontWeight: '900',
-            textTransform: 'uppercase',
-            letterSpacing: '0.5px'
-          }}>
-            {isOpen
-              ? (isEn ? "Open Now" : "Abierto")
-              : (isEn ? "Closed" : "Cerrado")}
+          <span
+            style={{
+              color: statusColor,
+              fontSize: '1rem',
+              fontWeight: '950',
+              textTransform: 'uppercase',
+              letterSpacing: '1.2px',
+              // On applique l'animation néon directement ici via une classe
+              animation: isOpen ? 'neon-pulse 1.5s infinite ease-in-out' : 'none'
+            }}
+          >
+            {isOpen ? (isEn ? "OPEN NOW" : "ABIERTO") : (isEn ? "CLOSED" : "CERRADO")}
           </span>
         </div>
       </div>
 
-      {/* --- COLONNE DROITE : PANIER --- */}
+      {/* --- DROITE : PANIER --- */}
       <div
         onClick={scrollToOrder}
         style={{ width: '35%', display: 'flex', justifyContent: 'flex-end', cursor: 'pointer' }}
       >
-        <div className={`cart-chip ${cartLength > 0 ? 'pulse-active' : ''}`} style={{
+        <div className={cartLength > 0 ? 'pulse-active' : ''} style={{
           backgroundColor: '#ff4757',
-          padding: '8px 10px',
+          padding: '8px 12px',
           borderRadius: '12px',
           border: `2px solid ${GOLD_BRIGHT}`,
           display: 'flex',
           alignItems: 'center',
           gap: '6px'
         }}>
-          <span style={{ fontSize: '1.1rem' }}>🛒</span>
-          <span style={{ color: '#fff', fontWeight: '950', fontSize: '1.05rem' }}>
+          <span style={{ fontSize: '1.2rem' }}>🛒</span>
+          <span style={{ color: '#fff', fontWeight: '950', fontSize: '1.1rem' }}>
             {totalPrice}€
           </span>
         </div>
       </div>
 
       <style>{`
-        @keyframes glow-status {
-          0% { box-shadow: 0 0 0 0 rgba(46, 213, 115, 0.7); }
-          70% { box-shadow: 0 0 0 6px rgba(46, 213, 115, 0); }
-          100% { box-shadow: 0 0 0 0 rgba(46, 213, 115, 0); }
+        @keyframes blink-glow {
+          0% { opacity: 1; transform: scale(1); }
+          50% { opacity: 0.6; transform: scale(1.2); }
+          100% { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes neon-pulse {
+          0%, 100% { text-shadow: 0 0 5px #fff, 0 0 10px ${colorOpen}; }
+          50% { text-shadow: 0 0 10px #fff, 0 0 20px ${colorOpen}, 0 0 30px ${colorOpen}; }
         }
 
         .pulse-active {
@@ -148,12 +142,6 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang, logo 
           5% { transform: scale(1.1) rotate(3deg); }
           10% { transform: scale(1) rotate(-3deg); }
           15% { transform: scale(1.1) rotate(0); }
-        }
-
-        @media (max-width: 360px) {
-          nav { height: 75px; }
-          .cart-chip { padding: 6px 8px; }
-          .cart-chip span { font-size: 0.9rem !important; }
         }
       `}</style>
     </nav>
