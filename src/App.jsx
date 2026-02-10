@@ -227,24 +227,27 @@ style={{
 
         {/* Categories */}
         <section id="sec-burgers">
-          <SectionTitle>{lang === 'es' ? 'Burgers Gourmet' : 'Gourmet Burgers'}</SectionTitle>
-          {showCardBurger ? (
-            {showCardBurger ? (
-              <div className="grid-cards">
-                {burgers.map(item => (
-                  <CardMenu
-                    key={item.id}
-                    {...item}
-                    addToCart={addToCart}
-                    lang={lang}
-                    // On ajoute cette ligne pour désactiver les extras sur les snacks
-                    hasExtras={!["prod_nuggets", "prod_croquetas", "prod_fritas", "prod_bravas"].includes(item.id)}
-                  />
-                ))}
-              </div>
-            ) : (
-              // ... reste du code promo
-            )}          ) : (
+  <SectionTitle>{lang === 'es' ? 'Burgers Gourmet' : 'Gourmet Burgers'}</SectionTitle>
+  {showCardBurger ? (
+    <div className="grid-cards">
+      {burgers.map(item => (
+        <CardMenu
+          key={item.id}
+          {...item}
+          addToCart={addToCart}
+          lang={lang}
+          hasExtras={!noExtrasIds.includes(item.id)}
+        />
+      ))}
+    </div>
+  ) : (
+    <div className="promo-container" onClick={() => setShowCardBurger(true)}>
+      <img src={Burger} className="promo-img" alt="Explorar carta de hamburguesas artesanales" />
+      <button className="btn-overlay">{lang === 'es' ? 'VER CARTA' : 'SEE MENU'}</button>
+    </div>
+  )}
+</section>       
+   ) : (
             <div className="promo-container" onClick={() => setShowCardBurger(true)}>
               <img src={Burger} className="promo-img" alt="Explorar carta de hamburguesas artesanales" />
               <button className="btn-overlay">{lang === 'es' ? 'VER CARTA' : 'SEE MENU'}</button>
