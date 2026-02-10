@@ -32,6 +32,7 @@ import combo2 from "./assets/combo2.png";
 import combo3 from "./assets/combo3.png";
 import mexicana from "./assets/mexicana.png";
 import smash from "./assets/smash.png";
+import cheddarbacon from "./assets/cheddarbacon.webp";
 
 const data = [
   {
@@ -160,6 +161,14 @@ const data = [
     object: "Patatas Bravas",
     description: "Patatas Bravas Caseras con Salsa Brava de la Casa (Picante)",
     precio: "€5.50",
+    category: "food"
+  },
+  {
+    id: "prod_cheddar-bacon",
+    image: cheddarbacon,
+    object: "Patatas Cheddar y Bacon",
+    description: "Patatas Fritas Caseras con Salsa de Cheddar de la Casa y Bacon",
+    precio: "€8.50",
     category: "food"
   },
   {
