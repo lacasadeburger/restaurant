@@ -65,7 +65,7 @@ export default function App() {
   }, []); // [] signifie que le mélange change seulement quand on rafraîchit la page
 
   // IDs des produits qui ne doivent PAS avoir d'extras (ajout direct)
-    const noExtrasIds = ["prod_nuggets", "prod_croquetas", "prod_fritas", "prod_bravas"];
+    const noExtrasIds = ["prod_nuggets", "prod_croquetas", "prod_fritas", "prod_bravas", "prod_cheddar-bacon"];
 
     const addToCart = (item) => {
       // Si le produit est dans la liste, on l'ajoute direct sans passer par les options
