@@ -29,22 +29,27 @@ export default function Order({ cart, removeFromCart, lang }) {
     alertPayText: isEn ? "Please select a payment method." : "Por favor seleccione método de pago.",
   };
 
-  // --- LOGIQUE DE CALCUL DU TOTAL (CORRIGÉE) ---
+  // --- LOGIQUE DE CALCUL DU TOTAL (ULTRA-SÉCURISÉE) ---
   const getTotalPrice = () => {
     let total = 0;
-    cart.forEach((item) => {
-      if (item.precio) {
-        // On nettoie la chaîne pour ne garder que les chiffres, points et virgules
-        // Puis on remplace la virgule par un point pour le calcul mathématique
-        const cleanPrice = item.precio
-          .toString()
-          .replace(/[^0-9.,]/g, "")
-          .replace(",", ".");
+    cart.forEach((item, index) => {
+      // On vérifie toutes les sources possibles pour le prix
+      const rawPrice = item.precio || item.price || "0";
 
-        const priceValue = parseFloat(cleanPrice) || 0;
-        total += priceValue;
-      }
+      // Nettoyage : garde seulement les chiffres, points et virgules
+      const cleanPrice = rawPrice
+        .toString()
+        .replace(/[^0-9.,]/g, "")
+        .replace(",", ".");
+
+      const priceValue = parseFloat(cleanPrice) || 0;
+      total += priceValue;
+
+      // LOG DE DIAGNOSTIC (Visible en faisant F12 dans le navigateur)
+      console.log(`Produit ${index}: ${item.object} | Prix brut: ${rawPrice} | Calculé: ${priceValue}`);
     });
+
+    console.log("TOTAL FINAL CALCULÉ:", total.toFixed(2));
     return total.toFixed(2);
   };
 
@@ -90,7 +95,6 @@ export default function Order({ cart, removeFromCart, lang }) {
     const whatsappLink = `https://wa.me/34602597210?text=${encodeURIComponent(message)}`;
     window.open(whatsappLink, "_blank");
 
-    // Réinitialisation du formulaire après envoi
     setName(""); setPhone(""); setAddress(""); setPaymentOption("");
   };
 
