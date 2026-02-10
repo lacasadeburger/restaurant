@@ -54,7 +54,7 @@ const data = [
   {
     id: "prod_india",
     image: india,
-    object: " La India",
+    object: "La India",
     description: "Pollo Marinado con Especias, Cheddar, Tomate, Cebolla, Lechuga, Pepenillos",
     precio: "€9.00",
     category: "food"
@@ -182,7 +182,7 @@ const data = [
   {
     id: "prod_cocacola",
     image: cocaCola,
-    object: "Coca-Cola ",
+    object: "Coca-Cola",
     description: "Sabor Original Lata 330ml",
     precio: "€2.20",
     category: "drink"
@@ -190,7 +190,7 @@ const data = [
   {
     id: "prod_cocazero",
     image: cocaZero,
-    object: "Coca-Cola Zero ",
+    object: "Coca-Cola Zero",
     description: "Zero Azúcar Lata 330ml",
     precio: "€2.20",
     category: "drink"
@@ -198,7 +198,7 @@ const data = [
   {
     id: "prod_fantalimon",
     image: fantaLimon,
-    object: "Fanta Limón ",
+    object: "Fanta Limón",
     description: "Fanta Limón Lata 330ml",
     precio: "€2.20",
     category: "drink"
@@ -206,7 +206,7 @@ const data = [
   {
     id: "prod_fantanaranja",
     image: fantaNaranja,
-    object: "Fanta Naranja ",
+    object: "Fanta Naranja",
     description: "Fanta Naranja Lata 33cl",
     precio: "€2.20",
     category: "drink"
@@ -214,7 +214,7 @@ const data = [
   {
     id: "prod_sprite",
     image: sprite,
-    object: "Sprite ",
+    object: "Sprite",
     description: "Sprite Lata 33cl",
     precio: "€2.20",
     category: "drink"
@@ -238,7 +238,7 @@ const data = [
   {
     id: "prod_sanpellegrino",
     image: aguaSanPellegrino,
-    object: "Agua ",
+    object: "Agua",
     description: "Agua con Gas 50cl",
     precio: "€3.00",
     category: "drink"
