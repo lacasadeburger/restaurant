@@ -63,9 +63,21 @@ export default function App() {
   const scrollToOrder = () => document.getElementById("order")?.scrollIntoView({ behavior: "smooth" });
   const scrollToMenu = () => window.scrollTo({ top: (document.getElementById("sec-burgers")?.offsetTop || 0) - 100, behavior: "smooth" });
 
-  const closeAllMenus = () => {
-    setShowCardBurger(false); setShowCardPostres(false); setShowCardDrink(false);
-    window.scrollTo({ top: 0, behavior: "smooth" });
+  const handleNextStep = () => {
+    if (showCardBurger) {
+      setShowCardBurger(false);
+      setShowCardDrink(true);
+      setTimeout(() => document.getElementById("sec-bebidas")?.scrollIntoView({ behavior: "smooth" }), 150);
+    }
+    else if (showCardDrink) {
+      setShowCardDrink(false);
+      setShowCardPostres(true);
+      setTimeout(() => document.getElementById("sec-postres")?.scrollIntoView({ behavior: "smooth" }), 150);
+    }
+    else if (showCardPostres) {
+      setShowCardPostres(false);
+      setTimeout(() => document.getElementById("order")?.scrollIntoView({ behavior: "smooth" }), 150);
+    }
   };
 
   const burgers = data.filter(i => i.category === "food");
