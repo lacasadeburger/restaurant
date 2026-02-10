@@ -223,93 +223,83 @@ style={{
       </header>
 
       {/* --- BODY --- */}
-      <main className="menu-page-container">
+            <main className="menu-page-container">
 
-        {/* Categories */}
-        <section id="sec-burgers">
-  <SectionTitle>{lang === 'es' ? 'Burgers Gourmet' : 'Gourmet Burgers'}</SectionTitle>
-  {showCardBurger ? (
-    <div className="grid-cards">
-      {burgers.map(item => (
-        <CardMenu
-          key={item.id}
-          {...item}
-          addToCart={addToCart}
-          lang={lang}
-          hasExtras={!noExtrasIds.includes(item.id)}
-        />
-      ))}
-    </div>
-  ) : (
-    <div className="promo-container" onClick={() => setShowCardBurger(true)}>
-      <img src={Burger} className="promo-img" alt="Explorar carta de hamburguesas artesanales" />
-      <button className="btn-overlay">{lang === 'es' ? 'VER CARTA' : 'SEE MENU'}</button>
-    </div>
-  )}
-</section>
-   ) : (
-            <div className="promo-container" onClick={() => setShowCardBurger(true)}>
-              <img src={Burger} className="promo-img" alt="Explorar carta de hamburguesas artesanales" />
-              <button className="btn-overlay">{lang === 'es' ? 'VER CARTA' : 'SEE MENU'}</button>
-            </div>
-          )}
-        </section>
+              {/* Categories: BURGERS */}
+              <section id="sec-burgers">
+                <SectionTitle>{lang === 'es' ? 'Burgers Gourmet' : 'Gourmet Burgers'}</SectionTitle>
+                {showCardBurger ? (
+                  <div className="grid-cards">
+                    {burgers.map(item => (
+                      <CardMenu
+                        key={item.id}
+                        {...item}
+                        addToCart={addToCart}
+                        lang={lang}
+                        hasExtras={!noExtrasIds.includes(item.id)}
+                      />
+                    ))}
+                  </div>
+                ) : (
+                  <div className="promo-container" onClick={() => setShowCardBurger(true)}>
+                    <img src={Burger} className="promo-img" alt="Explorar carta de hamburguesas artesanales" />
+                    <button className="btn-overlay">{lang === 'es' ? 'VER CARTA' : 'SEE MENU'}</button>
+                  </div>
+                )}
+              </section>
 
-        <section id="sec-bebidas">
-          <SectionTitle>{lang === 'es' ? 'Bebidas' : 'Drinks'}</SectionTitle>
-          {showCardDrink ? (
-            <div className="grid-cards">{drinks.map(item => <CardMenu key={item.id} {...item} isDrinkCard={true} addToCart={addToCart} lang={lang} />)}</div>
-          ) : (
-            <div className="promo-container" onClick={() => setShowCardDrink(true)}>
-              <img src={Drink} className="promo-img" alt="Refrescos y bebidas frías" />
-              <button className="btn-overlay">{lang === 'es' ? 'BEBIDAS' : 'DRINKS'}</button>
-            </div>
-          )}
-        </section>
+              {/* Categories: DRINKS */}
+              <section id="sec-bebidas">
+                <SectionTitle>{lang === 'es' ? 'Bebidas' : 'Drinks'}</SectionTitle>
+                {showCardDrink ? (
+                  <div className="grid-cards">
+                    {drinks.map(item => <CardMenu key={item.id} {...item} isDrinkCard={true} addToCart={addToCart} lang={lang} />)}
+                  </div>
+                ) : (
+                  <div className="promo-container" onClick={() => setShowCardDrink(true)}>
+                    <img src={Drink} className="promo-img" alt="Refrescos y bebidas frías" />
+                    <button className="btn-overlay">{lang === 'es' ? 'BEBIDAS' : 'DRINKS'}</button>
+                  </div>
+                )}
+              </section>
 
-        <section id="sec-postres">
-          <SectionTitle>{lang === 'es' ? 'Postres Caseros' : 'Homemade Desserts'}</SectionTitle>
-          {showCardPostres ? (
-            <div className="grid-cards">{postres.map(item => <CardMenu key={item.id} {...item} isPostreCard={true} addToCart={addToCart} lang={lang} />)}</div>
-          ) : (
-            <div className="promo-container" onClick={() => setShowCardPostres(true)}>
-              <img src={Postre} className="promo-img" alt="Postres dulces artesanales" />
-              <button className="btn-overlay">{lang === 'es' ? 'POSTRES' : 'DESSERTS'}</button>
-            </div>
-          )}
-        </section>
+              {/* Categories: POSTRES */}
+              <section id="sec-postres">
+                <SectionTitle>{lang === 'es' ? 'Postres Caseros' : 'Homemade Desserts'}</SectionTitle>
+                {showCardPostres ? (
+                  <div className="grid-cards">
+                    {postres.map(item => <CardMenu key={item.id} {...item} isPostreCard={true} addToCart={addToCart} lang={lang} />)}
+                  </div>
+                ) : (
+                  <div className="promo-container" onClick={() => setShowCardPostres(true)}>
+                    <img src={Postre} className="promo-img" alt="Postres dulces artesanales" />
+                    <button className="btn-overlay">{lang === 'es' ? 'POSTRES' : 'DESSERTS'}</button>
+                  </div>
+                )}
+              </section>
 
-        <section id="order" style={{ paddingBottom: '100px' }}>
-          <SectionTitle>{lang === 'es' ? 'Tu Pedido' : 'Your Order'}</SectionTitle>
-          <Order cart={cart} removeFromCart={removeFromCart} lang={lang} />
-        </section>
-        {/* --- AVIS CLIENTS PLACÉS SOUS LE PANIER --- */}
-<section style={{ padding: '20px 0 80px' }}>
-  <h3 style={{
-    color: GOLD_BRIGHT,
-    textTransform: 'uppercase',
-    marginBottom: '30px',
-    fontSize: '1.4rem',
-    letterSpacing: '1px'
-  }}>
-    {lang === 'es' ? 'Lo que dicen nuestros clientes' : 'What our customers say'}
-  </h3>
-  <div style={{
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-    gap: '20px',
-    textAlign: 'left'
-  }}>
-    {randomReviews.map((rev, index) => (
-      <div key={index} className="testimonial-card">
-        <div style={{ color: GOLD_BRIGHT, marginBottom: '10px', fontSize: '1.2rem' }}>⭐⭐⭐⭐⭐</div>
-        <p style={{ fontStyle: 'italic', fontSize: '0.95rem' }}>"{lang === 'es' ? rev.es : rev.en}"</p>
-        <p style={{ fontWeight: 'bold', marginTop: '10px', color: '#ff4757' }}>— {rev.author}</p>
-      </div>
-    ))}
-  </div>
-</section>
-      </main>
+              {/* ORDER SUMMARY */}
+              <section id="order" style={{ paddingBottom: '100px' }}>
+                <SectionTitle>{lang === 'es' ? 'Tu Pedido' : 'Your Order'}</SectionTitle>
+                <Order cart={cart} removeFromCart={removeFromCart} lang={lang} />
+              </section>
+
+              {/* REVIEWS SECTION */}
+              <section style={{ padding: '20px 0 80px' }}>
+                <h3 style={{ color: GOLD_BRIGHT, textTransform: 'uppercase', marginBottom: '30px', fontSize: '1.4rem', letterSpacing: '1px' }}>
+                  {lang === 'es' ? 'Lo que dicen nuestros clientes' : 'What our customers say'}
+                </h3>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px', textAlign: 'left' }}>
+                  {randomReviews.map((rev, index) => (
+                    <div key={index} className="testimonial-card">
+                      <div style={{ color: GOLD_BRIGHT, marginBottom: '10px', fontSize: '1.2rem' }}>⭐⭐⭐⭐⭐</div>
+                      <p style={{ fontStyle: 'italic', fontSize: '0.95rem' }}>"{lang === 'es' ? rev.es : rev.en}"</p>
+                      <p style={{ fontWeight: 'bold', marginTop: '10px', color: '#ff4757' }}>— {rev.author}</p>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            </main>
 
       {/* --- FOOTER MASTER --- */}
       <footer style={{ padding: '80px 20px 40px', backgroundColor: '#000', color: '#fff', textAlign: 'center', borderTop: '4px solid #ff4757' }}>
