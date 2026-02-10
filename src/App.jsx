@@ -128,16 +128,21 @@ export default function App() {
           border: 2px solid #000; pointer-events: none; font-size: 1.1rem; box-shadow: 0 4px 15px rgba(0,0,0,0.6);
           text-transform: uppercase; z-index: 5; white-space: nowrap;
         }
-        .grid-cards { 
-  display: grid;
-  /* Crée des colonnes automatiques d'au moins 280px */
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  /* FORCE toutes les cartes d'une même ligne à avoir la même hauteur */
-  grid-auto-rows: 1fr;
-  gap: 20px;
-  justify-content: center;
-  padding: 20px 0 120px;
-}
+        .grid-cards {
+    display: grid;
+    /* Garde tes colonnes automatiques */
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+
+    /* CHANGEMENT 1 : On laisse la hauteur s'adapter au contenu de la carte */
+    grid-auto-rows: auto;
+
+    /* CHANGEMENT 2 : Aligne les cartes en haut pour éviter qu'elles ne s'étirent par défaut */
+    align-items: start;
+
+    gap: 20px;
+    justify-content: center;
+    padding: 20px 0 120px;
+  }
         @keyframes pulse-gold { 0% { transform: scale(1); } 50% { transform: scale(1.03); } 100% { transform: scale(1); } }
         .pulse-gold-btn { animation: pulse-gold 2s infinite ease-in-out; }
         .pulse-badge { animation: pulse-gold 3s infinite ease-in-out; }
