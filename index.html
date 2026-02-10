@@ -3,42 +3,45 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
     <meta name="theme-color" content="#ff4757" />
 
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-    <meta http-equiv="Pragma" content="no-cache" />
-    <meta http-equiv="Expires" content="0" />
+    <link rel="alternate" href="https://lacasadeburger.es" hreflang="es" />
+    <link rel="alternate" href="https://lacasadeburger.es" hreflang="en" />
+    <link rel="alternate" href="https://lacasadeburger.es" hreflang="x-default" />
 
-    <title>La Casa de Burger | Mejor Hamburguesería en Torrevieja | Smash Burgers</title>
-    <meta name="description" content="Descubre las mejores Smash Burgers artesanales en Torrevieja. Carne fresca 100% vacuno, ingredientes locales y envío a domicilio rápido. ¡Pide online el sabor auténtico!" />
-    <meta name="keywords" content="hamburguesería torrevieja, smash burger torrevieja, burger delivery, comida a domicilio torrevieja, mejor hamburguesa alicante, restaurante torrevieja centro, burgers gourmet" />
-    <meta name="author" content="La Casa de Burger" />
-    <meta name="robots" content="index, follow" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="La Casa de Burger Torrevieja - Smash Burgers Gourmet" />
-    <meta property="og:description" content="¿Hambre? Prueba nuestras Smash Burgers gourmet. Calidad premium con entrega rápida en todo Torrevieja." />
-    <meta property="og:image" content="/logo-social.jpg" />
+    <title>La Casa de Burger | Mejor Hamburguesería Torrevieja | Smash Burgers</title>
+
+    <meta name="description" content="🍔 ¿Buscas la mejor burger de Torrevieja? Smash burgers artesanales, carne 100% vacuno y recetas únicas. ¡Pide ahora por WhatsApp y recibe en casa! 🚀" />
+
+    <meta name="keywords" content="hamburguesería torrevieja, smash burger, delivery torrevieja, comida a domicilio, gourmet burger, burgers cerca de mí, cena torrevieja centro" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+
+    <meta property="og:type" content="restaurant.restaurant" />
+    <meta property="og:title" content="La Casa de Burger | Smash Burgers en Torrevieja" />
+    <meta property="og:description" content="Carne fresca, pan artesano y el mejor sabor de Torrevieja. ¡Pide tu combo favorito por WhatsApp! 📲" />
+    <meta property="og:image" content="https://lacasadeburger.es/logo-social.jpg" />
     <meta property="og:url" content="https://lacasadeburger.es" />
-    <meta property="og:site_name" content="La Casa de Burger" />
-
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="La Casa de Burger Torrevieja" />
-    <meta name="twitter:description" content="Mejores hamburguesas gourmet y Smash Burgers en Torrevieja centro." />
-    <meta name="twitter:image" content="/logo-social.jpg" />
-
-    <meta name="geo.region" content="ES-VC" />
-    <meta name="geo.placename" content="Torrevieja" />
-    <meta name="geo.position" content="37.9811;-0.6806" />
-    <meta name="ICBM" content="37.9811, -0.6806" />
+    <meta property="restaurant:contact_info:street_address" content="Av. Diego Ramírez Pastor, 142" />
+    <meta property="restaurant:contact_info:locality" content="Torrevieja" />
+    <meta property="restaurant:contact_info:postal_code" content="03181" />
 
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "Restaurant",
-        "name": "La Casa de Burger Torrevieja",
+        "@type": "FoodEstablishment",
+        "@id": "https://lacasadeburger.es",
+        "name": "La Casa de Burger",
+        "url": "https://lacasadeburger.es",
+        "logo": "https://lacasadeburger.es/logo192.png",
         "image": "https://lacasadeburger.es/logo-social.jpg",
+        "description": "Hamburguesería artesanal especializada en Smash Burgers en el centro de Torrevieja.",
+        "telephone": "+34602597210",
+        "priceRange": "€",
+        "servesCuisine": ["American", "Gourmet", "Burgers"],
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "Av. Diego Ramírez Pastor, 142",
@@ -52,8 +55,6 @@
           "latitude": 37.9811,
           "longitude": -0.6806
         },
-        "url": "https://lacasadeburger.es",
-        "telephone": "+34602597210",
         "openingHoursSpecification": [
           {
             "@type": "OpeningHoursSpecification",
@@ -62,8 +63,20 @@
             "closes": "22:30"
           }
         ],
-        "servesCuisine": ["Burgers", "Smash Burgers", "Gourmet"],
-        "priceRange": "$$"
+        "menu": "https://lacasadeburger.es",
+        "potentialAction": {
+          "@type": "OrderAction",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://wa.me/34602597210",
+            "inLanguage": ["es", "en"],
+            "actionPlatform": [
+              "http://schema.org/DesktopWebPlatform",
+              "http://schema.org/MobileWebPlatform"
+            ]
+          },
+          "deliveryMethod": ["http://purl.org/goodrelations/v1#DeliveryModeOwnFleet"]
+        }
       }
     </script>
 
