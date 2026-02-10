@@ -128,11 +128,16 @@ export default function App() {
           border: 2px solid #000; pointer-events: none; font-size: 1.1rem; box-shadow: 0 4px 15px rgba(0,0,0,0.6);
           text-transform: uppercase; z-index: 5; white-space: nowrap;
         }
-        .grid-cards { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; padding: 20px 0 120px; }
-        .floating-close { position: fixed; bottom: 85px; left: 50%; transform: translateX(-50%); background: #ff4757; color: #fff; border: 3px solid #000; padding: 12px 25px; border-radius: 10px; font-weight: 900; z-index: 9998; cursor: pointer; box-shadow: 4px 4px 0px #000; text-transform: uppercase; font-size: 1rem; }
-        .whatsapp-float { position: fixed; bottom: 20px; right: 20px; background: #25D366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; z-index: 9999; box-shadow: 0 5px 15px rgba(0,0,0,0.4); }
-        .testimonial-card { background: rgba(255,255,255,0.05); padding: 20px; border-radius: 15px; border-left: 4px solid ${GOLD_BRIGHT}; text-align: left; transition: 0.3s; margin-bottom: 10px; }
-
+        .grid-cards { 
+  display: grid;
+  /* Crée des colonnes automatiques d'au moins 280px */
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  /* FORCE toutes les cartes d'une même ligne à avoir la même hauteur */
+  grid-auto-rows: 1fr;
+  gap: 20px;
+  justify-content: center;
+  padding: 20px 0 120px;
+}
         @keyframes pulse-gold { 0% { transform: scale(1); } 50% { transform: scale(1.03); } 100% { transform: scale(1); } }
         .pulse-gold-btn { animation: pulse-gold 2s infinite ease-in-out; }
         .pulse-badge { animation: pulse-gold 3s infinite ease-in-out; }
