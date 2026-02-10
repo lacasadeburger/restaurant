@@ -55,7 +55,7 @@ export default function App() {
 
   // Logic: Rotation de la langue pour l'engagement client
   useEffect(() => {
-    const interval = setInterval(() => setLang(l => l === 'es' ? 'en' : 'es'), 4500);
+    const interval = setInterval(() => setLang(l => l === 'es' ? 'en' : 'es'), 15000);
     return () => clearInterval(interval);
   }, []);
 
