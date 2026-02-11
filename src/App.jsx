@@ -187,10 +187,84 @@ export default function App() {
       `}</style>
 
       <Helmet>
-        <title>La Casa de Burger | Las Mejores Smash Burgers Artesanales en Torrevieja</title>
-        <meta name="description" content="Descubre el auténtico sabor gourmet en Torrevieja. Hamburguesas artesanales, carne fresca diaria y entrega rápida a domicilio. ¡Pide tu Smash Burger online ahora!" />
-      </Helmet>
+  {/* --- SEO DE BASE --- */}
+  <title>La Casa de Burger | Las Mejores Burgers artesanales y Gourmet en Torrevieja centro</title>
+  <meta name="description" content="¿Buscas la mejor burger de Torrevieja? Smash burgers gourmet, carne fresca y pan artesanal. ¡Pide ahora a domicilio o Take Away! Delivery en toda la zona." />
+  <meta name="keywords" content="hamburguesería Torrevieja, smash burger, burger gourmet, food delivery Torrevieja, comida a domicilio, takeaway" />
+  <link rel="canonical" href="https://lacasadeburger.es" />
 
+  {/* --- SEO INTERNATIONAL (Hreflang) --- */}
+  <link rel="alternate" href="https://lacasadeburger.es" hreflang="es" />
+  <link rel="alternate" href="https://lacasadeburger.es" hreflang="en" />
+  <link rel="alternate" href="https://lacasadeburger.es" hreflang="x-default" />
+
+  {/* --- OPEN GRAPH (Facebook, WhatsApp, Instagram) --- */}
+  <meta property="og:type" content="restaurant" />
+  <meta property="og:title" content="La Casa de Burger | Smash Burgers Gourmet" />
+  <meta property="og:description" content="Las mejores Smash Burgers de Torrevieja. ¡Calidad gourmet en la puerta de tu casa!" />
+  <meta property="og:url" content="https://lacasadeburger.es" />
+  <meta property="og:site_name" content="La Casa de Burger Torrevieja" />
+
+  {/* --- DONNÉES STRUCTURÉES (JSON-LD) - SEO LOCAL --- */}
+  <script type="application/ld+json">
+    {JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FoodEstablishment",
+      "name": "La Casa de Burger Torrevieja",
+      "image": "https://lacasadeburger.es/assets/logo.jpg",
+      "@id": "https://lacasadeburger.es",
+      "url": "https://lacasadeburger.es",
+      "telephone": "+34602597210",
+      "priceRange": "€€",
+      "aggregateRating": {
+  "@type": "AggregateRating",
+  "ratingValue": "4.9",
+  "reviewCount": "244"
+},
+      "servesCuisine": ["American", "International", "Smash Burgers", "Burgers Gourmet", ""],
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Av. Diego Ramírez Pastor, 142",
+        "addressLocality": "Torrevieja",
+        "addressRegion": "Alicante",
+        "postalCode": "03181",
+        "addressCountry": "ES"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 37.9822,
+        "longitude": -0.6782
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+          "opens": "13:00",
+          "closes": "23:00"
+        }
+      ],
+      "acceptsReservations": "false",
+      "hasMenu": "https://lacasadeburger.es",
+      "potentialAction": {
+        "@type": "OrderAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://wa.me/34602597210",
+          "actionPlatform": [
+            "http://schema.org/DesktopWebPlatform",
+            "http://schema.org/MobileWebPlatform"
+          ]
+        },
+        "deliveryMethod": ["http://purl.org/goodrelations/v1#DeliveryModeOwnFleet"],
+        "priceSpecification": {
+          "@type": "DeliveryChargeSpecification",
+          "appliesToDeliveryMethod": "http://purl.org/goodrelations/v1#DeliveryModeOwnFleet",
+          "priceCurrency": "EUR"
+        }
+      }
+    })}
+  </script>
+</Helmet>
       <Nav scrollToOrder={scrollToOrder} cartLength={cart.length} totalPrice={totalPrice} lang={lang} logo={logo} />
 
       {/* --- HEADER HERO --- */}
