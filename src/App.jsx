@@ -434,16 +434,30 @@ style={{
               <p>Lun - Sáb: 13:00 – 22:30 | Dom: Cerrado</p>
             </div>
           </div>
-          <iframe
-    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3142.1746765715875!2d-0.680785024103816!3d37.984755171932375!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd63a996843075b1%3A0xc63806a64426510a!2sAv.%20Diego%20Ram%C3%ADrez%20Pastor%2C%20142%2C%2003181%20Torrevieja%2C%20Alicante!5e0!3m2!1sfr!2ses!4v1707660000000!5m2!1sfr!2ses"
+          {/* --- CARTE GOOGLE MAPS INTERACTIVE --- */}
+<div style={{
+  width: '95%',
+  maxWidth: '1100px',
+  margin: '40px auto',
+  borderRadius: '15px',
+  overflow: 'hidden',
+  border: `2px solid ${GOLD_BRIGHT}`,
+  boxShadow: '0 10px 30px rgba(0,0,0,0.5)',
+  backgroundColor: '#121212', // Fond très noir pour éviter le flash blanc au chargement
+  minHeight: '350px', // On réserve l'espace pour éviter que le site saute
+  contain: 'paint' // Optimisation pro : dit au PC de ne pas calculer l'intérieur si on ne le voit pas
+}}>
+  <iframe
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3141.4082236526146!2d-0.6782!3d37.9822!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd63aa1f58697193%3A0x6d70c9451478174c!2sAv.%20Diego%20Ram%C3%ADrez%20Pastor%2C%20142%2C%2003181%20Torrevieja%2C%20Alicante!5e0!3m2!1ses!2ses!4v1700000000000!5m2!1ses!2ses"
     width="100%"
     height="350"
-    style={{ border: 0 }}
+    style={{ border: 0, display: 'block' }}
     allowFullScreen=""
-    loading="lazy"
+    loading="lazy" // Garde bien ça !
     referrerPolicy="no-referrer-when-downgrade"
     title="Ubicación La Casa de Burger Torrevieja"
   ></iframe>
+</div>
           <div style={{ width: '100%', maxWidth: '800px', margin: '0 auto 50px', borderRadius: '15px', overflow: 'hidden', border: `3px solid ${GOLD_BRIGHT}` }}>
             <iframe width="100%" height="400" src="https://www.youtube.com/embed/qN6VZYBojLs" title="Video de presentación La Casa de Burger" frameBorder="0" allowFullScreen aria-label="Video promocional"></iframe>
           </div>
