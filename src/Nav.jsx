@@ -8,7 +8,7 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang }) {
   const currentHour = now.getHours();
   const currentMinute = now.getMinutes();
   const currentTime = currentHour + currentMinute / 60;
-  const isOpen = currentTime >= 13 && currentTime < 23;
+  const isOpen = currentTime >= 13 && currentTime < 22.5;
 
   const colorOpen = '#2ed573';
   const colorClosed = '#ff4757';
@@ -49,16 +49,23 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang }) {
       <div style={{
         flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'
       }}>
-        {/* Point lumineux au dessus pour gagner de la place en largeur */}
+        {/* Point lumineux avec effet Néon Boosté */}
         <div style={{
-          width: '8px', height: '8px', backgroundColor: statusColor, borderRadius: '50%',
-          boxShadow: `0 0 10px ${statusColor}`, animation: isOpen ? 'blink-simple 1.5s infinite' : 'none',
-          marginBottom: '2px'
+          width: '10px',
+          height: '10px',
+          backgroundColor: statusColor,
+          borderRadius: '50%',
+          boxShadow: isOpen
+            ? `0 0 10px ${statusColor}, 0 0 20px ${statusColor}`
+            : `0 0 5px ${statusColor}`,
+          animation: isOpen ? 'blink-neon 1.5s infinite alternate' : 'none',
+          marginBottom: '4px'
         }}></div>
+
         <span
           style={{
             color: statusColor,
-            fontSize: '1.8rem', // Taille XXL maintenue
+            fontSize: '1.8rem',
             fontWeight: '1000',
             textTransform: 'uppercase',
             letterSpacing: '-0.5px',
@@ -69,6 +76,7 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang }) {
           {isOpen ? (isEn ? "OPEN" : "ABIERTO") : (isEn ? "CLOSED" : "CERRADO")}
         </span>
       </div>
+        >
 
       {/* --- DROITE : PANIER (25%) --- */}
       <div onClick={scrollToOrder} style={{ width: '25%', display: 'flex', justifyContent: 'flex-end', cursor: 'pointer' }}>
@@ -83,26 +91,40 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang }) {
       </div>
 
       <style>{`
-        @keyframes blink-simple {
-          0%, 100% { opacity: 1; transform: scale(1); }
-          50% { opacity: 0.6; transform: scale(1.3); }
-        }
-        @keyframes soft-neon {
-          0%, 100% { text-shadow: 0 0 5px ${statusColor}44; }
-          50% { text-shadow: 0 0 12px ${statusColor}88; }
-        }
-        .pulse-active { animation: cart-shake 2s infinite; }
-        @keyframes cart-shake {
-          0%, 100% { transform: scale(1); }
-          5% { transform: scale(1.1) rotate(5deg); }
-          10% { transform: scale(1) rotate(-5deg); }
-          15% { transform: scale(1.1) rotate(0); }
-        }
-        @media (max-width: 400px) {
-          span[style*="font-size: 1.8rem"] { font-size: 1.4rem !important; }
-          span[style*="font-size: 0.9rem"] { font-size: 0.75rem !important; }
-        }
-      `}</style>
+  /* Animation du point lumineux (Néon) */
+  @keyframes blink-neon {
+    0% {
+      opacity: 1;
+      transform: scale(1);
+      box-shadow: 0 0 10px ${statusColor}, 0 0 20px ${statusColor};
+    }
+    100% {
+      opacity: 0.8;
+      transform: scale(1.2);
+      box-shadow: 0 0 15px ${statusColor}, 0 0 25px ${statusColor}, 0 0 35px ${statusColor};
+    }
+  }
+
+  /* Animation douce sur le texte OPEN/ABIERTO */
+  @keyframes soft-neon {
+    0%, 100% { text-shadow: 0 0 5px ${statusColor}44; }
+    50% { text-shadow: 0 0 12px ${statusColor}88; }
+  }
+
+  .pulse-active { animation: cart-shake 2s infinite; }
+
+  @keyframes cart-shake {
+    0%, 100% { transform: scale(1); }
+    5% { transform: scale(1.1) rotate(5deg); }
+    10% { transform: scale(1) rotate(-5deg); }
+    15% { transform: scale(1.1) rotate(0); }
+  }
+
+  @media (max-width: 400px) {
+    span[style*="font-size: 1.8rem"] { font-size: 1.4rem !important; }
+    span[style*="font-size: 0.9rem"] { font-size: 0.75rem !important; }
+  }
+`}</style>
     </nav>
   );
 }
