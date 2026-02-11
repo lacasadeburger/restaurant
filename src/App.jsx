@@ -154,6 +154,36 @@ export default function App() {
   100% { transform: rotate(8deg) scale(1.1); }
 }
 .wobble-badge { animation: wobble-badge 3s infinite ease-in-out; display: inline-block; }
+/* BOUTON WHATSAPP FLOTTANT */
+        .whatsapp-float {
+          position: fixed;
+          bottom: 25px;
+          right: 25px;
+          background-color: #25d366;
+          color: #fff;
+          border-radius: 50px;
+          width: 60px;
+          height: 60px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+          z-index: 10001; /* Pour être au-dessus du bouton rouge "Siguiente" */
+          transition: transform 0.3s ease;
+        }
+        .whatsapp-float:hover {
+          transform: scale(1.1);
+        }
+
+        /* Ajustement pour mobile pour ne pas gêner la navigation */
+        @media (max-width: 768px) {
+          .whatsapp-float {
+            bottom: 20px;
+            right: 15px;
+            width: 55px;
+            height: 55px;
+          }
+        }
       `}</style>
 
       <Helmet>
