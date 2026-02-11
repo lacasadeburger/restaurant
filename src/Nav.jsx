@@ -25,7 +25,7 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang }) {
       padding: '0 12px', zIndex: 9999, borderBottom: '4px solid #ff4757', boxSizing: 'border-box'
     }}>
 
-      {/* --- GAUCHE : APPEL + TRADUCTEUR (42%) --- */}
+      {/* --- GAUCHE : APPEL + TRADUCTEUR --- */}
       <div style={{ width: '42%', display: 'flex', alignItems: 'center', gap: '8px' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
           <a href="tel:+34602597210" style={{
@@ -47,12 +47,8 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang }) {
           </span>
         </div>
 
-        <div id="google_translate_element" style={{
-          minWidth: '40px',
-          height: '36px',
-          display: 'flex',
-          alignItems: 'center'
-        }}></div>
+        {/* Widget Google transformé en icône 🌐 via le CSS */}
+        <div id="google_translate_element"></div>
       </div>
 
       {/* --- CENTRE : STATUT XXL --- */}
@@ -94,36 +90,44 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang }) {
       </div>
 
       <style>{`
-        /* --- BOUTON PRINCIPAL --- */
+        /* --- STYLE DU BOUTON (TRANSFORMÉ EN ICÔNE MONDE) --- */
         .goog-te-gadget-simple {
           background-color: transparent !important;
           border: 1px solid ${GOLD_BRIGHT} !important;
           border-radius: 8px !important;
-          padding: 4px !important;
+          padding: 4px 8px !important;
           display: flex !important;
           align-items: center !important;
+          cursor: pointer !important;
         }
-        .goog-te-gadget-simple span {
-          color: ${GOLD_BRIGHT} !important;
-          font-weight: 900 !important;
-          font-size: 10px !important;
-          text-transform: uppercase;
+
+        /* Cache le texte original de Google */
+        .goog-te-gadget-simple span,
+        .goog-te-gadget-icon,
+        .goog-te-menu-value img {
+          display: none !important;
         }
-        .goog-te-gadget-icon, .goog-te-menu-value img { display: none !important; }
+
+        /* Injecte l'icône Monde 🌐 */
+        .goog-te-gadget-simple:before {
+          content: '🌐';
+          font-size: 1.2rem;
+        }
+
         .goog-te-banner-frame.skiptranslate { display: none !important; }
         body { top: 0px !important; }
 
-        /* --- CORRECTIF ULTIME : SCROLL PC & MOBILE --- */
+        /* --- CORRECTIF SCROLL : PC & MOBILE (TOUTES LES LANGUES) --- */
         .goog-te-menu-frame {
           box-shadow: 0 10px 40px rgba(0,0,0,0.8) !important;
           border: 1px solid ${GOLD_BRIGHT} !important;
           border-radius: 12px !important;
 
-          /* Force une colonne unique pour voir toutes les langues de A à Z */
+          /* Force une largeur fixe pour éviter les colonnes cachées */
           width: 280px !important;
           max-height: 450px !important;
 
-          /* Déblocage du scroll tactile (Mobile/Tablette) */
+          /* Déblocage du scroll sur Mobile (iOS/Android) */
           overflow-y: auto !important;
           -webkit-overflow-scrolling: touch !important;
         }
@@ -159,7 +163,6 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang }) {
           .nav-phone-text { display: none !important; }
           span[style*="font-size: 1.6rem"] { font-size: 1.3rem !important; }
 
-          /* On assure que le menu de langues ne sort pas de l'écran mobile */
           .goog-te-menu-frame {
             width: 260px !important;
             max-height: 400px !important;
