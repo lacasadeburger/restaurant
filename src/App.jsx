@@ -221,7 +221,7 @@ export default function App() {
     /* SECTION AVIS (RICH SNIPPETS) */
     "aggregateRating": {
       "@type": "AggregateRating",
-      "ratingValue": "5.0",
+      "ratingValue": "4.9",
       "reviewCount": "244",
       "bestRating": "5",
       "worstRating": "1"
