@@ -8,6 +8,7 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang }) {
   const currentHour = now.getHours();
   const currentMinute = now.getMinutes();
   const currentTime = currentHour + currentMinute / 60;
+  // Ouvert de 13:00 à 22:30
   const isOpen = currentTime >= 13 && currentTime < 22.5;
 
   const colorOpen = '#2ed573';
@@ -25,27 +26,27 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang }) {
       padding: '0 12px', zIndex: 9999, borderBottom: '4px solid #ff4757', boxSizing: 'border-box'
     }}>
 
-      {/* --- GAUCHE : APPEL --- */}
-      <div style={{ width: '30%', display: 'flex', alignItems: 'center' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <a href="tel:+34602597210" style={{
-            background: GOLD_GRADIENT, width: '40px', height: '40px', borderRadius: '12px',
+      {/* --- GAUCHE : APPEL (Numéro toujours visible) --- */}
+      <div style={{ width: '33%', display: 'flex', alignItems: 'center' }}>
+        <a href="tel:+34602597210" style={{ display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none' }}>
+          <div style={{
+            background: GOLD_GRADIENT, width: '38px', height: '38px', borderRadius: '10px',
             display: 'flex', justifyContent: 'center', alignItems: 'center', flexShrink: 0,
-            textDecoration: 'none', boxShadow: '0 4px 15px rgba(0,0,0,0.4)'
+            boxShadow: '0 4px 12px rgba(0,0,0,0.5)'
           }}>
             <span style={{ fontSize: '1.2rem' }}>📞</span>
-          </a>
+          </div>
 
           <span className="nav-phone-text" style={{
             color: GOLD_BRIGHT,
-            fontSize: '0.9rem',
+            fontSize: '0.85rem',
             fontWeight: '900',
             letterSpacing: '0.5px',
             whiteSpace: 'nowrap'
           }}>
             602 597 210
           </span>
-        </div>
+        </a>
       </div>
 
       {/* --- CENTRE : STATUT XXL --- */}
@@ -75,7 +76,7 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang }) {
       </div>
 
       {/* --- DROITE : PANIER --- */}
-      <div onClick={scrollToOrder} style={{ width: '30%', display: 'flex', justifyContent: 'flex-end', cursor: 'pointer' }}>
+      <div onClick={scrollToOrder} style={{ width: '33%', display: 'flex', justifyContent: 'flex-end', cursor: 'pointer' }}>
         <div className={cartLength > 0 ? 'pulse-active' : ''} style={{
           backgroundColor: '#ff4757', padding: '10px 14px', borderRadius: '14px',
           border: `2px solid ${GOLD_BRIGHT}`, display: 'flex', alignItems: 'center', gap: '8px',
@@ -108,10 +109,21 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang }) {
           15% { transform: scale(1.1) rotate(0); }
         }
 
-        /* --- RESPONSIVE --- */
+        /* --- RESPONSIVE : PLUS DE DISPLAY NONE --- */
         @media (max-width: 450px) {
-          .nav-phone-text { display: none !important; }
-          span[style*="font-size: 1.6rem"] { font-size: 1.3rem !important; }
+          /* On réduit légèrement la taille mais on garde le numéro visible */
+          .nav-phone-text {
+             font-size: 0.75rem !important;
+          }
+
+          span[style*="font-size: 1.6rem"] {
+             font-size: 1.2rem !important;
+          }
+
+          /* On ajuste les largeurs pour éviter les chevauchements */
+          div[style*="width: 33%"] {
+             width: 30% !important;
+          }
         }
       `}</style>
     </nav>
