@@ -16,17 +16,18 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang }) {
 
   const GOLD_GRADIENT = "linear-gradient(135deg, #BF953F 0%, #FCF6BA 45%, #B38728 55%, #FBF5B7 100%)";
   const GOLD_BRIGHT = "#FFD700";
+  const VIBRANT_RED = "#ff4757"; // Rouge vif identique au panier/statut fermé
 
   return (
     <nav style={{
       position: 'fixed', top: 0, left: 0, width: '100%', height: '90px',
       backgroundColor: 'rgba(0, 0, 0, 0.98)', backdropFilter: 'blur(15px)', WebkitBackdropFilter: 'blur(15px)',
       display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-      padding: '0 12px', zIndex: 9999, borderBottom: '4px solid #ff4757', boxSizing: 'border-box'
+      padding: '0 12px', zIndex: 9999, borderBottom: `4px solid ${VIBRANT_RED}`, boxSizing: 'border-box'
     }}>
 
-      {/* --- GAUCHE : APPEL AVEC DOUBLE VISIBILITÉ --- */}
-      <div style={{ width: '35%', display: 'flex', alignItems: 'center' }}>
+      {/* --- GAUCHE : APPEL AVEC DOUBLE VISIBILITÉ (ROUGE VIF) --- */}
+      <div style={{ width: '38%', display: 'flex', alignItems: 'center' }}>
         <a href="tel:+34602597210" style={{
           display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none'
         }}>
@@ -41,7 +42,7 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang }) {
           <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
             <span className="nav-phone-number" style={{
               color: GOLD_BRIGHT,
-              fontSize: '0.9rem',
+              fontSize: '0.95rem',
               fontWeight: '900',
               letterSpacing: '0.5px',
               whiteSpace: 'nowrap',
@@ -50,12 +51,12 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang }) {
               602 597 210
             </span>
             <span className="nav-call-text" style={{
-              color: '#fff',
-              fontSize: '0.65rem',
-              fontWeight: '600',
+              color: VIBRANT_RED,
+              fontSize: '0.7rem',
+              fontWeight: '900',
               textTransform: 'uppercase',
-              opacity: 0.9,
-              letterSpacing: '0.5px'
+              letterSpacing: '1px',
+              animation: 'pulse-text 2s infinite' // Petite animation pour attirer l'oeil
             }}>
               {isEn ? 'CALL US' : 'LLÁMANOS'}
             </span>
@@ -90,9 +91,9 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang }) {
       </div>
 
       {/* --- DROITE : PANIER --- */}
-      <div onClick={scrollToOrder} style={{ width: '30%', display: 'flex', justifyContent: 'flex-end', cursor: 'pointer' }}>
+      <div onClick={scrollToOrder} style={{ width: '32%', display: 'flex', justifyContent: 'flex-end', cursor: 'pointer' }}>
         <div className={cartLength > 0 ? 'pulse-active' : ''} style={{
-          backgroundColor: '#ff4757', padding: '10px 14px', borderRadius: '14px',
+          backgroundColor: VIBRANT_RED, padding: '10px 14px', borderRadius: '14px',
           border: `2px solid ${GOLD_BRIGHT}`, display: 'flex', alignItems: 'center', gap: '8px',
           boxShadow: '0 4px 15px rgba(255, 71, 87, 0.3)'
         }}>
@@ -103,6 +104,11 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang }) {
       </div>
 
       <style>{`
+        @keyframes pulse-text {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.6; }
+        }
+
         @keyframes blink-neon {
           0% { opacity: 1; transform: scale(1); box-shadow: 0 0 10px ${statusColor}, 0 0 20px ${statusColor}; }
           100% { opacity: 0.8; transform: scale(1.2); box-shadow: 0 0 15px ${statusColor}, 0 0 25px ${statusColor}, 0 0 35px ${statusColor}; }
@@ -123,15 +129,14 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang }) {
         }
 
         @media (max-width: 450px) {
-          .nav-phone-number { font-size: 0.8rem !important; }
-          .nav-call-text { font-size: 0.55rem !important; }
+          .nav-phone-number { font-size: 0.85rem !important; }
+          .nav-call-text { font-size: 0.6rem !important; }
 
           span[style*="font-size: 1.6rem"] {
             font-size: 1.2rem !important;
           }
 
-          /* Ajustement pour que le centre reste équilibré */
-          div[style*="width: 35%"] { width: 40% !important; }
+          div[style*="width: 38%"] { width: 42% !important; }
         }
       `}</style>
     </nav>
