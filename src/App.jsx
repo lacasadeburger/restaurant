@@ -188,9 +188,9 @@ export default function App() {
 
       <Helmet>
   {/* --- SEO DE BASE --- */}
-  <title>La Casa de Burger | Best Smash Burgers & Delivery en Torrevieja</title>
+  <title>La Casa de Burger | Best Burgers & Delivery en Torrevieja</title>
 
-    <meta name="description" content="¿Buscas la mejor burger de Torrevieja? burgers gourmet o Smashburger con carne fresca y pan artesanal. ¡Pide ahora a domicilio o Take Away! Delivery en toda la zona." />
+    <meta name="description" content="¿Buscas la mejor hamburguesa de Torrevieja? burgers gourmet o Smashburger con carne fresca y pan artesanal. ¡Pide ahora tu burger a domicilio o Take Away! Delivery en toda la zona." />
   <meta name="keywords" content="hamburguesería Torrevieja, smash burger, burger gourmet, food delivery Torrevieja, comida a domicilio, takeaway" />
   <link rel="canonical" href="https://lacasadeburger.es" />
 
