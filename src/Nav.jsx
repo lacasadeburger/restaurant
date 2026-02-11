@@ -47,7 +47,7 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang }) {
           </span>
         </div>
 
-        {/* Widget Google transformé en icône 🌐 via le CSS */}
+        {/* Widget Google transformé en icône 🌐 */}
         <div id="google_translate_element"></div>
       </div>
 
@@ -90,7 +90,7 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang }) {
       </div>
 
       <style>{`
-        /* --- STYLE DU BOUTON (TRANSFORMÉ EN ICÔNE MONDE) --- */
+        /* --- STYLE DU BOUTON (ICÔNE MONDE) --- */
         .goog-te-gadget-simple {
           background-color: transparent !important;
           border: 1px solid ${GOLD_BRIGHT} !important;
@@ -101,14 +101,12 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang }) {
           cursor: pointer !important;
         }
 
-        /* Cache le texte original de Google */
         .goog-te-gadget-simple span,
         .goog-te-gadget-icon,
         .goog-te-menu-value img {
           display: none !important;
         }
 
-        /* Injecte l'icône Monde 🌐 */
         .goog-te-gadget-simple:before {
           content: '🌐';
           font-size: 1.2rem;
@@ -117,25 +115,36 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang }) {
         .goog-te-banner-frame.skiptranslate { display: none !important; }
         body { top: 0px !important; }
 
-        /* --- CORRECTIF SCROLL : PC & MOBILE (TOUTES LES LANGUES) --- */
-        .goog-te-menu-frame {
+        /* --- FIX SCROLL ANDROID & PC --- */
+        /* On cible le conteneur ET l'iframe elle-même avec force */
+        .goog-te-menu-frame,
+        .goog-te-menu-frame.skiptranslate,
+        #goog-gt-tt,
+        .goog-te-menu2 {
           box-shadow: 0 10px 40px rgba(0,0,0,0.8) !important;
           border: 1px solid ${GOLD_BRIGHT} !important;
           border-radius: 12px !important;
-
-          /* Force une largeur fixe pour éviter les colonnes cachées */
           width: 280px !important;
-          max-height: 450px !important;
+          max-height: 400px !important;
 
-          /* Déblocage du scroll sur Mobile (iOS/Android) */
+          /* Capture du scroll sur Android */
           overflow-y: auto !important;
+          overflow-x: hidden !important;
+          touch-action: pan-y !important;
           -webkit-overflow-scrolling: touch !important;
         }
 
         iframe.goog-te-menu-frame {
           filter: invert(0.9) hue-rotate(180deg) brightness(1.2) !important;
-          width: 280px !important;
-          max-height: 450px !important;
+          width: 100% !important;
+          height: 100% !important;
+          position: relative !important;
+          z-index: 10000 !important;
+        }
+
+        /* Empêcher le scroll du body quand le menu est ouvert (optionnel mais efficace) */
+        body.cooking-scroll-lock {
+          overflow: hidden !important;
         }
 
         /* --- ANIMATIONS --- */
@@ -165,7 +174,7 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang }) {
 
           .goog-te-menu-frame {
             width: 260px !important;
-            max-height: 400px !important;
+            max-height: 350px !important;
           }
         }
       `}</style>
