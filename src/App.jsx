@@ -210,60 +210,49 @@ export default function App() {
   {/* --- DONNÉES STRUCTURÉES (JSON-LD) - SEO LOCAL --- */}
   <script type="application/ld+json">
   {JSON.stringify({
-    "@context": "https://schema.org",
-    "@type": "FoodEstablishment",
-    "name": "La Casa de Burger Torrevieja",
-    "image": "https://lacasadeburger.es/assets/logo.jpg",
-    "@id": "https://lacasadeburger.es",
-    "url": "https://lacasadeburger.es",
-    "telephone": "+34602597210",
-    "priceRange": "€€",
-    "servesCuisine": ["American", "International", "Smash Burgers", "hamburguesas Gourmet", "Hamburguesería"],
+  "@context": "https://schema.org",
+  "@type": "FoodEstablishment",
+  "name": "La Casa de Burger Torrevieja",
+  "image": [
+    "https://lacasadeburger.es/favicon.png"
+  ],
+  "@id": "https://lacasadeburger.es",
+  "url": "https://lacasadeburger.es",
+  "telephone": "+34602597210",
+  "priceRange": "€€",
+  "servesCuisine": ["American", "Smash Burgers", "Gourmet Hamburgers"],
+  "description": "Las mejores Smash Burgers artesanales de Torrevieja. Carne fresca y servicio delivery.",
 
-    /* SECTION AVIS (RICH SNIPPETS) */
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.9",
-      "reviewCount": "244",
-      "bestRating": "5",
-      "worstRating": "1"
-    },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "reviewCount": "244",
+    "bestRating": "5",
+    "worstRating": "1"
+  },
 
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Av. Diego Ramírez Pastor, 142",
-      "addressLocality": "Torrevieja",
-      "addressRegion": "Alicante",
-      "postalCode": "03181",
-      "addressCountry": "ES"
-    },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": 37.9822,
-      "longitude": -0.6782
-    },
-    "openingHoursSpecification": [
-      {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-        "opens": "13:00",
-        "closes": "22:30"
-      }
-    ],
-    "acceptsReservations": "false",
-    "hasMenu": "https://lacasadeburger.es",
-    "potentialAction": {
-      "@type": "OrderAction",
-      "target": {
-        "@type": "EntryPoint",
-        "urlTemplate": "https://wa.me/34602597210",
-        "actionPlatform": [
-          "http://schema.org/DesktopWebPlatform",
-          "http://schema.org/MobileWebPlatform"
-        ]
-      }
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Av. Diego Ramírez Pastor, 142",
+    "addressLocality": "Torrevieja",
+    "addressRegion": "Alicante",
+    "postalCode": "03181",
+    "addressCountry": "ES"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 37.9822,
+    "longitude": -0.6782
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      "opens": "13:00",
+      "closes": "22:30"
     }
-  })}
+  ]
+})}
 </script>
 </Helmet>
       <Nav scrollToOrder={scrollToOrder} cartLength={cart.length} totalPrice={totalPrice} lang={lang} logo={logo} />
