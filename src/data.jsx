@@ -36,13 +36,14 @@ import cheddarbacon from "./assets/cheddarbacon.webp";
 
 const data = [
   {
-    id: "prod_combo1",
-    image: combo,
-    object: "El COMBO 1",
-    description: "La Inglesa + Patatas Fritas caseras + 3 Nuggets Caseros",
-    precio: "€18.00",
-    category: "food"
-  },
+      id: "prod_combo1",
+      image: combo,
+      object: "El COMBO 1",
+      description: "La Inglesa + Patatas Fritas caseras + 3 Nuggets Caseros",
+      precio: "€18.00",
+      category: "food",
+      altText: "Combo de hamburguesa artesana con nuggets y patatas en Torrevieja" // Ajoute cette ligne
+    },
   {
     id: "prod_combo3",
     image: combo3,
