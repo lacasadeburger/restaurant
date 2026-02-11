@@ -3,7 +3,7 @@ import React from "react";
 export default function Nav({ scrollToOrder, cartLength, totalPrice, lang }) {
   const isEn = lang === 'en';
 
-  // --- LOGIQUE D'OUVERTURE AUTOMATIQUE ---
+  // --- LOGIQUE D'OUVERTURE ---
   const now = new Date();
   const currentHour = now.getHours();
   const currentMinute = now.getMinutes();
@@ -25,36 +25,31 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang }) {
       padding: '0 12px', zIndex: 9999, borderBottom: '4px solid #ff4757', boxSizing: 'border-box'
     }}>
 
-      {/* --- GAUCHE : APPEL + NUMÉRO COMPLET (35%) --- */}
-      <div style={{ width: '35%', display: 'flex', alignItems: 'center', gap: '8px' }}>
+      {/* --- GAUCHE : APPEL + TRADUCTEUR (38%) --- */}
+      <div style={{ width: '38%', display: 'flex', alignItems: 'center', gap: '6px' }}>
         <a href="tel:+34602597210" style={{
-          background: GOLD_GRADIENT, width: '40px', height: '40px', borderRadius: '10px',
+          background: GOLD_GRADIENT, width: '36px', height: '36px', borderRadius: '10px',
           display: 'flex', justifyContent: 'center', alignItems: 'center', flexShrink: 0,
           textDecoration: 'none', boxShadow: '0 2px 10px rgba(0,0,0,0.5)'
         }}>
-          <span style={{ fontSize: '1.2rem' }}>📞</span>
+          <span style={{ fontSize: '1.1rem' }}>📞</span>
         </a>
-        <span style={{
-          color: GOLD_BRIGHT,
-          fontSize: '0.9rem',
-          fontWeight: '900',
-          letterSpacing: '0.5px',
-          whiteSpace: 'nowrap'
-        }}>
-          602 597 210
-        </span>
+
+        {/* Widget Google Translate intégré proprement */}
+        <div id="google_translate_element" style={{
+          minWidth: '40px',
+          height: '36px',
+          display: 'flex',
+          alignItems: 'center'
+        }}></div>
       </div>
 
-      {/* --- CENTRE : STATUT XXL (FLEX AUTO) --- */}
+      {/* --- CENTRE : STATUT XXL --- */}
       <div style={{
         flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'
       }}>
-        {/* Point lumineux avec effet Néon Boosté */}
         <div style={{
-          width: '10px',
-          height: '10px',
-          backgroundColor: statusColor,
-          borderRadius: '50%',
+          width: '10px', height: '10px', backgroundColor: statusColor, borderRadius: '50%',
           boxShadow: isOpen
             ? `0 0 10px ${statusColor}, 0 0 20px ${statusColor}`
             : `0 0 5px ${statusColor}`,
@@ -62,23 +57,20 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang }) {
           marginBottom: '4px'
         }}></div>
 
-        <span
-          style={{
-            color: statusColor,
-            fontSize: '1.8rem',
-            fontWeight: '1000',
-            textTransform: 'uppercase',
-            letterSpacing: '-0.5px',
-            lineHeight: 0.9,
-            animation: isOpen ? 'soft-neon 2s infinite ease-in-out' : 'none',
-          }}
-        >
+        <span style={{
+          color: statusColor,
+          fontSize: '1.6rem',
+          fontWeight: '1000',
+          textTransform: 'uppercase',
+          letterSpacing: '-0.5px',
+          lineHeight: 0.9,
+          animation: isOpen ? 'soft-neon 2s infinite ease-in-out' : 'none',
+        }}>
           {isOpen ? (isEn ? "OPEN" : "ABIERTO") : (isEn ? "CLOSED" : "CERRADO")}
         </span>
       </div>
-        >
 
-      {/* --- DROITE : PANIER (25%) --- */}
+      {/* --- DROITE : PANIER --- */}
       <div onClick={scrollToOrder} style={{ width: '25%', display: 'flex', justifyContent: 'flex-end', cursor: 'pointer' }}>
         <div className={cartLength > 0 ? 'pulse-active' : ''} style={{
           backgroundColor: '#ff4757', padding: '10px 12px', borderRadius: '12px',
@@ -91,40 +83,58 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang }) {
       </div>
 
       <style>{`
-  /* Animation du point lumineux (Néon) */
-  @keyframes blink-neon {
-    0% {
-      opacity: 1;
-      transform: scale(1);
-      box-shadow: 0 0 10px ${statusColor}, 0 0 20px ${statusColor};
-    }
-    100% {
-      opacity: 0.8;
-      transform: scale(1.2);
-      box-shadow: 0 0 15px ${statusColor}, 0 0 25px ${statusColor}, 0 0 35px ${statusColor};
-    }
-  }
+        /* --- CUSTOM GOOGLE TRANSLATE --- */
+        .goog-te-gadget-simple {
+          background-color: transparent !important;
+          border: 1px solid ${GOLD_BRIGHT} !important;
+          border-radius: 8px !important;
+          padding: 4px !important;
+          display: flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+        }
+        .goog-te-gadget-simple span {
+          color: ${GOLD_BRIGHT} !important;
+          font-weight: 900 !important;
+          font-size: 11px !important;
+          text-transform: uppercase;
+        }
+        .goog-te-gadget-icon, .goog-te-menu-value img { display: none !important; }
+        .goog-te-banner-frame.skiptranslate { display: none !important; }
+        body { top: 0px !important; }
 
-  /* Animation douce sur le texte OPEN/ABIERTO */
-  @keyframes soft-neon {
-    0%, 100% { text-shadow: 0 0 5px ${statusColor}44; }
-    50% { text-shadow: 0 0 12px ${statusColor}88; }
-  }
+        /* --- TES ANIMATIONS --- */
+        @keyframes blink-neon {
+          0% { opacity: 1; transform: scale(1); box-shadow: 0 0 10px ${statusColor}, 0 0 20px ${statusColor}; }
+          100% { opacity: 0.8; transform: scale(1.2); box-shadow: 0 0 15px ${statusColor}, 0 0 25px ${statusColor}, 0 0 35px ${statusColor}; }
+        }
 
-  .pulse-active { animation: cart-shake 2s infinite; }
+        @keyframes soft-neon {
+          0%, 100% { text-shadow: 0 0 5px ${statusColor}44; }
+          50% { text-shadow: 0 0 12px ${statusColor}88; }
+        }
 
-  @keyframes cart-shake {
-    0%, 100% { transform: scale(1); }
-    5% { transform: scale(1.1) rotate(5deg); }
-    10% { transform: scale(1) rotate(-5deg); }
-    15% { transform: scale(1.1) rotate(0); }
-  }
+        .pulse-active { animation: cart-shake 2s infinite; }
 
-  @media (max-width: 400px) {
-    span[style*="font-size: 1.8rem"] { font-size: 1.4rem !important; }
-    span[style*="font-size: 0.9rem"] { font-size: 0.75rem !important; }
-  }
-`}</style>
+        @keyframes cart-shake {
+          0%, 100% { transform: scale(1); }
+          5% { transform: scale(1.1) rotate(5deg); }
+          10% { transform: scale(1) rotate(-5deg); }
+          15% { transform: scale(1.1) rotate(0); }
+        }
+
+        @media (max-width: 400px) {
+          span[style*="font-size: 1.6rem"] { font-size: 1.3rem !important; }
+        }
+        /* Style du menu déroulant de Google (une fois ouvert) */
+.goog-te-menu-frame {
+  box-shadow: 0 4px 20px rgba(0,0,0,0.8) !important;
+}
+
+iframe.goog-te-menu-frame {
+  filter: invert(1) hue-rotate(180deg); /* Inverse les couleurs pour avoir un menu sombre */
+}
+      `}</style>
     </nav>
   );
 }
