@@ -47,7 +47,6 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang }) {
           </span>
         </div>
 
-        {/* Cible pour le widget Google Translate */}
         <div id="google_translate_element" style={{
           minWidth: '40px',
           height: '36px',
@@ -95,7 +94,7 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang }) {
       </div>
 
       <style>{`
-        /* --- PERSONNALISATION DU BOUTON GOOGLE --- */
+        /* --- BOUTON PRINCIPAL --- */
         .goog-te-gadget-simple {
           background-color: transparent !important;
           border: 1px solid ${GOLD_BRIGHT} !important;
@@ -114,18 +113,21 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang }) {
         .goog-te-banner-frame.skiptranslate { display: none !important; }
         body { top: 0px !important; }
 
-        /* --- MENU DÉROULANT : FOND NOIR + SCROLL POUR TOUTES LES LANGUES --- */
+        /* --- FIX : AFFICHAGE DE TOUTES LES LANGUES (SCROLL COMPLET) --- */
         .goog-te-menu-frame {
           box-shadow: 0 10px 40px rgba(0,0,0,0.8) !important;
           border: 1px solid ${GOLD_BRIGHT} !important;
           border-radius: 12px !important;
-          max-height: 400px !important;
+          /* On force une largeur fixe pour empêcher Google de créer des colonnes latérales invisibles */
+          width: 280px !important;
+          max-height: 500px !important;
           overflow-y: auto !important;
         }
 
         iframe.goog-te-menu-frame {
           filter: invert(0.9) hue-rotate(180deg) brightness(1.2) !important;
-          max-height: 400px !important;
+          width: 280px !important;
+          max-height: 500px !important;
         }
 
         /* --- ANIMATIONS --- */
@@ -148,7 +150,6 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang }) {
           15% { transform: scale(1.1) rotate(0); }
         }
 
-        /* --- RESPONSIVE : CACHE LE NUMÉRO SUR MOBILE --- */
         @media (max-width: 450px) {
           .nav-phone-text { display: none !important; }
           span[style*="font-size: 1.6rem"] { font-size: 1.3rem !important; }
