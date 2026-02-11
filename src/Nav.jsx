@@ -8,7 +8,6 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang }) {
   const currentHour = now.getHours();
   const currentMinute = now.getMinutes();
   const currentTime = currentHour + currentMinute / 60;
-  // Ouvert de 13:00 à 22:30
   const isOpen = currentTime >= 13 && currentTime < 22.5;
 
   const colorOpen = '#2ed573';
@@ -26,26 +25,41 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang }) {
       padding: '0 12px', zIndex: 9999, borderBottom: '4px solid #ff4757', boxSizing: 'border-box'
     }}>
 
-      {/* --- GAUCHE : APPEL (Numéro toujours visible) --- */}
-      <div style={{ width: '33%', display: 'flex', alignItems: 'center' }}>
-        <a href="tel:+34602597210" style={{ display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none' }}>
+      {/* --- GAUCHE : APPEL AVEC DOUBLE VISIBILITÉ --- */}
+      <div style={{ width: '35%', display: 'flex', alignItems: 'center' }}>
+        <a href="tel:+34602597210" style={{
+          display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none'
+        }}>
           <div style={{
-            background: GOLD_GRADIENT, width: '38px', height: '38px', borderRadius: '10px',
+            background: GOLD_GRADIENT, width: '40px', height: '40px', borderRadius: '10px',
             display: 'flex', justifyContent: 'center', alignItems: 'center', flexShrink: 0,
             boxShadow: '0 4px 12px rgba(0,0,0,0.5)'
           }}>
             <span style={{ fontSize: '1.2rem' }}>📞</span>
           </div>
 
-          <span className="nav-phone-text" style={{
-            color: GOLD_BRIGHT,
-            fontSize: '0.85rem',
-            fontWeight: '900',
-            letterSpacing: '0.5px',
-            whiteSpace: 'nowrap'
-          }}>
-            602 597 210
-          </span>
+          <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+            <span className="nav-phone-number" style={{
+              color: GOLD_BRIGHT,
+              fontSize: '0.9rem',
+              fontWeight: '900',
+              letterSpacing: '0.5px',
+              whiteSpace: 'nowrap',
+              lineHeight: '1.1'
+            }}>
+              602 597 210
+            </span>
+            <span className="nav-call-text" style={{
+              color: '#fff',
+              fontSize: '0.65rem',
+              fontWeight: '600',
+              textTransform: 'uppercase',
+              opacity: 0.9,
+              letterSpacing: '0.5px'
+            }}>
+              {isEn ? 'CALL US' : 'LLÁMANOS'}
+            </span>
+          </div>
         </a>
       </div>
 
@@ -76,7 +90,7 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang }) {
       </div>
 
       {/* --- DROITE : PANIER --- */}
-      <div onClick={scrollToOrder} style={{ width: '33%', display: 'flex', justifyContent: 'flex-end', cursor: 'pointer' }}>
+      <div onClick={scrollToOrder} style={{ width: '30%', display: 'flex', justifyContent: 'flex-end', cursor: 'pointer' }}>
         <div className={cartLength > 0 ? 'pulse-active' : ''} style={{
           backgroundColor: '#ff4757', padding: '10px 14px', borderRadius: '14px',
           border: `2px solid ${GOLD_BRIGHT}`, display: 'flex', alignItems: 'center', gap: '8px',
@@ -89,7 +103,6 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang }) {
       </div>
 
       <style>{`
-        /* --- ANIMATIONS --- */
         @keyframes blink-neon {
           0% { opacity: 1; transform: scale(1); box-shadow: 0 0 10px ${statusColor}, 0 0 20px ${statusColor}; }
           100% { opacity: 0.8; transform: scale(1.2); box-shadow: 0 0 15px ${statusColor}, 0 0 25px ${statusColor}, 0 0 35px ${statusColor}; }
@@ -109,21 +122,16 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang }) {
           15% { transform: scale(1.1) rotate(0); }
         }
 
-        /* --- RESPONSIVE : PLUS DE DISPLAY NONE --- */
         @media (max-width: 450px) {
-          /* On réduit légèrement la taille mais on garde le numéro visible */
-          .nav-phone-text {
-             font-size: 0.75rem !important;
-          }
+          .nav-phone-number { font-size: 0.8rem !important; }
+          .nav-call-text { font-size: 0.55rem !important; }
 
           span[style*="font-size: 1.6rem"] {
-             font-size: 1.2rem !important;
+            font-size: 1.2rem !important;
           }
 
-          /* On ajuste les largeurs pour éviter les chevauchements */
-          div[style*="width: 33%"] {
-             width: 30% !important;
-          }
+          /* Ajustement pour que le centre reste équilibré */
+          div[style*="width: 35%"] { width: 40% !important; }
         }
       `}</style>
     </nav>
