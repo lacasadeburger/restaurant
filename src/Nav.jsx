@@ -3,7 +3,7 @@ import React from "react";
 export default function Nav({ scrollToOrder, cartLength, totalPrice, lang }) {
   const isEn = lang === 'en';
 
-  // --- LOGIQUE D'OUVERTURE ---
+  // --- LOGIQUE D'OUVERTURE AUTOMATIQUE ---
   const now = new Date();
   const currentHour = now.getHours();
   const currentMinute = now.getMinutes();
@@ -25,17 +25,29 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang }) {
       padding: '0 12px', zIndex: 9999, borderBottom: '4px solid #ff4757', boxSizing: 'border-box'
     }}>
 
-      {/* --- GAUCHE : APPEL + TRADUCTEUR (38%) --- */}
-      <div style={{ width: '38%', display: 'flex', alignItems: 'center', gap: '6px' }}>
-        <a href="tel:+34602597210" style={{
-          background: GOLD_GRADIENT, width: '36px', height: '36px', borderRadius: '10px',
-          display: 'flex', justifyContent: 'center', alignItems: 'center', flexShrink: 0,
-          textDecoration: 'none', boxShadow: '0 2px 10px rgba(0,0,0,0.5)'
-        }}>
-          <span style={{ fontSize: '1.1rem' }}>📞</span>
-        </a>
+      {/* --- GAUCHE : APPEL + TRADUCTEUR (42%) --- */}
+      <div style={{ width: '42%', display: 'flex', alignItems: 'center', gap: '8px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+          <a href="tel:+34602597210" style={{
+            background: GOLD_GRADIENT, width: '36px', height: '36px', borderRadius: '10px',
+            display: 'flex', justifyContent: 'center', alignItems: 'center', flexShrink: 0,
+            textDecoration: 'none', boxShadow: '0 2px 10px rgba(0,0,0,0.5)'
+          }}>
+            <span style={{ fontSize: '1.1rem' }}>📞</span>
+          </a>
 
-        {/* Widget Google Translate intégré proprement */}
+          <span className="nav-phone-text" style={{
+            color: GOLD_BRIGHT,
+            fontSize: '0.85rem',
+            fontWeight: '900',
+            letterSpacing: '0.5px',
+            whiteSpace: 'nowrap'
+          }}>
+            602 597 210
+          </span>
+        </div>
+
+        {/* Cible pour le widget Google Translate */}
         <div id="google_translate_element" style={{
           minWidth: '40px',
           height: '36px',
@@ -83,7 +95,7 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang }) {
       </div>
 
       <style>{`
-        /* --- CUSTOM GOOGLE TRANSLATE --- */
+        /* --- PERSONNALISATION DU BOUTON GOOGLE --- */
         .goog-te-gadget-simple {
           background-color: transparent !important;
           border: 1px solid ${GOLD_BRIGHT} !important;
@@ -91,19 +103,28 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang }) {
           padding: 4px !important;
           display: flex !important;
           align-items: center !important;
-          justify-content: center !important;
         }
         .goog-te-gadget-simple span {
           color: ${GOLD_BRIGHT} !important;
           font-weight: 900 !important;
-          font-size: 11px !important;
+          font-size: 10px !important;
           text-transform: uppercase;
         }
         .goog-te-gadget-icon, .goog-te-menu-value img { display: none !important; }
         .goog-te-banner-frame.skiptranslate { display: none !important; }
         body { top: 0px !important; }
 
-        /* --- TES ANIMATIONS --- */
+        /* --- FOND NOIR POUR LE MENU DÉROULANT --- */
+        .goog-te-menu-frame {
+          box-shadow: 0 10px 40px rgba(0,0,0,0.8) !important;
+          border: 1px solid ${GOLD_BRIGHT} !important;
+          border-radius: 12px !important;
+        }
+        iframe.goog-te-menu-frame {
+          filter: invert(0.9) hue-rotate(180deg) brightness(1.2) !important;
+        }
+
+        /* --- ANIMATIONS --- */
         @keyframes blink-neon {
           0% { opacity: 1; transform: scale(1); box-shadow: 0 0 10px ${statusColor}, 0 0 20px ${statusColor}; }
           100% { opacity: 0.8; transform: scale(1.2); box-shadow: 0 0 15px ${statusColor}, 0 0 25px ${statusColor}, 0 0 35px ${statusColor}; }
@@ -123,17 +144,11 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang }) {
           15% { transform: scale(1.1) rotate(0); }
         }
 
-        @media (max-width: 400px) {
+        /* --- RESPONSIVE : CACHE LE NUMÉRO SUR MOBILE --- */
+        @media (max-width: 450px) {
+          .nav-phone-text { display: none !important; }
           span[style*="font-size: 1.6rem"] { font-size: 1.3rem !important; }
         }
-        /* Style du menu déroulant de Google (une fois ouvert) */
-.goog-te-menu-frame {
-  box-shadow: 0 4px 20px rgba(0,0,0,0.8) !important;
-}
-
-iframe.goog-te-menu-frame {
-  filter: invert(1) hue-rotate(180deg); /* Inverse les couleurs pour avoir un menu sombre */
-}
       `}</style>
     </nav>
   );
