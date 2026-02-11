@@ -25,20 +25,20 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang }) {
       padding: '0 12px', zIndex: 9999, borderBottom: '4px solid #ff4757', boxSizing: 'border-box'
     }}>
 
-      {/* --- GAUCHE : APPEL + TRADUCTEUR (42%) --- */}
-      <div style={{ width: '42%', display: 'flex', alignItems: 'center', gap: '8px' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+      {/* --- GAUCHE : APPEL --- */}
+      <div style={{ width: '30%', display: 'flex', alignItems: 'center' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
           <a href="tel:+34602597210" style={{
-            background: GOLD_GRADIENT, width: '36px', height: '36px', borderRadius: '10px',
+            background: GOLD_GRADIENT, width: '40px', height: '40px', borderRadius: '12px',
             display: 'flex', justifyContent: 'center', alignItems: 'center', flexShrink: 0,
-            textDecoration: 'none', boxShadow: '0 2px 10px rgba(0,0,0,0.5)'
+            textDecoration: 'none', boxShadow: '0 4px 15px rgba(0,0,0,0.4)'
           }}>
-            <span style={{ fontSize: '1.1rem' }}>📞</span>
+            <span style={{ fontSize: '1.2rem' }}>📞</span>
           </a>
 
           <span className="nav-phone-text" style={{
             color: GOLD_BRIGHT,
-            fontSize: '0.85rem',
+            fontSize: '0.9rem',
             fontWeight: '900',
             letterSpacing: '0.5px',
             whiteSpace: 'nowrap'
@@ -46,14 +46,6 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang }) {
             602 597 210
           </span>
         </div>
-
-        {/* Cible pour le widget Google Translate */}
-        <div id="google_translate_element" style={{
-          minWidth: '40px',
-          height: '36px',
-          display: 'flex',
-          alignItems: 'center'
-        }}></div>
       </div>
 
       {/* --- CENTRE : STATUT XXL --- */}
@@ -83,47 +75,19 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang }) {
       </div>
 
       {/* --- DROITE : PANIER --- */}
-      <div onClick={scrollToOrder} style={{ width: '25%', display: 'flex', justifyContent: 'flex-end', cursor: 'pointer' }}>
+      <div onClick={scrollToOrder} style={{ width: '30%', display: 'flex', justifyContent: 'flex-end', cursor: 'pointer' }}>
         <div className={cartLength > 0 ? 'pulse-active' : ''} style={{
-          backgroundColor: '#ff4757', padding: '10px 12px', borderRadius: '12px',
-          border: `2px solid ${GOLD_BRIGHT}`, display: 'flex', alignItems: 'center', gap: '6px'
+          backgroundColor: '#ff4757', padding: '10px 14px', borderRadius: '14px',
+          border: `2px solid ${GOLD_BRIGHT}`, display: 'flex', alignItems: 'center', gap: '8px',
+          boxShadow: '0 4px 15px rgba(255, 71, 87, 0.3)'
         }}>
-          <span style={{ color: '#fff', fontWeight: '950', fontSize: '1.1rem' }}>
+          <span style={{ color: '#fff', fontWeight: '950', fontSize: '1.2rem' }}>
             {totalPrice}€
           </span>
         </div>
       </div>
 
       <style>{`
-        /* --- PERSONNALISATION DU BOUTON GOOGLE --- */
-        .goog-te-gadget-simple {
-          background-color: transparent !important;
-          border: 1px solid ${GOLD_BRIGHT} !important;
-          border-radius: 8px !important;
-          padding: 4px !important;
-          display: flex !important;
-          align-items: center !important;
-        }
-        .goog-te-gadget-simple span {
-          color: ${GOLD_BRIGHT} !important;
-          font-weight: 900 !important;
-          font-size: 10px !important;
-          text-transform: uppercase;
-        }
-        .goog-te-gadget-icon, .goog-te-menu-value img { display: none !important; }
-        .goog-te-banner-frame.skiptranslate { display: none !important; }
-        body { top: 0px !important; }
-
-        /* --- FOND NOIR POUR LE MENU DÉROULANT --- */
-        .goog-te-menu-frame {
-          box-shadow: 0 10px 40px rgba(0,0,0,0.8) !important;
-          border: 1px solid ${GOLD_BRIGHT} !important;
-          border-radius: 12px !important;
-        }
-        iframe.goog-te-menu-frame {
-          filter: invert(0.9) hue-rotate(180deg) brightness(1.2) !important;
-        }
-
         /* --- ANIMATIONS --- */
         @keyframes blink-neon {
           0% { opacity: 1; transform: scale(1); box-shadow: 0 0 10px ${statusColor}, 0 0 20px ${statusColor}; }
@@ -144,7 +108,7 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang }) {
           15% { transform: scale(1.1) rotate(0); }
         }
 
-        /* --- RESPONSIVE : CACHE LE NUMÉRO SUR MOBILE --- */
+        /* --- RESPONSIVE --- */
         @media (max-width: 450px) {
           .nav-phone-text { display: none !important; }
           span[style*="font-size: 1.6rem"] { font-size: 1.3rem !important; }
