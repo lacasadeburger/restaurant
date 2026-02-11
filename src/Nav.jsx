@@ -114,14 +114,18 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang }) {
         .goog-te-banner-frame.skiptranslate { display: none !important; }
         body { top: 0px !important; }
 
-        /* --- FOND NOIR POUR LE MENU DÉROULANT --- */
+        /* --- MENU DÉROULANT : FOND NOIR + SCROLL POUR TOUTES LES LANGUES --- */
         .goog-te-menu-frame {
           box-shadow: 0 10px 40px rgba(0,0,0,0.8) !important;
           border: 1px solid ${GOLD_BRIGHT} !important;
           border-radius: 12px !important;
+          max-height: 400px !important;
+          overflow-y: auto !important;
         }
+
         iframe.goog-te-menu-frame {
           filter: invert(0.9) hue-rotate(180deg) brightness(1.2) !important;
+          max-height: 400px !important;
         }
 
         /* --- ANIMATIONS --- */
