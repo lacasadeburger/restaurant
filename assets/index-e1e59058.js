@@ -57,21 +57,25 @@ Error generating stack: `+i.message+`
         .goog-te-banner-frame.skiptranslate { display: none !important; }
         body { top: 0px !important; }
 
-        /* --- FIX : AFFICHAGE DE TOUTES LES LANGUES (SCROLL COMPLET) --- */
+        /* --- CORRECTIF ULTIME : SCROLL PC & MOBILE --- */
         .goog-te-menu-frame {
           box-shadow: 0 10px 40px rgba(0,0,0,0.8) !important;
           border: 1px solid ${T} !important;
           border-radius: 12px !important;
-          /* On force une largeur fixe pour empêcher Google de créer des colonnes latérales invisibles */
+
+          /* Force une colonne unique pour voir toutes les langues de A à Z */
           width: 280px !important;
-          max-height: 500px !important;
+          max-height: 450px !important;
+
+          /* Déblocage du scroll tactile (Mobile/Tablette) */
           overflow-y: auto !important;
+          -webkit-overflow-scrolling: touch !important;
         }
 
         iframe.goog-te-menu-frame {
           filter: invert(0.9) hue-rotate(180deg) brightness(1.2) !important;
           width: 280px !important;
-          max-height: 500px !important;
+          max-height: 450px !important;
         }
 
         /* --- ANIMATIONS --- */
@@ -94,9 +98,16 @@ Error generating stack: `+i.message+`
           15% { transform: scale(1.1) rotate(0); }
         }
 
+        /* --- RESPONSIVE --- */
         @media (max-width: 450px) {
           .nav-phone-text { display: none !important; }
           span[style*="font-size: 1.6rem"] { font-size: 1.3rem !important; }
+
+          /* On assure que le menu de langues ne sort pas de l'écran mobile */
+          .goog-te-menu-frame {
+            width: 260px !important;
+            max-height: 400px !important;
+          }
         }
       `})]})}var Af={exports:{}};/*!
 * sweetalert2 v11.7.16
