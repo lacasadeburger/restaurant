@@ -25,7 +25,7 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang }) {
       padding: '0 12px', zIndex: 9999, borderBottom: '4px solid #ff4757', boxSizing: 'border-box'
     }}>
 
-      {/* --- GAUCHE : APPEL + TRADUCTEUR --- */}
+      {/* --- GAUCHE : APPEL + TRADUCTEUR (42%) --- */}
       <div style={{ width: '42%', display: 'flex', alignItems: 'center', gap: '8px' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
           <a href="tel:+34602597210" style={{
@@ -47,8 +47,13 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang }) {
           </span>
         </div>
 
-        {/* Widget Google transformé en icône 🌐 */}
-        <div id="google_translate_element"></div>
+        {/* Cible pour le widget Google Translate */}
+        <div id="google_translate_element" style={{
+          minWidth: '40px',
+          height: '36px',
+          display: 'flex',
+          alignItems: 'center'
+        }}></div>
       </div>
 
       {/* --- CENTRE : STATUT XXL --- */}
@@ -90,61 +95,33 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang }) {
       </div>
 
       <style>{`
-        /* --- STYLE DU BOUTON (ICÔNE MONDE) --- */
+        /* --- PERSONNALISATION DU BOUTON GOOGLE --- */
         .goog-te-gadget-simple {
           background-color: transparent !important;
           border: 1px solid ${GOLD_BRIGHT} !important;
           border-radius: 8px !important;
-          padding: 4px 8px !important;
+          padding: 4px !important;
           display: flex !important;
           align-items: center !important;
-          cursor: pointer !important;
         }
-
-        .goog-te-gadget-simple span,
-        .goog-te-gadget-icon,
-        .goog-te-menu-value img {
-          display: none !important;
+        .goog-te-gadget-simple span {
+          color: ${GOLD_BRIGHT} !important;
+          font-weight: 900 !important;
+          font-size: 10px !important;
+          text-transform: uppercase;
         }
-
-        .goog-te-gadget-simple:before {
-          content: '🌐';
-          font-size: 1.2rem;
-        }
-
+        .goog-te-gadget-icon, .goog-te-menu-value img { display: none !important; }
         .goog-te-banner-frame.skiptranslate { display: none !important; }
         body { top: 0px !important; }
 
-        /* --- FIX SCROLL ANDROID & PC --- */
-        /* On cible le conteneur ET l'iframe elle-même avec force */
-        .goog-te-menu-frame,
-        .goog-te-menu-frame.skiptranslate,
-        #goog-gt-tt,
-        .goog-te-menu2 {
+        /* --- FOND NOIR POUR LE MENU DÉROULANT --- */
+        .goog-te-menu-frame {
           box-shadow: 0 10px 40px rgba(0,0,0,0.8) !important;
           border: 1px solid ${GOLD_BRIGHT} !important;
           border-radius: 12px !important;
-          width: 280px !important;
-          max-height: 400px !important;
-
-          /* Capture du scroll sur Android */
-          overflow-y: auto !important;
-          overflow-x: hidden !important;
-          touch-action: pan-y !important;
-          -webkit-overflow-scrolling: touch !important;
         }
-
         iframe.goog-te-menu-frame {
           filter: invert(0.9) hue-rotate(180deg) brightness(1.2) !important;
-          width: 100% !important;
-          height: 100% !important;
-          position: relative !important;
-          z-index: 10000 !important;
-        }
-
-        /* Empêcher le scroll du body quand le menu est ouvert (optionnel mais efficace) */
-        body.cooking-scroll-lock {
-          overflow: hidden !important;
         }
 
         /* --- ANIMATIONS --- */
@@ -167,15 +144,10 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang }) {
           15% { transform: scale(1.1) rotate(0); }
         }
 
-        /* --- RESPONSIVE --- */
+        /* --- RESPONSIVE : CACHE LE NUMÉRO SUR MOBILE --- */
         @media (max-width: 450px) {
           .nav-phone-text { display: none !important; }
           span[style*="font-size: 1.6rem"] { font-size: 1.3rem !important; }
-
-          .goog-te-menu-frame {
-            width: 260px !important;
-            max-height: 350px !important;
-          }
         }
       `}</style>
     </nav>
