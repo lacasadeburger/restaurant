@@ -207,9 +207,9 @@ export default function App() {
   <meta property="og:url" content="https://lacasadeburger.es" />
   <meta property="og:site_name" content="La Casa de Burger Torrevieja" />
 
-  {/* --- DONNÉES STRUCTURÉES (JSON-LD) - SEO LOCAL --- */}
-  <script type="application/ld+json">
-  {JSON.stringify({
+  {/* --- DONNÉES STRUCTURÉES (JSON-LD) - SEO LOCAL COMPLET --- */}
+<script type="application/ld+json">
+{JSON.stringify({
   "@context": "https://schema.org",
   "@type": "FoodEstablishment",
   "name": "La Casa de Burger Torrevieja",
@@ -218,11 +218,12 @@ export default function App() {
   ],
   "@id": "https://lacasadeburger.es",
   "url": "https://lacasadeburger.es",
+  "mainEntityOfPage": "https://lacasadeburger.es",
   "telephone": "+34602597210",
   "priceRange": "€€",
   "servesCuisine": ["American", "Smash Burgers", "Gourmet Hamburgers"],
   "description": "Las mejores Smash Burgers artesanales de Torrevieja. Carne fresca y servicio delivery.",
-
+  "hasMenu": "https://lacasadeburger.es",
   "aggregateRating": {
     "@type": "AggregateRating",
     "ratingValue": "4.9",
@@ -230,7 +231,6 @@ export default function App() {
     "bestRating": "5",
     "worstRating": "1"
   },
-
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "Av. Diego Ramírez Pastor, 142",
@@ -251,7 +251,18 @@ export default function App() {
       "opens": "13:00",
       "closes": "22:30"
     }
-  ]
+  ],
+  "potentialAction": {
+    "@type": "OrderAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": "https://wa.me/34602597210?text=Hola!%20Me%20gustaría%20hacer%20un%20pedido.",
+      "actionPlatform": [
+        "http://schema.org/DesktopWebPlatform",
+        "http://schema.org/MobileWebPlatform"
+      ]
+    }
+  }
 })}
 </script>
 </Helmet>
