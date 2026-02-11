@@ -462,7 +462,7 @@ style={{
 </div>
 
           <div style={{ marginTop: '40px' }}>
-            <img src={logo} alt="La Casa de Burger Oficial" style={{ height: "120px", borderRadius: "15px", marginBottom: '15px' }} />
+            <img src={logo} alt="La Casa de Burger Torrevieja Oficial" style={{ height: "120px", borderRadius: "15px", marginBottom: '15px' }} />
             <div style={{ fontSize: '0.75rem', color: '#555' }}>
               © 2026 <span style={{ color: GOLD_BRIGHT, fontWeight: 'bold' }}>LA CASA DE BURGER</span> | {lang === 'es' ? 'TODOS LOS DERECHOS RESERVADOS' : 'ALL RIGHTS RESERVED'}
             </div>
