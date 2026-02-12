@@ -471,18 +471,43 @@ style={{
             <a href="https://www.tripadvisor.es/Restaurant_Review-g187527-d26835169-Reviews-La_Casa_De_Burger-Torrevieja_Costa_Blanca_Province_of_Alicante_Valencian_Communi.html" target="_blank" rel="noreferrer" aria-label="TripAdvisor"><img src={tripadvisor} width="140" alt="Tripadvisor" /></a>
           </div>
 
-          <div style={{ backgroundColor: '#0a0a0a', padding: '30px', borderRadius: '15px', border: '1px solid #222', textAlign: 'justify' }}>
-  <p style={{ color: '#777', fontSize: '0.8rem', lineHeight: '1.8', margin: 0 }}>
-    <strong>🇪🇸 ESPAÑOL:</strong> Las mejores hamburguesas de Torrevieja. Smash burgers gourmet, comida para llevar y a domicilio. Playa del Cura, Playa de los Locos, Centro.
-    <br /><strong>🇬🇧 ENGLISH:</strong> Best burgers in Torrevieja, gourmet smash burgers, takeaway near me, food delivery Costa Blanca.
-    <br /><strong>🇫🇷 FRANÇAIS:</strong> Meilleur burger Torrevieja, livraison à domicile, cuisine artisanale et frites maison.
-    <br /><strong>🇩🇪 DEUTSCH:</strong> Beste Burger Torrevieja, Lieferservice, Smash Burger Alicante Region.
-    <br /><strong>🇳🇱 NEDERLANDS:</strong> Beste hamburgers Torrevieja, ambachtelijke burgers, eten bestellen en bezorgen.
-    <br /><strong>🇷🇺 РУССКИЙ:</strong> Лучшие бургеры в Торревьехе, доставка еды на дом, крафтовые бургеры.
-    <br /><strong>🇸🇪 SVENSKA:</strong> Bästa burgarna i Torrevieja, matleverans, takeaway i närheten.
-    <br /><strong>🇵🇱 POLSKI:</strong> Najlepsze burgery w Torrevieja, dostawa do domu, burgery rzemieślnicze.
+          <div style={{ backgroundColor: '#0a0a0a', padding: '35px', borderRadius: '15px', border: '1px solid #222', textAlign: 'justify' }}>
+  <p style={{ color: '#888', fontSize: '0.8rem', lineHeight: '1.8', margin: 0 }}>
+    {/* ESPAÑOL - Focus: Gourmet & Artesanal First */}
+    <strong>🇪🇸 ESPAÑOL:</strong> <strong>La Casa de Burger</strong> – Tu destino número uno para la auténtica <strong>hamburguesa gourmet en Torrevieja</strong>. Nuestra especialidad es la <strong>hamburguesa artesanal</strong> elaborada con carne de vacuno premium, pan brioche local y productos frescos de mercado. También somos expertos en la técnica <strong>Smash Burger</strong> para los amantes de la carne crujiente y jugosa. Ofrecemos <strong>comida a domicilio (delivery)</strong> y <strong>take away</strong> en todo el centro y playas. <em>Opciones disponibles: Carne Halal, hamburguesas sin gluten y alternativas vegetarianas.</em> La mejor experiencia gastronómica de la Costa Blanca.
+
     <br /><br />
-    <strong>ZONAS DE REPARTO:</strong> Playa del Cura, Playa de los Locos, Paseo Marítimo, La Siesta, Aguas Nuevas, Los Balcones, Punta Prima, La Mata, Los Altos, El Acequión, La Veleta, San Roque, Rocío del Mar, Torreta, Lago Jardín, El Salado.
+    {/* ENGLISH - Focus: Gourmet & Handmade */}
+    <strong>🇬🇧 ENGLISH:</strong> <strong>Best gourmet burgers in Torrevieja</strong>. We specialize in <strong>handmade artisanal burgers</strong> using premium matured beef, followed by our famous crispy <strong>smash burgers</strong>. Top-rated <strong>restaurant for food delivery</strong> and takeaway near Playa del Cura. Looking for <strong>Halal burgers</strong>, <strong>Gluten-free</strong> options, or <strong>Veggie burgers</strong> in Torrevieja? We have it all. Fresh ingredients, handmade fries, and local craft spirit.
+
+    <br /><br />
+    {/* ARABIC (MAROC / HALAL FOCUS) */}
+    <strong>🇲🇦 MARRUECOS / ARABIC (العربية):</strong>
+    <strong>أفضل برجر غوارميه (Gourmet) في توريفايجا</strong>. تخصصنا هو <strong>البرجر الحرفي والأصيل</strong> المصنوع من أجود أنواع اللحوم، بالإضافة إلى <strong>سماش برجر</strong> (Smash Burger) المقرمش. نحن فخورون بتقديم <strong>لحم حلال (Halal)</strong> مائة بالمائة لجميع زبائننا. خدمة <strong>توصيل الطعام</strong> سريعة للمنازل. خيارات <strong>خالية من الغلوتين</strong> ونباتية متوفرة.
+
+    <br /><br />
+    {/* UKRAINIAN (High visibility) */}
+    <strong>🇺🇦 UKRAINIAN (Українська):</strong>
+    <strong>Найкращі гурме-бургери в Торрев'єсі</strong>. Наша спеціалізація – <strong>крафтові та ремісничі бургери</strong> з добірної яловичини, а також популярні <strong>смаш-бургери</strong>. Швидка <strong>доставка їжі</strong> та замовлення з собою (takeaway). У нас ви знайдете <strong>халяльне м'ясо</strong>, бургери <strong>без глютену</strong> та вегетаріанські страви. Справжня якість у центрі міста.
+
+    <br /><br />
+    {/* FRENCH - Gourmet focus */}
+    <strong>🇫🇷 FRANÇAIS:</strong> <strong>Burger Gourmet Torrevieja</strong>. Spécialiste du <strong>burger artisanal</strong> haut de gamme et du <strong>smash burger</strong>. Viande de qualité supérieure, frites maison et service de <strong>livraison à domicile</strong>. Options <strong>Halal</strong>, <strong>Sans Gluten</strong> et <strong>Végétarien</strong> disponibles pour tous nos clients de la Costa Blanca.
+
+    <br /><br />
+    {/* RUSSIAN */}
+    <strong>🇷🇺 RUSSIAN (Русский):</strong>
+    <strong>Гурме-бургеры в Торревьехе</strong>. Мы специализируемся на <strong>авторских крафтовых бургерах</strong> и сочных <strong>смаш-бургерах</strong>. Быстрая доставка на дом и заказ навынос. В наличии <strong>Халяль</strong>, <strong>безглютеновые</strong> и вегетарианские опции.
+
+    <br /><br />
+    {/* SCANDINAVIAN */}
+    <strong>🇸🇪 SVENSKA:</strong>
+    <strong>Gourmetburgare i Torrevieja</strong>. Vi erbjuder <strong>hantverksmässiga burgare</strong> av högsta kvalitet och krispiga <strong>smash burgers</strong>. Matleverans och takeaway. <strong>Halal</strong> och <strong>Glutenfritt</strong> alternativ finns.
+
+    <br /><br />
+    {/* ZONES DE LIVRAISON HYPER-PRÉCISES */}
+    <strong>📍 ZONAS DE REPARTO / AREAS DE SERVICIO:</strong>
+    <strong>Torrevieja Centro</strong>, Playa del Cura, Playa de los Locos, <strong>La Mata</strong>, Punta Prima, Los Balcones, <strong>Aguas Nuevas</strong>, La Siesta, El Acequión, La Veleta, San Roque, Rocío del Mar, Los Altos, Lago Jardín, Torreta I-II-III, El Salado, Urbanización Doña Inés, Jardín del Mar, <strong>Las Naciones</strong>, Centro Comercial Habaneras.
   </p>
 </div>
 
