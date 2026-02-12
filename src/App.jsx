@@ -217,62 +217,59 @@ export default function App() {
 
   {/* --- DONNÉES STRUCTURÉES GOOGLE (JSON-LD) --- */}
   <script type="application/ld+json">
-    {JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "Restaurant",
-      "name": "La Casa de Burger",
-      "alternateName": "La Casa de Burger Torrevieja",
-      "image": "https://lacasadeburger.es/assets/burger-signature-torrevieja.webp",
-      "logo": "https://lacasadeburger.es/assets/logo.jpg",
-      "url": "https://lacasadeburger.es",
-      "telephone": "+34602597210",
-      "priceRange": "€€",
-      "menu": "https://lacasadeburger.es/#order",
-      "servesCuisine": ["Gourmet Burger", "Artisan Burger", "Smash Burger", "American"],
-      "acceptsReservations": "false",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Av. Diego Ramírez Pastor, 142",
-        "addressLocality": "Torrevieja",
-        "addressRegion": "Alicante",
-        "postalCode": "03181",
-        "addressCountry": "ES"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": 37.9821,
-        "longitude": -0.6756
-      },
-      "openingHoursSpecification": [
-        {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-          "opens": "13:00",
-          "closes": "22:30"
-        }
-      ],
-      "sameAs": [
-        "https://www.facebook.com/profile.php?id=100094610793536",
-        "https://www.instagram.com/lacasadeburger.es/"
-      ],
-      "hasMenu": {
-        "@type": "Menu",
-        "name": "Menú Gourmet y Artesanal",
-        "hasMenuItem": [
-          {
-            "@type": "MenuItem",
-            "name": "Hamburguesas de Autor",
-            "description": "Recetas únicas con carne premium"
-          },
-          {
-            "@type": "MenuItem",
-            "name": "Smash Burgers",
-            "description": "Estilo americano crujiente"
-          }
-        ]
+  {JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Restaurant",
+    "name": "La Casa de Burger Torrevieja",
+    "alternateName": "Mejor Hamburguesería Torrevieja",
+    "image": "https://lacasadeburger.es/assets/burger-signature-torrevieja.webp",
+    "logo": "https://lacasadeburger.es/assets/logo.jpg",
+    "url": "https://lacasadeburger.es",
+    "telephone": "+34602597210",
+    "priceRange": "€€",
+    "menu": "https://lacasadeburger.es/#sec-burgers",
+    "servesCuisine": ["Gourmet Burger", "Smash Burger", "Halal Food", "Gluten-Free Options"],
+    "acceptsReservations": "false",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Av. Diego Ramírez Pastor, 142",
+      "addressLocality": "Torrevieja",
+      "addressRegion": "Alicante",
+      "postalCode": "03181",
+      "addressCountry": "ES"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 37.9821,
+      "longitude": -0.6756
+    },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+        "opens": "13:00",
+        "closes": "22:30"
       }
-    })}
-  </script>
+    ],
+    // CETTE SECTION PERMET LE BOUTON "COMMANDER" SUR GOOGLE
+    "potentialAction": {
+      "@type": "OrderAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://lacasadeburger.es/#order",
+        "actionPlatform": [
+          "http://schema.org/DesktopWebPlatform",
+          "http://schema.org/MobileWebPlatform"
+        ]
+      },
+      "deliveryMethod": ["http://purl.org/goodrelations/v1#DeliveryModeOwnFleet"]
+    },
+    "sameAs": [
+      "https://www.facebook.com/profile.php?id=100094610793536",
+      "https://www.instagram.com/lacasadeburger.es/"
+    ]
+  })}
+</script>
 </Helmet>
       <Nav scrollToOrder={scrollToOrder} cartLength={cart.length} totalPrice={totalPrice} lang={lang} logo={logo} />
 
@@ -307,124 +304,169 @@ export default function App() {
       >
         🏆 #1 BURGER TORREVIEJA
       </div>
-        <div style={{ position: 'relative', zIndex: 2 }}>
-          <h1 style={{ fontSize: '3.5rem', fontWeight: '900', textTransform: 'uppercase', textShadow: '2px 2px 15px rgba(0,0,0,0.9)', margin: 0 }}>
-            La Casa de Burger <span style={{color:'#ff4757'}}>Torrevieja</span>
-          </h1>
-          <h2 style={{ fontSize: '1.5rem', color: GOLD_BRIGHT, fontWeight: '700', textShadow: '1px 1px 10px rgba(0,0,0,1)', marginTop: '10px' }}>
+      <div style={{ position: 'relative', zIndex: 2 }}>
+{/* H1 OPTIMISÉ : On place le mot-clé principal "Mejor Hamburguesa" avant le nom de la ville */}
+<h1 style={{ fontSize: '3.5rem', fontWeight: '900', textTransform: 'uppercase', textShadow: '2px 2px 15px rgba(0,0,0,0.9)', margin: 0, color: '#fff' }}>
+  {lang === 'es' ? 'La Mejor ' : 'The Best '}
+  <span style={{color:'#ff4757'}}>Hamburguesa</span> en Torrevieja
+</h1>
+
+{/* H2 OPTIMISÉ : On ajoute les mots "Gourmet", "Smash" et "Vaca Madurada" pour la sémantique technique */}
+<h2 style={{ fontSize: '1.5rem', color: GOLD_BRIGHT, fontWeight: '700', textShadow: '1px 1px 10px rgba(0,0,0,1)', marginTop: '10px', textTransform: 'uppercase' }}>
   {lang === 'es'
-    ? 'Hamburguesas Gourmet de Autor y Recetas Únicas'
-    : 'Gourmet Signature Burgers & Unique Artisan Recipes'}
+    ? 'Hamburguesería Gourmet: Smash Burgers y Carne de Vaca Madurada'
+    : 'Gourmet Burger Joint: Smash Burgers & Matured Beef'}
 </h2>
 
-          <div style={{ marginTop: '40px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '25px' }}>
-            <button
-onClick={() => { setShowCardBurger(true); setTimeout(() => document.getElementById("sec-burgers")?.scrollIntoView({ behavior: "smooth" }), 100); }}
-className="pulse-gold-btn"
-style={{
-  background: GOLD_GRADIENT,
-  color: '#000',
-  padding: '22px 50px',
-  borderRadius: '50px',
-  border: '3px solid #000',
-  fontWeight: '950',
-  cursor: 'pointer',
-  fontSize: '1.5rem',
-  boxShadow: GOLD_SHADOW,
-  textTransform: 'uppercase',
-  width: '90%',
-  maxWidth: '450px'
-}}
->
-              🚀 {lang === 'es' ? 'PEDIR A DOMICILIO' : 'ORDER DELIVERY'}
-            </button>
+<div style={{ marginTop: '40px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '25px' }}>
+  <button
+    onClick={() => { setShowCardBurger(true); setTimeout(() => document.getElementById("sec-burgers")?.scrollIntoView({ behavior: "smooth" }), 100); }}
+    className="pulse-gold-btn"
+    style={{
+      background: GOLD_GRADIENT,
+      color: '#000',
+      padding: '22px 50px',
+      borderRadius: '50px',
+      border: '3px solid #000',
+      fontWeight: '950',
+      cursor: 'pointer',
+      fontSize: '1.5rem',
+      boxShadow: GOLD_SHADOW,
+      textTransform: 'uppercase',
+      width: '90%',
+      maxWidth: '450px'
+    }}
+  >
+    🚀 {lang === 'es' ? 'PEDIR A DOMICILIO' : 'ORDER DELIVERY'}
+  </button>
 
-            <div style={{ display: 'flex', justifyContent: 'center', gap: '15px', flexWrap: 'wrap' }}>
-              <a href="tel:+34602597210" style={{ background: '#fff', color: '#000', padding: '14px 30px', borderRadius: '50px', textDecoration: 'none', fontWeight: '950', border: '2px solid #000' }}>📞 {lang === 'es' ? 'LLAMAR' : 'CALL'}</a>
-              <button onClick={scrollToOrder} style={{ backgroundColor: '#ff4757', color: '#fff', padding: '14px 30px', borderRadius: '50px', border: '2px solid #000', fontWeight: '950', cursor: 'pointer', boxShadow: '0 4px 0px #b33939' }}>🛒 {totalPrice}€</button>
-            </div>
-          </div>
-        </div>
+  <div style={{ display: 'flex', justifyContent: 'center', gap: '15px', flexWrap: 'wrap' }}>
+    <a href="tel:+34602597210" style={{ background: '#fff', color: '#000', padding: '14px 30px', borderRadius: '50px', textDecoration: 'none', fontWeight: '950', border: '2px solid #000' }}>
+      📞 {lang === 'es' ? 'LLAMAR' : 'CALL'}
+    </a>
+    <button onClick={scrollToOrder} style={{ backgroundColor: '#ff4757', color: '#fff', padding: '14px 30px', borderRadius: '50px', border: '2px solid #000', fontWeight: '950', cursor: 'pointer', boxShadow: '0 4px 0px #b33939' }}>
+      🛒 {totalPrice}€
+    </button>
+  </div>
+</div>
+</div>
       </header>
 
       {/* --- BODY --- */}
-            <main className="menu-page-container">
+      <main className="menu-page-container">
 
-              {/* Categories: BURGERS */}
-              <section id="sec-burgers">
-                <SectionTitle>{lang === 'es' ? 'Burgers Gourmet' : 'Gourmet Burgers'}</SectionTitle>
-                {showCardBurger ? (
-                  <div className="grid-cards">
-                    {burgers.map(item => (
-                      <CardMenu
-                        key={item.id}
-                        {...item}
-                        addToCart={addToCart}
-                        lang={lang}
-                        hasExtras={!noExtrasIds.includes(item.id)}
-                      />
-                    ))}
-                  </div>
-                ) : (
-                  <div className="promo-container" onClick={() => setShowCardBurger(true)}>
-                    <img src={Burger} className="promo-img" alt="Explorar carta de hamburguesas artesanales" />
-                    <button className="btn-overlay">{lang === 'es' ? 'VER CARTA' : 'SEE MENU'}</button>
-                  </div>
-                )}
-              </section>
+        {/* --- BLOC SÉMANTIQUE & STORYTELLING SEO (Nouveau) --- */}
+        <section style={{ padding: '40px 20px', backgroundColor: 'rgba(255,255,255,0.02)', borderRadius: '20px', marginBottom: '40px', textAlign: 'left', border: '1px solid #222' }}>
+          <div style={{ maxWidth: '900px', margin: '0 auto' }}>
+            <h2 style={{ color: GOLD_BRIGHT, fontSize: '1.8rem', marginBottom: '20px', textAlign: 'center' }}>
+              {lang === 'es' ? 'La mejor Hamburguesería Artesanal de Torrevieja' : 'The best Artisan Burger Joint in Torrevieja'}
+            </h2>
+            <p style={{ lineHeight: '1.8', color: '#ccc', fontSize: '1.05rem' }}>
+              {lang === 'es' ? (
+                <>
+                  En <strong>La Casa de Burger</strong>, nos hemos convertido en el referente de las <strong>hamburguesas gourmet en Torrevieja</strong>.
+                  Nuestra pasión por la calidad nos lleva a utilizar exclusivamente <strong>carne de vaca madurada premium</strong>, buey y angus,
+                  picada diariamente para ofrecer una textura inigualable. Especialistas en la técnica <strong>Smash Burger</strong>,
+                  sellamos cada pieza para lograr un caramelizado perfecto y jugoso. <br/><br/>
+                  No solo somos una <strong>hamburguesería cerca de ti</strong>; somos artesanos que utilizan <strong>pan brioche local</strong>
+                  y <strong>patatas fritas naturales</strong> cortadas a mano. Si buscas <strong>comida a domicilio en Torrevieja (delivery)</strong>
+                  o <strong>take away</strong> con opciones <strong>Halal</strong>, <strong>sin gluten</strong> o veganas,
+                  nuestra carta está diseñada para satisfacer a los paladares más exigentes con el mejor rapport calidad-precio.
+                </>
+              ) : (
+                <>
+                  At <strong>La Casa de Burger</strong>, we have become the benchmark for <strong>gourmet burgers in Torrevieja</strong>.
+                  Our passion for quality leads us to use exclusively <strong>premium matured beef</strong>, ox, and angus,
+                  minced daily to offer an unparalleled texture. Specialists in the <strong>Smash Burger</strong> technique,
+                  we sear each piece to achieve perfect, juicy caramelization. <br/><br/>
+                  We are not just a <strong>burger restaurant near you</strong>; we are artisans using <strong>local brioche buns</strong>
+                  and <strong>hand-cut natural fries</strong>. If you are looking for <strong>food delivery in Torrevieja</strong>
+                  or <strong>takeaway</strong> with <strong>Halal</strong>, <strong>gluten-free</strong>, or vegan options,
+                  our menu is designed to satisfy the most demanding palates with the best value for money.
+                </>
+              )}
+            </p>
+          </div>
+        </section>
 
-              {/* Categories: DRINKS */}
-              <section id="sec-bebidas">
-                <SectionTitle>{lang === 'es' ? 'Bebidas' : 'Drinks'}</SectionTitle>
-                {showCardDrink ? (
-                  <div className="grid-cards">
-                    {drinks.map(item => <CardMenu key={item.id} {...item} isDrinkCard={true} addToCart={addToCart} lang={lang} />)}
-                  </div>
-                ) : (
-                  <div className="promo-container" onClick={() => setShowCardDrink(true)}>
-                    <img src={Drink} className="promo-img" alt="Refrescos y bebidas frías" />
-                    <button className="btn-overlay">{lang === 'es' ? 'BEBIDAS' : 'DRINKS'}</button>
-                  </div>
-                )}
-              </section>
+        {/* Categories: BURGERS */}
+        <section id="sec-burgers">
+          <SectionTitle>{lang === 'es' ? 'Burgers Gourmet' : 'Gourmet Burgers'}</SectionTitle>
+          {showCardBurger ? (
+            <div className="grid-cards">
+              {burgers.map(item => (
+                <CardMenu
+                  key={item.id}
+                  {...item}
+                  addToCart={addToCart}
+                  lang={lang}
+                  hasExtras={!noExtrasIds.includes(item.id)}
+                />
+              ))}
+            </div>
+          ) : (
+            <div className="promo-container" onClick={() => setShowCardBurger(true)}>
+              {/* ALT SEO OPTIMISÉ */}
+              <img src={Burger} className="promo-img" alt="Mejor Hamburguesa Gourmet y Smash Burger en Torrevieja - La Casa de Burger" />
+              <button className="btn-overlay">{lang === 'es' ? 'VER CARTA' : 'SEE MENU'}</button>
+            </div>
+          )}
+        </section>
 
-              {/* Categories: POSTRES */}
-              <section id="sec-postres">
-                <SectionTitle>{lang === 'es' ? 'Postres Caseros' : 'Homemade Desserts'}</SectionTitle>
-                {showCardPostres ? (
-                  <div className="grid-cards">
-                    {postres.map(item => <CardMenu key={item.id} {...item} isPostreCard={true} addToCart={addToCart} lang={lang} />)}
-                  </div>
-                ) : (
-                  <div className="promo-container" onClick={() => setShowCardPostres(true)}>
-                    <img src={Postre} className="promo-img" alt="Postres dulces artesanales" />
-                    <button className="btn-overlay">{lang === 'es' ? 'POSTRES' : 'DESSERTS'}</button>
-                  </div>
-                )}
-              </section>
+        {/* Categories: DRINKS */}
+        <section id="sec-bebidas">
+          <SectionTitle>{lang === 'es' ? 'Bebidas' : 'Drinks'}</SectionTitle>
+          {showCardDrink ? (
+            <div className="grid-cards">
+              {drinks.map(item => <CardMenu key={item.id} {...item} isDrinkCard={true} addToCart={addToCart} lang={lang} />)}
+            </div>
+          ) : (
+            <div className="promo-container" onClick={() => setShowCardDrink(true)}>
+              {/* ALT SEO OPTIMISÉ */}
+              <img src={Drink} className="promo-img" alt="Refrescos y bebidas frías para acompañar tu burger en Torrevieja" />
+              <button className="btn-overlay">{lang === 'es' ? 'BEBIDAS' : 'DRINKS'}</button>
+            </div>
+          )}
+        </section>
 
-              {/* ORDER SUMMARY */}
-              <section id="order" style={{ paddingBottom: '100px' }}>
-                <SectionTitle>{lang === 'es' ? 'Tu Pedido' : 'Your Order'}</SectionTitle>
-                <Order cart={cart} removeFromCart={removeFromCart} lang={lang} />
-              </section>
+        {/* Categories: POSTRES */}
+        <section id="sec-postres">
+          <SectionTitle>{lang === 'es' ? 'Postres Caseros' : 'Homemade Desserts'}</SectionTitle>
+          {showCardPostres ? (
+            <div className="grid-cards">
+              {postres.map(item => <CardMenu key={item.id} {...item} isPostreCard={true} addToCart={addToCart} lang={lang} />)}
+            </div>
+          ) : (
+            <div className="promo-container" onClick={() => setShowCardPostres(true)}>
+              {/* ALT SEO OPTIMISÉ */}
+              <img src={Postre} className="promo-img" alt="Postres caseros, tartas y dulces artesanales" />
+              <button className="btn-overlay">{lang === 'es' ? 'POSTRES' : 'DESSERTS'}</button>
+            </div>
+          )}
+        </section>
 
-              {/* REVIEWS SECTION */}
-              <section style={{ padding: '20px 0 80px' }}>
-                <h3 style={{ color: GOLD_BRIGHT, textTransform: 'uppercase', marginBottom: '30px', fontSize: '1.4rem', letterSpacing: '1px' }}>
-                  {lang === 'es' ? 'Lo que dicen nuestros clientes' : 'What our customers say'}
-                </h3>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px', textAlign: 'left' }}>
-                  {randomReviews.map((rev, index) => (
-                    <div key={index} className="testimonial-card">
-                      <div style={{ color: GOLD_BRIGHT, marginBottom: '10px', fontSize: '1.2rem' }}>⭐⭐⭐⭐⭐</div>
-                      <p style={{ fontStyle: 'italic', fontSize: '0.95rem' }}>"{lang === 'es' ? rev.es : rev.en}"</p>
-                      <p style={{ fontWeight: 'bold', marginTop: '10px', color: '#ff4757' }}>— {rev.author}</p>
-                    </div>
-                  ))}
-                </div>
-              </section>
-            </main>
+        {/* ORDER SUMMARY */}
+        <section id="order" style={{ paddingBottom: '100px' }}>
+          <SectionTitle>{lang === 'es' ? 'Tu Pedido' : 'Your Order'}</SectionTitle>
+          <Order cart={cart} removeFromCart={removeFromCart} lang={lang} />
+        </section>
+
+        {/* REVIEWS SECTION */}
+        <section style={{ padding: '20px 0 80px' }}>
+          <h3 style={{ color: GOLD_BRIGHT, textTransform: 'uppercase', marginBottom: '30px', fontSize: '1.4rem', letterSpacing: '1px' }}>
+            {lang === 'es' ? 'Lo que dicen nuestros clientes' : 'What our customers say'}
+          </h3>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px', textAlign: 'left' }}>
+            {randomReviews.map((rev, index) => (
+              <div key={index} className="testimonial-card">
+                <div style={{ color: GOLD_BRIGHT, marginBottom: '10px', fontSize: '1.2rem' }}>⭐⭐⭐⭐⭐</div>
+                <p style={{ fontStyle: 'italic', fontSize: '0.95rem' }}>"{lang === 'es' ? rev.es : rev.en}"</p>
+                <p style={{ fontWeight: 'bold', marginTop: '10px', color: '#ff4757' }}>— {rev.author}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+      </main>
 
             {/* --- FOOTER MASTER : VERSION FINALE ABSOLUE (ZÉRO OUBLI) --- */}
             <footer style={{ padding: '80px 20px 40px', backgroundColor: '#000', color: '#fff', textAlign: 'center', borderTop: '4px solid #ff4757' }}>
