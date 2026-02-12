@@ -228,7 +228,6 @@ export default function App() {
     "url": "https://lacasadeburger.es",
     "telephone": "+34602597210",
     "priceRange": "€€",
-    "menu": "https://lacasadeburger.es/#sec-burgers",
     "servesCuisine": ["Gourmet Burger", "Smash Burger", "Halal Food", "Gluten-Free Options"],
     "acceptsReservations": "false",
     "address": {
@@ -252,7 +251,24 @@ export default function App() {
         "closes": "22:30"
       }
     ],
-    // CETTE SECTION PERMET LE BOUTON "COMMANDER" SUR GOOGLE
+    /* --- AJOUT DU HASMENU POUR LA 3ème DÉTECTION --- */
+    "hasMenu": {
+      "@type": "Menu",
+      "name": "Menú Gourmet La Casa de Burger",
+      "mainEntityOfPage": "https://lacasadeburger.es/#sec-burgers",
+      "hasMenuItem": [
+        {
+          "@type": "MenuItem",
+          "name": "Hamburguesas de Autor",
+          "description": "Recetas únicas con carne premium madurada y estilo Smash."
+        },
+        {
+          "@type": "MenuItem",
+          "name": "Entrantes y Postres",
+          "description": "Nuggets caseros, patatas bravas y waffles artesanales."
+        }
+      ]
+    },
     "potentialAction": {
       "@type": "OrderAction",
       "target": {
