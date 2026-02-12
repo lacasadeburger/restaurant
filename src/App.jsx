@@ -251,7 +251,6 @@ export default function App() {
         "closes": "22:30"
       }
     ],
-    /* --- AJOUT DU HASMENU POUR LA 3ème DÉTECTION --- */
     "hasMenu": {
       "@type": "Menu",
       "name": "Menú Gourmet La Casa de Burger",
