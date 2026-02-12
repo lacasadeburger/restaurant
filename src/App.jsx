@@ -188,83 +188,91 @@ export default function App() {
 
       <Helmet>
   {/* --- SEO DE BASE --- */}
-  <title>La Casa de Burger | Best Burgers & Delivery en Torrevieja</title>
-  {/* AJOUTE CETTE LIGNE ICI POUR L'IMAGE DE GAUCHE SUR GOOGLE */}
-    <link rel="icon" type="image/png" href="/favicon.png" />
-    <meta name="description" content="¿Buscas la mejor hamburguesa de Torrevieja? burgers gourmet o Smashburger con carne fresca y pan artesanal. ¡Pide ahora tu burger a domicilio o Take Away! Delivery en toda la zona." />
-  <meta name="keywords" content="hamburguesería Torrevieja, smash burger, burger gourmet, food delivery Torrevieja, comida a domicilio, takeaway" />
+  <title>La Casa de Burger | Hamburguesas Gourmet & Recetas Únicas en Torrevieja</title>
+  <meta name="description" content="Especialistas en hamburguesas gourmet de autor y recetas artesanales únicas en Torrevieja. Carne premium, pan artesano y nuestras famosas Smashburgers. ¡Pide online!" />
+  <meta name="keywords" content="hamburguesería gourmet Torrevieja, burger artesanal, recetas únicas, smash burger torrevieja, comida domicilio torrevieja, takeaway, halal burger torrevieja, gluten free burger" />
   <link rel="canonical" href="https://lacasadeburger.es" />
+  <meta name="robots" content="index, follow" />
 
   {/* --- SEO INTERNATIONAL (Hreflang) --- */}
   <link rel="alternate" href="https://lacasadeburger.es" hreflang="es" />
   <link rel="alternate" href="https://lacasadeburger.es" hreflang="en" />
+  <link rel="alternate" href="https://lacasadeburger.es" hreflang="uk" />
+  <link rel="alternate" href="https://lacasadeburger.es" hreflang="ar" />
   <link rel="alternate" href="https://lacasadeburger.es" hreflang="x-default" />
 
-  {/* --- OPEN GRAPH (Facebook, WhatsApp, Instagram) --- */}
+  {/* --- FACEBOOK / OPEN GRAPH --- */}
   <meta property="og:type" content="restaurant" />
-  <meta property="og:title" content="La Casa de Burger | Smash Burgers Gourmet" />
-  <meta property="og:description" content="Las mejores Smash Burgers de Torrevieja. ¡Calidad gourmet en la puerta de tu casa!" />
+  <meta property="og:title" content="La Casa de Burger | Hamburguesas Gourmet de Autor" />
+  <meta property="og:description" content="No es solo una burger, es una experiencia gourmet. Recetas únicas y artesanales en el corazón de Torrevieja." />
+  <meta property="og:image" content="https://lacasadeburger.es/assets/burger-signature-torrevieja.webp" />
   <meta property="og:url" content="https://lacasadeburger.es" />
-  <meta property="og:site_name" content="La Casa de Burger Torrevieja" />
+  <meta property="og:site_name" content="La Casa de Burger" />
 
-  {/* --- DONNÉES STRUCTURÉES (JSON-LD) - SEO LOCAL COMPLET --- */}
-<script type="application/ld+json">
-{JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "FoodEstablishment",
-  "name": "La Casa de Burger Torrevieja",
-  "image": [
-    "https://lacasadeburger.es/favicon.png"
-  ],
-  "@id": "https://lacasadeburger.es",
-  "url": "https://lacasadeburger.es",
-  "mainEntityOfPage": "https://lacasadeburger.es",
-  "telephone": "+34602597210",
-  "priceRange": "€€",
-  "servesCuisine": ["American", "Smash Burgers", "Gourmet Hamburgers"],
-  "description": "Las mejores Smash Burgers artesanales de Torrevieja. Carne fresca y servicio delivery.",
-  "hasMenu": "https://lacasadeburger.es",
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "4.9",
-    "reviewCount": "244",
-    "bestRating": "5",
-    "worstRating": "1"
-  },
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "Av. Diego Ramírez Pastor, 142",
-    "addressLocality": "Torrevieja",
-    "addressRegion": "Alicante",
-    "postalCode": "03181",
-    "addressCountry": "ES"
-  },
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": 37.9822,
-    "longitude": -0.6782
-  },
-  "openingHoursSpecification": [
-    {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-      "opens": "13:00",
-      "closes": "22:30"
-    }
-  ],
-  "potentialAction": {
-    "@type": "OrderAction",
-    "target": {
-      "@type": "EntryPoint",
-      "urlTemplate": "https://wa.me/34602597210?text=Hola!%20Me%20gustaría%20hacer%20un%20pedido.",
-      "actionPlatform": [
-        "http://schema.org/DesktopWebPlatform",
-        "http://schema.org/MobileWebPlatform"
-      ]
-    }
-  }
-})}
-</script>
+  {/* --- TWITTER CARD --- */}
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="La Casa de Burger | Gourmet & Signature Burgers" />
+  <meta name="twitter:description" content="Artesanal, Gourmet y Única. Descubre las mejores burgers de Torrevieja." />
+  <meta name="twitter:image" content="https://lacasadeburger.es/assets/burger-signature-torrevieja.webp" />
+
+  {/* --- DONNÉES STRUCTURÉES GOOGLE (JSON-LD) --- */}
+  <script type="application/ld+json">
+    {JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Restaurant",
+      "name": "La Casa de Burger",
+      "alternateName": "La Casa de Burger Torrevieja",
+      "image": "https://lacasadeburger.es/assets/burger-signature-torrevieja.webp",
+      "logo": "https://lacasadeburger.es/assets/logo.jpg",
+      "url": "https://lacasadeburger.es",
+      "telephone": "+34602597210",
+      "priceRange": "€€",
+      "menu": "https://lacasadeburger.es/#order",
+      "servesCuisine": ["Gourmet Burger", "Artisan Burger", "Smash Burger", "American"],
+      "acceptsReservations": "false",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Av. Diego Ramírez Pastor, 142",
+        "addressLocality": "Torrevieja",
+        "addressRegion": "Alicante",
+        "postalCode": "03181",
+        "addressCountry": "ES"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 37.9821,
+        "longitude": -0.6756
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+          "opens": "13:00",
+          "closes": "22:30"
+        }
+      ],
+      "sameAs": [
+        "https://www.facebook.com/profile.php?id=100094610793536",
+        "https://www.instagram.com/lacasadeburger.es/"
+      ],
+      "hasMenu": {
+        "@type": "Menu",
+        "name": "Menú Gourmet y Artesanal",
+        "hasMenuItem": [
+          {
+            "@type": "MenuItem",
+            "name": "Hamburguesas de Autor",
+            "description": "Recetas únicas con carne premium"
+          },
+          {
+            "@type": "MenuItem",
+            "name": "Smash Burgers",
+            "description": "Estilo americano crujiente"
+          }
+        ]
+      }
+    })}
+  </script>
 </Helmet>
       <Nav scrollToOrder={scrollToOrder} cartLength={cart.length} totalPrice={totalPrice} lang={lang} logo={logo} />
 
@@ -304,8 +312,10 @@ export default function App() {
             La Casa de Burger <span style={{color:'#ff4757'}}>Torrevieja</span>
           </h1>
           <h2 style={{ fontSize: '1.5rem', color: GOLD_BRIGHT, fontWeight: '700', textShadow: '1px 1px 10px rgba(0,0,0,1)', marginTop: '10px' }}>
-            {lang === 'es' ? 'La Mejor Hamburguesería Artesanal y Smash Gourmet' : 'The Best Artisan Burger & Gourmet Smash Burger'}
-          </h2>
+  {lang === 'es'
+    ? 'Hamburguesas Gourmet de Autor y Recetas Únicas'
+    : 'Gourmet Signature Burgers & Unique Artisan Recipes'}
+</h2>
 
           <div style={{ marginTop: '40px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '25px' }}>
             <button
