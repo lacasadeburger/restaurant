@@ -187,7 +187,6 @@ export default function App() {
       `}</style>
 
       <Helmet>
-  {/* --- SEO DE BASE --- */}
   <link rel="preload" as="image" href={BurgerSignature} />
   <title>La Casa de Burger | Hamburguesas Gourmet & Recetas Únicas en Torrevieja</title>
   <meta name="description" content="Especialistas en hamburguesas gourmet de autor y recetas artesanales únicas en Torrevieja. Carne premium, pan artesano y nuestras famosas Smashburgers. ¡Pide online!" />
@@ -195,14 +194,14 @@ export default function App() {
   <link rel="canonical" href="https://lacasadeburger.es" />
   <meta name="robots" content="index, follow" />
 
-  {/* --- SEO INTERNATIONAL (Hreflang) --- */}
+
   <link rel="alternate" href="https://lacasadeburger.es" hreflang="es" />
   <link rel="alternate" href="https://lacasadeburger.es" hreflang="en" />
   <link rel="alternate" href="https://lacasadeburger.es" hreflang="uk" />
   <link rel="alternate" href="https://lacasadeburger.es" hreflang="ar" />
   <link rel="alternate" href="https://lacasadeburger.es" hreflang="x-default" />
 
-  {/* --- FACEBOOK / OPEN GRAPH --- */}
+
   <meta property="og:type" content="restaurant" />
   <meta property="og:title" content="La Casa de Burger | Hamburguesas Gourmet de Autor" />
   <meta property="og:description" content="No es solo una burger, es una experiencia gourmet. Recetas únicas y artesanales en el corazón de Torrevieja." />
@@ -210,86 +209,66 @@ export default function App() {
   <meta property="og:url" content="https://lacasadeburger.es" />
   <meta property="og:site_name" content="La Casa de Burger" />
 
-  {/* --- TWITTER CARD --- */}
+
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="La Casa de Burger | Gourmet & Signature Burgers" />
   <meta name="twitter:description" content="Artesanal, Gourmet y Única. Descubre las mejores burgers de Torrevieja." />
   <meta name="twitter:image" content="https://lacasadeburger.es/assets/burger-signature-torrevieja.webp" />
 
-  {/* --- DONNÉES STRUCTURÉES GOOGLE (JSON-LD) --- */}
   <script type="application/ld+json">
-  {JSON.stringify({
-    "@context": "https://schema.org",
-    "@type": "Restaurant",
-    "name": "La Casa de Burger Torrevieja",
-    "alternateName": "Mejor Hamburguesería Torrevieja",
-    "image": "https://lacasadeburger.es/assets/burger-signature-torrevieja.webp",
-    "logo": "https://lacasadeburger.es/assets/logo.jpg",
-    "url": "https://lacasadeburger.es",
-    "telephone": "+34602597210",
-    "priceRange": "€€",
-    "servesCuisine": ["Gourmet Burger", "Smash Burger", "Halal Food", "Gluten-Free Options"],
-    "acceptsReservations": "false",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Av. Diego Ramírez Pastor, 142",
-      "addressLocality": "Torrevieja",
-      "addressRegion": "Alicante",
-      "postalCode": "03181",
-      "addressCountry": "ES"
-    },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": 37.9821,
-      "longitude": -0.6756
-    },
-    "openingHoursSpecification": [
-      {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-        "opens": "13:00",
-        "closes": "22:30"
+{JSON.stringify({
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Restaurant",
+      "@id": "https://lacasadeburger.es/#restaurant",
+      "name": "La Casa de Burger Torrevieja",
+      "image": "https://lacasadeburger.es/assets/burger-signature-torrevieja.webp",
+      "logo": "https://lacasadeburger.es/assets/logo.jpg",
+      "url": "https://lacasadeburger.es",
+      "telephone": "+34602597210",
+      "priceRange": "€€",
+      "servesCuisine": ["Gourmet Burger", "Smash Burger", "Halal"],
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Av. Diego Ramírez Pastor, 142",
+        "addressLocality": "Torrevieja",
+        "postalCode": "03181",
+        "addressCountry": "ES"
+      },
+      "potentialAction": {
+        "@type": "OrderAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://lacasadeburger.es/#order",
+          "actionPlatform": ["http://schema.org/DesktopWebPlatform", "http://schema.org/MobileWebPlatform"]
+        },
+        "deliveryMethod": ["http://purl.org/goodrelations/v1#DeliveryModeOwnFleet"]
       }
-    ],
-    "hasMenu": {
+    },
+    {
       "@type": "Menu",
-      "name": "Menú Gourmet La Casa de Burger",
-      "mainEntityOfPage": "https://lacasadeburger.es/#sec-burgers",
+      "@id": "https://lacasadeburger.es/#menu",
+      "name": "Carta La Casa de Burger",
+      "mainEntityOfPage": "https://lacasadeburger.es",
+      "offers": {
+        "@type": "Offer",
+        "availability": "https://schema.org/InStock"
+      },
       "hasMenuItem": [
         {
           "@type": "MenuItem",
-          "name": "Hamburguesas de Autor",
-          "description": "Recetas únicas con carne premium madurada y estilo Smash."
-        },
-        {
-          "@type": "MenuItem",
-          "name": "Entrantes y Postres",
-          "description": "Nuggets caseros, patatas bravas y waffles artesanales."
+          "name": "Hamburguesas Gourmet",
+          "offers": { "@type": "Offer", "price": "10.00", "priceCurrency": "EUR" }
         }
       ]
-    },
-    "potentialAction": {
-      "@type": "OrderAction",
-      "target": {
-        "@type": "EntryPoint",
-        "urlTemplate": "https://lacasadeburger.es/#order",
-        "actionPlatform": [
-          "http://schema.org/DesktopWebPlatform",
-          "http://schema.org/MobileWebPlatform"
-        ]
-      },
-      "deliveryMethod": ["http://purl.org/goodrelations/v1#DeliveryModeOwnFleet"]
-    },
-    "sameAs": [
-      "https://www.facebook.com/profile.php?id=100094610793536",
-      "https://www.instagram.com/lacasadeburger.es/"
-    ]
-  })}
+    }
+  ]
+})}
 </script>
 </Helmet>
       <Nav scrollToOrder={scrollToOrder} cartLength={cart.length} totalPrice={totalPrice} lang={lang} logo={logo} />
 
-      {/* --- HEADER HERO --- */}
       <header style={{
         padding: '160px 20px 80px',
         textAlign: 'center',
@@ -327,7 +306,7 @@ export default function App() {
   <span style={{color:'#ff4757'}}>Hamburguesa</span> en Torrevieja
 </h1>
 
-{/* H2 OPTIMISÉ : On ajoute les mots "Gourmet", "Smash" et "Vaca Madurada" pour la sémantique technique */}
+
 <h2 style={{ fontSize: '1.5rem', color: GOLD_BRIGHT, fontWeight: '700', textShadow: '1px 1px 10px rgba(0,0,0,1)', marginTop: '10px', textTransform: 'uppercase' }}>
   {lang === 'es'
     ? 'Hamburguesería Gourmet: Smash Burgers y Carne de Vaca Madurada'
@@ -368,10 +347,10 @@ export default function App() {
 </div>
       </header>
 
-      {/* --- BODY --- */}
+
       <main className="menu-page-container">
 
-        {/* --- BLOC SÉMANTIQUE & STORYTELLING SEO (Nouveau) --- */}
+
         <section style={{ padding: '40px 20px', backgroundColor: 'rgba(255,255,255,0.02)', borderRadius: '20px', marginBottom: '40px', textAlign: 'left', border: '1px solid #222' }}>
           <div style={{ maxWidth: '900px', margin: '0 auto' }}>
             <h2 style={{ color: GOLD_BRIGHT, fontSize: '1.8rem', marginBottom: '20px', textAlign: 'center' }}>
@@ -405,7 +384,7 @@ export default function App() {
           </div>
         </section>
 
-        {/* Categories: BURGERS */}
+
         <section id="sec-burgers">
           <SectionTitle>{lang === 'es' ? 'Burgers Gourmet' : 'Gourmet Burgers'}</SectionTitle>
           {showCardBurger ? (
@@ -429,7 +408,7 @@ export default function App() {
           )}
         </section>
 
-        {/* Categories: DRINKS */}
+
         <section id="sec-bebidas">
           <SectionTitle>{lang === 'es' ? 'Bebidas' : 'Drinks'}</SectionTitle>
           {showCardDrink ? (
@@ -438,14 +417,14 @@ export default function App() {
             </div>
           ) : (
             <div className="promo-container" onClick={() => setShowCardDrink(true)}>
-              {/* ALT SEO OPTIMISÉ */}
+
               <img src={Drink} className="promo-img" alt="Refrescos y bebidas frías para acompañar tu burger en Torrevieja" />
               <button className="btn-overlay">{lang === 'es' ? 'BEBIDAS' : 'DRINKS'}</button>
             </div>
           )}
         </section>
 
-        {/* Categories: POSTRES */}
+
         <section id="sec-postres">
           <SectionTitle>{lang === 'es' ? 'Postres Caseros' : 'Homemade Desserts'}</SectionTitle>
           {showCardPostres ? (
@@ -461,13 +440,13 @@ export default function App() {
           )}
         </section>
 
-        {/* ORDER SUMMARY */}
+
         <section id="order" style={{ paddingBottom: '100px' }}>
           <SectionTitle>{lang === 'es' ? 'Tu Pedido' : 'Your Order'}</SectionTitle>
           <Order cart={cart} removeFromCart={removeFromCart} lang={lang} />
         </section>
 
-        {/* REVIEWS SECTION */}
+
         <section style={{ padding: '20px 0 80px' }}>
           <h3 style={{ color: GOLD_BRIGHT, textTransform: 'uppercase', marginBottom: '30px', fontSize: '1.4rem', letterSpacing: '1px' }}>
             {lang === 'es' ? 'Lo que dicen nuestros clientes' : 'What our customers say'}
@@ -484,11 +463,11 @@ export default function App() {
         </section>
       </main>
 
-            {/* --- FOOTER MASTER : VERSION FINALE ABSOLUE (ZÉRO OUBLI) --- */}
+
             <footer style={{ padding: '80px 20px 40px', backgroundColor: '#000', color: '#fff', textAlign: 'center', borderTop: '4px solid #ff4757' }}>
               <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
 
-                {/* BLOC 1 : INFOS DE CONTACT & POSITIONNEMENT */}
+
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '30px', textAlign: 'left', marginBottom: '40px', background: 'rgba(255,255,255,0.03)', padding: '30px', borderRadius: '20px' }}>
                   <div>
                     <h3 style={{ color: '#ff4757' }}>La Casa de Burger Torrevieja</h3>
@@ -505,7 +484,7 @@ export default function App() {
                   </div>
                 </div>
 
-                {/* BLOC 2 : CARTE GOOGLE MAPS INTERACTIVE */}
+
                 <div style={{
                   width: '95%',
                   maxWidth: '1100px',
@@ -530,12 +509,12 @@ export default function App() {
                   ></iframe>
                 </div>
 
-                {/* BLOC 3 : VIDÉO DE PRÉSENTATION */}
+
                 <div style={{ width: '100%', maxWidth: '800px', margin: '0 auto 50px', borderRadius: '15px', overflow: 'hidden', border: `3px solid ${GOLD_BRIGHT}` }}>
                   <iframe width="100%" height="400" src="https://www.youtube.com/embed/qN6VZYBojLs" title="Video de presentación La Casa de Burger" frameBorder="0" allowFullScreen aria-label="Video promocional"></iframe>
                 </div>
 
-                {/* BLOC 4 : RÉSEAUX SOCIAUX & RÉPUTATION */}
+
                 <div style={{ display: 'flex', justifyContent: 'center', gap: '25px', flexWrap: 'wrap', marginBottom: '40px', alignItems: 'center' }}>
                   <a href="https://www.facebook.com/profile.php?id=100094610793536" target="_blank" rel="noreferrer" aria-label="Facebook"><img src={fb} width="45" alt="Facebook" /></a>
                   <a href="https://www.instagram.com/lacasadeburger.es/" target="_blank" rel="noreferrer" aria-label="Instagram"><img src={instagramIcon} width="45" alt="Instagram" /></a>
@@ -544,7 +523,6 @@ export default function App() {
                   <a href="https://www.tripadvisor.es/Restaurant_Review-g187527-d26835169-Reviews-La_Casa_De_Burger-Torrevieja" target="_blank" rel="noreferrer" aria-label="TripAdvisor"><img src={tripadvisor} width="140" alt="Tripadvisor" /></a>
                 </div>
 
-                {/* BLOC 5 : FORTERESSE SEO MULTILINGUE (ZÉRO OUBLI) */}
                 <div style={{ backgroundColor: '#0a0a0a', padding: '35px', borderRadius: '15px', border: '1px solid #222', textAlign: 'justify' }}>
                   <p style={{ color: '#888', fontSize: '0.8rem', lineHeight: '1.8', margin: 0 }}>
                     <strong>🇪🇸 ESPAÑOL:</strong> <strong>La Casa de Burger</strong> – El <strong>mejor restaurante de hamburguesas gourmet en Torrevieja</strong>. Especialistas en <strong>hamburguesas de autor</strong> y <strong>recetas únicas</strong> preparadas con carne de <strong>vaca madurada premium</strong>, buey y angus. Cada <strong>hamburguesa artesanal</strong> se sirve con <strong>salsas caseras secretas</strong> y <strong>patatas fritas naturales</strong>. Si buscas una <strong>Smash Burger</strong> auténtica, jugosa y crujiente, somos tu sitio. <strong>Comida a domicilio (delivery)</strong> rápida. El mejor <strong>rapport calidad-precio</strong>. <em>Carne Halal certificada, opciones sin gluten y veganas.</em>
@@ -583,7 +561,6 @@ export default function App() {
                   </p>
                 </div>
 
-                {/* BLOC 6 : BRANDING & COPYRIGHT */}
                 <div style={{ marginTop: '40px' }}>
                   <img src={logo} alt="La Casa de Burger Torrevieja Oficial" style={{ height: "120px", borderRadius: "15px", marginBottom: '15px' }} />
                   <div style={{ fontSize: '0.75rem', color: '#555' }}>
@@ -593,7 +570,6 @@ export default function App() {
               </div>
             </footer>
 
-      {/* FLOATING ACTION */}
       <a href="https://wa.me/34602597210" target="_blank" rel="noreferrer" className="whatsapp-float" aria-label="Pedir por WhatsApp">
         <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="40" alt="WhatsApp Icon" />
       </a>
