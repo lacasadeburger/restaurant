@@ -483,41 +483,41 @@ style={{
 
           <div style={{ backgroundColor: '#0a0a0a', padding: '35px', borderRadius: '15px', border: '1px solid #222', textAlign: 'justify' }}>
   <p style={{ color: '#888', fontSize: '0.8rem', lineHeight: '1.8', margin: 0 }}>
-    {/* ESPAÑOL - Focus: Gourmet & Artesanal First */}
-    <strong>🇪🇸 ESPAÑOL:</strong> <strong>La Casa de Burger</strong> – Tu destino número uno para la auténtica <strong>hamburguesa gourmet en Torrevieja</strong>. Nuestra especialidad es la <strong>hamburguesa artesanal</strong> elaborada con carne de vacuno premium, pan brioche local y productos frescos de mercado. También somos expertos en la técnica <strong>Smash Burger</strong> para los amantes de la carne crujiente y jugosa. Ofrecemos <strong>comida a domicilio (delivery)</strong> y <strong>take away</strong> en todo el centro y playas. <em>Opciones disponibles: Carne Halal, hamburguesas sin gluten y alternativas vegetarianas.</em> La mejor experiencia gastronómica de la Costa Blanca.
+    {/* ESPAÑOL - Le SEO Local Dominant */}
+    <strong>🇪🇸 ESPAÑOL:</strong> <strong>La Casa de Burger</strong> – El <strong>mejor restaurante de hamburguesas gourmet en Torrevieja</strong>. Especialistas en <strong>hamburguesas de autor</strong> y <strong>recetas únicas</strong> preparadas con carne de <strong>vaca madurada premium</strong>, buey y angus. Cada <strong>hamburguesa artesanal</strong> se sirve en pan brioche de calidad con <strong>salsas caseras secretas</strong> y nuestras famosas <strong>patatas fritas naturales</strong> cortadas a mano. Si buscas una <strong>Smash Burger</strong> auténtica, jugosa y crujiente, somos tu sitio. <strong>Comida a domicilio (delivery)</strong> rápida y take away. El mejor <strong>precio</strong> para una calidad de lujo. <em>Carne Halal certificada, hamburguesas sin gluten (celíacos) y opciones vegetarianas/veganas.</em> ¡Abierto ahora para cenar!
 
     <br /><br />
-    {/* ENGLISH - Focus: Gourmet & Handmade */}
-    <strong>🇬🇧 ENGLISH:</strong> <strong>Best gourmet burgers in Torrevieja</strong>. We specialize in <strong>handmade artisanal burgers</strong> using premium matured beef, followed by our famous crispy <strong>smash burgers</strong>. Top-rated <strong>restaurant for food delivery</strong> and takeaway near Playa del Cura. Looking for <strong>Halal burgers</strong>, <strong>Gluten-free</strong> options, or <strong>Veggie burgers</strong> in Torrevieja? We have it all. Fresh ingredients, handmade fries, and local craft spirit.
+    {/* ENGLISH - International Tourist SEO */}
+    <strong>🇬🇧 ENGLISH:</strong> <strong>Best gourmet burgers in Torrevieja</strong> town center. We specialize in <strong>signature burgers</strong>, <strong>unique artisan recipes</strong>, premium matured beef, and <strong>fresh homemade fries</strong>. Looking for a <strong>top-rated burger joint near me</strong>? Enjoy our crispy <strong>Smash Burgers</strong> and handcrafted meals. Fast <strong>food delivery</strong> and takeaway service. <strong>Halal meat</strong>, <strong>Gluten-free</strong> buns, and <strong>Veggie</strong> burgers. The best dining experience in Costa Blanca for families and foodies.
 
     <br /><br />
-    {/* ARABIC (MAROC / HALAL FOCUS) */}
+    {/* ARABIC - Full Halal & Quality focus */}
     <strong>🇲🇦 MARRUECOS / ARABIC (العربية):</strong>
-    <strong>أفضل برجر غوارميه (Gourmet) في توريفايجا</strong>. تخصصنا هو <strong>البرجر الحرفي والأصيل</strong> المصنوع من أجود أنواع اللحوم، بالإضافة إلى <strong>سماش برجر</strong> (Smash Burger) المقرمش. نحن فخورون بتقديم <strong>لحم حلال (Halal)</strong> مائة بالمائة لجميع زبائننا. خدمة <strong>توصيل الطعام</strong> سريعة للمنازل. خيارات <strong>خالية من الغلوتين</strong> ونباتية متوفرة.
+    <strong>أفضل مطعم برجر غوارميه في توريفايجا</strong>. نحن متخصصون في <strong>وصفاتنا الحصرية والفريدة</strong> المصنوعة من أجود أنواع اللحوم (Vaca Madurada) والبطاطس الطازجة يومياً. جرب <strong>البرجر الأصيل</strong> أو <strong>سماش برجر</strong> المقرمش. نحن نوفر <strong>لحم حلال (Halal)</strong> مائة بالمائة لجميع وجباتنا. أفضل <strong>توصيل طعام</strong> في المنطقة. خيارات نباتية وخالية من الغلوتين متوفرة.
 
     <br /><br />
-    {/* UKRAINIAN (High visibility) */}
+    {/* UKRAINIAN - Expat & Family SEO */}
     <strong>🇺🇦 UKRAINIAN (Українська):</strong>
-    <strong>Найкращі гурме-бургери в Торрев'єсі</strong>. Наша спеціалізація – <strong>крафтові та ремісничі бургери</strong> з добірної яловичини, а також популярні <strong>смаш-бургери</strong>. Швидка <strong>доставка їжі</strong> та замовлення з собою (takeaway). У нас ви знайдете <strong>халяльне м'ясо</strong>, бургери <strong>без глютену</strong> та вегетаріанські страви. Справжня якість у центрі міста.
+    <strong>Найкращі гурме-бургери в Торрев'єсі</strong>. Авторські <strong>бургери за унікальними рецептами</strong>, крафтове м'ясо та <strong>домашня картопля фрі</strong>. Спробуйте справжні <strong>смаш-бургери</strong>. Швидка <strong>доставка їжі</strong> та замовлення з собою. У нас є <strong>халяльне м'ясо</strong>, меню <strong>без глютену</strong> та вегетаріанські страви. Найкраще місце для смачної вечері.
 
     <br /><br />
-    {/* FRENCH - Gourmet focus */}
-    <strong>🇫🇷 FRANÇAIS:</strong> <strong>Burger Gourmet Torrevieja</strong>. Spécialiste du <strong>burger artisanal</strong> haut de gamme et du <strong>smash burger</strong>. Viande de qualité supérieure, frites maison et service de <strong>livraison à domicile</strong>. Options <strong>Halal</strong>, <strong>Sans Gluten</strong> et <strong>Végétarien</strong> disponibles pour tous nos clients de la Costa Blanca.
+    {/* FRENCH - Quality & Delivery SEO */}
+    <strong>🇫🇷 FRANÇAIS:</strong> <strong>Meilleur Burger Gourmet Torrevieja</strong>. Notre spécialité : <strong>burgers signatures</strong>, recettes artisanales et <strong>frites maison</strong>. Découvrez nos <strong>smash burgers</strong> croustillants et notre viande maturée d'exception. <strong>Livraison à domicile</strong> et vente à emporter (Take Away) rapide. Options <strong>Halal</strong>, <strong>Sans Gluten</strong> et <strong>Végétarien</strong>. Qualité artisanale garantie.
 
     <br /><br />
     {/* RUSSIAN */}
     <strong>🇷🇺 RUSSIAN (Русский):</strong>
-    <strong>Гурме-бургеры в Торревьехе</strong>. Мы специализируемся на <strong>авторских крафтовых бургерах</strong> и сочных <strong>смаш-бургерах</strong>. Быстрая доставка на дом и заказ навынос. В наличии <strong>Халяль</strong>, <strong>безглютеновые</strong> и вегетарианские опции.
+    <strong>Лучшие гурме-бургеры в Торревьехе</strong>. Авторские рецепты, крафтовое мясо и домашняя картошка. В меню <strong>смаш-бургеры</strong> и бургеры из выдержанной говядины. Быстрая <strong>доставка еды</strong>. Есть <strong>Халяль</strong> и безглютеновое меню.
 
     <br /><br />
-    {/* SCANDINAVIAN */}
+    {/* SCANDINAVIAN / SWEDISH */}
     <strong>🇸🇪 SVENSKA:</strong>
-    <strong>Gourmetburgare i Torrevieja</strong>. Vi erbjuder <strong>hantverksmässiga burgare</strong> av högsta kvalitet och krispiga <strong>smash burgers</strong>. Matleverans och takeaway. <strong>Halal</strong> och <strong>Glutenfritt</strong> alternativ finns.
+    <strong>Bästa gourmetburgare i Torrevieja</strong>. Unika <strong>signaturburgare</strong>, hantverksmässigt kött och <strong>hemmapgjorda pommes</strong>. Vi har även krispiga <strong>smash burgers</strong>. Matleverans och takeaway. <strong>Halal</strong> och <strong>Glutenfritt</strong>.
 
     <br /><br />
-    {/* ZONES DE LIVRAISON HYPER-PRÉCISES */}
-    <strong>📍 ZONAS DE REPARTO / AREAS DE SERVICIO:</strong>
-    <strong>Torrevieja Centro</strong>, Playa del Cura, Playa de los Locos, <strong>La Mata</strong>, Punta Prima, Los Balcones, <strong>Aguas Nuevas</strong>, La Siesta, El Acequión, La Veleta, San Roque, Rocío del Mar, Los Altos, Lago Jardín, Torreta I-II-III, El Salado, Urbanización Doña Inés, Jardín del Mar, <strong>Las Naciones</strong>, Centro Comercial Habaneras.
+    {/* ZONES DE LIVRAISON : LA LISTE TOTALE */}
+    <strong>📍 ZONAS DE REPARTO / DELIVERY AREAS:</strong>
+    <strong>Torrevieja Centro</strong>, <strong>Playa del Cura</strong>, <strong>Playa de los Locos</strong>, Paseo Marítimo, Puerto, <strong>La Mata</strong>, Punta Prima, Los Balcones, <strong>Aguas Nuevas</strong>, La Siesta, El Acequión, La Veleta, San Roque, Rocío del Mar, Los Altos, Lago Jardín, Torreta I, II, III, El Salado, Urbanización Doña Inés, Jardín del Mar, <strong>Las Naciones</strong>, Centro Comercial Habaneras, Los Almendros, Altos del Limonar, Parque de las Naciones, y todos los hoteles de Torrevieja.
   </p>
 </div>
 
