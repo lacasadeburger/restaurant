@@ -188,6 +188,7 @@ export default function App() {
 
       <Helmet>
   {/* --- SEO DE BASE --- */}
+  <link rel="preload" as="image" href={BurgerSignature} />
   <title>La Casa de Burger | Hamburguesas Gourmet & Recetas Únicas en Torrevieja</title>
   <meta name="description" content="Especialistas en hamburguesas gourmet de autor y recetas artesanales únicas en Torrevieja. Carne premium, pan artesano y nuestras famosas Smashburgers. ¡Pide online!" />
   <meta name="keywords" content="hamburguesería gourmet Torrevieja, burger artesanal, recetas únicas, smash burger torrevieja, comida domicilio torrevieja, takeaway, halal burger torrevieja, gluten free burger" />
