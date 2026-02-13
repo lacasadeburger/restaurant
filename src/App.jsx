@@ -234,6 +234,15 @@ export default function App() {
       const removeFromCart = (idx) => setCart(p => p.filter((_, i) => i !== idx));
       // Fonction de scroll universelle avec décalage pour la Nav fixe
       const scrollToId = (id) => {
+        const scrollToOrder = () => {
+    const el = document.getElementById("order");
+    if (el) {
+      window.scrollTo({
+        top: el.offsetTop - 100,
+        behavior: "smooth"
+      });
+    }
+  };
         const el = document.getElementById(id);
         if (el) {
           const offset = 110; // Décalage pour ne pas que la Nav cache le titre
@@ -826,22 +835,22 @@ style={{
 
                   {/* BOUTON ETAPE SUIVANTE */}
                   {(showCardBurger || showCardPostres || showCardDrink) && (
-                    <button
-                      className="floating-close"
-                      onClick={handleNextStep}
-                      style={{
-                        position: 'fixed', bottom: '95px', left: '50%', transform: 'translateX(-50%)',
-                        backgroundColor: '#ff4757', color: '#fff', padding: '15px 30px',
-                        borderRadius: '12px', fontWeight: '900', zIndex: 10000,
-                        border: '3px solid #000', cursor: 'pointer', boxShadow: '0 5px 15px rgba(0,0,0,0.4)',
-                        textTransform: 'uppercase'
-                      }}
-                    >
-                      {showCardBurger && (lang === 'es' ? 'SIGUIENTE: BEBIDAS ➔' : 'NEXT: DRINKS ➔')}
-                      {showCardDrink && (lang === 'es' ? 'SIGUIENTE: POSTRES ➔' : 'NEXT: DESSERTS ➔')}
-                      {showCardPostres && (lang === 'es' ? 'VER MI PEDIDO ✓' : 'VIEW MY ORDER ✓')}
-                    </button>
-                  )}
-                </div>
-              );
-            }
+          <button
+            className="floating-close"
+            onClick={handleNextStep}
+            style={{
+              position: 'fixed', bottom: '95px', left: '50%', transform: 'translateX(-50%)',
+              backgroundColor: '#ff4757', color: '#fff', padding: '15px 30px',
+              borderRadius: '12px', fontWeight: '900', zIndex: 10000,
+              border: '3px solid #000', cursor: 'pointer', boxShadow: '0 5px 15px rgba(0,0,0,0.4)',
+              textTransform: 'uppercase'
+            }}
+          >
+            {showCardBurger && (lang === 'es' ? 'SIGUIENTE: BEBIDAS ➔' : 'NEXT: DRINKS ➔')}
+            {showCardDrink && (lang === 'es' ? 'SIGUIENTE: POSTRES ➔' : 'NEXT: DESSERTS ➔')}
+            {showCardPostres && (lang === 'es' ? 'VER MI PEDIDO ✓' : 'VIEW MY ORDER ✓')}
+          </button>
+        )}
+      </div>
+    );
+  }
