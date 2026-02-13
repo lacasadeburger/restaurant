@@ -604,6 +604,7 @@ export default function App() {
   </button>
 </div>
 </div>
+</div>
       </header>
       <main className="menu-page-container">
               {/* Tes sections commencent ici */}
