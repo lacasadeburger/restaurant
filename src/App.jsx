@@ -513,7 +513,7 @@ export default function App() {
 
 
                 <div style={{
-                  width: '80%',
+                  width: '60%',
                   maxWidth: '1100px',
                   margin: '40px auto',
                   borderRadius: '15px',
