@@ -15,7 +15,6 @@ import tripadvisor from "./assets/tripadvisor.png";
 import googleIcon from "./assets/google.png";
 import logo from "./assets/logo.jpg";
 import BurgerSignature from "./assets/burger-signature-torrevieja.webp";
-import instagramIcon from "./assets/instagram.png"; // Vérifie bien le nom du fichier dans ton dossier assets
 
 const T = {
   es: {
@@ -232,10 +231,10 @@ export default function App() {
       // (Cette logique sera utilisée par CardMenu pour savoir s'il doit ouvrir le modal ou non)
       setCart(prev => [...prev, { ...item, uniqueKey: Math.random() }]);
     };
-      const removeFromCart = (idx) => setCart(p => p.filter((_, i) => i !== idx));
-      // Fonction de scroll universelle avec décalage pour la Nav fixe
-      const scrollToId = (id) => {
-        const scrollToOrder = () => {
+    const removeFromCart = (idx) => setCart(p => p.filter((_, i) => i !== idx));
+
+  // 1. Fonction spécifique pour le panier
+  const scrollToOrder = () => {
     const el = document.getElementById("order");
     if (el) {
       window.scrollTo({
@@ -244,21 +243,23 @@ export default function App() {
       });
     }
   };
-        const el = document.getElementById(id);
-        if (el) {
-          const offset = 110; // Décalage pour ne pas que la Nav cache le titre
-          const bodyRect = document.body.getBoundingClientRect().top;
-          const elementRect = el.getBoundingClientRect().top;
-          const elementPosition = elementRect - bodyRect;
-          const offsetPosition = elementPosition - offset;
 
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: "smooth"
-          });
-        }
-      };
+  // 2. Fonction de scroll universelle
+  const scrollToId = (id) => {
+    const el = document.getElementById(id);
+    if (el) {
+      const offset = 110; // Décalage pour ne pas que la Nav cache le titre
+      const bodyRect = document.body.getBoundingClientRect().top;
+      const elementRect = el.getBoundingClientRect().top;
+      const elementPosition = elementRect - bodyRect;
+      const offsetPosition = elementPosition - offset;
 
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
+    }
+  };
       // Fonction spécifique pour ouvrir le menu et descendre
       const handleStartOrder = () => {
         setShowCardBurger(true); // On force l'ouverture
