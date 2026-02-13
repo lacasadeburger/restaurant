@@ -845,5 +845,3 @@ style={{
                 </div>
               );
             }
-
-export default App;
