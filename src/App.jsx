@@ -825,35 +825,34 @@ style={{
                   <img src={logo} alt="La Casa de Burger Torrevieja Oficial" style={{ height: "120px", borderRadius: "15px", marginBottom: '15px' }} />
                   <div style={{ fontSize: '0.75rem', color: '#555' }}>
                     © 2026 <span style={{ color: GOLD_BRIGHT, fontWeight: 'bold' }}>LA CASA DE BURGER</span> | {lang === 'es' ? 'EL MEJOR BURGER DE TORREVIEJA - TODOS LOS DERECHOS RESERVADOS' : 'BEST BURGER IN TORREVIEJA - ALL RIGHTS RESERVED'}
-                  </div>
+                    </div>
                 </div>
               </div>
-              </footer>
+            </footer>
 
-        {/* BOUTON WHATSAPP */}
-        <a href="https://wa.me/34602597210" target="_blank" rel="noreferrer" className="whatsapp-float" aria-label="Pedir por WhatsApp">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="40" alt="WhatsApp Icon" />
-        </a>
+      {/* BOUTON WHATSAPP */}
+      <a href="https://wa.me/34602597210" target="_blank" rel="noreferrer" className="whatsapp-float" aria-label="Pedir por WhatsApp">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="40" alt="WhatsApp Icon" />
+      </a>
 
-        {/* BOUTON ÉTAPE SUIVANTE */}
-        {(showCardBurger || showCardPostres || showCardDrink) && (
-          <button
-            className="floating-close"
-            onClick={handleNextStep}
-            style={{
-              position: 'fixed', bottom: '95px', left: '50%', transform: 'translateX(-50%)',
-              backgroundColor: '#ff4757', color: '#fff', padding: '15px 30px',
-              borderRadius: '12px', fontWeight: '900', zIndex: 10000,
-              border: '3px solid #000', cursor: 'pointer', boxShadow: '0 5px 15px rgba(0,0,0,0.4)',
-              textTransform: 'uppercase'
-            }}
-          >
-            {showCardBurger && (lang === 'es' ? 'SIGUIENTE: BEBIDAS ➔' : 'NEXT: DRINKS ➔')}
-            {showCardDrink && (lang === 'es' ? 'SIGUIENTE: POSTRES ➔' : 'NEXT: DESSERTS ➔')}
-            {showCardPostres && (lang === 'es' ? 'VER MI PEDIDO ✓' : 'VIEW MY ORDER ✓')}
-          </button>
-        )}
-
-      </div> // ICI : Il n'en faut qu'UN SEUL pour fermer la div className="App"
-    );
-  }
+      {/* BOUTON ETAPE SUIVANTE */}
+      {(showCardBurger || showCardPostres || showCardDrink) && (
+        <button
+          className="floating-close"
+          onClick={handleNextStep}
+          style={{
+            position: 'fixed', bottom: '95px', left: '50%', transform: 'translateX(-50%)',
+            backgroundColor: '#ff4757', color: '#fff', padding: '15px 30px',
+            borderRadius: '12px', fontWeight: '900', zIndex: 10000,
+            border: '3px solid #000', cursor: 'pointer', boxShadow: '0 5px 15px rgba(0,0,0,0.4)',
+            textTransform: 'uppercase'
+          }}
+        >
+          {showCardBurger && (lang === 'es' ? 'SIGUIENTE: BEBIDAS ➔' : 'NEXT: DRINKS ➔')}
+          {showCardDrink && (lang === 'es' ? 'SIGUIENTE: POSTRES ➔' : 'NEXT: DESSERTS ➔')}
+          {showCardPostres && (lang === 'es' ? 'VER MI PEDIDO ✓' : 'VIEW MY ORDER ✓')}
+        </button>
+      )}
+    </div>
+  );
+}
