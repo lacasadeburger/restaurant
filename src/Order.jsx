@@ -8,28 +8,31 @@ export default function Order({ cart, removeFromCart, lang }) {
   const [address, setAddress] = useState("");
   const [paymentOption, setPaymentOption] = useState("");
 
-  // --- SYSTÈME DE TRADUCTION CHIRURGICAL (11 LANGUES) ---
+  // --- SYSTÈME DE TRADUCTION SÉCURISÉ (11 LANGUES) ---
   const translations = {
-    empty: { es: "Tu carrito está vacío", en: "Your cart is empty", fr: "Votre panier est vide", de: "Ihr Warenkorb ist leer", it: "Il tuo carrello è vuoto", pt: "Seu carrinho está vazio", ru: "Ваша корзина пуста", uk: "Ваш кошик порожній", pl: "Twój koszyk jest pusty", ro: "Coșul tău este gol", ar: "عربة التسوق فارغة" },
-    placeholderName: { es: "Tu Nombre", en: "Full Name", fr: "Votre Nom", de: "Ihr Name", it: "Il tuo nome", pt: "Seu Nome", ru: "Ваше имя", uk: "Ваше ім'я", pl: "Twoje imię", ro: "Numele tău", ar: "اسمك" },
-    placeholderPhone: { es: "Tu Teléfono", en: "Phone Number", fr: "Téléphone", de: "Telefonnummer", it: "Telefono", pt: "Seu Telefone", ru: "Телефон", uk: "Телефон", pl: "Numer telefonu", ro: "Telefon", ar: "رقم هاتفك" },
-    placeholderAddress: { es: "Dirección (Vacío para recoger)", en: "Address (Empty for pickup)", fr: "Adresse (Vide pour retrait)", de: "Adresse (Leer für Abholung)", it: "Indirizzo (Vuoto per ritiro)", pt: "Endereço (Vazio para retirar)", ru: "Адрес (Пусто для самовывоза)", uk: "Адреса (Пусто для самовивозу)", pl: "Adres (Puste dla odbioru)", ro: "Adresă (Gol pt ridicare)", ar: "العنوان (فارغ للاستلام)" },
-    payTitle: { es: "¿Cómo pagarás?", en: "How will you pay?", fr: "Comment payez-vous ?", de: "Wie zahlen Sie?", it: "Come pagherai?", pt: "Como vai pagar?", ru: "Как вы оплатите?", uk: "Як ви оплатите?", pl: "Jak zapłacisz?", ro: "Cum vei plăti?", ar: "كيف ستدفع؟" },
-    cash: { es: "💵 Efectivo", en: "💵 Cash", fr: "💵 Espèces", de: "💵 Bargeld", it: "💵 Contanti", pt: "💵 Dinheiro", ru: "💵 Наличные", uk: "💵 Готівка", pl: "💵 Gotówka", ro: "💵 Numerar", ar: "💵 نقداً" },
-    card: { es: "💳 Tarjeta", en: "💳 Card", fr: "💳 Carte", de: "💳 Karte", it: "💳 Carta", pt: "💳 Cartão", ru: "💳 Карта", uk: "💳 Картка", pl: "💳 Karta", ro: "💳 Card", ar: "💳 بطاقة" },
-    btnSend: { es: "🚀 ENVIAR POR WHATSAPP", en: "🚀 SEND VIA WHATSAPP", fr: "🚀 ENVOYER PAR WHATSAPP", de: "🚀 PER WHATSAPP SENDEN", it: "🚀 INVIA VIA WHATSAPP", pt: "🚀 ENVIAR VIA WHATSAPP", ru: "🚀 ОТПРАВИТЬ В WHATSAPP", uk: "🚀 ВІДПРАВИТИ В WHATSAPP", pl: "🚀 WYŚLIJ PRZEZ WHATSAPP", ro: "🚀 TRIMITE PE WHATSAPP", ar: "🚀 إرسال عبر واتساب" },
-    btnSelectPay: { es: "ELIJA MÉTODO DE PAGO", en: "CHOOSE PAYMENT METHOD", fr: "CHOISIR LE PAIEMENT", de: "ZAHLUNGSART WÄHLEN", it: "SCEGLI PAGAMENTO", pt: "ESCOLHA O PAGAMENTO", ru: "ВЫБЕРИТЕ ОПЛАТУ", uk: "ВИБЕРІТЬ ОПЛАТУ", pl: "WYBIERZ PŁATNOŚĆ", ro: "ALEGE PLATA", ar: "اختر طريقة الدفع" },
-    sin: { es: "SIN", en: "WITHOUT", fr: "SANS", de: "OHNE", it: "SENZA", pt: "SEM", ru: "БЕЗ", uk: "БЕЗ", pl: "BEZ", ro: "FĂRĂ", ar: "بدون" },
-    alertTitle: { es: "Falta información", en: "Missing information", fr: "Infos manquantes", de: "Infos fehlen", it: "Info mancanti", pt: "Informação faltando", ru: "Не все заполнено", uk: "Не все заповнено", pl: "Brak informacji", ro: "Lipsesc informații", ar: "معلومات ناقصة" },
-    alertText: { es: "Nombre y teléfono requeridos.", en: "Name and phone required.", fr: "Nom et téléphone requis.", de: "Name und Tel. benötigt.", it: "Nome e telefono richiesti.", pt: "Nome e telefone exigidos.", ru: "Имя и телефон обязательны.", uk: "Ім'я та телефон обов'язкові.", pl: "Imię i telefon są wymagane.", ro: "Numele și tel. sunt obligatorii.", ar: "الاسم والهاتف مطلوبان." },
-    alertPayTitle: { es: "Método de pago", en: "Payment Method", fr: "Mode de paiement", de: "Zahlungsart", it: "Metodo di pagamento", pt: "Método de pagamento", ru: "Способ оплаты", uk: "Спосіб оплати", pl: "Metoda płatności", ro: "Metoda de plată", ar: "طريقة الدفع" },
-    alertPayText: { es: "Seleccione un método.", en: "Select a method.", fr: "Choisissez un mode.", de: "Wählen Sie eine Methode.", it: "Seleziona un metodo.", pt: "Selecione um método.", ru: "Выберите способ.", uk: "Виберіть спосіб.", pl: "Wybierz metodę.", ro: "Selectați o metodă.", ar: "اختر طريقة." },
-    pickup: { es: "Recogida en local", en: "Local pickup", fr: "Retrait sur place", de: "Abholung", it: "Ritiro locale", pt: "Retirada no local", ru: "Самовывоз", uk: "Самовивіз", pl: "Odbiór osobisty", ro: "Ridicare personală", ar: "استلام محلي" },
-    whatsappHeader: { es: "NUEVO PEDIDO", en: "NEW ORDER", fr: "NOUVELLE COMMANDE", de: "NEUE BESTELLUNG", it: "NUOVO ORDINE", pt: "NOVO PEDIDO", ru: "НОВЫЙ ЗАКАЗ", uk: "НОВЕ ЗАМОВЛЕННЯ", pl: "NOWE ZAMÓWIENIE", ro: "COMANDĂ NOUĂ", ar: "طلب جديد" }
+    empty: { es: "Tu carrito está vacío", en: "Your cart is empty", fr: "Votre panier est vide", de: "Ihr Warenkorb ist leer", it: "Il tuo carrello è vuoto", pt: "Seu carrinho está vazio", ru: "Ваша корзина пуста", uk: "Ваш кошик порожній", pl: "Twój koszyk jest pusty", ro: "Coșul tău este gol", ar: "عربة التسوق فارغة", no: "Handlevognen er tom", sv: "Varukorgen är tom" },
+    placeholderName: { es: "Tu Nombre", en: "Full Name", fr: "Votre Nom", de: "Ihr Name", it: "Il tuo nome", pt: "Seu Nome", ru: "Ваше имя", uk: "Ваше ім'я", pl: "Twoje imię", ro: "Numele tău", ar: "اسمك", no: "Ditt navn", sv: "Ditt namn" },
+    placeholderPhone: { es: "Tu Teléfono", en: "Phone Number", fr: "Téléphone", de: "Telefonnummer", it: "Telefono", pt: "Seu Telefone", ru: "Телефон", uk: "Телефон", pl: "Numer telefonu", ro: "Telefon", ar: "رقم هاتفك", no: "Telefonnummer", sv: "Telefonnummer" },
+    placeholderAddress: { es: "Dirección (Vacío para recoger)", en: "Address (Empty for pickup)", fr: "Adresse (Vide pour retrait)", de: "Adresse (Leer für Abholung)", it: "Indirizzo (Vuoto per ritiro)", pt: "Endereço (Vazio para retirar)", ru: "Адрес (Пусто для самовывоза)", uk: "Адреса (Пусто для самовивозу)", pl: "Adres (Puste dla odbioru)", ro: "Adresă (Gol pt ridicare)", ar: "العنوان (فارغ للاستلام)", no: "Adresse (Tom for henting)", sv: "Adress (Tom för hämtning)" },
+    payTitle: { es: "¿Cómo pagarás?", en: "How will you pay?", fr: "Comment payez-vous ?", de: "Wie zahlen Sie?", it: "Come pagherai?", pt: "Como vai pagar?", ru: "Как вы оплатите?", uk: "Як ви оплатите?", pl: "Jak zapłacisz?", ro: "Cum vei plăti?", ar: "كيف ستدفع؟", no: "Hvordan vil du betale?", sv: "Hur vill du betala?" },
+    cash: { es: "💵 Efectivo", en: "💵 Cash", fr: "💵 Espèces", de: "💵 Bargeld", it: "💵 Contanti", pt: "💵 Dinheiro", ru: "💵 Наличные", uk: "💵 Готівка", pl: "💵 Gotówka", ro: "💵 Numerar", ar: "💵 نقداً", no: "💵 Kontanter", sv: "💵 Kontanter" },
+    card: { es: "💳 Tarjeta", en: "💳 Card", fr: "💳 Carte", de: "💳 Karte", it: "💳 Carta", pt: "💳 Cartão", ru: "💳 Карта", uk: "💳 Картка", pl: "💳 Karta", ro: "💳 Card", ar: "💳 بطاقة", no: "💳 Kort", sv: "💳 Kort" },
+    btnSend: { es: "🚀 ENVIAR POR WHATSAPP", en: "🚀 SEND VIA WHATSAPP", fr: "🚀 ENVOYER PAR WHATSAPP", de: "🚀 PER WHATSAPP SENDEN", it: "🚀 INVIA VIA WHATSAPP", pt: "🚀 ENVIAR VIA WHATSAPP", ru: "🚀 ОТПРАВИТЬ В WHATSAPP", uk: "🚀 ВІДПРАВИТИ В WHATSAPP", pl: "🚀 WYŚLIJ PRZEZ WHATSAPP", ro: "🚀 TRIMITE PE WHATSAPP", ar: "🚀 إرسال عبر واتساب", no: "🚀 SEND VIA WHATSAPP", sv: "🚀 SKICKA VIA WHATSAPP" },
+    btnSelectPay: { es: "ELIJA MÉTODO DE PAGO", en: "CHOOSE PAYMENT METHOD", fr: "CHOISIR LE PAIEMENT", de: "ZAHLUNGSART WÄHLEN", it: "SCEGLI PAGAMENTO", pt: "ESCOLHA O PAGAMENTO", ru: "ВЫБЕРИТЕ ОПЛАТУ", uk: "ВИБЕРІТЬ ОПЛАТУ", pl: "WYBIERZ PŁATNOŚĆ", ro: "ALEGE PLATA", ar: "اختر طريقة الدفع", no: "VELG BETALINGSMETODE", sv: "VÄLJ BETALNINGSMETOD" },
+    sin: { es: "SIN", en: "WITHOUT", fr: "SANS", de: "OHNE", it: "SENZA", pt: "SEM", ru: "БЕЗ", uk: "БЕЗ", pl: "BEZ", ro: "FĂRĂ", ar: "بدون", no: "UTEN", sv: "UTAN" },
+    alertTitle: { es: "Falta información", en: "Missing information", fr: "Infos manquantes", de: "Infos fehlen", it: "Info mancanti", pt: "Informação faltando", ru: "Не все заполнено", uk: "Не все заповнено", pl: "Brak informacji", ro: "Lipsesc informații", ar: "معلومات ناقصة", no: "Mangler informasjon", sv: "Information saknas" },
+    alertText: { es: "Nombre y teléfono requeridos.", en: "Name and phone required.", fr: "Nom et téléphone requis.", de: "Name und Tel. benötigt.", it: "Nome e telefono richiesti.", pt: "Nome e telefone exigidos.", ru: "Имя и телефон обязательны.", uk: "Ім'я та телефон обов'язкові.", pl: "Imię i telefon są wymagane.", ro: "Numele și tel. sunt obligatorii.", ar: "الاسم والهاتف مطلوبان.", no: "Navn og telefon er påkrevd.", sv: "Namn och telefon krävs." },
+    alertPayTitle: { es: "Método de pago", en: "Payment Method", fr: "Mode de paiement", de: "Zahlungsart", it: "Metodo di pagamento", pt: "Método de pagamento", ru: "Способ оплаты", uk: "Спосіб оплати", pl: "Metoda płatności", ro: "Metoda de plată", ar: "طريقة الدفع", no: "Betalingsmetode", sv: "Betalningsmetod" },
+    alertPayText: { es: "Seleccione un método.", en: "Select a method.", fr: "Choisissez un mode.", de: "Wählen Sie eine Methode.", it: "Seleziona un metodo.", pt: "Selecione um método.", ru: "Выберите способ.", uk: "Виберіть спосіб.", pl: "Wybierz metodę.", ro: "Selectați o metodă.", ar: "اختر طريقة.", no: "Velg en metode.", sv: "Välj en metod." },
+    pickup: { es: "Recogida en local", en: "Local pickup", fr: "Retrait sur place", de: "Abholung", it: "Ritiro locale", pt: "Retirada no local", ru: "Самовывоз", uk: "Самовивіз", pl: "Odbiór osobisty", ro: "Ridicare personală", ar: "استلام محلي", no: "Henting i butikk", sv: "Hämtning i butik" },
+    whatsappHeader: { es: "NUEVO PEDIDO", en: "NEW ORDER", fr: "NOUVELLE COMMANDE", de: "NEUE BESTELLUNG", it: "NUOVO ORDINE", pt: "NOVO PEDIDO", ru: "НОВЫЙ ЗАКАЗ", uk: "НОВЕ ЗАМОВЛЕННЯ", pl: "NOWE ZAMÓWIENIE", ro: "COMANDĂ NOUĂ", ar: "طلب جديد", no: "NY BESTILLING", sv: "NY BESTÄLLNING" }
   };
 
-  // Accesseur sécurisé
-  const t = (key) => translations[key][lang] || translations[key]['en'];
+  // Accesseur sécurisé anti-crash
+  const t = (key) => {
+    if (!translations[key]) return "";
+    return translations[key][lang] || translations[key]['es'] || translations[key]['en'];
+  };
 
   const getTotalPrice = () => {
     let total = 0;
@@ -55,7 +58,8 @@ export default function Order({ cart, removeFromCart, lang }) {
     let orderList = "";
     cart.forEach((item, index) => {
       const displayPrice = item.precio || item.totalPrice || "0€";
-      orderList += `\n*${index + 1}. ${item.object.toUpperCase()}* - ${displayPrice}\n`;
+      const itemName = (item.object || "Producto").toUpperCase();
+      orderList += `\n*${index + 1}. ${itemName}* - ${displayPrice}\n`;
       if (item.removed && item.removed.length > 0) {
         orderList += `    ❌ ${t('sin')}: ${item.removed.join(", ").toUpperCase()}\n`;
       }
