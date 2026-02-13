@@ -16,6 +16,159 @@ import googleIcon from "./assets/google.png";
 import logo from "./assets/logo.jpg";
 import BurgerSignature from "./assets/burger-signature-torrevieja.webp";
 
+const T = {
+  es: {
+    heroTitle: "La Mejor Hamburguesa",
+    heroSubtitle: "Hamburguesería Gourmet: Burgers Gourmet y Smash Burgers y Carne de Ternera Premium",
+    btnOrder: "PEDIR A DOMICILIO",
+    btnCall: "LLAMAR",
+    catBurgers: "Burgers Gourmet",
+    catDrinks: "Bebidas",
+    catDesserts: "Postres Caseros",
+    btnSeeMenu: "VER CARTA",
+    yourOrder: "Tu Pedido",
+    reviewsTitle: "Lo que dicen nuestros clientes",
+    footerDesc: "Especialistas en Smash Burgers y Hamburguesas Gourmet de autor. Carne de vaca madurada premium, buey y procesos artesanales.",
+    location: "Ubicación",
+    hours: "Horario"
+  },
+  en: {
+    heroTitle: "The Best Burger",
+    heroSubtitle: "Gourmet Burger Joint: Gourmet Burgers, Smash Burgers & Premium Beef",
+    btnOrder: "ORDER DELIVERY",
+    btnCall: "CALL",
+    catBurgers: "Gourmet Burgers",
+    catDrinks: "Drinks",
+    catDesserts: "Homemade Desserts",
+    btnSeeMenu: "SEE MENU",
+    yourOrder: "Your Order",
+    reviewsTitle: "What our customers say",
+    footerDesc: "Specialists in Smash Burgers and Signature Gourmet Hamburgers. Premium matured beef and artisan processes.",
+    location: "Location",
+    hours: "Hours"
+  },
+  fr: {
+    heroTitle: "Le Meilleur Burger",
+    heroSubtitle: "Burger Gourmet & Smash Burgers: Viande de Bœuf Premium",
+    btnOrder: "COMMANDER",
+    btnCall: "APPELER",
+    catBurgers: "Burgers Gourmet",
+    catDrinks: "Boissons",
+    catDesserts: "Desserts Maison",
+    btnSeeMenu: "VOIR LA CARTE",
+    yourOrder: "Votre Commande",
+    reviewsTitle: "L'avis de nos clients",
+    footerDesc: "Spécialistes du Smash Burger et Burgers Gourmet. Viande maturée premium et frites maison.",
+    location: "Emplacement",
+    hours: "Horaires"
+  },
+  no: {
+    heroTitle: "Den Beste Burgers",
+    heroSubtitle: "Gourmetburger & Smashburgers: Premium Storfekjøtt",
+    btnOrder: "BESTILL LEVERING",
+    btnCall: "RING",
+    catBurgers: "Gourmetburgere",
+    catDrinks: "Drikke",
+    catDesserts: "Hjemmelagde Desserter",
+    btnSeeMenu: "SE MENY",
+    yourOrder: "Din Bestilling",
+    reviewsTitle: "Hva våre kunder sier",
+    footerDesc: "Spesialister på Smash Burgers og gourmetburgere. Modnet storfekjøtt og håndverksmessige prosesser.",
+    location: "Plassering",
+    hours: "Åpningstider"
+  },
+  pl: {
+    heroTitle: "Najlepszy Burger",
+    heroSubtitle: "Burgery Gourmet i Smashburgery: Wołowina Premium",
+    btnOrder: "ZAMÓW DOSTAWĘ",
+    btnCall: "ZADZWOŃ",
+    catBurgers: "Burgery Gourmet",
+    catDrinks: "Napoje",
+    catDesserts: "Domowe Desery",
+    btnSeeMenu: "ZOBACZ MENU",
+    yourOrder: "Twoje Zamówienie",
+    reviewsTitle: "Co mówią nasi klienci",
+    footerDesc: "Specjaliści od Smash Burgerów i burgerów rzemieślniczych. Wołowina sezonowana premium.",
+    location: "Lokalizacja",
+    hours: "Godziny otwarcia"
+  },
+  uk: {
+    heroTitle: "Найкращий Бургер",
+    heroSubtitle: "Гурме Бургерна: Смеш-бургери та Преміальна Яловичина",
+    btnOrder: "ЗАМОВИТИ ДОСТАВКУ",
+    btnCall: "ЗАТЕЛЕФОНУВАТИ",
+    catBurgers: "Гурме Бургери",
+    catDrinks: "Напої",
+    catDesserts: "Домашні Десерти",
+    btnSeeMenu: "ПЕРЕГЛЯНУТИ МЕНЮ",
+    yourOrder: "Ваше Замовлення",
+    reviewsTitle: "Що кажуть наші клієнти",
+    footerDesc: "Спеціалісти зі смеш-бургерів та авторських гурме-бургерів. Витримана яловичина преміум-класу.",
+    location: "Локація",
+    hours: "Графік роботи"
+  },
+  ru: {
+    heroTitle: "Лучший Бургер",
+    heroSubtitle: "Гурме Бургерная: Смэш-бургеры и Премиальная Говядина",
+    btnOrder: "ЗАКАЗАТЬ ДОСТАВКУ",
+    btnCall: "ПОЗВОНИТЬ",
+    catBurgers: "Гурме Бургеры",
+    catDrinks: "Напитки",
+    catDesserts: "Домашние Десерты",
+    btnSeeMenu: "ПОСМОТРЕТЬ МЕНЮ",
+    yourOrder: "Ваш Заказ",
+    reviewsTitle: "Что говорят наши клиенты",
+    footerDesc: "Специалисты по смэш-бургерам и авторским гурме-бургерам. Выдержанная говядина премиум-класса.",
+    location: "Локация",
+    hours: "График работы"
+  },
+  ar: {
+    heroTitle: "أفضل برجر",
+    heroSubtitle: "مطعم برجر غوارميه: سماش برجر ولحم بقر مميز",
+    btnOrder: "طلب توصيل",
+    btnCall: "اتصال",
+    catBurgers: "برجر غوارميه",
+    catDrinks: "مشروبات",
+    catDesserts: "حلويات منزلية",
+    btnSeeMenu: "عرض القائمة",
+    yourOrder: "طلبك",
+    reviewsTitle: "ما يقوله عملاؤنا",
+    footerDesc: "متخصصون في السماش برجر وبرجر الغوارميه المميز. لحم بقر معتق وفاخر وعمليات حرفية.",
+    location: "الموقع",
+    hours: "ساعات العمل"
+  },
+  sv: {
+    heroTitle: "Den Bästa Burgaren",
+    heroSubtitle: "Gourmetburgare & Smashburgers: Premium Nötkött",
+    btnOrder: "BESTÄLL HEMLEVERANS",
+    btnCall: "RING",
+    catBurgers: "Gourmetburgare",
+    catDrinks: "Drycker",
+    catDesserts: "Hemgjorda Efterrätter",
+    btnSeeMenu: "VISA MENY",
+    yourOrder: "Din Beställning",
+    reviewsTitle: "Vad våra kunder säger",
+    footerDesc: "Specialister på Smash Burgers och signaturgourmetburgare. Premium hängmörat nötkött.",
+    location: "Plats",
+    hours: "Öppettider"
+  },
+  de: {
+    heroTitle: "Der Beste Burger",
+    heroSubtitle: "Gourmet Burger Laden: Smash Burgers & Premium Rindfleisch",
+    btnOrder: "LIEFERUNG BESTELLEN",
+    btnCall: "ANRUFEN",
+    catBurgers: "Gourmet Burgers",
+    catDrinks: "Getränke",
+    catDesserts: "Hausgemachte Desserts",
+    btnSeeMenu: "MENÜ SEHEN",
+    yourOrder: "Ihre Bestellung",
+    reviewsTitle: "Was unsere Kunden sagen",
+    footerDesc: "Spezialisten für Smash Burgers und Gourmet-Burgers. Premium gereiftes Rindfleisch.",
+    location: "Standort",
+    hours: "Öffnungszeiten"
+  }
+};
+
 const instagramIcon = "https://cdn-icons-png.flaticon.com/512/2111/2111463.png";
 
 const ALL_REVIEWS = [
@@ -337,61 +490,56 @@ export default function App() {
   color: '#fff',
   lineHeight: '1.1'
 }}>
-  {/* Traduction dynamique du H1 */}
-  {lang === 'es' && <>La Mejor <span style={{color:'#ff4757'}}>Hamburguesa</span></>}
-  {lang === 'en' && <>The Best <span style={{color:'#ff4757'}}>Burger</span></>}
-  {lang === 'fr' && <>Le Meilleur <span style={{color:'#ff4757'}}>Burger</span></>}
-  {lang === 'no' && <>Den Beste <span style={{color:'#ff4757'}}>Burgers</span></>}
-  {lang === 'sv' && <>Den Bästa <span style={{color:'#ff4757'}}>Burgaren</span></>}
-  {lang === 'de' && <>Der Beste <span style={{color:'#ff4757'}}>Burger</span></>}
-  {lang === 'pl' && <>Najlepszy <span style={{color:'#ff4757'}}>Burger</span></>}
-  {lang === 'uk' && <>Найкращий <span style={{color:'#ff4757'}}>Бургер</span></>}
-  {lang === 'ru' && <>Лучший <span style={{color:'#ff4757'}}>Бургер</span></>}
-  {lang === 'ar' && <>أفضل <span style={{color:'#ff4757'}}>برجر</span></>}
-  {lang === 'ro' && <>Cel Mai Bun <span style={{color:'#ff4757'}}>Burger</span></>}
-
+  {/* On récupère le titre traduit dans l'objet T */}
+  {T[lang]?.heroTitle || T.es.heroTitle}
   <br />
   en Torrevieja
 </h1>
 
-
-<h2 style={{ fontSize: '1.5rem', color: GOLD_BRIGHT, fontWeight: '700', textShadow: '1px 1px 10px rgba(0,0,0,1)', marginTop: '10px', textTransform: 'uppercase' }}>
-  {lang === 'es'
-    ? 'Hamburguesería Gourmet : Burgers Gourmet y Smash Burger con Carne de Ternera Premium'
-    : 'Gourmet Burger Joint: Gourmet Burgers, Smash Burgers & Premium Beef'}
+<h2 style={{
+  fontSize: '1.5rem',
+  color: GOLD_BRIGHT,
+  fontWeight: '700',
+  textShadow: '1px 1px 10px rgba(0,0,0,1)',
+  marginTop: '10px',
+  textTransform: 'uppercase'
+}}>
+  {/* On récupère le sous-titre traduit dans l'objet T */}
+  {T[lang]?.heroSubtitle || T.es.heroSubtitle}
 </h2>
 
 <div style={{ marginTop: '40px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '25px' }}>
-  <button
-    onClick={() => { setShowCardBurger(true); setTimeout(() => document.getElementById("sec-burgers")?.scrollIntoView({ behavior: "smooth" }), 100); }}
-    className="pulse-gold-btn"
-    style={{
-      background: GOLD_GRADIENT,
-      color: '#000',
-      padding: '22px 50px',
-      borderRadius: '50px',
-      border: '3px solid #000',
-      fontWeight: '950',
-      cursor: 'pointer',
-      fontSize: '1.5rem',
-      boxShadow: GOLD_SHADOW,
-      textTransform: 'uppercase',
-      width: '90%',
-      maxWidth: '450px'
-    }}
-  >
-    🚀 {lang === 'es' ? 'PEDIR A DOMICILIO' : 'ORDER DELIVERY'}
-  </button>
+<button
+onClick={() => { setShowCardBurger(true); setTimeout(() => document.getElementById("sec-burgers")?.scrollIntoView({ behavior: "smooth" }), 100); }}
+className="pulse-gold-btn"
+style={{
+  background: GOLD_GRADIENT,
+  color: '#000',
+  padding: '22px 50px',
+  borderRadius: '50px',
+  border: '3px solid #000',
+  fontWeight: '950',
+  cursor: 'pointer',
+  fontSize: '1.5rem',
+  boxShadow: GOLD_SHADOW,
+  textTransform: 'uppercase',
+  width: '90%',
+  maxWidth: '450px'
+}}
+>
+🚀 {T[lang]?.btnOrder || T.es.btnOrder}
+</button>
 
-  <div style={{ display: 'flex', justifyContent: 'center', gap: '15px', flexWrap: 'wrap' }}>
-    <a href="tel:+34602597210" style={{ background: '#fff', color: '#000', padding: '14px 30px', borderRadius: '50px', textDecoration: 'none', fontWeight: '950', border: '2px solid #000' }}>
-      📞 {lang === 'es' ? 'LLAMAR' : 'CALL'}
-    </a>
-    <button onClick={scrollToOrder} style={{ backgroundColor: '#ff4757', color: '#fff', padding: '14px 30px', borderRadius: '50px', border: '2px solid #000', fontWeight: '950', cursor: 'pointer', boxShadow: '0 4px 0px #b33939' }}>
-      🛒 {totalPrice}€
-    </button>
-  </div>
+<div style={{ display: 'flex', justifyContent: 'center', gap: '15px', flexWrap: 'wrap', marginTop: '20px' }}>
+<a href="tel:+34602597210" style={{ background: '#fff', color: '#000', padding: '14px 30px', borderRadius: '50px', textDecoration: 'none', fontWeight: '950', border: '2px solid #000' }}>
+  📞 {T[lang]?.btnCall || T.es.btnCall}
+</a>
+{/* Le bouton prix reste identique car c'est un chiffre */}
+<button onClick={scrollToOrder} style={{ backgroundColor: '#ff4757', color: '#fff', padding: '14px 30px', borderRadius: '50px', border: '2px solid #000', fontWeight: '950', cursor: 'pointer', boxShadow: '0 4px 0px #b33939' }}>
+  🛒 {totalPrice}€
+</button>
 </div>
+  </div>
 </div>
       </header>
 
