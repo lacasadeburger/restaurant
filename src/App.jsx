@@ -816,41 +816,44 @@ style={{
     <strong>Bästa gourmetburgare i Torrevieja</strong>. Unika <strong>signaturburgare</strong>, <strong>hängmörat kött</strong> och <strong>hemmapgjorda pommes</strong>. Vi har krispiga <strong>smash burgers</strong>. Mest prisvärda restaurangen. <strong>Halal</strong> och <strong>Glutenfritt</strong>. Matleverans och takeaway.
 
     <br /><br />
-    <strong>📍 ZONAS DE REPARTO / DELIVERY AREAS:</strong>
-    Torrevieja Centro, Playa del Cura, Playa de los Locos, Paseo Marítimo, Puerto, La Mata, Punta Prima, Los Balcones, Aguas Nuevas, La Siesta, El Acequión, La Veleta, San Roque, Rocío del Mar, Los Altos, Lago Jardín, Torreta I, II, III, El Salado, Urbanización Doña Inés, Jardín del Mar, Las Naciones, Centro Comercial Habaneras, Los Almendros, Altos del Limonar, Parque de las Naciones, y todos los hoteles de Torrevieja.
-  </p>
-</div>
+    <p style={{ marginTop: '20px', fontSize: '0.85rem', color: '#bbb', lineHeight: '1.6' }}>
+              <strong>📍 ZONAS DE REPARTO / DELIVERY AREAS:</strong>
+              <br />
+              Torrevieja Centro, Playa del Cura, Playa de los Locos, Paseo Marítimo, Puerto, La Mata, Punta Prima, Los Balcones, Aguas Nuevas, La Siesta, El Acequión, La Veleta, San Roque, Rocío del Mar, Los Altos, Lago Jardín, Torreta I, II, III, El Salado, Urbanización Doña Inés, Jardín del Mar, Las Naciones, Centro Comercial Habaneras, Los Almendros, Altos del Limonar, Parque de las Naciones, y todos los hoteles de Torrevieja.
+            </p>
 
-                <div style={{ marginTop: '40px' }}>
-                  <img src={logo} alt="La Casa de Burger Torrevieja Oficial" style={{ height: "120px", borderRadius: "15px", marginBottom: '15px' }} />
-                  <div style={{ fontSize: '0.75rem', color: '#555' }}>
-                    © 2026 <span style={{ color: GOLD_BRIGHT, fontWeight: 'bold' }}>LA CASA DE BURGER</span> | {lang === 'es' ? 'EL MEJOR BURGER DE TORREVIEJA - TODOS LOS DERECHOS RESERVADOS' : 'BEST BURGER IN TORREVIEJA - ALL RIGHTS RESERVED'}
-                </div>
-            </footer>
+            <div style={{ marginTop: '40px', borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '20px' }}>
+              <div style={{ fontSize: '0.75rem', color: '#555' }}>
+                © 2026 <span style={{ color: GOLD_BRIGHT, fontWeight: 'bold' }}>LA CASA DE BURGER</span> | {lang === 'es' ? 'EL MEJOR BURGER DE TORREVIEJA - TODOS LOS DERECHOS RESERVADOS' : 'BEST BURGER IN TORREVIEJA - ALL RIGHTS RESERVED'}
+              </div>
+            </div>
+          </div> {/* Cierra maxWidth 1100px */}
+        </footer>
 
-      {/* BOUTON WHATSAPP */}
-      <a href="https://wa.me/34602597210" target="_blank" rel="noreferrer" className="whatsapp-float" aria-label="Pedir por WhatsApp">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="40" alt="WhatsApp Icon" />
-      </a>
+        {/* BOUTON WHATSAPP */}
+        <a href="https://wa.me/34602597210" target="_blank" rel="noreferrer" className="whatsapp-float" aria-label="Pedir por WhatsApp">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="40" alt="WhatsApp Icon" />
+        </a>
 
-      {/* BOUTON ETAPE SUIVANTE */}
-      {(showCardBurger || showCardPostres || showCardDrink) && (
-        <button
-          className="floating-close"
-          onClick={handleNextStep}
-          style={{
-            position: 'fixed', bottom: '95px', left: '50%', transform: 'translateX(-50%)',
-            backgroundColor: '#ff4757', color: '#fff', padding: '15px 30px',
-            borderRadius: '12px', fontWeight: '900', zIndex: 10000,
-            border: '3px solid #000', cursor: 'pointer', boxShadow: '0 5px 15px rgba(0,0,0,0.4)',
-            textTransform: 'uppercase'
-          }}
-        >
-          {showCardBurger && (lang === 'es' ? 'SIGUIENTE: BEBIDAS ➔' : 'NEXT: DRINKS ➔')}
-          {showCardDrink && (lang === 'es' ? 'SIGUIENTE: POSTRES ➔' : 'NEXT: DESSERTS ➔')}
-          {showCardPostres && (lang === 'es' ? 'VER MI PEDIDO ✓' : 'VIEW MY ORDER ✓')}
-        </button>
-      )}
-    </div>
-  );
-}
+        {/* BOUTON ETAPE SUIVANTE */}
+        {(showCardBurger || showCardPostres || showCardDrink) && (
+          <button
+            className="floating-close"
+            onClick={handleNextStep}
+            style={{
+              position: 'fixed', bottom: '95px', left: '50%', transform: 'translateX(-50%)',
+              backgroundColor: '#ff4757', color: '#fff', padding: '15px 30px',
+              borderRadius: '12px', fontWeight: '900', zIndex: 10000,
+              border: '3px solid #000', cursor: 'pointer', boxShadow: '0 5px 15px rgba(0,0,0,0.4)',
+              textTransform: 'uppercase'
+            }}
+          >
+            {showCardBurger && (lang === 'es' ? 'SIGUIENTE: BEBIDAS ➔' : 'NEXT: DRINKS ➔')}
+            {showCardDrink && (lang === 'es' ? 'SIGUIENTE: POSTRES ➔' : 'NEXT: DESSERTS ➔')}
+            {showCardPostres && (lang === 'es' ? 'VER MI PEDIDO ✓' : 'VIEW MY ORDER ✓')}
+          </button>
+        )}
+      </div> // Cierra div className="App"
+    );
+  }
+  
