@@ -863,6 +863,6 @@ export default function App() {
               {showCardPostres && (lang === 'es' ? 'VER MI PEDIDO ➔' : 'VIEW ORDER ➔')}
             </button>
           )}
-        </div> // Ferme le div .app-main-wrapper
+        </div> // Ferme app-main-wrapper
       ); // Ferme le return
-    } // Ferme la fonction export default function App
+    } // Ferme la fonction App
