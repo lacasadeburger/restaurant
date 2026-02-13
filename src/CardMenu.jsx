@@ -195,14 +195,14 @@ export default function CardMenu(props) {
       `}</style>
 
       <div className="image-container">
-  <div className="price-badge-overlay">{totalPrice}€</div>
-  <img
-    src={image}
-    alt={`${object} - La Casa de Burger Torrevieja`}
-    className="product-img"
-    loading="lazy"
-  />
-</div>
+        <div className="price-badge-overlay">{totalPrice}€</div>
+        <img
+          src={image}
+          alt={`${object} - La Casa de Burger Torrevieja`}
+          className="product-img"
+          loading="lazy"
+        />
+      </div>
       <div className="card-content">
         {/* translate="no" ajouté pour protéger le nom du produit */}
         <div className="info-box">
