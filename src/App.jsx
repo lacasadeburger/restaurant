@@ -15,6 +15,7 @@ import tripadvisor from "./assets/tripadvisor.png";
 import googleIcon from "./assets/google.png";
 import logo from "./assets/logo.jpg";
 import BurgerSignature from "./assets/burger-signature-torrevieja.webp";
+import instagramIcon from "./assets/instagram.png"; // Vérifie bien le nom du fichier dans ton dossier assets
 
 const T = {
   es: {
