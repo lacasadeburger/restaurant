@@ -715,135 +715,135 @@ style={{
             </main>
 
             <footer style={{ padding: '80px 20px 40px', backgroundColor: '#000', color: '#fff', textAlign: 'center', borderTop: '4px solid #ff4757' }}>
-        <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
+                    <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '30px', textAlign: 'left', marginBottom: '40px', background: 'rgba(255,255,255,0.03)', padding: '30px', borderRadius: '20px' }}>
-            <div>
-              <h3 style={{ color: '#ff4757' }}>La Casa de Burger Torrevieja</h3>
-              <p>{lang === 'es' ? 'Especialistas en Smash Burgers y Hamburguesas Gourmet de autor. Carne de vaca madurada premium, buey y procesos artesanales.' : 'Specialists in Smash Burgers and Signature Gourmet Hamburgers. Premium matured beef and artisan processes.'}</p>
-            </div>
+                      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '30px', textAlign: 'left', marginBottom: '40px', background: 'rgba(255,255,255,0.03)', padding: '30px', borderRadius: '20px' }}>
+                        <div>
+                          <h3 style={{ color: '#ff4757' }}>La Casa de Burger Torrevieja</h3>
+                          <p>{lang === 'es' ? 'Especialistas en Smash Burgers y Hamburguesas Gourmet de autor. Carne de vaca madurada premium, buey y procesos artesanales.' : 'Specialists in Smash Burgers and Signature Gourmet Hamburgers. Premium matured beef and artisan processes.'}</p>
+                        </div>
 
-            <div>
-              <h4 style={{ color: GOLD_BRIGHT }}>📍 {T[lang]?.location || T.es.location}</h4>
-              <p>Av. Diego Ramírez Pastor, 142, 03181 Torrevieja</p>
-              <p>📞 <a href="tel:+34602597210" style={{ color: '#fff', textDecoration: 'none', fontWeight: 'bold' }}>+34 602 59 72 10</a></p>
-            </div>
+                        <div>
+                          <h4 style={{ color: GOLD_BRIGHT }}>📍 {T[lang]?.location || T.es.location}</h4>
+                          <p>Av. Diego Ramírez Pastor, 142, 03181 Torrevieja</p>
+                          <p>📞 <a href="tel:+34602597210" style={{ color: '#fff', textDecoration: 'none', fontWeight: 'bold' }}>+34 602 59 72 10</a></p>
+                        </div>
 
-            <div>
-              <h4 style={{ color: GOLD_BRIGHT }}>🕒 {T[lang]?.hours || T.es.hours}</h4>
-              <p>Lun - Sáb: 13:00 – 22:30 | Dom: Cerrado</p>
-            </div>
-          </div>
+                        <div>
+                          <h4 style={{ color: GOLD_BRIGHT }}>🕒 {T[lang]?.hours || T.es.hours}</h4>
+                          <p>Lun - Sáb: 13:00 – 22:30 | Dom: Cerrado</p>
+                        </div>
+                      </div>
 
-          <div style={{ borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '20px', fontSize: '0.8rem', color: '#888' }}>
-            © {new Date().getFullYear()} | {lang === 'es' ? 'EL MEJOR BURGER DE TORREVIEJA' : 'BEST BURGER IN TORREVIEJA'}
-          </div>
-        </div>
-      </footer>
+                      <div style={{ borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '20px', fontSize: '0.8rem', color: '#888' }}>
+                        © {new Date().getFullYear()} | {lang === 'es' ? 'EL MEJOR BURGER DE TORREVIEJA' : 'BEST BURGER IN TORREVIEJA'}
+                      </div>
+                    </div>
+                  </footer>
 
-      {/* BOUTON WHATSAPP */}
-      <a href="https://wa.me/34602597210" target="_blank" rel="noreferrer" className="whatsapp-float">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="40" alt="WA" />
-      </a>
+                  {/* BOUTON WHATSAPP */}
+                  <a href="https://wa.me/34602597210" target="_blank" rel="noreferrer" className="whatsapp-float">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="40" alt="WA" />
+                  </a>
 
-      {/* SECTION MAPS */}
-      <div style={{
-        width: '60%',
-        maxWidth: '1100px',
-        margin: '40px auto',
-        borderRadius: '15px',
-        overflow: 'hidden',
-        border: `2px solid ${GOLD_BRIGHT}`,
-        boxShadow: '0 10px 30px rgba(0,0,0,0.5)',
-        backgroundColor: '#121212',
-        minHeight: '350px',
-        contain: 'paint'
-      }}>
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3143.626750016147!2d-0.6833227234676118!3d37.98113637193437!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd63a9b08d9e6633%3A0x88f65fbd84c2f7fe!2sLa%20Casa%20de%20Burger!5e0!3m2!1sfr!2ses!4v1707826000000!5m2!1sfr!2ses"
-          width="100%"
-          height="350"
-          style={{ border: 0, display: 'block' }}
-          allowFullScreen=""
-          loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-          title="Ubicación La Casa de Burger Torrevieja"
-        ></iframe>
-      </div>
+                  {/* SECTION MAPS */}
+                  <div style={{
+                    width: '60%',
+                    maxWidth: '1100px',
+                    margin: '40px auto',
+                    borderRadius: '15px',
+                    overflow: 'hidden',
+                    border: `2px solid ${GOLD_BRIGHT}`,
+                    boxShadow: '0 10px 30px rgba(0,0,0,0.5)',
+                    backgroundColor: '#121212',
+                    minHeight: '350px',
+                    contain: 'paint'
+                  }}>
+                    <iframe
+                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3143.626750016147!2d-0.6833227234676118!3d37.98113637193437!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd63a9b08d9e6633%3A0x88f65fbd84c2f7fe!2sLa%20Casa%20de%20Burger!5e0!3m2!1sfr!2ses!4v1707826000000!5m2!1sfr!2ses"
+                      width="100%"
+                      height="350"
+                      style={{ border: 0, display: 'block' }}
+                      allowFullScreen=""
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                      title="Ubicación La Casa de Burger Torrevieja"
+                    ></iframe>
+                  </div>
 
-      {/* SECTION VIDEO */}
-      <div style={{ width: '100%', maxWidth: '800px', margin: '0 auto 50px', borderRadius: '15px', overflow: 'hidden', border: `3px solid ${GOLD_BRIGHT}` }}>
-        <iframe width="100%" height="400" src="https://www.youtube.com/embed/qN6VZYBojLs" title="Video de présentation La Casa de Burger" frameBorder="0" allowFullScreen aria-label="Video promocional"></iframe>
-      </div>
+                  {/* SECTION VIDEO */}
+                  <div style={{ width: '100%', maxWidth: '800px', margin: '0 auto 50px', borderRadius: '15px', overflow: 'hidden', border: `3px solid ${GOLD_BRIGHT}` }}>
+                    <iframe width="100%" height="400" src="https://www.youtube.com/embed/qN6VZYBojLs" title="Video de presentación La Casa de Burger" frameBorder="0" allowFullScreen aria-label="Video promocional"></iframe>
+                  </div>
 
-      {/* RÉSEAUX SOCIAUX */}
-      <div style={{ display: 'flex', justifyContent: 'center', gap: '25px', flexWrap: 'wrap', marginBottom: '40px', alignItems: 'center' }}>
-        <a href="https://www.facebook.com/profile.php?id=100094610793536" target="_blank" rel="noreferrer" aria-label="Facebook"><img src={fb} width="45" alt="Facebook" /></a>
-        <a href="https://www.instagram.com/lacasadeburger.es/" target="_blank" rel="noreferrer" aria-label="Instagram"><img src={instagramIcon} width="45" alt="Instagram" /></a>
-        <a href="https://es.restaurantguru.com/La-Casa-de-Burger-Torrevieja" target="_blank" rel="noreferrer" style={{ background: GOLD_GRADIENT, color: '#000', padding: '12px 25px', borderRadius: '50px', textDecoration: 'none', fontWeight: 'bold', border: '2px solid #000' }}>GURU 2026</a>
-        <a href="https://www.google.com/search?q=la+casa+de+burger+torrevieja" target="_blank" rel="noreferrer" aria-label="Google Business"><img src={googleIcon} width="140" alt="Google Maps" /></a>
-        <a href="https://www.tripadvisor.es/Restaurant_Review-g187527-d26835169-Reviews-La_Casa_De_Burger-Torrevieja" target="_blank" rel="noreferrer" aria-label="TripAdvisor"><img src={tripadvisor} width="140" alt="Tripadvisor" /></a>
-      </div>
+                  {/* RÉSEAUX SOCIAUX */}
+                  <div style={{ display: 'flex', justifyContent: 'center', gap: '25px', flexWrap: 'wrap', marginBottom: '40px', alignItems: 'center' }}>
+                    <a href="https://www.facebook.com/profile.php?id=100094610793536" target="_blank" rel="noreferrer" aria-label="Facebook"><img src={fb} width="45" alt="Facebook" /></a>
+                    <a href="https://www.instagram.com/lacasadeburger.es/" target="_blank" rel="noreferrer" aria-label="Instagram"><img src={instagramIcon} width="45" alt="Instagram" /></a>
+                    <a href="https://es.restaurantguru.com/La-Casa-de-Burger-Torrevieja" target="_blank" rel="noreferrer" style={{ background: GOLD_GRADIENT, color: '#000', padding: '12px 25px', borderRadius: '50px', textDecoration: 'none', fontWeight: 'bold', border: '2px solid #000' }}>GURU 2026</a>
+                    <a href="https://www.google.com/search?q=la+casa+de+burger+torrevieja" target="_blank" rel="noreferrer" aria-label="Google Business"><img src={googleIcon} width="140" alt="Google Maps" /></a>
+                    <a href="https://www.tripadvisor.es/Restaurant_Review-g187527-d26835169-Reviews-La_Casa_De_Burger-Torrevieja" target="_blank" rel="noreferrer" aria-label="TripAdvisor"><img src={tripadvisor} width="140" alt="Tripadvisor" /></a>
+                  </div>
 
-      {/* BLOC SEO MULTILINGUE (11 LANGUES) */}
-      <div style={{ backgroundColor: '#0a0a0a', padding: '35px', borderRadius: '15px', border: '1px solid #222', textAlign: 'justify' }}>
-        <div style={{ color: '#888', fontSize: '0.8rem', lineHeight: '1.8', margin: 0 }}>
-          <strong>🇪🇸 ESPAÑOL:</strong> <strong>La Casa de Burger</strong> – El <strong>mejor restaurante de hamburguesas gourmet en Torrevieja</strong>. Especialistas en <strong>hamburguesas de autor</strong> y <strong>recetas únicas</strong> preparadas con carne de <strong>ternera premium</strong>, buey y Chicken. Cada <strong>hamburguesa artesanal</strong> se sirve con <strong>salsas caseras secretas</strong> y <strong>patatas fritas naturales</strong>. Si buscas una <strong>Smash Burger</strong> auténtica y jugosa, somos tu sitio. <strong>Comida a domicilio (delivery)</strong> rápida. El mejor <strong>rapport calidad-precio</strong>. <em>Carne Halal certificada, opciones sin gluten y veganas con reserva.</em>
-          <br /><br />
-          <strong>🇬🇧 ENGLISH:</strong> <strong>Best gourmet burgers in Torrevieja</strong> center. We specialize in <strong>signature burgers</strong>, <strong>unique artisan recipes</strong>, <strong>premium beef</strong>, and <strong>fresh homemade fries</strong>. Looking for a <strong>top-rated burger joint near me</strong>? Enjoy our crispy <strong>Smash Burgers</strong>. Best <strong>value for money</strong>. Fast <strong>food delivery</strong>. <strong>Halal meat</strong>, <strong>Gluten-free</strong> and <strong>Veggie</strong> options.
-          <br /><br />
-          <strong>🇳🇴 NORSK:</strong> <strong>Beste gourmetburger i Torrevieja</strong> med det beste <strong>forholdet mellom pris og kvalitet</strong>. Spesialister på <strong>signaturburgere</strong>, unike oppskrifter med <strong>modnet storfekjøtt</strong> (Vaca Madurada) og <strong>hjemmelagde pommes frites</strong>. Prøv våre saftige <strong>Smash Burgers</strong>. Rask <strong>matlevering</strong>. <strong>Halal-kjøtt</strong>, <strong>glutenfrie</strong> alternativer og veganske burgere.
-          <br /><br />
-          <strong>🇵🇱 POLSKI:</strong> <strong>Najlepsze burgery gourmet w Torrevieja</strong> w najlepszym <strong>stosunku jakości do ceny</strong>. Specjalizujemy się w <strong>autorskich burgerach</strong> z <strong>sezonowanej wołowiny</strong> premium oraz <strong>domowych frytek</strong>. Jeśli szukasz chrupiącego <strong>Smash Burgera</strong>, jesteśmy najlepszym wyborem. Szybka <strong>dostawa jedzenia</strong>. Posiadamy <strong>mięso Halal</strong>, menu <strong>bezglutenowe</strong> oraz opcje wegańskie.
-          <br /><br />
-          <strong>🇲🇦 ARABIC (العربية):</strong> <strong>أفضل مطعم برجر غوارميه في توريفايجا</strong>. نحن متخصصون في <strong>وصفاتنا الحصرية والفريدة</strong> المصنوعة من أجود أنواع اللحوم (Vaca Madurada) والبطاطس الطازجة. جرب <strong>البرجر الأصيل</strong> أو <strong>سماش برجر</strong> المقرمش. نحن نوفر <strong>لحم حلال (Halal)</strong> مائة بالمائة. أفضل <strong>قيمة مقابل سعر</strong> وتوصيل طعام سريع.
-          <br /><br />
-          <strong>🇺🇦 UKRAINIAN:</strong> <strong>Найкращі гурме-бургери в Торрев'єсі</strong>. Авторські <strong>бургери за унікальними рецептами</strong>, <strong>витримана яловичина</strong> та <strong>домашня картопля фрі</strong>. Спробуйте справжні <strong>смаш-бургери</strong>. Найкраще <strong>співвідношення ціни та якості</strong>. Швидка <strong>доставка їжі</strong>. У нас є <strong>халяльне м'ясо</strong> та меню <strong>без глютену</strong>.
-          <br /><br />
-          <strong>🇫🇷 FRANÇAIS:</strong> <strong>Meilleur Burger Gourmet Torrevieja</strong>. Notre spécialité : <strong>burgers signatures</strong>, recettes artisanales, <strong>viande maturée</strong> et <strong>frites maison</strong>. Découvrez nos <strong>smash burgers</strong> croustillants. Meilleur <strong>rapport qualité-prix</strong>. <strong>Livraison à domicile</strong> rapide. Options <strong>Halal</strong>, <strong>Sans Gluten</strong> et <strong>Végétarien</strong>.
-          <br /><br />
-          <strong>🇷🇺 RUSSIAN:</strong> <strong>Лучшие гурме-бургеры в Торревьехе</strong>. Авторские рецепты, <strong>выдержанная говядина</strong> и домашняя картошка. В меню <strong>смаш-бургеры</strong> и лучшее <strong>соотношение цены и качества</strong>. Быстрая <strong>доставка еды</strong>. Есть <strong>Халяль</strong> и безглютеновое меню.
-          <br /><br />
-          <strong>🇸🇪 SVENSKA:</strong> <strong>Bästa gourmetburgare i Torrevieja</strong>. Unika <strong>signaturburgare</strong>, <strong>hängmörat kött</strong> och <strong>hemmapgjorda pommes</strong>. Vi har krispiga <strong>smash burgers</strong>. Mest prisvärda restaurangen. <strong>Halal</strong> och <strong>Glutenfritt</strong>. Matleverans och takeaway.
-          <br /><br />
-          <strong>🇩🇪 DEUTSCH:</strong> <strong>Beste Gourmet-Burger in Torrevieja</strong>. Wir sind spezialisiert auf <strong>Signature-Burger</strong>, hausgemachte Rezepte mit <strong>Premium-Rindfleisch</strong> und frischen Pommes. Probieren Sie unsere saftigen <strong>Smash Burger</strong>. Bestes <strong>Preis-Leistungs-Verhältnis</strong>. Schnelle <strong>Lieferung</strong>. <strong>Halal</strong>, <strong>glutenfrei</strong> und vegane Optionen.
-          <br /><br />
-          <strong>🇳🇱 NEDERLANDS:</strong> <strong>Beste gourmet burgers in Torrevieja</strong>. Wij zijn gespecialiseerd in <strong>signature burgers</strong>, unieke recepten met <strong>premium rundvlees</strong> en verse friet. Probeer onze sappige <strong>Smash Burgers</strong>. Beste <strong>prijs-kwaliteitverhouding</strong>. Snelle <strong>bezorging</strong>. <strong>Halal</strong>, <strong>glutenvrij</strong> en veganistische opties.
+                  {/* BLOC SEO MULTILINGUE (11 LANGUES) */}
+                  <div style={{ backgroundColor: '#0a0a0a', padding: '35px', borderRadius: '15px', border: '1px solid #222', textAlign: 'justify' }}>
+                    <div style={{ color: '#888', fontSize: '0.8rem', lineHeight: '1.8', margin: 0 }}>
+                      <strong>🇪🇸 ESPAÑOL:</strong> <strong>La Casa de Burger</strong> – El <strong>mejor restaurante de hamburguesas gourmet en Torrevieja</strong>. Especialistas en <strong>hamburguesas de autor</strong> preparadas con carne de <strong>ternera premium</strong>, buey y Chicken. Cada <strong>hamburguesa artesanal</strong> se sirve con <strong>salsas caseras</strong> y <strong>patatas fritas naturales</strong>. Si buscas una <strong>Smash Burger</strong> auténtica, somos tu sitio. <strong>Comida a domicilio (delivery)</strong>. <em>Carne Halal, sin gluten.</em>
+                      <br /><br />
+                      <strong>🇬🇧 ENGLISH:</strong> <strong>Best gourmet burgers in Torrevieja</strong>. <strong>Signature burgers</strong>, <strong>premium beef</strong>, <strong>Smash Burgers</strong>, <strong>food delivery</strong>. <em>Halal meat, Gluten-free.</em>
+                      <br /><br />
+                      <strong>🇳🇴 NORSK:</strong> <strong>Beste gourmetburger i Torrevieja</strong>. <strong>Signaturburgere</strong>, <strong>modnet storfekjøtt</strong>, <strong>Smash Burgers</strong>, <strong>matlevering</strong>. <em>Halal, glutenfrie.</em>
+                      <br /><br />
+                      <strong>🇵🇱 POLSKI:</strong> <strong>Najlepsze burgery gourmet w Torrevieja</strong>. <strong>Autorskie burgery</strong>, <strong>sezonowana wołowina</strong>, <strong>Smash Burgers</strong>, <strong>dostawa</strong>. <em>Halal, bezglutenowe.</em>
+                      <br /><br />
+                      <strong>🇲🇦 ARABIC:</strong> <strong>أفضل مطعم برجر في توريفايجا</strong>. <strong>برجر أصيل</strong>، <strong>لحم حلال</strong>، <strong>سماش برجر</strong>، <strong>توصيل طعام</strong>.
+                      <br /><br />
+                      <strong>🇺🇦 UKRAINIAN:</strong> <strong>Найкращі гурме-бургери в Торрев'єсі</strong>. <strong>Авторські бургери</strong>, <strong>витримана яловичина</strong>, <strong>смаш-бургери</strong>. <em>Халяль.</em>
+                      <br /><br />
+                      <strong>🇫🇷 FRANÇAIS:</strong> <strong>Meilleur Burger Gourmet Torrevieja</strong>. <strong>Burgers signatures</strong>, <strong>viande maturée</strong>, <strong>smash burgers</strong>, <strong>livraison</strong>. <em>Halal, Sans Gluten.</em>
+                      <br /><br />
+                      <strong>🇷🇺 RUSSIAN:</strong> <strong>Лучшие гурме-бургеры в Торревьехе</strong>. Авторские рецепты, <strong>смаш-бургеры</strong>, доставка. <em>Халяль.</em>
+                      <br /><br />
+                      <strong>🇸🇪 SVENSKA:</strong> <strong>Bästa gourmetburgare i Torrevieja</strong>. <strong>Signaturburgare</strong>, <strong>smash burgers</strong>, matleverans. <em>Halal.</em>
+                      <br /><br />
+                      <strong>🇩🇪 DEUTSCH:</strong> <strong>Beste Gourmet-Burger in Torrevieja</strong>. <strong>Signature-Burger</strong>, <strong>Premium-Rindfleisch</strong>, <strong>Smash Burger</strong>. <em>Halal.</em>
+                      <br /><br />
+                      <strong>🇳🇱 NEDERLANDS:</strong> <strong>Beste gourmet burgers in Torrevieja</strong>. <strong>Signature burgers</strong>, <strong>premium rundvlees</strong>, <strong>Smash Burgers</strong>. <em>Halal.</em>
 
-          <div style={{ marginTop: '20px', fontSize: '0.85rem', color: '#bbb', lineHeight: '1.6' }}>
-            <strong>📍 ZONAS DE REPARTO / DELIVERY AREAS:</strong>
-            <br />
-            Torrevieja Centro, Playa del Cura, Playa de los Locos, Paseo Marítimo, Puerto, La Mata, Punta Prima, Los Balcones, Aguas Nuevas, La Siesta, El Acequión, La Veleta, San Roque, Rocío del Mar, Los Altos, Lago Jardín, Torreta I, II, III, El Salado, Urbanización Doña Inés, Jardín del Mar, Las Nations, Centro Comercial Habaneras, Los Almendros, Altos del Limonar, Parque de las Naciones, y todos los hoteles de Torrevieja.
-          </div>
-        </div>
+                      <div style={{ marginTop: '20px', fontSize: '0.85rem', color: '#bbb', lineHeight: '1.6' }}>
+                        <strong>📍 ZONAS DE REPARTO / DELIVERY AREAS:</strong>
+                        <br />
+                        Torrevieja Centro, Playa del Cura, Playa de los Locos, Paseo Marítimo, Puerto, La Mata, Punta Prima, Los Balcones, Aguas Nuevas, La Siesta, El Acequión, La Veleta, San Roque, Rocío del Mar, Los Altos, Lago Jardín, Torreta I, II, III, El Salado, Urbanización Doña Inés, Jardín del Mar, Las Naciones, Centro Comercial Habaneras, Los Almendros, Altos del Limonar, Parque de las Naciones, y todos los hoteles de Torrevieja.
+                      </div>
+                    </div>
 
-        <div style={{ marginTop: '40px', borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '20px' }}>
-          <div style={{ fontSize: '0.75rem', color: '#555', textAlign: 'center' }}>
-            © {new Date().getFullYear()} <span style={{ color: GOLD_BRIGHT, fontWeight: 'bold' }}>LA CASA DE BURGER</span> | {lang === 'es' ? 'EL MEJOR BURGER DE TORREVIEJA - TODOS LOS DERECHOS RESERVADOS' : 'BEST BURGER IN TORREVIEJA - ALL RIGHTS RESERVED'}
-          </div>
-        </div>
-      </div>
+                    <div style={{ marginTop: '40px', borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '20px' }}>
+                      <div style={{ fontSize: '0.75rem', color: '#555', textAlign: 'center' }}>
+                        © 2026 <span style={{ color: GOLD_BRIGHT, fontWeight: 'bold' }}>LA CASA DE BURGER</span> | {lang === 'es' ? 'EL MEJOR BURGER DE TORREVIEJA - TODOS LOS DERECHOS RESERVADOS' : 'BEST BURGER IN TORREVIEJA - ALL RIGHTS RESERVED'}
+                      </div>
+                    </div>
+                  </div>
 
-      {/* BOUTON ETAPE SUIVANTE */}
-      {(showCardBurger || showCardPostres || showCardDrink) && (
-        <button
-          className="floating-close"
-          onClick={handleNextStep}
-          style={{
-            position: 'fixed', bottom: '95px', left: '50%', transform: 'translateX(-50%)',
-            backgroundColor: '#ff4757', color: '#fff', padding: '15px 30px',
-            borderRadius: '12px', fontWeight: '900', zIndex: 10000,
-            border: '3px solid #000', cursor: 'pointer', boxShadow: '0 5px 15px rgba(0,0,0,0.4)',
-            textTransform: 'uppercase'
-          }}
-        >
-          {showCardBurger && (lang === 'es' ? 'SIGUIENTE: BEBIDAS ➔' : 'NEXT: DRINKS ➔')}
-          {showCardDrink && (lang === 'es' ? 'SIGUIENTE: POSTRES ➔' : 'NEXT: DESSERTS ➔')}
-          {showCardPostres && (lang === 'es' ? 'VER MI PEDIDO ✓' : 'VIEW MY ORDER ✓')}
-        </button>
-      )}
-    </div>
-  );
-}
+                  {/* BOUTON ETAPE SUIVANTE */}
+                  {(showCardBurger || showCardPostres || showCardDrink) && (
+                    <button
+                      className="floating-close"
+                      onClick={handleNextStep}
+                      style={{
+                        position: 'fixed', bottom: '95px', left: '50%', transform: 'translateX(-50%)',
+                        backgroundColor: '#ff4757', color: '#fff', padding: '15px 30px',
+                        borderRadius: '12px', fontWeight: '900', zIndex: 10000,
+                        border: '3px solid #000', cursor: 'pointer', boxShadow: '0 5px 15px rgba(0,0,0,0.4)',
+                        textTransform: 'uppercase'
+                      }}
+                    >
+                      {showCardBurger && (lang === 'es' ? 'SIGUIENTE: BEBIDAS ➔' : 'NEXT: DRINKS ➔')}
+                      {showCardDrink && (lang === 'es' ? 'SIGUIENTE: POSTRES ➔' : 'NEXT: DESSERTS ➔')}
+                      {showCardPostres && (lang === 'es' ? 'VER MI PEDIDO ✓' : 'VIEW MY ORDER ✓')}
+                    </button>
+                  )}
+                </div>
+              );
+            }
 
 export default App;
