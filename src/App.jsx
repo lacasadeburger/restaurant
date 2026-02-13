@@ -232,9 +232,29 @@ export default function App() {
       setCart(prev => [...prev, { ...item, uniqueKey: Math.random() }]);
     };
       const removeFromCart = (idx) => setCart(p => p.filter((_, i) => i !== idx));
-  const scrollToOrder = () => document.getElementById("order")?.scrollIntoView({ behavior: "smooth" });
-  const scrollToMenu = () => window.scrollTo({ top: (document.getElementById("sec-burgers")?.offsetTop || 0) - 100, behavior: "smooth" });
+      // Fonction de scroll universelle avec décalage pour la Nav fixe
+      const scrollToId = (id) => {
+        const el = document.getElementById(id);
+        if (el) {
+          const offset = 110; // Décalage pour ne pas que la Nav cache le titre
+          const bodyRect = document.body.getBoundingClientRect().top;
+          const elementRect = el.getBoundingClientRect().top;
+          const elementPosition = elementRect - bodyRect;
+          const offsetPosition = elementPosition - offset;
 
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: "smooth"
+          });
+        }
+      };
+
+      // Fonction spécifique pour ouvrir le menu et descendre
+      const handleStartOrder = () => {
+        setShowCardBurger(true); // On force l'ouverture
+        // On attend 150ms que React affiche la section avant de scroller
+        setTimeout(() => scrollToId("sec-burgers"), 150);
+      };
   const handleNextStep = () => {
     if (showCardBurger) {
       setShowCardBurger(false);
@@ -603,10 +623,28 @@ style={{
               ))}
             </div>
           ) : (
-            <div className="promo-container" onClick={() => setShowCardBurger(true)}>
-              <img src={Burger} className="promo-img" alt="Mejor Hamburguesa Gourmet y Smash Burger en Torrevieja - La Casa de Burger" />
-              <button className="btn-overlay">{T[lang]?.btnSeeMenu || T.es.btnSeeMenu}</button>
-            </div>
+            <div
+  className="promo-container"
+  onClick={() => {
+    setShowCardBurger(true);
+    // On attend un tout petit peu que le menu s'affiche pour scroller
+    setTimeout(() => {
+      const el = document.getElementById("sec-burgers");
+      if (el) {
+        window.scrollTo({
+          top: el.offsetTop - 100,
+          behavior: "smooth"
+        });
+      }
+    }, 100);
+  }}
+  style={{ cursor: 'pointer' }}
+>
+  <img src={Burger} className="promo-img" alt="Mejor Hamburguesa Gourmet y Smash Burger en Torrevieja" />
+  <button className="btn-overlay">
+    {T[lang]?.btnSeeMenu || T.es.btnSeeMenu}
+  </button>
+</div>
           )}
         </section>
 
