@@ -166,7 +166,22 @@ const T = {
     footerDesc: "Spezialisten für Smash Burgers und Gourmet-Burgers. Premium gereiftes Rindfleisch.",
     location: "Standort",
     hours: "Öffnungszeiten"
-  }
+    },
+    ro: {
+      heroTitle: "Cel Mai Bun Burger",
+      heroSubtitle: "Gourmet Burger: Smash Burgers și Carne de Vită Premium",
+      btnOrder: "COMANDEAZĂ",
+      btnCall: "SUNĂ",
+      catBurgers: "Burgeri Gourmet",
+      catDrinks: "Băuturi",
+      catDesserts: "Deserturi Casnice",
+      btnSeeMenu: "VEZI MENIUL",
+      yourOrder: "Comanda Ta",
+      reviewsTitle: "Ce spun clienții noștri",
+      footerDesc: "Specialiști în Smash Burgers și burgeri gourmet. Carne de vită maturată premium și procese artizanale.",
+      location: "Locație",
+      hours: "Program"
+    }
 };
 
 const instagramIcon = "https://cdn-icons-png.flaticon.com/512/2111/2111463.png";
@@ -547,34 +562,47 @@ export default function App() {
 
 <div style={{ marginTop: '40px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '25px' }}>
 <button
-onClick={() => { setShowCardBurger(true); setTimeout(() => document.getElementById("sec-burgers")?.scrollIntoView({ behavior: "smooth" }), 100); }}
-className="pulse-gold-btn"
-style={{
-  background: GOLD_GRADIENT,
-  color: '#000',
-  padding: '22px 50px',
-  borderRadius: '50px',
-  border: '3px solid #000',
-  fontWeight: '950',
-  cursor: 'pointer',
-  fontSize: '1.5rem',
-  boxShadow: GOLD_SHADOW,
-  textTransform: 'uppercase',
-  width: '90%',
-  maxWidth: '450px'
-}}
+  onClick={() => {
+    setShowCardBurger(true);
+    setTimeout(() => scrollToId("sec-burgers"), 150);
+  }}
+  className="pulse-gold-btn"
+  style={{
+    background: GOLD_GRADIENT,
+    color: '#000',
+    padding: '22px 50px',
+    borderRadius: '50px',
+    border: '3px solid #000',
+    fontWeight: '950',
+    cursor: 'pointer',
+    fontSize: '1.5rem',
+    boxShadow: GOLD_SHADOW, // Assure-toi que GOLD_SHADOW est bien défini en haut
+    textTransform: 'uppercase',
+    width: '90%',
+    maxWidth: '450px'
+  }}
 >
-🚀 {T[lang]?.btnOrder || T.es.btnOrder}
+  🚀 {T[lang]?.btnOrder || T.es.btnOrder}
 </button>
 
 <div style={{ display: 'flex', justifyContent: 'center', gap: '15px', flexWrap: 'wrap', marginTop: '20px' }}>
-<a href="tel:+34602597210" style={{ background: '#fff', color: '#000', padding: '14px 30px', borderRadius: '50px', textDecoration: 'none', fontWeight: '950', border: '2px solid #000' }}>
-  📞 {T[lang]?.btnCall || T.es.btnCall}
-</a>
-{/* Le bouton prix reste identique car c'est un chiffre */}
-<button onClick={scrollToOrder} style={{ backgroundColor: '#ff4757', color: '#fff', padding: '14px 30px', borderRadius: '50px', border: '2px solid #000', fontWeight: '950', cursor: 'pointer', boxShadow: '0 4px 0px #b33939' }}>
-  🛒 {totalPrice}€
-</button>
+
+  {/* AJOUTE CE BOUTON ICI */}
+  <button
+    onClick={() => scrollToId('sec-burgers')}
+    style={{ background: '#fff', color: '#000', padding: '14px 30px', borderRadius: '50px', fontWeight: '950', border: '2px solid #000', cursor: 'pointer' }}
+  >
+    📖 {T[lang]?.btnSeeMenu || T.es.btnSeeMenu}
+  </button>
+
+  <a href="tel:+34602597210" style={{ background: '#fff', color: '#000', padding: '14px 30px', borderRadius: '50px', textDecoration: 'none', fontWeight: '950', border: '2px solid #000' }}>
+    📞 {T[lang]?.btnCall || T.es.btnCall}
+  </a>
+
+  <button onClick={scrollToOrder} style={{ backgroundColor: '#ff4757', color: '#fff', padding: '14px 30px', borderRadius: '50px', border: '2px solid #000', fontWeight: '950', cursor: 'pointer', boxShadow: '0 4px 0px #b33939' }}>
+    🛒 {totalPrice}€
+  </button>
+</div>
 </div>
   </div>
 </div>
