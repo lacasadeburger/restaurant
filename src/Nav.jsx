@@ -1,9 +1,10 @@
 import React from "react";
 
 export default function Nav({ scrollToOrder, cartLength, totalPrice, lang, setLang }) {
-  // --- LOGIQUE D'OUVERTURE ---
+  // --- LOGIQUE D'OUVERTURE (Synchronisée avec le footer : 13h - 22h30) ---
   const now = new Date();
   const currentHour = now.getHours() + now.getMinutes() / 60;
+  // Correction ici pour correspondre à tes textes de footer
   const isOpen = currentHour >= 13 && currentHour < 22.5;
   const statusColor = isOpen ? '#2ed573' : '#ff4757';
 
@@ -11,7 +12,6 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang, setLa
   const GOLD_BRIGHT = "#FFD700";
   const VIBRANT_RED = "#ff4757";
 
-  // Liste des langues avec codes FlagCDN (gb pour anglais, ua pour ukraine, etc.)
   const languages = [
     { code: 'es', flag: 'es', label: 'Español' },
     { code: 'en', flag: 'gb', label: 'English' },
@@ -35,7 +35,7 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang, setLa
         padding: '0 12px', zIndex: 10000, borderBottom: `3px solid ${VIBRANT_RED}`, boxSizing: 'border-box'
       }}>
 
-        {/* --- GAUCHE : APPEL --- */}
+        {/* GAUCHE : APPEL */}
         <div style={{ width: '35%', display: 'flex', alignItems: 'center' }}>
           <a href="tel:+34602597210" style={{ display: 'flex', alignItems: 'center', gap: '6px', textDecoration: 'none' }}>
             <div style={{
@@ -48,26 +48,26 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang, setLa
             <div style={{ display: 'flex', flexDirection: 'column' }}>
               <span className="nav-phone-number" style={{ color: GOLD_BRIGHT, fontSize: '0.85rem', fontWeight: '900', whiteSpace: 'nowrap' }}>602 597 210</span>
               <span style={{ color: VIBRANT_RED, fontSize: '0.65rem', fontWeight: '900', animation: 'pulse-text 2s infinite' }}>
-                {lang === 'es' ? 'LLÁMANOS' : lang === 'fr' ? 'APPELER' : 'CALL US'}
+                {(lang === 'es' || lang === 'ar') ? 'LLÁMANOS' : lang === 'fr' ? 'APPELER' : 'CALL US'}
               </span>
             </div>
           </a>
         </div>
 
-        {/* --- CENTRE : STATUT --- */}
+        {/* CENTRE : STATUT */}
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <div style={{
             width: '8px', height: '8px', backgroundColor: statusColor, borderRadius: '50%',
             boxShadow: isOpen ? `0 0 10px ${statusColor}` : 'none',
             animation: isOpen ? 'blink-neon 1.5s infinite alternate' : 'none',
             marginBottom: '2px'
-          }}></div>
+          }} />
           <span style={{ color: statusColor, fontSize: '1.1rem', fontWeight: '1000', lineHeight: 1 }}>
             {isOpen ? (lang === 'es' ? "ABIERTO" : "OPEN") : (lang === 'es' ? "CERRADO" : "CLOSED")}
           </span>
         </div>
 
-        {/* --- DROITE : PANIER --- */}
+        {/* DROITE : PANIER */}
         <div onClick={scrollToOrder} style={{ width: '35%', display: 'flex', justifyContent: 'flex-end', cursor: 'pointer' }}>
           <div className={cartLength > 0 ? 'pulse-active' : ''} style={{
             backgroundColor: VIBRANT_RED, padding: '8px 12px', borderRadius: '10px',
@@ -79,7 +79,7 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang, setLa
         </div>
       </nav>
 
-      {/* --- SELECTEUR DE LANGUES (Barre dédiée sous le Nav) --- */}
+      {/* SELECTEUR DE LANGUES */}
       <div style={{
         marginTop: '80px',
         display: 'flex', justifyContent: 'center', gap: '6px', padding: '12px 8px',
@@ -90,14 +90,12 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang, setLa
           <button
             key={l.code}
             onClick={() => setLang(l.code)}
-            title={l.label}
             style={{
               background: 'none',
               border: lang === l.code ? `2px solid ${GOLD_BRIGHT}` : '1px solid #444',
               borderRadius: '6px', cursor: 'pointer', padding: '3px',
               transition: '0.2s', transform: lang === l.code ? 'scale(1.15)' : 'scale(1)',
               filter: lang === l.code ? 'grayscale(0%)' : 'grayscale(50%)',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
               backgroundColor: lang === l.code ? 'rgba(255,255,255,0.1)' : 'transparent'
             }}
           >
@@ -110,18 +108,6 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang, setLa
           </button>
         ))}
       </div>
-
-      <style>{`
-        @keyframes pulse-text { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
-        @keyframes blink-neon { 0% { transform: scale(1); opacity: 1; } 100% { transform: scale(1.3); opacity: 0.8; } }
-        .pulse-active { animation: cart-shake 0.5s ease-in-out infinite alternate; }
-        @keyframes cart-shake { from { transform: scale(1); } to { transform: scale(1.06); } }
-
-        @media (max-width: 450px) {
-          .nav-phone-number { font-size: 0.75rem !important; }
-          span[style*="font-size: 1.1rem"] { font-size: 0.9rem !important; }
-        }
-      `}</style>
     </>
   );
 }
