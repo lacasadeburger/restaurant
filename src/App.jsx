@@ -317,9 +317,20 @@ export default function App() {
       </div>
       <div style={{ position: 'relative', zIndex: 2 }}>
 {/* H1 OPTIMISÉ : On place le mot-clé principal "Mejor Hamburguesa" avant le nom de la ville */}
-<h1 style={{ fontSize: '3.5rem', fontWeight: '900', textTransform: 'uppercase', textShadow: '2px 2px 15px rgba(0,0,0,0.9)', margin: 0, color: '#fff' }}>
+<h1 style={{
+  /* Le texte fera 3.5rem sur PC, mais descendra jusqu'à 2rem sur mobile pour ne pas déborder */
+  fontSize: 'clamp(2rem, 10vw, 3.5rem)',
+  fontWeight: '900',
+  textTransform: 'uppercase',
+  textShadow: '2px 2px 15px rgba(0,0,0,0.9)',
+  margin: 0,
+  color: '#fff',
+  lineHeight: '1.1' // Pour que les lignes soient bien serrées et jolies
+}}>
   {lang === 'es' ? 'La Mejor ' : 'The Best '}
-  <span style={{color:'#ff4757'}}>Hamburguesa</span> en Torrevieja
+  <span style={{color:'#ff4757'}}>Hamburguesa</span>
+  <br /> {/* Ce saut de ligne assure que "en Torrevieja" ne pousse pas le mot précédent dehors */}
+  en Torrevieja
 </h1>
 
 
@@ -541,10 +552,10 @@ export default function App() {
 
                 <div style={{ backgroundColor: '#0a0a0a', padding: '35px', borderRadius: '15px', border: '1px solid #222', textAlign: 'justify' }}>
                   <p style={{ color: '#888', fontSize: '0.8rem', lineHeight: '1.8', margin: 0 }}>
-                    <strong>🇪🇸 ESPAÑOL:</strong> <strong>La Casa de Burger</strong> – El <strong>mejor restaurante de hamburguesas gourmet en Torrevieja</strong>. Especialistas en <strong>hamburguesas de autor</strong> y <strong>recetas únicas</strong> preparadas con carne de <strong>vaca madurada premium</strong>, buey y angus. Cada <strong>hamburguesa artesanal</strong> se sirve con <strong>salsas caseras secretas</strong> y <strong>patatas fritas naturales</strong>. Si buscas una <strong>Smash Burger</strong> auténtica, jugosa y crujiente, somos tu sitio. <strong>Comida a domicilio (delivery)</strong> rápida. El mejor <strong>rapport calidad-precio</strong>. <em>Carne Halal certificada, opciones sin gluten y veganas.</em>
+                    <strong>🇪🇸 ESPAÑOL:</strong> <strong>La Casa de Burger</strong> – El <strong>mejor restaurante de hamburguesas gourmet en Torrevieja</strong>. Especialistas en <strong>hamburguesas de autor</strong> y <strong>recetas únicas</strong> preparadas con carne de <strong>ternera premium</strong>, buey y Chicken. Cada <strong>hamburguesa artesanal</strong> se sirve con <strong>salsas caseras secretas</strong> y <strong>patatas fritas naturales</strong>. Si buscas una <strong>Smash Burger</strong> auténtica y jugosa, somos tu sitio. <strong>Comida a domicilio (delivery)</strong> rápida. El mejor <strong>rapport calidad-precio</strong>. <em>Carne Halal certificada, opciones sin gluten y veganas con reserva.</em>
 
                     <br /><br />
-                    <strong>🇬🇧 ENGLISH:</strong> <strong>Best gourmet burgers in Torrevieja</strong> center. We specialize in <strong>signature burgers</strong>, <strong>unique artisan recipes</strong>, premium <strong>matured beef</strong>, and <strong>fresh homemade fries</strong>. Looking for a <strong>top-rated burger joint near me</strong>? Enjoy our crispy <strong>Smash Burgers</strong>. Best <strong>value for money</strong>. Fast <strong>food delivery</strong>. <strong>Halal meat</strong>, <strong>Gluten-free</strong> and <strong>Veggie</strong> options.
+                    <strong>🇬🇧 ENGLISH:</strong> <strong>Best gourmet burgers in Torrevieja</strong> center. We specialize in <strong>signature burgers</strong>, <strong>unique artisan recipes</strong>, premium beef</strong>, and <strong>fresh homemade fries</strong>. Looking for a <strong>top-rated burger joint near me</strong>? Enjoy our crispy <strong>Smash Burgers</strong>. Best <strong>value for money</strong>. Fast <strong>food delivery</strong>. <strong>Halal meat</strong>, <strong>Gluten-free</strong> and <strong>Veggie</strong> options.
 
                     <br /><br />
                     <strong>🇳🇴 NORSK:</strong> <strong>Beste gourmetburger i Torrevieja</strong> med det beste <strong>forholdet mellom pris og kvalitet</strong>. Spesialister på <strong>signaturburgere</strong>, unike oppskrifter med <strong>modnet storfekjøtt</strong> (Vaca Madurada) og <strong>hjemmelagde pommes frites</strong>. Prøv våre saftige <strong>Smash Burgers</strong>. Rask <strong>matlevering</strong>. <strong>Halal-kjøtt</strong>, <strong>glutenfrie</strong> alternativer og veganske burgere.
