@@ -760,7 +760,7 @@ export default function App() {
         {/* SECTION MAPS & VIDEO */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '40px', alignItems: 'center', margin: '05px auto' }}>
           <div style={{ width: '90%', maxWidth: '1100px', borderRadius: '15px', overflow: 'hidden', border: `2px solid ${GOLD_BRIGHT}` }}>
-            <iframe src="https://www.google.com/maps/embed/v1/place?key=TON_API_KEY&q=La+Casa+de+Burger,Torrevieja+Alicante" width="100%" height="350" style={{ border: 0 }} allowFullScreen="" loading="lazy"></iframe>
+            <iframe src="https://maps.app.goo.gl/Puq68QeX7F8RUiAA7" width="100%" height="350" style={{ border: 0 }} allowFullScreen="" loading="lazy"></iframe>
           </div>
           <div style={{ width: '90%', maxWidth: '800px', borderRadius: '15px', overflow: 'hidden', border: `3px solid ${GOLD_BRIGHT}` }}>
             <iframe width="100%" height="400" src="https://www.youtube.com/embed/qN6VZYBojLs" title="Video" frameBorder="0" allowFullScreen></iframe>
