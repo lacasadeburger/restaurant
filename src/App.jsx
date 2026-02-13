@@ -224,11 +224,19 @@ export default function App() {
     }
   }, []);
 
-  // Logic: Calcul du prix total ultra-précis
+  // Logic: Calcul du prix total ultra-précis (CORRIGÉ)
   const totalPrice = useMemo(() => {
     return cart.reduce((acc, item) => {
-      const val = item.precio || item.price || 0;
-      const numericValue = String(val).replace(/[^0-9.,]/g, "").replace(",", ".");
+      // 1. On récupère la valeur (si rien n'existe, on met "0")
+      const val = item.precio || item.price || "0";
+
+      // 2. On s'assure que c'est du texte pour pouvoir utiliser .replace()
+      const valStr = String(val);
+
+      // 3. Nettoyage : on ne garde que chiffres, points et virgules
+      const numericValue = valStr.replace(/[^0-9.,]/g, "").replace(",", ".");
+
+      // 4. Addition
       return acc + (parseFloat(numericValue) || 0);
     }, 0).toFixed(2);
   }, [cart]);
@@ -855,7 +863,6 @@ export default function App() {
               {showCardPostres && (lang === 'es' ? 'VER MI PEDIDO ➔' : 'VIEW ORDER ➔')}
             </button>
           )}
-
-        </div>
-      );
-    }
+        </div> // Ferme le div .app-main-wrapper
+      ); // Ferme le return
+    } // Ferme la fonction export default function App
