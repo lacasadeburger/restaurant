@@ -532,7 +532,7 @@ export default function App() {
   logo={logo}
 />
       <header style={{
-        padding: '160px 20px 80px',
+        padding: '120px 20px 80px',
         textAlign: 'center',
         position: 'relative',
         backgroundImage: `linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.3)), url(${BurgerSignature})`,
@@ -545,7 +545,7 @@ export default function App() {
         className="wobble-badge"
         style={{
           position: 'absolute',
-          top: '110px',
+          top: '85px',
           right: '5%',
           background: GOLD_GRADIENT,
           color: '#000',
