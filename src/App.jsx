@@ -624,27 +624,19 @@ style={{
             </div>
           ) : (
             <div
-  className="promo-container"
-  onClick={() => {
-    setShowCardBurger(true);
-    // On attend un tout petit peu que le menu s'affiche pour scroller
-    setTimeout(() => {
-      const el = document.getElementById("sec-burgers");
-      if (el) {
-        window.scrollTo({
-          top: el.offsetTop - 100,
-          behavior: "smooth"
-        });
-      }
-    }, 100);
-  }}
-  style={{ cursor: 'pointer' }}
->
-  <img src={Burger} className="promo-img" alt="Mejor Hamburguesa Gourmet y Smash Burger en Torrevieja" />
-  <button className="btn-overlay">
-    {T[lang]?.btnSeeMenu || T.es.btnSeeMenu}
-  </button>
-</div>
+              className="promo-container"
+              onClick={() => {
+                setShowCardBurger(true);
+                setTimeout(() => {
+                  const el = document.getElementById("sec-burgers");
+                  if (el) window.scrollTo({ top: el.offsetTop - 100, behavior: "smooth" });
+                }, 150);
+              }}
+              style={{ cursor: 'pointer' }}
+            >
+              <img src={Burger} className="promo-img" alt="Mejor Hamburguesa Gourmet y Smash Burger en Torrevieja" />
+              <button className="btn-overlay">{T[lang]?.btnSeeMenu || T.es.btnSeeMenu}</button>
+            </div>
           )}
         </section>
 
@@ -656,8 +648,18 @@ style={{
               {drinks.map(item => <CardMenu key={item.id} {...item} isDrinkCard={true} addToCart={addToCart} lang={lang} />)}
             </div>
           ) : (
-            <div className="promo-container" onClick={() => setShowCardDrink(true)}>
-              <img src={Drink} className="promo-img" alt="Refrescos y bebidas frías para acompañar tu burger en Torrevieja" />
+            <div
+              className="promo-container"
+              onClick={() => {
+                setShowCardDrink(true);
+                setTimeout(() => {
+                  const el = document.getElementById("sec-bebidas");
+                  if (el) window.scrollTo({ top: el.offsetTop - 100, behavior: "smooth" });
+                }, 150);
+              }}
+              style={{ cursor: 'pointer' }}
+            >
+              <img src={Drink} className="promo-img" alt="Refrescos y bebidas frías" />
               <button className="btn-overlay">{T[lang]?.catDrinks || T.es.catDrinks}</button>
             </div>
           )}
@@ -671,18 +673,27 @@ style={{
               {postres.map(item => <CardMenu key={item.id} {...item} isPostreCard={true} addToCart={addToCart} lang={lang} />)}
             </div>
           ) : (
-            <div className="promo-container" onClick={() => setShowCardPostres(true)}>
-              <img src={Postre} className="promo-img" alt="Postres caseros, tartas y dulces artesanales" />
+            <div
+              className="promo-container"
+              onClick={() => {
+                setShowCardPostres(true);
+                setTimeout(() => {
+                  const el = document.getElementById("sec-postres");
+                  if (el) window.scrollTo({ top: el.offsetTop - 100, behavior: "smooth" });
+                }, 150);
+              }}
+              style={{ cursor: 'pointer' }}
+            >
+              <img src={Postre} className="promo-img" alt="Postres caseros" />
               <button className="btn-overlay">{T[lang]?.catDesserts || T.es.catDesserts}</button>
             </div>
           )}
         </section>
 
         <section id="order" style={{ paddingBottom: '100px' }}>
-          <SectionTitle>{lang === 'es' ? 'Tu Pedido' : 'Your Order'}</SectionTitle>
+          <SectionTitle>{lang === 'es' ? 'Tu Pedido' : lang === 'fr' ? 'Votre Commande' : 'Your Order'}</SectionTitle>
           <Order cart={cart} removeFromCart={removeFromCart} lang={lang} />
         </section>
-
 
         <section style={{ padding: '20px 0 80px' }}>
         <h3 style={{ color: GOLD_BRIGHT, textTransform: 'uppercase', marginBottom: '30px', fontSize: '1.4rem', letterSpacing: '1px' }}>
