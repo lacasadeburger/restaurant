@@ -513,7 +513,7 @@ export default function App() {
 
 
                 <div style={{
-                  width: '95%',
+                  width: '80%',
                   maxWidth: '1100px',
                   margin: '40px auto',
                   borderRadius: '15px',
@@ -526,7 +526,7 @@ export default function App() {
                 }}>
                   <iframe
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3143.626750016147!2d-0.6833227234676118!3d37.98113637193437!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd63a9b08d9e6633%3A0x88f65fbd84c2f7fe!2sLa%20Casa%20de%20Burger!5e0!3m2!1sfr!2ses!4v1707826000000!5m2!1sfr!2ses"
-                    width="95%"
+                    width="100%"
                     height="350"
                     style={{ border: 0, display: 'block' }}
                     allowFullScreen=""
