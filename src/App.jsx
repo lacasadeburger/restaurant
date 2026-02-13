@@ -581,8 +581,9 @@ style={{
         </section>
 
 
+        {/* SECTION BURGERS */}
         <section id="sec-burgers">
-          <SectionTitle>{lang === 'es' ? 'Burgers Gourmet' : 'Gourmet Burgers'}</SectionTitle>
+          <SectionTitle>{T[lang]?.catBurgers || T.es.catBurgers}</SectionTitle>
           {showCardBurger ? (
             <div className="grid-cards">
               {burgers.map(item => (
@@ -597,45 +598,41 @@ style={{
             </div>
           ) : (
             <div className="promo-container" onClick={() => setShowCardBurger(true)}>
-              {/* ALT SEO OPTIMISÉ */}
               <img src={Burger} className="promo-img" alt="Mejor Hamburguesa Gourmet y Smash Burger en Torrevieja - La Casa de Burger" />
-              <button className="btn-overlay">{lang === 'es' ? 'VER CARTA' : 'SEE MENU'}</button>
+              <button className="btn-overlay">{T[lang]?.btnSeeMenu || T.es.btnSeeMenu}</button>
             </div>
           )}
         </section>
 
-
+        {/* SECTION BEBIDAS */}
         <section id="sec-bebidas">
-          <SectionTitle>{lang === 'es' ? 'Bebidas' : 'Drinks'}</SectionTitle>
+          <SectionTitle>{T[lang]?.catDrinks || T.es.catDrinks}</SectionTitle>
           {showCardDrink ? (
             <div className="grid-cards">
               {drinks.map(item => <CardMenu key={item.id} {...item} isDrinkCard={true} addToCart={addToCart} lang={lang} />)}
             </div>
           ) : (
             <div className="promo-container" onClick={() => setShowCardDrink(true)}>
-
               <img src={Drink} className="promo-img" alt="Refrescos y bebidas frías para acompañar tu burger en Torrevieja" />
-              <button className="btn-overlay">{lang === 'es' ? 'BEBIDAS' : 'DRINKS'}</button>
+              <button className="btn-overlay">{T[lang]?.catDrinks || T.es.catDrinks}</button>
             </div>
           )}
         </section>
 
-
+        {/* SECTION POSTRES */}
         <section id="sec-postres">
-          <SectionTitle>{lang === 'es' ? 'Postres Caseros' : 'Homemade Desserts'}</SectionTitle>
+          <SectionTitle>{T[lang]?.catDesserts || T.es.catDesserts}</SectionTitle>
           {showCardPostres ? (
             <div className="grid-cards">
               {postres.map(item => <CardMenu key={item.id} {...item} isPostreCard={true} addToCart={addToCart} lang={lang} />)}
             </div>
           ) : (
             <div className="promo-container" onClick={() => setShowCardPostres(true)}>
-              {/* ALT SEO OPTIMISÉ */}
               <img src={Postre} className="promo-img" alt="Postres caseros, tartas y dulces artesanales" />
-              <button className="btn-overlay">{lang === 'es' ? 'POSTRES' : 'DESSERTS'}</button>
+              <button className="btn-overlay">{T[lang]?.catDesserts || T.es.catDesserts}</button>
             </div>
           )}
         </section>
-
 
         <section id="order" style={{ paddingBottom: '100px' }}>
           <SectionTitle>{lang === 'es' ? 'Tu Pedido' : 'Your Order'}</SectionTitle>
@@ -644,9 +641,9 @@ style={{
 
 
         <section style={{ padding: '20px 0 80px' }}>
-          <h3 style={{ color: GOLD_BRIGHT, textTransform: 'uppercase', marginBottom: '30px', fontSize: '1.4rem', letterSpacing: '1px' }}>
-            {lang === 'es' ? 'Lo que dicen nuestros clientes' : 'What our customers say'}
-          </h3>
+        <h3 style={{ color: GOLD_BRIGHT, textTransform: 'uppercase', marginBottom: '30px', fontSize: '1.4rem', letterSpacing: '1px' }}>
+{T[lang]?.reviewsTitle || T.es.reviewsTitle}
+</h3>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px', textAlign: 'left' }}>
             {randomReviews.map((rev, index) => (
               <div key={index} className="testimonial-card">
@@ -670,14 +667,14 @@ style={{
                     <p>{lang === 'es' ? 'Especialistas en Smash Burgers y Hamburguesas Gourmet de autor. Carne de vaca madurada premium, buey y procesos artesanales.' : 'Specialists in Smash Burgers and Signature Gourmet Hamburgers. Premium matured beef and artisan processes.'}</p>
                   </div>
                   <div>
-                    <h4 style={{ color: GOLD_BRIGHT }}>📍 {lang === 'es' ? 'Ubicación' : 'Location'}</h4>
-                    <p>Av. Diego Ramírez Pastor, 142, 03181 Torrevieja</p>
-                    <p>📞 <a href="tel:+34602597210" style={{ color: '#fff', textDecoration: 'none', fontWeight: 'bold' }}>+34 602 59 72 10</a></p>
-                  </div>
-                  <div>
-                    <h4 style={{ color: GOLD_BRIGHT }}>🕒 {lang === 'es' ? 'Horario' : 'Hours'}</h4>
-                    <p>Lun - Sáb: 13:00 – 22:30 | Dom: Cerrado</p>
-                  </div>
+  <h4 style={{ color: GOLD_BRIGHT }}>📍 {T[lang]?.location || T.es.location}</h4>
+  <p>Av. Diego Ramírez Pastor, 142, 03181 Torrevieja</p>
+  <p>📞 <a href="tel:+34602597210" style={{ color: '#fff', textDecoration: 'none', fontWeight: 'bold' }}>+34 602 59 72 10</a></p>
+</div>
+<div>
+  <h4 style={{ color: GOLD_BRIGHT }}>🕒 {T[lang]?.hours || T.es.hours}</h4>
+  <p>Lun - Sáb: 13:00 – 22:30 | Dom: Cerrado</p>
+</div>
                 </div>
 
 

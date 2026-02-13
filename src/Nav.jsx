@@ -17,7 +17,44 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang }) {
   const GOLD_GRADIENT = "linear-gradient(135deg, #BF953F 0%, #FCF6BA 45%, #B38728 55%, #FBF5B7 100%)";
   const GOLD_BRIGHT = "#FFD700";
   const VIBRANT_RED = "#ff4757"; // Rouge vif identique au panier/statut fermé
-
+  const LanguagePicker = () => (
+    <div style={{
+      display: 'flex',
+      justifyContent: 'center',
+      gap: '10px',
+      padding: '10px',
+      flexWrap: 'wrap',
+      backgroundColor: 'rgba(0,0,0,0.5)',
+      borderRadius: '50px',
+      margin: '10px auto',
+      maxWidth: 'fit-content'
+    }}>
+      {[
+        { code: 'es', flag: '🇪🇸' },
+        { code: 'en', flag: '🇬🇧' },
+        { code: 'fr', flag: '🇫🇷' },
+        { code: 'no', flag: '🇳🇴' },
+        { code: 'pl', flag: '🇵🇱' },
+        { code: 'ar', flag: '🇲🇦' }
+      ].map((l) => (
+        <button
+          key={l.code}
+          onClick={() => setLang(l.code)}
+          style={{
+            background: 'none',
+            border: lang === l.code ? '2px solid #ff4757' : '2px solid transparent',
+            borderRadius: '50%',
+            cursor: 'pointer',
+            fontSize: '20px',
+            padding: '5px',
+            transition: '0.3s'
+          }}
+        >
+          {l.flag}
+        </button>
+      ))}
+    </div>
+  );
   return (
     <nav style={{
       position: 'fixed', top: 0, left: 0, width: '100%', height: '90px',
