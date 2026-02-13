@@ -30,7 +30,9 @@ const T = {
     reviewsTitle: "Lo que dicen nuestros clientes",
     footerDesc: "Especialistas en Smash Burgers y Hamburguesas Gourmet de autor. Carne de vaca madurada premium, buey y procesos artesanales.",
     location: "Ubicación",
-    hours: "Horario"
+    hours: "Horario",
+    seoTitle: "La mejor Hamburguesería Artesanal de Torrevieja",
+    seoContent: "En La Casa de Burger, nos hemos convertido en el referente de las hamburguesas gourmet en Torrevieja. Nuestra pasión por la calidad nos lleva a utilizar exclusivamente carne de vaca madurada premium, buey y angus, picada diariamente. Especialistas en Smash Burger, pan brioche local y patatas naturales. Opciones Halal, sin gluten y veganas."
   },
   en: {
     heroTitle: "The Best Burger",
@@ -45,7 +47,9 @@ const T = {
     reviewsTitle: "What our customers say",
     footerDesc: "Specialists in Smash Burgers and Signature Gourmet Hamburgers. Premium matured beef and artisan processes.",
     location: "Location",
-    hours: "Hours"
+    hours: "Hours",
+    seoTitle: "The Best Artisan Burger Joint in Torrevieja",
+    seoContent: "At La Casa de Burger, we are the benchmark for gourmet burgers in Torrevieja. Our passion for quality leads us to use exclusively premium matured beef, ox, and angus. Specialists in Smash Burgers, using local brioche buns and hand-cut fries. Halal, gluten-free, and vegan options available."
   },
   fr: {
     heroTitle: "Le Meilleur Burger",
@@ -60,7 +64,9 @@ const T = {
     reviewsTitle: "L'avis de nos clients",
     footerDesc: "Spécialistes du Smash Burger et Burgers Gourmet. Viande maturée premium et frites maison.",
     location: "Emplacement",
-    hours: "Horaires"
+    hours: "Horaires",
+    seoTitle: "La meilleure Hamburguérerie Artisanale de Torrevieja",
+    seoContent: "À La Casa de Burger, nous sommes la référence des burgers gourmet à Torrevieja. Passionnés par la qualité, nous utilisons exclusivement de la viande maturée premium. Spécialistes du Smash Burger, pain brioche local et frites maison. Options Halal, sans gluten et véganes disponibles."
   },
   no: {
     heroTitle: "Den Beste Burgers",
@@ -75,7 +81,9 @@ const T = {
     reviewsTitle: "Hva våre kunder sier",
     footerDesc: "Spesialister på Smash Burgers og gourmetburgere. Modnet storfekjøtt og håndverksmessige prosesser.",
     location: "Plassering",
-    hours: "Åpningstider"
+    hours: "Åpningstider",
+    seoTitle: "Torreviejas beste håndlagde burgerrestaurant",
+    seoContent: "På La Casa de Burger er vi referansen for gourmetburgere i Torrevieja. Vi bruker eksklusivt modnet premium storfekjøtt, kvernet daglig. Spesialister på Smash Burger, lokalt briochebrød og ferske poteter. Halal, glutenfrie og veganske alternativer."
   },
   pl: {
     heroTitle: "Najlepszy Burger",
@@ -90,7 +98,9 @@ const T = {
     reviewsTitle: "Co mówią nasi klienci",
     footerDesc: "Specjaliści od Smash Burgerów i burgerów rzemieślniczych. Wołowina sezonowana premium.",
     location: "Lokalizacja",
-    hours: "Godziny otwarcia"
+    hours: "Godziny otwarcia",
+    seoTitle: "Najlepsza rzemieślnicza burgerownia w Torrevieja",
+    seoContent: "W La Casa de Burger jesteśmy punktem odniesienia dla burgerów gourmet w Torrevieja. Używamy wyłącznie dojrzewającej wołowiny premium. Specjaliści od Smash Burger, lokalnych bułek brioche i domowych frytek. Opcje Halal, bezglutenowe i wegańskie."
   },
   uk: {
     heroTitle: "Найкращий Бургер",
@@ -105,7 +115,9 @@ const T = {
     reviewsTitle: "Що кажуть наші клієнти",
     footerDesc: "Спеціалісти зі смеш-бургерів та авторських гурме-бургерів. Витримана яловичина преміум-класу.",
     location: "Локація",
-    hours: "Графік роботи"
+    hours: "Графік роботи",
+    seoTitle: "Найкраща крафтова бургерна в Торрев'єсі",
+    seoContent: "La Casa de Burger — це еталон гурманських бургерів у Торрев'єсі. Ми використовуємо виключно витриману яловичину преміум-класу. Спеціалісти зі Smash Burger, місцевих булочок бріош та натуральної картоплі. Халяльні, безглютенові та веганські страви."
   },
   ru: {
     heroTitle: "Лучший Бургер",
@@ -120,7 +132,9 @@ const T = {
     reviewsTitle: "Что говорят наши клиенты",
     footerDesc: "Специалисты по смэш-бургерам и авторским гурме-бургерам. Выдержанная говядина премиум-класса.",
     location: "Локация",
-    hours: "График работы"
+    hours: "График работы",
+    seoTitle: "Лучшая ремесленная бургерная в Торревьехе",
+    seoContent: "La Casa de Burger — эталон изысканных бургеров в Торревьехе. Мы используем только выдержанную говядину премиум-класса. Специалисты по Smash Burger, местным булочкам бриошь и натуральному картофелю. Халяльные, безглютеновые и веганские опции."
   },
   ar: {
     heroTitle: "أفضل برجر",
@@ -135,7 +149,9 @@ const T = {
     reviewsTitle: "ما يقوله عملاؤنا",
     footerDesc: "متخصصون في السماش برجر وبرجر الغوارميه المميز. لحم بقر معتق وفاخر وعمليات حرفية.",
     location: "الموقع",
-    hours: "ساعات العمل"
+    hours: "ساعات العمل",
+    seoTitle: "أفضل مطعم برجر حرفي في توريفايجا",
+    seoContent: "في La Casa de Burger، أصبحنا المرجع الأول للبرجر الفاخر في توريفايجا. نستخدم حصرياً لحم البقر المعتق الممتاز. متخصصون في سماتش برجر، خبز البريوش المحلي والبطاطس الطبيعية. متوفر خيارات حلال، خالية من الغلوتين ونباتية."
   },
   sv: {
     heroTitle: "Den Bästa Burgaren",
@@ -150,7 +166,9 @@ const T = {
     reviewsTitle: "Vad våra kunder säger",
     footerDesc: "Specialister på Smash Burgers och signaturgourmetburgare. Premium hängmörat nötkött.",
     location: "Plats",
-    hours: "Öppettider"
+    hours: "Öppettider",
+    seoTitle: "Torreviejas bästa hantverksburgare",
+    seoContent: "På La Casa de Burger är vi ledande inom gourmetburgare i Torrevieja. Vi använder exklusivt mognat premiumkött. Specialister på Smash Burger, lokalt briochebrød och handskuren potatis. Halal, glutenfria och veganska alternativ."
   },
   de: {
     heroTitle: "Der Beste Burger",
@@ -165,23 +183,27 @@ const T = {
     reviewsTitle: "Was unsere Kunden sagen",
     footerDesc: "Spezialisten für Smash Burgers und Gourmet-Burgers. Premium gereiftes Rindfleisch.",
     location: "Standort",
-    hours: "Öffnungszeiten"
-    },
-    ro: {
-      heroTitle: "Cel Mai Bun Burger",
-      heroSubtitle: "Gourmet Burger: Smash Burgers și Carne de Vită Premium",
-      btnOrder: "COMANDEAZĂ",
-      btnCall: "SUNĂ",
-      catBurgers: "Burgeri Gourmet",
-      catDrinks: "Băuturi",
-      catDesserts: "Deserturi Casnice",
-      btnSeeMenu: "VEZI MENIUL",
-      yourOrder: "Comanda Ta",
-      reviewsTitle: "Ce spun clienții noștri",
-      footerDesc: "Specialiști în Smash Burgers și burgeri gourmet. Carne de vită maturată premium și procese artizanale.",
-      location: "Locație",
-      hours: "Program"
-    }
+    hours: "Öffnungszeiten",
+    seoTitle: "Das beste handgemachte Burger-Restaurant in Torrevieja",
+    seoContent: "Im La Casa de Burger sind wir der Maßstab für Gourmet-Burger in Torrevieja. Wir verwenden ausschließlich erstklassiges gereiftes Rindfleisch. Spezialisten für Smash Burger, lokales Brioche und handgeschnittene Pommes. Halal, glutenfreie und vegane Optionen."
+  },
+  ro: {
+    heroTitle: "Cel Mai Bun Burger",
+    heroSubtitle: "Gourmet Burger: Smash Burgers și Carne de Vită Premium",
+    btnOrder: "COMANDEAZĂ",
+    btnCall: "SUNĂ",
+    catBurgers: "Burgeri Gourmet",
+    catDrinks: "Băuturi",
+    catDesserts: "Deserturi Casnice",
+    btnSeeMenu: "VEZI MENIUL",
+    yourOrder: "Comanda Ta",
+    reviewsTitle: "Ce spun clienții noștri",
+    footerDesc: "Specialiști în Smash Burgers și burgeri gourmet. Carne de vită maturată premium și procese artizanale.",
+    location: "Locație",
+    hours: "Program",
+    seoTitle: "Cea mai bună burgerie artizanală din Torrevieja",
+    seoContent: "La Casa de Burger, suntem punctul de referință pentru burgeri gourmet în Torrevieja. Folosim exclusiv carne de vită maturată premium. Specialiști în Smash Burger, chifle brioche locale și cartofi naturali. Opțiuni Halal, fără gluten și vegane."
+  }
 };
 
 const instagramIcon = "https://cdn-icons-png.flaticon.com/512/2111/2111463.png";
@@ -615,153 +637,106 @@ export default function App() {
 </div>
       </header>
       <main className="menu-page-container">
-              {/* Tes sections commencent ici */}
-              {showCardBurger && (
-                <section id="sec-burgers">
-                   <SectionTitle id="sec-burgers-title">{T[lang]?.catBurgers || T.es.catBurgers}</SectionTitle>
-                   {/* ... le reste de ta logique burgers */}
-                </section>
-              )}
-        <section style={{ padding: '40px 20px', backgroundColor: 'rgba(255,255,255,0.02)', borderRadius: '20px', marginBottom: '40px', textAlign: 'left', border: '1px solid #222' }}>
-          <div style={{ maxWidth: '900px', margin: '0 auto' }}>
-            <h2 style={{ color: GOLD_BRIGHT, fontSize: '1.8rem', marginBottom: '20px', textAlign: 'center' }}>
-              {lang === 'es' ? 'La mejor Hamburguesería Artesanal de Torrevieja' : 'The best Artisan Burger Joint in Torrevieja'}
-            </h2>
-            <p style={{ lineHeight: '1.8', color: '#ccc', fontSize: '1.05rem' }}>
-              {lang === 'es' ? (
-                <>
-                  En <strong>La Casa de Burger</strong>, nos hemos convertido en el referente de las <strong>hamburguesas gourmet en Torrevieja</strong>.
-                  Nuestra pasión por la calidad nos lleva a utilizar exclusivamente <strong>carne de vaca madurada premium</strong>, buey y angus,
-                  picada diariamente para ofrecer una textura inigualable. Especialistas en la técnica <strong>Smash Burger</strong>,
-                  sellamos cada pieza para lograr un caramelizado perfecto y jugoso. <br/><br/>
-                  No solo somos una <strong>hamburguesería cerca de ti</strong>; somos artesanos que utilizan <strong>pan brioche local</strong>
-                  y <strong>patatas fritas naturales</strong> cortadas a mano. Si buscas <strong>comida a domicilio en Torrevieja (delivery)</strong>
-                  o <strong>take away</strong> con opciones <strong>Halal</strong>, <strong>sin gluten</strong> o veganas,
-                  nuestra carta está diseñada para satisfacer a los paladares más exigentes con el mejor rapport calidad-precio.
-                </>
-              ) : (
-                <>
-                  At <strong>La Casa de Burger</strong>, we have become the benchmark for <strong>gourmet burgers in Torrevieja</strong>.
-                  Our passion for quality leads us to use exclusively <strong>premium matured beef</strong>, ox, and angus,
-                  minced daily to offer an unparalleled texture. Specialists in the <strong>Smash Burger</strong> technique,
-                  we sear each piece to achieve perfect, juicy caramelization. <br/><br/>
-                  We are not just a <strong>burger restaurant near you</strong>; we are artisans using <strong>local brioche buns</strong>
-                  and <strong>hand-cut natural fries</strong>. If you are looking for <strong>food delivery in Torrevieja</strong>
-                  or <strong>takeaway</strong> with <strong>Halal</strong>, <strong>gluten-free</strong>, or vegan options,
-                  our menu is designed to satisfy the most demanding palates with the best value for money.
-                </>
-              )}
-            </p>
-          </div>
-        </section>
 
+  {/* 1. SECTION BURGERS */}
+  <section id="sec-burgers" style={{ marginTop: '20px' }}>
+    <SectionTitle>{T[lang]?.catBurgers || T.es.catBurgers}</SectionTitle>
+    {showCardBurger ? (
+      <div className="grid-cards">
+        {burgers.map(item => (
+          <CardMenu key={item.id} {...item} addToCart={addToCart} lang={lang} hasExtras={!noExtrasIds.includes(item.id)} />
+        ))}
+      </div>
+    ) : (
+      <div className="promo-container" onClick={() => {
+        setShowCardBurger(true);
+        setTimeout(() => {
+          const el = document.getElementById("sec-burgers");
+          if (el) window.scrollTo({ top: el.offsetTop - 150, behavior: "smooth" });
+        }, 150);
+      }} style={{ cursor: 'pointer' }}>
+        <img src={Burger} className="promo-img" alt="Mejor Hamburguesa Gourmet" />
+        <button className="btn-overlay">{T[lang]?.btnSeeMenu || T.es.btnSeeMenu}</button>
+      </div>
+    )}
+  </section>
 
-        {/* SECTION BURGERS */}
-        <section id="sec-burgers">
-          <SectionTitle>{T[lang]?.catBurgers || T.es.catBurgers}</SectionTitle>
-          {showCardBurger ? (
-            <div className="grid-cards">
-              {burgers.map(item => (
-                <CardMenu
-                  key={item.id}
-                  {...item}
-                  addToCart={addToCart}
-                  lang={lang}
-                  hasExtras={!noExtrasIds.includes(item.id)}
-                />
-              ))}
-            </div>
-          ) : (
-            <div
-              className="promo-container"
-              onClick={() => {
-                setShowCardBurger(true);
-                setTimeout(() => {
-                  const el = document.getElementById("sec-burgers");
-                  if (el) window.scrollTo({ top: el.offsetTop - 100, behavior: "smooth" });
-                }, 150);
-              }}
-              style={{ cursor: 'pointer' }}
-            >
-              <img src={Burger} className="promo-img" alt="Mejor Hamburguesa Gourmet y Smash Burger en Torrevieja" />
-              <button className="btn-overlay">{T[lang]?.btnSeeMenu || T.es.btnSeeMenu}</button>
-            </div>
-          )}
-        </section>
+  {/* 2. SECTION BEBIDAS */}
+  <section id="sec-bebidas">
+    <SectionTitle>{T[lang]?.catDrinks || T.es.catDrinks}</SectionTitle>
+    {showCardDrink ? (
+      <div className="grid-cards">
+        {drinks.map(item => <CardMenu key={item.id} {...item} isDrinkCard={true} addToCart={addToCart} lang={lang} />)}
+      </div>
+    ) : (
+      <div className="promo-container" onClick={() => {
+        setShowCardDrink(true);
+        setTimeout(() => {
+          const el = document.getElementById("sec-bebidas");
+          if (el) window.scrollTo({ top: el.offsetTop - 150, behavior: "smooth" });
+        }, 150);
+      }} style={{ cursor: 'pointer' }}>
+        <img src={Drink} className="promo-img" alt="Drinks" />
+        <button className="btn-overlay">{T[lang]?.catDrinks || T.es.catDrinks}</button>
+      </div>
+    )}
+  </section>
 
-        {/* SECTION BEBIDAS */}
-        <section id="sec-bebidas">
-          <SectionTitle>{T[lang]?.catDrinks || T.es.catDrinks}</SectionTitle>
-          {showCardDrink ? (
-            <div className="grid-cards">
-              {drinks.map(item => <CardMenu key={item.id} {...item} isDrinkCard={true} addToCart={addToCart} lang={lang} />)}
-            </div>
-          ) : (
-            <div
-              className="promo-container"
-              onClick={() => {
-                setShowCardDrink(true);
-                setTimeout(() => {
-                  const el = document.getElementById("sec-bebidas");
-                  if (el) window.scrollTo({ top: el.offsetTop - 100, behavior: "smooth" });
-                }, 150);
-              }}
-              style={{ cursor: 'pointer' }}
-            >
-              <img src={Drink} className="promo-img" alt="Refrescos y bebidas frías" />
-              <button className="btn-overlay">{T[lang]?.catDrinks || T.es.catDrinks}</button>
-            </div>
-          )}
-        </section>
+  {/* 3. SECTION POSTRES */}
+  <section id="sec-postres">
+    <SectionTitle>{T[lang]?.catDesserts || T.es.catDesserts}</SectionTitle>
+    {showCardPostres ? (
+      <div className="grid-cards">
+        {postres.map(item => <CardMenu key={item.id} {...item} isPostreCard={true} addToCart={addToCart} lang={lang} />)}
+      </div>
+    ) : (
+      <div className="promo-container" onClick={() => {
+        setShowCardPostres(true);
+        setTimeout(() => {
+          const el = document.getElementById("sec-postres");
+          if (el) window.scrollTo({ top: el.offsetTop - 150, behavior: "smooth" });
+        }, 150);
+      }} style={{ cursor: 'pointer' }}>
+        <img src={Postre} className="promo-img" alt="Desserts" />
+        <button className="btn-overlay">{T[lang]?.catDesserts || T.es.catDesserts}</button>
+      </div>
+    )}
+  </section>
 
-        {/* SECTION POSTRES */}
-        <section id="sec-postres">
-          <SectionTitle>{T[lang]?.catDesserts || T.es.catDesserts}</SectionTitle>
-          {showCardPostres ? (
-            <div className="grid-cards">
-              {postres.map(item => <CardMenu key={item.id} {...item} isPostreCard={true} addToCart={addToCart} lang={lang} />)}
-            </div>
-          ) : (
-            <div
-              className="promo-container"
-              onClick={() => {
-                setShowCardPostres(true);
-                setTimeout(() => {
-                  const el = document.getElementById("sec-postres");
-                  if (el) window.scrollTo({ top: el.offsetTop - 100, behavior: "smooth" });
-                }, 150);
-              }}
-              style={{ cursor: 'pointer' }}
-            >
-              <img src={Postre} className="promo-img" alt="Postres caseros" />
-              <button className="btn-overlay">{T[lang]?.catDesserts || T.es.catDesserts}</button>
-            </div>
-          )}
-        </section>
+  {/* 4. SECTION COMMANDE */}
+  <section id="order" style={{ paddingBottom: '60px' }}>
+    <SectionTitle>{lang === 'es' ? 'Tu Pedido' : lang === 'fr' ? 'Votre Commande' : 'Your Order'}</SectionTitle>
+    <Order cart={cart} removeFromCart={removeFromCart} lang={lang} />
+  </section>
 
-        <section id="order" style={{ paddingBottom: '100px' }}>
-          <SectionTitle>{lang === 'es' ? 'Tu Pedido' : lang === 'fr' ? 'Votre Commande' : 'Your Order'}</SectionTitle>
-          <Order cart={cart} removeFromCart={removeFromCart} lang={lang} />
-        </section>
+  {/* 5. TEXTE SEO DYNAMIQUE (Les 11 langues sont ici !) */}
+  <section style={{ padding: '40px 20px', backgroundColor: 'rgba(255,255,255,0.02)', borderRadius: '20px', marginBottom: '40px', textAlign: lang === 'ar' ? 'right' : 'left', border: '1px solid #222' }}>
+    <div style={{ maxWidth: '900px', margin: '0 auto' }}>
+      <h2 style={{ color: GOLD_BRIGHT, fontSize: '1.6rem', marginBottom: '15px', textAlign: 'center' }}>
+        {T[lang]?.seoTitle || T.es.seoTitle}
+      </h2>
+      <p style={{ lineHeight: '1.8', color: '#ccc', fontSize: '1rem' }}>
+        {T[lang]?.seoContent || T.es.seoContent}
+      </p>
+    </div>
+  </section>
 
-        {/* SECTION REVIEWS */}
-              <section style={{ padding: '20px 0 80px' }}>
-                <h3 style={{ color: GOLD_BRIGHT, textTransform: 'uppercase', marginBottom: '30px', fontSize: '1.4rem', letterSpacing: '1px' }}>
-                  {T[lang]?.reviewsTitle || T.es.reviewsTitle}
-                </h3>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px', textAlign: 'left' }}>
-                  {randomReviews.map((rev, index) => (
-                    <div key={index} className="testimonial-card">
-                      <div style={{ color: GOLD_BRIGHT, marginBottom: '10px', fontSize: '1.2rem' }}>⭐⭐⭐⭐⭐</div>
-                      <p style={{ fontStyle: 'italic', fontSize: '0.95rem' }}>
-                          "{rev[lang] || rev.es}"
-                        </p>
-                        <p style={{ fontWeight: 'bold', marginTop: '10px', color: '#ff4757' }}>— {rev.author}</p>
-                      </div>
-                    ))}
-                  </div>
-                </section>
-        </main>
+  {/* 6. REVIEWS */}
+  <section style={{ padding: '20px 0 80px' }}>
+    <h3 style={{ color: GOLD_BRIGHT, textTransform: 'uppercase', marginBottom: '30px', textAlign: 'center' }}>
+      {T[lang]?.reviewsTitle || T.es.reviewsTitle}
+    </h3>
+    <div className="grid-reviews" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px' }}>
+      {randomReviews.map((rev, index) => (
+        <div key={index} className="testimonial-card" style={{ padding: '20px', backgroundColor: '#111', borderRadius: '15px' }}>
+          <div style={{ color: GOLD_BRIGHT, marginBottom: '10px' }}>⭐⭐⭐⭐⭐</div>
+          <p style={{ fontStyle: 'italic' }}>"{rev[lang] || rev.es}"</p>
+          <p style={{ fontWeight: 'bold', marginTop: '10px', color: '#ff4757' }}>— {rev.author}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+</main>
 
         {/* FOOTER */}
         <footer style={{ padding: '80px 20px 40px', backgroundColor: '#000', color: '#fff', textAlign: 'center', borderTop: '4px solid #ff4757' }}>

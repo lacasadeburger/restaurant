@@ -482,3 +482,9 @@ section[id] {
   50% { transform: scale(1.05); box-shadow: 0 4px 20px rgba(255, 71, 87, 0.7); }
   100% { transform: scale(1); box-shadow: 0 4px 12px rgba(255, 71, 87, 0.4); }
 }
+/* Cette règle fait que lorsqu'on clique sur "Menu",
+   la page s'arrête exactement au début des burgers,
+   sans montrer le texte de présentation au-dessus */
+#menu-burgers {
+  scroll-margin-top: 140px; /* Ajuste cette valeur selon la hauteur de ton Nav */
+}
