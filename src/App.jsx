@@ -839,4 +839,6 @@ style={{
           {showCardPostres && (lang === 'es' ? 'VER MI PEDIDO ✓' : 'VIEW MY ORDER ✓')}
         </button>
       )}
-    </div>
+      </div>
+        );
+      }
