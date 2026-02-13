@@ -590,7 +590,7 @@ export default function App() {
   {T[lang]?.heroSubtitle || T.es.heroSubtitle}
 </h2>
 
-<div style={{ marginTop: '40px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '25px' }}>
+<div style={{ marginTop: '05px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '25px' }}>
 <button
   onClick={() => {
     setShowCardBurger(true);
