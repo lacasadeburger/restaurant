@@ -43,6 +43,18 @@ export default function App() {
   const [showCardBurger, setShowCardBurger] = useState(false);
   const [showCardDrink, setShowCardDrink] = useState(false);
   const [lang, setLang] = useState('es');
+  useEffect(() => {
+    const browserLang = navigator.language || navigator.userLanguage;
+    const code = browserLang.substring(0, 2).toLowerCase(); // On récupère les 2 premières lettres
+
+    const supportedLangs = ['es', 'en', 'fr', 'no', 'sv', 'de', 'pl', 'uk', 'ru', 'ar', 'ro'];
+
+    if (supportedLangs.includes(code)) {
+      setLang(code);
+    } else {
+      setLang('es'); // Par défaut
+    }
+  }, []);
 
   // Logic: Calcul du prix total ultra-précis
   const totalPrice = useMemo(() => {
@@ -204,16 +216,19 @@ export default function App() {
   <link rel="canonical" href="https://lacasadeburger.es" />
   <meta name="robots" content="index, follow" />
 
-  <link rel="alternate" href="https://lacasadeburger.es" hreflang="es" />
-    <link rel="alternate" href="https://lacasadeburger.es" hreflang="en" />
-    <link rel="alternate" href="https://lacasadeburger.es" hreflang="fr" />
-    <link rel="alternate" href="https://lacasadeburger.es" hreflang="no" />
-    <link rel="alternate" href="https://lacasadeburger.es" hreflang="pl" />
-    <link rel="alternate" href="https://lacasadeburger.es" hreflang="uk" />
-    <link rel="alternate" href="https://lacasadeburger.es" hreflang="ru" />
-    <link rel="alternate" href="https://lacasadeburger.es" hreflang="ar" />
-    <link rel="alternate" href="https://lacasadeburger.es" hreflang="x-default" />
-    
+<link rel="alternate" href="https://lacasadeburger.es" hreflang="es" />
+<link rel="alternate" href="https://lacasadeburger.es" hreflang="en" />
+<link rel="alternate" href="https://lacasadeburger.es" hreflang="fr" />
+<link rel="alternate" href="https://lacasadeburger.es" hreflang="no" />
+<link rel="alternate" href="https://lacasadeburger.es" hreflang="sv" />
+<link rel="alternate" href="https://lacasadeburger.es" hreflang="de" />
+<link rel="alternate" href="https://lacasadeburger.es" hreflang="pl" />
+<link rel="alternate" href="https://lacasadeburger.es" hreflang="uk" />
+<link rel="alternate" href="https://lacasadeburger.es" hreflang="ru" />
+<link rel="alternate" href="https://lacasadeburger.es" hreflang="ar" />
+<link rel="alternate" href="https://lacasadeburger.es" hreflang="ro" />
+<link rel="alternate" href="https://lacasadeburger.es" hreflang="x-default" />
+
   <meta property="og:type" content="restaurant" />
   <meta property="og:title" content="La Casa de Burger | Hamburguesas Gourmet de Autor" />
   <meta property="og:description" content="No es solo una burger, es una experiencia gourmet. Recetas únicas y artesanales en el corazón de Torrevieja." />
@@ -314,18 +329,28 @@ export default function App() {
       <div style={{ position: 'relative', zIndex: 2 }}>
 {/* H1 OPTIMISÉ : On place le mot-clé principal "Mejor Hamburguesa" avant le nom de la ville */}
 <h1 style={{
-  /* Le texte fera 3.5rem sur PC, mais descendra jusqu'à 2rem sur mobile pour ne pas déborder */
   fontSize: 'clamp(2rem, 10vw, 3.5rem)',
   fontWeight: '900',
   textTransform: 'uppercase',
   textShadow: '2px 2px 15px rgba(0,0,0,0.9)',
   margin: 0,
   color: '#fff',
-  lineHeight: '1.1' // Pour que les lignes soient bien serrées et jolies
+  lineHeight: '1.1'
 }}>
-  {lang === 'es' ? 'La Mejor ' : 'The Best '}
-  <span style={{color:'#ff4757'}}>Hamburguesa</span>
-  <br /> {/* Ce saut de ligne assure que "en Torrevieja" ne pousse pas le mot précédent dehors */}
+  {/* Traduction dynamique du H1 */}
+  {lang === 'es' && <>La Mejor <span style={{color:'#ff4757'}}>Hamburguesa</span></>}
+  {lang === 'en' && <>The Best <span style={{color:'#ff4757'}}>Burger</span></>}
+  {lang === 'fr' && <>Le Meilleur <span style={{color:'#ff4757'}}>Burger</span></>}
+  {lang === 'no' && <>Den Beste <span style={{color:'#ff4757'}}>Burgers</span></>}
+  {lang === 'sv' && <>Den Bästa <span style={{color:'#ff4757'}}>Burgaren</span></>}
+  {lang === 'de' && <>Der Beste <span style={{color:'#ff4757'}}>Burger</span></>}
+  {lang === 'pl' && <>Najlepszy <span style={{color:'#ff4757'}}>Burger</span></>}
+  {lang === 'uk' && <>Найкращий <span style={{color:'#ff4757'}}>Бургер</span></>}
+  {lang === 'ru' && <>Лучший <span style={{color:'#ff4757'}}>Бургер</span></>}
+  {lang === 'ar' && <>أفضل <span style={{color:'#ff4757'}}>برجر</span></>}
+  {lang === 'ro' && <>Cel Mai Bun <span style={{color:'#ff4757'}}>Burger</span></>}
+
+  <br />
   en Torrevieja
 </h1>
 
