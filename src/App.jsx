@@ -715,25 +715,36 @@ style={{
             </main>
 
             <footer style={{ padding: '80px 20px 40px', backgroundColor: '#000', color: '#fff', textAlign: 'center', borderTop: '4px solid #ff4757' }}>
-              <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
+        <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
 
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '30px', textAlign: 'left', marginBottom: '40px', background: 'rgba(255,255,255,0.03)', padding: '30px', borderRadius: '20px' }}>
-                  <div>
-                    <h3 style={{ color: '#ff4757' }}>La Casa de Burger Torrevieja</h3>
-                    <p>{lang === 'es' ? 'Especialistas en Smash Burgers y Hamburguesas Gourmet de autor. Carne de vaca madurada premium, buey y procesos artesanales.' : 'Specialists in Smash Burgers and Signature Gourmet Hamburgers. Premium matured beef and artisan processes.'}</p>
-                  </div>
-                  <div>
-  <h4 style={{ color: GOLD_BRIGHT }}>📍 {T[lang]?.location || T.es.location}</h4>
-  <p>Av. Diego Ramírez Pastor, 142, 03181 Torrevieja</p>
-  <p>📞 <a href="tel:+34602597210" style={{ color: '#fff', textDecoration: 'none', fontWeight: 'bold' }}>+34 602 59 72 10</a></p>
-</div>
-<div>
-  <h4 style={{ color: GOLD_BRIGHT }}>🕒 {T[lang]?.hours || T.es.hours}</h4>
-  <p>Lun - Sáb: 13:00 – 22:30 | Dom: Cerrado</p>
-</div>
-                </div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '30px', textAlign: 'left', marginBottom: '40px', background: 'rgba(255,255,255,0.03)', padding: '30px', borderRadius: '20px' }}>
+            <div>
+              <h3 style={{ color: '#ff4757' }}>La Casa de Burger Torrevieja</h3>
+              <p>{lang === 'es' ? 'Especialistas en Smash Burgers y Hamburguesas Gourmet de autor. Carne de vaca madurada premium, buey y procesos artesanales.' : 'Specialists in Smash Burgers and Signature Gourmet Hamburgers. Premium matured beef and artisan processes.'}</p>
+            </div>
 
+            <div>
+              <h4 style={{ color: GOLD_BRIGHT }}>📍 {T[lang]?.location || T.es.location}</h4>
+              <p>Av. Diego Ramírez Pastor, 142, 03181 Torrevieja</p>
+              <p>📞 <a href="tel:+34602597210" style={{ color: '#fff', textDecoration: 'none', fontWeight: 'bold' }}>+34 602 59 72 10</a></p>
+            </div>
 
+            <div>
+              <h4 style={{ color: GOLD_BRIGHT }}>🕒 {T[lang]?.hours || T.es.hours}</h4>
+              <p>Lun - Sáb: 13:00 – 22:30 | Dom: Cerrado</p>
+            </div>
+          </div>
+
+          <div style={{ borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '20px', fontSize: '0.8rem', color: '#888' }}>
+            © {new Date().getFullYear()} | {lang === 'es' ? 'EL MEJOR BURGER DE TORREVIEJA' : 'BEST BURGER IN TORREVIEJA'}
+          </div>
+        </div>
+      </footer>
+
+      {/* BOUTON WHATSAPP */}
+      <a href="https://wa.me/34602597210" target="_blank" rel="noreferrer" className="whatsapp-float">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="40" alt="WA" />
+      </a>
                 <div style={{
                   width: '60%',
                   maxWidth: '1100px',
@@ -817,28 +828,32 @@ style={{
                   </div>
                 </div>
               </div>
-            </footer>
+              </footer>
 
-      <a href="https://wa.me/34602597210" target="_blank" rel="noreferrer" className="whatsapp-float" aria-label="Pedir por WhatsApp">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="40" alt="WhatsApp Icon" />
-      </a>
-      {(showCardBurger || showCardPostres || showCardDrink) && (
-              <button
-                className="floating-close"
-                onClick={handleNextStep}
-                style={{
-                  position: 'fixed', bottom: '95px', left: '50%', transform: 'translateX(-50%)',
-                  backgroundColor: '#ff4757', color: '#fff', padding: '15px 30px',
-                  borderRadius: '12px', fontWeight: '900', zIndex: 10000,
-                  border: '3px solid #000', cursor: 'pointer', boxShadow: '0 5px 15px rgba(0,0,0,0.4)',
-                  textTransform: 'uppercase'
-                }}
-              >
-                {showCardBurger && (lang === 'es' ? 'SIGUIENTE: BEBIDAS ➔' : 'NEXT: DRINKS ➔')}
-                {showCardDrink && (lang === 'es' ? 'SIGUIENTE: POSTRES ➔' : 'NEXT: DESSERTS ➔')}
-                {showCardPostres && (lang === 'es' ? 'VER MI PEDIDO ✓' : 'VIEW MY ORDER ✓')}
-              </button>
-            )}
-    </div>
-  );
-}
+        {/* BOUTON WHATSAPP */}
+        <a href="https://wa.me/34602597210" target="_blank" rel="noreferrer" className="whatsapp-float" aria-label="Pedir por WhatsApp">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="40" alt="WhatsApp Icon" />
+        </a>
+
+        {/* BOUTON ÉTAPE SUIVANTE */}
+        {(showCardBurger || showCardPostres || showCardDrink) && (
+          <button
+            className="floating-close"
+            onClick={handleNextStep}
+            style={{
+              position: 'fixed', bottom: '95px', left: '50%', transform: 'translateX(-50%)',
+              backgroundColor: '#ff4757', color: '#fff', padding: '15px 30px',
+              borderRadius: '12px', fontWeight: '900', zIndex: 10000,
+              border: '3px solid #000', cursor: 'pointer', boxShadow: '0 5px 15px rgba(0,0,0,0.4)',
+              textTransform: 'uppercase'
+            }}
+          >
+            {showCardBurger && (lang === 'es' ? 'SIGUIENTE: BEBIDAS ➔' : 'NEXT: DRINKS ➔')}
+            {showCardDrink && (lang === 'es' ? 'SIGUIENTE: POSTRES ➔' : 'NEXT: DESSERTS ➔')}
+            {showCardPostres && (lang === 'es' ? 'VER MI PEDIDO ✓' : 'VIEW MY ORDER ✓')}
+          </button>
+        )}
+
+      </div> // ICI : Il n'en faut qu'UN SEUL pour fermer la div className="App"
+    );
+  }
