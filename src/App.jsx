@@ -760,7 +760,7 @@ export default function App() {
         {/* SECTION MAPS & VIDEO */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '40px', alignItems: 'center', margin: '05px auto' }}>
           <div style={{ width: '90%', maxWidth: '1100px', borderRadius: '15px', overflow: 'hidden', border: `2px solid ${GOLD_BRIGHT}` }}>
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3143.5!2d-0.6!3d37.9!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzfCsDU0JzAwLjAiTiAwwrAzNicwMC4wIlc!5e0!3m2!1sfr!2ses!4v123456789" width="100%" height="350" style={{ border: 0 }} allowFullScreen="" loading="lazy"></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3143.514757530635!2d-0.6807478!3d37.9811364!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd63a9b08d9e7931%3A0x88f65fbd84c2f7fe!2sLa%20Casa%20de%20Burger!5e0!3m2!1sfr!2ses!4v1700000000000!5m2!1sfr!2ses" width="100%" height="350" style={{ border: 0 }} allowFullScreen="" loading="lazy"></iframe>
           </div>
           <div style={{ width: '90%', maxWidth: '800px', borderRadius: '15px', overflow: 'hidden', border: `3px solid ${GOLD_BRIGHT}` }}>
             <iframe width="100%" height="400" src="https://www.youtube.com/embed/qN6VZYBojLs" title="Video" frameBorder="0" allowFullScreen></iframe>
@@ -799,7 +799,57 @@ export default function App() {
             </div>
           </div>
         </div>
+        {/* FOOTER FINAL : LOGO + COPYRIGHT */}
+        <footer style={{
+          padding: '60px 20px 40px',
+          textAlign: 'center',
+          backgroundColor: '#050505',
+          borderTop: '1px solid #1a1a1a',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          gap: '20px',
+          marginTop: '50px'
+        }}>
 
+          {/* LOGO AVEC "l" MINUSCULE */}
+          {logo && (
+            <img
+              src={logo}
+              alt="La Casa de Burger"
+              style={{
+                height: '80px',
+                width: 'auto',
+                filter: 'drop-shadow(0 0 10px rgba(255,255,255,0.1))',
+                marginBottom: '10px'
+              }}
+            />
+          )}
+
+          {/* LIGNE DE SÉPARATION DORÉE */}
+          <div style={{
+            width: '50px',
+            height: '2px',
+            background: 'linear-gradient(135deg, #BF953F 0%, #FCF6BA 45%, #B38728 55%, #FBF5B7 100%)',
+            borderRadius: '2px'
+          }} />
+
+          {/* COPYRIGHT ET DROITS */}
+          <div style={{ color: '#888', fontSize: '0.9rem', lineHeight: '1.6' }}>
+            <p style={{ margin: 0, fontWeight: 'bold', color: '#ccc' }}>
+              © 2026 LA CASA DE BURGER
+            </p>
+            <p style={{ margin: 0, fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '1px' }}>
+              {typeof lang !== 'undefined' && lang === 'es' ? 'Todos los derechos reservados' :
+               typeof lang !== 'undefined' && lang === 'fr' ? 'Tous droits réservés' :
+               'All rights reserved'}
+            </p>
+          </div>
+
+          <p style={{ color: '#444', fontSize: '0.65rem', marginTop: '10px' }}>
+            Torrevieja, Spain • The Artisan Burger Experience
+          </p>
+        </footer>
         {/* BOUTON WHATSAPP */}
         <a href="https://wa.me/34602597210" target="_blank" rel="noreferrer" className="whatsapp-float">
           <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="40" alt="WA" />
