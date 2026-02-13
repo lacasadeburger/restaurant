@@ -615,7 +615,7 @@ export default function App() {
   🚀 {T[lang]?.btnOrder || T.es.btnOrder}
 </button>
 
-<div style={{ display: 'flex', justifyContent: 'center', gap: '15px', flexWrap: 'wrap', marginTop: '20px' }}>
+<div style={{ display: 'flex', justifyContent: 'center', gap: '15px', flexWrap: 'wrap', marginTop: '05px' }}>
 
   {/* AJOUTE CE BOUTON ICI */}
   <button
@@ -710,9 +710,9 @@ export default function App() {
   </section>
 
   {/* 5. TEXTE SEO DYNAMIQUE (Les 11 langues sont ici !) */}
-  <section style={{ padding: '40px 20px', backgroundColor: 'rgba(255,255,255,0.02)', borderRadius: '20px', marginBottom: '40px', textAlign: lang === 'ar' ? 'right' : 'left', border: '1px solid #222' }}>
+  <section style={{ padding: '40px 20px', backgroundColor: 'rgba(255,255,255,0.02)', borderRadius: '20px', marginBottom: '05px', textAlign: lang === 'ar' ? 'right' : 'left', border: '1px solid #222' }}>
     <div style={{ maxWidth: '900px', margin: '0 auto' }}>
-      <h2 style={{ color: GOLD_BRIGHT, fontSize: '1.6rem', marginBottom: '15px', textAlign: 'center' }}>
+      <h2 style={{ color: GOLD_BRIGHT, fontSize: '1.6rem', marginBottom: '05px', textAlign: 'center' }}>
         {T[lang]?.seoTitle || T.es.seoTitle}
       </h2>
       <p style={{ lineHeight: '1.8', color: '#ccc', fontSize: '1rem' }}>
@@ -741,7 +741,7 @@ export default function App() {
         {/* FOOTER */}
         <footer style={{ padding: '80px 20px 40px', backgroundColor: '#000', color: '#fff', textAlign: 'center', borderTop: '4px solid #ff4757' }}>
           <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '30px', textAlign: 'left', marginBottom: '40px', background: 'rgba(255,255,255,0.03)', padding: '30px', borderRadius: '20px' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '30px', textAlign: 'left', marginBottom: '05px', background: 'rgba(255,255,255,0.03)', padding: '30px', borderRadius: '20px' }}>
               <div>
                 <h3 style={{ color: '#ff4757' }}>La Casa de Burger Torrevieja</h3>
                 <p>{lang === 'es' ? 'Especialistas en Smash Burgers y Hamburguesas Gourmet de autor. Carne de vaca madurada premium, buey y procesos artesanales.' : 'Specialists in Smash Burgers and Signature Gourmet Hamburgers. Premium matured beef and artisan processes.'}</p>
@@ -763,7 +763,7 @@ export default function App() {
         </footer>
 
         {/* SECTION MAPS & VIDEO */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '40px', alignItems: 'center', margin: '40px auto' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '40px', alignItems: 'center', margin: '05px auto' }}>
           <div style={{ width: '90%', maxWidth: '1100px', borderRadius: '15px', overflow: 'hidden', border: `2px solid ${GOLD_BRIGHT}` }}>
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3143.5!2d-0.6!3d37.9!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzfCsDU0JzAwLjAiTiAwwrAzNicwMC4wIlc!5e0!3m2!1sfr!2ses!4v123456789" width="100%" height="350" style={{ border: 0 }} allowFullScreen="" loading="lazy"></iframe>
           </div>
@@ -773,7 +773,7 @@ export default function App() {
         </div>
 
         {/* RÉSEAUX SOCIAUX */}
-        <div style={{ display: 'flex', justifyContent: 'center', gap: '25px', flexWrap: 'wrap', marginBottom: '40px', alignItems: 'center' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', gap: '25px', flexWrap: 'wrap', marginBottom: '05px', alignItems: 'center' }}>
           <a href="https://www.facebook.com/profile.php?id=100094610793536" target="_blank" rel="noreferrer"><img src={fb} width="45" alt="Facebook" /></a>
           <a href="https://www.instagram.com/lacasadeburger.es/" target="_blank" rel="noreferrer"><img src={instagramIcon} width="45" alt="Instagram" /></a>
           <a href="https://www.google.com/search?q=la+casa+de+burger+torrevieja" target="_blank" rel="noreferrer"><img src={googleIcon} width="140" alt="Google" /></a>
