@@ -357,7 +357,7 @@ export default function App() {
 
 <h2 style={{ fontSize: '1.5rem', color: GOLD_BRIGHT, fontWeight: '700', textShadow: '1px 1px 10px rgba(0,0,0,1)', marginTop: '10px', textTransform: 'uppercase' }}>
   {lang === 'es'
-    ? 'Hamburguesería Gourmet: Burgers Gourmet y Smash Burgers y Carne de Ternera Premium'
+    ? 'Hamburguesería Gourmet : Burgers Gourmet y Smash Burger con Carne de Ternera Premium'
     : 'Gourmet Burger Joint: Gourmet Burgers, Smash Burgers & Premium Beef'}
 </h2>
 
