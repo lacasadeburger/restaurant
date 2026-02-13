@@ -866,23 +866,28 @@ export default function App() {
                   </div>
 
                   {/* BOUTON ETAPE SUIVANTE */}
-                  {(showCardBurger || showCardPostres || showCardDrink) && (
-          <button
-            className="floating-close"
-            onClick={handleNextStep}
-            style={{
-              position: 'fixed', bottom: '95px', left: '50%', transform: 'translateX(-50%)',
-              backgroundColor: '#ff4757', color: '#fff', padding: '15px 30px',
-              borderRadius: '12px', fontWeight: '900', zIndex: 10000,
-              border: '3px solid #000', cursor: 'pointer', boxShadow: '0 5px 15px rgba(0,0,0,0.4)',
-              textTransform: 'uppercase'
-            }}
-          >
-            {showCardBurger && (lang === 'es' ? 'SIGUIENTE: BEBIDAS ➔' : 'NEXT: DRINKS ➔')}
-            {showCardDrink && (lang === 'es' ? 'SIGUIENTE: POSTRES ➔' : 'NEXT: DESSERTS ➔')}
-            {showCardPostres && (lang === 'es' ? 'VER MI PEDIDO ✓' : 'VIEW MY ORDER ✓')}
-          </button>
-        )}
-      </div>
-    );
-  }
+                  {(showCardBurger || showCardDrink || showCardPostres) && (
+              <button
+                className="floating-close"
+                onClick={handleNextStep}
+                style={{
+                  position: 'fixed', bottom: '95px', left: '50%', transform: 'translateX(-50%)',
+                  backgroundColor: '#ff4757', color: '#fff', padding: '15px 30px',
+                  borderRadius: '12px', fontWeight: '900', zIndex: 10000,
+                  border: '3px solid #000', cursor: 'pointer', boxShadow: '0 5px 15px rgba(0,0,0,0.4)',
+                  textTransform: 'uppercase'
+                }}
+              >
+                {showCardBurger && (lang === 'fr' ? 'SUIVANT : BOISSONS ➔' : lang === 'es' ? 'SIGUIENTE: BEBIDAS ➔' : 'NEXT: DRINKS ➔')}
+                {showCardDrink && (lang === 'fr' ? 'SUIVANT : DESSERTS ➔' : lang === 'es' ? 'SIGUIENTE: POSTRES ➔' : 'NEXT: DESSERTS ➔')}
+                {showCardPostres && (lang === 'fr' ? 'VOIR MON PANIER ➔' : lang === 'es' ? 'VER MI CESTA ➔' : 'VIEW BASKET ➔')}
+              </button>
+            )}
+          </div> {/* Fermeture finale du div SEO multilingue ou du container précédent */}
+        </main>
+
+        {/* Les éléments hors du main (Modals, etc.) peuvent aller ici */}
+
+      </div> // Fin de app-main-wrapper
+    ); // Fin du return
+  } // Fin de la fonction App
