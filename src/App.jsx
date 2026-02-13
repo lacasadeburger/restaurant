@@ -604,14 +604,15 @@ export default function App() {
   </button>
 </div>
 </div>
-  </div>
-</div>
       </header>
-
-
       <main className="menu-page-container">
-
-
+              {/* Tes sections commencent ici */}
+              {showCardBurger && (
+                <section id="sec-burgers">
+                   <SectionTitle id="sec-burgers-title">{T[lang]?.catBurgers || T.es.catBurgers}</SectionTitle>
+                   {/* ... le reste de ta logique burgers */}
+                </section>
+              )}
         <section style={{ padding: '40px 20px', backgroundColor: 'rgba(255,255,255,0.02)', borderRadius: '20px', marginBottom: '40px', textAlign: 'left', border: '1px solid #222' }}>
           <div style={{ maxWidth: '900px', margin: '0 auto' }}>
             <h2 style={{ color: GOLD_BRIGHT, fontSize: '1.8rem', marginBottom: '20px', textAlign: 'center' }}>
