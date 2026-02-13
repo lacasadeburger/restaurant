@@ -48,9 +48,13 @@ export default function Footer({ lang }) {
   // --- ACCESSEUR SÉCURISÉ (Anti-crash) ---
   const getT = (key) => {
     if (!translations[key]) return "";
-    return translations[key][lang] || translations[key]['es'] || translations[key]['en'];
-  };
+    const result = translations[key][lang] || translations[key]['es'];
 
+    // SÉCURITÉ : Si par erreur result est encore un objet, on prend la version 'es'
+    if (typeof result === 'object') return result['es'] || "";
+
+    return result;
+  };
   return (
     <footer className='footer' style={{ backgroundColor: '#000', color: '#fff', padding: '40px 20px', borderTop: '4px solid #ff4757' }}>
       <div className="footer-content" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around', alignItems: 'center', maxWidth: '1200px', margin: '0 auto', gap: '30px' }}>

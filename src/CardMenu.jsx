@@ -136,10 +136,15 @@ export default function CardMenu(props) {
       </div>
 
       <div className="card-content" style={{ padding: '5px' }}>
-        <div className="info-box">
-          <h3 className="card-title" translate="no">{object}</h3>
-          <p className="card-description">{description}</p>
-        </div>
+    <div className="info-box">
+      <h3 className="card-title" translate="no">{object}</h3>
+      <p className="card-description">
+        {/* Cette ligne vérifie si description est un objet de traductions ou du texte simple */}
+        {typeof description === 'object'
+          ? (description[lang] || description['es'])
+          : description}
+      </p>
+    </div>
 
         {!isDrinkCard && !isPostreCard && hasExtras && (
           <div className="options-box">
