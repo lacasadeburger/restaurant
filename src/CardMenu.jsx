@@ -2,45 +2,41 @@ import React, { useState, useMemo, useEffect } from "react";
 import bgCard from "./assets/bg-c.jpg";
 
 export default function CardMenu(props) {
-  // 'object' est ici le nom de l'item (ex: "La Francesa")
   const { image, object, description, precio, addToCart, isDrinkCard, isPostreCard, lang, hasExtras } = props;
 
   const GOLD_GRADIENT = "linear-gradient(135deg, #BF953F 0%, #FCF6BA 45%, #B38728 55%, #FBF5B7 100%)";
   const GOLD_BRIGHT = "#FFD700";
 
-  // 1. Système de traduction dynamique (Gère l'espagnol par défaut si la langue n'est pas trouvée)
+  // --- 1. SYSTÈME DE TRADUCTION SÉCURISÉ (11 LANGUES) ---
   const t = {
-    extra: { en: "Extras", fr: "Suppléments", de: "Extras", ru: "Добавки", es: "Extras" },
-    remove: { en: "Remove", fr: "Retirer", de: "Entfernen", ru: "Убрать", es: "Quitar" },
-    add: { en: "ADD", fr: "AJOUTER", de: "HINZUFÜGEN", ru: "ДОБАВИТЬ", es: "AÑADIR" },
-    ready: { en: "READY!", fr: "PRÊT !", de: "FERTIG!", ru: "ГОТОВО!", es: "¡LISTO!" },
+    extra: { es: "Extras", en: "Extras", fr: "Suppléments", de: "Extras", ru: "Добавки", uk: "Додатки", pl: "Dodatki", no: "Ekstra", sv: "Tillval", ro: "Extra", ar: "إضافات" },
+    remove: { es: "Quitar", en: "Remove", fr: "Retirer", de: "Entfernen", ru: "Убрать", uk: "Прибрати", pl: "Usuń", no: "Fjern", sv: "Ta bort", ro: "Elimină", ar: "إزالة" },
+    add: { es: "AÑADIR", en: "ADD", fr: "AJOUTER", de: "HINZUFÜGEN", ru: "ДОБАВИТЬ", uk: "ДОДАТИ", pl: "DODAJ", no: "LEGG TIL", sv: "LÄGG TILL", ro: "ADAUGĂ", ar: "إضافة" },
+    ready: { es: "¡LISTO!", en: "READY!", fr: "PRÊT !", de: "FERTIG!", ru: "ГОТОВО!", uk: "ГОТОВО!", pl: "GOTOWE!", no: "KLAR!", sv: "KLAR!", ro: "GATA!", ar: "جاهز!" },
     ingredients: {
-      "Extra Huevo": { en: "Extra Egg", fr: "Œuf supplémentaire", de: "Zusätzliches Ei", ru: "Доп. яйцо", es: "Extra Huevo" },
-      "Extra Carne y Queso": { en: "Extra Meat & Cheese", fr: "Viande & Fromage suppl.", de: "Extra Fleisch & Käse", ru: "Доп. мясо и сыр", es: "Extra Carne y Queso" },
-      "Extra Tocino": { en: "Extra Bacon", fr: "Bacon supplémentaire", de: "Extra Speck", ru: "Доп. бекон", es: "Extra Tocino" },
-      "Salsa Picante": { en: "Hot Sauce", fr: "Sauce Piquante", de: "Scharfe Sauce", ru: "Острый соус", es: "Salsa Picante" },
-      "Tomate": { en: "Tomato", fr: "Tomate", de: "Tomate", ru: "Помидор", es: "Tomate" },
-      "Lechuga": { en: "Lettuce", fr: "Laitue", de: "Salat", ru: "Салат", es: "Lechuga" },
-      "Pepinillos": { en: "Pickles", fr: "Cornichons", de: "Essiggurken", ru: "Огурцы", es: "Pepinillos" },
-      "Cebolla": { en: "Onion", fr: "Oignon", de: "Zwiebeln", ru: "Лук", es: "Cebolla" },
-      "Queso": { en: "Cheese", fr: "Fromage", de: "Käse", ru: "Сыр", es: "Queso" },
-      "Ajo": { en: "Garlic", fr: "Ail", de: "Knoblauch", ru: "Чеснок", es: "Ajo" },
-      "Hierbas": { en: "Herbs", fr: "Herbes", de: "Kräuter", ru: "Зелень", es: "Hierbas" },
-      "Especias": { en: "Spices", fr: "Épices", de: "Gewürze", ru: "Специи", es: "Especias" }
-    },
-    // Note: Les descriptions devraient idéalement venir de tes props (data.js) pour éviter les doublons ici.
-    descriptions: {
-       // ... tes descriptions traduisibles ici ou passées via props.description
+      "Extra Huevo": { es: "Extra Huevo", en: "Extra Egg", fr: "Œuf suppl.", de: "Extra Ei", ru: "Доп. яйцо", uk: "Дод. яйце", pl: "Dodatkowe jajko", no: "Ekstra egg", sv: "Extra ägg", ro: "Ou în plus", ar: "بيضة إضافية" },
+      "Extra Carne y Queso": { es: "Extra Carne y Queso", en: "Extra Meat & Cheese", fr: "Viande & Fromage suppl.", de: "Extra Fleisch & Käse", ru: "Доп. мясо и сыр", uk: "Дод. м'ясо та сир", pl: "Dodatkowe mięso i ser", no: "Ekstra kjøtt og ost", sv: "Extra kött och ost", ro: "Carne și brânză în plus", ar: "لحم وجبن إضافي" },
+      "Extra Tocino": { es: "Extra Tocino", en: "Extra Bacon", fr: "Bacon suppl.", de: "Extra Speck", ru: "Доп. бекон", uk: "Дод. бекон", pl: "Dodatkowy bekon", no: "Ekstra bacon", sv: "Extra bacon", ro: "Bacon în plus", ar: "لحم مقدد إضافي" },
+      "Salsa Picante": { es: "Salsa Picante", en: "Hot Sauce", fr: "Sauce Piquante", de: "Scharfe Sauce", ru: "Острый соус", uk: "Гострий соус", pl: "Ostry sos", no: "Sterk saus", sv: "Stark sås", ro: "Sos iute", ar: "صلصة حارة" },
+      "Tomate": { es: "Tomate", en: "Tomato", fr: "Tomate", de: "Tomate", ru: "Помидор", uk: "Помідор", pl: "Pomidor", no: "Tomat", sv: "Tomat", ro: "Roșie", ar: "طماطم" },
+      "Lechuga": { es: "Lechuga", en: "Lettuce", fr: "Laitue", de: "Salat", ru: "Салат", uk: "Салат", pl: "Sałata", no: "Salat", sv: "Sallad", ro: "Salată", ar: "خس" },
+      "Pepinillos": { es: "Pepinillos", en: "Pickles", fr: "Cornichons", de: "Gurken", ru: "Огурцы", uk: "Огірки", pl: "Ogórki", no: "Sylteagurk", sv: "Gurka", ro: "Castraveți murați", ar: "مخلل" },
+      "Cebolla": { es: "Cebolla", en: "Onion", fr: "Oignon", de: "Zwiebel", ru: "Лук", uk: "Цибуля", pl: "Cebula", no: "Løk", sv: "Lök", ro: "Ceapă", ar: "بصل" },
+      "Queso": { es: "Queso", en: "Cheese", fr: "Fromage", de: "Käse", ru: "Сыр", uk: "Сир", pl: "Ser", no: "Ost", sv: "Ost", ro: "Brânză", ar: "جبن" }
     }
   };
 
-  // Helper pour récupérer la traduction
+  // Helper de traduction sécurisé (évite le crash si la langue manque)
   const getT = (key, subKey = null) => {
-    if (subKey) return t[key][subKey][lang] || t[key][subKey]['es'];
-    return t[key][lang] || t[key]['es'];
+    try {
+      if (subKey) {
+        return t[key][subKey][lang] || t[key][subKey]['es'];
+      }
+      return t[key][lang] || t[key]['es'];
+    } catch (e) {
+      return subKey || key;
+    }
   };
-
-  const displayDescription = t.descriptions[object] ? (t.descriptions[object][lang] || t.descriptions[object]['es']) : description;
 
   const extrasList = [
     { id: "Extra Huevo", name: getT("ingredients", "Extra Huevo"), price: 1.00 },
@@ -54,30 +50,13 @@ export default function CardMenu(props) {
     { id: "Lechuga", name: getT("ingredients", "Lechuga") },
     { id: "Pepinillos", name: getT("ingredients", "Pepinillos") },
     { id: "Cebolla", name: getT("ingredients", "Cebolla") },
-    { id: "Queso", name: getT("ingredients", "Queso") },
-    { id: "Ajo", name: getT("ingredients", "Ajo") },
-    { id: "Hierbas", name: getT("ingredients", "Hierbas") },
-    { id: "Especias", name: getT("ingredients", "Especias") }
+    { id: "Queso", name: getT("ingredients", "Queso") }
   ];
 
-  // Logic de sélection et panier
-  const storageKeyExtras = `extras_${object.replace(/\s/g, '')}`;
-  const storageKeyRemoved = `removed_${object.replace(/\s/g, '')}`;
-
-  const [extraIngredients, setExtraIngredients] = useState(() => {
-    const saved = localStorage.getItem(storageKeyExtras);
-    return saved ? JSON.parse(saved) : [];
-  });
-
-  const [removedIngredients, setRemovedIngredients] = useState(() => {
-    const saved = localStorage.getItem(storageKeyRemoved);
-    return saved ? JSON.parse(saved) : [];
-  });
-
+  // --- 2. LOGIQUE DES INGRÉDIENTS ---
+  const [extraIngredients, setExtraIngredients] = useState([]);
+  const [removedIngredients, setRemovedIngredients] = useState([]);
   const [isAdded, setIsAdded] = useState(false);
-
-  useEffect(() => { localStorage.setItem(storageKeyExtras, JSON.stringify(extraIngredients)); }, [extraIngredients, storageKeyExtras]);
-  useEffect(() => { localStorage.setItem(storageKeyRemoved, JSON.stringify(removedIngredients)); }, [removedIngredients, storageKeyRemoved]);
 
   const totalPrice = useMemo(() => {
     const numericValue = String(precio).replace(/[^0-9.,]/g, "").replace(",", ".");
@@ -103,69 +82,52 @@ export default function CardMenu(props) {
     };
     addToCart(itemToAdd);
     setIsAdded(true);
-    // On ne vide pas le localStorage tout de suite pour laisser le feedback visuel
+
     setTimeout(() => {
       setIsAdded(false);
       setExtraIngredients([]);
       setRemovedIngredients([]);
-      localStorage.removeItem(storageKeyExtras);
-      localStorage.removeItem(storageKeyRemoved);
-    }, 1000);
+    }, 800);
   };
 
   return (
     <div className="card-item" style={{
-      backgroundImage: `url(${bgCard})`,
-      backgroundSize: "cover",
-      backgroundPosition: "center",
-      borderRadius: "20px",
-      display: "flex",
-      flexDirection: "column",
-      height: "auto",
-      minHeight: "350px",
-      position: "relative",
-      padding: "10px",
-      border: "1px solid rgba(255, 215, 0, 0.2)",
-      boxShadow: "0 10px 30px rgba(0,0,0,0.5)",
-      overflow: "hidden"
+      backgroundImage: `url(${bgCard})`, backgroundSize: "cover", backgroundPosition: "center",
+      borderRadius: "20px", display: "flex", flexDirection: "column", minHeight: "350px",
+      position: "relative", padding: "10px", border: "1px solid rgba(255, 215, 0, 0.2)",
+      boxShadow: "0 10px 30px rgba(0,0,0,0.5)", overflow: "hidden"
     }}>
-      {/* Styles CSS injectés */}
       <style>{`
         .image-container { width: 100%; height: 160px; display: flex; align-items: center; justify-content: center; position: relative; }
-        .product-img { width: 80%; height: 80%; object-fit: contain; z-index: 2; filter: drop-shadow(0 10px 10px rgba(0,0,0,0.5)); }
+        .product-img { width: 85%; height: 85%; object-fit: contain; z-index: 2; filter: drop-shadow(0 10px 10px rgba(0,0,0,0.5)); }
         .price-badge-overlay {
-          position: absolute; top: 10px; right: 10px; background: #ff4757 !important; color: white !important;
+          position: absolute; top: 10px; right: 10px; background: #ff4757; color: white;
           padding: 5px 12px; border-radius: 6px; font-weight: 950; font-size: 1.3rem;
-          z-index: 10; border: 2.5px solid ${GOLD_BRIGHT} !important; box-shadow: 3px 3px 0px #000;
+          z-index: 10; border: 2.5px solid ${GOLD_BRIGHT}; box-shadow: 3px 3px 0px #000;
           transform: rotate(5deg);
         }
-        .card-content { padding: 5px; display: flex; flex-direction: column; gap: 10px; }
         .info-box, .options-box {
-          background: rgba(0, 0, 0, 0.8) !important;
-          padding: 12px; border-radius: 10px; border: 1.5px solid rgba(255, 215, 0, 0.15) !important;
-          backdrop-filter: blur(5px);
+          background: rgba(0, 0, 0, 0.8); padding: 12px; border-radius: 10px;
+          border: 1.5px solid rgba(255, 215, 0, 0.15); backdrop-filter: blur(5px); margin-bottom: 10px;
         }
-        .card-title { font-size: 1.3rem; font-weight: 950; color: ${GOLD_BRIGHT} !important; margin: 0; text-transform: uppercase; text-shadow: 2px 2px 2px #000; }
-        .card-description { font-size: 0.85rem; font-weight: 600; color: #fff !important; margin-top: 5px; line-height: 1.3; }
+        .card-title { font-size: 1.3rem; font-weight: 950; color: ${GOLD_BRIGHT}; text-transform: uppercase; margin: 0; }
+        .card-description { font-size: 0.85rem; color: #fff; margin-top: 5px; line-height: 1.3; }
         .option-group-label {
-            font-size: 0.7rem; font-weight: 950; text-transform: uppercase;
-            background: ${GOLD_GRADIENT} !important; color: #000 !important;
-            padding: 2px 8px; display: inline-block; margin-bottom: 8px; border-radius: 3px;
-            box-shadow: 2px 2px 0px #000;
+            font-size: 0.65rem; font-weight: 950; text-transform: uppercase;
+            background: ${GOLD_GRADIENT}; color: #000; padding: 2px 8px;
+            display: inline-block; margin: 8px 0 5px; border-radius: 3px;
         }
-        .chips-container { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 10px; }
+        .chips-container { display: flex; flex-wrap: wrap; gap: 5px; }
         .chip { padding: 5px 8px; border-radius: 4px; font-size: 0.65rem; font-weight: 800; cursor: pointer; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.1); color: #fff; }
-        .chip.active { background: ${GOLD_GRADIENT} !important; color: #000 !important; border: 1px solid #000; font-weight: 950; }
-        .chip.remove.active { background: #ff4757 !important; color: #fff !important; text-decoration: line-through; border: 1px solid #000; }
-        .card-footer { padding: 10px 5px 15px; margin-top: auto; }
+        .chip.active { background: ${GOLD_GRADIENT} !important; color: #000 !important; font-weight: 950; }
+        .chip.remove.active { background: #ff4757 !important; color: #fff !important; text-decoration: line-through; }
         .add-btn-gold {
-          width: 100%; background: ${GOLD_GRADIENT} !important; color: #000 !important;
-          border: 2.5px solid #000 !important; padding: 12px; font-weight: 950;
-          cursor: pointer; text-transform: uppercase; border-radius: 10px;
-          font-size: 1rem; box-shadow: 0 4px 0px #8A6D3B; transition: 0.1s;
+          width: 100%; background: ${GOLD_GRADIENT}; color: #000; border: 2.5px solid #000;
+          padding: 12px; font-weight: 950; cursor: pointer; text-transform: uppercase;
+          border-radius: 10px; font-size: 1rem; transition: 0.1s;
           display: flex; justify-content: space-between; align-items: center;
         }
-        .add-btn-gold.success { background: #2ed573 !important; color: white !important; box-shadow: 0 4px 0px #1d914d; justify-content: center; }
+        .add-btn-gold.success { background: #2ed573 !important; color: white !important; justify-content: center; }
       `}</style>
 
       <div className="image-container">
@@ -173,10 +135,10 @@ export default function CardMenu(props) {
         <img src={image} alt={object} className="product-img" loading="lazy" />
       </div>
 
-      <div className="card-content">
+      <div className="card-content" style={{ padding: '5px' }}>
         <div className="info-box">
           <h3 className="card-title" translate="no">{object}</h3>
-          <p className="card-description">{displayDescription}</p>
+          <p className="card-description">{description}</p>
         </div>
 
         {!isDrinkCard && !isPostreCard && hasExtras && (
@@ -201,12 +163,12 @@ export default function CardMenu(props) {
         )}
       </div>
 
-      <div className="card-footer">
+      <div className="card-footer" style={{ marginTop: 'auto', paddingBottom: '10px' }}>
         <button className={`add-btn-gold ${isAdded ? 'success' : ''}`} onClick={handleAddClick}>
           {isAdded ? <span>{getT("ready")}</span> : (
             <>
               <span>{getT("add")}</span>
-              <span className="price-tag-inside">{totalPrice}€</span>
+              <span>{totalPrice}€</span>
             </>
           )}
         </button>
