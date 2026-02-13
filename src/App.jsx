@@ -114,6 +114,22 @@ export default function App() {
   return (
     <div className="app-main-wrapper" style={{ position: 'relative', backgroundColor: '#111', color: '#fff' }}>
       <style>{`
+        html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+.app-main-wrapper {
+  max-width: 100vw;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+* {
+  box-sizing: border-box;
+}
         .menu-page-container { max-width: 1200px; margin: 0 auto; padding: 0 20px; text-align: center; }
         .promo-container {
           position: relative; cursor: pointer; display: inline-block; border-radius: 20px;
