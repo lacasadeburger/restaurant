@@ -53,12 +53,6 @@ export default function App() {
     }, 0).toFixed(2);
   }, [cart]);
 
-  // Logic: Rotation de la langue pour l'engagement client
-  useEffect(() => {
-    const interval = setInterval(() => setLang(l => l === 'es' ? 'en' : 'es'), 15000);
-    return () => clearInterval(interval);
-  }, []);
-
   const randomReviews = useMemo(() => {
     // On mélange la liste de 10 et on prend les 2 premiers résultats
     return [...ALL_REVIEWS].sort(() => 0.5 - Math.random()).slice(0, 2);
@@ -204,20 +198,22 @@ export default function App() {
 
       <Helmet>
   <link rel="preload" as="image" href={BurgerSignature} />
-  <title>La Casa de Burger | Hamburguesas Gourmet & Recetas Únicas en Torrevieja</title>
+  <title>La Casa de Burger | Hamburguesas Gourmet Artesanales & Recetas Únicas en Torrevieja</title>
   <meta name="description" content="Especialistas en hamburguesas gourmet de autor y recetas artesanales únicas en Torrevieja. Carne premium, pan artesano y nuestras famosas Smashburgers. ¡Pide online!" />
   <meta name="keywords" content="hamburguesería gourmet Torrevieja, burger artesanal, recetas únicas, smash burger torrevieja, comida domicilio torrevieja, takeaway, halal burger torrevieja, gluten free burger" />
   <link rel="canonical" href="https://lacasadeburger.es" />
   <meta name="robots" content="index, follow" />
 
-
   <link rel="alternate" href="https://lacasadeburger.es" hreflang="es" />
-  <link rel="alternate" href="https://lacasadeburger.es" hreflang="en" />
-  <link rel="alternate" href="https://lacasadeburger.es" hreflang="uk" />
-  <link rel="alternate" href="https://lacasadeburger.es" hreflang="ar" />
-  <link rel="alternate" href="https://lacasadeburger.es" hreflang="x-default" />
-
-
+    <link rel="alternate" href="https://lacasadeburger.es" hreflang="en" />
+    <link rel="alternate" href="https://lacasadeburger.es" hreflang="fr" />
+    <link rel="alternate" href="https://lacasadeburger.es" hreflang="no" />
+    <link rel="alternate" href="https://lacasadeburger.es" hreflang="pl" />
+    <link rel="alternate" href="https://lacasadeburger.es" hreflang="uk" />
+    <link rel="alternate" href="https://lacasadeburger.es" hreflang="ru" />
+    <link rel="alternate" href="https://lacasadeburger.es" hreflang="ar" />
+    <link rel="alternate" href="https://lacasadeburger.es" hreflang="x-default" />
+    
   <meta property="og:type" content="restaurant" />
   <meta property="og:title" content="La Casa de Burger | Hamburguesas Gourmet de Autor" />
   <meta property="og:description" content="No es solo una burger, es una experiencia gourmet. Recetas únicas y artesanales en el corazón de Torrevieja." />
@@ -336,8 +332,8 @@ export default function App() {
 
 <h2 style={{ fontSize: '1.5rem', color: GOLD_BRIGHT, fontWeight: '700', textShadow: '1px 1px 10px rgba(0,0,0,1)', marginTop: '10px', textTransform: 'uppercase' }}>
   {lang === 'es'
-    ? 'Hamburguesería Gourmet: Smash Burgers y Carne de Vaca Madurada'
-    : 'Gourmet Burger Joint: Smash Burgers & Matured Beef'}
+    ? 'Hamburguesería Gourmet: Burgers Gourmet y Smash Burgers y Carne de Ternera Premium'
+    : 'Gourmet Burger Joint: Gourmet Burgers, Smash Burgers & Premium Beef'}
 </h2>
 
 <div style={{ marginTop: '40px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '25px' }}>
