@@ -644,15 +644,18 @@ style={{
         <h3 style={{ color: GOLD_BRIGHT, textTransform: 'uppercase', marginBottom: '30px', fontSize: '1.4rem', letterSpacing: '1px' }}>
 {T[lang]?.reviewsTitle || T.es.reviewsTitle}
 </h3>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px', textAlign: 'left' }}>
-            {randomReviews.map((rev, index) => (
-              <div key={index} className="testimonial-card">
-                <div style={{ color: GOLD_BRIGHT, marginBottom: '10px', fontSize: '1.2rem' }}>⭐⭐⭐⭐⭐</div>
-                <p style={{ fontStyle: 'italic', fontSize: '0.95rem' }}>"{lang === 'es' ? rev.es : rev.en}"</p>
-                <p style={{ fontWeight: 'bold', marginTop: '10px', color: '#ff4757' }}>— {rev.author}</p>
-              </div>
-            ))}
-          </div>
+<div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px', textAlign: 'left' }}>
+{randomReviews.map((rev, index) => (
+<div key={index} className="testimonial-card">
+<div style={{ color: GOLD_BRIGHT, marginBottom: '10px', fontSize: '1.2rem' }}>⭐⭐⭐⭐⭐</div>
+{/* On cherche la langue dans rev, sinon on met l'espagnol par défaut */}
+<p style={{ fontStyle: 'italic', fontSize: '0.95rem' }}>
+"{rev[lang] || rev.es}"
+</p>
+<p style={{ fontWeight: 'bold', marginTop: '10px', color: '#ff4757' }}>— {rev.author}</p>
+</div>
+))}
+</div>
         </section>
       </main>
 
