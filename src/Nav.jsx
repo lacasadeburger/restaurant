@@ -81,7 +81,7 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang, setLa
 
       {/* SELECTEUR DE LANGUES */}
       <div style={{
-        marginTop: '80px',
+        marginTop: '10px',
         display: 'flex', justifyContent: 'center', gap: '6px', padding: '12px 8px',
         flexWrap: 'wrap', backgroundColor: 'rgba(15, 15, 15, 0.95)',
         position: 'relative', zIndex: 9999, borderBottom: '1px solid #333'
