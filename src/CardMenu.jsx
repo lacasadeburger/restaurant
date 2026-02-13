@@ -54,7 +54,7 @@ export default function CardMenu(props) {
       "Agua ": isEn ? "Sparkling Water 50cl" : "Agua con Gas 50cl",
       "Agua Sin Gas 50cl": isEn ? "Natural Mineral Water" : "Agua mineral natural",
       "Vino tinto": isEn ? "Red Wine Bottle Bullas 75cl" : "Botella de Vino Bullas 75cl",
-      "Waffle": isEn ? "Waffle with Nutella or Dulce de Leche or Sugar... Tell me which one on WhatsApp" : "Waffle con Nutella o Dulce de Leche o Azucar...Dime cual en Whatsapp",
+      "Waffle": isEn ? "Waffle with Nutella" : "Waffle con Nutella",
       "Cerveza Mahou Clasica": isEn ? "Beer can 33cl" : "Lata de cerveza 33cl"
     }
   };

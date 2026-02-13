@@ -172,25 +172,37 @@ export default function Order({ cart, removeFromCart, lang }) {
             </div>
 
             <button
-              className="add-btn2"
-              onClick={handleOrder}
-              disabled={!paymentOption || cart.length === 0}
-              style={{
-                marginTop: '35px',
-                padding: '20px',
-                width: '100%',
-                backgroundColor: (paymentOption && cart.length > 0) ? '#25D366' : '#444',
-                color: 'white',
-                fontSize: '18px',
-                fontWeight: '900',
-                borderRadius: '50px',
-                border: 'none',
-                cursor: (paymentOption && cart.length > 0) ? 'pointer' : 'not-allowed',
-                boxShadow: (paymentOption && cart.length > 0) ? '0 6px 20px rgba(37, 211, 102, 0.4)' : 'none',
-              }}
-            >
-              {paymentOption ? t.btnSend : t.btnSelectPay}
-            </button>
+  className="add-btn2"
+  onClick={handleOrder}
+  disabled={!paymentOption || cart.length === 0}
+  style={{
+    marginTop: '35px',
+    padding: '18px 10px', // Padding vertical de 18px, latéral réduit pour mobile
+    width: '100%',
+    backgroundColor: (paymentOption && cart.length > 0) ? '#25D366' : '#444',
+    color: 'white',
+    fontSize: 'clamp(14px, 4vw, 18px)', // Taille de police fluide : s'adapte à l'écran
+    fontWeight: '900',
+    borderRadius: '50px',
+    border: 'none',
+    cursor: (paymentOption && cart.length > 0) ? 'pointer' : 'not-allowed',
+    boxShadow: (paymentOption && cart.length > 0) ? '0 6px 20px rgba(37, 211, 102, 0.4)' : 'none',
+
+    // --- CENTRAGE PARFAIT ---
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    textAlign: 'center',
+
+    // --- SÉCURITÉ TEXTE ---
+    whiteSpace: 'normal', // Permet au texte de passer sur deux lignes si nécessaire sur petit mobile
+    wordBreak: 'break-word',
+    lineHeight: '1.2',
+    boxSizing: 'border-box'
+  }}
+>
+  {paymentOption ? t.btnSend : t.btnSelectPay}
+</button>
           </div>
         )}
       </div>
