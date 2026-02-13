@@ -532,7 +532,7 @@ export default function App() {
   logo={logo}
 />
       <header style={{
-        padding: '100px 20px 80px',
+        padding: '60px 20px 80px',
         textAlign: 'center',
         position: 'relative',
         backgroundImage: `linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.3)), url(${BurgerSignature})`,
