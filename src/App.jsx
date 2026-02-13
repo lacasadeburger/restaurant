@@ -827,7 +827,7 @@ style={{
                 © 2026 <span style={{ color: GOLD_BRIGHT, fontWeight: 'bold' }}>LA CASA DE BURGER</span> | {lang === 'es' ? 'EL MEJOR BURGER DE TORREVIEJA - TODOS LOS DERECHOS RESERVADOS' : 'BEST BURGER IN TORREVIEJA - ALL RIGHTS RESERVED'}
               </div>
             </div>
-          </div> {/* Cierra maxWidth 1100px */}
+          </div> {/* Ferme le conteneur maxWidth 1100px */}
         </footer>
 
         {/* BOUTON WHATSAPP */}
@@ -853,7 +853,6 @@ style={{
             {showCardPostres && (lang === 'es' ? 'VER MI PEDIDO ✓' : 'VIEW MY ORDER ✓')}
           </button>
         )}
-      </div> // Cierra div className="App"
+      </div> // Ferme la <div className="App">
     );
   }
-  
