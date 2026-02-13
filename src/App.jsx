@@ -532,7 +532,7 @@ export default function App() {
   logo={logo}
 />
       <header style={{
-        padding: '120px 20px 80px',
+        padding: '100px 20px 80px',
         textAlign: 'center',
         position: 'relative',
         backgroundImage: `linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.3)), url(${BurgerSignature})`,
@@ -619,7 +619,7 @@ export default function App() {
 
 <div style={{ display: 'flex', justifyContent: 'center', gap: '15px', flexWrap: 'wrap', marginTop: '05px' }}>
 
-  
+
   <a href="tel:+34602597210" style={{ background: '#fff', color: '#000', padding: '14px 30px', borderRadius: '50px', textDecoration: 'none', fontWeight: '950', border: '2px solid #000' }}>
     📞 {T[lang]?.btnCall || T.es.btnCall}
   </a>
