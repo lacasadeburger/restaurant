@@ -619,14 +619,7 @@ export default function App() {
 
 <div style={{ display: 'flex', justifyContent: 'center', gap: '15px', flexWrap: 'wrap', marginTop: '05px' }}>
 
-  {/* AJOUTE CE BOUTON ICI */}
-  <button
-    onClick={() => scrollToId('sec-burgers')}
-    style={{ background: '#fff', color: '#000', padding: '14px 30px', borderRadius: '50px', fontWeight: '950', border: '2px solid #000', cursor: 'pointer' }}
-  >
-    📖 {T[lang]?.btnSeeMenu || T.es.btnSeeMenu}
-  </button>
-
+  
   <a href="tel:+34602597210" style={{ background: '#fff', color: '#000', padding: '14px 30px', borderRadius: '50px', textDecoration: 'none', fontWeight: '950', border: '2px solid #000' }}>
     📞 {T[lang]?.btnCall || T.es.btnCall}
   </a>
