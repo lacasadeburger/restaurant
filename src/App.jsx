@@ -447,8 +447,14 @@ export default function App() {
 })}
 </script>
 </Helmet>
-      <Nav scrollToOrder={scrollToOrder} cartLength={cart.length} totalPrice={totalPrice} lang={lang} logo={logo} />
-
+<Nav
+  scrollToOrder={scrollToOrder}
+  cartLength={cart.length}
+  totalPrice={totalPrice}
+  lang={lang}
+  setLang={setLang} // <--- AJOUTE ÇA, sinon cliquer sur les drapeaux ne fera rien !
+  logo={logo}
+/>
       <header style={{
         padding: '160px 20px 80px',
         textAlign: 'center',
