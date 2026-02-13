@@ -486,5 +486,5 @@ section[id] {
    la page s'arrête exactement au début des burgers,
    sans montrer le texte de présentation au-dessus */
 #menu-burgers {
-  scroll-margin-top: 140px; /* Ajuste cette valeur selon la hauteur de ton Nav */
+  scroll-margin-top: 10px; /* Ajuste cette valeur selon la hauteur de ton Nav */
 }

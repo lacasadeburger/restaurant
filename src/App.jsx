@@ -590,7 +590,7 @@ export default function App() {
   {T[lang]?.heroSubtitle || T.es.heroSubtitle}
 </h2>
 
-<div style={{ marginTop: '05px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '25px' }}>
+<div style={{ marginTop: '05px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '05px' }}>
 <button
   onClick={() => {
     setShowCardBurger(true);
@@ -639,7 +639,7 @@ export default function App() {
       <main className="menu-page-container">
 
   {/* 1. SECTION BURGERS */}
-  <section id="sec-burgers" style={{ marginTop: '20px' }}>
+  <section id="sec-burgers" style={{ marginTop: '05px' }}>
     <SectionTitle>{T[lang]?.catBurgers || T.es.catBurgers}</SectionTitle>
     {showCardBurger ? (
       <div className="grid-cards">
@@ -796,7 +796,7 @@ export default function App() {
               <p><strong>🇩🇪 DEUTSCH:</strong> <strong>Beste Gourmet-Burger in Torrevieja</strong>. Spezialisiert auf <strong>Smash Burgers</strong> und erstklassiges gereiftes Rindfleisch. Genießen Sie handwerkliche Qualität direkt bei Ihnen zu Hause.</p>
               <p><strong>🇳🇱 NEDERLANDS:</strong> <strong>Beste gourmet burgers in Torrevieja</strong>. Authentieke <strong>Smash Burgers</strong> met premium gerijpt rundvlees. De beste keuze voor bezorging in Torrevieja.</p>
 
-              <div style={{ marginTop: '20px', fontSize: '0.85rem', color: '#bbb', lineHeight: '1.6' }}>
+              <div style={{ marginTop: '05px', fontSize: '0.85rem', color: '#bbb', lineHeight: '1.6' }}>
                 <strong>📍 ZONAS DE REPARTO / DELIVERY AREAS:</strong>
                 <br />
                 Torrevieja Centro, Playa del Cura, Playa de los Locos, Paseo Marítimo, Puerto, La Mata, Punta Prima, Los Balcones, Aguas Nuevas, La Siesta, El Acequión, La Veleta, San Roque, Rocío del Mar, Los Altos, Lago Jardín, Torreta I, II, III, El Salado, Urbanización Doña Inés, Jardín del Mar, Las Naciones, Centro Comercial Habaneras, Los Almendros, Altos del Limonar, Parque de las Naciones, y todos los hoteles de Torrevieja.
