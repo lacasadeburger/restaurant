@@ -865,7 +865,7 @@ export default function App() {
                     </div>
                   </div>
 
-                  {/* SECTION BOUTON FLOTTANT SUIVANT */}
+                  {/* BOUTON ETAPE SUIVANTE */}
           {(showCardBurger || showCardDrink || showCardPostres) && (
             <button
               className="floating-close"
@@ -883,8 +883,8 @@ export default function App() {
               {showCardPostres && (lang === 'es' ? 'VER MI PEDIDO ➔' : 'VIEW ORDER ➔')}
             </button>
           )}
-        </main>
+        </main> {/* Fin du menu-page-container */}
 
-      </div> // Fin de app-main-wrapper
-    ); // Fin du return
-  } // Fin de la fonction App
+      </div>
+    );
+  }
