@@ -545,7 +545,9 @@ export default function App() {
         className="wobble-badge"
         style={{
           position: 'absolute',
-          top: '85px',
+          // On le remonte pour qu'il soit au début du header,
+          // juste sous la limite des drapeaux
+          top: '20px',
           right: '5%',
           background: GOLD_GRADIENT,
           color: '#000',
