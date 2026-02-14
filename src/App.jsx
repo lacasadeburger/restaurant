@@ -348,64 +348,80 @@ export default function App() {
 
   return (
     <div className="app-main-wrapper" style={{ position: 'relative', backgroundColor: '#111', color: '#fff' }}>
-      <style>{`
+    <style>{`
         html, body {
-  max-width: 100%;
-  overflow-x: hidden;
-  margin: 0;
-  padding: 0;
-}
+          max-width: 100%;
+          overflow-x: hidden;
+          margin: 0;
+          padding: 0;
+        }
 
-.app-main-wrapper {
-  max-width: 100vw;
-  overflow-x: hidden;
-  box-sizing: border-box;
-}
+        .app-main-wrapper {
+          max-width: 100vw;
+          overflow-x: hidden;
+          box-sizing: border-box;
+        }
 
-* {
-  box-sizing: border-box;
-}
+        * {
+          box-sizing: border-box;
+        }
+
         .menu-page-container { max-width: 1200px; margin: 0 auto; padding: 0 20px; text-align: center; }
+
         .promo-container {
           position: relative; cursor: pointer; display: inline-block; border-radius: 20px;
           overflow: hidden; box-shadow: 0 15px 35px rgba(0,0,0,0.8); transition: 0.5s;
           max-width: 500px; width: 100%; margin-bottom: 20px; border: 2px solid rgba(255, 215, 0, 0.3);
         }
+
         .promo-img { width: 100%; display: block; opacity: 1; transition: 0.5s; }
         .promo-container:hover .promo-img { opacity: 0.7; transform: scale(1.05); }
+
         .btn-overlay {
-          position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
-          background: ${GOLD_GRADIENT}; color: #000 !important; padding: 12px 30px; border-radius: 8px; font-weight: 950;
-          border: 2px solid #000; pointer-events: none; font-size: 1.1rem; box-shadow: 0 4px 15px rgba(0,0,0,0.6);
-          text-transform: uppercase; z-index: 5; white-space: nowrap;
-        }
-        .grid-cards {
-    display: grid;
-    /* Garde tes colonnes automatiques */
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-
-    /* CHANGEMENT 1 : On laisse la hauteur s'adapter au contenu de la carte */
-    grid-auto-rows: auto;
-
-    /* CHANGEMENT 2 : Aligne les cartes en haut pour éviter qu'elles ne s'étirent par défaut */
-    align-items: start;
-
-    gap: 20px;
-    justify-content: center;
-    padding: 20px 0 120px;
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    /* On a supprimé le background ici car c'est la classe gold-button-premium qui va le donner */
+    color: #000 !important;
+    padding: 12px 30px;
+    border-radius: 8px;
+    font-weight: 950;
+    border: 2px solid #000;
+    pointer-events: none;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+    text-transform: uppercase;
+    z-index: 5;
+    white-space: nowrap;
   }
+
+        .grid-cards {
+          display: grid;
+          /* Garde tes colonnes automatiques */
+          grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+          /* CHANGEMENT 1 : On laisse la hauteur s'adapter au contenu de la carte */
+          grid-auto-rows: auto;
+          /* CHANGEMENT 2 : Aligne les cartes en haut pour éviter qu'elles ne s'étirent par défaut */
+          align-items: start;
+          gap: 20px;
+          justify-content: center;
+          padding: 20px 0 120px;
+        }
+
         @keyframes pulse-gold { 0% { transform: scale(1); } 50% { transform: scale(1.03); } 100% { transform: scale(1); } }
         .pulse-gold-btn { animation: pulse-gold 2s infinite ease-in-out; }
         .pulse-badge { animation: pulse-gold 3s infinite ease-in-out; }
 
         /* AJOUTE ÇA ICI */
-@keyframes wobble-badge {
-  0% { transform: rotate(8deg) scale(1.1); }
-  50% { transform: rotate(-2deg) scale(1.15); }
-  100% { transform: rotate(8deg) scale(1.1); }
-}
-.wobble-badge { animation: wobble-badge 3s infinite ease-in-out; display: inline-block; }
-/* BOUTON WHATSAPP FLOTTANT */
+        @keyframes wobble-badge {
+          0% { transform: rotate(8deg) scale(1.1); }
+          50% { transform: rotate(-2deg) scale(1.15); }
+          100% { transform: rotate(8deg) scale(1.1); }
+        }
+        .wobble-badge { animation: wobble-badge 3s infinite ease-in-out; display: inline-block; }
+
+        /* BOUTON WHATSAPP FLOTTANT */
         .whatsapp-float {
           position: fixed;
           bottom: 25px;
@@ -425,23 +441,25 @@ export default function App() {
         .whatsapp-float:hover {
           transform: scale(1.1);
         }
+
         /* ANIMATION DU LOGO EN HAUT À DROITE */
-                @keyframes logoFloat {
-                  0% { transform: translateY(0px) rotate(0deg); }
-                  50% { transform: translateY(-8px) rotate(3deg); }
-                  100% { transform: translateY(0px) rotate(0deg); }
-                }
+        @keyframes logoFloat {
+          0% { transform: translateY(0px) rotate(0deg); }
+          50% { transform: translateY(-8px) rotate(3deg); }
+          100% { transform: translateY(0px) rotate(0deg); }
+        }
 
-                .moving-header-logo {
-                  animation: logoFloat 3s ease-in-out infinite;
-                  transition: filter 0.3s ease, transform 0.3s ease;
-                }
+        .moving-header-logo {
+          animation: logoFloat 3s ease-in-out infinite;
+          transition: filter 0.3s ease, transform 0.3s ease;
+        }
 
-                .moving-header-logo:hover {
-                  filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.9)) !important;
-                  transform: scale(1.1) !important;
-                  cursor: pointer;
-                }
+        .moving-header-logo:hover {
+          filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.9)) !important;
+          transform: scale(1.1) !important;
+          cursor: pointer;
+        }
+
         /* Ajustement pour mobile pour ne pas gêner la navigation */
         @media (max-width: 768px) {
           .whatsapp-float {
@@ -451,81 +469,80 @@ export default function App() {
             height: 55px;
           }
         }
-        /* --- EFFET OR PREMIUM DYNAMIQUE (Version Orion) --- */
 
-  /* 1. Mouvement du dégradé de fond (coule comme de l'or liquide) */
-  @keyframes goldShine {
-    0% { background-position: 0% center; }
-    100% { background-position: 200% center; }
-  }
+        /* --- EFFET OR VÉRITABLE "ULTRA-DYNAMIC" --- */
 
-  /* 2. Passage du flash lumineux blanc */
-  @keyframes goldReflection {
-    0% { left: -60%; }
-    35% { left: 125%; }
-    100% { left: 125%; }
-  }
+        /* 1. Mouvement de l'or liquide (5 tons profonds) */
+        @keyframes liquidGold {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
 
-  .gold-button-premium {
-    /* Dégradé 5 tons Premium */
-    background: linear-gradient(
-      135deg,
-      #BF953F 0%,
-      #FCF6BA 25%,
-      #B38728 50%,
-      #FBF5B7 75%,
-      #AA771C 100%
-    ) !important;
-    background-size: 200% auto !important;
+        /* 2. Le flash "Miroir" (net et luxueux) */
+        @keyframes mirrorReflection {
+          0% { left: -100%; opacity: 0; }
+          10% { opacity: 1; }
+          35% { left: 150%; opacity: 1; }
+          100% { left: 150%; opacity: 0; }
+        }
 
-    /* Animation du fond */
-    animation: goldShine 4s linear infinite !important;
+        .gold-button-premium {
+          /* Dégradé 5 tons avec contrastes accentués */
+          background: linear-gradient(
+            135deg,
+            #8A6426 0%,   /* Or Bronze sombre */
+            #D4AF37 25%,  /* Or Pur */
+            #FFF9AA 50%,  /* Éclat Blanc Or (le point brillant) */
+            #AA771C 75%,  /* Or Riche */
+            #8A6426 100%
+          ) !important;
+          background-size: 300% 300% !important; /* Plus de fluidité dans le mouvement */
+          animation: liquidGold 6s ease infinite !important;
 
-    position: relative;
-    overflow: hidden; /* Indispensable pour couper le reflet aux bords */
+          position: relative;
+          overflow: hidden;
+          color: #000 !important;
+          border: 1.5px solid rgba(0,0,0,0.8) !important;
+          font-weight: 950 !important;
+          text-transform: uppercase;
+          letter-spacing: 1.5px;
 
-    /* Style du texte et bordures */
-    color: #000 !important;
-    border: 2px solid #000 !important;
-    font-weight: 950 !important;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+          /* Ombre portée et effet de biseau interne (ULTRA RÉALISTE) */
+          box-shadow: 0 4px 15px rgba(0,0,0,0.4), inset 0 0 10px rgba(255,255,255,0.5) !important;
+          transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+          cursor: pointer;
+        }
 
-    /* Interaction */
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    cursor: pointer;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-  }
+        /* Le reflet miroir qui traverse le bouton */
+        .gold-button-premium::after {
+          content: "";
+          position: absolute;
+          top: -50%;
+          left: -150%;
+          width: 45%; /* Un peu plus large pour un flash plus dynamique */
+          height: 200%;
+          background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 255, 255, 0.9), /* Plus brillant */
+            transparent
+          );
+          transform: rotate(25deg);
+          animation: mirrorReflection 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        }
 
-  /* Le trait de lumière blanche qui traverse */
-  .gold-button-premium::after {
-    content: "";
-    position: absolute;
-    top: -50%;
-    left: -60%;
-    width: 30%; /* Légèrement plus large pour un plus beau reflet */
-    height: 200%;
-    background: linear-gradient(
-      to right,
-      rgba(255, 255, 255, 0) 0%,
-      rgba(255, 255, 255, 0.6) 50%,
-      rgba(255, 255, 255, 0) 100%
-    );
-    transform: rotate(25deg);
-    animation: goldReflection 3s ease-in-out infinite;
-  }
+        /* Effet au survol : le bouton s'illumine et monte */
+        .gold-button-premium:hover {
+          transform: scale(1.06) translateY(-4px) !important;
+          filter: brightness(1.1);
+          box-shadow: 0 15px 30px rgba(191, 149, 63, 0.6) !important;
+        }
 
-  /* Effet au survol */
-  .gold-button-premium:hover {
-    transform: scale(1.05) translateY(-3px) !important;
-    box-shadow: 0 12px 25px rgba(191, 149, 63, 0.5) !important;
-    filter: brightness(1.1);
-  }
-
-  /* Effet au clic */
-  .gold-button-premium:active {
-    transform: scale(0.98);
-  }
+        /* Effet au clic : le bouton s'enfonce */
+        .gold-button-premium:active {
+          transform: scale(0.96) translateY(-1px) !important;
+        }
       `}</style>
 
       <Helmet>
@@ -655,14 +672,13 @@ export default function App() {
         borderBottom: `5px solid #ff4757`
       }}>
       <div
-        className="wobble-badge"
+        className="wobble-badge gold-button-premium"
         style={{
           position: 'absolute',
           // On le remonte pour qu'il soit au début du header,
           // juste sous la limite des drapeaux
           top: '20px',
           right: '5%',
-          background: GOLD_GRADIENT,
           color: '#000',
           padding: '10px 25px',
           borderRadius: '50px',
@@ -711,7 +727,7 @@ export default function App() {
     setShowCardBurger(true);
     setTimeout(() => scrollToId("sec-burgers"), 150);
   }}
-  className="gold-button-premium"
+  className="pulse-gold-btn gold-button-premium"
   style={{
     color: '#000',
     padding: '22px 50px',
@@ -763,7 +779,7 @@ export default function App() {
         }, 150);
       }} style={{ cursor: 'pointer' }}>
         <img src={Burger} className="promo-img" alt="Mejor Hamburguesa Gourmet" />
-        <button className="btn-overlay">{T[lang]?.btnSeeMenu || T.es.btnSeeMenu}</button>
+        <button className="btn-overlay gold-button-premium">{T[lang]?.btnSeeMenu || T.es.btnSeeMenu}</button>
       </div>
     )}
   </section>
@@ -784,7 +800,7 @@ export default function App() {
         }, 150);
       }} style={{ cursor: 'pointer' }}>
         <img src={Drink} className="promo-img" alt="Drinks" />
-        <button className="btn-overlay">{T[lang]?.catDrinks || T.es.catDrinks}</button>
+        <button className="btn-overlay gold-button-premium">{T[lang]?.catDrinks || T.es.catDrinks}</button>
       </div>
     )}
   </section>
@@ -805,7 +821,7 @@ export default function App() {
         }, 150);
       }} style={{ cursor: 'pointer' }}>
         <img src={Postre} className="promo-img" alt="Desserts" />
-        <button className="btn-overlay">{T[lang]?.catDesserts || T.es.catDesserts}</button>
+        <button className="btn-overlay gold-button-premium">{T[lang]?.catDesserts || T.es.catDesserts}</button>
       </div>
     )}
   </section>
