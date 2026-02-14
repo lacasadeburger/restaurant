@@ -451,6 +451,52 @@ export default function App() {
             height: 55px;
           }
         }
+        /* --- EFFET OR PREMIUM DYNAMIQUE --- */
+@keyframes goldShine {
+  to { background-position: 200% center; }
+}
+
+@keyframes goldReflection {
+  0% { left: -60%; }
+  30% { left: 120%; }
+  100% { left: 120%; }
+}
+
+.gold-button-premium {
+  background: linear-gradient(
+    135deg,
+    #BF953F 0%,
+    #FCF6BA 25%,
+    #B38728 50%,
+    #FBF5B7 75%,
+    #AA771C 100%
+  ) !important;
+  background-size: 200% auto !important;
+  animation: goldShine 6s linear infinite !important;
+  position: relative;
+  overflow: hidden;
+  color: #000 !important;
+  border: 2px solid #000 !important;
+  transition: all 0.3s ease;
+  font-weight: 950 !important;
+}
+
+.gold-button-premium::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 20%;
+  height: 200%;
+  background: rgba(255, 255, 255, 0.4);
+  transform: rotate(30deg);
+  animation: goldReflection 3s infinite;
+}
+
+.gold-button-premium:hover {
+  transform: scale(1.05) translateY(-2px);
+  box-shadow: 0 10px 20px rgba(191, 149, 63, 0.6) !important;
+}
       `}</style>
 
       <Helmet>
