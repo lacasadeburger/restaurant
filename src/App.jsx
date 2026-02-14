@@ -524,7 +524,7 @@ export default function App() {
           .wobble-badge.gold-button-premium {
     font-size: 0.6rem !important;    /* Réduit la taille du texte */
     padding: 6px 9px !important;    /* Réduit la hauteur et largeur du bouton */
-    top: 50px !important;           /* L'ajuste en hauteur pour éviter les collisions */
+    top: 35px !important;           /* L'ajuste en hauteur pour éviter les collisions */
     right: 5% !important;            /* Garde l'alignement à droite */
     border-width: 2px !important;    /* Affine la bordure noire pour rester proportionnel */
   }
