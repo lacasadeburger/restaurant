@@ -516,7 +516,7 @@ export default function App() {
         @media (max-width: 768px) {
 
           .moving-header-logo {
-            height: 25px !important; /* On divise presque par deux la taille */
+            height: 35px !important; /* On divise presque par deux la taille */
             top: 100px !important;   /* On l'ajuste pour qu'il ne chevauche pas les drapeaux */
             left: 2px !important;   /* On le rapproche un peu du bord */
           }
