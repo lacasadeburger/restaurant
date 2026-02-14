@@ -19,7 +19,7 @@ import BurgerSignature from "./assets/burger-signature-torrevieja.webp";
 const T = {
   es: {
     heroTitle: "La Mejor Hamburguesa",
-    heroSubtitle: "Hamburguesería Gourmet: Burgers Gourmet y Smash Burgers y Carne de Ternera Premium",
+    heroSubtitle: "Hamburguesería Gourmet : Burgers Gourmet y Smash Burgers con Carne de Ternera Premium",
     btnOrder: "PEDIR A DOMICILIO",
     btnCall: "LLAMAR",
     catBurgers: "Burgers Gourmet",
@@ -28,11 +28,11 @@ const T = {
     btnSeeMenu: "VER CARTA",
     yourOrder: "Tu Pedido",
     reviewsTitle: "Lo que dicen nuestros clientes",
-    footerDesc: "Especialistas en Smash Burgers y Hamburguesas Gourmet de autor. Carne de vaca madurada premium, buey y procesos artesanales.",
+    footerDesc: "Especialistas en Smash Burgers y Hamburguesas Gourmet de autor. Carne de ternera premium, buey y procesos artesanales.",
     location: "Ubicación",
     hours: "Horario",
     seoTitle: "La mejor Hamburguesería Artesanal de Torrevieja",
-    seoContent: "En La Casa de Burger, nos hemos convertido en el referente de las hamburguesas gourmet en Torrevieja. Nuestra pasión por la calidad nos lleva a utilizar exclusivamente carne de vaca madurada premium, buey y angus, picada diariamente. Especialistas en Smash Burger, pan brioche local y patatas naturales. Opciones Halal, sin gluten y veganas."
+    seoContent: "En La Casa de Burger, nos hemos convertido en el referente de las hamburguesas gourmet en Torrevieja. Nuestra pasión por la calidad nos lleva a utilizar exclusivamente carne de ternera premium, buey y pollo, picada diariamente. Especialistas en Smash Burger, pan brioche local y patatas naturales. Opciones Halal, sin gluten y veganas."
   },
   en: {
     heroTitle: "The Best Burger",
@@ -45,11 +45,11 @@ const T = {
     btnSeeMenu: "SEE MENU",
     yourOrder: "Your Order",
     reviewsTitle: "What our customers say",
-    footerDesc: "Specialists in Smash Burgers and Signature Gourmet Hamburgers. Premium matured beef and artisan processes.",
+    footerDesc: "Specialists Signature Gourmet Hamburgers and in Smash Burgers. Premium beef and artisan processes.",
     location: "Location",
     hours: "Hours",
     seoTitle: "The Best Artisan Burger Joint in Torrevieja",
-    seoContent: "At La Casa de Burger, we are the benchmark for gourmet burgers in Torrevieja. Our passion for quality leads us to use exclusively premium matured beef, ox, and angus. Specialists in Smash Burgers, using local brioche buns and hand-cut fries. Halal, gluten-free, and vegan options available."
+    seoContent: "At La Casa de Burger, we are the benchmark for gourmet burgers in Torrevieja. Our passion for quality leads us to use exclusively premium beef, ox, and chicken. Specialists in Gourmet Burgers, using local brioche buns and hand-cut fries. Halal, gluten-free, and vegan options available."
   },
   fr: {
     heroTitle: "Le Meilleur Burger",
@@ -62,11 +62,11 @@ const T = {
     btnSeeMenu: "VOIR LA CARTE",
     yourOrder: "Votre Commande",
     reviewsTitle: "L'avis de nos clients",
-    footerDesc: "Spécialistes du Smash Burger et Burgers Gourmet. Viande maturée premium et frites maison.",
+    footerDesc: "Spécialistes du Smash Burger et Burgers Gourmet. Viande premium et frites maison.",
     location: "Emplacement",
     hours: "Horaires",
     seoTitle: "La meilleure Hamburguérerie Artisanale de Torrevieja",
-    seoContent: "À La Casa de Burger, nous sommes la référence des burgers gourmet à Torrevieja. Passionnés par la qualité, nous utilisons exclusivement de la viande maturée premium. Spécialistes du Smash Burger, pain brioche local et frites maison. Options Halal, sans gluten et véganes disponibles."
+    seoContent: "À La Casa de Burger, nous sommes la référence des burgers gourmet à Torrevieja. Passionnés par la qualité, nous utilisons exclusivement de la viande premium. Spécialistes du Smash Burger, pain brioche local et frites maison. Options Halal, sans gluten et véganes disponibles."
   },
   no: {
     heroTitle: "Den Beste Burgers",
@@ -918,7 +918,7 @@ export default function App() {
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '30px', textAlign: 'left', marginBottom: '05px', background: 'rgba(255,255,255,0.03)', padding: '30px', borderRadius: '20px' }}>
               <div>
                 <h3 style={{ color: '#ff4757' }}>La Casa de Burger Torrevieja</h3>
-                <p>{lang === 'es' ? 'Especialistas en Smash Burgers y Hamburguesas Gourmet de autor. Carne de vaca madurada premium, buey y procesos artesanales.' : 'Specialists in Smash Burgers and Signature Gourmet Hamburgers. Premium matured beef and artisan processes.'}</p>
+                <p>{lang === 'es' ? 'Especialistas en Smash Burgers y Hamburguesas Gourmet de autor. Carne de ternera premium, buey y procesos artesanales.' : 'Specialists Signature Gourmet Hamburgers and in Smash Burgers. Premium beef and artisan processes.'}</p>
               </div>
               <div>
                 <h4 style={{ color: GOLD_BRIGHT }}>📍 {T[lang]?.location || T.es.location}</h4>
@@ -958,13 +958,13 @@ export default function App() {
         <div style={{ maxWidth: '1100px', margin: '0 auto 100px', padding: '0 20px' }}>
           <div style={{ backgroundColor: '#0a0a0a', padding: '35px', borderRadius: '15px', border: '1px solid #222', textAlign: 'justify' }}>
             <div style={{ color: '#888', fontSize: '0.75rem', lineHeight: '1.6', margin: 0 }}>
-              <p><strong>🇪🇸 ESPAÑOL:</strong> <strong>La Casa de Burger</strong> – El <strong>mejor restaurante de hamburguesas gourmet en Torrevieja</strong>. Especialistas en <strong>Smash Burgers</strong>, carne de vaca madurada premium y buey. Si buscas comida a domicilio (delivery) o una experiencia artesanal cerca del puerto o Playa del Cura, somos tu elección número uno.</p>
+              <p><strong>🇪🇸 ESPAÑOL:</strong> <strong>La Casa de Burger</strong> – El <strong>mejor restaurante de hamburguesas gourmet en Torrevieja</strong>. Especialistas en <strong>Smash Burgers</strong>, carne de ternera premium y buey. Si buscas comida a domicilio (delivery) o una experiencia artesanal cerca del puerto o Playa del Cura, somos tu elección número uno.</p>
               <p><strong>🇬🇧 ENGLISH:</strong> <strong>Best gourmet burgers in Torrevieja</strong>. We serve authentic <strong>Smash Burgers</strong> and premium aged beef. The highest-rated burger joint for delivery and takeout near the city center and beaches.</p>
               <p><strong>🇳🇴 NORSK:</strong> <strong>Beste gourmetburger i Torrevieja</strong>. Opplev de saftigste <strong>Smash Burgers</strong> med modnet storfekjøtt av høyeste kvalitet. Vi tilbyr hjemlevering i hele Torrevieja.</p>
               <p><strong>🇵🇱 POLSKI:</strong> <strong>Najlepsze burgery gourmet w Torrevieja</strong>. Specjalizujemy się w <strong>Smash Burgers</strong> z sezonowanej wołowiny premium. Zamów z dostawą do domu w Torrevieja i okolicach.</p>
               <p><strong>🇲🇦 ARABIC:</strong> <strong>أفضل مطعم برجر في توريفايجا</strong>. متخصصون في برجر سماش ولحم البقر المعتق الفاخر. استمتع بألذ برجر حرفي مع خدمة التوصيل في جميع أنحاء المدينة.</p>
               <p><strong>🇺🇦 UKRAINIAN:</strong> <strong>Найкращі гурме-бургери в Торрев'єсі</strong>. Наші <strong>Smash Burgers</strong> виготовлені з преміальної витриманої яловичини. Найкращий вибір для доставки їжі додому.</p>
-              <p><strong>🇫🇷 FRANÇAIS:</strong> <strong>Meilleur Burger Gourmet Torrevieja</strong>. Spécialiste du <strong>Smash Burger</strong> et de la viande de bœuf maturée premium. Livraison à domicile disponible pour le meilleur burger artisanal de la ville.</p>
+              <p><strong>🇫🇷 FRANÇAIS:</strong> <strong>Meilleur Burger Gourmet Torrevieja</strong>. Spécialiste du <strong>Smash Burger</strong> et de la viande de bœuf premium. Livraison à domicile disponible pour le meilleur burger artisanal de la ville.</p>
               <p><strong>🇷🇺 RUSSIAN:</strong> <strong>Лучшие гурме-бургеры в Торревьехе</strong>. Мы готовим аутентичные <strong>Smash Burgers</strong> из выдержанной говядины премиум-класса. Заказывайте доставку прямо сейчас.</p>
               <p><strong>🇸🇪 SVENSKA:</strong> <strong>Bästa gourmetburgare i Torrevieja</strong>. Vi erbjuder <strong>Smash Burgers</strong> av högsta kvalitet med hängmörat nötkött. Den mest populära burgarrestaurangen för delivery.</p>
               <p><strong>🇩🇪 DEUTSCH:</strong> <strong>Beste Gourmet-Burger in Torrevieja</strong>. Spezialisiert auf <strong>Smash Burgers</strong> und erstklassiges gereiftes Rindfleisch. Genießen Sie handwerkliche Qualität direkt bei Ihnen zu Hause.</p>
