@@ -810,32 +810,29 @@ export default function App() {
 >
   🚀 {T[lang]?.btnOrder || T.es.btnOrder}
 </button>
-
+{/* BOUTON RÉSERVATION TABLEO */}
+<button
+onClick={() => window.open("https://app.tableo.com/widget/la-casa-de-burger-hamburguesa-gourmet-torrevieja-hamburgueseria-casero-best-burger-in-town-spain?bgColor=%23ff0000&textColor=%23000000&googleFont=Police+par+d%C3%A9faut&fontSize=14&cornerStyle=none&textAlignment=left&formControlBgColor=%23ffffff&formControlColor=%23000000&formControlBorderColor=%23444444&formControlBorderShadow=6&formControlBorderWidth=1&formControlBorderOpacity=0.1&buttonBgColor=%23000000&buttonTextColor=%23ffffff", "_blank")}
+className="gold-button-premium"
+style={{
+  padding: '18px 40px',
+  borderRadius: '50px',
+  fontSize: '1.3rem',
+  width: '90%',
+  maxWidth: '450px',
+  marginTop: '10px', // Pour créer l'espace sous les deux autres boutons
+  display: 'block',
+  marginLeft: 'auto',
+  marginRight: 'auto'
+}}
+>
+📅 RESERVAR MESA
+</button>
 <div style={{ display: 'flex', justifyContent: 'center', gap: '15px', flexWrap: 'wrap', marginTop: '05px' }}>
-
-
   <a href="tel:+34602597210" style={{ background: '#fff', color: '#000', padding: '14px 30px', borderRadius: '50px', textDecoration: 'none', fontWeight: '950', border: '2px solid #000' }}>
     📞 {T[lang]?.btnCall || T.es.btnCall}
   </a>
 
-  {/* BOUTON RÉSERVATION TABLEO */}
-<button
-  onClick={() => window.open("https://app.tableo.com/widget/la-casa-de-burger-hamburguesa-gourmet-torrevieja-hamburgueseria-casero-best-burger-in-town-spain?bgColor=%23ff0000&textColor=%23000000&googleFont=Police+par+d%C3%A9faut&fontSize=14&cornerStyle=none&textAlignment=left&formControlBgColor=%23ffffff&formControlColor=%23000000&formControlBorderColor=%23444444&formControlBorderShadow=6&formControlBorderWidth=1&formControlBorderOpacity=0.1&buttonBgColor=%23000000&buttonTextColor=%23ffffff", "_blank")}
-  className="gold-button-premium"
-  style={{
-    padding: '18px 40px',
-    borderRadius: '50px',
-    fontSize: '1.3rem',
-    width: '90%',
-    maxWidth: '450px',
-    marginTop: '10px', // Pour créer l'espace sous les deux autres boutons
-    display: 'block',
-    marginLeft: 'auto',
-    marginRight: 'auto'
-  }}
->
-  📅 RESERVAR MESA
-</button>
 </div>
 </div>
 </div>
