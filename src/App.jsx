@@ -713,7 +713,6 @@ export default function App() {
   }}
   className="gold-button-premium"
   style={{
-    background: GOLD_GRADIENT,
     color: '#000',
     padding: '22px 50px',
     borderRadius: '50px',
