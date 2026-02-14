@@ -542,9 +542,9 @@ export default function App() {
 {/* --- LOGO ANIMÉ EN HAUT À Gauche --- */}
 <div style={{
   position: 'fixed',
-  top: '80px',
-  left: '15px',
-  zIndex: 999,      // Plus haut que la Nav et le bouton WhatsApp
+  top: '120px',
+  right: '15px',
+  zIndex: 10002,      // Plus haut que la Nav et le bouton WhatsApp
   pointerEvents: 'none'
 }}>
   <img
