@@ -425,7 +425,23 @@ export default function App() {
         .whatsapp-float:hover {
           transform: scale(1.1);
         }
+        /* ANIMATION DU LOGO EN HAUT À DROITE */
+                @keyframes logoFloat {
+                  0% { transform: translateY(0px) rotate(0deg); }
+                  50% { transform: translateY(-8px) rotate(3deg); }
+                  100% { transform: translateY(0px) rotate(0deg); }
+                }
 
+                .moving-header-logo {
+                  animation: logoFloat 3s ease-in-out infinite;
+                  transition: filter 0.3s ease, transform 0.3s ease;
+                }
+
+                .moving-header-logo:hover {
+                  filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.9)) !important;
+                  transform: scale(1.1) !important;
+                  cursor: pointer;
+                }
         /* Ajustement pour mobile pour ne pas gêner la navigation */
         @media (max-width: 768px) {
           .whatsapp-float {
