@@ -342,13 +342,13 @@ object-assign
         .gold-button-premium {
           /* Dégradé 5 tons avec contrastes accentués */
           background: linear-gradient(
-            135deg,
-            #8A6426 0%,   /* Or Bronze sombre */
-            #D4AF37 25%,  /* Or Pur */
-            #FFF9AA 50%,  /* Éclat Blanc Or (le point brillant) */
-            #AA771C 75%,  /* Or Riche */
-            #8A6426 100%
-          ) !important;
+          135deg,
+          #BF953F 0%,   /* Or Bronze plus clair */
+          #FCF6BA 25%,  /* Éclat Or très clair */
+          #D4AF37 50%,  /* Or Pur */
+          #FBF5B7 75%,  /* Éclat */
+          #BF953F 100%
+        ) !important;
           background-size: 300% 300% !important; /* Plus de fluidité dans le mouvement */
           animation: liquidGold 6s ease infinite !important;
 
@@ -361,9 +361,8 @@ object-assign
           letter-spacing: 1.5px;
 
           /* Ombre portée et effet de biseau interne (ULTRA RÉALISTE) */
-          box-shadow: 0 4px 15px rgba(0,0,0,0.4), inset 0 0 10px rgba(255,255,255,0.5) !important;
+          box-shadow: 0 4px 15px rgba(0,0,0,0.3), inset 0 0 10px rgba(255,255,255,0.1) !important;
           transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-          cursor: pointer;
         }
 
         /* Le reflet miroir qui traverse le bouton */
