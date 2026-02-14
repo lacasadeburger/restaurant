@@ -539,12 +539,12 @@ export default function App() {
 })}
 </script>
 </Helmet>
-{/* --- LOGO ANIMÉ EN HAUT À DROITE --- */}
+{/* --- LOGO ANIMÉ EN HAUT À Gauche --- */}
 <div style={{
   position: 'fixed',
-  top: '15px',
-  right: '15px',
-  zIndex: 10002,      // Plus haut que la Nav et le bouton WhatsApp
+  top: '80px',
+  left: '15px',
+  zIndex: 999,      // Plus haut que la Nav et le bouton WhatsApp
   pointerEvents: 'none'
 }}>
   <img
