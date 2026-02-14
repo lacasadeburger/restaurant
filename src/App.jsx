@@ -516,16 +516,18 @@ export default function App() {
         @media (max-width: 768px) {
 
           .moving-header-logo {
-            height: 35px !important; /* On divise presque par deux la taille */
+            height: 50px !important; /* On divise presque par deux la taille */
             top: 100px !important;   /* On l'ajuste pour qu'il ne chevauche pas les drapeaux */
             left: 2px !important;   /* On le rapproche un peu du bord */
           }
 
           .wobble-badge.gold-button-premium {
-            font-size: 0.8rem !important; /* Texte plus petit */
-            padding: 6px 15px !important;
-            top: 40px !important;        /* Aligné avec le logo mais à droite */
-          }
+    font-size: 0.8rem !important;    /* Réduit la taille du texte */
+    padding: 6px 12px !important;    /* Réduit la hauteur et largeur du bouton */
+    top: 100px !important;           /* L'ajuste en hauteur pour éviter les collisions */
+    right: 5% !important;            /* Garde l'alignement à droite */
+    border-width: 2px !important;    /* Affine la bordure noire pour rester proportionnel */
+  }
 
           .whatsapp-float {
             bottom: 20px;
