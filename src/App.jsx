@@ -413,13 +413,65 @@ export default function App() {
         .pulse-gold-btn { animation: pulse-gold 2s infinite ease-in-out; }
         .pulse-badge { animation: pulse-gold 3s infinite ease-in-out; }
 
-        /* AJOUTE ÇA ICI */
+        /* 1. L'animation de balancement */
         @keyframes wobble-badge {
           0% { transform: rotate(8deg) scale(1.1); }
           50% { transform: rotate(-2deg) scale(1.15); }
           100% { transform: rotate(8deg) scale(1.1); }
         }
-        .wobble-badge { animation: wobble-badge 3s infinite ease-in-out; display: inline-block; }
+
+        /* 2. L'animation de l'or liquide */
+        @keyframes liquidGold {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
+
+        /* 3. L'application combinée sur le badge */
+        .wobble-badge.gold-button-premium {
+          display: inline-block;
+          /* ICI LE SECRET : On met les deux animations ensemble */
+          animation:
+            liquidGold 6s ease infinite,
+            wobble-badge 3s infinite ease-in-out !important;
+
+          /* On s'assure que le point d'ancrage est au centre pour la rotation */
+          transform-origin: center;
+        }
+
+        /* On garde le reste du style premium pour le badge */
+        .gold-button-premium {
+          background: linear-gradient(
+            135deg,
+            #8A6426 0%,
+            #D4AF37 25%,
+            #FFF9AA 50%,
+            #AA771C 75%,
+            #8A6426 100%
+          ) !important;
+          background-size: 300% 300% !important;
+          position: relative;
+          overflow: hidden;
+          box-shadow: 0 4px 15px rgba(0,0,0,0.4), inset 0 0 10px rgba(255,255,255,0.5) !important;
+        }
+
+        /* Le reflet miroir qui passe par dessus le mouvement */
+        .gold-button-premium::after {
+          content: "";
+          position: absolute;
+          top: -50%;
+          left: -150%;
+          width: 45%;
+          height: 200%;
+          background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 255, 255, 0.9),
+            transparent
+          );
+          transform: rotate(25deg);
+          animation: mirrorReflection 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        }
 
         /* BOUTON WHATSAPP FLOTTANT */
         .whatsapp-float {
