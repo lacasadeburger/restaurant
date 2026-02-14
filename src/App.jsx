@@ -524,7 +524,7 @@ export default function App() {
           .wobble-badge.gold-button-premium {
             font-size: 0.8rem !important; /* Texte plus petit */
             padding: 6px 15px !important;
-            top: 100px !important;        /* Aligné avec le logo mais à droite */
+            top: 75px !important;        /* Aligné avec le logo mais à droite */
           }
 
           .whatsapp-float {
