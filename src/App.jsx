@@ -616,10 +616,10 @@ export default function App() {
 </Helmet>
 {/* --- LOGO ANIMÉ EN HAUT À Gauche --- */}
 <div style={{
-  position: 'fixed',
+  position: 'absolute',
   top: '195px',
   left: '35px',
-  zIndex: 10002,      // Plus haut que la Nav et le bouton WhatsApp
+  zIndex: 99,      // Plus haut que la Nav et le bouton WhatsApp
   pointerEvents: 'none'
 }}>
   <img
@@ -627,7 +627,7 @@ export default function App() {
     alt="La Casa de Burger Logo"
     className="moving-header-logo"
     style={{
-      height: '75px',
+      height: '100px',
       width: 'auto',
       pointerEvents: 'auto',
       cursor: 'pointer',
