@@ -12,7 +12,7 @@
     "predeploy": "npm run build && echo lacasadeburger.es > ./dist/CNAME",
     "deploy": "gh-pages -d dist",
     "ovh-deploy": "npm run build && node deploy.js",
-    "ship": "git status && git add . && git commit -m \"Auto-update Burger App\" && git push origin main && npm run deploy && node deploy.js"
+    "ship": "git add . && git commit -m \"Auto-update Burger App\" && git push origin main && npm run deploy && node deploy.js"
   },
   "dependencies": {
     "gh": "^2.8.9",
