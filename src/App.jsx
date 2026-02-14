@@ -523,6 +523,28 @@ export default function App() {
 })}
 </script>
 </Helmet>
+{/* --- LOGO ANIMÉ EN HAUT À DROITE --- */}
+<div style={{
+  position: 'fixed',
+  top: '15px',
+  right: '15px',
+  zIndex: 10002,      // Plus haut que la Nav et le bouton WhatsApp
+  pointerEvents: 'none'
+}}>
+  <img
+    src={logo}
+    alt="La Casa de Burger Logo"
+    className="moving-header-logo"
+    style={{
+      height: '75px',
+      width: 'auto',
+      pointerEvents: 'auto',
+      cursor: 'pointer',
+      filter: 'drop-shadow(0 0 10px rgba(191,149,63,0.7))'
+    }}
+    onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})}
+  />
+</div>
 <Nav
   scrollToOrder={scrollToOrder}
   cartLength={cart.length}
