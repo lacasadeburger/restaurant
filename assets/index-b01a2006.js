@@ -318,7 +318,7 @@ object-assign
           .moving-header-logo {
             height: 45px !important; /* On divise presque par deux la taille */
             top: 100px !important;   /* On l'ajuste pour qu'il ne chevauche pas les drapeaux */
-            left: 15px !important;   /* On le rapproche un peu du bord */
+            left: 05px !important;   /* On le rapproche un peu du bord */
           }
 
           .wobble-badge.gold-button-premium {
