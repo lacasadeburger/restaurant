@@ -514,6 +514,11 @@ export default function App() {
 
         /* Ajustement pour mobile pour ne pas gêner la navigation */
         @media (max-width: 768px) {
+          .moving-header-logo {
+            height: 45px !important; /* On divise presque par deux la taille */
+            top: 100px !important;   /* On l'ajuste pour qu'il ne chevauche pas les drapeaux */
+            left: 15px !important;   /* On le rapproche un peu du bord */
+          }
           .whatsapp-float {
             bottom: 20px;
             right: 15px;
