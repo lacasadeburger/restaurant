@@ -314,11 +314,19 @@ object-assign
 
         /* Ajustement pour mobile pour ne pas gêner la navigation */
         @media (max-width: 768px) {
+
           .moving-header-logo {
             height: 45px !important; /* On divise presque par deux la taille */
             top: 100px !important;   /* On l'ajuste pour qu'il ne chevauche pas les drapeaux */
             left: 15px !important;   /* On le rapproche un peu du bord */
           }
+
+          .wobble-badge.gold-button-premium {
+            font-size: 0.8rem !important; /* Texte plus petit */
+            padding: 6px 15px !important;
+            top: 100px !important;        /* Aligné avec le logo mais à droite */
+          }
+
           .whatsapp-float {
             bottom: 20px;
             right: 15px;
