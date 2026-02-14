@@ -451,52 +451,81 @@ export default function App() {
             height: 55px;
           }
         }
-        /* --- EFFET OR PREMIUM DYNAMIQUE --- */
-@keyframes goldShine {
-  to { background-position: 200% center; }
-}
+        /* --- EFFET OR PREMIUM DYNAMIQUE (Version Orion) --- */
 
-@keyframes goldReflection {
-  0% { left: -60%; }
-  30% { left: 120%; }
-  100% { left: 120%; }
-}
+  /* 1. Mouvement du dégradé de fond (coule comme de l'or liquide) */
+  @keyframes goldShine {
+    0% { background-position: 0% center; }
+    100% { background-position: 200% center; }
+  }
 
-.gold-button-premium {
-  background: linear-gradient(
-    135deg,
-    #BF953F 0%,
-    #FCF6BA 25%,
-    #B38728 50%,
-    #FBF5B7 75%,
-    #AA771C 100%
-  ) !important;
-  background-size: 200% auto !important;
-  animation: goldShine 6s linear infinite !important;
-  position: relative;
-  overflow: hidden;
-  color: #000 !important;
-  border: 2px solid #000 !important;
-  transition: all 0.3s ease;
-  font-weight: 950 !important;
-}
+  /* 2. Passage du flash lumineux blanc */
+  @keyframes goldReflection {
+    0% { left: -60%; }
+    35% { left: 125%; }
+    100% { left: 125%; }
+  }
 
-.gold-button-premium::after {
-  content: "";
-  position: absolute;
-  top: -50%;
-  left: -60%;
-  width: 20%;
-  height: 200%;
-  background: rgba(255, 255, 255, 0.4);
-  transform: rotate(30deg);
-  animation: goldReflection 3s infinite;
-}
+  .gold-button-premium {
+    /* Dégradé 5 tons Premium */
+    background: linear-gradient(
+      135deg,
+      #BF953F 0%,
+      #FCF6BA 25%,
+      #B38728 50%,
+      #FBF5B7 75%,
+      #AA771C 100%
+    ) !important;
+    background-size: 200% auto !important;
 
-.gold-button-premium:hover {
-  transform: scale(1.05) translateY(-2px);
-  box-shadow: 0 10px 20px rgba(191, 149, 63, 0.6) !important;
-}
+    /* Animation du fond */
+    animation: goldShine 4s linear infinite !important;
+
+    position: relative;
+    overflow: hidden; /* Indispensable pour couper le reflet aux bords */
+
+    /* Style du texte et bordures */
+    color: #000 !important;
+    border: 2px solid #000 !important;
+    font-weight: 950 !important;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+
+    /* Interaction */
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  }
+
+  /* Le trait de lumière blanche qui traverse */
+  .gold-button-premium::after {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 30%; /* Légèrement plus large pour un plus beau reflet */
+    height: 200%;
+    background: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.6) 50%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    transform: rotate(25deg);
+    animation: goldReflection 3s ease-in-out infinite;
+  }
+
+  /* Effet au survol */
+  .gold-button-premium:hover {
+    transform: scale(1.05) translateY(-3px) !important;
+    box-shadow: 0 12px 25px rgba(191, 149, 63, 0.5) !important;
+    filter: brightness(1.1);
+  }
+
+  /* Effet au clic */
+  .gold-button-premium:active {
+    transform: scale(0.98);
+  }
       `}</style>
 
       <Helmet>
@@ -682,7 +711,7 @@ export default function App() {
     setShowCardBurger(true);
     setTimeout(() => scrollToId("sec-burgers"), 150);
   }}
-  className="pulse-gold-btn"
+  className="gold-button-premium"
   style={{
     background: GOLD_GRADIENT,
     color: '#000',
