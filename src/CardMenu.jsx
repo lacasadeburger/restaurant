@@ -1,14 +1,18 @@
-import React, { useState, useMemo, useEffect } from "react";
+import React, { useState, useMemo } from "react";
 import bgCard from "./assets/bg-c.jpg";
 
 export default function CardMenu(props) {
-  // CORRECTIF 1 : On s'assure de récupérer 'name' et 'object' pour ne rien casser
+  // 1. RÉCUPÉRATION DES PROPS (On garde 'name' et 'object' pour la compatibilité)
   const { image, name, object, description, precio, addToCart, isDrinkCard, isPostreCard, lang, hasExtras } = props;
 
-  const GOLD_GRADIENT = "linear-gradient(135deg, #BF953F 0%, #FCF6BA 45%, #B38728 55%, #FBF5B7 100%)";
-  const GOLD_BRIGHT = "#FFD700";
+  // 2. STABILISATION DU NOM (Empêche la disparition au re-rendu)
+  const stableName = useMemo(() => {
+    if (typeof name === 'object') return name[lang] || name['es'];
+    if (typeof object === 'object') return object[lang] || object['es'];
+    return name || object || "Producto";
+  }, [name, object, lang]);
 
-  // --- 1. SYSTÈME DE TRADUCTION SÉCURISÉ (11 LANGUES) ---
+  // 3. SYSTÈME DE TRADUCTION (DICTIONNAIRE COMPLET CONSERVÉ)
   const t = {
     extra: { es: "Extras", en: "Extras", fr: "Suppléments", de: "Extras", ru: "Добавки", uk: "Додатки", pl: "Dodatki", no: "Ekstra", sv: "Tillval", ro: "Extra", ar: "إضافات" },
     remove: { es: "Quitar", en: "Remove", fr: "Retirer", de: "Entfernen", ru: "Убрать", uk: "Прибрати", pl: "Usuń", no: "Fjern", sv: "Ta bort", ro: "Elimină", ar: "إزالة" },
@@ -16,8 +20,8 @@ export default function CardMenu(props) {
     ready: { es: "¡LISTO!", en: "READY!", fr: "PRÊT !", de: "FERTIG!", ru: "ГОТОВО!", uk: "ГОТОВО!", pl: "GOTOWE!", no: "KLAR!", sv: "KLAR!", ro: "GATA!", ar: "جاهز!" },
     ingredients: {
       "Extra Huevo": { es: "Extra Huevo", en: "Extra Egg", fr: "Œuf suppl.", de: "Extra Ei", ru: "Доп. яйцо", uk: "Дод. яйце", pl: "Dodatkowe jajko", no: "Ekstra egg", sv: "Extra ägg", ro: "Ou în plus", ar: "بيضة إضافية" },
-      "Extra Carne y Queso": { es: "Extra Carne y Queso", en: "Extra Meat & Cheese", fr: "Viande & Fromage suppl.", de: "Extra Fleisch & Käse", ru: "Доп. мясо и сыр", uk: "Дод. м'ясо та сир", pl: "Dodatkowe mięso i ser", no: "Ekstra kjøtt og ost", sv: "Extra kött och ost", ro: "Carne și brânză în plus", ar: "لحم وجبن إضافي" },
-      "Extra Tocino": { es: "Extra Tocino", en: "Extra Bacon", fr: "Bacon suppl.", de: "Extra Speck", ru: "Доп. бекон", uk: "Дод. бекон", pl: "Dodatkowy bekon", no: "Ekstra bacon", sv: "Extra bacon", ro: "Bacon în plus", ar: "لحم مقدد إضافي" },
+      "Extra Carne y Queso": { es: "Extra Carne y Queso", en: "Extra Meat & Cheese", fr: "Viande & Fromage suppl.", de: "Extra Fleisch & Käse", ru: "Доп. мясо и сыр", uk: "Дод. m'ясо та сир", pl: "Dodatkowe mięso i ser", no: "Ekstra kjøtt og ost", sv: "Extra kött och ost", ro: "Carne și brânză în plus", ar: "لحم وجبن إضافي" },
+      "Extra Tocino": { es: "Extra Tocino", en: "Extra Bacon", fr: "Bacon suppl.", de: "Extra Speck", ru: "Доп. бекон", uk: "Дод. бекон", pl: "Dodatkowy bekon", no: "Ekstra bacon", sv: "Extra bacon", ro: "Bacon în plus", ar: "لحm مقدد إضافي" },
       "Salsa Picante": { es: "Salsa Picante", en: "Hot Sauce", fr: "Sauce Piquante", de: "Scharfe Sauce", ru: "Острый соус", uk: "Гострий соус", pl: "Ostry sos", no: "Sterk saus", sv: "Stark sås", ro: "Sos iute", ar: "صلصة حارة" },
       "Tomate": { es: "Tomate", en: "Tomato", fr: "Tomate", de: "Tomate", ru: "Помидор", uk: "Помідор", pl: "Pomidor", no: "Tomat", sv: "Tomat", ro: "Roșie", ar: "طماطم" },
       "Lechuga": { es: "Lechuga", en: "Lettuce", fr: "Laitue", de: "Salat", ru: "Салат", uk: "Салат", pl: "Sałata", no: "Salat", sv: "Sallad", ro: "Salată", ar: "خس" },
@@ -34,12 +38,7 @@ export default function CardMenu(props) {
     } catch (e) { return subKey || key; }
   };
 
-  // CORRECTIF 2 : Sécurité pour le titre (évite l'écran noir si 'name' est un objet)
-  const currentName = useMemo(() => {
-    if (typeof name === 'object') return name[lang] || name['es'];
-    return name || object || "Producto";
-  }, [name, object, lang]);
-
+  // 4. LISTES ET ÉTATS
   const extrasList = [
     { id: "Extra Huevo", name: getT("ingredients", "Extra Huevo"), price: 1.00 },
     { id: "Extra Carne y Queso", name: getT("ingredients", "Extra Carne y Queso"), price: 4.50 },
@@ -59,6 +58,7 @@ export default function CardMenu(props) {
   const [removedIngredients, setRemovedIngredients] = useState([]);
   const [isAdded, setIsAdded] = useState(false);
 
+  // 5. CALCUL DU PRIX
   const totalPrice = useMemo(() => {
     const numericValue = String(precio).replace(/[^0-9.,]/g, "").replace(",", ".");
     const base = parseFloat(numericValue) || 0;
@@ -72,19 +72,23 @@ export default function CardMenu(props) {
   const toggleExtra = (id) => setExtraIngredients(prev => prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id]);
   const toggleRemove = (id) => setRemovedIngredients(prev => prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id]);
 
+  // 6. ACTION D'AJOUT AU PANIER
   const handleAddClick = () => {
     const itemToAdd = {
       ...props,
       precio: `${totalPrice}€`,
-      // CORRECTIF 3 : On utilise currentName pour le panier
       object: extraIngredients.length > 0
-        ? `${currentName} (+${extraIngredients.map(id => getT("ingredients", id)).join(", ")})`
-        : currentName,
+        ? `${stableName} (+${extraIngredients.map(id => getT("ingredients", id)).join(", ")})`
+        : stableName,
       removed: removedIngredients.map(id => getT("ingredients", id))
     };
     addToCart(itemToAdd);
     setIsAdded(true);
-    setTimeout(() => { setIsAdded(false); setExtraIngredients([]); setRemovedIngredients([]); }, 800);
+    setTimeout(() => {
+      setIsAdded(false);
+      setExtraIngredients([]);
+      setRemovedIngredients([]);
+    }, 800);
   };
 
   return (
@@ -113,14 +117,16 @@ export default function CardMenu(props) {
 
       <div className="image-container">
         <div className="price-badge-overlay">{totalPrice}€</div>
-        <img src={image} alt={currentName} className="product-img" loading="lazy" />
+        <img src={image} alt={stableName} className="product-img" loading="lazy" />
       </div>
 
       <div className="card-content" style={{ padding: '5px' }}>
         <div className="info-box">
-          <h3 className="card-title" translate="no">{currentName}</h3>
+          <h3 className="card-title" translate="no">
+            {stableName}
+          </h3>
           <p className="card-description">
-            {typeof description === 'object' ? (description[lang] || description['es']) : description}
+            {typeof description === 'object' ? (description[lang] || description['es']) : (description || "")}
           </p>
         </div>
 
