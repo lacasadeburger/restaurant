@@ -565,7 +565,7 @@ export default function App() {
           #BF953F 100%
         ) !important;
           background-size: 300% 300% !important; /* Plus de fluidité dans le mouvement */
-          animation: liquidGold 6s ease infinite !important;
+          animation: liquidGold 2s ease infinite !important;
 
           position: relative;
           overflow: hidden;
