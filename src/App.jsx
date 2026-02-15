@@ -504,7 +504,7 @@ export default function App() {
 /* Style pour la boîte du logo sur ORDINATEUR */
 .logo-container-wrapper {
   position: absolute;
-  top: 190px;       /* Sur PC, il se place sous la barre noire simple */
+  top: 205px;       /* Sur PC, il se place sous la barre noire simple */
   left: 35px;
   z-index: 99;
   pointer-events: none;
