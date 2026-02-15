@@ -97,37 +97,87 @@ export default function CardMenu(props) {
       position: "relative", padding: "10px", border: "1px solid rgba(255, 215, 0, 0.2)",
       boxShadow: "0 10px 30px rgba(0,0,0,0.5)", overflow: "hidden"
     }}>
-      <style>{`
-        .image-container { width: 100%; height: 160px; display: flex; align-items: center; justify-content: center; position: relative; }
-        .product-img { width: 85%; height: 85%; object-fit: contain; z-index: 2; filter: drop-shadow(0 10px 10px rgba(0,0,0,0.5)); }
+    <style>{`
+        /* 1. DÉFINITION DE L'ANIMATION (Crucial pour que ça bouge) */
+        @keyframes liquidGold {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
+
+        .image-container {
+          width: 100%; height: 160px; display: flex;
+          align-items: center; justify-content: center; position: relative;
+        }
+
+        .product-img {
+          width: 85%; height: 85%; object-fit: contain; z-index: 2;
+          filter: drop-shadow(0 10px 15px rgba(0,0,0,0.6));
+        }
+
         .price-badge-overlay {
           position: absolute; top: 10px; right: 10px; background: #ff4757; color: white;
-          padding: 5px 12px; border-radius: 6px; font-weight: 950; font-size: 1.3rem;
-          z-index: 10; border: 2.5px solid ${GOLD_BRIGHT}; box-shadow: 3px 3px 0px #000;
+          padding: 5px 12px; border-radius: 8px; font-weight: 950; font-size: 1.3rem;
+          z-index: 10; border: 2.5px solid #D4AF37; box-shadow: 3px 3px 0px #000;
           transform: rotate(5deg);
         }
+
         .info-box, .options-box {
-          background: rgba(0, 0, 0, 0.8); padding: 12px; border-radius: 10px;
-          border: 1.5px solid rgba(255, 215, 0, 0.15); backdrop-filter: blur(5px); margin-bottom: 10px;
+          background: rgba(0, 0, 0, 0.85); padding: 12px; border-radius: 12px;
+          border: 1.5px solid rgba(191, 149, 63, 0.4); backdrop-filter: blur(8px); margin-bottom: 10px;
         }
-        .card-title { font-size: 1.3rem; font-weight: 950; color: ${GOLD_BRIGHT}; text-transform: uppercase; margin: 0; }
-        .card-description { font-size: 0.85rem; color: #fff; margin-top: 5px; line-height: 1.3; }
+
+        .card-title {
+          font-size: 1.3rem; font-weight: 950; color: #FFD700 !important;
+          text-transform: uppercase; margin: 0;
+          text-shadow: 2px 2px 4px rgba(0,0,0,0.9);
+        }
+
+        .card-description {
+          font-size: 0.85rem; color: #ffffff !important;
+          margin-top: 5px; line-height: 1.3; opacity: 0.9;
+        }
+
         .option-group-label {
-            font-size: 0.65rem; font-weight: 950; text-transform: uppercase;
-            background: ${GOLD_GRADIENT}; color: #000; padding: 2px 8px;
-            display: inline-block; margin: 8px 0 5px; border-radius: 3px;
+          font-size: 0.65rem; font-weight: 950; text-transform: uppercase;
+          background: linear-gradient(135deg, #BF953F 0%, #FCF6BA 50%, #BF953F 100%);
+          color: #000; padding: 2px 8px; display: inline-block; margin: 8px 0 5px; border-radius: 4px;
         }
+
         .chips-container { display: flex; flex-wrap: wrap; gap: 5px; }
-        .chip { padding: 5px 8px; border-radius: 4px; font-size: 0.65rem; font-weight: 800; cursor: pointer; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.1); color: #fff; }
-        .chip.active { background: ${GOLD_GRADIENT} !important; color: #000 !important; font-weight: 950; }
-        .chip.remove.active { background: #ff4757 !important; color: #fff !important; text-decoration: line-through; }
-        .add-btn-gold {
-          width: 100%; background: ${GOLD_GRADIENT}; color: #000; border: 2.5px solid #000;
-          padding: 12px; font-weight: 950; cursor: pointer; text-transform: uppercase;
-          border-radius: 10px; font-size: 1rem; transition: 0.1s;
-          display: flex; justify-content: space-between; align-items: center;
+
+        .chip {
+          padding: 6px 10px; border-radius: 6px; font-size: 0.7rem; font-weight: 800;
+          cursor: pointer; border: 1px solid rgba(255,255,255,0.2);
+          background: rgba(255,255,255,0.05); color: #fff; transition: 0.2s;
         }
-        .add-btn-gold.success { background: #2ed573 !important; color: white !important; justify-content: center; }
+
+        .chip.active {
+          background: linear-gradient(135deg, #BF953F 0%, #FCF6BA 50%, #BF953F 100%) !important;
+          color: #000 !important; font-weight: 950; border: 1px solid #000;
+        }
+
+        .chip.remove.active {
+          background: #ff4757 !important; color: #fff !important;
+          text-decoration: line-through; border: 1px solid #000;
+        }
+
+        .add-btn-gold {
+          width: 100%;
+          background: linear-gradient(135deg, #BF953F 0%, #FCF6BA 25%, #D4AF37 50%, #FBF5B7 75%, #BF953F 100%) !important;
+          background-size: 300% 300% !important;
+          animation: liquidGold 6s ease infinite !important;
+          color: #000 !important; border: 2.5px solid #000 !important;
+          padding: 14px; font-weight: 950; cursor: pointer; text-transform: uppercase;
+          border-radius: 12px; font-size: 1.1rem; display: flex;
+          justify-content: space-between; align-items: center;
+          box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .add-btn-gold.success {
+          background: #2ed573 !important; color: white !important;
+          justify-content: center; animation: none !important;
+        }
       `}</style>
 
       <div className="image-container">
