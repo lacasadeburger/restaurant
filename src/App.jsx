@@ -631,9 +631,9 @@ export default function App() {
 
       <Helmet>
   <link rel="preload" as="image" href={BurgerSignature} />
-  <title>La Casa de Burger | Hamburguesas Gourmet Artesanales & Recetas Únicas en Torrevieja</title>
-  <meta name="description" content="Especialistas en hamburguesas gourmet de autor y recetas artesanales únicas en Torrevieja. Carne premium, pan artesano y nuestras famosas Smashburgers. ¡Pide online!" />
-  <meta name="keywords" content="hamburguesería gourmet Torrevieja, burger artesanal, recetas únicas, smash burger torrevieja, comida domicilio torrevieja, takeaway, halal burger torrevieja, gluten free burger" />
+  <title>Hamburguesería en Torrevieja | La Casa de Burger | Hamburguesas Gourmet</title>
+  <meta name="description" content="Descubre la mejor hamburguesería en Torrevieja. Especialistas en burgers gourmet de autor, Smash Burgers y carne premium. Calidad artesanal y sabor único. ¡Haz tu pedido online ahora!" />
+  <meta name="keywords" content="burger Torrevieja, hamburguesería Torrevieja, mejor hamburguesa Torrevieja, hamburguesas gourmet, smash burger Torrevieja, comida a domicilio Torrevieja, takeaway Torrevieja, halal burger, gluten free burger" />
   <link rel="canonical" href="https://lacasadeburger.es" />
   <meta name="robots" content="index, follow" />
 
@@ -1002,8 +1002,8 @@ style={{
         {/* BLOC SEO MULTILINGUE (11 LANGUES) */}
         <div style={{ maxWidth: '1100px', margin: '0 auto 100px', padding: '0 20px' }}>
           <div style={{ backgroundColor: '#0a0a0a', padding: '35px', borderRadius: '15px', border: '1px solid #222', textAlign: 'justify' }}>
-            <div style={{ color: '#888', fontSize: '0.75rem', lineHeight: '1.6', margin: 0 }}>
-              <p><strong>🇪🇸 ESPAÑOL:</strong> <strong>La Casa de Burger</strong> – El <strong>mejor restaurante de hamburguesas gourmet en Torrevieja</strong>. Especialistas en <strong>Smash Burgers</strong>, carne de ternera premium y buey. Si buscas comida a domicilio (delivery) o una experiencia artesanal cerca del puerto o Playa del Cura, somos tu elección número uno.</p>
+            <div style={{ color: '#aaa', fontSize: '0.85rem', lineHeight: '1.6', margin: 0 }}>
+              <p><strong>🇪🇸 ESPAÑOL:</strong> <strong>La Casa de Burger</strong> – Tu <strong>hamburguesería</strong> de referencia y el mejor restaurante de <strong>burger en Torrevieja</strong>. Especialistas en <strong>Smash Burgers</strong>, carne de ternera premium y buey. Si buscas la mejor experiencia de <strong>burger en Torrevieja</strong> (centro, puerto o Playa del Cura) o <strong>comida a domicilio (delivery)</strong>, somos tu elección número uno.</p>
               <p><strong>🇬🇧 ENGLISH:</strong> <strong>Best gourmet burgers in Torrevieja</strong>. We serve authentic <strong>Smash Burgers</strong> and premium aged beef. The highest-rated burger joint for delivery and takeout near the city center and beaches.</p>
               <p><strong>🇳🇴 NORSK:</strong> <strong>Beste gourmetburger i Torrevieja</strong>. Opplev de saftigste <strong>Smash Burgers</strong> med modnet storfekjøtt av høyeste kvalitet. Vi tilbyr hjemlevering i hele Torrevieja.</p>
               <p><strong>🇵🇱 POLSKI:</strong> <strong>Najlepsze burgery gourmet w Torrevieja</strong>. Specjalizujemy się w <strong>Smash Burgers</strong> z sezonowanej wołowiny premium. Zamów z dostawą do domu w Torrevieja i okolicach.</p>
