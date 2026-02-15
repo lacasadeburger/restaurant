@@ -291,38 +291,48 @@ object-assign
           transform: scale(1.1);
         }
 
-        /* ANIMATION DU LOGO EN HAUT À GAUCHE */
+        /* --- ANIMATION DU LOGO EN HAUT À GAUCHE --- */
 @keyframes logoFloat {
   0% { transform: translateY(0px) rotate(0deg); }
   50% { transform: translateY(-8px) rotate(3deg); }
   100% { transform: translateY(0px) rotate(0deg); }
 }
 
+/* Style pour la boîte du logo sur ORDINATEUR */
+.logo-container-wrapper {
+  position: absolute;
+  top: 120px;       /* Sur PC, il se place sous la barre noire simple */
+  left: 35px;
+  z-index: 99;
+  pointer-events: none;
+}
+
 .moving-header-logo {
   animation: logoFloat 3s ease-in-out infinite;
   transition: filter 0.3s ease, transform 0.3s ease;
+  height: 100px;    /* Taille sur PC */
+  width: auto;
+  pointer-events: auto;
+  cursor: pointer;
 }
 
 .moving-header-logo:hover {
   filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.9)) !important;
   transform: scale(1.1) !important;
-  cursor: pointer;
 }
 
-/* Ajustement pour mobile : C'est ici que ça change ! */
+/* --- AJUSTEMENT MOBILE (Écrans < 768px) --- */
 @media (max-width: 768px) {
-
-  /* On déplace LE CONTENEUR (la boîte) */
   .logo-container-wrapper {
-    top: 220px !important; /* On descend sous le bandeau promo */
+    /* Sur mobile, on descend à 220px pour laisser passer Nav + Drapeaux + Bandeau Or */
+    top: 220px !important;
     left: 10px !important;
     position: absolute !important;
   }
 
-  /* On ajuste LA TAILLE de l'image */
   .moving-header-logo {
-    height: 55px !important;
-    top: 0 !important; /* On force le top à 0 pour l'image car c'est le conteneur qui fait le travail */
+    height: 55px !important; /* On réduit la taille pour mobile */
+    top: 0 !important;
   }
 }
 
