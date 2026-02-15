@@ -338,9 +338,9 @@ export default function App() {
     }
   };
 
-  const burgers = data.filter(i => i.category === "food");
-  const drinks = data.filter(i => i.category === "drink");
-  const postres = data.filter(i => i.category === "postre");
+  const burgers = useMemo(() => data.filter(i => i.category === "food"), []);
+  const drinks = useMemo(() => data.filter(i => i.category === "drink"), []);
+  const postres = useMemo(() => data.filter(i => i.category === "postre"), []);
 
   const GOLD_BRIGHT = "#FFD700";
   const GOLD_GRADIENT = "linear-gradient(135deg, #BF953F 0%, #FCF6BA 45%, #B38728 55%, #FBF5B7 100%)";
