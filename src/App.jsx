@@ -432,7 +432,7 @@ export default function App() {
           display: inline-block;
           /* ICI LE SECRET : On met les deux animations ensemble */
           animation:
-            liquidGold 6s ease infinite,
+            liquidGold 3s ease infinite,
             wobble-badge 3s infinite ease-in-out !important;
 
           /* On s'assure que le point d'ancrage est au centre pour la rotation */
