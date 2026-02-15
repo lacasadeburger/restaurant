@@ -718,7 +718,7 @@ export default function App() {
 {/* --- LOGO ANIMÉ EN HAUT À Gauche --- */}
 <div className="logo-container-wrapper" style={{
   position: 'absolute',
-  top: '120px', // Position par défaut pour la version Ordinateur
+  /* top supprimé ici pour laisser le bloc <style> piloter (190px PC / 225px Mobile) */
   left: '35px',
   zIndex: 99,
   pointerEvents: 'none'
