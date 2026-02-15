@@ -18,7 +18,7 @@ import BurgerSignature from "./assets/burger-signature-torrevieja.webp";
 
 const T = {
   es: {
-    heroTitle: "La Mejor Hamburguesa",
+    heroTitle: "La Mejor Hamburguesa en Torrevieja",
     heroSubtitle: "Hamburguesería Gourmet : Burgers Gourmet y Smash Burgers con Carne de Ternera Premium",
     btnOrder: "PEDIR A DOMICILIO",
     btnCall: "LLAMAR",
