@@ -494,32 +494,40 @@ export default function App() {
           transform: scale(1.1);
         }
 
-        /* ANIMATION DU LOGO EN HAUT À DROITE */
-        @keyframes logoFloat {
-          0% { transform: translateY(0px) rotate(0deg); }
-          50% { transform: translateY(-8px) rotate(3deg); }
-          100% { transform: translateY(0px) rotate(0deg); }
-        }
+        /* ANIMATION DU LOGO EN HAUT À GAUCHE */
+@keyframes logoFloat {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(3deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
 
-        .moving-header-logo {
-          animation: logoFloat 3s ease-in-out infinite;
-          transition: filter 0.3s ease, transform 0.3s ease;
-        }
+.moving-header-logo {
+  animation: logoFloat 3s ease-in-out infinite;
+  transition: filter 0.3s ease, transform 0.3s ease;
+}
 
-        .moving-header-logo:hover {
-          filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.9)) !important;
-          transform: scale(1.1) !important;
-          cursor: pointer;
-        }
+.moving-header-logo:hover {
+  filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.9)) !important;
+  transform: scale(1.1) !important;
+  cursor: pointer;
+}
 
-        /* Ajustement pour mobile pour ne pas gêner la navigation */
-        @media (max-width: 768px) {
+/* Ajustement pour mobile : C'est ici que ça change ! */
+@media (max-width: 768px) {
 
-          .moving-header-logo {
-            height: 50px !important; /* On divise presque par deux la taille */
-            top: 210px !important;   /* On l'ajuste pour qu'il ne chevauche pas les drapeaux */
-            left: 2px !important;   /* On le rapproche un peu du bord */
-          }
+  /* On déplace LE CONTENEUR (la boîte) */
+  .logo-container-wrapper {
+    top: 220px !important; /* On descend sous le bandeau promo */
+    left: 10px !important;
+    position: absolute !important;
+  }
+
+  /* On ajuste LA TAILLE de l'image */
+  .moving-header-logo {
+    height: 55px !important;
+    top: 0 !important; /* On force le top à 0 pour l'image car c'est le conteneur qui fait le travail */
+  }
+}
 
           .wobble-badge.gold-button-premium {
     font-size: 0.6rem !important;    /* Réduit la taille du texte */
@@ -698,11 +706,11 @@ export default function App() {
 </script>
 </Helmet>
 {/* --- LOGO ANIMÉ EN HAUT À Gauche --- */}
-<div style={{
+<div className="logo-container-wrapper" style={{
   position: 'absolute',
-  top: '195px',
+  top: '120px', // Position par défaut pour la version Ordinateur
   left: '35px',
-  zIndex: 99,      // Plus haut que la Nav et le bouton WhatsApp
+  zIndex: 99,
   pointerEvents: 'none'
 }}>
   <img
