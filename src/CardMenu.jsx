@@ -219,7 +219,7 @@ export default function CardMenu(props) {
       </div>
 
       <div className="card-footer" style={{ marginTop: 'auto', paddingBottom: '10px' }}>
-        <button className={`add-btn-gold ${isAdded ? 'success' : ''}`} onClick={handleAddClick}>
+        <button className={`add-btn-gold gold-button-premium ${isAdded ? 'success' : ''}`} onClick={handleAddClick}>
           {isAdded ? <span>{getT("ready")}</span> : (
             <>
               <span>{getT("add")}</span>
