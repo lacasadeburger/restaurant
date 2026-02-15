@@ -13,17 +13,17 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang, setLa
 
   // --- 2. DICTIONNAIRE DES TRADUCTIONS DU BANDEAU ---
   const promoTexts = {
-    es: "PRECIOS 10% A 20% MÁS BARATOS EN EL LOCAL",
-    fr: "PRIX 10% À 20% MOINS CHERS AU RESTAURANT",
-    en: "10% TO 20% CHEAPER PRICES AT THE RESTAURANT",
-    de: "10% BIS 20% GÜNSTIGERE PREISE IM RESTAURANT",
-    no: "10% TIL 20% BILLIGERE PRISER I RESTAURANTEN",
-    sv: "10% TILL 20% BILLIGARE PRISER I RESTAURANTEN",
-    pl: "CENY O 10-20% TAŃSZE W RESTAURACJI",
-    uk: "ЦІНИ НА 10-20% ДЕШЕВШЕ В РЕСТОРАНІ",
-    ru: "ЦЕНЫ НА 10-20% ДЕШЕВЛЕ В РЕСТОРАНЕ",
-    ro: "PREȚURI CU 10-20% MAI MICI ÎN RESTAURANT",
-    ar: "أسعار أرخص بنسبة 10 إلى 20 بالمائة في المطعم"
+    es: "AHORRE HASTA UN 20% A VISITARNOS",
+    fr: "ÉCONOMISEZ JUSQU'À 20% EN NOUS VISITANT",
+  en: "SAVE UP TO 20% BY VISITING US",
+  de: "SPAREN SIE BIS ZU 20% BEI IHREM BESUCH",
+  no: "SPAR OPPTIL 20% VED Å BESØKE OSS",
+  sv: "SPARA UPP TILL 20% VID DITT BESÖK",
+  pl: "ZAOSZCZĘDŹ DO 20% ODWIEDZAJĄC NAS",
+  uk: "ЗЕКОНОМТЕ ДО 20% ПРИ ВІЗИТІ ДО НАС",
+  ru: "СЭКОНОМЬТЕ ДО 20% ПРИ ПОСЕЩЕНИИ",
+  ro: "ECONOMISIȚI PÂNĂ LA 20% VIZITÂNDU-NE",
+  ar: "وفر حتى 20% عند زيارتنا"
   };
 
   // --- 3. CONSTANTES DE STYLE ---
