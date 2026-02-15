@@ -1,21 +1,32 @@
 import React from "react";
 
 export default function Nav({ scrollToOrder, cartLength, totalPrice, lang, setLang }) {
-  // --- 1. LOGIQUE DE TEMPS (Vérifiée pour Dimanche) ---
+  // --- 1. LOGIQUE DE TEMPS (Fermé le Dimanche) ---
   const now = new Date();
-  const day = now.getDay(); // 0 = Dimanche, 1 = Lundi, etc.
+  const day = now.getDay(); // 0 = Dimanche
   const currentHour = now.getHours() + now.getMinutes() / 60;
 
-  // Définition : Fermé le dimanche (day === 0)
   const isSunday = (day === 0);
-  // Définition : Ouvert entre 13h00 et 22h30
   const isWorkingHours = currentHour >= 13 && currentHour < 22.5;
-
-  // État final : Ouvert seulement si (Heures OK) ET (Pas Dimanche)
   const isOpen = isWorkingHours && !isSunday;
   const statusColor = isOpen ? '#2ed573' : '#ff4757';
 
-  // --- 2. CONSTANTES DE STYLE ---
+  // --- 2. DICTIONNAIRE DES TRADUCTIONS DU BANDEAU ---
+  const promoTexts = {
+    es: "PRECIOS 10% A 20% MÁS BARATOS EN EL LOCAL",
+    fr: "PRIX 10% À 20% MOINS CHERS AU RESTAURANT",
+    en: "10% TO 20% CHEAPER PRICES AT THE RESTAURANT",
+    de: "10% BIS 20% GÜNSTIGERE PREISE IM RESTAURANT",
+    no: "10% TIL 20% BILLIGERE PRISER I RESTAURANTEN",
+    sv: "10% TILL 20% BILLIGARE PRISER I RESTAURANTEN",
+    pl: "CENY O 10-20% TAŃSZE W RESTAURACJI",
+    uk: "ЦІНИ НА 10-20% ДЕШЕВШЕ В РЕСТОРАНІ",
+    ru: "ЦЕНЫ НА 10-20% ДЕШЕВЛЕ В РЕСТОРАНЕ",
+    ro: "PREȚURI CU 10-20% MAI MICI ÎN RESTAURANT",
+    ar: "أسعار أرخص بنسبة 10 إلى 20 بالمائة في المطعم"
+  };
+
+  // --- 3. CONSTANTES DE STYLE ---
   const GOLD_GRADIENT = "linear-gradient(135deg, #BF953F 0%, #FCF6BA 45%, #B38728 55%, #FBF5B7 100%)";
   const GOLD_BRIGHT = "#FFD700";
   const VIBRANT_RED = "#ff4757";
@@ -63,7 +74,7 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang, setLa
           </a>
         </div>
 
-        {/* CENTRE : STATUT (OUVERT / FERMÉ) */}
+        {/* CENTRE : STATUT */}
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <div style={{
             width: '8px', height: '8px', backgroundColor: statusColor, borderRadius: '50%',
@@ -91,7 +102,7 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang, setLa
         </div>
       </nav>
 
-      {/* SÉLECTEUR DE LANGUES (Espace pour compenser la nav fixe) */}
+      {/* SÉLECTEUR DE LANGUES */}
       <div style={{
         marginTop: '80px',
         display: 'flex', justifyContent: 'center', gap: '6px', padding: '12px 8px',
@@ -121,26 +132,24 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang, setLa
         ))}
       </div>
 
-      {/* BANDEAU PROMO RESTAURANT */}
+      {/* BANDEAU PROMO RESTAURANT (Multi-langues) */}
       <div style={{
         background: 'linear-gradient(to right, #000, #1a1a1a, #000)',
         color: '#fff',
         textAlign: 'center',
         padding: '10px 8px',
         borderBottom: `2px solid ${GOLD_BRIGHT}`,
-        fontSize: '0.85rem',
+        fontSize: '0.82rem', // Légèrement réduit pour faire tenir les langues longues (ex: Allemand)
         fontWeight: '900',
         display: 'block',
         width: '100%',
         boxSizing: 'border-box',
-        letterSpacing: '0.5px',
+        letterSpacing: '0.3px',
         position: 'relative',
         zIndex: 9998
       }}>
         <span style={{ color: GOLD_BRIGHT }}>★</span>
-        {lang === 'fr' ? " PRIX 10% À 20% MOINS CHERS AU RESTAURANT " :
-         lang === 'es' ? " PRECIOS 10% A 20% MÁS BARATOS EN EL LOCAL " :
-         " 10% TO 20% CHEAPER PRICES AT THE RESTAURANT "}
+        {` ${promoTexts[lang] || promoTexts.en} `}
         <span style={{ color: GOLD_BRIGHT }}>★</span>
       </div>
     </>
