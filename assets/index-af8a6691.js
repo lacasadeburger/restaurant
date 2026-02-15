@@ -314,7 +314,7 @@ object-assign
 
           .moving-header-logo {
             height: 50px !important; /* On divise presque par deux la taille */
-            top: 90px !important;   /* On l'ajuste pour qu'il ne chevauche pas les drapeaux */
+            top: 150px !important;   /* On l'ajuste pour qu'il ne chevauche pas les drapeaux */
             left: 2px !important;   /* On le rapproche un peu du bord */
           }
 
