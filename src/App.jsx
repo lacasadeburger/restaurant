@@ -633,6 +633,7 @@ export default function App() {
   <link rel="preload" as="image" href={BurgerSignature} />
   <title>Hamburguesería en Torrevieja | La Casa de Burger | Hamburguesas Gourmet</title>
   <meta name="description" content="Descubre la mejor hamburguesería en Torrevieja. Especialistas en burgers gourmet de autor, Smash Burgers y carne premium. Calidad artesanal y sabor único. ¡Haz tu pedido online ahora!" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
   <meta name="keywords" content="burger Torrevieja, hamburguesería Torrevieja, mejor hamburguesa Torrevieja, hamburguesas gourmet, smash burger Torrevieja, comida a domicilio Torrevieja, takeaway Torrevieja, halal burger, gluten free burger" />
   <link rel="canonical" href="https://lacasadeburger.es" />
   <meta name="robots" content="index, follow" />
