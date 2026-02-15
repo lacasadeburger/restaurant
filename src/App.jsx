@@ -504,7 +504,7 @@ export default function App() {
 /* Style pour la boîte du logo sur ORDINATEUR */
 .logo-container-wrapper {
   position: absolute;
-  top: 180px;       /* Sur PC, il se place sous la barre noire simple */
+  top: 190px;       /* Sur PC, il se place sous la barre noire simple */
   left: 35px;
   z-index: 99;
   pointer-events: none;
@@ -528,7 +528,7 @@ export default function App() {
 @media (max-width: 768px) {
   .logo-container-wrapper {
     /* Sur mobile, on descend à 220px pour laisser passer Nav + Drapeaux + Bandeau Or */
-    top: 180px !important;
+    top: 225px !important;
     left: 10px !important;
     position: absolute !important;
   }
