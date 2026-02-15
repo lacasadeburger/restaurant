@@ -2,7 +2,7 @@ import React, { useState, useMemo, useEffect } from "react";
 import bgCard from "./assets/bg-c.jpg";
 
 export default function CardMenu(props) {
-  const { image, object, description, precio, addToCart, isDrinkCard, isPostreCard, lang, hasExtras } = props;
+  const { image, name, description, precio, addToCart, isDrinkCard, isPostreCard, lang, hasExtras } = props;
 
   const GOLD_GRADIENT = "linear-gradient(135deg, #BF953F 0%, #FCF6BA 45%, #B38728 55%, #FBF5B7 100%)";
   const GOLD_BRIGHT = "#FFD700";
@@ -186,8 +186,13 @@ export default function CardMenu(props) {
       </div>
 
       <div className="card-content" style={{ padding: '5px' }}>
-    <div className="info-box">
-      <h3 className="card-title" translate="no">{object}</h3>
+      <div className="info-box">
+      <h3 className="card-title" translate="no">
+        {/* On vérifie si name est un objet pour choisir la bonne langue */}
+        {typeof name === 'object'
+          ? (name[lang] || name['es'])
+          : name}
+      </h3>
       <p className="card-description">
         {/* Cette ligne vérifie si description est un objet de traductions ou du texte simple */}
         {typeof description === 'object'

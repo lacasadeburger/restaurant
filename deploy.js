@@ -7,38 +7,21 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const config = {
-    user: "lacasdt",
-    password: "Amordemivida2",
-    host: "ftp.cluster129.hosting.ovh.net",
+    user: "lacasdt", // À remplacer par tes vrais accès
+    password: "Amordemivida2", // À remplacer par tes vrais accès
+    host: "ftp.cluster129.hosting.ovh.net", // À remplacer par ton hôte
     port: 21,
     localRoot: __dirname + "/dist",
     remoteRoot: "/www/",
     include: ["*", "**/*"],
-    // On désactive deleteRemote temporairement pour tester si c'est ça qui bloque
-    deleteRemote: false,
+    deleteRemote: true, // Très bien pour éviter les fichiers fantômes
     forcePasv: true,
     sftp: false
 };
 
 console.log("⏳ Début du déploiement sur OVH...");
 
-// AJOUT DU SUIVI EN TEMPS RÉEL
-ftpDeploy.on("uploading", function (data) {
-    console.log(`📤 Envoi (${data.transferredFileCount}/${data.totalFilesCount}) : ${data.filename}`);
-});
-
-ftpDeploy.on("uploaded", function (data) {
-    console.log(`✅ Réussi : ${data.filename}`);
-});
-
-ftpDeploy.on("upload-error", function (data) {
-    console.log(`❌ Erreur sur le fichier : ${data.filename} -> ${data.err}`);
-});
-
 ftpDeploy
     .deploy(config)
-    .then((res) => console.log("\n🚀 SUCCÈS : Ton site est en ligne sur lacasadeburger.es !"))
-    .catch((err) => {
-        console.log("\n❌ ERREUR DÉTAILLÉE :");
-        console.error(err);
-    });
+    .then((res) => console.log("🚀 Succès : Site mis à jour sur OVH !"))
+    .catch((err) => console.log("❌ Erreur :", err));
