@@ -1,21 +1,18 @@
 import React from "react";
 
 export default function Nav({ scrollToOrder, cartLength, totalPrice, lang, setLang }) {
-  // --- 1. LOGIQUE DE TEMPS (Ligne par ligne) ---
+  // --- 1. LOGIQUE DE TEMPS (Vérifiée pour Dimanche) ---
   const now = new Date();
-  const day = now.getDay(); // Dimanche = 0, Lundi = 1...
+  const day = now.getDay(); // 0 = Dimanche, 1 = Lundi, etc.
   const currentHour = now.getHours() + now.getMinutes() / 60;
 
-  // Vérification de la fermeture hebdomadaire (Dimanche)
+  // Définition : Fermé le dimanche (day === 0)
   const isSunday = (day === 0);
-
-  // Vérification de la plage horaire (13:00 à 22:30)
+  // Définition : Ouvert entre 13h00 et 22h30
   const isWorkingHours = currentHour >= 13 && currentHour < 22.5;
 
-  // État final : Doit être dans les heures ET ne pas être dimanche
+  // État final : Ouvert seulement si (Heures OK) ET (Pas Dimanche)
   const isOpen = isWorkingHours && !isSunday;
-
-  // Couleur dynamique : Vert si ouvert, Rouge si fermé
   const statusColor = isOpen ? '#2ed573' : '#ff4757';
 
   // --- 2. CONSTANTES DE STYLE ---
@@ -23,7 +20,6 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang, setLa
   const GOLD_BRIGHT = "#FFD700";
   const VIBRANT_RED = "#ff4757";
 
-  // --- 3. LISTE DES LANGUES ---
   const languages = [
     { code: 'es', flag: 'es', label: 'Español' },
     { code: 'en', flag: 'gb', label: 'English' },
@@ -40,6 +36,7 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang, setLa
 
   return (
     <>
+      {/* BARRE DE NAVIGATION FIXE */}
       <nav style={{
         position: 'fixed', top: 0, left: 0, width: '100%', height: '80px',
         backgroundColor: 'rgba(0, 0, 0, 0.98)', backdropFilter: 'blur(15px)', WebkitBackdropFilter: 'blur(15px)',
@@ -47,7 +44,7 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang, setLa
         padding: '0 12px', zIndex: 10000, borderBottom: `3px solid ${VIBRANT_RED}`, boxSizing: 'border-box'
       }}>
 
-        {/* GAUCHE : APPEL (Vérifié : OK) */}
+        {/* GAUCHE : APPEL */}
         <div style={{ width: '35%', display: 'flex', alignItems: 'center' }}>
           <a href="tel:+34602597210" style={{ display: 'flex', alignItems: 'center', gap: '6px', textDecoration: 'none' }}>
             <div style={{
@@ -66,7 +63,7 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang, setLa
           </a>
         </div>
 
-        {/* CENTRE : STATUT (Vérifié ligne par ligne : OK) */}
+        {/* CENTRE : STATUT (OUVERT / FERMÉ) */}
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <div style={{
             width: '8px', height: '8px', backgroundColor: statusColor, borderRadius: '50%',
@@ -82,7 +79,7 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang, setLa
           </span>
         </div>
 
-        {/* DROITE : PANIER (Vérifié : OK) */}
+        {/* DROITE : PANIER */}
         <div onClick={scrollToOrder} style={{ width: '35%', display: 'flex', justifyContent: 'flex-end', cursor: 'pointer' }}>
           <div className={cartLength > 0 ? 'pulse-active' : ''} style={{
             backgroundColor: VIBRANT_RED, padding: '8px 12px', borderRadius: '10px',
@@ -94,7 +91,7 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang, setLa
         </div>
       </nav>
 
-      {/* SÉLECTEUR DE LANGUES (Vérifié : OK) */}
+      {/* SÉLECTEUR DE LANGUES (Espace pour compenser la nav fixe) */}
       <div style={{
         marginTop: '80px',
         display: 'flex', justifyContent: 'center', gap: '6px', padding: '12px 8px',
@@ -122,6 +119,29 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang, setLa
             />
           </button>
         ))}
+      </div>
+
+      {/* BANDEAU PROMO RESTAURANT */}
+      <div style={{
+        background: 'linear-gradient(to right, #000, #1a1a1a, #000)',
+        color: '#fff',
+        textAlign: 'center',
+        padding: '10px 8px',
+        borderBottom: `2px solid ${GOLD_BRIGHT}`,
+        fontSize: '0.85rem',
+        fontWeight: '900',
+        display: 'block',
+        width: '100%',
+        boxSizing: 'border-box',
+        letterSpacing: '0.5px',
+        position: 'relative',
+        zIndex: 9998
+      }}>
+        <span style={{ color: GOLD_BRIGHT }}>★</span>
+        {lang === 'fr' ? " PRIX 10% À 20% MOINS CHERS AU RESTAURANT " :
+         lang === 'es' ? " PRECIOS 10% A 20% MÁS BARATOS EN EL LOCAL " :
+         " 10% TO 20% CHEAPER PRICES AT THE RESTAURANT "}
+        <span style={{ color: GOLD_BRIGHT }}>★</span>
       </div>
     </>
   );
