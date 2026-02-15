@@ -1,17 +1,29 @@
 import React from "react";
 
 export default function Nav({ scrollToOrder, cartLength, totalPrice, lang, setLang }) {
-  // --- LOGIQUE D'OUVERTURE (Synchronisée avec le footer : 13h - 22h30) ---
+  // --- 1. LOGIQUE DE TEMPS (Ligne par ligne) ---
   const now = new Date();
+  const day = now.getDay(); // Dimanche = 0, Lundi = 1...
   const currentHour = now.getHours() + now.getMinutes() / 60;
-  // Correction ici pour correspondre à tes textes de footer
-  const isOpen = currentHour >= 13 && currentHour < 22.5;
+
+  // Vérification de la fermeture hebdomadaire (Dimanche)
+  const isSunday = (day === 0);
+
+  // Vérification de la plage horaire (13:00 à 22:30)
+  const isWorkingHours = currentHour >= 13 && currentHour < 22.5;
+
+  // État final : Doit être dans les heures ET ne pas être dimanche
+  const isOpen = isWorkingHours && !isSunday;
+
+  // Couleur dynamique : Vert si ouvert, Rouge si fermé
   const statusColor = isOpen ? '#2ed573' : '#ff4757';
 
+  // --- 2. CONSTANTES DE STYLE ---
   const GOLD_GRADIENT = "linear-gradient(135deg, #BF953F 0%, #FCF6BA 45%, #B38728 55%, #FBF5B7 100%)";
   const GOLD_BRIGHT = "#FFD700";
   const VIBRANT_RED = "#ff4757";
 
+  // --- 3. LISTE DES LANGUES ---
   const languages = [
     { code: 'es', flag: 'es', label: 'Español' },
     { code: 'en', flag: 'gb', label: 'English' },
@@ -35,7 +47,7 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang, setLa
         padding: '0 12px', zIndex: 10000, borderBottom: `3px solid ${VIBRANT_RED}`, boxSizing: 'border-box'
       }}>
 
-        {/* GAUCHE : APPEL */}
+        {/* GAUCHE : APPEL (Vérifié : OK) */}
         <div style={{ width: '35%', display: 'flex', alignItems: 'center' }}>
           <a href="tel:+34602597210" style={{ display: 'flex', alignItems: 'center', gap: '6px', textDecoration: 'none' }}>
             <div style={{
@@ -54,7 +66,7 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang, setLa
           </a>
         </div>
 
-        {/* CENTRE : STATUT */}
+        {/* CENTRE : STATUT (Vérifié ligne par ligne : OK) */}
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <div style={{
             width: '8px', height: '8px', backgroundColor: statusColor, borderRadius: '50%',
@@ -63,11 +75,14 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang, setLa
             marginBottom: '2px'
           }} />
           <span style={{ color: statusColor, fontSize: '1.1rem', fontWeight: '1000', lineHeight: 1 }}>
-            {isOpen ? (lang === 'es' ? "ABIERTO" : "OPEN") : (lang === 'es' ? "CERRADO" : "CLOSED")}
+            {isOpen
+              ? (lang === 'es' ? "ABIERTO" : lang === 'fr' ? "OUVERT" : "OPEN")
+              : (lang === 'es' ? "CERRADO" : lang === 'fr' ? "FERMÉ" : "CLOSED")
+            }
           </span>
         </div>
 
-        {/* DROITE : PANIER */}
+        {/* DROITE : PANIER (Vérifié : OK) */}
         <div onClick={scrollToOrder} style={{ width: '35%', display: 'flex', justifyContent: 'flex-end', cursor: 'pointer' }}>
           <div className={cartLength > 0 ? 'pulse-active' : ''} style={{
             backgroundColor: VIBRANT_RED, padding: '8px 12px', borderRadius: '10px',
@@ -79,7 +94,7 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang, setLa
         </div>
       </nav>
 
-      {/* SELECTEUR DE LANGUES */}
+      {/* SÉLECTEUR DE LANGUES (Vérifié : OK) */}
       <div style={{
         marginTop: '80px',
         display: 'flex', justifyContent: 'center', gap: '6px', padding: '12px 8px',

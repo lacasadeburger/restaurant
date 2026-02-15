@@ -98,13 +98,26 @@ export default function CardMenu(props) {
       position: "relative", padding: "10px", border: "1px solid rgba(255, 215, 0, 0.2)",
       boxShadow: "0 10px 30px rgba(0,0,0,0.5)", overflow: "hidden"
     }}>
-      <style>{`
+    <style>{`
         @keyframes liquidGold { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
         .image-container { width: 100%; height: 160px; display: flex; align-items: center; justify-content: center; position: relative; }
         .product-img { width: 85%; height: 85%; object-fit: contain; z-index: 2; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.6)); }
         .price-badge-overlay { position: absolute; top: 10px; right: 10px; background: #ff4757; color: white; padding: 5px 12px; border-radius: 8px; font-weight: 950; font-size: 1.3rem; z-index: 10; border: 2.5px solid #D4AF37; box-shadow: 3px 3px 0px #000; transform: rotate(5deg); }
         .info-box, .options-box { background: rgba(0, 0, 0, 0.85); padding: 12px; border-radius: 12px; border: 1.5px solid rgba(191, 149, 63, 0.4); backdrop-filter: blur(8px); margin-bottom: 10px; }
-        .card-title { font-size: 1.3rem; font-weight: 950; color: #FFD700 !important; text-transform: uppercase; margin: 0; text-shadow: 2px 2px 4px rgba(0,0,0,0.9); }
+
+        /* --- MODIFICATION COULEUR TITRE PRODUIT --- */
+        .card-title {
+          font-size: 1.3rem;
+          font-weight: 950;
+          text-transform: uppercase;
+          margin: 0;
+          background: linear-gradient(135deg, #BF953F 0%, #FCF6BA 30%, #D4AF37 50%, #FBF5B7 70%, #BF953F 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.8));
+        }
+        /* ------------------------------------------ */
+
         .card-description { font-size: 0.85rem; color: #ffffff !important; margin-top: 5px; line-height: 1.3; opacity: 0.9; }
         .option-group-label { font-size: 0.65rem; font-weight: 950; text-transform: uppercase; background: linear-gradient(135deg, #BF953F 0%, #FCF6BA 50%, #BF953F 100%); color: #000; padding: 2px 8px; display: inline-block; margin: 8px 0 5px; border-radius: 4px; }
         .chips-container { display: flex; flex-wrap: wrap; gap: 5px; }
