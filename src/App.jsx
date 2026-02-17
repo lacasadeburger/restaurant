@@ -702,74 +702,95 @@ export default function App() {
 
   {/* JSON-LD : Ton Schema est parfait, gardons-le ! */}
   <script type="application/ld+json">
-    {JSON.stringify({
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "Restaurant",
-          "@id": "https://lacasadeburger.es/#restaurant",
-          "name": "La Casa de Burger Torrevieja",
-          "image": "https://lacasadeburger.es/assets/burger-signature-torrevieja.webp",
-          "logo": "https://lacasadeburger.es/assets/logo.jpg",
-          "url": "https://lacasadeburger.es",
-          "telephone": "+34602597210",
-          "priceRange": "€€",
-          "servesCuisine": ["Burger", "Gourmet Burger", "Smash Burger", "Halal"],
-          "areaServed": "Torrevieja",
-          "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "Av. Diego Ramírez Pastor, 142",
-            "addressLocality": "Torrevieja",
-            "addressRegion": "Alicante",
-            "postalCode": "03181",
-            "addressCountry": "ES"
-          },
-          "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": 37.982362,
-            "longitude": -0.679541
-          },
-          "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue": "4.9",
-            "reviewCount": "248",
-            "bestRating": "5",
-            "worstRating": "1"
-          },
-          "potentialAction": {
-            "@type": "OrderAction",
-            "target": {
-              "@type": "EntryPoint",
-              "urlTemplate": "https://lacasadeburger.es/#order",
-              "actionPlatform": [
-                "http://schema.org/DesktopWebPlatform",
-                "http://schema.org/MobileWebPlatform"
-              ]
-            },
-            "deliveryMethod": ["http://schema.org/ParcelService"]
-          }
+  {JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Restaurant",
+        "@id": "https://lacasadeburger.es/#restaurant",
+        "name": "La Casa de Burger Torrevieja",
+        "image": "https://lacasadeburger.es/assets/burger-signature-torrevieja.webp",
+        "logo": "https://lacasadeburger.es/assets/logo.jpg",
+        "url": "https://lacasadeburger.es",
+        "telephone": "+34602597210",
+        "priceRange": "€€",
+        "servesCuisine": ["Burger", "Gourmet Burger", "Smash Burger", "Halal"],
+        "areaServed": "Torrevieja",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Av. Diego Ramírez Pastor, 142",
+          "addressLocality": "Torrevieja",
+          "addressRegion": "Alicante",
+          "postalCode": "03181",
+          "addressCountry": "ES"
         },
-        {
-          "@type": "Menu",
-          "@id": "https://lacasadeburger.es/#menu",
-          "name": "Carta La Casa de Burger",
-          "mainEntityOfPage": "https://lacasadeburger.es",
-          "hasMenuItem": [
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 37.982362,
+          "longitude": -0.679541
+        },
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+            "opens": "13:00",
+            "closes": "22:30"
+          }
+        ],
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.9",
+          "reviewCount": "245",
+          "bestRating": "5",
+          "worstRating": "1"
+        },
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Servicios de Comida",
+          "itemListElement": [
             {
-              "@type": "MenuItem",
-              "name": "Hamburguesas Gourmet",
-              "description": "Las mejores burgers gourmet y smash de Torrevieja con carne de ternera premium.",
-              "offers": {
-                "@type": "Offer",
-                "price": "10.00",
-                "priceCurrency": "EUR"
-              }
+              "@type": "Offer",
+              "itemOffered": { "@type": "Service", "name": "Delivery" }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": { "@type": "Service", "name": "Takeout" }
             }
           ]
+        },
+        "potentialAction": {
+          "@type": "OrderAction",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://lacasadeburger.es/#order",
+            "actionPlatform": [
+              "http://schema.org/DesktopWebPlatform",
+              "http://schema.org/MobileWebPlatform"
+            ]
+          }
         }
-      ]
-    })}
-  </script>
+      },
+      {
+        "@type": "Menu",
+        "@id": "https://lacasadeburger.es/#menu",
+        "name": "Carta La Casa de Burger",
+        "mainEntityOfPage": "https://lacasadeburger.es",
+        "hasMenuItem": [
+          {
+            "@type": "MenuItem",
+            "name": "Hamburguesas Gourmet",
+            "description": "Las mejores burgers gourmet y smash de Torrevieja con carne de ternera premium.",
+            "offers": {
+              "@type": "Offer",
+              "price": "10.00",
+              "priceCurrency": "EUR"
+            }
+          }
+        ]
+      }
+    ]
+  })}
+</script>
 </Helmet>
 {/* --- LOGO ANIMÉ EN HAUT À Gauche --- */}
 <div className="logo-container-wrapper" style={{
