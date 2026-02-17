@@ -18,7 +18,7 @@ import BurgerSignature from "./assets/burger-signature-torrevieja.webp";
 
 const T = {
   es: {
-    heroTitle: "La Mejor Hamburguesa en Torrevieja",
+    heroTitle: "La Mejor Hamburguesa",
     heroSubtitle: "Hamburguesería Gourmet : Burgers Gourmet y Smash Burgers con Carne de Ternera Premium",
     btnOrder: "PEDIR A DOMICILIO",
     btnCall: "LLAMAR",
@@ -49,11 +49,11 @@ const T = {
     location: "Location",
     hours: "Hours",
     seoTitle: "The Best Artisan Burger Joint in Torrevieja",
-    seoContent: "At La Casa de Burger, we are the benchmark for gourmet burgers in Torrevieja. Our passion for quality leads us to use exclusively premium beef, ox, and chicken. Specialists in Gourmet Burgers, using local brioche buns and hand-cut fries. Halal, gluten-free, and vegan options available."
+    seoContent: "At La Casa de Burger, we are the benchmark for gourmet burgers in Torrevieja. Passion for quality with premium beef, ox, and chicken. Specialists in Gourmet Burgers, local brioche buns and hand-cut fries. Halal, gluten-free, and vegan options."
   },
   fr: {
     heroTitle: "Le Meilleur Burger",
-    heroSubtitle: "Burger Gourmet & Smash Burgers: Viande de Bœuf Premium",
+    heroSubtitle: "Burger Gourmet & Smash Burgers : Viande de Bœuf Premium",
     btnOrder: "COMMANDER",
     btnCall: "APPELER",
     catBurgers: "Burgers Gourmet",
@@ -66,10 +66,27 @@ const T = {
     location: "Emplacement",
     hours: "Horaires",
     seoTitle: "La meilleure Hamburguérerie Artisanale de Torrevieja",
-    seoContent: "À La Casa de Burger, nous sommes la référence des burgers gourmet à Torrevieja. Passionnés par la qualité, nous utilisons exclusivement de la viande premium. Spécialistes du Smash Burger, pain brioche local et frites maison. Options Halal, sans gluten et véganes disponibles."
+    seoContent: "À La Casa de Burger, nous sommes la référence des burgers gourmet à Torrevieja. Viande premium, Smash Burgers, pain brioche local et frites maison. Options Halal, sans gluten et véganes disponibles."
+  },
+  nl: { // Ajout du Néerlandais
+    heroTitle: "De Beste Burger",
+    heroSubtitle: "Gourmet Burgers & Smash Burgers: Premium Rundvlees",
+    btnOrder: "BESTEL NU",
+    btnCall: "BELLEN",
+    catBurgers: "Gourmet Burgers",
+    catDrinks: "Dranken",
+    catDesserts: "Huisgemaakte Desserts",
+    btnSeeMenu: "ZIE MENU",
+    yourOrder: "Jouw Bestelling",
+    reviewsTitle: "Wat onze klanten zeggen",
+    footerDesc: "Specialisten in Smash Burgers en Gourmet Burgers. Premium rundvlees en ambachtelijke processen.",
+    location: "Locatie",
+    hours: "Openingstijden",
+    seoTitle: "De beste ambachtelijke hamburgertent in Torrevieja",
+    seoContent: "Bij La Casa de Burger zijn we de referentie voor gourmetburgers in Torrevieja. Wij gebruiken uitsluitend premium rundvlees. Specialisten in Smash Burgers, lokaal briochebrood en verse frietjes. Halal, glutenvrije en veganistische opties."
   },
   no: {
-    heroTitle: "Den Beste Burgers",
+    heroTitle: "Den Beste Burgeren",
     heroSubtitle: "Gourmetburger & Smashburgers: Premium Storfekjøtt",
     btnOrder: "BESTILL LEVERING",
     btnCall: "RING",
@@ -83,7 +100,7 @@ const T = {
     location: "Plassering",
     hours: "Åpningstider",
     seoTitle: "Torreviejas beste håndlagde burgerrestaurant",
-    seoContent: "På La Casa de Burger er vi referansen for gourmetburgere i Torrevieja. Vi bruker eksklusivt modnet premium storfekjøtt, kvernet daglig. Spesialister på Smash Burger, lokalt briochebrød og ferske poteter. Halal, glutenfrie og veganske alternativer."
+    seoContent: "På La Casa de Burger er vi referansen for gourmetburgere i Torrevieja. Vi bruker eksklusivt modnet premium storfekjøtt. Spesialister på Smash Burger, lokalt briochebrød og ferske poteter. Halal, glutenfrie og veganske alternativer."
   },
   pl: {
     heroTitle: "Najlepszy Burger",
@@ -105,36 +122,36 @@ const T = {
   uk: {
     heroTitle: "Найкращий Бургер",
     heroSubtitle: "Гурме Бургерна: Смеш-бургери та Преміальна Яловичина",
-    btnOrder: "ЗАМОВИТИ ДОСТАВКУ",
-    btnCall: "ЗАТЕЛЕФОНУВАТИ",
+    btnOrder: "ЗАМАВИТИ",
+    btnCall: "ДЗВІНОК",
     catBurgers: "Гурме Бургери",
     catDrinks: "Напої",
-    catDesserts: "Домашні Десерти",
-    btnSeeMenu: "ПЕРЕГЛЯНУТИ МЕНЮ",
-    yourOrder: "Ваше Замовлення",
-    reviewsTitle: "Що кажуть наші клієнти",
-    footerDesc: "Спеціалісти зі смеш-бургерів та авторських гурме-бургерів. Витримана яловичина преміум-класу.",
+    catDesserts: "Десерти",
+    btnSeeMenu: "МЕНЮ",
+    yourOrder: "Замовлення",
+    reviewsTitle: "Відгуки",
+    footerDesc: "Спеціалісти зі смеш-бургерів та гурме-бургерів. Преміальна яловичина.",
     location: "Локація",
-    hours: "Графік роботи",
+    hours: "Години",
     seoTitle: "Найкраща крафтова бургерна в Торрев'єсі",
-    seoContent: "La Casa de Burger — це еталон гурманських бургерів у Торрев'єсі. Ми використовуємо виключно витриману яловичину преміум-класу. Спеціалісти зі Smash Burger, місцевих булочок бріош та натуральної картоплі. Халяльні, безглютенові та веганські страви."
+    seoContent: "Еталон гурманських бургерів у Торрев'єсі. Витримана яловичина преміум-класу, булочки бріош та натуральна картопля. Халяль, безглютен та веган."
   },
   ru: {
     heroTitle: "Лучший Бургер",
     heroSubtitle: "Гурме Бургерная: Смэш-бургеры и Премиальная Говядина",
-    btnOrder: "ЗАКАЗАТЬ ДОСТАВКУ",
+    btnOrder: "ЗАКАЗАТЬ",
     btnCall: "ПОЗВОНИТЬ",
     catBurgers: "Гурме Бургеры",
     catDrinks: "Напитки",
-    catDesserts: "Домашние Десерты",
-    btnSeeMenu: "ПОСМОТРЕТЬ МЕНЮ",
+    catDesserts: "Десерты",
+    btnSeeMenu: "МЕНЮ",
     yourOrder: "Ваш Заказ",
-    reviewsTitle: "Что говорят наши клиенты",
-    footerDesc: "Специалисты по смэш-бургерам и авторским гурме-бургерам. Выдержанная говядина премиум-класса.",
+    reviewsTitle: "Отзывы",
+    footerDesc: "Специалисты по смэш-бургерам и авторским гурме-бургерам. Премиальная говядина.",
     location: "Локация",
-    hours: "График работы",
+    hours: "График",
     seoTitle: "Лучшая ремесленная бургерная в Торревьехе",
-    seoContent: "La Casa de Burger — эталон изысканных бургеров в Торревьехе. Мы используем только выдержанную говядину премиум-класса. Специалисты по Smash Burger, местным булочкам бриошь и натуральному картофелю. Халяльные, безглютеновые и веганские опции."
+    seoContent: "Эталон изысканных бургеров в Торревьехе. Выдержанная говядина премиум-класса, булочки бриошь и натуральный картофель. Халяль, безглютен и веган."
   },
   ar: {
     heroTitle: "أفضل برجر",
@@ -147,45 +164,45 @@ const T = {
     btnSeeMenu: "عرض القائمة",
     yourOrder: "طلبك",
     reviewsTitle: "ما يقوله عملاؤنا",
-    footerDesc: "متخصصون في السماش برجر وبرجر الغوارميه المميز. لحم بقر معتق وفاخر وعمليات حرفية.",
+    footerDesc: "متخصصون في السماش برجر وبرجر الغوارميه المميز. لحم بقر معتق وفاخر.",
     location: "الموقع",
     hours: "ساعات العمل",
     seoTitle: "أفضل مطعم برجر حرفي في توريفايجا",
-    seoContent: "في La Casa de Burger، أصبحنا المرجع الأول للبرجر الفاخر في توريفايجا. نستخدم حصرياً لحم البقر المعتق الممتاز. متخصصون في سماتش برجر، خبز البريوش المحلي والبطاطس الطبيعية. متوفر خيارات حلال، خالية من الغلوتين ونباتية."
+    seoContent: "المرجع الأول للبرجر الفاخر في توريفايجا. نستخدم لحم البقر الممتاز، خبز البريوش المحلي والبطاطس الطبيعية. حلال، خالي من الغلوتين ونباتي."
   },
   sv: {
     heroTitle: "Den Bästa Burgaren",
     heroSubtitle: "Gourmetburgare & Smashburgers: Premium Nötkött",
-    btnOrder: "BESTÄLL HEMLEVERANS",
+    btnOrder: "BESTÄLL",
     btnCall: "RING",
     catBurgers: "Gourmetburgare",
     catDrinks: "Drycker",
-    catDesserts: "Hemgjorda Efterrätter",
+    catDesserts: "Efterrätter",
     btnSeeMenu: "VISA MENY",
     yourOrder: "Din Beställning",
-    reviewsTitle: "Vad våra kunder säger",
-    footerDesc: "Specialister på Smash Burgers och signaturgourmetburgare. Premium hängmörat nötkött.",
+    reviewsTitle: "Recensioner",
+    footerDesc: "Specialister på Smash Burgers och gourmetburgare. Premium hängmörat nötkött.",
     location: "Plats",
     hours: "Öppettider",
     seoTitle: "Torreviejas bästa hantverksburgare",
-    seoContent: "På La Casa de Burger är vi ledande inom gourmetburgare i Torrevieja. Vi använder exklusivt mognat premiumkött. Specialister på Smash Burger, lokalt briochebrød och handskuren potatis. Halal, glutenfria och veganska alternativ."
+    seoContent: "Ledande inom gourmetburgare i Torrevieja. Vi använder exklusivt mognat premiumkött. Smash Burgers, lokalt briochebröd och handskuren potatis. Halal, glutenfritt och vegan."
   },
   de: {
     heroTitle: "Der Beste Burger",
     heroSubtitle: "Gourmet Burger Laden: Smash Burgers & Premium Rindfleisch",
-    btnOrder: "LIEFERUNG BESTELLEN",
+    btnOrder: "BESTELLEN",
     btnCall: "ANRUFEN",
     catBurgers: "Gourmet Burgers",
     catDrinks: "Getränke",
-    catDesserts: "Hausgemachte Desserts",
+    catDesserts: "Nachspeisen",
     btnSeeMenu: "MENÜ SEHEN",
     yourOrder: "Ihre Bestellung",
-    reviewsTitle: "Was unsere Kunden sagen",
-    footerDesc: "Spezialisten für Smash Burgers und Gourmet-Burgers. Premium gereiftes Rindfleisch.",
+    reviewsTitle: "Kundenstimmen",
+    footerDesc: "Spezialisten für Smash Burgers und Gourmet-Burgers. Premium Rindfleisch.",
     location: "Standort",
     hours: "Öffnungszeiten",
     seoTitle: "Das beste handgemachte Burger-Restaurant in Torrevieja",
-    seoContent: "Im La Casa de Burger sind wir der Maßstab für Gourmet-Burger in Torrevieja. Wir verwenden ausschließlich erstklassiges gereiftes Rindfleisch. Spezialisten für Smash Burger, lokales Brioche und handgeschnittene Pommes. Halal, glutenfreie und vegane Optionen."
+    seoContent: "Der Maßstab für Gourmet-Burger in Torrevieja. Erstklassiges Rindfleisch, Smash Burger, lokales Brioche. Halal, glutenfrei und vegane Optionen."
   },
   ro: {
     heroTitle: "Cel Mai Bun Burger",
@@ -194,15 +211,15 @@ const T = {
     btnCall: "SUNĂ",
     catBurgers: "Burgeri Gourmet",
     catDrinks: "Băuturi",
-    catDesserts: "Deserturi Casnice",
+    catDesserts: "Deserturi",
     btnSeeMenu: "VEZI MENIUL",
     yourOrder: "Comanda Ta",
-    reviewsTitle: "Ce spun clienții noștri",
-    footerDesc: "Specialiști în Smash Burgers și burgeri gourmet. Carne de vită maturată premium și procese artizanale.",
+    reviewsTitle: "Recenzii",
+    footerDesc: "Specialiști în Smash Burgers și burgeri gourmet. Carne de vită maturată premium.",
     location: "Locație",
     hours: "Program",
     seoTitle: "Cea mai bună burgerie artizanală din Torrevieja",
-    seoContent: "La Casa de Burger, suntem punctul de referință pentru burgeri gourmet în Torrevieja. Folosim exclusiv carne de vită maturată premium. Specialiști în Smash Burger, chifle brioche locale și cartofi naturali. Opțiuni Halal, fără gluten și vegane."
+    seoContent: "Punctul de referință pentru burgeri gourmet în Torrevieja. Carne de vită maturată premium, Smash Burger, chifle brioche locale. Opțiuni Halal, fără gluten și vegane."
   }
 };
 
@@ -677,22 +694,40 @@ export default function App() {
       "url": "https://lacasadeburger.es",
       "telephone": "+34602597210",
       "priceRange": "€€",
-      "servesCuisine": ["Gourmet Burger", "Smash Burger", "Halal"],
+      "servesCuisine": ["Burger", "Gourmet Burger", "Smash Burger", "Halal"],
+      "areaServed": "Torrevieja",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Av. Diego Ramírez Pastor, 142",
         "addressLocality": "Torrevieja",
+        "addressRegion": "Alicante",
         "postalCode": "03181",
         "addressCountry": "ES"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 37.982362,
+        "longitude": -0.679541
+      },
+      // --- AJOUT DES ÉTOILES (AVIS) ---
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9", // Note moyenne
+        "reviewCount": "248", // Nombre d'avis total
+        "bestRating": "5",
+        "worstRating": "1"
       },
       "potentialAction": {
         "@type": "OrderAction",
         "target": {
           "@type": "EntryPoint",
           "urlTemplate": "https://lacasadeburger.es/#order",
-          "actionPlatform": ["http://schema.org/DesktopWebPlatform", "http://schema.org/MobileWebPlatform"]
+          "actionPlatform": [
+            "http://schema.org/DesktopWebPlatform",
+            "http://schema.org/MobileWebPlatform"
+          ]
         },
-        "deliveryMethod": ["http://purl.org/goodrelations/v1#DeliveryModeOwnFleet"]
+        "deliveryMethod": ["http://schema.org/ParcelService"]
       }
     },
     {
@@ -700,15 +735,16 @@ export default function App() {
       "@id": "https://lacasadeburger.es/#menu",
       "name": "Carta La Casa de Burger",
       "mainEntityOfPage": "https://lacasadeburger.es",
-      "offers": {
-        "@type": "Offer",
-        "availability": "https://schema.org/InStock"
-      },
       "hasMenuItem": [
         {
           "@type": "MenuItem",
           "name": "Hamburguesas Gourmet",
-          "offers": { "@type": "Offer", "price": "10.00", "priceCurrency": "EUR" }
+          "description": "Las mejores burgers gourmet y smash de Torrevieja con carne de ternera premium.",
+          "offers": {
+            "@type": "Offer",
+            "price": "10.00",
+            "priceCurrency": "EUR"
+          }
         }
       ]
     }
@@ -778,21 +814,37 @@ export default function App() {
         🏆 #1 BURGER TORREVIEJA
       </div>
       <div style={{ position: 'relative', zIndex: 2 }}>
-{/* H1 OPTIMISÉ : On place le mot-clé principal "Mejor Hamburguesa" avant le nom de la ville */}
-<h1 style={{
-  fontSize: 'clamp(2rem, 10vw, 3.5rem)',
-  fontWeight: '900',
-  textTransform: 'uppercase',
-  textShadow: '2px 2px 15px rgba(0,0,0,0.9)',
-  margin: 0,
-  color: '#fff',
-  lineHeight: '1.1'
-}}>
-  {/* On récupère le titre traduit dans l'objet T */}
-  {T[lang]?.heroTitle || T.es.heroTitle}
-  <br />
-  en Torrevieja
-</h1>
+
+      {/* H1 OPTIMISÉ : Mot-clé principal + ville avec gestion des 12 langues (nl inclus) */}
+      <h1 style={{
+        fontSize: 'clamp(2rem, 10vw, 3.5rem)',
+        fontWeight: '900',
+        textTransform: 'uppercase',
+        textShadow: '2px 2px 15px rgba(0,0,0,0.9)',
+        margin: 0,
+        color: '#fff',
+        lineHeight: '1.1'
+      }}>
+        {/* Titre traduit (ex: "La Mejor Hamburguesa") */}
+        {T[lang]?.heroTitle || T.es.heroTitle}
+        <br />
+
+        {/* Gestion de la préposition pour les 12 langues */}
+        {
+          lang === 'fr' ? 'à Torrevieja' :
+          lang === 'en' ? 'in Torrevieja' :
+          lang === 'de' ? 'in Torrevieja' :
+          lang === 'nl' ? 'in Torrevieja' : // Ajout du Néerlandais
+          lang === 'no' ? 'i Torrevieja' :
+          lang === 'sv' ? 'i Torrevieja' :
+          lang === 'pl' ? 'w Torrevieja' :
+          lang === 'uk' ? 'у Торрев’єнті' :
+          lang === 'ru' ? 'в Торревьехе' :
+          lang === 'ar' ? 'في توريفايجا' :
+          lang === 'ro' ? 'în Torrevieja' :
+          'en Torrevieja' /* Par défaut pour 'es' */
+        }
+      </h1>
 
 <h2 style={{
   fontSize: '1.5rem',
@@ -802,6 +854,7 @@ export default function App() {
   marginTop: '10px',
   textTransform: 'uppercase'
 }}>
+
   {/* On récupère le sous-titre traduit dans l'objet T */}
   {T[lang]?.heroSubtitle || T.es.heroSubtitle}
 </h2>
@@ -848,10 +901,24 @@ style={{
 📅 RESERVAR MESA
 </button>
 <div style={{ display: 'flex', justifyContent: 'center', gap: '15px', flexWrap: 'wrap', marginTop: '05px' }}>
-  <a href="tel:+34602597210" style={{ background: '#fff', color: '#000', padding: '14px 30px', borderRadius: '50px', textDecoration: 'none', fontWeight: '950', border: '2px solid #000' }}>
-    📞 {T[lang]?.btnCall || T.es.btnCall}
+  <a
+    href="tel:+34602597210"
+    aria-label={T[lang]?.btnCall || T.es.btnCall} // Indique aux robots ce que fait le lien
+    style={{
+      background: '#fff',
+      color: '#000',
+      padding: '14px 30px',
+      borderRadius: '50px',
+      textDecoration: 'none',
+      fontWeight: '950',
+      border: '2px solid #000',
+      display: 'flex',
+      alignItems: 'center',
+      gap: '8px'
+    }}
+  >
+    <span role="img" aria-label="phone">📞</span> {T[lang]?.btnCall || T.es.btnCall}
   </a>
-
 </div>
 </div>
 </div>
@@ -1026,78 +1093,110 @@ style={{
         </div>
         {/* FOOTER FINAL : LOGO + COPYRIGHT */}
         <footer style={{
-          padding: '60px 20px 40px',
-          textAlign: 'center',
-          backgroundColor: '#050505',
-          borderTop: '1px solid #1a1a1a',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          gap: '20px',
-          marginTop: '50px'
-        }}>
+        padding: '60px 20px 40px',
+        textAlign: 'center',
+        backgroundColor: '#050505',
+        borderTop: '1px solid #1a1a1a',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        gap: '20px',
+        marginTop: '50px'
+      }}>
 
-          {/* LOGO AVEC "l" MINUSCULE */}
-          {logo && (
-            <img
-              src={logo}
-              alt="La Casa de Burger"
-              style={{
-                height: '80px',
-                width: 'auto',
-                filter: 'drop-shadow(0 0 10px rgba(255,255,255,0.1))',
-                marginBottom: '10px'
-              }}
-            />
-          )}
-
-          {/* LIGNE DE SÉPARATION DORÉE */}
-          <div style={{
-            width: '50px',
-            height: '2px',
-            background: 'linear-gradient(135deg, #BF953F 0%, #FCF6BA 45%, #B38728 55%, #FBF5B7 100%)',
-            borderRadius: '2px'
-          }} />
-
-          {/* COPYRIGHT ET DROITS */}
-          <div style={{ color: '#888', fontSize: '0.9rem', lineHeight: '1.6' }}>
-            <p style={{ margin: 0, fontWeight: 'bold', color: '#ccc' }}>
-              © 2026 LA CASA DE BURGER
-            </p>
-            <p style={{ margin: 0, fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '1px' }}>
-              {typeof lang !== 'undefined' && lang === 'es' ? 'Todos los derechos reservados' :
-               typeof lang !== 'undefined' && lang === 'fr' ? 'Tous droits réservés' :
-               'All rights reserved'}
-            </p>
-          </div>
-
-          <p style={{ color: '#444', fontSize: '0.65rem', marginTop: '10px' }}>
-            Torrevieja, Spain • The Artisan Burger Experience
-          </p>
-        </footer>
-        {/* BOUTON WHATSAPP */}
-        <a href="https://wa.me/34602597210" target="_blank" rel="noreferrer" className="whatsapp-float">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="40" alt="WA" />
-        </a>
-
-        {/* BOUTON ETAPE SUIVANTE */}
-        {(showCardBurger || showCardDrink || showCardPostres) && (
-          <button
-            className="floating-close"
-            onClick={handleNextStep}
+        {/* LOGO OPTIMISÉ SEO */}
+        {logo && (
+          <img
+            src={logo}
+            alt="La Casa de Burger Torrevieja - Hamburguesas Gourmet y Smash Burgers" // Alt plus descriptif pour Brave
             style={{
-              position: 'fixed', bottom: '95px', left: '50%', transform: 'translateX(-50%)',
-              backgroundColor: '#ff4757', color: '#fff', padding: '15px 30px',
-              borderRadius: '12px', fontWeight: '900', zIndex: 10000,
-              border: '3px solid #000', cursor: 'pointer', boxShadow: '0 5px 15px rgba(0,0,0,0.4)',
-              textTransform: 'uppercase'
+              height: '80px',
+              width: 'auto',
+              filter: 'drop-shadow(0 0 10px rgba(255,255,255,0.1))',
+              marginBottom: '10px'
             }}
-          >
-            {showCardBurger && (lang === 'es' ? 'SIGUIENTE: BEBIDAS ➔' : 'NEXT: DRINKS ➔')}
-            {showCardDrink && (lang === 'es' ? 'SIGUIENTE: POSTRES ➔' : 'NEXT: DESSERTS ➔')}
-            {showCardPostres && (lang === 'es' ? 'VER MI PEDIDO ➔' : 'VIEW ORDER ➔')}
-          </button>
+          />
         )}
+
+        {/* LIGNE DE SÉPARATION DORÉE */}
+        <div style={{
+          width: '50px',
+          height: '2px',
+          background: 'linear-gradient(135deg, #BF953F 0%, #FCF6BA 45%, #B38728 55%, #FBF5B7 100%)',
+          borderRadius: '2px'
+        }} aria-hidden="true" /> {/* On cache cette ligne décorative aux robots */}
+
+        {/* COPYRIGHT ET NAVIGATION FOOTER */}
+        <div style={{ color: '#888', fontSize: '0.9rem', lineHeight: '1.6' }}>
+          <p style={{ margin: 0, fontWeight: 'bold', color: '#ccc' }}>
+            © 2026 LA CASA DE BURGER
+          </p>
+          <p style={{ margin: 0, fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '1px' }}>
+            {lang === 'es' ? 'Todos los derechos reservados' :
+             lang === 'fr' ? 'Tous droits réservés' :
+             'All rights reserved'}
+          </p>
+        </div>
+
+        {/* ADRESSE PHYSIQUE EN TEXTE CLAIR (Très important pour le SEO Local) */}
+        <address style={{
+          color: '#444',
+          fontSize: '0.7rem',
+          marginTop: '10px',
+          fontStyle: 'normal',
+          letterSpacing: '0.5px'
+        }}>
+          Av. Diego Ramírez Pastor, 142 • 03181 Torrevieja, Spain <br/>
+          <strong>The Artisan Burger Experience</strong>
+        </address>
+      </footer>
+
+      {/* BOUTON WHATSAPP OPTIMISÉ ACCESSIBILITÉ */}
+      <a
+        href="https://wa.me/34602597210"
+        target="_blank"
+        rel="noreferrer"
+        className="whatsapp-float"
+        aria-label={lang === 'es' ? "Hacer pedido por WhatsApp" : "Order via WhatsApp"}
+      >
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+          width="40"
+          alt="WhatsApp La Casa de Burger" // Meilleur Alt pour Brave
+        />
+      </a>
+
+      {/* BOUTON ETAPE SUIVANTE */}
+      {(showCardBurger || showCardDrink || showCardPostres) && (
+        <button
+          className="floating-close"
+          onClick={handleNextStep}
+          aria-live="polite" // Prévient les robots que le texte du bouton change dynamiquement
+          style={{
+            position: 'fixed', bottom: '95px', left: '50%', transform: 'translateX(-50%)',
+            backgroundColor: '#ff4757', color: '#fff', padding: '15px 30px',
+            borderRadius: '12px', fontWeight: '900', zIndex: 10000,
+            border: '3px solid #000', cursor: 'pointer', boxShadow: '0 5px 15px rgba(0,0,0,0.4)',
+            textTransform: 'uppercase'
+          }}
+        >
+          {showCardBurger && (
+            lang === 'es' ? 'SIGUIENTE: BEBIDAS ➔' :
+            lang === 'fr' ? 'SUIVANT : BOISSONS ➔' :
+            'NEXT: DRINKS ➔'
+          )}
+          {showCardDrink && (
+            lang === 'es' ? 'SIGUIENTE: POSTRES ➔' :
+            lang === 'fr' ? 'SUIVANT : DESSERTS ➔' :
+            'NEXT: DESSERTS ➔'
+          )}
+          {showCardPostres && (
+            lang === 'es' ? 'VER MI PEDIDO ➔' :
+            lang === 'fr' ? 'VOIR MA COMMANDE ➔' :
+            'VIEW ORDER ➔'
+          )}
+        </button>
+      )}
       </div>
     );
   }
