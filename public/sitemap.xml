@@ -1,8 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://lacasadeburger.es/</loc>
-    <lastmod>2026-02-16</lastmod>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://lacasadeburger.es/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://lacasadeburger.es/"/>
+
+    <xhtml:link rel="alternate" hreflang="en" href="https://lacasadeburger.es/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://lacasadeburger.es/?lang=fr"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://lacasadeburger.es/?lang=nl"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://lacasadeburger.es/?lang=de"/>
+    <xhtml:link rel="alternate" hreflang="no" href="https://lacasadeburger.es/?lang=no"/>
+    <xhtml:link rel="alternate" hreflang="sv" href="https://lacasadeburger.es/?lang=sv"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://lacasadeburger.es/?lang=pl"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://lacasadeburger.es/?lang=uk"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://lacasadeburger.es/?lang=ru"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://lacasadeburger.es/?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="ro" href="https://lacasadeburger.es/?lang=ro"/>
+
+    <lastmod>2026-02-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>

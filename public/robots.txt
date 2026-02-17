@@ -1,21 +1,4 @@
-
 User-agent: *
-Allow: /
-
-
-User-agent: GPTBot
-Allow: /
-
-User-agent: ChatGPT-User
-Allow: /
-
-User-agent: Google-Extended
-Allow: /
-
-User-agent: AnthropicAI
-Allow: /
-
-User-agent: FacebookBot
 Allow: /
 
 Sitemap: https://lacasadeburger.es/sitemap.xml

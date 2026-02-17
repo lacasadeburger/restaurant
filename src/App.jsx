@@ -250,20 +250,30 @@ export default function App() {
   const [showCardBurger, setShowCardBurger] = useState(false);
   const [showCardDrink, setShowCardDrink] = useState(false);
   const [lang, setLang] = useState('es');
+  // --- GESTION DE LA LANGUE (CORRIGÉ POUR SEO & MULTILINGUE) ---
   useEffect(() => {
-    const browserLang = navigator.language || navigator.userLanguage;
-    const code = browserLang.substring(0, 2).toLowerCase(); // On récupère les 2 premières lettres
+    // 1. PRIORITÉ : On regarde si la langue est forcée dans l'URL (ex: ?lang=fr)
+    // C'est ce qui permet à Google d'indexer tes 12 versions différentes
+    const params = new URLSearchParams(window.location.search);
+    const urlLang = params.get('lang');
 
-    const supportedLangs = ['es', 'en', 'fr', 'no', 'sv', 'de', 'pl', 'uk', 'ru', 'ar', 'ro'];
-
-    if (supportedLangs.includes(code)) {
-      setLang(code);
+    if (urlLang && T[urlLang]) {
+      setLang(urlLang);
     } else {
-      setLang('es'); // Par défaut
+      // 2. SECONDAIRE : Détection automatique via le navigateur
+      const browserLang = navigator.language || navigator.userLanguage;
+      const code = browserLang.substring(0, 2).toLowerCase();
+
+      // On vérifie si la langue détectée existe dans ton objet T (inclut nl, pl, etc.)
+      if (T[code]) {
+        setLang(code);
+      } else {
+        setLang('es'); // Langue par défaut si non supportée
+      }
     }
   }, []);
 
-  // Logic: Calcul du prix total ultra-précis (CORRIGÉ)
+  // --- LOGIC: CALCUL DU PRIX TOTAL (CONSERVÉ) ---
   const totalPrice = useMemo(() => {
     return cart.reduce((acc, item) => {
       // 1. On récupère la valeur (si rien n'existe, on met "0")
@@ -280,10 +290,11 @@ export default function App() {
     }, 0).toFixed(2);
   }, [cart]);
 
+  // --- LOGIC: MÉLANGE DES AVIS (CONSERVÉ) ---
   const randomReviews = useMemo(() => {
     // On mélange la liste de 10 et on prend les 2 premiers résultats
     return [...ALL_REVIEWS].sort(() => 0.5 - Math.random()).slice(0, 2);
-  }, []); // [] signifie que le mélange change seulement quand on rafraîchit la page
+  }, []); // Changement uniquement au rafraîchissement
 
   // IDs des produits qui ne doivent PAS avoir d'extras (ajout direct)
     const noExtrasIds = ["prod_nuggets", "prod_croquetas", "prod_fritas", "prod_bravas", "prod_cheddar-bacon"];
@@ -648,109 +659,117 @@ export default function App() {
 
       <Helmet>
   <link rel="preload" as="image" href={BurgerSignature} />
-  <title>Hamburguesería en Torrevieja | La Casa de Burger | Hamburguesas Gourmet</title>
-  <meta name="description" content="Descubre la mejor hamburguesería en Torrevieja. Especialistas en burgers gourmet de autor, Smash Burgers y carne premium. Calidad artesanal y sabor único. ¡Haz tu pedido online ahora!" />
+
+  {/* TITRE ET DESCRIPTION DYNAMIQUES : La clé pour être indexé partout */}
+  <title>{T[lang]?.seoTitle || T.es.seoTitle}</title>
+  <meta name="description" content={T[lang]?.seoContent || T.es.seoContent} />
+
   <link rel="apple-touch-icon" href="/favicon.png?v=3" />
   <meta name="keywords" content="burger Torrevieja, hamburguesería Torrevieja, mejor hamburguesa Torrevieja, hamburguesas gourmet, smash burger Torrevieja, comida a domicilio Torrevieja, takeaway Torrevieja, halal burger, gluten free burger" />
-  <link rel="canonical" href="https://lacasadeburger.es" />
+
+  {/* URL CANONIQUE : Indique à Google quelle est la page officielle selon la langue */}
+  <link rel="canonical" href={`https://lacasadeburger.es${lang !== 'es' ? `?lang=${lang}` : ''}`} />
   <meta name="robots" content="index, follow" />
 
-<link rel="alternate" href="https://lacasadeburger.es" hreflang="es" />
-<link rel="alternate" href="https://lacasadeburger.es" hreflang="en" />
-<link rel="alternate" href="https://lacasadeburger.es" hreflang="fr" />
-<link rel="alternate" href="https://lacasadeburger.es" hreflang="no" />
-<link rel="alternate" href="https://lacasadeburger.es" hreflang="sv" />
-<link rel="alternate" href="https://lacasadeburger.es" hreflang="de" />
-<link rel="alternate" href="https://lacasadeburger.es" hreflang="pl" />
-<link rel="alternate" href="https://lacasadeburger.es" hreflang="uk" />
-<link rel="alternate" href="https://lacasadeburger.es" hreflang="ru" />
-<link rel="alternate" href="https://lacasadeburger.es" hreflang="ar" />
-<link rel="alternate" href="https://lacasadeburger.es" hreflang="ro" />
-<link rel="alternate" href="https://lacasadeburger.es" hreflang="x-default" />
+  {/* HREFLANG : Indique les versions alternatives. INDISPENSABLE pour les 12 langues */}
+  <link rel="alternate" href="https://lacasadeburger.es/" hreflang="x-default" />
+  <link rel="alternate" href="https://lacasadeburger.es/" hreflang="es" />
+  <link rel="alternate" href="https://lacasadeburger.es/?lang=en" hreflang="en" />
+  <link rel="alternate" href="https://lacasadeburger.es/?lang=fr" hreflang="fr" />
+  <link rel="alternate" href="https://lacasadeburger.es/?lang=no" hreflang="no" />
+  <link rel="alternate" href="https://lacasadeburger.es/?lang=sv" hreflang="sv" />
+  <link rel="alternate" href="https://lacasadeburger.es/?lang=de" hreflang="de" />
+  <link rel="alternate" href="https://lacasadeburger.es/?lang=nl" hreflang="nl" /> {/* NL ajouté */}
+  <link rel="alternate" href="https://lacasadeburger.es/?lang=pl" hreflang="pl" />
+  <link rel="alternate" href="https://lacasadeburger.es/?lang=uk" hreflang="uk" />
+  <link rel="alternate" href="https://lacasadeburger.es/?lang=ru" hreflang="ru" />
+  <link rel="alternate" href="https://lacasadeburger.es/?lang=ar" hreflang="ar" />
+  <link rel="alternate" href="https://lacasadeburger.es/?lang=ro" hreflang="ro" />
 
+  {/* OG TAGS DYNAMIQUES : Pour que le partage WhatsApp soit dans la bonne langue */}
   <meta property="og:type" content="restaurant" />
-  <meta property="og:title" content="La Casa de Burger | Hamburguesas Gourmet de Autor" />
-  <meta property="og:description" content="No es solo una burger, es una experiencia gourmet. Recetas únicas y artesanales en el corazón de Torrevieja." />
+  <meta property="og:title" content={T[lang]?.seoTitle || T.es.seoTitle} />
+  <meta property="og:description" content={T[lang]?.seoContent || T.es.seoContent} />
   <meta property="og:image" content="https://lacasadeburger.es/assets/burger-signature-torrevieja.webp" />
-  <meta property="og:url" content="https://lacasadeburger.es" />
+  <meta property="og:url" content={`https://lacasadeburger.es${lang !== 'es' ? `?lang=${lang}` : ''}`} />
   <meta property="og:site_name" content="La Casa de Burger" />
 
-
+  {/* TWITTER DYNAMIQUE */}
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="La Casa de Burger | Gourmet & Signature Burgers" />
-  <meta name="twitter:description" content="Artesanal, Gourmet y Única. Descubre las mejores burgers de Torrevieja." />
+  <meta name="twitter:title" content={T[lang]?.seoTitle || T.es.seoTitle} />
+  <meta name="twitter:description" content={T[lang]?.seoContent || T.es.seoContent} />
   <meta name="twitter:image" content="https://lacasadeburger.es/assets/burger-signature-torrevieja.webp" />
 
+  {/* JSON-LD : Ton Schema est parfait, gardons-le ! */}
   <script type="application/ld+json">
-{JSON.stringify({
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Restaurant",
-      "@id": "https://lacasadeburger.es/#restaurant",
-      "name": "La Casa de Burger Torrevieja",
-      "image": "https://lacasadeburger.es/assets/burger-signature-torrevieja.webp",
-      "logo": "https://lacasadeburger.es/assets/logo.jpg",
-      "url": "https://lacasadeburger.es",
-      "telephone": "+34602597210",
-      "priceRange": "€€",
-      "servesCuisine": ["Burger", "Gourmet Burger", "Smash Burger", "Halal"],
-      "areaServed": "Torrevieja",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Av. Diego Ramírez Pastor, 142",
-        "addressLocality": "Torrevieja",
-        "addressRegion": "Alicante",
-        "postalCode": "03181",
-        "addressCountry": "ES"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": 37.982362,
-        "longitude": -0.679541
-      },
-      // --- AJOUT DES ÉTOILES (AVIS) ---
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "4.9", // Note moyenne
-        "reviewCount": "248", // Nombre d'avis total
-        "bestRating": "5",
-        "worstRating": "1"
-      },
-      "potentialAction": {
-        "@type": "OrderAction",
-        "target": {
-          "@type": "EntryPoint",
-          "urlTemplate": "https://lacasadeburger.es/#order",
-          "actionPlatform": [
-            "http://schema.org/DesktopWebPlatform",
-            "http://schema.org/MobileWebPlatform"
-          ]
-        },
-        "deliveryMethod": ["http://schema.org/ParcelService"]
-      }
-    },
-    {
-      "@type": "Menu",
-      "@id": "https://lacasadeburger.es/#menu",
-      "name": "Carta La Casa de Burger",
-      "mainEntityOfPage": "https://lacasadeburger.es",
-      "hasMenuItem": [
+    {JSON.stringify({
+      "@context": "https://schema.org",
+      "@graph": [
         {
-          "@type": "MenuItem",
-          "name": "Hamburguesas Gourmet",
-          "description": "Las mejores burgers gourmet y smash de Torrevieja con carne de ternera premium.",
-          "offers": {
-            "@type": "Offer",
-            "price": "10.00",
-            "priceCurrency": "EUR"
+          "@type": "Restaurant",
+          "@id": "https://lacasadeburger.es/#restaurant",
+          "name": "La Casa de Burger Torrevieja",
+          "image": "https://lacasadeburger.es/assets/burger-signature-torrevieja.webp",
+          "logo": "https://lacasadeburger.es/assets/logo.jpg",
+          "url": "https://lacasadeburger.es",
+          "telephone": "+34602597210",
+          "priceRange": "€€",
+          "servesCuisine": ["Burger", "Gourmet Burger", "Smash Burger", "Halal"],
+          "areaServed": "Torrevieja",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Av. Diego Ramírez Pastor, 142",
+            "addressLocality": "Torrevieja",
+            "addressRegion": "Alicante",
+            "postalCode": "03181",
+            "addressCountry": "ES"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 37.982362,
+            "longitude": -0.679541
+          },
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.9",
+            "reviewCount": "248",
+            "bestRating": "5",
+            "worstRating": "1"
+          },
+          "potentialAction": {
+            "@type": "OrderAction",
+            "target": {
+              "@type": "EntryPoint",
+              "urlTemplate": "https://lacasadeburger.es/#order",
+              "actionPlatform": [
+                "http://schema.org/DesktopWebPlatform",
+                "http://schema.org/MobileWebPlatform"
+              ]
+            },
+            "deliveryMethod": ["http://schema.org/ParcelService"]
           }
+        },
+        {
+          "@type": "Menu",
+          "@id": "https://lacasadeburger.es/#menu",
+          "name": "Carta La Casa de Burger",
+          "mainEntityOfPage": "https://lacasadeburger.es",
+          "hasMenuItem": [
+            {
+              "@type": "MenuItem",
+              "name": "Hamburguesas Gourmet",
+              "description": "Las mejores burgers gourmet y smash de Torrevieja con carne de ternera premium.",
+              "offers": {
+                "@type": "Offer",
+                "price": "10.00",
+                "priceCurrency": "EUR"
+              }
+            }
+          ]
         }
       ]
-    }
-  ]
-})}
-</script>
+    })}
+  </script>
 </Helmet>
 {/* --- LOGO ANIMÉ EN HAUT À Gauche --- */}
 <div className="logo-container-wrapper" style={{
