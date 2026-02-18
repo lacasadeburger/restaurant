@@ -1,7 +1,7 @@
 {
   "name": "restaurante",
   "private": true,
-  "homepage": "https://lacasadeburger.es",
+  "homepage": "https://lacasadeburger.es/",
   "version": "1.0.0",
   "type": "module",
   "scripts": {
