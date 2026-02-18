@@ -66,11 +66,19 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang, setLa
               <span style={{ fontSize: '1rem' }}>📞</span>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column' }}>
-              <span className="nav-phone-number" style={{ color: GOLD_BRIGHT, fontSize: '0.85rem', fontWeight: '900', whiteSpace: 'nowrap' }}>602 597 210</span>
-              <span style={{ color: VIBRANT_RED, fontSize: '0.65rem', fontWeight: '900', animation: 'pulse-text 2s infinite' }}>
-                {(lang === 'es' || lang === 'ar') ? 'LLÁMANOS' : lang === 'fr' ? 'APPELER' : 'CALL US'}
-              </span>
-            </div>
+  <span className="nav-phone-number" style={{ color: GOLD_BRIGHT, fontSize: '0.85rem', fontWeight: '900', whiteSpace: 'nowrap' }}>
+    602 597 210
+  </span>
+  <span style={{
+    color: '#FFFFFF', // ✅ On passe en blanc pour le contraste
+    fontSize: '0.7rem', // ✅ On augmente un tout petit peu la taille
+    fontWeight: '900',
+    animation: 'pulse-text 2s infinite',
+    letterSpacing: '0.5px'
+  }}>
+    {(lang === 'es' || lang === 'ar') ? 'LLÁMANOS' : lang === 'fr' ? 'APPELER' : 'CALL US'}
+  </span>
+</div>
           </a>
         </div>
 
@@ -93,7 +101,7 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang, setLa
         {/* DROITE : PANIER */}
         <div onClick={scrollToOrder} style={{ width: '35%', display: 'flex', justifyContent: 'flex-end', cursor: 'pointer' }}>
           <div className={cartLength > 0 ? 'pulse-active' : ''} style={{
-            backgroundColor: VIBRANT_RED, padding: '8px 12px', borderRadius: '10px',
+            backgroundColor: '#e60023', padding: '8px 12px', borderRadius: '10px',
             border: `2px solid ${GOLD_BRIGHT}`, display: 'flex', alignItems: 'center',
             boxShadow: '0 4px 12px rgba(255, 71, 87, 0.4)'
           }}>
