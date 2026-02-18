@@ -672,7 +672,6 @@ export default function App() {
 <meta name="robots" content="index, follow" />
 
   {/* HREFLANG : Indique les versions alternatives. INDISPENSABLE pour les 12 langues */}
-  <link rel="canonical" href={`https://lacasadeburger.es/${lang !== 'es' ? `?lang=${lang}` : ''}`} />
 
 <link rel="alternate" href="https://lacasadeburger.es/" hreflang="x-default" />
 <link rel="alternate" href="https://lacasadeburger.es/" hreflang="es" />
