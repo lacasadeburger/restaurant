@@ -975,9 +975,10 @@ style={{
               {lang === 'es' ? '¡LLÁMANOS!' : 'CALL US!'}
             </span>
           </div>
-        </div> {/* <--- CE DIV ÉTAIT MANQUANT : il ferme le conteneur des boutons */}
-      </div> {/* <--- CELUI-CI FERME LE CONTENU DU HERO (hero-content) */}
-    </header>
+        </div>
+      </div> {/* <--- CE DIV ÉTAIT MANQUANT : il ferme le conteneur des boutons */}
+    </div> {/* <--- CELUI-CI FERME LE CONTENU DU HERO (hero-content) */}
+  </header>
       <main className="menu-page-container">
 
   {/* 1. SECTION BURGERS */}
