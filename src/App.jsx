@@ -963,21 +963,21 @@ style={{
 
   {/* Petit texte animé CALL US - Correction du contraste (Blanc au lieu du rouge corail) */}
   <div style={{ display: 'flex', alignItems: 'center' }}>
-    <span
-      style={{
-        color: '#FFFFFF', // FIX: Blanc pur pour le contraste sur fond sombre
-        fontSize: '0.75rem',
-        fontWeight: '900',
-        textTransform: 'uppercase',
-        letterSpacing: '1px'
-      }}
-    >
-      {lang === 'es' ? '¡LLÁMANOS!' : 'CALL US!'}
-    </span>
-  </div>
-</div>
-
-      </header>
+            <span
+              style={{
+                color: '#FFFFFF',
+                fontSize: '0.75rem',
+                fontWeight: '900',
+                textTransform: 'uppercase',
+                letterSpacing: '1px'
+              }}
+            >
+              {lang === 'es' ? '¡LLÁMANOS!' : 'CALL US!'}
+            </span>
+          </div>
+        </div> {/* <--- CE DIV ÉTAIT MANQUANT : il ferme le conteneur des boutons */}
+      </div> {/* <--- CELUI-CI FERME LE CONTENU DU HERO (hero-content) */}
+    </header>
       <main className="menu-page-container">
 
   {/* 1. SECTION BURGERS */}
