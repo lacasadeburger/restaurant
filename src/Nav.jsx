@@ -101,15 +101,15 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang, setLa
         </div>
       </nav>
 
-      {/* SÉLECTEUR DE LANGUES : OPTIMISÉ CLS */}
+      {/* SÉLECTEUR DE LANGUES */}
       <div style={{
         marginTop: '80px',
         display: 'flex', justifyContent: 'center', gap: '6px', padding: '12px 8px',
         flexWrap: 'wrap', backgroundColor: 'rgba(15, 15, 15, 0.95)',
         position: 'relative', zIndex: 9999, borderBottom: '1px solid #333',
-        minHeight: '44px' // Réserve l'espace pour éviter le saut au chargement
+        minHeight: '44px',
+        boxSizing: 'border-box'
       }}>
-      {/* Fin de la liste des drapeaux */}
         {languages.map((l) => (
           <button
             key={l.code}
@@ -136,19 +136,25 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang, setLa
             }}
           >
             <img
-              src={`https://flagcdn.com/w40/${l.flag}.png`}
+              src={`https://flagcdn.com/w80/${l.flag}.png`}
               width="26"
-              height="20"
               alt={l.label}
               decoding="async"
               loading="eager"
-              style={{ borderRadius: '2px', display: 'block', pointerEvents: 'none' }}
+              style={{
+                borderRadius: '2px',
+                display: 'block',
+                pointerEvents: 'none',
+                width: '26px',
+                height: '18px',
+                objectFit: 'cover'
+              }}
             />
           </button>
         ))}
-      </div> {/* <--- C'EST CE DIV QUI MANQUAIT (fermeture du header/nav principal) */}
+      </div>
 
-      {/* LA BARRE DE PROMO (elle est en dehors du div principal car elle prend 100% de largeur) */}
+      {/* BARRE DE PROMO */}
       <div style={{
         background: 'linear-gradient(to right, #000, #1a1a1a, #000)',
         color: '#fff', textAlign: 'center', padding: '10px 8px',
@@ -162,5 +168,5 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang, setLa
         <span style={{ color: GOLD_BRIGHT }}>★</span>
       </div>
     </>
-    );
-  }
+  );
+}
