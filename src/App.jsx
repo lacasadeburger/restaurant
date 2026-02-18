@@ -402,7 +402,7 @@ export default function App() {
           max-width: 500px; width: 100%; margin-bottom: 20px; border: 2px solid rgba(255, 215, 0, 0.3);
         }
 
-        .promo-img { width: 100%; display: block; opacity: 1; transition: 0.5s; }
+        .promo-img { width: 100%; height: auto; display: block; opacity: 1; transition: 0.5s; }
         .promo-container:hover .promo-img { opacity: 0.7; transform: scale(1.05); }
 
         .btn-overlay {
@@ -1008,8 +1008,8 @@ style={{
               className="promo-img"
               alt="Mejor Hamburguesa Gourmet"
               fetchpriority="high" // Priorité max
-              width="600"          // Dimensions pour éviter le saut
-              height="400"
+              width="1024"          // Dimensions pour éviter le saut
+              height="573"
             />
 
             <button className="btn-overlay gold-button-premium">
