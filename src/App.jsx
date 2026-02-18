@@ -1210,15 +1210,15 @@ style={{
 
         {/* ADRESSE PHYSIQUE EN TEXTE CLAIR (Très important pour le SEO Local) */}
         <address style={{
-          color: '#444',
-          fontSize: '0.7rem',
-          marginTop: '10px',
-          fontStyle: 'normal',
-          letterSpacing: '0.5px'
-        }}>
-          Av. Diego Ramírez Pastor, 142 • 03181 Torrevieja, Spain <br/>
-          <strong>The Artisan Burger Experience</strong>
-        </address>
+    color: '#bbb', // ✅ Gris clair pour un meilleur contraste
+    fontSize: '0.85rem', // ✅ Légèrement plus grand pour l'accessibilité
+    marginTop: '10px',
+    fontStyle: 'normal',
+    letterSpacing: '0.5px'
+  }}>
+    Av. Diego Ramírez Pastor, 142 • 03181 Torrevieja, Spain <br/>
+    <strong style={{ color: '#fff' }}>The Artisan Burger Experience</strong> {/* ✅ Nom en blanc pour ressortir */}
+  </address>
       </footer>
 
       {/* BOUTON WHATSAPP OPTIMISÉ ACCESSIBILITÉ */}

@@ -102,7 +102,7 @@ export default function CardMenu(props) {
         @keyframes liquidGold { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
         .image-container { width: 100%; height: 160px; display: flex; align-items: center; justify-content: center; position: relative; }
         .product-img { width: 85%; height: 85%; object-fit: contain; z-index: 2; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.6)); }
-        .price-badge-overlay { position: absolute; top: 10px; right: 10px; background: #ff4757; color: white; padding: 5px 12px; border-radius: 8px; font-weight: 950; font-size: 1.3rem; z-index: 10; border: 2.5px solid #D4AF37; box-shadow: 3px 3px 0px #000; transform: rotate(5deg); }
+      .price-badge-overlay { position: absolute; top: 10px; right: 10px; background: #e60023; color: #ffffff; padding: 5px 12px; border-radius: 8px; font-weight: 950; font-size: 1.3rem; z-index: 10; border: 2.5px solid #D4AF37; box-shadow: 3px 3px 0px #000; transform: rotate(5deg); }
         .info-box, .options-box { background: rgba(0, 0, 0, 0.85); padding: 12px; border-radius: 12px; border: 1.5px solid rgba(191, 149, 63, 0.4); backdrop-filter: blur(8px); margin-bottom: 10px; }
 
         /* --- MODIFICATION COULEUR TITRE PRODUIT --- */
