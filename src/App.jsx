@@ -668,8 +668,7 @@ export default function App() {
     <meta name="keywords" content="burger Torrevieja, hamburguesería Torrevieja, mejor hamburguesa Torrevieja, hamburguesas gourmet, smash burger Torrevieja, comida a domicilio Torrevieja, takeaway Torrevieja, halal burger, gluten free burger" />
 
     {/* 1. URL CANONIQUE CORRIGÉE : Utilise une condition simple pour éviter les erreurs de slash */}
-    <link rel="canonical" href={lang === 'es' ? "https://lacasadeburger.es" : `https://lacasadeburger.es?lang=${lang}`} />
-
+<link rel="canonical" href={lang === 'es' ? "https://lacasadeburger.es" : `https://lacasadeburger.es/?lang=${lang}`} />
     <meta name="robots" content="index, follow" />
 
     {/* 2. HREFLANG : Doivent correspondre EXACTEMENT au format du canonical ci-dessus */}
