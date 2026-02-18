@@ -1104,27 +1104,29 @@ style={{
         </footer>
 
         {/* SECTION MAPS & VIDEO */}
-  <div style={{ display: 'flex', flexDirection: 'column', gap: '40px', alignItems: 'center', margin: '05px auto' }}>
+  <div style={{ display: 'flex', flexDirection: 'column', gap: '40px', alignItems: 'center', margin: '40px auto' }}>
     <div style={{ width: '90%', maxWidth: '1100px', borderRadius: '15px', overflow: 'hidden', border: `2px solid ${GOLD_BRIGHT}` }}>
       <iframe
-        src="http://googleusercontent.com/maps.google.com/9"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3141.564503378335!2d-0.6830545!3d37.9873055!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd639360817c160f%3A0xc3124508930438a0!2sLa%20Casa%20de%20Burger!5e0!3m2!1ses!2ses!4v1708280000000!5m2!1ses!2ses"
         width="100%"
         height="350"
         style={{ border: 0 }}
         allowFullScreen=""
         loading="lazy"
-        title="Mapa de ubicación de La Casa de Burger" // ✅ OK
+        referrerPolicy="no-referrer-when-downgrade"
+        title="Mapa de ubicación de La Casa de Burger"
       ></iframe>
     </div>
+
     <div style={{ width: '90%', maxWidth: '800px', borderRadius: '15px', overflow: 'hidden', border: `3px solid ${GOLD_BRIGHT}` }}>
       <iframe
         width="100%"
         height="400"
         src="https://www.youtube.com/embed/qN6VZYBojLs"
-        title="Video de presentación de nuestras Hamburguesas Gourmet" // ✅ AJOUTÉ ICI
+        title="Video de presentación de nuestras Hamburguesas Gourmet"
         frameBorder="0"
         allowFullScreen
-        loading="lazy" // Ajoute aussi loading="lazy" ici pour la Performance !
+        loading="lazy"
       ></iframe>
     </div>
   </div>
