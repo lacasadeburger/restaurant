@@ -109,34 +109,46 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang, setLa
         position: 'relative', zIndex: 9999, borderBottom: '1px solid #333',
         minHeight: '44px' // Réserve l'espace pour éviter le saut au chargement
       }}>
+      {/* Fin de la liste des drapeaux */}
         {languages.map((l) => (
           <button
             key={l.code}
             onClick={() => setLang(l.code)}
             aria-label={l.label}
             style={{
-              background: 'none',
-              border: lang === l.code ? `2px solid ${GOLD_BRIGHT}` : '1px solid #444',
-              borderRadius: '6px', cursor: 'pointer', padding: '3px',
-              transition: '0.2s', transform: lang === l.code ? 'scale(1.15)' : 'scale(1)',
-              filter: lang === l.code ? 'grayscale(0%)' : 'grayscale(50%)',
               backgroundColor: lang === l.code ? 'rgba(255,255,255,0.1)' : 'transparent',
-              width: '34px', height: '28px', // Dimensions du bouton fixes
-              display: 'flex', justifyContent: 'center', alignItems: 'center'
+              background: 'none',
+              borderStyle: 'solid',
+              borderWidth: '1px',
+              borderColor: lang === l.code ? GOLD_BRIGHT : '#444',
+              borderRadius: '6px',
+              cursor: 'pointer',
+              padding: '3px',
+              transition: '0.2s ease-in-out',
+              transform: lang === l.code ? 'scale(1.15)' : 'scale(1)',
+              filter: lang === l.code ? 'grayscale(0%)' : 'grayscale(50%)',
+              width: '34px',
+              height: '28px',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              boxSizing: 'border-box'
             }}
           >
             <img
               src={`https://flagcdn.com/w40/${l.flag}.png`}
               width="26"
-              height="20" // <-- CRUCIAL POUR LE SCORE 100
+              height="20"
               alt={l.label}
-              decoding="async" // <-- OPTIMISATION RENDU
+              decoding="async"
+              loading="eager"
               style={{ borderRadius: '2px', display: 'block', pointerEvents: 'none' }}
             />
           </button>
         ))}
-      </div>
+      </div> {/* <--- C'EST CE DIV QUI MANQUAIT (fermeture du header/nav principal) */}
 
+      {/* LA BARRE DE PROMO (elle est en dehors du div principal car elle prend 100% de largeur) */}
       <div style={{
         background: 'linear-gradient(to right, #000, #1a1a1a, #000)',
         color: '#fff', textAlign: 'center', padding: '10px 8px',
@@ -150,5 +162,5 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang, setLa
         <span style={{ color: GOLD_BRIGHT }}>★</span>
       </div>
     </>
-  );
-}
+    );
+  }

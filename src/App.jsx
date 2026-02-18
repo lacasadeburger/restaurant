@@ -762,8 +762,8 @@ export default function App() {
             "@type": "EntryPoint",
             "urlTemplate": "https://lacasadeburger.es/#order",
             "actionPlatform": [
-              "http://schema.org/DesktopWebPlatform",
-              "http://schema.org/MobileWebPlatform"
+              "https://schema.org/DesktopWebPlatform",
+              "https://schema.org/MobileWebPlatform"
             ]
           }
         }
