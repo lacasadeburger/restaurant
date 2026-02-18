@@ -658,33 +658,31 @@ export default function App() {
       `}</style>
 
       <Helmet>
-    <link rel="preload" as="image" href={BurgerSignature} />
+  <link rel="preload" as="image" href={BurgerSignature} />
+  <title>{T[lang]?.seoTitle || T.es.seoTitle}</title>
+  <meta name="description" content={T[lang]?.seoContent || T.es.seoContent} />
 
-    {/* TITRE ET DESCRIPTION DYNAMIQUES */}
-    <title>{T[lang]?.seoTitle || T.es.seoTitle}</title>
-    <meta name="description" content={T[lang]?.seoContent || T.es.seoContent} />
+  {/* 1. CANONICAL : Strictement avec le slash final */}
+  <link rel="canonical" href={lang === 'es' ? "https://lacasadeburger.es/" : `https://lacasadeburger.es/?lang=${lang}`} />
 
-    <link rel="apple-touch-icon" href="/favicon.png?v=3" />
-    <meta name="keywords" content="burger Torrevieja, hamburguesería Torrevieja, mejor hamburguesa Torrevieja, hamburguesas gourmet, smash burger Torrevieja, comida a domicilio Torrevieja, takeaway Torrevieja, halal burger, gluten free burger" />
+  <meta name="robots" content="index, follow" />
 
-    {/* 1. URL CANONIQUE CORRIGÉE : Utilise une condition simple pour éviter les erreurs de slash */}
-<link rel="canonical" href={lang === 'es' ? "https://lacasadeburger.es/" : `https://lacasadeburger.es/?lang=${lang}`} />
-    <meta name="robots" content="index, follow" />
+  {/* 2. HREFLANG : On s'assure que x-default et es sont IDENTIQUES au canonical */}
+  <link rel="alternate" href="https://lacasadeburger.es/" hreflang="x-default" />
+  <link rel="alternate" href="https://lacasadeburger.es/" hreflang="es" />
 
-    {/* 2. HREFLANG : Doivent correspondre EXACTEMENT au format du canonical ci-dessus */}
-    <link rel="alternate" href="https://lacasadeburger.es/" hreflang="x-default" />
-    <link rel="alternate" href="https://lacasadeburger.es/" hreflang="es" />
-    <link rel="alternate" href="https://lacasadeburger.es/?lang=en" hreflang="en" />
-    <link rel="alternate" href="https://lacasadeburger.es/?lang=fr" hreflang="fr" />
-    <link rel="alternate" href="https://lacasadeburger.es/?lang=no" hreflang="no" />
-    <link rel="alternate" href="https://lacasadeburger.es/?lang=sv" hreflang="sv" />
-    <link rel="alternate" href="https://lacasadeburger.es/?lang=de" hreflang="de" />
-    <link rel="alternate" href="https://lacasadeburger.es/?lang=nl" hreflang="nl" />
-    <link rel="alternate" href="https://lacasadeburger.es/?lang=pl" hreflang="pl" />
-    <link rel="alternate" href="https://lacasadeburger.es/?lang=uk" hreflang="uk" />
-    <link rel="alternate" href="https://lacasadeburger.es/?lang=ru" hreflang="ru" />
-    <link rel="alternate" href="https://lacasadeburger.es/?lang=ar" hreflang="ar" />
-    <link rel="alternate" href="https://lacasadeburger.es/?lang=ro" hreflang="ro" />
+  {/* Pour les langues avec paramètres, le slash est déjà présent avant le ? */}
+  <link rel="alternate" href="https://lacasadeburger.es/?lang=en" hreflang="en" />
+  <link rel="alternate" href="https://lacasadeburger.es/?lang=fr" hreflang="fr" />
+  <link rel="alternate" href="https://lacasadeburger.es/?lang=no" hreflang="no" />
+  <link rel="alternate" href="https://lacasadeburger.es/?lang=sv" hreflang="sv" />
+  <link rel="alternate" href="https://lacasadeburger.es/?lang=de" hreflang="de" />
+  <link rel="alternate" href="https://lacasadeburger.es/?lang=nl" hreflang="nl" />
+  <link rel="alternate" href="https://lacasadeburger.es/?lang=pl" hreflang="pl" />
+  <link rel="alternate" href="https://lacasadeburger.es/?lang=uk" hreflang="uk" />
+  <link rel="alternate" href="https://lacasadeburger.es/?lang=ru" hreflang="ru" />
+  <link rel="alternate" href="https://lacasadeburger.es/?lang=ar" hreflang="ar" />
+  <link rel="alternate" href="https://lacasadeburger.es/?lang=ro" hreflang="ro" />
 
   {/* OG TAGS DYNAMIQUES : Pour que le partage WhatsApp soit dans la bonne langue */}
   <meta property="og:type" content="restaurant" />
