@@ -110,6 +110,7 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang, setLa
         </div>
       </nav>
 
+
       {/* SÉLECTEUR DE LANGUES */}
       <div style={{
         marginTop: '80px',
