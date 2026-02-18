@@ -940,26 +940,41 @@ style={{
 >
 📅 RESERVAR MESA
 </button>
-<div style={{ display: 'flex', justifyContent: 'center', gap: '15px', flexWrap: 'wrap', marginTop: '05px' }}>
+<div style={{ display: 'flex', justifyContent: 'center', gap: '15px', flexWrap: 'wrap', marginTop: '5px' }}>
   <a
     href="tel:+34602597210"
-    aria-label={T[lang]?.btnCall || T.es.btnCall} // Indique aux robots ce que fait le lien
+    aria-label={T[lang]?.btnCall || T.es.btnCall}
     style={{
-      background: '#fff',
-      color: '#000',
+      background: '#ffffff', // Blanc pur
+      color: '#000000',      // Noir pur (Contraste maximal 21:1)
       padding: '14px 30px',
       borderRadius: '50px',
       textDecoration: 'none',
       fontWeight: '950',
-      border: '2px solid #000',
+      border: '2px solid #000000',
       display: 'flex',
       alignItems: 'center',
-      gap: '8px'
+      gap: '8px',
+      boxShadow: '0 4px 15px rgba(0,0,0,0.3)'
     }}
   >
     <span role="img" aria-label="phone">📞</span> {T[lang]?.btnCall || T.es.btnCall}
   </a>
-</div>
+
+  {/* Petit texte animé CALL US - Correction du contraste (Blanc au lieu du rouge corail) */}
+  <div style={{ display: 'flex', alignItems: 'center' }}>
+    <span
+      style={{
+        color: '#FFFFFF', // FIX: Blanc pur pour le contraste sur fond sombre
+        fontSize: '0.75rem',
+        fontWeight: '900',
+        textTransform: 'uppercase',
+        letterSpacing: '1px'
+      }}
+    >
+      {lang === 'es' ? '¡LLÁMANOS!' : 'CALL US!'}
+    </span>
+  </div>
 </div>
 </div>
       </header>
