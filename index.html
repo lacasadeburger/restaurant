@@ -3,33 +3,33 @@
   <head>
     <meta charset="UTF-8" />
 
+    {/* Icônes et Favicons */}
     <link rel="icon" type="image/jpeg" href="/src/assets/logo.jpg" />
     <link rel="apple-touch-icon" href="/src/assets/logo.jpg" />
 
+    {/* Meta tags obligatoires pour le mobile et le SEO */}
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
     <meta name="theme-color" content="#ff4757" />
 
+    {/* Connexion rapide aux polices Google */}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
+    {/* Meta réseaux sociaux (Open Graph) */}
     <meta property="og:type" content="restaurant.restaurant" />
     <meta property="og:image" content="https://lacasadeburger.es/logo-social.jpg" />
 
+    {/* Installation Application Mobile (PWA) */}
     <link rel="manifest" href="/manifest.json" />
+
+    {/* BOOST DE PERFORMANCE : Préchargement de l'image principale */}
+    <link rel="preload" as="image" href="/src/assets/burger-signature-torrevieja.webp">
   </head>
   <body>
     <div id="root"></div>
+
+    {/* Chargement de ton application React */}
     <script type="module" src="/src/main.jsx"></script>
 
-    <script type="text/javascript">
-      function googleTranslateElementInit() {
-        new google.translate.TranslateElement({
-          pageLanguage: 'es',
-          layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-          autoDisplay: false
-        }, 'google_translate_element');
-      }
-    </script>
-    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-  </body>
+    </body>
 </html>
