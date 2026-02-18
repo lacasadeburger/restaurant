@@ -979,70 +979,114 @@ style={{
   </header>
       <main className="menu-page-container">
 
-  {/* 1. SECTION BURGERS */}
-  <section id="sec-burgers" style={{ marginTop: '05px' }}>
-    <SectionTitle>{T[lang]?.catBurgers || T.es.catBurgers}</SectionTitle>
-    {showCardBurger ? (
-      <div className="grid-cards">
-        {burgers.map(item => (
-          <CardMenu key={item.id} {...item} addToCart={addToCart} lang={lang} hasExtras={!noExtrasIds.includes(item.id)} />
-        ))}
-      </div>
-    ) : (
-      <div className="promo-container" onClick={() => {
-        setShowCardBurger(true);
-        setTimeout(() => {
-          const el = document.getElementById("sec-burgers");
-          if (el) window.scrollTo({ top: el.offsetTop - 150, behavior: "smooth" });
-        }, 150);
-      }} style={{ cursor: 'pointer' }}>
-        <img src={Burger} className="promo-img" alt="Mejor Hamburguesa Gourmet" />
-        <button className="btn-overlay gold-button-premium">{T[lang]?.btnSeeMenu || T.es.btnSeeMenu}</button>
-      </div>
-    )}
-  </section>
+      <section id="sec-burgers" style={{ marginTop: '05px' }}>
+        <SectionTitle>{T[lang]?.catBurgers || T.es.catBurgers}</SectionTitle>
+        {showCardBurger ? (
+          <div className="grid-cards">
+            {burgers.map(item => (
+              <CardMenu key={item.id} {...item} addToCart={addToCart} lang={lang} hasExtras={!noExtrasIds.includes(item.id)} />
+            ))}
+          </div>
+        ) : (
+          <div className="promo-container" onClick={() => {
+            setShowCardBurger(true);
+            // Utilisation de requestAnimationFrame pour éviter le "Forced Reflow"
+            requestAnimationFrame(() => {
+              const el = document.getElementById("sec-burgers");
+              if (el) {
+                window.scrollTo({
+                  top: el.getBoundingClientRect().top + window.pageYOffset - 100,
+                  behavior: "smooth"
+                });
+              }
+            });
+          }} style={{ cursor: 'pointer' }}>
 
-  {/* 2. SECTION BEBIDAS */}
-  <section id="sec-bebidas">
-    <SectionTitle>{T[lang]?.catDrinks || T.es.catDrinks}</SectionTitle>
-    {showCardDrink ? (
-      <div className="grid-cards">
-        {drinks.map(item => <CardMenu key={item.id} {...item} isDrinkCard={true} addToCart={addToCart} lang={lang} />)}
-      </div>
-    ) : (
-      <div className="promo-container" onClick={() => {
-        setShowCardDrink(true);
-        setTimeout(() => {
-          const el = document.getElementById("sec-bebidas");
-          if (el) window.scrollTo({ top: el.offsetTop - 150, behavior: "smooth" });
-        }, 150);
-      }} style={{ cursor: 'pointer' }}>
-        <img src={Drink} className="promo-img" alt="Drinks" />
-        <button className="btn-overlay gold-button-premium">{T[lang]?.catDrinks || T.es.catDrinks}</button>
-      </div>
-    )}
-  </section>
+            {/* OPTIMISATION LCP ICI */}
+            <img
+              src={Burger}
+              className="promo-img"
+              alt="Mejor Hamburguesa Gourmet"
+              fetchpriority="high" // Priorité max
+              width="600"          // Dimensions pour éviter le saut
+              height="400"
+            />
 
-  {/* 3. SECTION POSTRES */}
-  <section id="sec-postres">
-    <SectionTitle>{T[lang]?.catDesserts || T.es.catDesserts}</SectionTitle>
-    {showCardPostres ? (
-      <div className="grid-cards">
-        {postres.map(item => <CardMenu key={item.id} {...item} isPostreCard={true} addToCart={addToCart} lang={lang} />)}
-      </div>
-    ) : (
-      <div className="promo-container" onClick={() => {
-        setShowCardPostres(true);
-        setTimeout(() => {
-          const el = document.getElementById("sec-postres");
-          if (el) window.scrollTo({ top: el.offsetTop - 150, behavior: "smooth" });
-        }, 150);
-      }} style={{ cursor: 'pointer' }}>
-        <img src={Postre} className="promo-img" alt="Desserts" />
-        <button className="btn-overlay gold-button-premium">{T[lang]?.catDesserts || T.es.catDesserts}</button>
-      </div>
-    )}
-  </section>
+            <button className="btn-overlay gold-button-premium">
+              {T[lang]?.btnSeeMenu || T.es.btnSeeMenu}
+            </button>
+          </div>
+        )}
+      </section>
+
+      <section id="sec-bebidas">
+        <SectionTitle>{T[lang]?.catDrinks || T.es.catDrinks}</SectionTitle>
+        {showCardDrink ? (
+          <div className="grid-cards">
+            {drinks.map(item => <CardMenu key={item.id} {...item} isDrinkCard={true} addToCart={addToCart} lang={lang} />)}
+          </div>
+        ) : (
+          <div className="promo-container" onClick={() => {
+            setShowCardDrink(true);
+            // Correction du scroll pour éviter l'ajustement forcé (Reflow)
+            requestAnimationFrame(() => {
+              const el = document.getElementById("sec-bebidas");
+              if (el) {
+                window.scrollTo({
+                  top: el.getBoundingClientRect().top + window.pageYOffset - 100,
+                  behavior: "smooth"
+                });
+              }
+            });
+          }} style={{ cursor: 'pointer' }}>
+
+            {/* OPTIMISATION ICI : Lazy loading pour les sections secondaires */}
+            <img
+              src={Drink}
+              className="promo-img"
+              alt="Bebidas"
+              loading="lazy"      // On charge l'image seulement quand on arrive dessus
+              width="600"         // Toujours mettre les dimensions
+              height="400"
+            />
+            <button className="btn-overlay gold-button-premium">{T[lang]?.catDrinks || T.es.catDrinks}</button>
+          </div>
+        )}
+      </section>
+
+      <section id="sec-postres">
+      <SectionTitle>{T[lang]?.catDesserts || T.es.catDesserts}</SectionTitle>
+      {showCardPostres ? (
+        <div className="grid-cards">
+          {postres.map(item => <CardMenu key={item.id} {...item} isPostreCard={true} addToCart={addToCart} lang={lang} />)}
+        </div>
+      ) : (
+        <div className="promo-container" onClick={() => {
+          setShowCardPostres(true);
+          // Correction pour éviter l'ajustement forcé de mise en page (63ms gagnées !)
+          requestAnimationFrame(() => {
+            const el = document.getElementById("sec-postres");
+            if (el) {
+              window.scrollTo({
+                top: el.getBoundingClientRect().top + window.pageYOffset - 100,
+                behavior: "smooth"
+              });
+            }
+          });
+        }} style={{ cursor: 'pointer' }}>
+
+          <img
+            src={Postre}
+            className="promo-img"
+            alt="Desserts"
+            loading="lazy"      // Indispensable ici pour le score Performance
+            width="600"
+            height="400"
+          />
+          <button className="btn-overlay gold-button-premium">{T[lang]?.catDesserts || T.es.catDesserts}</button>
+        </div>
+      )}
+    </section>
 
   {/* 4. SECTION COMMANDE */}
   <section id="order" style={{ paddingBottom: '60px' }}>
