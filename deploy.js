@@ -15,7 +15,7 @@ const config = {
     remoteRoot: "/www/",
     include: ["*", "**/*"],
     // On désactive deleteRemote temporairement pour tester si c'est ça qui bloque
-    deleteRemote: false,
+    deleteRemote: true,
     forcePasv: true,
     sftp: false
 };
