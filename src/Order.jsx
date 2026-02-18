@@ -81,10 +81,12 @@ export default function Order({ cart, removeFromCart, lang }) {
     <div className="container-items" id="order" style={{ padding: '20px 10px' }}>
       <div className="item menuBurgers" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', margin: '0 auto', backgroundColor: '#1a1a1a', borderRadius: '20px', padding: '20px 0' }}>
 
-        <ul style={{ padding: 0, width: '100%', maxWidth: '600px', margin: '0 auto' }}>
-          {cart.length === 0 ? (
-            <p style={{color: '#888', fontStyle: 'italic', textAlign: 'center'}}>({t('empty')})</p>
-          ) : (
+      <ul style={{ padding: 0, width: '100%', maxWidth: '600px', margin: '0 auto', listStyle: 'none' }}>
+{cart.length === 0 ? (
+  <li style={{ color: '#888', fontStyle: 'italic', textAlign: 'center', padding: '20px' }}>
+    ({t('empty')})
+  </li>
+) : (
             cart.map((item, index) => (
               <li key={index} style={{ fontSize: "18px", color: "#ff4757", listStyle: "none", textAlign: "left", padding: "15px 15px", borderBottom: "1px solid #333", display: "flex", flexDirection: "column", gap: "5px", width: '100%', boxSizing: 'border-box', fontWeight: "bold" }}>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
