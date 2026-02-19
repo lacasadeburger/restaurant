@@ -15,6 +15,7 @@ import tripadvisor from "./assets/tripadvisor.png";
 import googleIcon from "./assets/google.png";
 import logo from "./assets/logo.jpg";
 import BurgerSignature from "./assets/burger-signature-torrevieja.webp";
+import whatsappIcon from "./assets/whatsapp.webp";
 
 const T = {
   es: {
@@ -1276,7 +1277,7 @@ style={{
     aria-label={lang === 'es' ? "Hacer pedido por WhatsApp" : "Order via WhatsApp"}
   >
     <img
-      src="/whatsapp.webp"
+      src={whatsappIcon}
       width="40"
       height="40"
       alt="WhatsApp La Casa de Burger"
