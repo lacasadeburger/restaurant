@@ -1,56 +1,47 @@
 # ------------------------------------------------------------------------------
-# 1. FORCE HTTPS (Redirection automatique)
+# 1. PARAMÈTRES GÉNÉRAUX
 # ------------------------------------------------------------------------------
 RewriteEngine On
+AddType image/webp .webp
+
+# Force HTTPS
 RewriteCond %{HTTPS} off
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-# Support pour les images WebP
-AddType image/webp .webp
-
 # ------------------------------------------------------------------------------
-# 2. COMPRESSION GZIP (Accélère le chargement du texte/code)
+# 2. CACHE ET COMPRESSION (Optimisation)
 # ------------------------------------------------------------------------------
 <IfModule mod_deflate.c>
-  AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css application/javascript application/x-javascript application/json image/svg+xml
+  AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css application/javascript application/json image/svg+xml
 </IfModule>
 
-# ------------------------------------------------------------------------------
-# 3. CACHE NAVIGATEUR (La méthode radicale pour PageSpeed sur OVH)
-# ------------------------------------------------------------------------------
-# Méthode 1 : Expires (Standard)
 <IfModule mod_expires.c>
   ExpiresActive On
   ExpiresDefault "access plus 1 month"
   ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
   ExpiresByType image/jpg "access plus 1 year"
   ExpiresByType image/jpeg "access plus 1 year"
-  ExpiresByType image/png "access plus 1 year"
-  ExpiresByType image/x-icon "access plus 1 year"
   ExpiresByType application/javascript "access plus 1 year"
   ExpiresByType text/css "access plus 1 year"
 </IfModule>
 
-# Méthode 2 : Headers (Forcé - Écrase les 15 minutes d'OVH)
 <IfModule mod_headers.c>
-  # On force 1 an (31536000 sec) pour les fichiers qui ne changent jamais
   <FilesMatch "\.(js|css|webp|jpg|jpeg|png|gif|ico|woff2|svg)$">
     Header always set Cache-Control "max-age=31536000, public, immutable"
   </FilesMatch>
-
-  # On force le rafraîchissement immédiat pour l'index.html
   <FilesMatch "\.(html)$">
     Header always set Cache-Control "max-age=0, no-cache, no-store, must-revalidate"
-  </FilesMatch>
-</IfModule>
+  </ifModule>
 
 # ------------------------------------------------------------------------------
-# 4. SUPPORT REACT ROUTER (Évite les erreurs 404 au rafraîchissement)
+# 3. FIX REACT ROUTER & ROBOTS.TXT
 # ------------------------------------------------------------------------------
-<IfModule mod_rewrite.c>
-  RewriteBase /
-  RewriteRule ^index\.html$ - [L]
-  RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteRule . /index.html [L]
-</IfModule>
+# On s'assure que robots.txt est servi normalement
+RewriteRule ^robots.txt$ - [L]
+
+RewriteBase /
+RewriteRule ^index\.html$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.html [L]
