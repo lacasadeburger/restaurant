@@ -511,6 +511,7 @@ export default function App() {
           border-radius: 0;
           width: 100px;
           height: 100px;
+          background-color: transparent;
           display: flex;
           justify-content: center;
           align-items: center;
