@@ -224,7 +224,7 @@ const T = {
   }
 };
 
-const instagramIcon = "https://cdn-icons-png.flaticon.com/512/2111/2111463.png";
+const instagramIcon = "/instagram.png";
 
 const ALL_REVIEWS = [
   { es: "¡La mejor Smash de Torrevieja! Carne de calidad y entrega rápida.", en: "Best Smash in Torrevieja! Quality meat and fast delivery.", author: "Carlos R." },

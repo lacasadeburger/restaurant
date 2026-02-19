@@ -13,8 +13,8 @@ const config = {
     port: 21,
     localRoot: __dirname + "/dist",
     remoteRoot: "/www/",
-    include: ["*", "**/*"],
-    // On désactive deleteRemote temporairement pour tester si c'est ça qui bloque
+    // MODIFICATION ICI : On ajoute explicitement les fichiers à point (.)
+    include: ["*", "**/*", ".htaccess", ".ovhconfig"],
     deleteRemote: true,
     forcePasv: true,
     sftp: false
