@@ -16,6 +16,7 @@ import googleIcon from "./assets/google.png";
 import logo from "./assets/logo.jpg";
 import BurgerSignature from "./assets/burger-signature-torrevieja.webp";
 
+
 const T = {
   es: {
     heroTitle: "La Mejor Hamburguesa",
