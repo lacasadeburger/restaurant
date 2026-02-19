@@ -578,8 +578,8 @@ export default function App() {
           .whatsapp-float {
             bottom: 20px;
             right: 15px;
-            width: 55px;
-            height: 55px;
+            width: 100px;
+            height: 100px;
           }
         }
 
@@ -1277,8 +1277,8 @@ style={{
   >
     <img
       src="/wha2026.webp"
-      width="40"
-      height="40"
+      width="100"
+      height="100"
       alt="WhatsApp La Casa de Burger"
       style={{ objectFit: 'contain' }} // <--- Empêche l'icône de s'écraser
       decoding="async"
