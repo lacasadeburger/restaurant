@@ -5,6 +5,9 @@ RewriteEngine On
 RewriteCond %{HTTPS} off
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
+# DÉCLARATION DU TYPE WEBP (Pour éviter les erreurs 404 sur OVH)
+AddType image/webp .webp
+
 # ------------------------------------------------------------------------------
 # 1. COMPRESSION GZIP
 # ------------------------------------------------------------------------------
