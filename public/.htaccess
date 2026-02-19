@@ -1,3 +1,58 @@
+# ----------------------------------------------------------------------
+# 1. RÉGLAGES SERVEUR & SÉCURITÉ
+# ----------------------------------------------------------------------
 RewriteEngine On
+# Options -Indexes
+
+# Protection contre le vol de bande passante (X-Frame-Options)
+Header set X-Frame-Options "SAMEORIGIN"
+Header set X-XSS-Protection "1; mode=block"
+Header set X-Content-Type-Options "nosniff"
+
+# 2. REDIRECTION HTTPS (SEO & SÉCURITÉ)
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# 3. COMPRESSION GZIP (PERFORMANCE)
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/plain
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/xml
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE application/xml
+    AddOutputFilterByType DEFLATE application/xhtml+xml
+    AddOutputFilterByType DEFLATE application/rss+xml
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/x-javascript
+    AddOutputFilterByType DEFLATE application/json
+</IfModule>
+
+# 4. CACHE NAVIGATEUR LONGUE DURÉE (PERFORMANCE)
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresDefault "access plus 1 month"
+
+    # Assets (JS/CSS)
+    ExpiresByType text/css "access plus 1 year"
+    ExpiresByType application/javascript "access plus 1 year"
+
+    # Images
+    ExpiresByType image/x-icon "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+
+    # Polices
+    ExpiresByType font/woff2 "access plus 1 year"
+</IfModule>
+
+# 5. GESTION DES ERREURS (POUR ÉVITER LA 404 PAR DÉFAUT)
+ErrorDocument 404 /index.html
+
+# 6. ROUTAGE REACT (INDISPENSABLE)
+RewriteBase /
+RewriteRule ^index\.html$ - [L]
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^ index.html [QSA,L]
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.html [L]

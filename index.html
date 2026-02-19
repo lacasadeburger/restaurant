@@ -1,32 +1,97 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
+<head>
     <meta charset="UTF-8" />
-
-    <meta name="description" content="La Casa de Burger en Torrevieja. Disfruta de las mejores hamburguesas artesanales, ingredientes frescos y un ambiente único. ¡Visítanos o pide online!" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <meta name="theme-color" content="#ff4757" />
+    <link rel="canonical" href="https://lacasadeburger.es/" />
 
     <title>La Casa de Burger | Las Mejores Hamburguesas de Torrevieja</title>
+    <meta name="description" content="Descubre las mejores hamburguesas gourmet y smash burgers en Torrevieja. Ingredientes frescos, carne de calidad y un ambiente inigualable. ¡Reserva o pide online!" />
+    <meta name="keywords" content="hamburguesas Torrevieja, burger gourmet Torrevieja, smash burger, comer en Torrevieja, restaurante Torrevieja" />
+    <meta name="author" content="La Casa de Burger" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="La Casa de Burger | Las Mejores Hamburguesas de Torrevieja" />
+    <meta property="og:description" content="¿Hambre de la mejor burger? Ven a vernos en Torrevieja. Calidad gourmet en cada bocado." />
+    <meta property="og:image" content="https://lacasadeburger.es/burger-signature-torrevieja.webp" />
+    <meta property="og:url" content="https://lacasadeburger.es/" />
+    <meta property="og:site_name" content="La Casa de Burger" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link rel="icon" type="image/jpeg" href="/logo.jpg" />
-    <link rel="apple-touch-icon" href="/logo.jpg" />
-
-    <link rel="manifest" href="/manifest.json" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
-    <meta name="theme-color" content="#ff4757" />
 
     <link rel="preload" as="image" href="/burger-signature-torrevieja.webp" fetchpriority="high">
 
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Courgette&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Courgette&display=swap" media="print" onload="this.media='all'">
-    <noscript>
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Courgette&display=swap">
-    </noscript>
-  </head>
-  <body>
+
+    <link rel="icon" type="image/jpeg" href="/logo.jpg" />
+    <link rel="apple-touch-icon" href="/logo.jpg" />
+    <link rel="manifest" href="/manifest.json" />
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Restaurant",
+      "name": "La Casa de Burger",
+      "image": [
+        "https://lacasadeburger.es/burger-signature-torrevieja.webp",
+        "https://lacasadeburger.es/assets/logo-a775eaad.jpg"
+      ],
+      "@id": "https://lacasadeburger.es",
+      "url": "https://lacasadeburger.es",
+      "telephone": "+34000000000",
+      "priceRange": "$$",
+      "menu": "https://lacasadeburger.es/menu",
+      "servesCuisine": "American, Burgers, Smash Burgers",
+      "acceptsReservations": "true",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "C. de la Loma, 22",
+        "addressLocality": "Torrevieja",
+        "postalCode": "03181",
+        "addressRegion": "Alicante",
+        "addressCountry": "ES"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 37.9806,
+        "longitude": -0.6757
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+          "opens": "13:00",
+          "closes": "23:30"
+        }
+      ],
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "bestRating": "5",
+        "worstRating": "1",
+        "reviewCount": "250"
+      },
+      "sameAs": [
+        "https://www.facebook.com/profile.php?id=100094610793536",
+        "https://www.instagram.com/lacasadeburger.es/",
+        "https://www.tripadvisor.es/Restaurant_Review-g187527-d26835169-Reviews-La_Casa_De_Burger-Torrevieja"
+      ]
+    }
+    </script>
+</head>
+<body>
     <div id="root"></div>
+
     <script type="module" src="/src/main.jsx"></script>
-  </body>
+
+    <noscript>
+        <div style="text-align:center; padding:20px; font-family: sans-serif;">
+            <h1>La Casa de Burger Torrevieja</h1>
+            <p>Lo sentimos, pero para ver nuestra carta de hamburguesas gourmet necesitas activar JavaScript.</p>
+        </div>
+    </noscript>
+</body>
 </html>
