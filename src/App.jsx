@@ -509,14 +509,15 @@ export default function App() {
           right: 25px;
           color: #fff;
           border-radius: 0;
-          width: 100px;
-          height: 100px;
-          background-color: transparent;
+          width: 80px; /* J'ai baissé un peu car 100px c'est énorme sans fond */
+          height: 80px;
+          background-color: transparent; /* Toujours transparent */
           display: flex;
           justify-content: center;
           align-items: center;
-          box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-          z-index: 10001; /* Pour être au-dessus du bouton rouge "Siguiente" */
+          box-shadow: none; /* <--- ON SUPPRIME L'OMBRE ICI POUR ENLEVER LE CADRE */
+          border: none;     /* <--- ON S'ASSURE QU'IL N'Y A PAS DE BORDURE */
+          z-index: 10001;
           transition: transform 0.3s ease;
         }
         .whatsapp-float:hover {
