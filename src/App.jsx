@@ -665,7 +665,7 @@ export default function App() {
   <meta name="description" content={T[lang]?.seoContent || T.es.seoContent} />
 
   {/* 1. CANONICAL : Strictement avec le slash final */}
-  <link rel="canonical" href={lang === 'es' ? "https://lacasadeburger.es/" : `https://lacasadeburger.es/?lang=${lang}`} />
+<link rel="canonical" href="https://lacasadeburger.es/" />
 
   <meta name="robots" content="index, follow" />
 
