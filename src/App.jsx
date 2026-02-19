@@ -15,7 +15,7 @@ import tripadvisor from "./assets/tripadvisor.png";
 import googleIcon from "./assets/google.png";
 import logo from "./assets/logo.jpg";
 import BurgerSignature from "./assets/burger-signature-torrevieja.webp";
-import whatsappIcon from "./assets/whatsapp.webp";
+import whatsappIcon from "./assets/wha2026.webp";
 
 const T = {
   es: {
