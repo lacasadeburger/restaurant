@@ -135,21 +135,22 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang, setLa
               boxSizing: 'border-box'
             }}
           >
-            <img
-              src={`https://flagcdn.com/w80/${l.flag}.png`}
-              width="26"
-              alt={l.label}
-              decoding="async"
-              loading="eager"
-              style={{
-                borderRadius: '2px',
-                display: 'block',
-                pointerEvents: 'none',
-                width: '26px',
-                height: '18px',
-                objectFit: 'cover'
-              }}
-            />
+          <img
+  src={`/flags/${l.flag}.webp`}
+  width="26"
+  height="18"
+  alt={l.label}
+  decoding="async"
+  loading="eager"
+  style={{
+    borderRadius: '2px',
+    display: 'block',
+    pointerEvents: 'none',
+    width: '26px',
+    height: '18px',
+    objectFit: 'cover'
+  }}
+/>
           </button>
         ))}
       </div>

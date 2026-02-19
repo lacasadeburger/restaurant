@@ -1268,19 +1268,22 @@ style={{
       </footer>
 
       {/* BOUTON WHATSAPP OPTIMISÉ ACCESSIBILITÉ */}
-      <a
-        href="https://wa.me/34602597210"
-        target="_blank"
-        rel="noreferrer"
-        className="whatsapp-float"
-        aria-label={lang === 'es' ? "Hacer pedido por WhatsApp" : "Order via WhatsApp"}
-      >
-        <img
-          src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-          width="40"
-          alt="WhatsApp La Casa de Burger" // Meilleur Alt pour Brave
-        />
-      </a>
+  <a
+    href="https://wa.me/34602597210"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="whatsapp-float"
+    aria-label={lang === 'es' ? "Hacer pedido por WhatsApp" : "Order via WhatsApp"}
+  >
+    <img
+      src="/whatsapp.webp"
+      width="40"
+      height="40"
+      alt="WhatsApp La Casa de Burger"
+      style={{ objectFit: 'contain' }} // <--- Empêche l'icône de s'écraser
+      decoding="async"
+    />
+  </a>
 
       {/* BOUTON ETAPE SUIVANTE */}
       {(showCardBurger || showCardDrink || showCardPostres) && (
