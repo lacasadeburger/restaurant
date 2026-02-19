@@ -507,11 +507,10 @@ export default function App() {
           position: fixed;
           bottom: 25px;
           right: 25px;
-          background-color: #25d366;
           color: #fff;
-          border-radius: 50px;
-          width: 60px;
-          height: 60px;
+          border-radius: 0;
+          width: 100px;
+          height: 100px;
           display: flex;
           justify-content: center;
           align-items: center;
