@@ -1,44 +1,50 @@
 # ------------------------------------------------------------------------------
-# 1. COMPRESSION GZIP (Réduit le poids du code envoyé au navigateur)
+# 0. FORCE HTTPS (Évite les redirections lentes du serveur)
+# ------------------------------------------------------------------------------
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# ------------------------------------------------------------------------------
+# 1. COMPRESSION GZIP (Optimisé pour inclure JSON et Polices)
 # ------------------------------------------------------------------------------
 <IfModule mod_deflate.c>
-  AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css application/javascript application/x-javascript
+  AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css application/javascript application/x-javascript application/json image/svg+xml
 </IfModule>
 
 # ------------------------------------------------------------------------------
-# 2. CACHE NAVIGATEUR (Règle ton score de 67 en Performance)
+# 2. CACHE NAVIGATEUR (Gestion du score Performance)
 # ------------------------------------------------------------------------------
 <IfModule mod_expires.c>
   ExpiresActive On
-  ExpiresDefault "access plus 1 month"
+  [cite_start]ExpiresDefault "access plus 1 month" [cite: 1]
 
   # Images et Favicon : Cache de 1 an
-  ExpiresByType image/webp "access plus 1 year"
-  ExpiresByType image/jpg "access plus 1 year"
-  ExpiresByType image/jpeg "access plus 1 year"
-  ExpiresByType image/png "access plus 1 year"
-  ExpiresByType image/x-icon "access plus 1 year"
+  [cite_start]ExpiresByType image/webp "access plus 1 year" [cite: 1]
+  [cite_start]ExpiresByType image/jpg "access plus 1 year" [cite: 1]
+  [cite_start]ExpiresByType image/jpeg "access plus 1 year" [cite: 1]
+  [cite_start]ExpiresByType image/png "access plus 1 year" [cite: 1]
+  [cite_start]ExpiresByType image/x-icon "access plus 1 year" [cite: 1]
 
   # CSS et JS : Cache de 1 an (Vite gère les versions)
-  ExpiresByType application/javascript "access plus 1 year"
-  ExpiresByType text/css "access plus 1 year"
+  [cite_start]ExpiresByType application/javascript "access plus 1 year"
+  [cite_start]ExpiresByType text/css "access plus 1 year"
 </IfModule>
 
 # ------------------------------------------------------------------------------
-# 3. SÉCURITÉ INDEX.HTML (Évite que les clients voient une vieille version du site)
+# 3. SÉCURITÉ INDEX.HTML (Toujours charger la version fraîche)
 # ------------------------------------------------------------------------------
 <FilesMatch "\.(html)$">
   <ifModule mod_headers.c>
-    Header set Cache-Control "max-age=0, no-cache, no-store, must-revalidate"
+    [cite_start]Header set Cache-Control "max-age=0, no-cache, no-store, must-revalidate"
   </ifModule>
 </FilesMatch>
 
 # ------------------------------------------------------------------------------
-# 4. SUPPORT REACT ROUTER (Évite les erreurs 404 sur OVH)
+# 4. SUPPORT REACT ROUTER (Gestion OVH 404)
 # ------------------------------------------------------------------------------
-RewriteEngine On
-RewriteBase /
-RewriteRule ^index\.html$ - [L]
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule . /index.html [L]
+[cite_start]RewriteBase / [cite: 3]
+RewriteRule ^index\.html$ - [L] [cite: 3]
+RewriteCond %{REQUEST_FILENAME} !-f [cite: 3]
+RewriteCond %{REQUEST_FILENAME} !-d [cite: 3]
+RewriteRule . /index.html [L] [cite: 3]
