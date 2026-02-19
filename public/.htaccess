@@ -9,7 +9,7 @@ RewriteCond %{HTTPS} off
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 # ------------------------------------------------------------------------------
-# 2. CACHE ET COMPRESSION (Optimisation)
+# 2. CACHE ET COMPRESSION
 # ------------------------------------------------------------------------------
 <IfModule mod_deflate.c>
   AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css application/javascript application/json image/svg+xml
@@ -28,16 +28,13 @@ RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 <IfModule mod_headers.c>
   <FilesMatch "\.(js|css|webp|jpg|jpeg|png|gif|ico|woff2|svg)$">
-    Header always set Cache-Control "max-age=31536000, public, immutable"
+    Header set Cache-Control "max-age=31536000, public, immutable"
   </FilesMatch>
-  <FilesMatch "\.(html)$">
-    Header always set Cache-Control "max-age=0, no-cache, no-store, must-revalidate"
-  </ifModule>
+</IfModule>
 
 # ------------------------------------------------------------------------------
 # 3. FIX REACT ROUTER & ROBOTS.TXT
 # ------------------------------------------------------------------------------
-# On s'assure que robots.txt est servi normalement
 RewriteRule ^robots.txt$ - [L]
 
 RewriteBase /
