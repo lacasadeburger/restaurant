@@ -1150,17 +1150,16 @@ style={{
         {/* SECTION MAPS & VIDEO */}
   <div style={{ display: 'flex', flexDirection: 'column', gap: '40px', alignItems: 'center', margin: '40px auto' }}>
     <div style={{ width: '90%', maxWidth: '1100px', borderRadius: '15px', overflow: 'hidden', border: `2px solid ${GOLD_BRIGHT}` }}>
-      <iframe
-      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3141.258!2d-0.6807478!3d37.9811364!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd63aa360f15f917%3A0x88f65fbd84c2f7fe!2sLa%20Casa%20de%20Burger!5e0!3m2!1sfr!2ses!4v1700000000000!5m2!1sfr!2ses"
-      loading="lazy">
-        width="100%"
-        height="350"
-        style={{ border: 0 }}
-        allowFullScreen=""
-        loading="lazy"
-        referrerPolicy="no-referrer-when-downgrade"
-        title="Mapa de ubicación de La Casa de Burger"
-      ></iframe>
+    <iframe
+  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3141.258!2d-0.6807478!3d37.9811364!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd63aa360f15f917%3A0x88f65fbd84c2f7fe!2sLa%20Casa%20de%20Burger!5e0!3m2!1sfr!2ses!4v1700000000000!5m2!1sfr!2ses"
+  width="100%"
+  height="350"
+  style={{ border: 0 }}
+  allowFullScreen=""
+  loading="lazy"
+  referrerPolicy="no-referrer-when-downgrade"
+  title="Mapa de ubicación de La Casa de Burger"
+  ></iframe>
     </div>
 
     <div style={{ width: '90%', maxWidth: '800px', borderRadius: '15px', overflow: 'hidden', border: `3px solid ${GOLD_BRIGHT}` }}>
