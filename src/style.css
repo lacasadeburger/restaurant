@@ -1,25 +1,18 @@
-
-/* Estilos generales */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: 'Ysabeau', sans-serif;
-
-}
+/* 1. RESET ET BASE (Essentiel) */
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Ysabeau', sans-serif; }
 
 body {
-  font-size: 24px;
+  font-size: 18px; /* Réduit pour plus de souplesse mobile */
   line-height: 1.5;
   background-color: black;
   color: white;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
-
-
-/* Estilos para el encabezado */
+/* 2. HEADER (Structure fixe) */
 .header {
-  background-color: rgb(0, 0, 0);
+  background-color: #000;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -31,475 +24,40 @@ body {
   z-index: 9999;
 }
 
-.logo {
-  max-width: 200px;
-  height: auto;
-}
-
-.nav-left {
-  display: flex;
-  align-items: center;
-  margin-left: 20px;
-}
-
-.nav-center {
-  flex-grow: 1;
-  display: flex;
-  justify-content: center;
-}
-
-.nav-right {
-  display: flex;
-  align-items: center;
-  margin-right: 20px;
-}
-
-.carrito {
-  border-radius: 95%;
-}
-
-
-
-
-
-/* Estilos para el contenido principal */
-main {
-  padding: 50px;
-}
-
-h1 {
-  font-size: 6px;
-  margin-bottom: 20px;
-}
-
-p {
-  margin-bottom: 20px;
-}
-
-/* Estilos para el pie de página */
-/* Estilos generales del footer */
-.footer {
-  background-color: #333;
-  color: white;
-  padding: 20px 0;
-  text-align: center;
-}
-
-/* Estilos para el contenido del footer */
-.footer-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
-
-/* Estilos para el logo */
-.logo-container {
-  display: flex;
-  gap: 20px;
-}
-
-.logoFooter {
-  width: 170px; /* Tamaño de las imágenes del logo */
-  height: auto;
-}
-
-/* Estilos para la información de contacto */
-.info-container {
-  text-align: center;
-}
-
-/* Estilos para el texto de derechos de autor */
-.copyright {
-  margin-top: 20px;
-  font-size: 14px;
-}
-
-/* Media query para pantallas más pequeñas (teléfonos) */
-@media (max-width: 768px) {
-  .logo-container {
-    flex-direction: column; /* Muestra las imágenes una debajo de la otra */
-    align-items: center; /* Centra las imágenes */
-  }
-}
-
-/* Sección del menú */
-.menuBurgers {
-  padding: 40px;
-  text-align: center;
-}
-
-.menuBurgers h1 {
-  font-size: 46px;
-  margin-bottom: 20px;
-  font-family: 'Sacramento', cursive;
-}
+/* 3. MENU & GRILLE (La structure des burgers) */
+.menuBurgers { padding: 40px 20px; text-align: center; }
+.menuBurgers h1 { font-size: 46px; margin-bottom: 20px; font-family: 'Sacramento', cursive; }
 
 .menu-items {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-}
-
-.menu-item {
-  width: 350px;
-  height: 500px;
-  margin: 10px;
-  padding: 1px;
-
-}
-
-.menu-item img {
-  display: flex;
-  max-width: 100%;
-  height: 250px;
-}
-
-.menu-item .center {
-  font-size: 28px;
-  text-align: center;
-}
-
-.menu-item .precio-card {
-
-  background-color: rgb(76, 0, 255);
-  display: inline-block;
-  vertical-align: bottom;
-  font-size: 24px;
-  font-weight: bold;
-  color: rgba(255, 0, 0, 0.336);
-}
-
-.social-media {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.media {
-  padding: 5px;
-}
-
-.add-btn.centered {
-  /* Estilos para centrar el botón Agregar */
-  display: block;
-  margin: 0 auto;
-}
-
-.add-btn {
-  padding: 0;
-  width: 35%;
-  height: 5%;
-  cursor: pointer;
-  border: 0 solid;
-  border-radius: 5px;
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 20px;
-  box-shadow: inset 0 0 20px rgba(255, 255, 255, 0);
-  outline: 1px solid;
-  outline-color: rgba(255, 255, 255, .5);
-  outline-offset: 0px;
-  text-shadow: none;
-  transition: all 1250ms cubic-bezier(0.19, 1, 0.22, 1);
-  transition: background-color 0.3s;
-}
-
-.add-btn:hover {
-  border: 1px solid;
-  box-shadow: inset 0 0 20px rgba(255, 255, 255, .5), 0 0 20px rgba(255, 255, 255, .2);
-  outline-color: rgba(255, 255, 255, 0);
-  outline-offset: 15px;
-  text-shadow: 1px 1px 2px #aa2902;
-}
-
-.add-btn.clicked {
- background-color: red;
-}
-
-.add-btn2 {
-  padding: 0;
-  width: 35%;
-  height: 5%;
-  cursor: pointer;
-  border: 0 solid;
-  border-radius: 5px;
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 20px;
-  box-shadow: inset 0 0 20px rgba(255, 255, 255, 0);
-  outline: 1px solid;
-  outline-color: rgba(255, 255, 255, .5);
-  outline-offset: 0px;
-  text-shadow: none;
-  transition: all 1250ms cubic-bezier(0.19, 1, 0.22, 1);
-  transition: background-color 0.3s;
-}
-
-.btn-cart {
-  border-radius: 50%;
-  height: 25px;
-  width: 25px;
-  background-color: #ee3c0660;
-}
-
-.header-Card {
-  border-radius: 25px;
-  display: flex;
-  justify-content:space-around;
-  padding-bottom: 3.5px;
-  background-color: rgba(255, 0, 0, 0.384);
-}
-
-/* Shopping cart */
-.cart {
-
-  position: fixed;
-  bottom: 10px;
-  right: 10px;
-  width: 300px;
-  padding: 10px;
-  border: 1px solid black;
-  background-color: white;
-  color: rgba(255, 0, 0, 0.356);
-}
-
-.ul-list {
-  list-style: none;
-  padding: 0;
-}
-
-.li-list {
-  margin-bottom: 5px;
-}
-
-.label-list {
-  display: block;
-  margin-bottom: 5px;
-}
-
-.input-list {
-  margin-bottom: 10px;
-}
-
-.cart-Order {
-  padding-right: 18px;
-  font-family: 'Josefin Sans', sans-serif;
-}
-
-.placeholder {
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: medium;
-}
-
-/* Card reverse */
-button {
-  cursor: pointer;
-}
-
-.card-inner {
-  position: relative;
-  transform-style: preserve-3d;
-  transition: transform 0.6s;
-
-}
-
-.front,
-.back {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-
-}
-
-.front {
-
-  border-radius: 25px;
-  transform: rotateY(0deg);
-  background-image: url("./assets/bg-c.jpg");
-}
-
-.back {
-  border-radius: 25px;
-  background-image: url("./assets/bg-c1.jpg");
-  background-size:cover;
-  transform: rotateY(180deg);
-  backdrop-filter: blur(250px); /* Ajusta el valor del desenfoque según tus preferencias */
-}
-
-
-.card.reversed .card-inner {
-  transform: rotateY(180deg);
-}
-
-
-
-.backList {
-  line-height: 1.65;
-
-  list-style: none;
-  text-align:center;
-  font-size: 20px;
-  margin-bottom: 26px;
-  display: grid;
-  columns: 2;
-  align-items: center;
-
-}
-
-.flip-btn{
-
-  width: 100%;
-}
-
-.centered {
-  display: flex;
-  justify-content: center;
-}
-/*Translation buttons*/
-.button-container {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 10px;
-}
-
-.round-button {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.button-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-
-.button-container {
-  display: flex;
-  justify-content: center;
   gap: 20px;
-  margin-top: 20px;
 }
 
-.round-button {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: #000;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+/* 4. FOOTER (Optimisé) */
+.footer { background-color: #111; color: white; padding: 40px 0; text-align: center; border-top: 1px solid #333; }
+.footer-content { display: flex; flex-direction: column; align-items: center; gap: 20px; max-width: 1200px; margin: 0 auto; }
+.logoFooter { width: 150px; height: auto; opacity: 0.8; }
 
-.round-button a {
-  display: block;
-  width: 100%;
-  height: 100%;
-}
+/* 5. SCROLL ET ANCRES */
+html { scroll-behavior: smooth; }
+#order, .container-cards, section[id] { scroll-margin-top: 100px !important; }
 
-.round-button a:hover {
-  opacity: 0.8;
-}
-/*botones de redes sociales*/
+/* 6. CLASSES UTILITAIRES (Pour React) */
+.centered { display: flex; justify-content: center; align-items: center; }
+.responsive-image { max-width: 100%; height: auto; }
 
-.image-size {
-  width: 450px;
-  height: auto;
-}
-
-.payment-btn button {
-  padding: 0;
-  height: 30px;
-  cursor: pointer;
-  border: 0 solid;
-  border-radius: 5px;
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 17px;
-  outline-color: rgba(255, 255, 255, .5);
-  outline-offset: 0px;
-  text-shadow: none;
-  margin-right: 10px; /* Separación de 10px entre los botones */
-}
-
-.payment-btn button:last-child {
-  margin-right: 0; /* Eliminar el margen derecho del último botón */
-}
-
-
-
-.responsive-image {
-  max-width: 100%;
-  height: auto;
-}
-
-@media (max-width: 600px) {
-  .responsive-image {
-    max-width: 80%;
-  }
-}
-/* --- CORRECTION DU SCROLL (Évite que le menu cache le contenu) --- */
-html {
-  scroll-behavior: smooth;
-}
-
-/* On applique une marge de sécurité en haut de chaque section lors du scroll */
-#order,
-.container-cards,
-.order-box,
-section[id] {
-  scroll-margin-top: 160px !important;
-}
-
-/* --- ANIMATIONS DU NAV --- */
-@keyframes pulse-text {
-  0% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.7; transform: scale(0.98); }
-  100% { opacity: 1; transform: scale(1); }
-}
-
-@keyframes blink-neon {
-  from { opacity: 1; filter: brightness(1.2); }
-  to { opacity: 0.6; filter: brightness(0.7); }
-}
-
-/* Animation pour le panier quand il est plein */
-.pulse-active {
-  animation: pulse-cart 1.5s infinite ease-in-out;
-}
-
+/* On garde uniquement l'animation de base pour le panier */
 @keyframes pulse-cart {
-  0% { transform: scale(1); box-shadow: 0 4px 12px rgba(255, 71, 87, 0.4); }
-  50% { transform: scale(1.05); box-shadow: 0 4px 20px rgba(255, 71, 87, 0.7); }
-  100% { transform: scale(1); box-shadow: 0 4px 12px rgba(255, 71, 87, 0.4); }
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
 }
-/* Cette règle fait que lorsqu'on clique sur "Menu",
-   la page s'arrête exactement au début des burgers,
-   sans montrer le texte de présentation au-dessus */
-#menu-burgers {
-  scroll-margin-top: 10px; /* Ajuste cette valeur selon la hauteur de ton Nav */
-}
-/* --- OPTIMISATION CARD MENU --- */
-@keyframes liquidGold { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+.pulse-active { animation: pulse-cart 1.5s infinite ease-in-out; }
 
-.image-container { width: 100%; height: 160px; display: flex; align-items: center; justify-content: center; position: relative; }
-.product-img { width: 85%; height: 85%; object-fit: contain; z-index: 2; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.6)); }
-.price-badge-overlay { position: absolute; top: 10px; right: 10px; background: #e60023; color: #ffffff; padding: 5px 12px; border-radius: 8px; font-weight: 950; font-size: 1.3rem; z-index: 10; border: 2.5px solid #D4AF37; box-shadow: 3px 3px 0px #000; transform: rotate(5deg); }
-.info-box, .options-box { background: rgba(0, 0, 0, 0.85); padding: 12px; border-radius: 12px; border: 1.5px solid rgba(191, 149, 63, 0.4); backdrop-filter: blur(8px); margin-bottom: 10px; }
-.card-title { font-size: 1.3rem; font-weight: 950; text-transform: uppercase; margin: 0; background: linear-gradient(135deg, #BF953F 0%, #FCF6BA 30%, #D4AF37 50%, #FBF5B7 70%, #BF953F 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.8)); }
-.card-description { font-size: 0.85rem; color: #ffffff !important; margin-top: 5px; line-height: 1.3; opacity: 0.9; }
-.option-group-label { font-size: 0.65rem; font-weight: 950; text-transform: uppercase; background: linear-gradient(135deg, #BF953F 0%, #FCF6BA 50%, #BF953F 100%); color: #000; padding: 2px 8px; display: inline-block; margin: 8px 0 5px; border-radius: 4px; }
-.chips-container { display: flex; flex-wrap: wrap; gap: 5px; }
-.chip { padding: 6px 10px; border-radius: 6px; font-size: 0.7rem; font-weight: 800; cursor: pointer; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.05); color: #fff; transition: 0.2s; }
-.chip.active { background: linear-gradient(135deg, #BF953F 0%, #FCF6BA 50%, #BF953F 100%) !important; color: #000 !important; font-weight: 950; border: 1px solid #000; }
-.chip.remove.active { background: #ff4757 !important; color: #fff !important; text-decoration: line-through; border: 1px solid #000; }
-.add-btn-gold { width: 100%; background: linear-gradient(135deg, #BF953F 0%, #FCF6BA 25%, #D4AF37 50%, #FBF5B7 75%, #BF953F 100%) !important; background-size: 300% 300% !important; animation: liquidGold 6s ease infinite !important; color: #000 !important; border: 2.5px solid #000 !important; padding: 14px; font-weight: 950; cursor: pointer; text-transform: uppercase; border-radius: 12px; font-size: 1.1rem; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
-.add-btn-gold.success { background: #2ed573 !important; color: white !important; justify-content: center; animation: none !important; }
+/* MEDIA QUERIES */
+@media (max-width: 768px) {
+  .menu-item { width: 100%; max-width: 350px; }
+  .logo-container { flex-direction: column; }
+}

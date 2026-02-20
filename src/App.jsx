@@ -4,7 +4,7 @@ import Order from "./Order";
 import CardMenu from "./CardMenu";
 import "./style.css";
 import data from "./data";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet"
 
 // --- ASSETS (Vérifiés) ---
 import fb from "./assets/FB.png";
@@ -15,6 +15,8 @@ import tripadvisor from "./assets/tripadvisor.png";
 import googleIcon from "./assets/google.png";
 import logo from "./assets/logo.webp";
 import BurgerSignature from "/burger-signature-torrevieja.webp";
+import insta from "./assets/instagram.png";
+import whatsappIcon from "/wha2026.webp";
 
 
 const T = {
@@ -378,286 +380,61 @@ export default function App() {
   return (
     <div className="app-main-wrapper" style={{ position: 'relative', backgroundColor: '#111', color: '#fff' }}>
     <style>{`
-        html, body {
-          max-width: 100%;
-          overflow-x: hidden;
-          margin: 0;
-          padding: 0;
-        }
+  /* 1. STRUCTURE DE BASE (Optimisée) */
+  html, body { max-width: 100%; overflow-x: hidden; margin: 0; padding: 0; }
+  .app-main-wrapper { max-width: 100vw; overflow-x: hidden; box-sizing: border-box; }
+  * { box-sizing: border-box; }
 
-        .app-main-wrapper {
-          max-width: 100vw;
-          overflow-x: hidden;
-          box-sizing: border-box;
-        }
+  /* 2. ANIMATIONS UNIQUES (Définies une seule fois) */
+  @keyframes liquidGold { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+  @keyframes mirrorReflection { 0% { left: -100%; opacity: 0; } 10% { opacity: 1; } 35% { left: 150%; opacity: 1; } 100% { left: 150%; opacity: 0; } }
+  @keyframes wobble-badge { 0% { transform: rotate(8deg) scale(1.1); } 50% { transform: rotate(-2deg) scale(1.15); } 100% { transform: rotate(8deg) scale(1.1); } }
 
-        * {
-          box-sizing: border-box;
-        }
-
-        .menu-page-container { max-width: 1200px; margin: 0 auto; padding: 0 20px; text-align: center; }
-
-        .promo-container {
-          position: relative; cursor: pointer; display: inline-block; border-radius: 20px;
-          overflow: hidden; box-shadow: 0 15px 35px rgba(0,0,0,0.8); transition: 0.5s;
-          max-width: 500px; width: 100%; margin-bottom: 20px; border: 2px solid rgba(255, 215, 0, 0.3);
-        }
-
-        .promo-img { width: 100%; height: auto; display: block; opacity: 1; transition: 0.5s; }
-        .promo-container:hover .promo-img { opacity: 0.7; transform: scale(1.05); }
-
-        .btn-overlay {
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    /* On a supprimé le background ici car c'est la classe gold-button-premium qui va le donner */
-    color: #000 !important;
-    padding: 12px 30px;
-    border-radius: 8px;
-    font-weight: 950;
-    border: 2px solid #000;
-    pointer-events: none;
-    font-size: 1.1rem;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.6);
-    text-transform: uppercase;
-    z-index: 5;
-    white-space: nowrap;
-  }
-
-        .grid-cards {
-          display: grid;
-          /* Garde tes colonnes automatiques */
-          grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-          /* CHANGEMENT 1 : On laisse la hauteur s'adapter au contenu de la carte */
-          grid-auto-rows: auto;
-          /* CHANGEMENT 2 : Aligne les cartes en haut pour éviter qu'elles ne s'étirent par défaut */
-          align-items: start;
-          gap: 20px;
-          justify-content: center;
-          padding: 20px 0 120px;
-        }
-
-        @keyframes pulse-gold { 0% { transform: scale(1); } 50% { transform: scale(1.03); } 100% { transform: scale(1); } }
-        .pulse-gold-btn { animation: pulse-gold 2s infinite ease-in-out; }
-        .pulse-badge { animation: pulse-gold 3s infinite ease-in-out; }
-
-        /* 1. L'animation de balancement */
-        @keyframes wobble-badge {
-          0% { transform: rotate(8deg) scale(1.1); }
-          50% { transform: rotate(-2deg) scale(1.15); }
-          100% { transform: rotate(8deg) scale(1.1); }
-        }
-
-        /* 2. L'animation de l'or liquide */
-        @keyframes liquidGold {
-          0% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-          100% { background-position: 0% 50%; }
-        }
-
-        /* 3. L'application combinée sur le badge */
-        .wobble-badge.gold-button-premium {
-          display: inline-block;
-          /* ICI LE SECRET : On met les deux animations ensemble */
-          animation:
-            liquidGold 3s ease infinite,
-            wobble-badge 3s infinite ease-in-out !important;
-
-          /* On s'assure que le point d'ancrage est au centre pour la rotation */
-          transform-origin: center;
-        }
-
-        /* On garde le reste du style premium pour le badge */
-        .gold-button-premium {
-          background: linear-gradient(
-            135deg,
-            #8A6426 0%,
-            #D4AF37 25%,
-            #FFF9AA 50%,
-            #AA771C 75%,
-            #8A6426 100%
-          ) !important;
-          background-size: 300% 300% !important;
-          position: relative;
-          overflow: hidden;
-          box-shadow: 0 4px 15px rgba(0,0,0,0.4), inset 0 0 10px rgba(255,255,255,0.5) !important;
-        }
-
-        /* Le reflet miroir qui passe par dessus le mouvement */
-        .gold-button-premium::after {
-          content: "";
-          position: absolute;
-          top: -50%;
-          left: -150%;
-          width: 45%;
-          height: 200%;
-          background: linear-gradient(
-            90deg,
-            transparent,
-            rgba(255, 255, 255, 0.9),
-            transparent
-          );
-          transform: rotate(25deg);
-          animation: mirrorReflection 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-        }
-
-        /* BOUTON WHATSAPP FLOTTANT */
-        .whatsapp-float {
-          position: fixed;
-          bottom: 25px;
-          right: 25px;
-          color: #fff;
-          border-radius: 0;
-          width: 80px; /* J'ai baissé un peu car 100px c'est énorme sans fond */
-          height: 80px;
-          background-color: transparent; /* Toujours transparent */
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          box-shadow: none; /* <--- ON SUPPRIME L'OMBRE ICI POUR ENLEVER LE CADRE */
-          border: none;     /* <--- ON S'ASSURE QU'IL N'Y A PAS DE BORDURE */
-          z-index: 10001;
-          transition: transform 0.3s ease;
-        }
-        .whatsapp-float:hover {
-          transform: scale(1.1);
-        }
-
-        /* --- ANIMATION DU LOGO EN HAUT À GAUCHE --- */
-@keyframes logoFloat {
-  0% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-8px) rotate(3deg); }
-  100% { transform: translateY(0px) rotate(0deg); }
-}
-
-/* Style pour la boîte du logo sur ORDINATEUR */
-.logo-container-wrapper {
-  position: absolute;
-  top: 205px;       /* Sur PC, il se place sous la barre noire simple */
-  left: 35px;
-  z-index: 99;
-  pointer-events: none;
-}
-
-.moving-header-logo {
-  animation: logoFloat 3s ease-in-out infinite;
-  transition: filter 0.3s ease, transform 0.3s ease;
-  height: 100px;    /* Taille sur PC */
-  width: auto;
-  pointer-events: auto;
-  cursor: pointer;
-}
-
-.moving-header-logo:hover {
-  filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.9)) !important;
-  transform: scale(1.1) !important;
-}
-
-/* --- AJUSTEMENT MOBILE (Écrans < 768px) --- */
-@media (max-width: 768px) {
-  .logo-container-wrapper {
-    /* Sur mobile, on descend à 220px pour laisser passer Nav + Drapeaux + Bandeau Or */
-    top: 225px !important;
-    left: 10px !important;
-    position: absolute !important;
-  }
-
+  /* 3. LOGO (On enlève l'animation automatique pour le score CLS) */
+  .logo-container-wrapper { position: absolute; top: 205px; left: 35px; z-index: 99; }
   .moving-header-logo {
-    height: 55px !important; /* On réduit la taille pour mobile */
-    top: 0 !important;
+    height: 100px; width: auto; cursor: pointer;
+    transition: filter 0.3s, transform 0.3s;
   }
-}
-
-          .wobble-badge.gold-button-premium {
-    font-size: 0.6rem !important;    /* Réduit la taille du texte */
-    padding: 6px 9px !important;    /* Réduit la hauteur et largeur du bouton */
-    top: 35px !important;           /* L'ajuste en hauteur pour éviter les collisions */
-    right: 5% !important;            /* Garde l'alignement à droite */
-    border-width: 2px !important;    /* Affine la bordure noire pour rester proportionnel */
+  .moving-header-logo:hover {
+    filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.7));
+    transform: scale(1.1);
+    animation: none; /* On ne lance l'animation que si tu le souhaites vraiment */
   }
 
-          .whatsapp-float {
-            bottom: 20px;
-            right: 15px;
-            width: 100px;
-            height: 100px;
-          }
-        }
+  /* 4. BOUTONS ET BADGES GOLD */
+  .gold-button-premium {
+    background: linear-gradient(135deg, #BF953F, #FCF6BA, #D4AF37, #FBF5B7, #BF953F) !important;
+    background-size: 200% 200% !important;
+    animation: liquidGold 4s ease infinite !important;
+    position: relative; overflow: hidden; color: #000 !important;
+    font-weight: 950 !important; text-transform: uppercase;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3) !important;
+    transition: 0.3s;
+  }
+  .gold-button-premium::after {
+    content: ""; position: absolute; top: -50%; left: -150%; width: 45%; height: 200%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+    transform: rotate(25deg);
+    animation: mirrorReflection 5s infinite;
+  }
 
-        /* --- EFFET OR VÉRITABLE "ULTRA-DYNAMIC" --- */
+  .wobble-badge.gold-button-premium {
+    display: inline-block;
+    animation: liquidGold 4s infinite, wobble-badge 3s infinite ease-in-out !important;
+    font-size: 0.7rem !important; padding: 6px 12px !important;
+  }
 
-        /* 1. Mouvement de l'or liquide (5 tons profonds) */
-        @keyframes liquidGold {
-          0% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-          100% { background-position: 0% 50%; }
-        }
+  /* 5. RESPONSIVE QUICK FIX */
+  @media (max-width: 768px) {
+    .logo-container-wrapper { top: 225px !important; left: 10px !important; }
+    .moving-header-logo { height: 55px !important; }
+    .whatsapp-float { width: 70px; height: 70px; bottom: 20px; right: 15px; }
+  }
 
-        /* 2. Le flash "Miroir" (net et luxueux) */
-        @keyframes mirrorReflection {
-          0% { left: -100%; opacity: 0; }
-          10% { opacity: 1; }
-          35% { left: 150%; opacity: 1; }
-          100% { left: 150%; opacity: 0; }
-        }
-
-        .gold-button-premium {
-          /* Dégradé 5 tons avec contrastes accentués */
-          background: linear-gradient(
-          135deg,
-          #BF953F 0%,   /* Or Bronze plus clair */
-          #FCF6BA 25%,  /* Éclat Or très clair */
-          #D4AF37 50%,  /* Or Pur */
-          #FBF5B7 75%,  /* Éclat */
-          #BF953F 100%
-        ) !important;
-          background-size: 300% 300% !important; /* Plus de fluidité dans le mouvement */
-          animation: liquidGold 2s ease infinite !important;
-
-          position: relative;
-          overflow: hidden;
-          color: #000 !important;
-          border: 1.5px solid rgba(0,0,0,0.8) !important;
-          font-weight: 950 !important;
-          text-transform: uppercase;
-          letter-spacing: 1.5px;
-
-          /* Ombre portée et effet de biseau interne (ULTRA RÉALISTE) */
-          box-shadow: 0 4px 15px rgba(0,0,0,0.3), inset 0 0 10px rgba(255,255,255,0.1) !important;
-          transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-        }
-
-        /* Le reflet miroir qui traverse le bouton */
-        .gold-button-premium::after {
-          content: "";
-          position: absolute;
-          top: -50%;
-          left: -150%;
-          width: 45%; /* Un peu plus large pour un flash plus dynamique */
-          height: 200%;
-          background: linear-gradient(
-            90deg,
-            transparent,
-            rgba(255, 255, 255, 0.9), /* Plus brillant */
-            transparent
-          );
-          transform: rotate(25deg);
-          animation: mirrorReflection 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-        }
-
-        /* Effet au survol : le bouton s'illumine et monte */
-        .gold-button-premium:hover {
-          transform: scale(1.06) translateY(-4px) !important;
-          filter: brightness(1.1);
-          box-shadow: 0 15px 30px rgba(191, 149, 63, 0.6) !important;
-        }
-
-        /* Effet au clic : le bouton s'enfonce */
-        .gold-button-premium:active {
-          transform: scale(0.96) translateY(-1px) !important;
-        }
-      `}</style>
+  /* WHATSAPP CLEAN */
+  .whatsapp-float { position: fixed; bottom: 25px; right: 25px; z-index: 10001; background: transparent; border: none; }
+`}</style>
 
       <Helmet>
   <link rel="preload" as="image" href={BurgerSignature} />

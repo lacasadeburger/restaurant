@@ -14,12 +14,10 @@ RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 # 3. COMPRESSION GZIP (PERFORMANCE MAXIMALE)
 <IfModule mod_deflate.c>
-    # Compression pour tous les types de fichiers texte et code
     AddOutputFilterByType DEFLATE text/plain text/html text/xml text/css text/javascript
     AddOutputFilterByType DEFLATE application/xml application/xhtml+xml application/rss+xml
-    AddOutputFilterByType DEFLATE application/javascript application/x-javascript application/json
-    # Ajout de la compression pour les polices et le SVG
-    AddOutputFilterByType DEFLATE font/woff2 image/svg+xml
+    AddOutputFilterByType DEFLATE application/javascript application/x-javascript application/json application/wasm
+    AddOutputFilterByType DEFLATE font/woff font/woff2 image/svg+xml image/x-icon
 </IfModule>
 
 # 4. CACHE NAVIGATEUR LONGUE DURÉE
