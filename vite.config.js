@@ -7,8 +7,5 @@ export default defineConfig({
   build: {
     emptyOutDir: true,
     assetsDir: 'assets',
-    minify: 'esbuild', // Plus rapide, intégré nativement
-    reportCompressedSize: false, // Accélère le build
-    cssCodeSplit: false, // Regroupe le CSS pour éviter plusieurs requêtes
   },
 })
