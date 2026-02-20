@@ -1,0 +1,89 @@
+/* Suppression de l'import Google Fonts ici car il est déjà dans l'index.html */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Ysabeau', sans-serif;
+}
+
+body {
+  font-size: 24px;
+  line-height: 1.5;
+  background-color: #000;
+  color: #fff;
+}
+
+.header {
+  background-color: #000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  z-index: 9999;
+}
+
+.logo { max-width: 200px; height: auto; }
+.nav-left { display: flex; align-items: center; margin-left: 20px; }
+.nav-center { flex-grow: 1; display: flex; justify-content: center; }
+.nav-right { display: flex; align-items: center; margin-right: 20px; }
+.carrito { border-radius: 95%; }
+
+main { padding: 50px; }
+h1 { font-size: 6px; margin-bottom: 20px; }
+p { margin-bottom: 20px; }
+
+.footer { background-color: #333; color: #fff; padding: 20px 0; text-align: center; }
+.footer-content { display: flex; flex-direction: column; align-items: center; gap: 20px; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+.logoFooter { width: 170px; height: auto; }
+.info-container { text-align: center; }
+.copyright { margin-top: 20px; font-size: 14px; }
+
+@media (max-width: 768px) {
+  .logo-container { flex-direction: column; align-items: center; }
+}
+
+.menuBurgers { padding: 40px; text-align: center; }
+.menuBurgers h1 { font-size: 46px; margin-bottom: 20px; font-family: 'Sacramento', cursive; }
+.menu-items { display: flex; flex-wrap: wrap; justify-content: center; }
+.menu-item { width: 350px; height: 500px; margin: 10px; padding: 1px; }
+.menu-item img { display: flex; max-width: 100%; height: 250px; }
+
+.add-btn, .add-btn2 {
+  padding: 0; width: 35%; height: 5%; cursor: pointer; border: 0; border-radius: 5px;
+  font-family: 'Josefin Sans', sans-serif; font-size: 20px;
+  outline: 1px solid rgba(255, 255, 255, .5); transition: all 0.3s;
+}
+
+.card-inner { position: relative; transform-style: preserve-3d; transition: transform 0.6s; }
+.front, .back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 25px; }
+
+/* --- CORRECTION DES IMAGES ICI --- */
+.front {
+  transform: rotateY(0deg);
+  background-image: url("./assets/bg-c.jpg"); /* Chemin relatif vers src/assets */
+  background-size: cover;
+}
+
+.back {
+  background-image: url("./assets/bg-c1.jpg"); /* Chemin relatif vers src/assets */
+  background-size: cover;
+  transform: rotateY(180deg);
+  backdrop-filter: blur(250px);
+}
+
+.card.reversed .card-inner { transform: rotateY(180deg); }
+
+/* Animations et autres styles gold */
+@keyframes liquidGold { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+.add-btn-gold {
+    width: 100%;
+    background: linear-gradient(135deg, #BF953F 0%, #FCF6BA 25%, #D4AF37 50%, #FBF5B7 75%, #BF953F 100%);
+    background-size: 300% 300%;
+    animation: liquidGold 6s ease infinite;
+    border-radius: 12px; font-weight: 950;
+}
