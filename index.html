@@ -5,45 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
     <meta name="theme-color" content="#000000" />
     <link rel="canonical" href="https://lacasadeburger.es/" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <link rel="preload" as="image" href="/burger-signature-torrevieja.webp" fetchpriority="high">
 
     <title>La Casa de Burger | Las Mejores Hamburguesas de Torrevieja</title>
     <meta name="description" content="Descubre las mejores hamburguesas gourmet y smash burgers en Torrevieja. Carne premium y ambiente inigualable. ¡Pide online!" />
     <meta name="keywords" content="hamburguesas Torrevieja, burger gourmet, smash burger, delivery Torrevieja, burger artesanal, Halal" />
-    <meta name="author" content="La Casa de Burger" />
 
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="La Casa de Burger | Hamburguesas Gourmet en Torrevieja" />
-    <meta property="og:description" content="¿Hambre de la mejor burger? Ven a vernos en Torrevieja. Calidad gourmet en chaque bocado." />
-    <meta property="og:image" content="https://lacasadeburger.es/burger-signature-torrevieja.webp" />
-    <meta property="og:url" content="https://lacasadeburger.es/" />
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Sacramento&family=Ysabeau:wght@400;700&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sacramento&family=Ysabeau:wght@400;700&display=swap" media="print" onload="this.media='all'">
-    <noscript>
-        <link href="https://fonts.googleapis.com/css2?family=Sacramento&family=Ysabeau:wght@400;700&display=swap" rel="stylesheet">
-    </noscript>
 
     <style>
-        .menu-items { content-visibility: auto; contain-intrinsic-size: 1000px; }
+        /* CSS Critique - Ordre optimisé */
         *{box-sizing:border-box;margin:0;padding:0}
-        html{scroll-behavior:smooth}
+        html{scroll-behavior:smooth;background-color:#000}
         body{background-color:#000;color:#fff;font-family:'Ysabeau',sans-serif;line-height:1.5;font-size:18px;max-width:100%;overflow-x:hidden}
         #root{min-height:100vh}
 
-        /* Layout de base pour éviter le CLS */
+        /* Amélioration du rendu */
+        .menu-items{display:flex;flex-wrap:wrap;justify-content:center;gap:20px;content-visibility:auto;contain-intrinsic-size:1000px}
+
         .header{background-color:#000;display:flex;justify-content:space-between;align-items:center;position:fixed;top:0;left:0;width:100%;height:70px;z-index:9999}
         .menuBurgers{padding:40px 20px;text-align:center}
         .menuBurgers h1{font-size:46px;margin-bottom:20px;font-family:'Sacramento',cursive}
-        .menu-items{display:flex;flex-wrap:wrap;justify-content:center;gap:20px}
 
         .footer{background-color:#111;color:white;padding:40px 0;text-align:center;border-top:1px solid #333}
         .footer-content{display:flex;flex-direction:column;align-items:center;gap:20px;max-width:1200px;margin:0 auto}
         .logoFooter{width:150px;height:auto;opacity:0.8}
 
-        /* Classes Utilitaires */
         #order, .container-cards, section[id]{scroll-margin-top:100px!important}
         .responsive-image{max-width:100%;height:auto}
         @keyframes pulse-cart{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
@@ -75,7 +66,6 @@
       "priceRange": "€€",
       "menu": "https://lacasadeburger.es/menu",
       "servesCuisine": ["Hamburguesas", "Smash Burgers", "Burger Gourmet", "Halal"],
-      "acceptsReservations": "true",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "AV. Diego Ramirez Pastor, 142",
@@ -101,12 +91,7 @@
         "reviewCount": "250",
         "bestRating": "5",
         "worstRating": "1"
-      },
-      "sameAs": [
-        "https://www.facebook.com/profile.php?id=100094610793536",
-        "https://www.instagram.com/lacasadeburger.es/",
-        "https://www.tripadvisor.es/Restaurant_Review-g187527-d26835169-Reviews-La_Casa_De_Burger-Torrevieja"
-      ]
+      }
     }
     </script>
 </head>
