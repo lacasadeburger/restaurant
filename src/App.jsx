@@ -435,138 +435,37 @@ export default function App() {
   .whatsapp-float { position: fixed; bottom: 25px; right: 25px; z-index: 10001; background: transparent; border: none; }
 `}</style>
 
-      <Helmet>
-  <link rel="preload" as="image" href={BurgerSignature} />
-  <title>{T[lang]?.seoTitle || T.es.seoTitle}</title>
-  <meta name="description" content={T[lang]?.seoContent || T.es.seoContent} />
+<Helmet>
+{/* 1. DYNAMIQUE : Titre et Description traduits (Indispensable) */}
+<title>{T[lang]?.seoTitle || T.es.seoTitle}</title>
+<meta name="description" content={T[lang]?.seoContent || T.es.seoContent} />
 
-  {/* 1. CANONICAL : Strictement avec le slash final */}
-<link rel="canonical" href="https://lacasadeburger.es/" />
+{/* 2. HREFLANG : Indispensable pour Google International */}
+<link rel="alternate" href="https://lacasadeburger.es/" hreflang="x-default" />
+<link rel="alternate" href="https://lacasadeburger.es/" hreflang="es" />
+<link rel="alternate" href="https://lacasadeburger.es/?lang=en" hreflang="en" />
+<link rel="alternate" href="https://lacasadeburger.es/?lang=fr" hreflang="fr" />
+<link rel="alternate" href="https://lacasadeburger.es/?lang=no" hreflang="no" />
+<link rel="alternate" href="https://lacasadeburger.es/?lang=sv" hreflang="sv" />
+<link rel="alternate" href="https://lacasadeburger.es/?lang=de" hreflang="de" />
+<link rel="alternate" href="https://lacasadeburger.es/?lang=nl" hreflang="nl" />
+<link rel="alternate" href="https://lacasadeburger.es/?lang=pl" hreflang="pl" />
+<link rel="alternate" href="https://lacasadeburger.es/?lang=uk" hreflang="uk" />
+<link rel="alternate" href="https://lacasadeburger.es/?lang=ru" hreflang="ru" />
+<link rel="alternate" href="https://lacasadeburger.es/?lang=ar" hreflang="ar" />
+<link rel="alternate" href="https://lacasadeburger.es/?lang=ro" hreflang="ro" />
 
-  <meta name="robots" content="index, follow" />
+{/* 3. SOCIAL : OG Tags dynamiques pour WhatsApp/FB/Insta */}
+<meta property="og:title" content={T[lang]?.seoTitle || T.es.seoTitle} />
+<meta property="og:description" content={T[lang]?.seoContent || T.es.seoContent} />
+<meta property="og:url" content={`https://lacasadeburger.es${lang !== 'es' ? `?lang=${lang}` : ''}`} />
 
-  {/* 2. HREFLANG : On s'assure que x-default et es sont IDENTIQUES au canonical */}
-  <link rel="alternate" href="https://lacasadeburger.es/" hreflang="x-default" />
-  <link rel="alternate" href="https://lacasadeburger.es/" hreflang="es" />
+{/* 4. TWITTER DYNAMIQUE */}
+<meta name="twitter:title" content={T[lang]?.seoTitle || T.es.seoTitle} />
+<meta name="twitter:description" content={T[lang]?.seoContent || T.es.seoContent} />
 
-  {/* Pour les langues avec paramètres, le slash est déjà présent avant le ? */}
-  <link rel="alternate" href="https://lacasadeburger.es/?lang=en" hreflang="en" />
-  <link rel="alternate" href="https://lacasadeburger.es/?lang=fr" hreflang="fr" />
-  <link rel="alternate" href="https://lacasadeburger.es/?lang=no" hreflang="no" />
-  <link rel="alternate" href="https://lacasadeburger.es/?lang=sv" hreflang="sv" />
-  <link rel="alternate" href="https://lacasadeburger.es/?lang=de" hreflang="de" />
-  <link rel="alternate" href="https://lacasadeburger.es/?lang=nl" hreflang="nl" />
-  <link rel="alternate" href="https://lacasadeburger.es/?lang=pl" hreflang="pl" />
-  <link rel="alternate" href="https://lacasadeburger.es/?lang=uk" hreflang="uk" />
-  <link rel="alternate" href="https://lacasadeburger.es/?lang=ru" hreflang="ru" />
-  <link rel="alternate" href="https://lacasadeburger.es/?lang=ar" hreflang="ar" />
-  <link rel="alternate" href="https://lacasadeburger.es/?lang=ro" hreflang="ro" />
-
-  {/* OG TAGS DYNAMIQUES : Pour que le partage WhatsApp soit dans la bonne langue */}
-  <meta property="og:type" content="restaurant" />
-  <meta property="og:title" content={T[lang]?.seoTitle || T.es.seoTitle} />
-  <meta property="og:description" content={T[lang]?.seoContent || T.es.seoContent} />
-  <meta property="og:image" content="https://lacasadeburger.es/assets/burger-signature-torrevieja.webp" />
-  <meta property="og:url" content={`https://lacasadeburger.es${lang !== 'es' ? `?lang=${lang}` : ''}`} />
-  <meta property="og:site_name" content="La Casa de Burger" />
-
-  {/* TWITTER DYNAMIQUE */}
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content={T[lang]?.seoTitle || T.es.seoTitle} />
-  <meta name="twitter:description" content={T[lang]?.seoContent || T.es.seoContent} />
-  <meta name="twitter:image" content="https://lacasadeburger.es/assets/burger-signature-torrevieja.webp" />
-
-  {/* JSON-LD : Ton Schema est parfait, gardons-le ! */}
-  <script type="application/ld+json">
-  {JSON.stringify({
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Restaurant",
-        "@id": "https://lacasadeburger.es/#restaurant",
-        "name": "La Casa de Burger Torrevieja",
-        "image": "https://lacasadeburger.es/assets/burger-signature-torrevieja.webp",
-        "logo": "https://lacasadeburger.es/assets/logo.webp",
-        "url": "https://lacasadeburger.es",
-        "telephone": "+34602597210",
-        "priceRange": "€€",
-        "servesCuisine": ["Burger", "Gourmet Burger", "Smash Burger", "Halal"],
-        "areaServed": "Torrevieja",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "Av. Diego Ramírez Pastor, 142",
-          "addressLocality": "Torrevieja",
-          "addressRegion": "Alicante",
-          "postalCode": "03181",
-          "addressCountry": "ES"
-        },
-        "geo": {
-          "@type": "GeoCoordinates",
-          "latitude": 37.982362,
-          "longitude": -0.679541
-        },
-        "openingHoursSpecification": [
-          {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-            "opens": "13:00",
-            "closes": "22:30"
-          }
-        ],
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "4.9",
-          "reviewCount": "245",
-          "bestRating": "5",
-          "worstRating": "1"
-        },
-        "hasOfferCatalog": {
-          "@type": "OfferCatalog",
-          "name": "Servicios de Comida",
-          "itemListElement": [
-            {
-              "@type": "Offer",
-              "itemOffered": { "@type": "Service", "name": "Delivery" }
-            },
-            {
-              "@type": "Offer",
-              "itemOffered": { "@type": "Service", "name": "Takeout" }
-            }
-          ]
-        },
-        "potentialAction": {
-          "@type": "OrderAction",
-          "target": {
-            "@type": "EntryPoint",
-            "urlTemplate": "https://lacasadeburger.es/#order",
-            "actionPlatform": [
-              "https://schema.org/DesktopWebPlatform",
-              "https://schema.org/MobileWebPlatform"
-            ]
-          }
-        }
-      },
-      {
-        "@type": "Menu",
-        "@id": "https://lacasadeburger.es/#menu",
-        "name": "Carta La Casa de Burger",
-        "mainEntityOfPage": "https://lacasadeburger.es",
-        "hasMenuItem": [
-          {
-            "@type": "MenuItem",
-            "name": "Hamburguesas Gourmet",
-            "description": "Las mejores burgers gourmet y smash de Torrevieja con carne de ternera premium.",
-            "offers": {
-              "@type": "Offer",
-              "price": "10.00",
-              "priceCurrency": "EUR"
-            }
-          }
-        ]
-      }
-    ]
-  })}
-</script>
+{/* NOTE : Le JSON-LD massif, le Preload d'image et le Canonical sont déjà dans l'index.html.
+  On ne les remet pas ici pour gagner du temps de calcul (TBT) sur Lighthouse. */}
 </Helmet>
 {/* --- LOGO ANIMÉ EN HAUT À Gauche --- */}
 <div className="logo-container-wrapper" style={{
