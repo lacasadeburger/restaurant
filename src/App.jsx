@@ -822,53 +822,75 @@ export default function App() {
   setLang={setLang} // <--- AJOUTE ÇA, sinon cliquer sur les drapeaux ne fera rien !
   logo={logo}
 />
-      <header style={{
-        padding: '85px 20px 80px',
-        textAlign: 'center',
-        position: 'relative',
-        backgroundImage: `linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.3)), url(${BurgerSignature})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        borderRadius: '0 0 50px 50px',
-        borderBottom: `5px solid #ff4757`
-      }}>
-      <div
-        className="wobble-badge gold-button-premium"
-        style={{
-          position: 'absolute',
-          // On le remonte pour qu'il soit au début du header,
-          // juste sous la limite des drapeaux
-          top: '20px',
-          right: '5%',
-          color: '#000',
-          padding: '10px 25px',
-          borderRadius: '50px',
-          fontWeight: '950',
-          fontSize: '1.1rem',
-          zIndex: 10,
-          border: '3px solid #000',
-          boxShadow: '0 4px 15px rgba(0,0,0,0.5)',
-          whiteSpace: 'nowrap'
-        }}
-      >
-        🏆 #1 BURGER TORREVIEJA
-      </div>
-      <div style={{ position: 'relative', zIndex: 2 }}>
+<header style={{
+padding: '85px 20px 80px',
+textAlign: 'center',
+position: 'relative',
+borderRadius: '0 0 50px 50px',
+borderBottom: `5px solid #ff4757`,
+overflow: 'hidden' // Important pour garder les bords arrondis
+}}>
 
-      {/* H1 OPTIMISÉ : Mot-clé principal + ville avec gestion des 12 langues (nl inclus) */}
-      <h1 style={{
-        fontSize: 'clamp(2rem, 10vw, 3.5rem)',
-        fontWeight: '900',
-        textTransform: 'uppercase',
-        textShadow: '2px 2px 15px rgba(0,0,0,0.9)',
-        margin: 0,
-        color: '#fff',
-        lineHeight: '1.1'
-      }}>
-        {/* Titre traduit (ex: "La Mejor Hamburguesa") */}
-        {T[lang]?.heroTitle || T.es.heroTitle}
-        <br />
+{/* L'IMAGE CRITIQUE (LCP) : C'est elle qui booste ton score */}
+<img
+src={BurgerSignature}
+alt="La mejor hamburguesa gourmet de Torrevieja"
+fetchPriority="high"
+style={{
+  position: 'absolute',
+  top: 0,
+  left: 0,
+  width: '100%',
+  height: '100%',
+  objectFit: 'cover',
+  objectPosition: 'center',
+  zIndex: 0
+}}
+/>
 
+{/* LE DÉGRADÉ (Overlay) : Pour garder la lisibilité du texte comme avant */}
+<div style={{
+position: 'absolute',
+top: 0,
+left: 0,
+width: '100%',
+height: '100%',
+background: 'linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.5))',
+zIndex: 1
+}}></div>
+
+<div
+className="wobble-badge gold-button-premium"
+style={{
+  position: 'absolute',
+  top: '20px',
+  right: '5%',
+  color: '#000',
+  padding: '10px 25px',
+  borderRadius: '50px',
+  fontWeight: '950',
+  fontSize: '1.1rem',
+  zIndex: 10,
+  border: '3px solid #000',
+  boxShadow: '0 4px 15px rgba(0,0,0,0.5)',
+  whiteSpace: 'nowrap'
+}}
+>
+🏆 #1 BURGER TORREVIEJA
+</div>
+
+<div style={{ position: 'relative', zIndex: 2 }}>
+<h1 style={{
+  fontSize: 'clamp(2rem, 10vw, 3.5rem)',
+  fontWeight: '900',
+  textTransform: 'uppercase',
+  textShadow: '2px 2px 15px rgba(0,0,0,0.9)',
+  margin: 0,
+  color: '#fff',
+  lineHeight: '1.1'
+}}>
+  {T[lang]?.heroTitle || T.es.heroTitle}
+  <br />
         {/* Gestion de la préposition pour les 12 langues */}
         {
           lang === 'fr' ? 'à Torrevieja' :
