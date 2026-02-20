@@ -2,39 +2,32 @@
 # 1. RÉGLAGES SERVEUR & SÉCURITÉ
 # ----------------------------------------------------------------------
 RewriteEngine On
-
-# Empêche l'affichage de la liste des fichiers si l'index est absent
 Options -Indexes
 
-# Protection contre le vol de bande passante (X-Frame-Options)
 Header set X-Frame-Options "SAMEORIGIN"
 Header set X-XSS-Protection "1; mode=block"
 Header set X-Content-Type-Options "nosniff"
 
-# 2. REDIRECTION HTTPS (SEO & SÉCURITÉ)
+# 2. REDIRECTION HTTPS (Optimisée)
 RewriteCond %{HTTPS} off
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-# 3. COMPRESSION GZIP (PERFORMANCE)
+# 3. COMPRESSION GZIP (PERFORMANCE MAXIMALE)
 <IfModule mod_deflate.c>
-    AddOutputFilterByType DEFLATE text/plain
-    AddOutputFilterByType DEFLATE text/html
-    AddOutputFilterByType DEFLATE text/xml
-    AddOutputFilterByType DEFLATE text/css
-    AddOutputFilterByType DEFLATE application/xml
-    AddOutputFilterByType DEFLATE application/xhtml+xml
-    AddOutputFilterByType DEFLATE application/rss+xml
-    AddOutputFilterByType DEFLATE application/javascript
-    AddOutputFilterByType DEFLATE application/x-javascript
-    AddOutputFilterByType DEFLATE application/json
+    # Compression pour tous les types de fichiers texte et code
+    AddOutputFilterByType DEFLATE text/plain text/html text/xml text/css text/javascript
+    AddOutputFilterByType DEFLATE application/xml application/xhtml+xml application/rss+xml
+    AddOutputFilterByType DEFLATE application/javascript application/x-javascript application/json
+    # Ajout de la compression pour les polices et le SVG
+    AddOutputFilterByType DEFLATE font/woff2 image/svg+xml
 </IfModule>
 
-# 4. CACHE NAVIGATEUR LONGUE DURÉE (PERFORMANCE)
+# 4. CACHE NAVIGATEUR LONGUE DURÉE
 <IfModule mod_expires.c>
     ExpiresActive On
     ExpiresDefault "access plus 1 month"
 
-    # Assets (JS/CSS)
+    # Assets (JS/CSS) - On garde 1 an car Vite génère des noms uniques
     ExpiresByType text/css "access plus 1 year"
     ExpiresByType application/javascript "access plus 1 year"
 
@@ -49,7 +42,7 @@ RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
     ExpiresByType font/woff2 "access plus 1 year"
 </IfModule>
 
-# 5. GESTION DES ERREURS (POUR ÉVITER LA 404 PAR DÉFAUT)
+# 5. GESTION DES ERREURS
 ErrorDocument 404 /index.html
 
 # 6. ROUTAGE REACT (INDISPENSABLE)

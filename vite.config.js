@@ -6,7 +6,17 @@ export default defineConfig({
   base: '/',
   build: {
     emptyOutDir: true,
-    // Cela garantit que les assets sont bien gérés
     assetsDir: 'assets',
+
+    minify: 'terser',
+    sourcemap: false,
+    rollupOptions: {
+      output: {
+        
+        manualChunks: {
+          vendor: ['react', 'react-dom'],
+        },
+      },
+    },
   },
 })
