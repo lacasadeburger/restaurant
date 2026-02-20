@@ -2,7 +2,6 @@ import React, { useState, useEffect, useMemo } from "react";
 import Nav from "./Nav";
 import Order from "./Order";
 import CardMenu from "./CardMenu";
-import "./style.css";
 import data from "./data";
 import { Helmet } from "react-helmet"
 

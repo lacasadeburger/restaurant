@@ -1,7 +1,6 @@
 import React from 'react';
 // Vérifie bien que les chemins d'assets sont corrects par rapport à ton projet
 import navLogo from "../assets/logo.DesktopWebPlatform";
-import devrod from "../assets/devrod.png";
 
 export default function Footer({ lang }) {
 

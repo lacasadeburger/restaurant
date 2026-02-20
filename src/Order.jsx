@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "./style.css";
 import Swal from "sweetalert2";
 
 export default function Order({ cart, removeFromCart, lang }) {
