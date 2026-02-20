@@ -13,7 +13,7 @@ import Burger from "./assets/burger.webp";
 import Drink from "./assets/drink.webp";
 import tripadvisor from "./assets/tripadvisor.png";
 import googleIcon from "./assets/google.png";
-import logo from "./assets/logo.jpg";
+import logo from "./assets/logo.webp";
 import BurgerSignature from "/burger-signature-torrevieja.webp";
 
 
@@ -710,7 +710,7 @@ export default function App() {
         "@id": "https://lacasadeburger.es/#restaurant",
         "name": "La Casa de Burger Torrevieja",
         "image": "https://lacasadeburger.es/assets/burger-signature-torrevieja.webp",
-        "logo": "https://lacasadeburger.es/assets/logo.jpg",
+        "logo": "https://lacasadeburger.es/assets/logo.webp",
         "url": "https://lacasadeburger.es",
         "telephone": "+34602597210",
         "priceRange": "€€",
