@@ -2,7 +2,9 @@
 # 1. RÉGLAGES SERVEUR & SÉCURITÉ
 # ----------------------------------------------------------------------
 RewriteEngine On
-# Options -Indexes
+
+# Empêche l'affichage de la liste des fichiers si l'index est absent
+Options -Indexes
 
 # Protection contre le vol de bande passante (X-Frame-Options)
 Header set X-Frame-Options "SAMEORIGIN"
