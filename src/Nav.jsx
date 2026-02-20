@@ -7,7 +7,7 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang, setLa
   const currentHour = now.getHours() + now.getMinutes() / 60;
 
   const isSunday = (day === 0);
-  const isWorkingHours = currentHour >= 13 && currentHour < 22.5;
+  const isWorkingHours = currentHour >= 13 && currentHour < 23;
   const isOpen = isWorkingHours && !isSunday;
   const statusColor = isOpen ? '#2ed573' : '#ff4757';
 
