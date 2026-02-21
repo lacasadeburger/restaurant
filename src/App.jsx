@@ -1073,6 +1073,7 @@ export default function App() {
     <iframe
       width="100%"
       height="100%"
+      /* youtube-nocookie est essentiel pour le score PageSpeed */
       src="https://www.youtube-nocookie.com/embed/qN6VZYBojLs?autoplay=1"
       title="Video de presentación de nuestras Hamburguesas Gourmet"
       frameBorder="0"
@@ -1089,7 +1090,7 @@ export default function App() {
       alignItems: 'center',
       /* Ton image 512x512 centrée avec un voile sombre */
       backgroundImage: `linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('/favicon.png')`,
-      backgroundSize: 'cover', // Remplit tout le rectangle
+      backgroundSize: 'cover',
       backgroundPosition: 'center',
       backgroundRepeat: 'no-repeat'
     }}>
