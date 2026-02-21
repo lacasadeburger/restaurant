@@ -1069,17 +1069,19 @@ export default function App() {
   onMouseEnter={(e) => !loadMedia && (e.currentTarget.style.transform = 'scale(1.02)')}
   onMouseLeave={(e) => !loadMedia && (e.currentTarget.style.transform = 'scale(1)')}
 >
-  {loadMedia ? (
+  {/* PROTECTION RADICALE : L'iframe n'existe PAS si loadMedia est false */}
+  {loadMedia === true ? (
     <iframe
       width="100%"
       height="100%"
-      src="https://www.youtube-nocookie.com/embed/qN6VZYBojLs?autoplay=1"
-      title="Video de presentación de nuestras Hamburguesas Gourmet"
+      src="https://www.youtube-nocookie.com/embed/qN6VZYBojLs?autoplay=1&mute=0"
+      title="Video de presentación"
       frameBorder="0"
       allow="autoplay; encrypted-media; picture-in-picture"
       allowFullScreen
     ></iframe>
   ) : (
+    /* Ce bloc est le seul que Google verra au chargement */
     <div style={{
       width: '100%',
       height: '100%',
@@ -1092,7 +1094,6 @@ export default function App() {
       backgroundPosition: 'center',
       backgroundRepeat: 'no-repeat'
     }}>
-      {/* Icône Play Dorée */}
       <div style={{
         fontSize: '4.5rem',
         color: GOLD_BRIGHT || '#BF953F',
@@ -1102,7 +1103,6 @@ export default function App() {
       }}>
         ▶
       </div>
-
       <p style={{
         fontSize: '1.1rem',
         color: GOLD_BRIGHT || '#BF953F',
@@ -1121,7 +1121,7 @@ export default function App() {
     </div>
   )}
 </div>
-</div>
+</div> {/* Ta fameuse div de fermeture parente que je garde précieusement ! */}
 <div style={{
 display: 'flex',
 justifyContent: 'center',
