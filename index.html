@@ -6,10 +6,10 @@
     <meta name="theme-color" content="#000000" />
     <link rel="canonical" href="https://lacasadeburger.es/" />
 
-    <link rel="preload" as="image" href="/burger-signature-torrevieja.webp" fetchpriority="high">
+    <link rel="preload" as="image" href="/burger-signature-torrevieja.webp" fetchpriority="high" imagesizes="100vw">
 
     <title>La Casa de Burger | Las Mejores Hamburguesas de Torrevieja</title>
-    <meta name="description" content="Descubre las mejores hamburguesas gourmet y smash burgers en Torrevieja. Carne premium y ambiente inigualable. ¡Pide online!" />
+    <meta name="description" content="Descubre las mejores hamburguesas gourmet y smash burgers en Torrevieja. Carne premium et ambiente inigualable. ¡Pide online!" />
     <meta name="keywords" content="hamburguesas Torrevieja, burger gourmet, smash burger, delivery Torrevieja, burger artesanal, Halal" />
     <meta name="robots" content="index, follow" />
 
@@ -22,25 +22,90 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content="https://lacasadeburger.es/burger-signature-torrevieja.webp" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sacramento&family=Ysabeau:wght@400;700&display=swap" media="print" onload="this.media='all'">
-
     <style>
-        /* CSS Critique - Remplace le style.css supprimé */
+        /* 1. POLICES LOCALES (Supprime l'alerte Tier et booste la vitesse) */
+        @font-face {
+            font-family: 'Ysabeau';
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+            src: url('/fonts/ysabeau-v5-latin-regular.woff2') format('woff2');
+        }
+        @font-face {
+            font-family: 'Ysabeau';
+            font-style: normal;
+            font-weight: 700;
+            font-display: swap;
+            src: url('/fonts/ysabeau-v5-latin-700.woff2') format('woff2');
+        }
+        @font-face {
+            font-family: 'Sacramento';
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+            src: url('/fonts/sacramento-v15-latin-regular.woff2') format('woff2');
+        }
+
+        /* CSS Critique & Reset */
         *{box-sizing:border-box;margin:0;padding:0}
         html{scroll-behavior:smooth;background-color:#000}
         body{background-color:#000;color:#fff;font-family:'Ysabeau',sans-serif;line-height:1.5;font-size:18px;max-width:100%;overflow-x:hidden}
         #root{min-height:100vh}
 
-        /* Layout Header & Menu */
-        .header{background-color:#000;display:flex;justify-content:space-between;align-items:center;position:fixed;top:0;left:0;width:100%;height:70px;z-index:9999;padding:0 20px}
-        .menuBurgers{padding:100px 20px 40px;text-align:center}
-        .menuBurgers h1{font-size:46px;margin-bottom:20px;font-family:'Sacramento',cursive;color:#ffcc00}
+        /* OPTIMISATION LCP */
+        .hero-container-lcp {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            background: #000;
+            contain: paint layout;
+        }
 
-        /* Grille & Images */
-        .menu-items{display:flex;flex-wrap:wrap;justify-content:center;gap:20px;content-visibility:auto;contain-intrinsic-size:1000px}
-        .responsive-image{max-width:100%;height:auto;border-radius:8px}
+        /* OPTIMISATION HEADER (CLS) */
+        .header{
+            background-color:#000;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            position:fixed;
+            top:0;
+            left:0;
+            width:100%;
+            height:70px;
+            z-index:9999;
+            padding:0 20px;
+            contain: size layout;
+        }
+
+        .menuBurgers{padding:100px 20px 40px;text-align:center}
+
+        /* OPTIMISATION TITRE (CLS) */
+        .menuBurgers h1 {
+            font-size: 46px;
+            margin-bottom: 20px;
+            font-family: 'Sacramento', cursive;
+            color: #ffcc00;
+            min-height: 1.2em;
+            line-height: 1.2;
+        }
+
+        /* OPTIMISATION GRILLE */
+        .menu-items{
+            display:flex;
+            flex-wrap:wrap;
+            justify-content:center;
+            gap:20px;
+            content-visibility:auto;
+            contain-intrinsic-size: 1px 500px;
+        }
+
+        .responsive-image{
+            max-width:100%;
+            height:auto;
+            border-radius:8px;
+            display: block;
+        }
+
         #order, .container-cards, section[id]{scroll-margin-top:100px!important}
 
         /* Footer */
@@ -48,12 +113,27 @@
         .footer-content{display:flex;flex-direction:column;align-items:center;gap:20px;max-width:1200px;margin:0 auto}
         .logoFooter{width:150px;height:auto;opacity:0.8}
 
-        /* Animations */
-        @keyframes pulse-cart{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
-        .pulse-active{animation:pulse-cart 1.5s infinite ease-in-out}
+        /* ANIMATION GPU */
+        @keyframes pulse-cart {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
 
+        .pulse-active {
+            animation: pulse-cart 1.5s infinite ease-in-out;
+            will-change: transform;
+            contain: layout;
+            backface-visibility: hidden;
+            transform: translateZ(0);
+        }
+
+        /* ANTI-CLS MOBILE */
         @media (max-width:768px){
-            .menu-item{width:100%;max-width:350px}
+            .menu-item{
+                width:100%;
+                max-width:350px;
+                min-height: 400px;
+            }
             .menuBurgers h1{font-size:38px}
         }
     </style>
@@ -109,6 +189,8 @@
     </script>
 </head>
 <body>
+    <img src="/burger-signature-torrevieja.webp" style="display:none" alt="preload-lcp">
+
     <div id="root"></div>
 
     <noscript>

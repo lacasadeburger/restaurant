@@ -490,193 +490,186 @@ export default function App() {
 />
 
 <header style={{
-padding: '85px 20px 80px',
-textAlign: 'center',
-position: 'relative',
-borderRadius: '0 0 50px 50px',
-borderBottom: `5px solid #ff4757`,
-overflow: 'hidden' // Important pour garder les bords arrondis
+  padding: '85px 20px 80px',
+  textAlign: 'center',
+  position: 'relative',
+  borderRadius: '0 0 50px 50px',
+  borderBottom: `5px solid #ff4757`,
+  overflow: 'hidden'
 }}>
 
-{/* L'IMAGE CRITIQUE (LCP) : C'est elle qui booste ton score */}
-<img
-  src={BurgerSignature}
-  alt="La mejor hamburguesa gourmet de Torrevieja - La Casa de Burger"
-  fetchPriority="high"
-  loading="eager"
-  decoding="sync"
-  style={{
+  <img
+    src={BurgerSignature}
+    alt="La mejor hamburguesa gourmet de Torrevieja - La Casa de Burger"
+    fetchPriority="high"
+    loading="eager"
+    decoding="sync"
+    style={{
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      width: '100%',
+      height: '100%',
+      objectFit: 'cover',
+      objectPosition: 'center',
+      zIndex: 0
+    }}
+  />
+
+  <div style={{
     position: 'absolute',
     top: 0,
     left: 0,
     width: '100%',
     height: '100%',
-    objectFit: 'cover',
-    objectPosition: 'center',
-    zIndex: 0
-  }}
-/>
+    background: 'linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.5))',
+    zIndex: 1
+  }}></div>
 
-{/* LE DÉGRADÉ (Overlay) : Pour garder la lisibilité du texte comme avant */}
-<div style={{
-position: 'absolute',
-top: 0,
-left: 0,
-width: '100%',
-height: '100%',
-background: 'linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.5))',
-zIndex: 1
-}}></div>
-
-<div
-className="wobble-badge gold-button-premium"
-style={{
-  position: 'absolute',
-  top: '20px',
-  right: '5%',
-  color: '#000',
-  padding: '10px 25px',
-  borderRadius: '50px',
-  fontWeight: '950',
-  fontSize: '1.1rem',
-  zIndex: 10,
-  border: '3px solid #000',
-  boxShadow: '0 4px 15px rgba(0,0,0,0.5)',
-  whiteSpace: 'nowrap'
-}}
->
-🏆 #1 BURGER TORREVIEJA
-</div>
-
-<div style={{ position: 'relative', zIndex: 2 }}>
-<h1 style={{
-  fontSize: 'clamp(2rem, 10vw, 3.5rem)',
-  fontWeight: '900',
-  textTransform: 'uppercase',
-  textShadow: '2px 2px 15px rgba(0,0,0,0.9)',
-  margin: 0,
-  color: '#fff',
-  lineHeight: '1.1'
-}}>
-  {T[lang]?.heroTitle || T.es.heroTitle}
-  <br />
-        {/* Gestion de la préposition pour les 12 langues */}
-        {
-          lang === 'fr' ? 'à Torrevieja' :
-          lang === 'en' ? 'in Torrevieja' :
-          lang === 'de' ? 'in Torrevieja' :
-          lang === 'nl' ? 'in Torrevieja' : // Ajout du Néerlandais
-          lang === 'no' ? 'i Torrevieja' :
-          lang === 'sv' ? 'i Torrevieja' :
-          lang === 'pl' ? 'w Torrevieja' :
-          lang === 'uk' ? 'у Торрев’єнті' :
-          lang === 'ru' ? 'в Торревьехе' :
-          lang === 'ar' ? 'في توريفايجا' :
-          lang === 'ro' ? 'în Torrevieja' :
-          'en Torrevieja' /* Par défaut pour 'es' */
-        }
-      </h1>
-
-<h2 style={{
-  fontSize: '1.5rem',
-  color: GOLD_BRIGHT,
-  fontWeight: '700',
-  textShadow: '1px 1px 10px rgba(0,0,0,1)',
-  marginTop: '10px',
-  textTransform: 'uppercase'
-}}>
-
-  {/* On récupère le sous-titre traduit dans l'objet T */}
-  {T[lang]?.heroSubtitle || T.es.heroSubtitle}
-</h2>
-
-<div style={{ marginTop: '05px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '05px' }}>
-<button
-  onClick={() => {
-    setShowCardBurger(true);
-    setTimeout(() => scrollToId("sec-burgers"), 150);
-  }}
-  className="pulse-gold-btn gold-button-premium"
-  style={{
-      color: '#000',
-      padding: '22px 50px',
-      borderRadius: '50px',
-      border: '3px solid #000',
-      fontWeight: '950',
-      cursor: 'pointer',
-      fontSize: '1.5rem',
-      boxShadow: GOLD_SHADOW,
-      textTransform: 'uppercase',
-      width: '90%',
-      maxWidth: '450px',
-      // --- AJOUTS POUR LE SCORE VERT ---
-      height: '80px', // On fixe la hauteur pour éviter que le texte en dessous ne saute
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      margin: '0 auto', // Centre le bouton proprement
-      contain: 'layout' // Dit au navigateur que ce bouton ne fait pas bouger l'extérieur
-  }}
->
-  🚀 {T[lang]?.btnOrder || T.es.btnOrder}
-</button>
-{/* BOUTON RÉSERVATION TABLEO */}
-<button
-onClick={() => window.open("https://app.tableo.com/widget/la-casa-de-burger-hamburguesa-gourmet-torrevieja-hamburgueseria-casero-best-burger-in-town-spain?bgColor=%23ff0000&textColor=%23000000&googleFont=Police+par+d%C3%A9faut&fontSize=14&cornerStyle=none&textAlignment=left&formControlBgColor=%23ffffff&formControlColor=%23000000&formControlBorderColor=%23444444&formControlBorderShadow=6&formControlBorderWidth=1&formControlBorderOpacity=0.1&buttonBgColor=%23000000&buttonTextColor=%23ffffff", "_blank")}
-className="gold-button-premium"
-style={{
-  padding: '18px 40px',
-  borderRadius: '50px',
-  fontSize: '1.3rem',
-  width: '90%',
-  maxWidth: '450px',
-  marginTop: '10px', // Pour créer l'espace sous les deux autres boutons
-  display: 'block',
-  marginLeft: 'auto',
-  marginRight: 'auto'
-}}
->
-📅 RESERVAR MESA
-</button>
-<div style={{ display: 'flex', justifyContent: 'center', gap: '15px', flexWrap: 'wrap', marginTop: '5px' }}>
-  <a
-    href="tel:+34602597210"
-    aria-label={T[lang]?.btnCall || T.es.btnCall}
+  <div
+    className="wobble-badge gold-button-premium"
     style={{
-      background: '#ffffff', // Blanc pur
-      color: '#000000',      // Noir pur (Contraste maximal 21:1)
-      padding: '14px 30px',
+      position: 'absolute',
+      top: '20px',
+      right: '5%',
+      color: '#000',
+      padding: '10px 25px',
       borderRadius: '50px',
-      textDecoration: 'none',
       fontWeight: '950',
-      border: '2px solid #000000',
-      display: 'flex',
-      alignItems: 'center',
-      gap: '8px',
-      boxShadow: '0 4px 15px rgba(0,0,0,0.3)'
+      fontSize: '1.1rem',
+      zIndex: 10,
+      border: '3px solid #000',
+      boxShadow: '0 4px 15px rgba(0,0,0,0.5)',
+      whiteSpace: 'nowrap'
     }}
   >
-    <span role="img" aria-label="phone">📞</span> {T[lang]?.btnCall || T.es.btnCall}
-  </a>
+    🏆 #1 BURGER TORREVIEJA
+  </div>
 
-  {/* Petit texte animé CALL US - Correction du contraste (Blanc au lieu du rouge corail) */}
-  <div style={{ display: 'flex', alignItems: 'center' }}>
-            <span
-              style={{
-                color: '#FFFFFF',
-                fontSize: '0.75rem',
-                fontWeight: '900',
-                textTransform: 'uppercase',
-                letterSpacing: '1px'
-              }}
-            >
-              {lang === 'es' ? '¡LLÁMANOS!' : 'CALL US!'}
-            </span>
-          </div>
-        </div>
-      </div> {/* <--- CE DIV ÉTAIT MANQUANT : il ferme le conteneur des boutons */}
-    </div> {/* <--- CELUI-CI FERME LE CONTENU DU HERO (hero-content) */}
-  </header>
+  <div style={{ position: 'relative', zIndex: 2 }}>
+    <h1 style={{
+      fontSize: 'clamp(2rem, 10vw, 3.5rem)',
+      fontWeight: '900',
+      textTransform: 'uppercase',
+      textShadow: '2px 2px 15px rgba(0,0,0,0.9)',
+      margin: 0,
+      color: '#fff',
+      lineHeight: '1.1'
+    }}>
+      {T[lang]?.heroTitle || T.es.heroTitle}
+      <br />
+      {
+        lang === 'fr' ? 'à Torrevieja' :
+        lang === 'en' ? 'in Torrevieja' :
+        lang === 'de' ? 'in Torrevieja' :
+        lang === 'nl' ? 'in Torrevieja' :
+        lang === 'no' ? 'i Torrevieja' :
+        lang === 'sv' ? 'i Torrevieja' :
+        lang === 'pl' ? 'w Torrevieja' :
+        lang === 'uk' ? 'у Торрев’єнті' :
+        lang === 'ru' ? 'в Торревьехе' :
+        lang === 'ar' ? 'في توريفايجا' :
+        lang === 'ro' ? 'în Torrevieja' :
+        'en Torrevieja'
+      }
+    </h1>
+
+    <h2 style={{
+      fontSize: '1.5rem',
+      color: GOLD_BRIGHT,
+      fontWeight: '700',
+      textShadow: '1px 1px 10px rgba(0,0,0,1)',
+      marginTop: '10px',
+      textTransform: 'uppercase'
+    }}>
+      {T[lang]?.heroSubtitle || T.es.heroSubtitle}
+    </h2>
+
+    <div style={{ marginTop: '05px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '05px' }}>
+      <button
+        onClick={() => {
+          setShowCardBurger(true);
+          setTimeout(() => scrollToId("sec-burgers"), 150);
+        }}
+        className="pulse-gold-btn gold-button-premium"
+        style={{
+            color: '#000',
+            padding: '22px 50px',
+            borderRadius: '50px',
+            border: '3px solid #000',
+            fontWeight: '950',
+            cursor: 'pointer',
+            fontSize: '1.5rem',
+            boxShadow: GOLD_SHADOW,
+            textTransform: 'uppercase',
+            width: '90%',
+            maxWidth: '450px',
+            height: '80px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            margin: '0 auto',
+            contain: 'layout'
+        }}
+      >
+        🚀 {T[lang]?.btnOrder || T.es.btnOrder}
+      </button>
+
+      <button
+        onClick={() => window.open("https://app.tableo.com/widget/la-casa-de-burger-hamburguesa-gourmet-torrevieja-hamburgueseria-casero-best-burger-in-town-spain?bgColor=%23ff0000&textColor=%23000000&googleFont=Police+par+d%C3%A9faut&fontSize=14&cornerStyle=none&textAlignment=left&formControlBgColor=%23ffffff&formControlColor=%23000000&formControlBorderColor=%23444444&formControlBorderShadow=6&formControlBorderWidth=1&formControlBorderOpacity=0.1&buttonBgColor=%23000000&buttonTextColor=%23ffffff", "_blank")}
+        className="gold-button-premium"
+        style={{
+          padding: '18px 40px',
+          borderRadius: '50px',
+          fontSize: '1.3rem',
+          width: '90%',
+          maxWidth: '450px',
+          marginTop: '10px',
+          display: 'block',
+          marginLeft: 'auto',
+          marginRight: 'auto'
+        }}
+      >
+        📅 RESERVAR MESA
+      </button>
+
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '15px', gap: '8px' }}>
+        <a
+          href="tel:+34602597210"
+          aria-label={T[lang]?.btnCall || T.es.btnCall}
+          style={{
+            background: '#ffffff',
+            color: '#000000',
+            padding: '14px 30px',
+            borderRadius: '50px',
+            textDecoration: 'none',
+            fontWeight: '950',
+            border: '2px solid #000000',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px',
+            boxShadow: '0 4px 15px rgba(0,0,0,0.3)'
+          }}
+        >
+          <span aria-hidden="true">📞</span>
+          {T[lang]?.btnCall || T.es.btnCall}
+        </a>
+
+        <span
+          style={{
+            color: '#FFFFFF',
+            fontSize: '0.75rem',
+            fontWeight: '900',
+            textTransform: 'uppercase',
+            letterSpacing: '1px'
+          }}
+        >
+          {lang === 'es' ? '¡LLÁMANOS!' : 'CALL US!'}
+        </span>
+      </div>
+    </div> {/* Fermeture du conteneur flex des boutons */}
+  </div> {/* Fermeture du div à z-index: 2 */}
+</header>
       <main className="menu-page-container">
 
       <section id="sec-burgers" style={{ marginTop: '05px' }}>
