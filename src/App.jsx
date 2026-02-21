@@ -448,17 +448,18 @@ export default function App() {
     .chip.active { background: linear-gradient(135deg, #BF953F 0%, #B38728 100%) !important; color: #000 !important; border-color: #FCF6BA !important; font-weight: bold; }
     .chip.remove.active { background: #ff4757 !important; color: white !important; border-color: #ff6b81 !important; }
 
-    /* 6. WHATSAPP & BADGE FLOTTANT */
+    /* 6. WHATSAPP & BADGE (Version Absolute pour rester en haut) */
     .whatsapp-float { position: fixed; bottom: 25px; right: 25px; z-index: 9999; }
     .whatsapp-float img { width: 65px; height: 65px; }
 
     .wobble-badge-container {
-      position: fixed !important;
+      /* Changement ici : absolute au lieu de fixed */
+      position: absolute !important;
       top: 150px !important;
       right: 20px !important;
       left: auto !important;
       width: fit-content !important;
-      z-index: 10000 !important;
+      z-index: 1000 !important;
       pointer-events: none;
       display: flex !important;
       justify-content: flex-end !important;
@@ -473,7 +474,7 @@ export default function App() {
       font-size: 0.8rem !important;
       border-radius: 50px !important;
       border: 1px solid #FCF6BA !important;
-      overflow: hidden !important; /* Emprisonne la lumière */
+      overflow: hidden !important;
       position: relative !important;
       animation: liquidGold 4s infinite, wobble-badge 3s infinite ease-in-out !important;
       box-shadow: 0 4px 15px rgba(0,0,0,0.5) !important;
