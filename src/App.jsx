@@ -348,133 +348,145 @@ export default function App() {
   return (
     <div className="app-main-wrapper" style={{ position: 'relative', backgroundColor: '#111', color: '#fff' }}>
     <style>{`
-    /* 1. STRUCTURE & GRID */
-    html, body { max-width: 100%; overflow-x: hidden; margin: 0; padding: 0; }
-    .grid-cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
-      gap: 25px;
-      padding: 20px;
-      width: 100%;
-      max-width: 1300px;
-      margin: 0 auto;
-    }
+      /* 1. STRUCTURE & GRID */
+      html, body { max-width: 100%; overflow-x: hidden; margin: 0; padding: 0; }
+      .grid-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+        gap: 25px;
+        padding: 20px;
+        width: 100%;
+        max-width: 1300px;
+        margin: 0 auto;
+      }
 
-    /* 2. LOGO ET NAVIGATION (Correction position) */
-    .logo-container-wrapper {
-      position: absolute;
-      top: 150px; /* Descendu pour ne pas être sous la nav */
-      left: 35px;
-      z-index: 101;
-    }
-    .moving-header-logo { height: 110px; width: auto; transition: 0.3s; }
+      /* 2. LOGO ET NAVIGATION */
+      .logo-container-wrapper {
+        position: absolute;
+        top: 150px;
+        left: 35px;
+        z-index: 101;
+      }
+      .moving-header-logo { height: 110px; width: auto; transition: 0.3s; }
 
-    /* 3. LES TITRES (En OR et Centrés) */
-    .card-title {
-      text-align: center;
-      width: 100%;
-      margin: 10px 0;
-      font-size: 1.4rem;
-      text-transform: uppercase;
-      background: linear-gradient(135deg, #BF953F 0%, #FCF6BA 45%, #B38728 55%, #FBF5B7 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      font-weight: 900;
-      letter-spacing: 1px;
-      display: block;
-    }
+      /* 3. TITRES ET DESCRIPTIONS (En OR et Centrés) */
+      .card-title {
+        text-align: center;
+        width: 100%;
+        margin: 10px 0;
+        font-size: 1.4rem;
+        text-transform: uppercase;
+        background: linear-gradient(135deg, #BF953F 0%, #FCF6BA 45%, #B38728 55%, #FBF5B7 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: 900;
+        letter-spacing: 1px;
+        display: block;
+      }
 
-    .card-description {
-      text-align: center;
-      color: #ccc;
-      font-size: 0.85rem;
-      margin-bottom: 15px;
-      line-height: 1.4;
-      padding: 0 10px;
-    }
+      .card-description {
+        text-align: center;
+        color: #ccc;
+        font-size: 0.85rem;
+        margin-bottom: 15px;
+        line-height: 1.4;
+        padding: 0 10px;
+      }
 
-    /* 4. BOUTONS PREMIUM & EFFETS (Reflet Or) */
-    .gold-button-premium {
-      background: linear-gradient(135deg, #BF953F, #FCF6BA, #D4AF37, #FBF5B7, #BF953F) !important;
-      background-size: 200% 200% !important;
-      animation: liquidGold 4s ease infinite !important;
-      color: #000 !important; font-weight: 950 !important;
-      border: none; border-radius: 12px; padding: 15px; width: 100%;
-      display: flex; justify-content: space-between; cursor: pointer;
-      position: relative; overflow: hidden;
-    }
+      /* 4. BOUTONS PREMIUM & EFFETS */
+      .gold-button-premium {
+        background: linear-gradient(135deg, #BF953F, #FCF6BA, #D4AF37, #FBF5B7, #BF953F) !important;
+        background-size: 200% 200% !important;
+        animation: liquidGold 4s ease infinite !important;
+        color: #000 !important; font-weight: 950 !important;
+        border: none; border-radius: 12px; padding: 15px; width: 100%;
+        display: flex; justify-content: space-between; cursor: pointer;
+        position: relative; overflow: hidden;
+      }
 
-    .gold-button-premium::after {
-      content: ""; position: absolute; top: -50%; left: -150%; width: 50%; height: 200%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-      transform: rotate(25deg);
-      animation: mirrorReflection 4s infinite;
-    }
+      .gold-button-premium::after {
+        content: ""; position: absolute; top: -50%; left: -150%; width: 50%; height: 200%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+        transform: rotate(25deg);
+        animation: mirrorReflection 4s infinite;
+      }
 
-    .gold-button-premium:hover {
-      transform: translateY(-3px) scale(1.02);
-      filter: brightness(1.2);
-      box-shadow: 0 8px 20px rgba(191, 149, 63, 0.6) !important;
-      transition: all 0.3s ease;
-    }
+      .gold-button-premium:hover {
+        transform: translateY(-3px) scale(1.02);
+        filter: brightness(1.2);
+        box-shadow: 0 8px 20px rgba(191, 149, 63, 0.6) !important;
+        transition: all 0.3s ease;
+      }
 
-    /* 5. BLOC OPTIONS (Extras/Quitar centrés) */
-    .options-box {
-      display: flex; flex-direction: column; align-items: center;
-      gap: 8px; margin: 15px 0; padding: 10px;
-      background: rgba(0,0,0,0.4); border-radius: 12px;
-    }
-    .chips-container { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; width: 100%; }
-    .option-group-label { font-size: 0.75rem; text-transform: uppercase; color: #BF953F; letter-spacing: 1.5px; font-weight: bold; }
+      /* 5. BLOC OPTIONS (Extras/Quitar) */
+      .options-box {
+        display: flex; flex-direction: column; align-items: center;
+        gap: 8px; margin: 15px 0; padding: 10px;
+        background: rgba(0,0,0,0.4); border-radius: 12px;
+      }
+      .chips-container { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; width: 100%; }
+      .option-group-label { font-size: 0.75rem; text-transform: uppercase; color: #BF953F; letter-spacing: 1.5px; font-weight: bold; }
 
-    .chip {
-      padding: 7px 14px; border-radius: 20px; font-size: 0.75rem;
-      background: #1a1a1a; color: #eee; border: 1px solid #444;
-      cursor: pointer; transition: 0.3s; text-transform: uppercase;
-    }
-    .chip.active { background: linear-gradient(135deg, #BF953F 0%, #B38728 100%) !important; color: #000 !important; border-color: #FCF6BA !important; font-weight: bold; }
-    .chip.remove.active { background: #ff4757 !important; color: white !important; border-color: #ff6b81 !important; }
+      .chip {
+        padding: 7px 14px; border-radius: 20px; font-size: 0.75rem;
+        background: #1a1a1a; color: #eee; border: 1px solid #444;
+        cursor: pointer; transition: 0.3s; text-transform: uppercase;
+      }
+      .chip.active { background: linear-gradient(135deg, #BF953F 0%, #B38728 100%) !important; color: #000 !important; border-color: #FCF6BA !important; font-weight: bold; }
+      .chip.remove.active { background: #ff4757 !important; color: white !important; border-color: #ff6b81 !important; }
 
-    /* 6. WHATSAPP & BADGE FLOTTANT */
-    .whatsapp-float {
-      position: fixed; bottom: 25px; right: 25px; z-index: 9999;
-    }
-    .whatsapp-float img { width: 65px; height: 65px; }
+      /* 6. WHATSAPP & BADGE FLOTTANT */
+      .whatsapp-float { position: fixed; bottom: 25px; right: 25px; z-index: 9999; }
+      .whatsapp-float img { width: 65px; height: 65px; }
 
-    .wobble-badge-container {
-      position: fixed; top: 150px; right: 20px; z-index: 1000;
-    }
-    .wobble-badge.gold-button-premium {
-    display: inline-block !important;
-    width: auto !important;
-    padding: 10px 18px !important;
-    font-size: 0.8rem !important;
-    border-radius: 50px !important;
-    border: 1px solid #FCF6BA !important;
+      .wobble-badge-container {
+        position: fixed; top: 150px; right: 20px; left: auto;
+        width: fit-content; z-index: 1000; pointer-events: none;
+      }
 
-    /* --- LES DEUX LIGNES À AJOUTER --- */
-    overflow: hidden !important;   /* Empêche la lumière de sortir du bouton */
-    position: relative !important; /* Emprisonne l'effet miroir à l'intérieur */
-    /* -------------------------------- */
+      .wobble-badge.gold-button-premium {
+        pointer-events: auto;
+        display: inline-block !important; width: auto !important;
+        padding: 10px 18px !important; font-size: 0.8rem !important;
+        border-radius: 50px !important; border: 1px solid #FCF6BA !important;
+        overflow: hidden !important;
+        position: relative !important;
+        animation: liquidGold 4s infinite, wobble-badge 3s infinite ease-in-out !important;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.5) !important;
+        white-space: nowrap; cursor: pointer; text-decoration: none;
+      }
 
-    animation: liquidGold 4s infinite, wobble-badge 3s infinite ease-in-out !important;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.5) !important;
-    white-space: nowrap;
-    cursor: pointer;
-    text-decoration: none;
-  }
+      /* 7. CATEGORIES OVERLAY (Positionnement sur l'image) */
+      .promo-container {
+        position: relative; /* Pour que le bouton se cale dessus */
+        width: 100%; max-width: 600px; margin: 0 auto 30px;
+        border-radius: 20px; overflow: hidden;
+        border: 1px solid #BF953F;
+      }
 
-    /* 7. ANIMATIONS */
-    @keyframes liquidGold { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
-    @keyframes mirrorReflection { 0% { transform: translateX(-200%); } 100% { transform: translateX(200%); } }
-    @keyframes wobble-badge { 0% { transform: rotate(5deg) scale(1); } 50% { transform: rotate(-5deg) scale(1.05); } 100% { transform: rotate(5deg) scale(1); } }
+      .category-btn-overlay {
+        position: absolute;
+        bottom: 15px;
+        right: 15px;
+        width: auto !important;
+        padding: 8px 20px !important;
+        font-size: 0.85rem !important;
+        border-radius: 50px !important;
+        z-index: 10;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.7) !important;
+      }
 
-    /* RESPONSIVE MOBILE */
-    @media (max-width: 768px) {
-      .logo-container-wrapper { top: 220px !important; left: 15px !important; }
-      .moving-header-logo { height: 60px !important; }
-      .wobble-badge-container { top: 100px; right: 10px; }
-    }
+      /* 8. ANIMATIONS */
+      @keyframes liquidGold { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+      @keyframes mirrorReflection { 0% { transform: translateX(-200%); } 100% { transform: translateX(200%); } }
+      @keyframes wobble-badge { 0% { transform: rotate(5deg) scale(1); } 50% { transform: rotate(-5deg) scale(1.05); } 100% { transform: rotate(5deg) scale(1); } }
+
+      /* RESPONSIVE MOBILE */
+      @media (max-width: 768px) {
+        .logo-container-wrapper { top: 220px !important; left: 15px !important; }
+        .moving-header-logo { height: 60px !important; }
+        .wobble-badge-container { top: 100px; right: 10px; }
+      }
   `}</style>
 
 <Helmet>
