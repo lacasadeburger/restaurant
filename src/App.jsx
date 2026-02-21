@@ -252,119 +252,88 @@ export default function App() {
   const [showCardBurger, setShowCardBurger] = useState(false);
   const [showCardDrink, setShowCardDrink] = useState(false);
   const [lang, setLang] = useState('es');
-  // --- GESTION DE LA LANGUE (CORRIGÉ POUR SEO & MULTILINGUE) ---
+
+  // --- 1. AJOUT DE L'ÉTAT DE PERFORMANCE ---
+  const [loadMedia, setLoadMedia] = useState(false);
+
+  // --- 2. GESTION DE LA LANGUE + TIMER PERFORMANCE ---
   useEffect(() => {
-    // 1. PRIORITÉ : On regarde si la langue est forcée dans l'URL (ex: ?lang=fr)
-    // C'est ce qui permet à Google d'indexer tes 12 versions différentes
+    // Gestion Langue
     const params = new URLSearchParams(window.location.search);
     const urlLang = params.get('lang');
 
     if (urlLang && T[urlLang]) {
       setLang(urlLang);
     } else {
-      // 2. SECONDAIRE : Détection automatique via le navigateur
       const browserLang = navigator.language || navigator.userLanguage;
       const code = browserLang.substring(0, 2).toLowerCase();
-
-      // On vérifie si la langue détectée existe dans ton objet T (inclut nl, pl, etc.)
-      if (T[code]) {
-        setLang(code);
-      } else {
-        setLang('es'); // Langue par défaut si non supportée
-      }
+      setLang(T[code] ? code : 'es');
     }
+
+    // --- ICI ON AJOUTE LE TIMER SANS CASSER LE RESTE ---
+    // On attend 2.5 secondes avant de charger Maps et YouTube
+    const timer = setTimeout(() => {
+      setLoadMedia(true);
+    }, 3500);
+
+    return () => clearTimeout(timer); // Nettoyage du timer
   }, []);
 
   // --- LOGIC: CALCUL DU PRIX TOTAL (CONSERVÉ) ---
   const totalPrice = useMemo(() => {
     return cart.reduce((acc, item) => {
-      // 1. On récupère la valeur (si rien n'existe, on met "0")
       const val = item.precio || item.price || "0";
-
-      // 2. On s'assure que c'est du texte pour pouvoir utiliser .replace()
       const valStr = String(val);
-
-      // 3. Nettoyage : on ne garde que chiffres, points et virgules
       const numericValue = valStr.replace(/[^0-9.,]/g, "").replace(",", ".");
-
-      // 4. Addition
       return acc + (parseFloat(numericValue) || 0);
     }, 0).toFixed(2);
   }, [cart]);
 
   // --- LOGIC: MÉLANGE DES AVIS (CONSERVÉ) ---
   const randomReviews = useMemo(() => {
-    // On mélange la liste de 10 et on prend les 2 premiers résultats
     return [...ALL_REVIEWS].sort(() => 0.5 - Math.random()).slice(0, 2);
-  }, []); // Changement uniquement au rafraîchissement
+  }, []);
 
-  // IDs des produits qui ne doivent PAS avoir d'extras (ajout direct)
-    const noExtrasIds = ["prod_nuggets", "prod_croquetas", "prod_fritas", "prod_bravas", "prod_cheddar-bacon"];
+  const noExtrasIds = ["prod_nuggets", "prod_croquetas", "prod_fritas", "prod_bravas", "prod_cheddar-bacon"];
 
-    const addToCart = (item) => {
-      // Si le produit est dans la liste, on l'ajoute direct sans passer par les options
-      // (Cette logique sera utilisée par CardMenu pour savoir s'il doit ouvrir le modal ou non)
-      setCart(prev => [...prev, { ...item, uniqueKey: Math.random() }]);
-    };
-    const removeFromCart = (idx) => setCart(p => p.filter((_, i) => i !== idx));
-
-  // 1. Fonction spécifique pour le panier
-  const scrollToOrder = () => {
-    const el = document.getElementById("order");
-    if (el) {
-      window.scrollTo({
-        top: el.offsetTop - 100,
-        behavior: "smooth"
-      });
-    }
+  const addToCart = (item) => {
+    setCart(prev => [...prev, { ...item, uniqueKey: Math.random() }]);
   };
 
-  // 2. Fonction de scroll universelle
+  const removeFromCart = (idx) => setCart(p => p.filter((_, i) => i !== idx));
+
   const scrollToId = (id) => {
     const el = document.getElementById(id);
     if (el) {
-      const offset = 110; // Décalage pour ne pas que la Nav cache le titre
+      const offset = 110;
       const bodyRect = document.body.getBoundingClientRect().top;
       const elementRect = el.getBoundingClientRect().top;
-      const elementPosition = elementRect - bodyRect;
-      const offsetPosition = elementPosition - offset;
-
       window.scrollTo({
-        top: offsetPosition,
+        top: elementRect - bodyRect - offset,
         behavior: "smooth"
       });
     }
   };
-      // Fonction spécifique pour ouvrir le menu et descendre
-      const handleStartOrder = () => {
-        setShowCardBurger(true); // On force l'ouverture
-        // On attend 150ms que React affiche la section avant de scroller
-        setTimeout(() => scrollToId("sec-burgers"), 150);
-      };
+
+  const handleStartOrder = () => {
+    setShowCardBurger(true);
+    setTimeout(() => scrollToId("sec-burgers"), 150);
+  };
+
   const handleNextStep = () => {
     if (showCardBurger) {
       setShowCardBurger(false);
       setShowCardDrink(true);
-      // On utilise window.scrollTo pour être sûr que ça remonte au début de la section
-      setTimeout(() => {
-        const el = document.getElementById("sec-bebidas");
-        if(el) window.scrollTo({ top: el.offsetTop - 100, behavior: "smooth" });
-      }, 100);
+      setTimeout(() => scrollToId("sec-bebidas"), 100);
     }
     else if (showCardDrink) {
       setShowCardDrink(false);
       setShowCardPostres(true);
-      setTimeout(() => {
-        const el = document.getElementById("sec-postres");
-        if(el) window.scrollTo({ top: el.offsetTop - 100, behavior: "smooth" });
-      }, 100);
+      setTimeout(() => scrollToId("sec-postres"), 100);
     }
     else if (showCardPostres) {
       setShowCardPostres(false);
-      setTimeout(() => {
-        const el = document.getElementById("order");
-        if(el) window.scrollTo({ top: el.offsetTop - 100, behavior: "smooth" });
-      }, 100);
+      setTimeout(() => scrollToId("order"), 100);
     }
   };
 
@@ -374,7 +343,6 @@ export default function App() {
 
   const GOLD_BRIGHT = "#FFD700";
   const GOLD_GRADIENT = "linear-gradient(135deg, #BF953F 0%, #FCF6BA 45%, #B38728 55%, #FBF5B7 100%)";
-  const GOLD_SHADOW = "0 4px 0px #8A6D3B";
 
   return (
     <div className="app-main-wrapper" style={{ position: 'relative', backgroundColor: '#111', color: '#fff' }}>
@@ -508,19 +476,21 @@ overflow: 'hidden' // Important pour garder les bords arrondis
 
 {/* L'IMAGE CRITIQUE (LCP) : C'est elle qui booste ton score */}
 <img
-src={BurgerSignature}
-alt="La mejor hamburguesa gourmet de Torrevieja"
-fetchPriority="high"
-style={{
-  position: 'absolute',
-  top: 0,
-  left: 0,
-  width: '100%',
-  height: '100%',
-  objectFit: 'cover',
-  objectPosition: 'center',
-  zIndex: 0
-}}
+  src={BurgerSignature}
+  alt="La mejor hamburguesa gourmet de Torrevieja - La Casa de Burger"
+  fetchPriority="high"
+  loading="eager"
+  decoding="sync"
+  style={{
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+    objectFit: 'cover',
+    objectPosition: 'center',
+    zIndex: 0
+  }}
 />
 
 {/* LE DÉGRADÉ (Overlay) : Pour garder la lisibilité du texte comme avant */}
@@ -847,40 +817,144 @@ style={{
         </footer>
 
         {/* SECTION MAPS & VIDEO */}
-  <div style={{ display: 'flex', flexDirection: 'column', gap: '40px', alignItems: 'center', margin: '40px auto' }}>
-    <div style={{ width: '90%', maxWidth: '1100px', borderRadius: '15px', overflow: 'hidden', border: `2px solid ${GOLD_BRIGHT}` }}>
-    <iframe
-    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3141.258!2d-0.6807478!3d37.9811364!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd63aa360f15f917%3A0x88f65fbd84c2f7fe!2sLa%20Casa%20de%20Burger!5e0!3m2!1sfr!2ses!4v1700000000000!5m2!1sfr!2ses"
-    width="100%"
-    height="350"
-    style={{ border: 0, display: 'block' }}
-    allowFullScreen=""
-    loading="lazy"
-    referrerPolicy="no-referrer-when-downgrade"
-    title="Mapa de ubicación de La Casa de Burger"
-  ></iframe>
-    </div>
+<div style={{ display: 'flex', flexDirection: 'column', gap: '40px', alignItems: 'center', margin: '40px auto' }}>
 
-    <div style={{ width: '90%', maxWidth: '800px', borderRadius: '15px', overflow: 'hidden', border: `3px solid ${GOLD_BRIGHT}` }}>
-      <iframe
-        width="100%"
-        height="400"
-        src="https://www.youtube.com/embed/qN6VZYBojLs"
-        title="Video de presentación de nuestras Hamburguesas Gourmet"
-        frameBorder="0"
-        allowFullScreen
-        loading="lazy"
-      ></iframe>
+{/* BLOC MAPS OPTIMISÉ (AVEC TEXTE ALTERNATIF) */}
+<div style={{
+  width: '90%',
+  maxWidth: '1100px',
+  height: '350px',
+  backgroundColor: '#050505',
+  borderRadius: '15px',
+  overflow: 'hidden',
+  border: `2px solid ${GOLD_BRIGHT}`
+}}>
+  {loadMedia ? (
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3141.258!2d-0.6807478!3d37.9811364!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd63aa360f15f917%3A0x88f65fbd84c2f7fe!2sLa%20Casa%20de%20Burger!5e0!3m2!1sfr!2ses!4v1700000000000!5m2!1sfr!2ses"
+      width="100%"
+      height="350"
+      style={{ border: 0, display: 'block' }}
+      allowFullScreen=""
+      loading="lazy"
+      referrerPolicy="no-referrer-when-downgrade"
+      title="Mapa de ubicación"
+    ></iframe>
+  ) : (
+    <div style={{
+      height: '100%',
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: '#050505'
+    }}>
+      <p style={{
+        fontSize: '0.9rem',
+        color: GOLD_BRIGHT,
+        letterSpacing: '2px',
+        textTransform: 'uppercase',
+        opacity: 0.8,
+        margin: 0,
+        textAlign: 'center',
+        padding: '0 20px'
+      }}>
+        {lang === 'es' ? 'Cargando ubicación...' :
+         lang === 'en' ? 'Loading location...' :
+         'Cargando ubicación...'} {/* <-- Alternative par défaut en espagnol */}
+      </p>
+    </div>
+  )}
+</div>
+
+{/* 2. BLOC YOUTUBE OPTIMISÉ */}
+<div style={{
+width: '90%',
+maxWidth: '800px',
+height: '400px',
+backgroundColor: '#050505',
+borderRadius: '15px',
+overflow: 'hidden',
+border: `3px solid ${GOLD_BRIGHT}`
+}}>
+{loadMedia ? (
+  <iframe
+    width="100%"
+    height="400"
+    src="https://www.youtube.com/embed/qN6VZYBojLs"
+    title="Video de presentación de nuestras Hamburguesas Gourmet"
+    frameBorder="0"
+    allowFullScreen
+    loading="lazy"
+  ></iframe>
+) : (
+  <div style={{
+    height: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#050505'
+  }}>
+    <p style={{
+      fontSize: '0.9rem',
+      color: GOLD_BRIGHT,
+      letterSpacing: '2px',
+      textTransform: 'uppercase',
+      opacity: 0.8,
+      margin: 0,
+      textAlign: 'center',
+      padding: '0 20px'
+    }}>
+      {lang === 'es' ? 'Cargando video gourmet...' :
+       lang === 'en' ? 'Loading gourmet video...' :
+       'Cargando video gourmet...'}
+    </p>
+  </div>
+)}
     </div>
   </div>
+<div style={{
+display: 'flex',
+justifyContent: 'center',
+gap: '25px',
+flexWrap: 'wrap',
+marginBottom: '20px', // Un peu plus d'espace pour l'équilibre visuel
+marginTop: '20px',
+alignItems: 'center'
+}}>
+<a href="https://www.facebook.com/profile.php?id=100094610793536" target="_blank" rel="noreferrer">
+<img src={fb} width="45" height="45" alt="Facebook" loading="lazy" decoding="async" />
+</a>
 
-        {/* RÉSEAUX SOCIAUX */}
-        <div style={{ display: 'flex', justifyContent: 'center', gap: '25px', flexWrap: 'wrap', marginBottom: '05px', alignItems: 'center' }}>
-          <a href="https://www.facebook.com/profile.php?id=100094610793536" target="_blank" rel="noreferrer"><img src={fb} width="45" alt="Facebook" /></a>
-          <a href="https://www.instagram.com/lacasadeburger.es/" target="_blank" rel="noreferrer"><img src={instagramIcon} width="45" alt="Instagram" /></a>
-          <a href="https://www.google.com/search?q=la+casa+de+burger+torrevieja" target="_blank" rel="noreferrer"><img src={googleIcon} width="140" alt="Google" /></a>
-          <a href="https://www.tripadvisor.es/Restaurant_Review-g187527-d26835169-Reviews-La_Casa_De_Burger-Torrevieja" target="_blank" rel="noreferrer"><img src={tripadvisor} width="140" alt="Tripadvisor" /></a>
-        </div>
+<a href="https://www.instagram.com/lacasadeburger.es/" target="_blank" rel="noreferrer">
+<img src={instagramIcon} width="45" height="45" alt="Instagram" loading="lazy" decoding="async" />
+</a>
+
+<a href="https://www.google.com/search?q=la+casa+de+burger+torrevieja" target="_blank" rel="noreferrer">
+<img
+src={googleIcon}
+width="140"
+height="40" // Ajuste la hauteur selon ton logo réel
+alt="Google Reviews"
+loading="lazy"
+decoding="async"
+style={{ objectFit: 'contain' }}
+/>
+</a>
+
+<a href="https://www.tripadvisor.es/Restaurant_Review-g187527-d26835169-Reviews-La_Casa_De_Burger-Torrevieja" target="_blank" rel="noreferrer">
+<img
+src={tripadvisor}
+width="140"
+height="40" // Ajuste la hauteur selon ton logo réel
+alt="Tripadvisor"
+loading="lazy"
+decoding="async"
+style={{ objectFit: 'contain' }}
+/>
+</a>
+</div>
 
         {/* BLOC SEO MULTILINGUE (11 LANGUES) */}
         <div style={{ maxWidth: '1100px', margin: '0 auto 100px', padding: '0 20px' }}>
@@ -908,113 +982,114 @@ style={{
         </div>
         {/* FOOTER FINAL : LOGO + COPYRIGHT */}
         <footer style={{
-        padding: '60px 20px 40px',
-        textAlign: 'center',
-        backgroundColor: '#050505',
-        borderTop: '1px solid #1a1a1a',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        gap: '20px',
-        marginTop: '50px'
-      }}>
+          padding: '60px 20px 40px',
+          textAlign: 'center',
+          backgroundColor: '#050505',
+          borderTop: '1px solid #1a1a1a',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          gap: '20px',
+          marginTop: '50px'
+        }}>
 
-        {/* LOGO OPTIMISÉ SEO */}
-        {logo && (
+          {/* LOGO OPTIMISÉ SEO */}
+          {logo && (
+            <img
+              src={logo}
+              alt="La Casa de Burger Torrevieja - Hamburguesas Gourmet y Smash Burgers"
+              style={{
+                height: '80px',
+                width: 'auto',
+                filter: 'drop-shadow(0 0 10px rgba(255,255,255,0.1))',
+                marginBottom: '10px'
+              }}
+            />
+          )}
+
+          {/* LIGNE DE SÉPARATION DORÉE */}
+          <div style={{
+            width: '50px',
+            height: '2px',
+            background: 'linear-gradient(135deg, #BF953F 0%, #FCF6BA 45%, #B38728 55%, #FBF5B7 100%)',
+            borderRadius: '2px'
+          }} aria-hidden="true" />
+
+          {/* COPYRIGHT ET NAVIGATION FOOTER */}
+          <div style={{ color: '#888', fontSize: '0.9rem', lineHeight: '1.6' }}>
+            <p style={{ margin: 0, fontWeight: 'bold', color: '#ccc' }}>
+              © 2026 LA CASA DE BURGER
+            </p>
+            <p style={{ margin: 0, fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '1px' }}>
+              {lang === 'es' ? 'Todos los derechos reservados' :
+               lang === 'fr' ? 'Tous droits réservés' :
+               'All rights reserved'}
+            </p>
+          </div>
+
+          {/* ADRESSE PHYSIQUE */}
+          <address style={{
+            color: '#bbb',
+            fontSize: '0.85rem',
+            marginTop: '10px',
+            fontStyle: 'normal',
+            letterSpacing: '0.5px'
+          }}>
+            Av. Diego Ramírez Pastor, 142 • 03181 Torrevieja, Spain <br/>
+            <strong style={{ color: '#fff' }}>The Artisan Burger Experience</strong>
+          </address>
+        </footer>
+
+        {/* BOUTON WHATSAPP */}
+        <a
+          href="https://wa.me/34602597210"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="whatsapp-float"
+          aria-label={lang === 'es' ? "Hacer pedido por WhatsApp" : "Order via WhatsApp"}
+        >
           <img
-            src={logo}
-            alt="La Casa de Burger Torrevieja - Hamburguesas Gourmet y Smash Burgers" // Alt plus descriptif pour Brave
-            style={{
-              height: '80px',
-              width: 'auto',
-              filter: 'drop-shadow(0 0 10px rgba(255,255,255,0.1))',
-              marginBottom: '10px'
-            }}
+            src="/wha2026.webp"
+            width="100"
+            height="100"
+            alt="WhatsApp La Casa de Burger"
+            style={{ objectFit: 'contain' }}
+            decoding="async"
           />
+        </a>
+
+        {/* BOUTON ETAPE SUIVANTE */}
+        {(showCardBurger || showCardDrink || showCardPostres) && (
+          <button
+            className="floating-close"
+            onClick={handleNextStep}
+            aria-live="polite"
+            style={{
+              position: 'fixed', bottom: '95px', left: '50%', transform: 'translateX(-50%)',
+              backgroundColor: '#ff4757', color: '#fff', padding: '15px 30px',
+              borderRadius: '12px', fontWeight: '900', zIndex: 10000,
+              border: '3px solid #000', cursor: 'pointer', boxShadow: '0 5px 15px rgba(0,0,0,0.4)',
+              textTransform: 'uppercase'
+            }}
+          >
+            {showCardBurger && (
+              lang === 'es' ? 'SIGUIENTE: BEBIDAS ➔' :
+              lang === 'en' ? 'NEXT: DRINKS ➔' :
+              'SIGUIENTE: BEBIDAS ➔'
+            )}
+            {showCardDrink && (
+              lang === 'es' ? 'SIGUIENTE: POSTRES ➔' :
+              lang === 'en' ? 'NEXT: DESSERTS ➔' :
+              'SIGUIENTE: POSTRES ➔'
+            )}
+            {showCardPostres && (
+              lang === 'es' ? 'VER MI PEDIDO ➔' :
+              lang === 'en' ? 'VIEW ORDER ➔' :
+              'VER MI PEDIDO ➔'
+            )}
+          </button>
         )}
 
-        {/* LIGNE DE SÉPARATION DORÉE */}
-        <div style={{
-          width: '50px',
-          height: '2px',
-          background: 'linear-gradient(135deg, #BF953F 0%, #FCF6BA 45%, #B38728 55%, #FBF5B7 100%)',
-          borderRadius: '2px'
-        }} aria-hidden="true" /> {/* On cache cette ligne décorative aux robots */}
-
-        {/* COPYRIGHT ET NAVIGATION FOOTER */}
-        <div style={{ color: '#888', fontSize: '0.9rem', lineHeight: '1.6' }}>
-          <p style={{ margin: 0, fontWeight: 'bold', color: '#ccc' }}>
-            © 2026 LA CASA DE BURGER
-          </p>
-          <p style={{ margin: 0, fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '1px' }}>
-            {lang === 'es' ? 'Todos los derechos reservados' :
-             lang === 'fr' ? 'Tous droits réservés' :
-             'All rights reserved'}
-          </p>
-        </div>
-
-        {/* ADRESSE PHYSIQUE EN TEXTE CLAIR (Très important pour le SEO Local) */}
-        <address style={{
-    color: '#bbb', // ✅ Gris clair pour un meilleur contraste
-    fontSize: '0.85rem', // ✅ Légèrement plus grand pour l'accessibilité
-    marginTop: '10px',
-    fontStyle: 'normal',
-    letterSpacing: '0.5px'
-  }}>
-    Av. Diego Ramírez Pastor, 142 • 03181 Torrevieja, Spain <br/>
-    <strong style={{ color: '#fff' }}>The Artisan Burger Experience</strong> {/* ✅ Nom en blanc pour ressortir */}
-  </address>
-      </footer>
-
-      {/* BOUTON WHATSAPP OPTIMISÉ ACCESSIBILITÉ */}
-  <a
-    href="https://wa.me/34602597210"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="whatsapp-float"
-    aria-label={lang === 'es' ? "Hacer pedido por WhatsApp" : "Order via WhatsApp"}
-  >
-    <img
-      src="/wha2026.webp"
-      width="100"
-      height="100"
-      alt="WhatsApp La Casa de Burger"
-      style={{ objectFit: 'contain' }} // <--- Empêche l'icône de s'écraser
-      decoding="async"
-    />
-  </a>
-
-      {/* BOUTON ETAPE SUIVANTE */}
-      {(showCardBurger || showCardDrink || showCardPostres) && (
-        <button
-          className="floating-close"
-          onClick={handleNextStep}
-          aria-live="polite" // Prévient les robots que le texte du bouton change dynamiquement
-          style={{
-            position: 'fixed', bottom: '95px', left: '50%', transform: 'translateX(-50%)',
-            backgroundColor: '#ff4757', color: '#fff', padding: '15px 30px',
-            borderRadius: '12px', fontWeight: '900', zIndex: 10000,
-            border: '3px solid #000', cursor: 'pointer', boxShadow: '0 5px 15px rgba(0,0,0,0.4)',
-            textTransform: 'uppercase'
-          }}
-        >
-          {showCardBurger && (
-            lang === 'es' ? 'SIGUIENTE: BEBIDAS ➔' :
-            lang === 'fr' ? 'SUIVANT : BOISSONS ➔' :
-            'NEXT: DRINKS ➔'
-          )}
-          {showCardDrink && (
-            lang === 'es' ? 'SIGUIENTE: POSTRES ➔' :
-            lang === 'fr' ? 'SUIVANT : DESSERTS ➔' :
-            'NEXT: DESSERTS ➔'
-          )}
-          {showCardPostres && (
-            lang === 'es' ? 'VER MI PEDIDO ➔' :
-            lang === 'fr' ? 'VOIR MA COMMANDE ➔' :
-            'VIEW ORDER ➔'
-          )}
-        </button>
-      )}
-      </div>
+      </div> // Ferme le div principal retourné par App
     );
   }
