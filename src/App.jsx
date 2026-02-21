@@ -254,23 +254,27 @@ export default function App() {
   const [lang, setLang] = useState('es');
 
   // --- 1. AJOUT DE L'ÉTAT DE PERFORMANCE ---
-  const [loadMedia, setLoadMedia] = useState(false);
+    // On le laisse à false pour que YouTube ne charge RIEN au démarrage
+    const [loadMedia, setLoadMedia] = useState(false);
 
-  // --- 2. GESTION DE LA LANGUE + TIMER PERFORMANCE ---
-  useEffect(() => {
-    // Gestion Langue
-    const params = new URLSearchParams(window.location.search);
-    const urlLang = params.get('lang');
+    // --- 2. GESTION DE LA LANGUE ---
+    useEffect(() => {
+      // Gestion Langue
+      const params = new URLSearchParams(window.location.search);
+      const urlLang = params.get('lang');
 
-    if (urlLang && T[urlLang]) {
-      setLang(urlLang);
-    } else {
-      const browserLang = navigator.language || navigator.userLanguage;
-      const code = browserLang.substring(0, 2).toLowerCase();
-      setLang(T[code] ? code : 'es');
-    }
-  }, []);
+      if (urlLang && T[urlLang]) {
+        setLang(urlLang);
+      } else {
+        const browserLang = navigator.language || navigator.userLanguage;
+        const code = browserLang.substring(0, 2).toLowerCase();
+        setLang(T[code] ? code : 'es');
+      }
 
+      // LE TIMER A ÉTÉ SUPPRIMÉ ICI POUR ATTEINDRE 100% DE PERFORMANCE
+      // Désormais, loadMedia passera à true uniquement via le clic sur le bouton Play
+
+    }, []); // <-- Cette ligne ferme proprement le useEffect
   // --- LOGIC: CALCUL DU PRIX TOTAL (CONSERVÉ) ---
   const totalPrice = useMemo(() => {
     return cart.reduce((acc, item) => {
