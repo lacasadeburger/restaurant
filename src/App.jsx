@@ -1048,7 +1048,7 @@ export default function App() {
 
 {/* 2. BLOC YOUTUBE OPTIMISÉ (Zéro CSS inutile au chargement) */}
 <div
-  onClick={() => setLoadMedia(true)} // On charge au clic uniquement
+  onClick={() => setLoadMedia(true)}
   style={{
     width: '90%',
     maxWidth: '800px',
@@ -1056,20 +1056,24 @@ export default function App() {
     backgroundColor: '#050505',
     borderRadius: '15px',
     overflow: 'hidden',
-    border: `3px solid ${GOLD_BRIGHT}`,
-    margin: '0 auto',
+    border: `3px solid ${GOLD_BRIGHT || '#BF953F'}`,
+    margin: '30px auto',
     cursor: loadMedia ? 'default' : 'pointer',
     position: 'relative',
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    boxShadow: '0 10px 30px rgba(0,0,0,0.5)',
+    transition: 'transform 0.3s ease'
   }}
+  onMouseEnter={(e) => !loadMedia && (e.currentTarget.style.transform = 'scale(1.02)')}
+  onMouseLeave={(e) => !loadMedia && (e.currentTarget.style.transform = 'scale(1)')}
 >
   {loadMedia ? (
     <iframe
       width="100%"
       height="100%"
-      src="https://www.youtube-nocookie.com/embed/qN6VZYBojLs?autoplay=1" // Nocookie + Autoplay au clic
+      src="https://www.youtube-nocookie.com/embed/qN6VZYBojLs?autoplay=1"
       title="Video de presentación de nuestras Hamburguesas Gourmet"
       frameBorder="0"
       allow="autoplay; encrypted-media; picture-in-picture"
@@ -1083,31 +1087,34 @@ export default function App() {
       flexDirection: 'column',
       justifyContent: 'center',
       alignItems: 'center',
-      // On peut mettre l'image du burger en fond ici pour que ce soit joli
-      backgroundImage: `linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(${Burger})`,
-      backgroundSize: 'cover',
-      backgroundPosition: 'center'
+      /* Ton image 512x512 centrée avec un voile sombre */
+      backgroundImage: `linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('/favicon.png')`,
+      backgroundSize: 'cover', // Remplit tout le rectangle
+      backgroundPosition: 'center',
+      backgroundRepeat: 'no-repeat'
     }}>
+
       {/* Icône Play Dorée */}
       <div style={{
-        fontSize: '3rem',
-        color: GOLD_BRIGHT,
+        fontSize: '4.5rem',
+        color: GOLD_BRIGHT || '#BF953F',
         marginBottom: '10px',
-        filter: 'drop-shadow(0 0 10px rgba(0,0,0,0.8))'
+        filter: 'drop-shadow(0 0 15px rgba(0,0,0,0.8))',
+        lineHeight: 1
       }}>
         ▶
       </div>
 
       <p style={{
-        fontSize: '0.9rem',
-        color: GOLD_BRIGHT,
-        letterSpacing: '2px',
+        fontSize: '1.1rem',
+        color: GOLD_BRIGHT || '#BF953F',
+        letterSpacing: '3px',
         textTransform: 'uppercase',
-        fontWeight: 'bold',
+        fontWeight: '900',
         margin: 0,
         textAlign: 'center',
         padding: '0 20px',
-        textShadow: '2px 2px 4px rgba(0,0,0,0.9)'
+        textShadow: '2px 2px 10px rgba(0,0,0,1)'
       }}>
         {lang === 'es' ? 'Ver video gourmet' :
          lang === 'fr' ? 'Voir la vidéo gourmet' :
@@ -1115,7 +1122,7 @@ export default function App() {
       </p>
     </div>
   )}
-    </div>
+</div>
   </div>
 <div style={{
 display: 'flex',
