@@ -1091,44 +1091,43 @@ style={{ objectFit: 'contain' }}
             loading="lazy"
           />
         </a>
+        {/* BOUTON ETAPE SUIVANTE */}
+                {(showCardBurger || showCardDrink || showCardPostres) && (
+                  <button
+                    className="floating-close"
+                    onClick={handleNextStep}
+                    aria-live="polite"
+                    style={{
+                      position: 'fixed',
+                      bottom: '95px',
+                      left: '50%',
+                      transform: 'translateX(-50%)',
+                      backgroundColor: '#ff4757',
+                      color: '#fff',
+                      width: '280px',
+                      height: '60px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      contain: 'layout',
+                      borderRadius: '12px',
+                      fontWeight: '950',
+                      zIndex: 10000,
+                      border: '3px solid #000',
+                      cursor: 'pointer',
+                      boxShadow: '0 5px 15px rgba(0,0,0,0.4)',
+                      textTransform: 'uppercase',
+                      fontSize: '0.9rem'
+                    }}
+                  >
+                    <span style={{ textAlign: 'center' }}>
+                      {showCardBurger && (lang === 'en' ? 'NEXT: DRINKS ➔' : 'SIGUIENTE: BEBIDAS ➔')}
+                      {showCardDrink && (lang === 'en' ? 'NEXT: DESSERTS ➔' : 'SIGUIENTE: POSTRES ➔')}
+                      {showCardPostres && (lang === 'en' ? 'VIEW ORDER ➔' : 'VER MI PEDIDO ➔')}
+                    </span>
+                  </button>
+                )}
 
-        <button
-    className="floating-close"
-    onClick={handleNextStep}
-    aria-live="polite"
-    style={{
-      position: 'fixed',
-      bottom: '95px',
-      left: '50%',
-      transform: 'translateX(-50%)',
-      backgroundColor: '#ff4757',
-      color: '#fff',
-      // --- OPTIMISATIONS PAGESPEED ---
-      width: '280px',      // Largeur fixe pour éviter que le bouton ne change de taille selon le texte
-      height: '60px',     // Hauteur fixe
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      contain: 'layout',  // Empêche les changements internes d'affecter le reste du DOM
-      // -------------------------------
-      borderRadius: '12px',
-      fontWeight: '900',
-      zIndex: 10000,
-      border: '3px solid #000',
-      cursor: 'pointer',
-      boxShadow: '0 5px 15px rgba(0,0,0,0.4)',
-      textTransform: 'uppercase',
-      fontSize: '0.9rem' // Ajuste selon tes besoins
-    }}
-  >
-    <span style={{ textAlign: 'center' }}>
-      {showCardBurger && (lang === 'en' ? 'NEXT: DRINKS ➔' : 'SIGUIENTE: BEBIDAS ➔')}
-      {showCardDrink && (lang === 'en' ? 'NEXT: DESSERTS ➔' : 'SIGUIENTE: POSTRES ➔')}
-      {showCardPostres && (lang === 'en' ? 'VIEW ORDER ➔' : 'VER MI PEDIDO ➔')}
-    </span>
-  </button>
-        )}
-
-      </div> // Ferme le div principal retourné par App
-    );
-  }
+              </div> // Ferme le wrapper principal
+            ); // Ferme le return
+        }
