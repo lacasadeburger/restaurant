@@ -453,13 +453,13 @@ export default function App() {
       }
 
       .whatsapp-float img {
-        width: 100px; /* Taille demandée pour PC */
+        width: 100px; /* Taille sur PC */
         height: 100px;
         filter: drop-shadow(0 4px 15px rgba(0,0,0,0.4));
       }
 
       .whatsapp-float:hover {
-        transform: scale(1.1); /* Effet de zoom au survol */
+        transform: scale(1.1);
       }
 
       .wobble-badge-container {
@@ -491,21 +491,6 @@ export default function App() {
         text-decoration: none;
       }
 
-      /* Ajustement spécifique pour Mobile (Tablettes et Téléphones) */
-      @media (max-width: 768px) {
-        .whatsapp-float {
-          bottom: 20px;
-          right: 20px;
-        }
-        .whatsapp-float img {
-          width: 70px; /* Taille réduite sur mobile pour ne pas masquer le menu */
-          height: 70px;
-        }
-        .wobble-badge-container {
-          top: 100px !important;
-          right: 10px !important;
-        }
-      }
       /* 7. CATEGORIES OVERLAY */
       .promo-container {
         position: relative;
@@ -522,10 +507,10 @@ export default function App() {
       @keyframes mirrorReflection { 0% { transform: translateX(-200%) rotate(25deg); } 100% { transform: translateX(200%) rotate(25deg); } }
       @keyframes wobble-badge { 0% { transform: rotate(4deg); } 50% { transform: rotate(-4deg) scale(1.05); } 100% { transform: rotate(4deg); } }
 
-      /* 9. IMAGES DES PRODUITS (Correction pour voir entier et même taille) */
+      /* 9. IMAGES DES PRODUITS */
       .card-menu-image-container {
         width: 100%;
-        height: 230px; /* Hauteur fixe pour l'uniformité */
+        height: 230px;
         background: #000;
         display: flex;
         align-items: center;
@@ -537,11 +522,22 @@ export default function App() {
       .card-menu-image-container img {
         width: 100%;
         height: 100%;
-        /* 'contain' permet de voir l'image ENTIÈRE sans la couper.
-           Si vous préférez qu'elle remplisse tout le cadre, utilisez 'cover' */
         object-fit: contain;
         transition: transform 0.3s ease;
-        padding: 5px; /* Petit espace pour ne pas coller aux bords en mode contain */
+        padding: 5px;
+      }
+
+      /* 10. MAP CONTAINER (Optimisé) */
+      .map-container {
+        margin: 30px auto;
+        width: 90%;
+        max-width: 1100px;
+        height: 350px;
+        background-color: #050505;
+        border-radius: 15px;
+        overflow: hidden;
+        border: 2px solid #BF953F;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.5);
       }
 
       /* RESPONSIVE MOBILE */
@@ -557,10 +553,18 @@ export default function App() {
 
         .card-menu-image-container { height: 200px; }
 
+        .whatsapp-float { bottom: 20px; right: 20px; }
+        .whatsapp-float img { width: 70px; height: 70px; }
+
         .wobble-badge-container {
           top: 100px !important;
           right: 10px !important;
           left: auto !important;
+        }
+
+        .map-container {
+          height: 300px;
+          margin: 20px auto;
         }
       }
     `}</style>
@@ -971,49 +975,27 @@ export default function App() {
         {/* SECTION MAPS & VIDEO */}
 <div style={{ display: 'flex', flexDirection: 'column', gap: '40px', alignItems: 'center', margin: '40px auto' }}>
 
-{/* BLOC MAPS OPTIMISÉ (AVEC TEXTE ALTERNATIF) */}
-<div style={{
-  width: '90%',
-  maxWidth: '1100px',
-  height: '350px',
-  backgroundColor: '#050505',
-  borderRadius: '15px',
-  overflow: 'hidden',
-  border: `2px solid ${GOLD_BRIGHT}`
-}}>
+{/* BLOC MAPS OPTIMISÉ (NETTOYÉ) */}
+<div className="map-container">
   {loadMedia ? (
     <iframe
-    src="https://maps.app.goo.gl/WSaPNPzEbpBbHnpQ9"
-    width="100%"
-    height="350"
-    style={{ border: 0, display: 'block' }}
-    allowFullScreen=""
-    loading="lazy"
-    referrerPolicy="no-referrer-when-downgrade"
-    title="Mapa de ubicación"
-  ></iframe>
+      /* Ton adresse exacte : Av. Diego Ramírez Pastor, 142 */
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3143.543213567123!2d-0.6853244!3d37.9877443!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd63aa36e866a987%3A0x6b864a6f7b9f362!2sAv.%20Diego%20Ram%C3%ADrez%20Pastor%2C%20142%2C%2003181%20Torrevieja%2C%20Alicante!5e0!3m2!1sfr!2ses!4v1700000000000!5m2!1sfr!2ses"
+      width="1100"
+      height="350"
+      style={{ border: 0 }}
+      allowFullScreen=""
+      loading="lazy"
+      referrerPolicy="no-referrer-when-downgrade"
+      title="Ubicación de La Casa de Burger"
+    ></iframe>
   ) : (
-    <div style={{
-      height: '100%',
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'center',
-      alignItems: 'center',
-      backgroundColor: '#050505'
-    }}>
-      <p style={{
-        fontSize: '0.9rem',
-        color: GOLD_BRIGHT,
-        letterSpacing: '2px',
-        textTransform: 'uppercase',
-        opacity: 0.8,
-        margin: 0,
-        textAlign: 'center',
-        padding: '0 20px'
-      }}>
+    <div className="map-placeholder">
+      <p>
         {lang === 'es' ? 'Cargando ubicación...' :
          lang === 'en' ? 'Loading location...' :
-         'Cargando ubicación...'} {/* <-- Alternative par défaut en espagnol */}
+         lang === 'fr' ? 'Chargement de l\'emplacement...' :
+         'Cargando ubicación...'}
       </p>
     </div>
   )}
