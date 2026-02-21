@@ -348,32 +348,8 @@ export default function App() {
   return (
     <div className="app-main-wrapper" style={{ position: 'relative', backgroundColor: '#111', color: '#fff' }}>
     <style>{`
-  /* 1. STRUCTURE DE BASE */
+  /* 1. STRUCTURE & GRID */
   html, body { max-width: 100%; overflow-x: hidden; margin: 0; padding: 0; }
-  .app-main-wrapper { max-width: 100vw; overflow-x: hidden; box-sizing: border-box; }
-  * { box-sizing: border-box; }
-
-  /* 2. ANIMATIONS (Optimisées PageSpeed) */
-  @keyframes liquidGold {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
-
-  @keyframes mirrorReflection {
-    0% { transform: translateX(-200%); opacity: 0; }
-    10% { opacity: 1; }
-    35% { transform: translateX(200%); opacity: 1; }
-    100% { transform: translateX(200%); opacity: 0; }
-  }
-
-  @keyframes wobble-badge {
-    0% { transform: rotate(8deg) scale(1.1); }
-    50% { transform: rotate(-2deg) scale(1.15); }
-    100% { transform: rotate(8deg) scale(1.1); }
-  }
-
-  /* 3. GRILLE ET CARTES (Restauration du design d'origine) */
   .grid-cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
@@ -384,18 +360,80 @@ export default function App() {
     margin: 0 auto;
   }
 
-  .grid-cards img.product-img {
+  /* 2. LES TITRES (En OR et Centrés) */
+  .card-title {
+    text-align: center;
     width: 100%;
-    height: 220px;
-    object-fit: cover;
-    border-radius: 15px 15px 0 0;
+    margin: 10px 0;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    /* Effet Gold Liquid */
+    background: linear-gradient(135deg, #BF953F 0%, #FCF6BA 45%, #B38728 55%, #FBF5B7 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 900;
+    letter-spacing: 1px;
     display: block;
   }
 
-  /* 4. OPTIONS EXTRAS ET QUITAR (Couleurs dynamiques) */
+  /* 3. DESCRIPTIONS (Centrées) */
+  .card-description {
+    text-align: center;
+    color: #ccc;
+    font-size: 0.85rem;
+    margin-bottom: 15px;
+    line-height: 1.4;
+    padding: 0 10px;
+  }
+  /* EFFET DE LUMIÈRE (Le reflet qui passe) */
+    .gold-button-premium::after {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -150%;
+      width: 50%;
+      height: 200%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.4),
+        transparent
+      );
+      transform: rotate(25deg);
+      animation: mirrorReflection 4s infinite; /* Le reflet passe toutes les 4s */
+    }
+
+    /* EFFET AU SURVOL (Mouse Hover) */
+    .gold-button-premium:hover {
+      transform: translateY(-3px) scale(1.02); /* Il se soulève légèrement */
+      filter: brightness(1.2); /* Il devient plus lumineux */
+      box-shadow: 0 8px 20px rgba(191, 149, 63, 0.6) !important;
+      transition: all 0.3s ease;
+    }
+
+    /* STYLE SPÉCIFIQUE POUR LES BOUTONS DU HEADER */
+    .header-actions {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      margin-top: 15px;
+    }
+
+    .header-gold-btn {
+      padding: 10px 15px !important;
+      font-size: 0.85rem !important;
+      border-radius: 8px !important;
+      min-width: 120px;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  /* 4. BLOC OPTIONS (Extras/Quitar centrés) */
   .options-box {
     display: flex;
     flex-direction: column;
+    align-items: center; /* Centre les titres de groupe */
     gap: 8px;
     margin: 15px 0;
     padding: 10px;
@@ -403,102 +441,110 @@ export default function App() {
     border-radius: 12px;
   }
 
-  .option-group-label {
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    color: #BF953F;
-    letter-spacing: 1px;
-    font-weight: bold;
-    margin-bottom: 2px;
-  }
-
   .chips-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 6px;
+    gap: 8px;
+    justify-content: center; /* Centre les boutons horizontalement */
     margin-bottom: 8px;
+    width: 100%;
   }
 
+  .option-group-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: #BF953F; /* Titre groupe en Or */
+    letter-spacing: 1.5px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 4px;
+  }
+
+  /* 5. BOUTONS CHIPS (Style d'origine) */
   .chip {
-    padding: 7px 12px;
+    padding: 7px 14px;
     border-radius: 20px;
     font-size: 0.75rem;
-    background: #222;
-    color: #bbb;
+    background: #1a1a1a;
+    color: #eee;
     border: 1px solid #444;
     cursor: pointer;
     transition: all 0.3s ease;
+    text-transform: uppercase;
   }
 
-  /* État Actif pour EXTRAS (Gold Liquid) */
   .chip.active {
-    background: linear-gradient(135deg, #BF953F 0%, #B38728 100%);
-    color: #000;
-    border-color: #FCF6BA;
+    background: linear-gradient(135deg, #BF953F 0%, #B38728 100%) !important;
+    color: #000 !important;
+    border-color: #FCF6BA !important;
     font-weight: bold;
     box-shadow: 0 0 10px rgba(191, 149, 63, 0.5);
   }
 
-  /* État Actif pour QUITAR (Rouge) */
   .chip.remove.active {
-    background: #ff4757;
-    color: white;
-    border-color: #ff6b81;
+    background: #ff4757 !important;
+    color: white !important;
+    border-color: #ff6b81 !important;
     box-shadow: 0 0 10px rgba(255, 71, 87, 0.5);
   }
 
-  /* 5. BOUTONS PREMIUM (Gold Liquid) */
+  /* 6. IMAGES & BADGES */
+  .grid-cards img.product-img {
+    width: 100%; height: 220px; object-fit: cover;
+    border-radius: 15px 15px 0 0;
+  }
+
+  .price-badge-overlay {
+    position: absolute; top: 15px; right: 15px;
+    background: linear-gradient(135deg, #BF953F, #FCF6BA);
+    color: #000; padding: 5px 12px; border-radius: 8px;
+    font-weight: 900; z-index: 2;
+  }
+
+  /* 7. BOUTON AJOUTER (Gold Liquid Premium) */
   .gold-button-premium {
     background: linear-gradient(135deg, #BF953F, #FCF6BA, #D4AF37, #FBF5B7, #BF953F) !important;
     background-size: 200% 200% !important;
     animation: liquidGold 4s ease infinite !important;
-    position: relative;
-    overflow: hidden;
-    color: #000 !important;
-    font-weight: 950 !important;
-    text-transform: uppercase;
-    border: none;
-    border-radius: 12px;
-    padding: 15px;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
+    color: #000 !important; font-weight: 950 !important;
+    border: none; border-radius: 12px; padding: 15px; width: 100%;
+    display: flex; justify-content: space-between; cursor: pointer;
+  }
+  /* LE BOUTON FLOTTANT #1 BURGER */
+  .wobble-badge-container {
+    position: fixed; /* Il reste fixé même quand on scrolle */
+    top: 150px;      /* Ajuste la hauteur selon ton envie */
+    right: 20px;     /* Aligné à droite */
+    z-index: 1000;   /* Passe au-dessus de tout */
+    pointer-events: auto;
+  }
+
+  .wobble-badge.gold-button-premium {
+    display: inline-block !important; /* Ne prend plus toute la largeur */
+    width: auto !important;           /* S'adapte à la taille du texte */
+    padding: 10px 18px !important;
+    font-size: 0.8rem !important;
+    border-radius: 50px !important;    /* Look plus "pilule" / badge */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5) !important;
+
+    /* L'effet de mouvement (Wobble) */
+    animation: liquidGold 4s infinite, wobble-badge 3s infinite ease-in-out !important;
+
+    white-space: nowrap; /* Empêche le texte de revenir à la ligne */
     cursor: pointer;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+    text-decoration: none;
+    border: 1px solid #FCF6BA !important;
   }
 
-  .gold-button-premium::after {
-    content: ""; position: absolute; top: -50%; left: -150%; width: 45%; height: 200%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
-    transform: rotate(25deg);
-    animation: mirrorReflection 5s infinite;
+  /* Animation de balancement (Wobble) */
+  @keyframes wobble-badge {
+    0% { transform: rotate(5deg) scale(1); }
+    50% { transform: rotate(-5deg) scale(1.05); }
+    100% { transform: rotate(5deg) scale(1); }
   }
 
-  .gold-button-premium.success {
-    background: #2ed573 !important;
-    color: white !important;
-    animation: none !important;
-  }
-
-  /* 6. PROMO & LOGO */
-  .promo-container {
-    width: 100%; max-width: 600px; margin: 0 auto 30px;
-    border-radius: 20px; overflow: hidden; position: relative;
-    border: 1px solid #BF953F;
-  }
-
-  .logo-container-wrapper { position: absolute; top: 205px; left: 35px; z-index: 99; }
-  .moving-header-logo { height: 100px; width: auto; transition: 0.3s; }
-
-  /* 7. RESPONSIVE */
-  @media (max-width: 768px) {
-    .logo-container-wrapper { top: 225px !important; left: 10px !important; }
-    .moving-header-logo { height: 55px !important; }
-    .whatsapp-float img { width: 70px; height: 70px; }
-  }
-
-  .whatsapp-float { position: fixed; bottom: 25px; right: 25px; z-index: 10001; }
-  .floating-close { transition: all 0.3s ease-in-out; }
+  /* Animations existantes conservées */
+  @keyframes liquidGold { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
 `}</style>
 
 <Helmet>
@@ -601,24 +647,27 @@ export default function App() {
   }}></div>
 
   <div
-    className="wobble-badge gold-button-premium"
-    style={{
-      position: 'absolute',
-      top: '20px',
-      right: '5%',
-      color: '#000',
-      padding: '10px 25px',
-      borderRadius: '50px',
-      fontWeight: '950',
-      fontSize: '1.1rem',
-      zIndex: 10,
-      border: '3px solid #000',
-      boxShadow: '0 4px 15px rgba(0,0,0,0.5)',
-      whiteSpace: 'nowrap'
-    }}
-  >
-    🏆 #1 BURGER TORREVIEJA
-  </div>
+  className="wobble-badge gold-button-premium"
+  style={{
+    position: 'absolute', // Il "flotte" au-dessus du contenu en scrollant
+    top: '120px',      // Un peu plus bas pour ne pas cacher le logo sur mobile
+    right: '20px',     // Fixé à 20px du bord droit
+    color: '#000',
+    padding: '8px 20px',
+    borderRadius: '50px',
+    fontWeight: '950',
+    fontSize: '0.9rem', // Taille réduite pour un look plus élégant/badge
+    zIndex: 1000,       // S'assure qu'il passe devant tout
+    border: '2px solid #000',
+    boxshadow: '0 4px 15px rgba(0,0,0,0.5)',
+    whiteSpace: 'nowrap',
+    cursor: 'pointer',
+    display: 'inline-block', // Empêche de prendre toute la largeur
+    width: 'auto'            // Force la taille du texte uniquement
+  }}
+>
+  🏆 #1 BURGER TORREVIEJA
+</div>
 
   <div style={{ position: 'relative', zIndex: 2 }}>
     <h1 style={{
