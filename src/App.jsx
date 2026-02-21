@@ -1046,51 +1046,75 @@ export default function App() {
   )}
 </div>
 
-{/* 2. BLOC YOUTUBE OPTIMISÉ */}
-<div style={{
-width: '90%',
-maxWidth: '800px',
-height: '400px',
-backgroundColor: '#050505',
-borderRadius: '15px',
-overflow: 'hidden',
-border: `3px solid ${GOLD_BRIGHT}`
-}}>
-{loadMedia ? (
-  <iframe
-    width="100%"
-    height="336"
-    src="https://www.youtube.com/embed/qN6VZYBojLs"
-    title="Video de presentación de nuestras Hamburguesas Gourmet"
-    frameBorder="0"
-    allowFullScreen
-    loading="lazy"
-  ></iframe>
-) : (
-  <div style={{
-    height: '100%',
+{/* 2. BLOC YOUTUBE OPTIMISÉ (Zéro CSS inutile au chargement) */}
+<div
+  onClick={() => setLoadMedia(true)} // On charge au clic uniquement
+  style={{
+    width: '90%',
+    maxWidth: '800px',
+    height: '400px',
+    backgroundColor: '#050505',
+    borderRadius: '15px',
+    overflow: 'hidden',
+    border: `3px solid ${GOLD_BRIGHT}`,
+    margin: '0 auto',
+    cursor: loadMedia ? 'default' : 'pointer',
+    position: 'relative',
     display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#050505'
-  }}>
-    <p style={{
-      fontSize: '0.9rem',
-      color: GOLD_BRIGHT,
-      letterSpacing: '2px',
-      textTransform: 'uppercase',
-      opacity: 0.8,
-      margin: 0,
-      textAlign: 'center',
-      padding: '0 20px'
+    justifyContent: 'center'
+  }}
+>
+  {loadMedia ? (
+    <iframe
+      width="100%"
+      height="100%"
+      src="https://www.youtube-nocookie.com/embed/qN6VZYBojLs?autoplay=1" // Nocookie + Autoplay au clic
+      title="Video de presentación de nuestras Hamburguesas Gourmet"
+      frameBorder="0"
+      allow="autoplay; encrypted-media; picture-in-picture"
+      allowFullScreen
+    ></iframe>
+  ) : (
+    <div style={{
+      width: '100%',
+      height: '100%',
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+      // On peut mettre l'image du burger en fond ici pour que ce soit joli
+      backgroundImage: `linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(${Burger})`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center'
     }}>
-      {lang === 'es' ? 'Cargando video gourmet...' :
-       lang === 'en' ? 'Loading gourmet video...' :
-       'Cargando video gourmet...'}
-    </p>
-  </div>
-)}
+      {/* Icône Play Dorée */}
+      <div style={{
+        fontSize: '3rem',
+        color: GOLD_BRIGHT,
+        marginBottom: '10px',
+        filter: 'drop-shadow(0 0 10px rgba(0,0,0,0.8))'
+      }}>
+        ▶
+      </div>
+
+      <p style={{
+        fontSize: '0.9rem',
+        color: GOLD_BRIGHT,
+        letterSpacing: '2px',
+        textTransform: 'uppercase',
+        fontWeight: 'bold',
+        margin: 0,
+        textAlign: 'center',
+        padding: '0 20px',
+        textShadow: '2px 2px 4px rgba(0,0,0,0.9)'
+      }}>
+        {lang === 'es' ? 'Ver video gourmet' :
+         lang === 'fr' ? 'Voir la vidéo gourmet' :
+         'Watch gourmet video'}
+      </p>
+    </div>
+  )}
     </div>
   </div>
 <div style={{
