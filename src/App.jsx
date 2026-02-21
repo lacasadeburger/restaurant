@@ -253,29 +253,31 @@ export default function App() {
   const [showCardDrink, setShowCardDrink] = useState(false);
   const [lang, setLang] = useState('es');
 
-  // --- 1. AJOUT DE L'ÉTAT DE PERFORMANCE ---
-    // On le laisse à false pour que YouTube ne charge RIEN au démarrage
-    const [loadMedia, setLoadMedia] = useState(false);
+  const [loadMedia, setLoadMedia] = useState(false); // Pour YouTube (Manuel)
+const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-différé)
 
-    // --- 2. GESTION DE LA LANGUE ---
-    useEffect(() => {
-      // Gestion Langue
-      const params = new URLSearchParams(window.location.search);
-      const urlLang = params.get('lang');
+// --- 2. GESTION DE LA LANGUE + CHARGEMENT DIFFÉRÉ MAPS ---
+useEffect(() => {
+  // Gestion Langue
+  const params = new URLSearchParams(window.location.search);
+  const urlLang = params.get('lang');
 
-      if (urlLang && T[urlLang]) {
-        setLang(urlLang);
-      } else {
-        const browserLang = navigator.language || navigator.userLanguage;
-        const code = browserLang.substring(0, 2).toLowerCase();
-        setLang(T[code] ? code : 'es');
-      }
+  if (urlLang && T[urlLang]) {
+    setLang(urlLang);
+  } else {
+    const browserLang = navigator.language || navigator.userLanguage;
+    const code = browserLang.substring(0, 2).toLowerCase();
+    setLang(T[code] ? code : 'es');
+  }
 
-      // LE TIMER A ÉTÉ SUPPRIMÉ ICI POUR ATTEINDRE 100% DE PERFORMANCE
-      // Désormais, loadMedia passera à true uniquement via le clic sur le bouton Play
+  // CHARGEMENT DE LA CARTE (1 seconde après l'arrivée sur le site)
+  // On utilise un timer court pour ne pas bloquer le score initial de Google
+  const mapsTimer = setTimeout(() => {
+    setLoadMaps(true);
+  }, 1000);
 
-    }, []); // <-- Cette ligne ferme proprement le useEffect
-  // --- LOGIC: CALCUL DU PRIX TOTAL (CONSERVÉ) ---
+  return () => clearTimeout(mapsTimer); // Nettoyage propre du timer
+}, []); // Fermeture parfaite du useEffect
   const totalPrice = useMemo(() => {
     return cart.reduce((acc, item) => {
       const val = item.precio || item.price || "0";
@@ -1018,7 +1020,7 @@ export default function App() {
 
 {/* BLOC MAPS OPTIMISÉ (NETTOYÉ) */}
 <div className="map-container">
-  {loadMedia ? (
+  {loadMaps ? (
     <iframe
       /* Ton adresse exacte : Av. Diego Ramírez Pastor, 142 */
       src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3143.543213567123!2d-0.6853244!3d37.9877443!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd63aa36e866a987%3A0x6b864a6f7b9f362!2sAv.%20Diego%20Ram%C3%ADrez%20Pastor%2C%20142%2C%2003181%20Torrevieja%2C%20Alicante!5e0!3m2!1sfr!2ses!4v1700000000000!5m2!1sfr!2ses"
