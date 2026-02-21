@@ -497,7 +497,6 @@ export default function App() {
   borderBottom: `5px solid #ff4757`,
   overflow: 'hidden'
 }}>
-
   <img
     src={BurgerSignature}
     alt="La mejor hamburguesa gourmet de Torrevieja - La Casa de Burger"
@@ -576,7 +575,7 @@ export default function App() {
 
     <h2 style={{
       fontSize: '1.5rem',
-      color: GOLD_BRIGHT,
+      color: typeof GOLD_BRIGHT !== 'undefined' ? GOLD_BRIGHT : '#FFD700',
       fontWeight: '700',
       textShadow: '1px 1px 10px rgba(0,0,0,1)',
       marginTop: '10px',
@@ -585,11 +584,14 @@ export default function App() {
       {T[lang]?.heroSubtitle || T.es.heroSubtitle}
     </h2>
 
-    <div style={{ marginTop: '05px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '05px' }}>
+    <div style={{ marginTop: '20px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px' }}>
       <button
         onClick={() => {
           setShowCardBurger(true);
-          setTimeout(() => scrollToId("sec-burgers"), 150);
+          setTimeout(() => {
+            const el = document.getElementById("sec-burgers");
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
+          }, 150);
         }}
         className="pulse-gold-btn gold-button-premium"
         style={{
@@ -600,16 +602,14 @@ export default function App() {
             fontWeight: '950',
             cursor: 'pointer',
             fontSize: '1.5rem',
-            boxShadow: GOLD_SHADOW,
+            boxShadow: '0 4px 15px rgba(0,0,0,0.5)',
             textTransform: 'uppercase',
             width: '90%',
             maxWidth: '450px',
             height: '80px',
             display: 'flex',
             alignItems: 'center',
-            justifyContent: 'center',
-            margin: '0 auto',
-            contain: 'layout'
+            justifyContent: 'center'
         }}
       >
         🚀 {T[lang]?.btnOrder || T.es.btnOrder}
@@ -625,9 +625,7 @@ export default function App() {
           width: '90%',
           maxWidth: '450px',
           marginTop: '10px',
-          display: 'block',
-          marginLeft: 'auto',
-          marginRight: 'auto'
+          display: 'block'
         }}
       >
         📅 RESERVAR MESA
@@ -667,10 +665,11 @@ export default function App() {
           {lang === 'es' ? '¡LLÁMANOS!' : 'CALL US!'}
         </span>
       </div>
-    </div> {/* Fermeture du conteneur flex des boutons */}
-  </div> {/* Fermeture du div à z-index: 2 */}
+    </div>
+  </div>
 </header>
-      <main className="menu-page-container">
+
+<main className="menu-page-container">
 
       <section id="sec-burgers" style={{ marginTop: '05px' }}>
         <SectionTitle>{T[lang]?.catBurgers || T.es.catBurgers}</SectionTitle>
