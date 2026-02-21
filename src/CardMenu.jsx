@@ -2,17 +2,17 @@ import React, { useState, useMemo } from "react";
 import bgCard from "./assets/bg-c.jpg";
 
 export default function CardMenu(props) {
-  // 1. RÉCUPÉRATION DES PROPS (On garde 'name' et 'object' pour la compatibilité)
-  const { image, name, object, description, precio, addToCart, isDrinkCard, isPostreCard, lang, hasExtras } = props;
+  // 1. RÉCUPÉRATION DES PROPS (Badge ajouté ici pour éviter l'écran noir)
+  const { image, name, object, description, precio, addToCart, isDrinkCard, isPostreCard, lang, hasExtras, badge } = props;
 
-  // 2. STABILISATION DU NOM (Empêche la disparition au re-rendu)
+  // 2. STABILISATION DU NOM
   const stableName = useMemo(() => {
     if (typeof name === 'object') return name[lang] || name['es'];
     if (typeof object === 'object') return object[lang] || object['es'];
     return name || object || "Producto";
   }, [name, object, lang]);
 
-  // 3. SYSTÈME DE TRADUCTION (DICTIONNAIRE COMPLET CONSERVÉ)
+  // 3. SYSTÈME DE TRADUCTION
   const t = {
     extra: { es: "Extras", en: "Extras", fr: "Suppléments", de: "Extras", ru: "Добавки", uk: "Додатки", pl: "Dodatki", no: "Ekstra", sv: "Tillval", ro: "Extra", ar: "إضافات" },
     remove: { es: "Quitar", en: "Remove", fr: "Retirer", de: "Entfernen", ru: "Убрать", uk: "Прибрати", pl: "Usuń", no: "Fjern", sv: "Ta bort", ro: "Elimină", ar: "إزالة" },
@@ -22,11 +22,11 @@ export default function CardMenu(props) {
       "Extra Huevo": { es: "Extra Huevo", en: "Extra Egg", fr: "Œuf suppl.", de: "Extra Ei", ru: "Доп. яйцо", uk: "Дод. яйце", pl: "Dodatkowe jajko", no: "Ekstra egg", sv: "Extra ägg", ro: "Ou în plus", ar: "بيضة إضافية" },
       "Extra Carne y Queso": { es: "Extra Carne y Queso", en: "Extra Meat & Cheese", fr: "Viande & Fromage suppl.", de: "Extra Fleisch & Käse", ru: "Доп. мясо и сыр", uk: "Дод. m'ясо та сир", pl: "Dodatkowe mięso i ser", no: "Ekstra kjøtt og ost", sv: "Extra kött och ost", ro: "Carne și brânză în plus", ar: "لحم وجبن إضافي" },
       "Extra Tocino": { es: "Extra Tocino", en: "Extra Bacon", fr: "Bacon suppl.", de: "Extra Speck", ru: "Доп. бекон", uk: "Дод. бекон", pl: "Dodatkowy bekon", no: "Ekstra bacon", sv: "Extra bacon", ro: "Bacon în plus", ar: "لحm مقدد إضافي" },
-      "Salsa Picante": { es: "Salsa Picante", en: "Hot Sauce", fr: "Sauce Piquante", de: "Scharfe Sauce", ru: "Острый соус", uk: "Гострий соус", pl: "Ostry sos", no: "Sterk saus", sv: "Stark sås", ro: "Sos iute", ar: "صلصة حارة" },
+      "Salsa Picante": { es: "Salsa Picante", en: "Hot Sauce", fr: "Sauce Piquante", de: "Scharfe Sauce", ru: "Острый соус", uk: "Гострий соус", pl: "Ostry sos", no: "Sterk saus", sv: "Stark saus", ro: "Sos iute", ar: "صلصة حارة" },
       "Tomate": { es: "Tomate", en: "Tomato", fr: "Tomate", de: "Tomate", ru: "Помидор", uk: "Помідор", pl: "Pomidor", no: "Tomat", sv: "Tomat", ro: "Roșie", ar: "طماطم" },
       "Lechuga": { es: "Lechuga", en: "Lettuce", fr: "Laitue", de: "Salat", ru: "Салат", uk: "Салат", pl: "Sałata", no: "Salat", sv: "Sallad", ro: "Salată", ar: "خس" },
       "Pepinillos": { es: "Pepinillos", en: "Pickles", fr: "Cornichons", de: "Gurken", ru: "Огурцы", uk: "Огірки", pl: "Ogórki", no: "Sylteagurk", sv: "Gurka", ro: "Castraveți murați", ar: "مخلل" },
-      "Cebolla": { es: "Cebolla", en: "Onion", fr: "Oignon", de: "Zwiebel", ru: "Лук", uk: "Цибуля", pl: "Cebula", no: "Løk", sv: "Lök", ro: "Ceapă", ar: "بصل" },
+      "Cebolla": { es: "Cebolla", en: "Onion", fr: "Oignon", de: "Oignon", ru: "Лук", uk: "Цибуля", pl: "Cebula", no: "Løk", sv: "Lök", ro: "Ceapă", ar: "بصل" },
       "Queso": { es: "Queso", en: "Cheese", fr: "Fromage", de: "Käse", ru: "Сыр", uk: "Сир", pl: "Ser", no: "Ost", sv: "Ost", ro: "Brânză", ar: "جبن" }
     }
   };
@@ -99,30 +99,30 @@ export default function CardMenu(props) {
       boxShadow: "0 10px 30px rgba(0,0,0,0.5)", overflow: "hidden"
     }}>
 
-    <div className="image-container" style={{ position: 'relative' }}>
-      {/* INSERTION DU BADGE (TOP/NUEVO) */}
-      {badge && <span className="badge-promo">{badge}</span>}
+      <div className="image-container" style={{ position: 'relative' }}>
+        {/* INSERTION DU BADGE (TOP/NUEVO) */}
+        {badge && <span className="badge-promo">{badge}</span>}
 
-      <div className="price-badge-overlay">{totalPrice}€</div>
-      <img
-        src={image}
-        alt={stableName}
-        className="product-img"
-        loading="lazy"
-        width="600"
-        height="336"
-      />
-    </div>
-
-    <div className="card-content" style={{ padding: '5px' }}>
-      <div className="info-box">
-        <h3 className="card-title" translate="no">
-          {stableName}
-        </h3>
-        <p className="card-description">
-          {typeof description === 'object' ? (description[lang] || description['es']) : (description || "")}
-        </p>
+        <div className="price-badge-overlay">{totalPrice}€</div>
+        <img
+          src={image}
+          alt={stableName}
+          className="product-img"
+          loading="lazy"
+          width="600"
+          height="336"
+        />
       </div>
+
+      <div className="card-content" style={{ padding: '5px' }}>
+        <div className="info-box">
+          <h3 className="card-title" translate="no">
+            {stableName}
+          </h3>
+          <p className="card-description">
+            {typeof description === 'object' ? (description[lang] || description['es']) : (description || "")}
+          </p>
+        </div>
 
         {!isDrinkCard && !isPostreCard && hasExtras && (
           <div className="options-box">
