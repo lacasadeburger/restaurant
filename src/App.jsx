@@ -386,7 +386,7 @@ useEffect(() => {
       background: linear-gradient(135deg, #BF953F 0%, #FCF6BA 45%, #B38728 55%, #FBF5B7 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      color: #D4AF37; /* Fallback */
+      color: #D4AF37;
       font-weight: 900;
       letter-spacing: 1px;
       display: block;
@@ -407,7 +407,7 @@ useEffect(() => {
       background: linear-gradient(135deg, #BF953F, #FCF6BA, #D4AF37, #FBF5B7, #BF953F);
       background-size: 200% 200%;
       animation: liquidGold 4s ease infinite;
-      color: #000;
+      color: #000 !important;
       font-weight: 950;
       border: none;
       border-radius: 12px;
@@ -460,16 +460,38 @@ useEffect(() => {
       margin-bottom: 5px;
     }
 
-    /* 6. WHATSAPP & BADGES */
+    /* 6. WHATSAPP & BADGE #1 (FIXÉ POUR LA TAILLE) */
     .whatsapp-float {
       position: fixed;
       bottom: 25px;
       right: 25px;
       z-index: 9999;
-      transition: transform 0.3s ease;
     }
     .whatsapp-float img { width: 100px; height: 100px; filter: drop-shadow(0 4px 15px rgba(0,0,0,0.4)); }
-    .whatsapp-float:hover { transform: scale(1.1); }
+
+    /* Correction du Badge #1 pour qu'il ne s'étire pas */
+    .wobble-badge-container {
+      position: absolute !important;
+      top: 150px !important;
+      right: 20px !important;
+      z-index: 10000 !important;
+      display: flex !important;
+      justify-content: flex-end !important;
+      width: auto !important;
+      left: auto !important;
+    }
+
+    .wobble-badge.gold-button-premium {
+      display: inline-block !important;
+      width: auto !important;
+      max-width: fit-content !important;
+      padding: 10px 18px !important;
+      font-size: 0.8rem !important;
+      border-radius: 50px !important;
+      border: 1px solid #FCF6BA !important;
+      animation: liquidGold 4s infinite, wobble-badge 3s infinite ease-in-out !important;
+      white-space: nowrap;
+    }
 
     .badge-promo {
       position: absolute;
@@ -510,11 +532,6 @@ useEffect(() => {
       object-fit: contain;
       opacity: 0.75;
       transition: 0.3s ease;
-    }
-
-    .promo-container:hover .promo-img {
-      opacity: 1;
-      transform: scale(1.03);
     }
 
     .btn-overlay {
@@ -563,6 +580,7 @@ useEffect(() => {
       .promo-container { height: auto; aspect-ratio: 600 / 336; width: 92%; }
       .btn-overlay { bottom: 15px; min-width: 140px; font-size: 0.75rem !important; }
       .card-title { font-size: 1.2rem; }
+      .wobble-badge-container { top: 120px !important; right: 10px !important; }
     }
   `}</style>
 <Helmet>
