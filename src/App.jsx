@@ -369,12 +369,13 @@ export default function App() {
         height: 100%;
       }
 
-      /* 2. LOGO ET NAVIGATION */
+      /* 2. LOGO ET NAVIGATION - Avec animation inversée */
       .logo-container-wrapper {
         position: absolute;
         top: 150px;
         left: 35px;
         z-index: 101;
+        animation: wobble-inverse 5s infinite ease-in-out; /* Plus lent et inversé */
       }
       .moving-header-logo { height: auto; transition: 0.3s; }
 
@@ -419,7 +420,7 @@ export default function App() {
         cursor: pointer;
         position: relative;
         overflow: hidden;
-        margin-top: auto; /* Aligne tous les prix sur la même ligne */
+        margin-top: auto;
       }
 
       .gold-button-premium::after {
@@ -453,7 +454,7 @@ export default function App() {
       }
 
       .whatsapp-float img {
-        width: 100px; /* Taille sur PC */
+        width: 100px;
         height: 100px;
         filter: drop-shadow(0 4px 15px rgba(0,0,0,0.4));
       }
@@ -505,7 +506,12 @@ export default function App() {
       /* 8. ANIMATIONS */
       @keyframes liquidGold { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
       @keyframes mirrorReflection { 0% { transform: translateX(-200%) rotate(25deg); } 100% { transform: translateX(200%) rotate(25deg); } }
+
+      /* Animation Badge (Commence à Droite) */
       @keyframes wobble-badge { 0% { transform: rotate(4deg); } 50% { transform: rotate(-4deg) scale(1.05); } 100% { transform: rotate(4deg); } }
+
+      /* Animation Logo (Commence à Gauche - Sens Inverse) */
+      @keyframes wobble-inverse { 0% { transform: rotate(-4deg); } 50% { transform: rotate(4deg) scale(1.02); } 100% { transform: rotate(-4deg); } }
 
       /* 9. IMAGES DES PRODUITS */
       .card-menu-image-container {
