@@ -369,7 +369,28 @@ export default function App() {
   35% { transform: translateX(200%); opacity: 1; }
   100% { transform: translateX(200%); opacity: 0; }
 }
+.grid-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Force le mode "grille" */
+  gap: 20px;
+  padding: 20px;
+}
+.promo-container {
+  width: 100%;
+  max-width: 600px; /* Limite la largeur du bloc promo */
+  margin: 0 auto;
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+}
 
+.promo-img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9; /* Garde une proportion propre */
+  object-fit: cover;
+  display: block;
+}
 /* OK : transform ne provoque pas de décalage de mise en page */
 @keyframes wobble-badge {
   0% { transform: rotate(8deg) scale(1.1); }
@@ -854,7 +875,7 @@ export default function App() {
 }}>
   {loadMedia ? (
     <iframe
-    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12543.045437885062!2d-0.6833481!3d37.9827011!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd63aa390231535d%3A0xc3c63102c9162985!2sLa%20Casa%20de%20Burger!5e0!3m2!1ses!2ses!4v1708470000000!5m2!1ses!2ses"
+    src="https://maps.app.goo.gl/WSaPNPzEbpBbHnpQ9"
     width="100%"
     height="350"
     style={{ border: 0, display: 'block' }}
@@ -1116,10 +1137,9 @@ style={{ objectFit: 'contain' }}
                       {showCardBurger && (lang === 'en' ? 'NEXT: DRINKS ➔' : 'SIGUIENTE: BEBIDAS ➔')}
                       {showCardDrink && (lang === 'en' ? 'NEXT: DESSERTS ➔' : 'SIGUIENTE: POSTRES ➔')}
                       {showCardPostres && (lang === 'en' ? 'VIEW ORDER ➔' : 'VER MI PEDIDO ➔')}
-                    </span>
-                  </button>
-                )}
-
-              </div> // Ferme le wrapper principal
-            ); // Ferme le return
-        }
+                      </span>
+                      </button>
+                    )}
+          </div>
+        ); // Fermeture du return (JSX)
+    } // Fermeture de la fonction App
