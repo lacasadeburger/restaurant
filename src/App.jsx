@@ -348,204 +348,134 @@ export default function App() {
   return (
     <div className="app-main-wrapper" style={{ position: 'relative', backgroundColor: '#111', color: '#fff' }}>
     <style>{`
-  /* 1. STRUCTURE & GRID */
-  html, body { max-width: 100%; overflow-x: hidden; margin: 0; padding: 0; }
-  .grid-cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
-    gap: 25px;
-    padding: 20px;
-    width: 100%;
-    max-width: 1300px;
-    margin: 0 auto;
-  }
-
-  /* 2. LES TITRES (En OR et Centrés) */
-  .card-title {
-    text-align: center;
-    width: 100%;
-    margin: 10px 0;
-    font-size: 1.4rem;
-    text-transform: uppercase;
-    /* Effet Gold Liquid */
-    background: linear-gradient(135deg, #BF953F 0%, #FCF6BA 45%, #B38728 55%, #FBF5B7 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-weight: 900;
-    letter-spacing: 1px;
-    display: block;
-  }
-
-  /* 3. DESCRIPTIONS (Centrées) */
-  .card-description {
-    text-align: center;
-    color: #ccc;
-    font-size: 0.85rem;
-    margin-bottom: 15px;
-    line-height: 1.4;
-    padding: 0 10px;
-  }
-  /* EFFET DE LUMIÈRE (Le reflet qui passe) */
-    .gold-button-premium::after {
-      content: "";
-      position: absolute;
-      top: -50%;
-      left: -150%;
-      width: 50%;
-      height: 200%;
-      background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(255, 255, 255, 0.4),
-        transparent
-      );
-      transform: rotate(25deg);
-      animation: mirrorReflection 4s infinite; /* Le reflet passe toutes les 4s */
+    /* 1. STRUCTURE & GRID */
+    html, body { max-width: 100%; overflow-x: hidden; margin: 0; padding: 0; }
+    .grid-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+      gap: 25px;
+      padding: 20px;
+      width: 100%;
+      max-width: 1300px;
+      margin: 0 auto;
     }
 
-    /* EFFET AU SURVOL (Mouse Hover) */
+    /* 2. LOGO ET NAVIGATION (Correction position) */
+    .logo-container-wrapper {
+      position: absolute;
+      top: 150px; /* Descendu pour ne pas être sous la nav */
+      left: 35px;
+      z-index: 101;
+    }
+    .moving-header-logo { height: 110px; width: auto; transition: 0.3s; }
+
+    /* 3. LES TITRES (En OR et Centrés) */
+    .card-title {
+      text-align: center;
+      width: 100%;
+      margin: 10px 0;
+      font-size: 1.4rem;
+      text-transform: uppercase;
+      background: linear-gradient(135deg, #BF953F 0%, #FCF6BA 45%, #B38728 55%, #FBF5B7 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 900;
+      letter-spacing: 1px;
+      display: block;
+    }
+
+    .card-description {
+      text-align: center;
+      color: #ccc;
+      font-size: 0.85rem;
+      margin-bottom: 15px;
+      line-height: 1.4;
+      padding: 0 10px;
+    }
+
+    /* 4. BOUTONS PREMIUM & EFFETS (Reflet Or) */
+    .gold-button-premium {
+      background: linear-gradient(135deg, #BF953F, #FCF6BA, #D4AF37, #FBF5B7, #BF953F) !important;
+      background-size: 200% 200% !important;
+      animation: liquidGold 4s ease infinite !important;
+      color: #000 !important; font-weight: 950 !important;
+      border: none; border-radius: 12px; padding: 15px; width: 100%;
+      display: flex; justify-content: space-between; cursor: pointer;
+      position: relative; overflow: hidden;
+    }
+
+    .gold-button-premium::after {
+      content: ""; position: absolute; top: -50%; left: -150%; width: 50%; height: 200%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+      transform: rotate(25deg);
+      animation: mirrorReflection 4s infinite;
+    }
+
     .gold-button-premium:hover {
-      transform: translateY(-3px) scale(1.02); /* Il se soulève légèrement */
-      filter: brightness(1.2); /* Il devient plus lumineux */
+      transform: translateY(-3px) scale(1.02);
+      filter: brightness(1.2);
       box-shadow: 0 8px 20px rgba(191, 149, 63, 0.6) !important;
       transition: all 0.3s ease;
     }
 
-    /* STYLE SPÉCIFIQUE POUR LES BOUTONS DU HEADER */
-    .header-actions {
-      display: flex;
-      gap: 10px;
-      justify-content: center;
-      margin-top: 15px;
+    /* 5. BLOC OPTIONS (Extras/Quitar centrés) */
+    .options-box {
+      display: flex; flex-direction: column; align-items: center;
+      gap: 8px; margin: 15px 0; padding: 10px;
+      background: rgba(0,0,0,0.4); border-radius: 12px;
     }
+    .chips-container { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; width: 100%; }
+    .option-group-label { font-size: 0.75rem; text-transform: uppercase; color: #BF953F; letter-spacing: 1.5px; font-weight: bold; }
 
-    .header-gold-btn {
-      padding: 10px 15px !important;
-      font-size: 0.85rem !important;
-      border-radius: 8px !important;
-      min-width: 120px;
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    .chip {
+      padding: 7px 14px; border-radius: 20px; font-size: 0.75rem;
+      background: #1a1a1a; color: #eee; border: 1px solid #444;
+      cursor: pointer; transition: 0.3s; text-transform: uppercase;
     }
-  /* 4. BLOC OPTIONS (Extras/Quitar centrés) */
-  .options-box {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Centre les titres de groupe */
-    gap: 8px;
-    margin: 15px 0;
-    padding: 10px;
-    background: rgba(0,0,0,0.4);
-    border-radius: 12px;
-  }
+    .chip.active { background: linear-gradient(135deg, #BF953F 0%, #B38728 100%) !important; color: #000 !important; border-color: #FCF6BA !important; font-weight: bold; }
+    .chip.remove.active { background: #ff4757 !important; color: white !important; border-color: #ff6b81 !important; }
 
-  .chips-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    justify-content: center; /* Centre les boutons horizontalement */
-    margin-bottom: 8px;
-    width: 100%;
-  }
+    /* 6. WHATSAPP & BADGE FLOTTANT */
+    .whatsapp-float {
+      position: fixed; bottom: 25px; right: 25px; z-index: 9999;
+    }
+    .whatsapp-float img { width: 65px; height: 65px; }
 
-  .option-group-label {
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    color: #BF953F; /* Titre groupe en Or */
-    letter-spacing: 1.5px;
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: 4px;
-  }
-
-  /* 5. BOUTONS CHIPS (Style d'origine) */
-  .chip {
-    padding: 7px 14px;
-    border-radius: 20px;
-    font-size: 0.75rem;
-    background: #1a1a1a;
-    color: #eee;
-    border: 1px solid #444;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-transform: uppercase;
-  }
-
-  .chip.active {
-    background: linear-gradient(135deg, #BF953F 0%, #B38728 100%) !important;
-    color: #000 !important;
-    border-color: #FCF6BA !important;
-    font-weight: bold;
-    box-shadow: 0 0 10px rgba(191, 149, 63, 0.5);
-  }
-
-  .chip.remove.active {
-    background: #ff4757 !important;
-    color: white !important;
-    border-color: #ff6b81 !important;
-    box-shadow: 0 0 10px rgba(255, 71, 87, 0.5);
-  }
-
-  /* 6. IMAGES & BADGES */
-  .grid-cards img.product-img {
-    width: 100%; height: 220px; object-fit: cover;
-    border-radius: 15px 15px 0 0;
-  }
-
-  .price-badge-overlay {
-    position: absolute; top: 15px; right: 15px;
-    background: linear-gradient(135deg, #BF953F, #FCF6BA);
-    color: #000; padding: 5px 12px; border-radius: 8px;
-    font-weight: 900; z-index: 2;
-  }
-
-  /* 7. BOUTON AJOUTER (Gold Liquid Premium) */
-  .gold-button-premium {
-    background: linear-gradient(135deg, #BF953F, #FCF6BA, #D4AF37, #FBF5B7, #BF953F) !important;
-    background-size: 200% 200% !important;
-    animation: liquidGold 4s ease infinite !important;
-    color: #000 !important; font-weight: 950 !important;
-    border: none; border-radius: 12px; padding: 15px; width: 100%;
-    display: flex; justify-content: space-between; cursor: pointer;
-  }
-  /* LE BOUTON FLOTTANT #1 BURGER */
-  .wobble-badge-container {
-    position: fixed; /* Il reste fixé même quand on scrolle */
-    top: 150px;      /* Ajuste la hauteur selon ton envie */
-    right: 20px;     /* Aligné à droite */
-    z-index: 1000;   /* Passe au-dessus de tout */
-    pointer-events: auto;
-  }
-
-  .wobble-badge.gold-button-premium {
-    display: inline-block !important; /* Ne prend plus toute la largeur */
-    width: auto !important;           /* S'adapte à la taille du texte */
+    .wobble-badge-container {
+      position: fixed; top: 150px; right: 20px; z-index: 1000;
+    }
+    .wobble-badge.gold-button-premium {
+    display: inline-block !important;
+    width: auto !important;
     padding: 10px 18px !important;
     font-size: 0.8rem !important;
-    border-radius: 50px !important;    /* Look plus "pilule" / badge */
-    box-shadow: 0 4px 15px rgba(0,0,0,0.5) !important;
+    border-radius: 50px !important;
+    border: 1px solid #FCF6BA !important;
 
-    /* L'effet de mouvement (Wobble) */
+    /* --- LES DEUX LIGNES À AJOUTER --- */
+    overflow: hidden !important;   /* Empêche la lumière de sortir du bouton */
+    position: relative !important; /* Emprisonne l'effet miroir à l'intérieur */
+    /* -------------------------------- */
+
     animation: liquidGold 4s infinite, wobble-badge 3s infinite ease-in-out !important;
-
-    white-space: nowrap; /* Empêche le texte de revenir à la ligne */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5) !important;
+    white-space: nowrap;
     cursor: pointer;
     text-decoration: none;
-    border: 1px solid #FCF6BA !important;
   }
 
-  /* Animation de balancement (Wobble) */
-  @keyframes wobble-badge {
-    0% { transform: rotate(5deg) scale(1); }
-    50% { transform: rotate(-5deg) scale(1.05); }
-    100% { transform: rotate(5deg) scale(1); }
-  }
+    /* 7. ANIMATIONS */
+    @keyframes liquidGold { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+    @keyframes mirrorReflection { 0% { transform: translateX(-200%); } 100% { transform: translateX(200%); } }
+    @keyframes wobble-badge { 0% { transform: rotate(5deg) scale(1); } 50% { transform: rotate(-5deg) scale(1.05); } 100% { transform: rotate(5deg) scale(1); } }
 
-  /* Animations existantes conservées */
-  @keyframes liquidGold { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
-`}</style>
+    /* RESPONSIVE MOBILE */
+    @media (max-width: 768px) {
+      .logo-container-wrapper { top: 220px !important; left: 15px !important; }
+      .moving-header-logo { height: 60px !important; }
+      .wobble-badge-container { top: 100px; right: 10px; }
+    }
+  `}</style>
 
 <Helmet>
 {/* 1. DYNAMIQUE : Titre et Description traduits (Indispensable) */}
@@ -592,7 +522,7 @@ export default function App() {
     alt="La Casa de Burger Logo"
     className="moving-header-logo"
     style={{
-      height: '100px',
+      height: '150px',
       width: 'auto',
       pointerEvents: 'auto',
       cursor: 'pointer',
