@@ -353,11 +353,29 @@ export default function App() {
   .app-main-wrapper { max-width: 100vw; overflow-x: hidden; box-sizing: border-box; }
   * { box-sizing: border-box; }
 
-  /* 2. ANIMATIONS UNIQUES (Définies une seule fois) */
-  @keyframes liquidGold { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
-  @keyframes mirrorReflection { 0% { left: -100%; opacity: 0; } 10% { opacity: 1; } 35% { left: 150%; opacity: 1; } 100% { left: 150%; opacity: 0; } }
-  @keyframes wobble-badge { 0% { transform: rotate(8deg) scale(1.1); } 50% { transform: rotate(-2deg) scale(1.15); } 100% { transform: rotate(8deg) scale(1.1); } }
+  /* 2. ANIMATIONS UNIQUES (Corrigées pour PageSpeed) */
 
+/* OK : background-position ne change pas la taille du bloc */
+@keyframes liquidGold {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ⚠️ CORRIGÉ : On utilise transform: translateX au lieu de left */
+@keyframes mirrorReflection {
+  0% { transform: translateX(-200%); opacity: 0; }
+  10% { opacity: 1; }
+  35% { transform: translateX(200%); opacity: 1; }
+  100% { transform: translateX(200%); opacity: 0; }
+}
+
+/* OK : transform ne provoque pas de décalage de mise en page */
+@keyframes wobble-badge {
+  0% { transform: rotate(8deg) scale(1.1); }
+  50% { transform: rotate(-2deg) scale(1.15); }
+  100% { transform: rotate(8deg) scale(1.1); }
+}
   /* 3. LOGO (On enlève l'animation automatique pour le score CLS) */
   .logo-container-wrapper { position: absolute; top: 205px; left: 35px; z-index: 99; }
   .moving-header-logo {
@@ -576,17 +594,24 @@ style={{
   }}
   className="pulse-gold-btn gold-button-premium"
   style={{
-    color: '#000',
-    padding: '22px 50px',
-    borderRadius: '50px',
-    border: '3px solid #000',
-    fontWeight: '950',
-    cursor: 'pointer',
-    fontSize: '1.5rem',
-    boxShadow: GOLD_SHADOW, // Assure-toi que GOLD_SHADOW est bien défini en haut
-    textTransform: 'uppercase',
-    width: '90%',
-    maxWidth: '450px'
+      color: '#000',
+      padding: '22px 50px',
+      borderRadius: '50px',
+      border: '3px solid #000',
+      fontWeight: '950',
+      cursor: 'pointer',
+      fontSize: '1.5rem',
+      boxShadow: GOLD_SHADOW,
+      textTransform: 'uppercase',
+      width: '90%',
+      maxWidth: '450px',
+      // --- AJOUTS POUR LE SCORE VERT ---
+      height: '80px', // On fixe la hauteur pour éviter que le texte en dessous ne saute
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      margin: '0 auto', // Centre le bouton proprement
+      contain: 'layout' // Dit au navigateur que ce bouton ne fait pas bouger l'extérieur
   }}
 >
   🚀 {T[lang]?.btnOrder || T.es.btnOrder}
