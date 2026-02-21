@@ -5,7 +5,7 @@ export default function CardMenu(props) {
   // 1. RÉCUPÉRATION DES PROPS
   const { image, name, object, description, precio, addToCart, isDrinkCard, isPostreCard, lang, hasExtras, badge } = props;
 
-  // LA COULEUR OR GOURMET
+  // COULEUR DE RÉFÉRENCE
   const GOLD_BRIGHT = "#FFD700";
 
   // 2. STABILISATION DU NOM
@@ -95,16 +95,24 @@ export default function CardMenu(props) {
 
   return (
     <div className="card-item" style={{
-      backgroundImage: `url(${bgCard})`, backgroundSize: "cover", backgroundPosition: "center",
-      borderRadius: "20px", display: "flex", flexDirection: "column", minHeight: "350px",
-      position: "relative", padding: "10px", border: `1px solid ${GOLD_BRIGHT}44`,
-      boxShadow: "0 10px 30px rgba(0,0,0,0.5)", overflow: "hidden"
+      backgroundImage: `url(${bgCard})`,
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+      borderRadius: "20px",
+      display: "flex",
+      flexDirection: "column",
+      minHeight: "350px",
+      position: "relative",
+      padding: "10px",
+      border: `1px solid ${GOLD_BRIGHT}44`,
+      boxShadow: "0 10px 30px rgba(0,0,0,0.5)",
+      overflow: "hidden"
     }}>
 
       <div className="image-container" style={{ position: 'relative', width: '100%' }}>
         {badge && <span className="badge-promo" style={{ zIndex: 11 }}>{badge}</span>}
 
-        {/* PRIX EN HAUT À DROITE (OR) - FORCÉ */}
+        {/* PRIX EN HAUT À DROITE */}
         <div style={{
             position: 'absolute',
             top: '10px',
@@ -119,7 +127,7 @@ export default function CardMenu(props) {
             zIndex: 100,
             boxShadow: `0 0 10px rgba(0,0,0,0.8)`
         }}>
-            <span style={{ color: GOLD_BRIGHT }}>{totalPrice}€</span>
+            {totalPrice}€
         </div>
 
         <img
@@ -133,10 +141,8 @@ export default function CardMenu(props) {
 
       <div className="card-content" style={{ padding: '10px 5px' }}>
         <div className="info-box">
-        <h3 className="card-title" translate="no">
-{stableName}
-</h3>
-          <p className="card-description" style={{ color: '#ccc', fontSize: '0.9rem', lineHeight: '1.2' }}>
+          <h3 className="card-title" translate="no">{stableName}</h3>
+          <p className="card-description">
             {typeof description === 'object' ? (description[lang] || description['es']) : (description || "")}
           </p>
         </div>
@@ -201,52 +207,44 @@ export default function CardMenu(props) {
       </div>
 
       <div className="card-footer" style={{ marginTop: 'auto', padding: '10px 5px' }}>
-      <button
-onClick={handleAddClick}
-style={{
-    width: '100%',
-    padding: '14px',
-    borderRadius: '12px',
-    // ON FORCE LE FOND AVEC !IMPORTANT POUR ÉCRASER APP.JSX
-    background: isAdded ? '#2ecc71 !important' : `${GOLD_BRIGHT} !important`,
-    backgroundColor: isAdded ? '#2ecc71 !important' : `${GOLD_BRIGHT} !important`,
-    color: isAdded ? '#fff !important' : '#000 !important',
-    border: `2px solid ${GOLD_BRIGHT}`,
-    fontWeight: '950',
-    fontSize: '1.1rem',
-    cursor: 'pointer',
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    boxShadow: isAdded ? 'none' : `0 4px 15px rgba(212, 175, 55, 0.4)`,
-    textTransform: 'uppercase',
-    // Neutralisation totale des styles mobiles
-    appearance: 'none !important',
-    WebkitAppearance: 'none !important',
-    MozAppearance: 'none !important'
-}}
->
-{isAdded ? (
-    <span style={{ width: '100%', textAlign: 'center', color: '#fff !important' }}>
-      {getT("ready")}
-    </span>
-) : (
-  <>
-    <span style={{ color: '#000 !important', fontWeight: '950' }}>
-      {getT("add")}
-    </span>
-    <span style={{
-      backgroundColor: 'rgba(0,0,0,0.15)',
-      padding: '2px 8px',
-      borderRadius: '6px',
-      color: '#000 !important',
-      fontWeight: '950'
-    }}>
-      {totalPrice}€
-    </span>
-  </>
-)}
-</button>
+        <button
+          onClick={handleAddClick}
+          // On utilise la classe premium de App.jsx + la classe dynamique is-added
+          className={`gold-button-premium ${isAdded ? 'is-added' : ''}`}
+          style={{
+            width: '100%',
+            padding: '14px',
+            borderRadius: '12px',
+            fontSize: '1.1rem',
+            cursor: 'pointer',
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            textTransform: 'uppercase',
+            transition: 'all 0.3s ease',
+            border: isAdded ? 'none' : `2px solid ${GOLD_BRIGHT}`,
+            appearance: 'none',
+            WebkitAppearance: 'none'
+          }}
+        >
+          {isAdded ? (
+            <span style={{ width: '100%', textAlign: 'center', color: '#fff' }}>
+              {getT("ready")}
+            </span>
+          ) : (
+            <>
+              <span style={{ fontWeight: '950' }}>{getT("add")}</span>
+              <span style={{
+                backgroundColor: 'rgba(0,0,0,0.15)',
+                padding: '2px 8px',
+                borderRadius: '6px',
+                fontWeight: '950'
+              }}>
+                {totalPrice}€
+              </span>
+            </>
+          )}
+        </button>
       </div>
     </div>
   );
