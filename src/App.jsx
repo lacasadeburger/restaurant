@@ -561,10 +561,9 @@ export default function App() {
 {/* NOTE : Le JSON-LD massif, le Preload d'image et le Canonical sont déjà dans l'index.html.
   On ne les remet pas ici pour gagner du temps de calcul (TBT) sur Lighthouse. */}
 </Helmet>
-{/* --- LOGO ANIMÉ EN HAUT À Gauche --- */}
+{/* --- LOGO ANIMÉ EN HAUT À GAUCHE --- */}
 <div className="logo-container-wrapper" style={{
   position: 'absolute',
-  /* top supprimé ici pour laisser le bloc <style> piloter (190px PC / 225px Mobile) */
   left: '35px',
   zIndex: 99,
   pointerEvents: 'none'
@@ -573,9 +572,13 @@ export default function App() {
     src={logo}
     alt="La Casa de Burger Logo"
     className="moving-header-logo"
+    /* 1. Dimensions réelles du fichier pour le CLS */
+    width="250"
+    height="162"
     style={{
-      height: '150px',
-      width: 'auto',
+      /* 2. Affichage visuel proportionnel */
+      height: 'auto',
+      width: '180px', // Taille sur PC, le ratio 162 sera calculé auto
       pointerEvents: 'auto',
       cursor: 'pointer',
       filter: 'drop-shadow(0 0 10px rgba(191,149,63,0.7))'
