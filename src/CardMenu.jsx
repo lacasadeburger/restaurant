@@ -2,8 +2,10 @@ import React, { useState, useMemo } from "react";
 import bgCard from "./assets/bg-c.jpg";
 
 export default function CardMenu(props) {
-  // 1. RÉCUPÉRATION DES PROPS (Badge ajouté ici pour éviter l'écran noir)
+  // 1. RÉCUPÉRATION DES PROPS
   const { image, name, object, description, precio, addToCart, isDrinkCard, isPostreCard, lang, hasExtras, badge } = props;
+
+  const GOLD_BRIGHT = "#FFD700";
 
   // 2. STABILISATION DU NOM
   const stableName = useMemo(() => {
@@ -14,20 +16,20 @@ export default function CardMenu(props) {
 
   // 3. SYSTÈME DE TRADUCTION
   const t = {
-    extra: { es: "Extras", en: "Extras", fr: "Suppléments", de: "Extras", ru: "Добавки", uk: "Додатки", pl: "Dodatki", no: "Ekstra", sv: "Tillval", ro: "Extra", ar: "إضافات" },
-    remove: { es: "Quitar", en: "Remove", fr: "Retirer", de: "Entfernen", ru: "Убрать", uk: "Прибрати", pl: "Usuń", no: "Fjern", sv: "Ta bort", ro: "Elimină", ar: "إزالة" },
-    add: { es: "AÑADIR", en: "ADD", fr: "AJOUTER", de: "HINZUFÜGEN", ru: "ДОБАВИТЬ", uk: "ДОДАТИ", pl: "DODAJ", no: "LEGG TIL", sv: "LÄGG TILL", ro: "ADAUGĂ", ar: "إضافة" },
-    ready: { es: "¡LISTO!", en: "READY!", fr: "PRÊT !", de: "FERTIG!", ru: "ГОТОВО!", uk: "ГОТОВО!", pl: "GOTOWE!", no: "KLAR!", sv: "KLAR!", ro: "GATA!", ar: "جاهز!" },
+    extra: { es: "Extras", en: "Extras", fr: "Suppléments" },
+    remove: { es: "Quitar", en: "Remove", fr: "Retirer" },
+    add: { es: "AÑADIR", en: "ADD", fr: "AJOUTER" },
+    ready: { es: "¡LISTO!", en: "READY!", fr: "PRÊT !" },
     ingredients: {
-      "Extra Huevo": { es: "Extra Huevo", en: "Extra Egg", fr: "Œuf suppl.", de: "Extra Ei", ru: "Доп. яйцо", uk: "Дод. яйце", pl: "Dodatkowe jajko", no: "Ekstra egg", sv: "Extra ägg", ro: "Ou în plus", ar: "بيضة إضافية" },
-      "Extra Carne y Queso": { es: "Extra Carne y Queso", en: "Extra Meat & Cheese", fr: "Viande & Fromage suppl.", de: "Extra Fleisch & Käse", ru: "Доп. мясо и сыр", uk: "Дод. m'ясо та сир", pl: "Dodatkowe mięso i ser", no: "Ekstra kjøtt og ost", sv: "Extra kött och ost", ro: "Carne și brânză în plus", ar: "لحم وجبن إضافي" },
-      "Extra Tocino": { es: "Extra Tocino", en: "Extra Bacon", fr: "Bacon suppl.", de: "Extra Speck", ru: "Доп. бекон", uk: "Дод. бекон", pl: "Dodatkowy bekon", no: "Ekstra bacon", sv: "Extra bacon", ro: "Bacon în plus", ar: "لحm مقدد إضافي" },
-      "Salsa Picante": { es: "Salsa Picante", en: "Hot Sauce", fr: "Sauce Piquante", de: "Scharfe Sauce", ru: "Острый соус", uk: "Гострий соус", pl: "Ostry sos", no: "Sterk saus", sv: "Stark saus", ro: "Sos iute", ar: "صلصة حارة" },
-      "Tomate": { es: "Tomate", en: "Tomato", fr: "Tomate", de: "Tomate", ru: "Помидор", uk: "Помідор", pl: "Pomidor", no: "Tomat", sv: "Tomat", ro: "Roșie", ar: "طماطم" },
-      "Lechuga": { es: "Lechuga", en: "Lettuce", fr: "Laitue", de: "Salat", ru: "Салат", uk: "Салат", pl: "Sałata", no: "Salat", sv: "Sallad", ro: "Salată", ar: "خس" },
-      "Pepinillos": { es: "Pepinillos", en: "Pickles", fr: "Cornichons", de: "Gurken", ru: "Огурцы", uk: "Огірки", pl: "Ogórki", no: "Sylteagurk", sv: "Gurka", ro: "Castraveți murați", ar: "مخلل" },
-      "Cebolla": { es: "Cebolla", en: "Onion", fr: "Oignon", de: "Oignon", ru: "Лук", uk: "Цибуля", pl: "Cebula", no: "Løk", sv: "Lök", ro: "Ceapă", ar: "بصل" },
-      "Queso": { es: "Queso", en: "Cheese", fr: "Fromage", de: "Käse", ru: "Сыр", uk: "Сир", pl: "Ser", no: "Ost", sv: "Ost", ro: "Brânză", ar: "جبن" }
+      "Extra Huevo": { es: "Extra Huevo", en: "Extra Egg", fr: "Œuf suppl." },
+      "Extra Carne y Queso": { es: "Extra Carne y Queso", en: "Extra Meat & Cheese", fr: "Viande & Fromage suppl." },
+      "Extra Tocino": { es: "Extra Tocino", en: "Extra Bacon", fr: "Bacon suppl." },
+      "Salsa Picante": { es: "Salsa Picante", en: "Hot Sauce", fr: "Sauce Piquante" },
+      "Tomate": { es: "Tomate", en: "Tomato", fr: "Tomate" },
+      "Lechuga": { es: "Lechuga", en: "Lettuce", fr: "Laitue" },
+      "Pepinillos": { es: "Pepinillos", en: "Pickles", fr: "Cornichons" },
+      "Cebolla": { es: "Cebolla", en: "Onion", fr: "Oignon" },
+      "Queso": { es: "Queso", en: "Cheese", fr: "Fromage" }
     }
   };
 
@@ -72,7 +74,6 @@ export default function CardMenu(props) {
   const toggleExtra = (id) => setExtraIngredients(prev => prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id]);
   const toggleRemove = (id) => setRemovedIngredients(prev => prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id]);
 
-  // 6. ACTION D'AJOUT AU PANIER
   const handleAddClick = () => {
     const itemToAdd = {
       ...props,
@@ -99,56 +100,132 @@ export default function CardMenu(props) {
       boxShadow: "0 10px 30px rgba(0,0,0,0.5)", overflow: "hidden"
     }}>
 
-      <div className="image-container" style={{ position: 'relative' }}>
-        {/* INSERTION DU BADGE (TOP/NUEVO) */}
-        {badge && <span className="badge-promo">{badge}</span>}
+      <div className="image-container" style={{ position: 'relative', width: '100%' }}>
+        {/* BADGE (PROMO) */}
+        {badge && <span className="badge-promo" style={{ zIndex: 11 }}>{badge}</span>}
 
-        <div className="price-badge-overlay">{totalPrice}€</div>
+        {/* --- MODIF 1 : PRIX EN HAUT À DROITE EN OR --- */}
+        <div style={{
+            position: 'absolute',
+            top: '10px',
+            right: '10px',
+            backgroundColor: 'rgba(0,0,0,0.7)',
+            color: GOLD_BRIGHT,
+            padding: '5px 12px',
+            borderRadius: '12px',
+            fontWeight: '900',
+            fontSize: '1.2rem',
+            border: `2px solid ${GOLD_BRIGHT}`,
+            zIndex: 12,
+            textShadow: '1px 1px 2px #000'
+        }}>
+            {totalPrice}€
+        </div>
+
         <img
           src={image}
           alt={stableName}
           className="product-img"
           loading="lazy"
-          width="600"
-          height="336"
+          style={{ width: '100%', borderRadius: '15px', display: 'block' }}
         />
       </div>
 
-      <div className="card-content" style={{ padding: '5px' }}>
+      <div className="card-content" style={{ padding: '10px 5px' }}>
         <div className="info-box">
-          <h3 className="card-title" translate="no">
+          <h3 className="card-title" style={{ color: '#fff', margin: '5px 0', fontSize: '1.3rem' }} translate="no">
             {stableName}
           </h3>
-          <p className="card-description">
+          <p className="card-description" style={{ color: '#ccc', fontSize: '0.9rem', lineHeight: '1.2' }}>
             {typeof description === 'object' ? (description[lang] || description['es']) : (description || "")}
           </p>
         </div>
 
         {!isDrinkCard && !isPostreCard && hasExtras && (
-          <div className="options-box">
-            <span className="option-group-label">{getT("extra")}</span>
-            <div className="chips-container">
-              {extrasList.map(item => (
-                <button key={item.id} type="button" className={`chip ${extraIngredients.includes(item.id) ? 'active' : ''}`} onClick={() => toggleExtra(item.id)}>
-                  +{item.price.toFixed(2)} {item.name}
-                </button>
-              ))}
+          <div className="options-box" style={{ marginTop: '10px' }}>
+            {/* --- MODIF 2 : EXTRAS EN VERT --- */}
+            <span style={{ color: GOLD_BRIGHT, fontSize: '0.8rem', textTransform: 'uppercase', fontWeight: 'bold' }}>
+                {getT("extra")}
+            </span>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', margin: '8px 0 15px 0' }}>
+              {extrasList.map(item => {
+                const active = extraIngredients.includes(item.id);
+                return (
+                  <button
+                    key={item.id}
+                    onClick={() => toggleExtra(item.id)}
+                    style={{
+                        backgroundColor: active ? '#2ecc71' : 'transparent',
+                        color: active ? '#fff' : '#2ecc71',
+                        border: '1px solid #2ecc71',
+                        borderRadius: '20px',
+                        padding: '4px 10px',
+                        fontSize: '0.75rem',
+                        cursor: 'pointer',
+                        fontWeight: active ? 'bold' : 'normal',
+                        transition: 'all 0.2s'
+                    }}
+                  >
+                    +{item.price.toFixed(2)} {item.name}
+                  </button>
+                );
+              })}
             </div>
-            <span className="option-group-label">{getT("remove")}</span>
-            <div className="chips-container">
-              {removableList.map(ing => (
-                <button key={ing.id} type="button" className={`chip remove ${removedIngredients.includes(ing.id) ? 'active' : ''}`} onClick={() => toggleRemove(ing.id)}>
-                  {ing.name}
-                </button>
-              ))}
+
+            {/* --- MODIF 3 : QUITAR EN ROUGE --- */}
+            <span style={{ color: GOLD_BRIGHT, fontSize: '0.8rem', textTransform: 'uppercase', fontWeight: 'bold' }}>
+                {getT("remove")}
+            </span>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', margin: '8px 0' }}>
+              {removableList.map(ing => {
+                const active = removedIngredients.includes(ing.id);
+                return (
+                  <button
+                    key={ing.id}
+                    onClick={() => toggleRemove(ing.id)}
+                    style={{
+                        backgroundColor: active ? '#e74c3c' : 'transparent',
+                        color: active ? '#fff' : '#e74c3c',
+                        border: '1px solid #e74c3c',
+                        borderRadius: '20px',
+                        padding: '4px 10px',
+                        fontSize: '0.75rem',
+                        cursor: 'pointer',
+                        fontWeight: active ? 'bold' : 'normal',
+                        transition: 'all 0.2s'
+                    }}
+                  >
+                    {ing.name}
+                  </button>
+                );
+              })}
             </div>
           </div>
         )}
       </div>
 
-      <div className="card-footer" style={{ marginTop: 'auto', paddingBottom: '10px' }}>
-        <button className={`add-btn-gold gold-button-premium ${isAdded ? 'success' : ''}`} onClick={handleAddClick}>
-          {isAdded ? <span>{getT("ready")}</span> : (
+      <div className="card-footer" style={{ marginTop: 'auto', padding: '10px 5px' }}>
+        <button
+          className={`add-btn-gold ${isAdded ? 'success' : ''}`}
+          onClick={handleAddClick}
+          style={{
+              width: '100%',
+              padding: '12px',
+              borderRadius: '12px',
+              border: 'none',
+              backgroundColor: isAdded ? '#2ecc71' : GOLD_BRIGHT,
+              color: '#000',
+              fontWeight: '900',
+              fontSize: '1rem',
+              cursor: 'pointer',
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center'
+          }}
+        >
+          {isAdded ? (
+             <span style={{ width: '100%', textAlign: 'center' }}>{getT("ready")}</span>
+          ) : (
             <>
               <span>{getT("add")}</span>
               <span>{totalPrice}€</span>
