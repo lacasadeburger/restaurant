@@ -1000,6 +1000,8 @@ style={{ objectFit: 'contain' }}
             <img
               src={logo}
               alt="La Casa de Burger Torrevieja - Hamburguesas Gourmet y Smash Burgers"
+              width="150" // Ajoute explicitement la largeur
+              height="80"  // Ajoute explicitement la hauteur
               style={{
                 height: '80px',
                 width: 'auto',
@@ -1057,6 +1059,7 @@ style={{ objectFit: 'contain' }}
             alt="WhatsApp La Casa de Burger"
             style={{ objectFit: 'contain' }}
             decoding="async"
+            loading="lazy"
           />
         </a>
 
