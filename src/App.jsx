@@ -481,13 +481,14 @@ export default function App() {
         .promo-container {
           position: relative;
           width: 100%;
-          max-width: 800px; /* Un peu plus large pour le confort visuel */
+          max-width: 800px;
           margin: 0 auto 30px;
           border-radius: 20px;
           overflow: hidden;
           border: 2px solid #BF953F;
           background: #000;
-          height: 350px;
+          /* On ajuste la hauteur pour le ratio 600x336 */
+          height: 336px;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -497,39 +498,45 @@ export default function App() {
         .promo-img {
           width: 100%;
           height: 100%;
-          object-fit: contain; /* GARANTIT QUE L'IMAGE EST ENTIÈRE */
-          opacity: 0.75; /* Pour que l'image soit visible mais sombre pour le bouton */
-          transition: opacity 0.3s ease;
+          /* 'contain' pour ne rien couper, 'cover' si tu veux remplir tout le cadre */
+          object-fit: contain;
+          opacity: 0.75;
+          transition: 0.3s ease;
         }
 
         .promo-container:hover .promo-img {
-          opacity: 1; /* L'image s'éclaire quand on passe la souris */
+          opacity: 1;
+          transform: scale(1.03); /* Petit effet de zoom élégant au survol */
         }
 
         /* LE BOUTON SUR L'IMAGE */
         .btn-overlay {
           position: absolute;
-          bottom: 30px; /* Positionné en bas sur l'image */
+          bottom: 25px;
           left: 50%;
-          transform: translateX(-50%); /* Centrage horizontal parfait */
+          transform: translateX(-50%);
           z-index: 10;
           width: auto !important;
           min-width: 180px;
           padding: 12px 20px !important;
           font-size: 0.9rem !important;
-          pointer-events: none; /* Le clic passe à travers le bouton vers le conteneur */
+          pointer-events: none;
           box-shadow: 0 5px 20px rgba(0,0,0,0.8) !important;
+          border-radius: 50px !important; /* Bouton arrondi pour un look plus moderne */
         }
 
         @media (max-width: 768px) {
-          .promo-container { height: 250px; }
+          .promo-container {
+            height: auto;
+            aspect-ratio: 600 / 336; /* Maintient le ratio parfait sur mobile */
+            width: 92%;
+          }
           .btn-overlay {
-            bottom: 20px;
+            bottom: 15px;
             min-width: 140px;
             font-size: 0.75rem !important;
           }
         }
-        
         /* 8. ANIMATIONS */
         @keyframes liquidGold { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
         @keyframes mirrorReflection { 0% { transform: translateX(-200%) rotate(25deg); } 100% { transform: translateX(200%) rotate(25deg); } }
@@ -576,6 +583,35 @@ export default function App() {
           .promo-container { height: 250px; }
           .btn-category-overlay { font-size: 0.65rem !important; padding: 8px 3px !important; }
         }
+        /* BADGES DE PROMOTION (NUEVO / TOP) */
+      .badge-promo {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        z-index: 20;
+        padding: 5px 12px;
+        border-radius: 50px;
+        font-size: 0.7rem;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: #000;
+        background: linear-gradient(135deg, #FCF6BA, #BF953F); /* Or dégradé */
+        box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        border: 1px solid rgba(255,255,255,0.3);
+        pointer-events: none;
+      }
+
+      /* Animation discrète pour attirer l'oeil sur le badge */
+      .badge-promo {
+        animation: pulse-badge 2s infinite;
+      }
+
+      @keyframes pulse-badge {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+        100% { transform: scale(1); }
+      }
       `}</style>
 <Helmet>
 {/* 1. DYNAMIQUE : Titre et Description traduits (Indispensable) */}
@@ -881,7 +917,7 @@ export default function App() {
               alt="Bebidas"
               loading="lazy"      // On charge l'image seulement quand on arrive dessus
               width="600"         // Toujours mettre les dimensions
-              height="400"
+              height="336"
             />
             <button className="btn-overlay gold-button-premium">{T[lang]?.catDrinks || T.es.catDrinks}</button>
           </div>
@@ -915,7 +951,7 @@ export default function App() {
             alt="Desserts"
             loading="lazy"      // Indispensable ici pour le score Performance
             width="600"
-            height="400"
+            height="336"
           />
           <button className="btn-overlay gold-button-premium">{T[lang]?.catDesserts || T.es.catDesserts}</button>
         </div>
@@ -1023,7 +1059,7 @@ border: `3px solid ${GOLD_BRIGHT}`
 {loadMedia ? (
   <iframe
     width="100%"
-    height="400"
+    height="336"
     src="https://www.youtube.com/embed/qN6VZYBojLs"
     title="Video de presentación de nuestras Hamburguesas Gourmet"
     frameBorder="0"

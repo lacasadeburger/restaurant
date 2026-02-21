@@ -263,6 +263,7 @@ const data = [
   {
     id: "prod_colombiana",
     image: colombiana,
+    badge: "TOP",
     name: {
       es: "La Colombiana", en: "The Colombian", fr: "La Colombienne", no: "Den Colombianske", pl: "Kolumbijska",
       uk: "Колумбійська", ru: "Колумбийская", ar: "كولومبية", sv: "Colombianen", de: "Die Kolumbianische", ro: "Columbiana"
@@ -286,6 +287,7 @@ const data = [
   {
     id: "prod_mexicana",
     image: mexicana,
+    badge: "NUEVO",
     name: {
       es: "La Mexicana", en: "The Mexican", fr: "La Mexicaine", no: "Den Meksikanske", pl: "Meksykańska",
       uk: "Мексиканська", ru: "Мексиканская", ar: "المكسيكية", sv: "Mexikanen", de: "Die Mexikanische", ro: "Mexicana"

@@ -99,20 +99,30 @@ export default function CardMenu(props) {
       boxShadow: "0 10px 30px rgba(0,0,0,0.5)", overflow: "hidden"
     }}>
 
-      <div className="image-container">
-        <div className="price-badge-overlay">{totalPrice}€</div>
-        <img src={image} alt={stableName} className="product-img" loading="lazy" />
-      </div>
+    <div className="image-container" style={{ position: 'relative' }}>
+      {/* INSERTION DU BADGE (TOP/NUEVO) */}
+      {badge && <span className="badge-promo">{badge}</span>}
 
-      <div className="card-content" style={{ padding: '5px' }}>
-        <div className="info-box">
-          <h3 className="card-title" translate="no">
-            {stableName}
-          </h3>
-          <p className="card-description">
-            {typeof description === 'object' ? (description[lang] || description['es']) : (description || "")}
-          </p>
-        </div>
+      <div className="price-badge-overlay">{totalPrice}€</div>
+      <img
+        src={image}
+        alt={stableName}
+        className="product-img"
+        loading="lazy"
+        width="600"
+        height="336"
+      />
+    </div>
+
+    <div className="card-content" style={{ padding: '5px' }}>
+      <div className="info-box">
+        <h3 className="card-title" translate="no">
+          {stableName}
+        </h3>
+        <p className="card-description">
+          {typeof description === 'object' ? (description[lang] || description['es']) : (description || "")}
+        </p>
+      </div>
 
         {!isDrinkCard && !isPostreCard && hasExtras && (
           <div className="options-box">
