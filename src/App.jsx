@@ -624,30 +624,35 @@ export default function App() {
   }}></div>
 
   <div
-  className="wobble-badge gold-button-premium"
-  style={{
-    position: 'absolute',
-    top: '120px',
-    right: '20px',     /* Distance du bord droit */
-    left: 'auto',      /* FORCE l'annulation du centrage */
-    transform: 'none', /* Empêche un transform: translate(-50%) hérité */
-    color: '#000',
-    padding: '8px 20px',
-    borderRadius: '50px',
-    fontWeight: '950',
-    fontSize: '0.9rem',
-    zIndex: 1000,
-    border: '2px solid #000',
-    boxShadow: '0 4px 15px rgba(0,0,0,0.5)', /* Corrigé avec le S majuscule */
-    whiteSpace: 'nowrap',
-    cursor: 'pointer',
-    display: 'inline-block',
-    width: 'auto',
-    overflow: 'hidden' /* Pour emprisonner la lumière */
-  }}
->
-  🏆 #1 BURGER EN TORREVIEJA
-</div>
+    className="wobble-badge gold-button-premium"
+    style={{
+      position: 'absolute',
+      top: '120px',
+      right: '20px',     /* Distance du bord droit de l'écran */
+      left: 'auto',      /* Désactive toute poussée vers la gauche */
+
+      // ANNULATION DU CENTRAGE HÉRITÉ
+      margin: '0',
+      transform: 'none',
+
+      // STYLE
+      color: '#000',
+      padding: '8px 20px',
+      borderRadius: '50px',
+      fontWeight: '950',
+      fontSize: '0.9rem',
+      zIndex: 1000,
+      border: '2px solid #000',
+      boxShadow: '0 4px 15px rgba(0,0,0,0.5)',
+      whiteSpace: 'nowrap',
+      cursor: 'pointer',
+      display: 'inline-block',
+      width: 'auto',
+      overflow: 'hidden'
+    }}
+  >
+    🏆 #1 BURGER EN TORREVIEJA
+  </div>
 
   <div style={{ position: 'relative', zIndex: 2 }}>
     <h1 style={{
