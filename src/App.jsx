@@ -348,232 +348,235 @@ export default function App() {
   return (
     <div className="app-main-wrapper" style={{ position: 'relative', backgroundColor: '#111', color: '#fff' }}>
     <style>{`
-      /* 1. STRUCTURE & GRID - Cartes uniformes qui ne s'étirent pas */
-      html, body { max-width: 100%; overflow-x: hidden; margin: 0; padding: 0; }
-
-      .grid-cards {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(320px, 360px));
-        gap: 30px;
-        padding: 20px;
-        width: 100%;
-        max-width: 1300px;
-        margin: 0 auto;
-        justify-content: center;
-      }
-
-      /* Force les cartes à avoir une structure flexible pour aligner les boutons en bas */
-      .grid-cards > div {
-        display: flex;
-        flex-direction: column;
-        height: 100%;
-      }
-
-      /* 2. LOGO ET NAVIGATION - Avec animation inversée */
-      .logo-container-wrapper {
-        position: absolute;
-        top: 150px;
-        left: 35px;
-        z-index: 101;
-        animation: wobble-inverse 5s infinite ease-in-out; /* Plus lent et inversé */
-      }
-      .moving-header-logo { height: auto; transition: 0.3s; }
-
-      /* 3. TITRES ET DESCRIPTIONS */
-      .card-title {
-        text-align: center;
-        width: 100%;
-        margin: 15px 0 10px;
-        font-size: 1.4rem;
-        text-transform: uppercase;
-        background: linear-gradient(135deg, #BF953F 0%, #FCF6BA 45%, #B38728 55%, #FBF5B7 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        font-weight: 900;
-        letter-spacing: 1px;
-        display: block;
-      }
-
-      .card-description {
-        text-align: center;
-        color: #ccc;
-        font-size: 0.85rem;
-        margin-bottom: 20px;
-        line-height: 1.5;
-        padding: 0 15px;
-        min-height: 45px;
-      }
-
-      /* 4. BOUTONS PREMIUM & EFFETS */
-      .gold-button-premium {
-        background: linear-gradient(135deg, #BF953F, #FCF6BA, #D4AF37, #FBF5B7, #BF953F) !important;
-        background-size: 200% 200% !important;
-        animation: liquidGold 4s ease infinite !important;
-        color: #000 !important;
-        font-weight: 950 !important;
-        border: none;
-        border-radius: 12px;
-        padding: 15px;
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        cursor: pointer;
-        position: relative;
-        overflow: hidden;
-        margin-top: auto;
-      }
-
-      .gold-button-premium::after {
-        content: "";
-        position: absolute;
-        top: -50%;
-        left: -150%;
-        width: 50%;
-        height: 200%;
-        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-        transform: rotate(25deg);
-        animation: mirrorReflection 4s infinite;
-      }
-
-      /* 5. BLOC OPTIONS */
-      .options-box {
-        display: flex; flex-direction: column; align-items: center;
-        gap: 8px; margin: 15px 0; padding: 10px;
-        background: rgba(0,0,0,0.4); border-radius: 12px;
-      }
-      .chips-container { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; width: 100%; }
-      .option-group-label { font-size: 0.75rem; text-transform: uppercase; color: #BF953F; letter-spacing: 1.5px; font-weight: bold; }
-
-      /* 6. WHATSAPP & BADGE #1 (Positionnement et Tailles) */
-      .whatsapp-float {
-        position: fixed;
-        bottom: 25px;
-        right: 25px;
-        z-index: 9999;
-        transition: transform 0.3s ease;
-      }
-
-      .whatsapp-float img {
-        width: 100px;
-        height: 100px;
-        filter: drop-shadow(0 4px 15px rgba(0,0,0,0.4));
-      }
-
-      .whatsapp-float:hover {
-        transform: scale(1.1);
-      }
-
-      .wobble-badge-container {
-        position: absolute !important;
-        top: 150px !important;
-        right: 20px !important;
-        left: auto !important;
-        transform: none !important;
-        width: fit-content !important;
-        z-index: 10000 !important;
-        pointer-events: none;
-        display: flex !important;
-        justify-content: flex-end !important;
-      }
-
-      .wobble-badge.gold-button-premium {
-        pointer-events: auto;
-        display: inline-block !important;
-        width: auto !important;
-        margin: 0 !important;
-        padding: 10px 18px !important;
-        font-size: 0.8rem !important;
-        border-radius: 50px !important;
-        border: 1px solid #FCF6BA !important;
-        animation: liquidGold 4s infinite, wobble-badge 3s infinite ease-in-out !important;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.5) !important;
-        white-space: nowrap;
-        cursor: pointer;
-        text-decoration: none;
-      }
-
-      /* 7. CATEGORIES OVERLAY */
-      .promo-container {
-        position: relative;
-        width: 100%;
-        max-width: 600px;
-        margin: 0 auto 30px;
-        border-radius: 20px;
-        overflow: hidden;
-        border: 1px solid #BF953F;
-      }
-
-      /* 8. ANIMATIONS */
-      @keyframes liquidGold { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
-      @keyframes mirrorReflection { 0% { transform: translateX(-200%) rotate(25deg); } 100% { transform: translateX(200%) rotate(25deg); } }
-
-      /* Animation Badge (Commence à Droite) */
-      @keyframes wobble-badge { 0% { transform: rotate(4deg); } 50% { transform: rotate(-4deg) scale(1.05); } 100% { transform: rotate(4deg); } }
-
-      /* Animation Logo (Commence à Gauche - Sens Inverse) */
-      @keyframes wobble-inverse { 0% { transform: rotate(-4deg); } 50% { transform: rotate(4deg) scale(1.02); } 100% { transform: rotate(-4deg); } }
-
-      /* 9. IMAGES DES PRODUITS */
-      .card-menu-image-container {
-        width: 100%;
-        height: 230px;
-        background: #000;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        overflow: hidden;
-        border-radius: 12px 12px 0 0;
-      }
-
-      .card-menu-image-container img {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-        transition: transform 0.3s ease;
-        padding: 5px;
-      }
-
-      /* 10. MAP CONTAINER (Optimisé) */
-      .map-container {
-        margin: 30px auto;
-        width: 90%;
-        max-width: 1100px;
-        height: 350px;
-        background-color: #050505;
-        border-radius: 15px;
-        overflow: hidden;
-        border: 2px solid #BF953F;
-        box-shadow: 0 8px 25px rgba(0,0,0,0.5);
-      }
-
-      /* RESPONSIVE MOBILE */
-      @media (max-width: 768px) {
-        .logo-container-wrapper { top: 220px !important; left: 15px !important; }
-        .moving-header-logo { width: 110px !important; height: auto !important; }
+        /* 1. STRUCTURE & GRID */
+        html, body { max-width: 100%; overflow-x: hidden; margin: 0; padding: 0; }
 
         .grid-cards {
-          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-          gap: 20px;
-          padding: 10px;
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(320px, 360px));
+          gap: 30px;
+          padding: 20px;
+          width: 100%;
+          max-width: 1300px;
+          margin: 0 auto;
+          justify-content: center;
         }
 
-        .card-menu-image-container { height: 200px; }
+        .grid-cards > div {
+          display: flex;
+          flex-direction: column;
+          height: 100%;
+        }
 
-        .whatsapp-float { bottom: 20px; right: 20px; }
-        .whatsapp-float img { width: 70px; height: 70px; }
+        /* 2. LOGO ET NAVIGATION */
+        .logo-container-wrapper {
+          position: absolute;
+          top: 150px;
+          left: 35px;
+          z-index: 101;
+          animation: wobble-inverse 5s infinite ease-in-out;
+        }
+        .moving-header-logo { height: auto; transition: 0.3s; }
+
+        /* 3. TITRES ET DESCRIPTIONS */
+        .card-title {
+          text-align: center;
+          width: 100%;
+          margin: 15px 0 10px;
+          font-size: 1.4rem;
+          text-transform: uppercase;
+          background: linear-gradient(135deg, #BF953F 0%, #FCF6BA 45%, #B38728 55%, #FBF5B7 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          font-weight: 900;
+          letter-spacing: 1px;
+          display: block;
+        }
+
+        .card-description {
+          text-align: center;
+          color: #ccc;
+          font-size: 0.85rem;
+          margin-bottom: 20px;
+          line-height: 1.5;
+          padding: 0 15px;
+          min-height: 45px;
+        }
+
+        /* 4. BOUTONS PREMIUM & EFFETS */
+        .gold-button-premium {
+          background: linear-gradient(135deg, #BF953F, #FCF6BA, #D4AF37, #FBF5B7, #BF953F) !important;
+          background-size: 200% 200% !important;
+          animation: liquidGold 4s ease infinite !important;
+          color: #000 !important;
+          font-weight: 950 !important;
+          border: none;
+          border-radius: 12px;
+          padding: 15px;
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          cursor: pointer;
+          position: relative;
+          overflow: hidden;
+          margin-top: auto;
+        }
+
+        .gold-button-premium::after {
+          content: "";
+          position: absolute;
+          top: -50%;
+          left: -150%;
+          width: 50%;
+          height: 200%;
+          background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+          transform: rotate(25deg);
+          animation: mirrorReflection 4s infinite;
+        }
+
+        /* 5. BLOC OPTIONS */
+        .options-box {
+          display: flex; flex-direction: column; align-items: center;
+          gap: 8px; margin: 15px 0; padding: 10px;
+          background: rgba(0,0,0,0.4); border-radius: 12px;
+        }
+        .chips-container { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; width: 100%; }
+        .option-group-label { font-size: 0.75rem; text-transform: uppercase; color: #BF953F; letter-spacing: 1.5px; font-weight: bold; }
+
+        /* 6. WHATSAPP & BADGE #1 */
+        .whatsapp-float {
+          position: fixed;
+          bottom: 25px;
+          right: 25px;
+          z-index: 9999;
+          transition: transform 0.3s ease;
+        }
+        .whatsapp-float img { width: 100px; height: 100px; filter: drop-shadow(0 4px 15px rgba(0,0,0,0.4)); }
+        .whatsapp-float:hover { transform: scale(1.1); }
 
         .wobble-badge-container {
-          top: 100px !important;
-          right: 10px !important;
-          left: auto !important;
+          position: absolute !important;
+          top: 150px !important;
+          right: 20px !important;
+          z-index: 10000 !important;
+          pointer-events: none;
+          display: flex !important;
+          justify-content: flex-end !important;
         }
 
-        .map-container {
-          height: 300px;
-          margin: 20px auto;
+        .wobble-badge.gold-button-premium {
+          pointer-events: auto;
+          display: inline-block !important;
+          width: auto !important;
+          padding: 10px 18px !important;
+          font-size: 0.8rem !important;
+          border-radius: 50px !important;
+          border: 1px solid #FCF6BA !important;
+          animation: liquidGold 4s infinite, wobble-badge 3s infinite ease-in-out !important;
+          box-shadow: 0 4px 15px rgba(0,0,0,0.5) !important;
+          white-space: nowrap;
         }
-      }
-    `}</style>
+
+        /* 7. CATEGORIES OVERLAY (POUR BURGERS, BEBIDAS, POSTRES) */
+        .promo-container {
+          position: relative;
+          width: 100%;
+          max-width: 800px; /* Un peu plus large pour le confort visuel */
+          margin: 0 auto 30px;
+          border-radius: 20px;
+          overflow: hidden;
+          border: 2px solid #BF953F;
+          background: #000;
+          height: 350px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+        }
+
+        .promo-img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain; /* GARANTIT QUE L'IMAGE EST ENTIÈRE */
+          opacity: 0.75; /* Pour que l'image soit visible mais sombre pour le bouton */
+          transition: opacity 0.3s ease;
+        }
+
+        .promo-container:hover .promo-img {
+          opacity: 1; /* L'image s'éclaire quand on passe la souris */
+        }
+
+        /* LE BOUTON SUR L'IMAGE */
+        .btn-overlay {
+          position: absolute;
+          bottom: 30px; /* Positionné en bas sur l'image */
+          left: 50%;
+          transform: translateX(-50%); /* Centrage horizontal parfait */
+          z-index: 10;
+          width: auto !important;
+          min-width: 180px;
+          padding: 12px 20px !important;
+          font-size: 0.9rem !important;
+          pointer-events: none; /* Le clic passe à travers le bouton vers le conteneur */
+          box-shadow: 0 5px 20px rgba(0,0,0,0.8) !important;
+        }
+
+        @media (max-width: 768px) {
+          .promo-container { height: 250px; }
+          .btn-overlay {
+            bottom: 20px;
+            min-width: 140px;
+            font-size: 0.75rem !important;
+          }
+        }
+        
+        /* 8. ANIMATIONS */
+        @keyframes liquidGold { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        @keyframes mirrorReflection { 0% { transform: translateX(-200%) rotate(25deg); } 100% { transform: translateX(200%) rotate(25deg); } }
+        @keyframes wobble-badge { 0% { transform: rotate(4deg); } 50% { transform: rotate(-4deg) scale(1.05); } 100% { transform: rotate(4deg); } }
+        @keyframes wobble-inverse { 0% { transform: rotate(-4deg); } 50% { transform: rotate(4deg) scale(1.02); } 100% { transform: rotate(-4deg); } }
+
+        /* 9. IMAGES DES PRODUITS */
+        .card-menu-image-container {
+          width: 100%;
+          height: 230px;
+          background: #000;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          overflow: hidden;
+          border-radius: 12px 12px 0 0;
+        }
+        .card-menu-image-container img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+          padding: 5px;
+        }
+
+        /* 10. MAP CONTAINER */
+        .map-container {
+          margin: 30px auto;
+          width: 90%;
+          max-width: 1100px;
+          height: 350px;
+          background-color: #050505;
+          border-radius: 15px;
+          overflow: hidden;
+          border: 2px solid #BF953F;
+          box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+        }
+
+        /* RESPONSIVE MOBILE */
+        @media (max-width: 768px) {
+          .logo-container-wrapper { top: 220px !important; left: 15px !important; }
+          .moving-header-logo { width: 110px !important; }
+          .grid-cards { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+          .whatsapp-float img { width: 70px; height: 70px; }
+          .promo-container { height: 250px; }
+          .btn-category-overlay { font-size: 0.65rem !important; padding: 8px 3px !important; }
+        }
+      `}</style>
 <Helmet>
 {/* 1. DYNAMIQUE : Titre et Description traduits (Indispensable) */}
 <title>{T[lang]?.seoTitle || T.es.seoTitle}</title>
