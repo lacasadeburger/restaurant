@@ -343,6 +343,7 @@ export default function App() {
 
   const GOLD_BRIGHT = "#FFD700";
   const GOLD_GRADIENT = "linear-gradient(135deg, #BF953F 0%, #FCF6BA 45%, #B38728 55%, #FBF5B7 100%)";
+  const GOLD_SHADOW = "0 4px 15px rgba(255, 215, 0, 0.3)";
 
   return (
     <div className="app-main-wrapper" style={{ position: 'relative', backgroundColor: '#111', color: '#fff' }}>
@@ -458,13 +459,14 @@ export default function App() {
   />
 </div>
 <Nav
-  scrollToOrder={scrollToOrder}
+  scrollToOrder={() => scrollToId('order')}
   cartLength={cart.length}
   totalPrice={totalPrice}
   lang={lang}
-  setLang={setLang} // <--- AJOUTE ÇA, sinon cliquer sur les drapeaux ne fera rien !
+  setLang={setLang}
   logo={logo}
 />
+
 <header style={{
 padding: '85px 20px 80px',
 textAlign: 'center',
@@ -831,15 +833,15 @@ style={{
 }}>
   {loadMedia ? (
     <iframe
-      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3141.258!2d-0.6807478!3d37.9811364!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd63aa360f15f917%3A0x88f65fbd84c2f7fe!2sLa%20Casa%20de%20Burger!5e0!3m2!1sfr!2ses!4v1700000000000!5m2!1sfr!2ses"
-      width="100%"
-      height="350"
-      style={{ border: 0, display: 'block' }}
-      allowFullScreen=""
-      loading="lazy"
-      referrerPolicy="no-referrer-when-downgrade"
-      title="Mapa de ubicación"
-    ></iframe>
+    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12543.045437885062!2d-0.6833481!3d37.9827011!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd63aa390231535d%3A0xc3c63102c9162985!2sLa%20Casa%20de%20Burger!5e0!3m2!1ses!2ses!4v1708470000000!5m2!1ses!2ses"
+    width="100%"
+    height="350"
+    style={{ border: 0, display: 'block' }}
+    allowFullScreen=""
+    loading="lazy"
+    referrerPolicy="no-referrer-when-downgrade"
+    title="Mapa de ubicación"
+  ></iframe>
   ) : (
     <div style={{
       height: '100%',
