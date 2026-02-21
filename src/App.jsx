@@ -269,14 +269,6 @@ export default function App() {
       const code = browserLang.substring(0, 2).toLowerCase();
       setLang(T[code] ? code : 'es');
     }
-
-    // --- ICI ON AJOUTE LE TIMER SANS CASSER LE RESTE ---
-    // On attend 2.5 secondes avant de charger Maps et YouTube
-    const timer = setTimeout(() => {
-      setLoadMedia(true);
-    }, 3500);
-
-    return () => clearTimeout(timer); // Nettoyage du timer
   }, []);
 
   // --- LOGIC: CALCUL DU PRIX TOTAL (CONSERVÉ) ---
