@@ -97,29 +97,29 @@ export default function CardMenu(props) {
     <div className="card-item" style={{
       backgroundImage: `url(${bgCard})`, backgroundSize: "cover", backgroundPosition: "center",
       borderRadius: "20px", display: "flex", flexDirection: "column", minHeight: "350px",
-      position: "relative", padding: "10px", border: `1px solid ${GOLD_BRIGHT}33`,
+      position: "relative", padding: "10px", border: `1px solid ${GOLD_BRIGHT}44`,
       boxShadow: "0 10px 30px rgba(0,0,0,0.5)", overflow: "hidden"
     }}>
 
       <div className="image-container" style={{ position: 'relative', width: '100%' }}>
         {badge && <span className="badge-promo" style={{ zIndex: 11 }}>{badge}</span>}
 
-        {/* PRIX EN HAUT À DROITE (OR) */}
+        {/* PRIX EN HAUT À DROITE (OR) - FORCÉ */}
         <div style={{
             position: 'absolute',
             top: '10px',
             right: '10px',
-            backgroundColor: 'rgba(0,0,0,0.8)',
+            backgroundColor: 'rgba(0,0,0,0.85)',
             color: GOLD_BRIGHT,
             padding: '5px 12px',
             borderRadius: '12px',
-            fontWeight: '900',
+            fontWeight: '950',
             fontSize: '1.2rem',
             border: `2px solid ${GOLD_BRIGHT}`,
-            zIndex: 12,
-            boxShadow: `0 0 10px ${GOLD_BRIGHT}44`
+            zIndex: 100,
+            boxShadow: `0 0 10px rgba(0,0,0,0.8)`
         }}>
-            {totalPrice}€
+            <span style={{ color: GOLD_BRIGHT }}>{totalPrice}€</span>
         </div>
 
         <img
@@ -133,9 +133,9 @@ export default function CardMenu(props) {
 
       <div className="card-content" style={{ padding: '10px 5px' }}>
         <div className="info-box">
-          <h3 className="card-title" style={{ color: '#fff', margin: '5px 0', fontSize: '1.3rem', fontWeight: '800' }} translate="no">
-            {stableName}
-          </h3>
+        <h3 className="card-title" translate="no">
+{stableName}
+</h3>
           <p className="card-description" style={{ color: '#ccc', fontSize: '0.9rem', lineHeight: '1.2' }}>
             {typeof description === 'object' ? (description[lang] || description['es']) : (description || "")}
           </p>
@@ -143,7 +143,6 @@ export default function CardMenu(props) {
 
         {!isDrinkCard && !isPostreCard && hasExtras && (
           <div className="options-box" style={{ marginTop: '10px' }}>
-            {/* SECTION EXTRAS (VERT) */}
             <span style={{ color: GOLD_BRIGHT, fontSize: '0.8rem', textTransform: 'uppercase', fontWeight: 'bold' }}>
                 {getT("extra")}
             </span>
@@ -171,7 +170,6 @@ export default function CardMenu(props) {
               })}
             </div>
 
-            {/* SECTION QUITAR (ROUGE) */}
             <span style={{ color: GOLD_BRIGHT, fontSize: '0.8rem', textTransform: 'uppercase', fontWeight: 'bold' }}>
                 {getT("remove")}
             </span>
@@ -203,42 +201,52 @@ export default function CardMenu(props) {
       </div>
 
       <div className="card-footer" style={{ marginTop: 'auto', padding: '10px 5px' }}>
-        {/* LE BOUTON AJOUTER EN OR */}
-        <button
-          onClick={handleAddClick}
-          style={{
-              width: '100%',
-              padding: '14px',
-              borderRadius: '12px',
-              border: `2px solid ${GOLD_BRIGHT}`,
-              backgroundColor: isAdded ? '#2ecc71' : GOLD_BRIGHT,
-              color: isAdded ? '#fff' : '#000',
-              fontWeight: '950',
-              fontSize: '1.1rem',
-              cursor: 'pointer',
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              boxShadow: isAdded ? 'none' : `0 4px 15px ${GOLD_BRIGHT}44`,
-              transition: 'transform 0.2s, background-color 0.2s',
-              textTransform: 'uppercase'
-          }}
-          onMouseDown={(e) => e.currentTarget.style.transform = 'scale(0.95)'}
-          onMouseUp={(e) => e.currentTarget.style.transform = 'scale(1)'}
-        >
-          {isAdded ? (
-             <span style={{ width: '100%', textAlign: 'center' }}>{getT("ready")}</span>
-          ) : (
-            <>
-              <span>{getT("add")}</span>
-              <span style={{
-                backgroundColor: 'rgba(0,0,0,0.1)',
-                padding: '2px 8px',
-                borderRadius: '6px'
-              }}>{totalPrice}€</span>
-            </>
-          )}
-        </button>
+      <button
+onClick={handleAddClick}
+style={{
+    width: '100%',
+    padding: '14px',
+    borderRadius: '12px',
+    // ON FORCE LE FOND AVEC !IMPORTANT POUR ÉCRASER APP.JSX
+    background: isAdded ? '#2ecc71 !important' : `${GOLD_BRIGHT} !important`,
+    backgroundColor: isAdded ? '#2ecc71 !important' : `${GOLD_BRIGHT} !important`,
+    color: isAdded ? '#fff !important' : '#000 !important',
+    border: `2px solid ${GOLD_BRIGHT}`,
+    fontWeight: '950',
+    fontSize: '1.1rem',
+    cursor: 'pointer',
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    boxShadow: isAdded ? 'none' : `0 4px 15px rgba(212, 175, 55, 0.4)`,
+    textTransform: 'uppercase',
+    // Neutralisation totale des styles mobiles
+    appearance: 'none !important',
+    WebkitAppearance: 'none !important',
+    MozAppearance: 'none !important'
+}}
+>
+{isAdded ? (
+    <span style={{ width: '100%', textAlign: 'center', color: '#fff !important' }}>
+      {getT("ready")}
+    </span>
+) : (
+  <>
+    <span style={{ color: '#000 !important', fontWeight: '950' }}>
+      {getT("add")}
+    </span>
+    <span style={{
+      backgroundColor: 'rgba(0,0,0,0.15)',
+      padding: '2px 8px',
+      borderRadius: '6px',
+      color: '#000 !important',
+      fontWeight: '950'
+    }}>
+      {totalPrice}€
+    </span>
+  </>
+)}
+</button>
       </div>
     </div>
   );
