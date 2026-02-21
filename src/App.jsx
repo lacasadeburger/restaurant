@@ -375,6 +375,34 @@ export default function App() {
   gap: 20px;
   padding: 20px;
 }
+/* La grille qui range les cartes 3 par 3 ou 2 par 2 */
+  .grid-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  /* Pour que les images des burgers ne soient pas géantes */
+  .grid-cards img {
+    width: 100%;
+    height: 200px; /* Comme avant : une hauteur fixe pour l'harmonie */
+    object-fit: cover;
+    border-radius: 15px 15px 0 0;
+  }
+
+  /* Style des cartes pour bien voir les options Extras/Quitar */
+  .menu-card {
+    background: #1a1a1a;
+    border-radius: 15px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Aligne tous les boutons en bas */
+  }
 .promo-container {
   width: 100%;
   max-width: 600px; /* Limite la largeur du bloc promo */
