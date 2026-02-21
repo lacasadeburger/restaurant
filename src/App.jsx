@@ -369,7 +369,7 @@ export default function App() {
     }
     .moving-header-logo { height: 110px; width: auto; transition: 0.3s; }
 
-    /* 3. TITRES ET DESCRIPTIONS (En OR et Centrés) */
+    /* 3. TITRES ET DESCRIPTIONS */
     .card-title {
       text-align: center;
       width: 100%;
@@ -393,7 +393,7 @@ export default function App() {
       padding: 0 10px;
     }
 
-    /* 4. BOUTONS PREMIUM & EFFETS (Reflet Or) */
+    /* 4. BOUTONS PREMIUM & EFFETS */
     .gold-button-premium {
       background: linear-gradient(135deg, #BF953F, #FCF6BA, #D4AF37, #FBF5B7, #BF953F) !important;
       background-size: 200% 200% !important;
@@ -411,7 +411,6 @@ export default function App() {
       overflow: hidden;
     }
 
-    /* L'effet de lumière qui traverse le bouton */
     .gold-button-premium::after {
       content: "";
       position: absolute;
@@ -431,7 +430,7 @@ export default function App() {
       transition: all 0.3s ease;
     }
 
-    /* 5. BLOC OPTIONS (Extras/Quitar centrés) */
+    /* 5. BLOC OPTIONS */
     .options-box {
       display: flex; flex-direction: column; align-items: center;
       gap: 8px; margin: 15px 0; padding: 10px;
@@ -448,18 +447,18 @@ export default function App() {
     .chip.active { background: linear-gradient(135deg, #BF953F 0%, #B38728 100%) !important; color: #000 !important; border-color: #FCF6BA !important; font-weight: bold; }
     .chip.remove.active { background: #ff4757 !important; color: white !important; border-color: #ff6b81 !important; }
 
-    /* 6. WHATSAPP & BADGE (Version Absolute pour rester en haut) */
+    /* 6. WHATSAPP & BADGE (CORRIGÉ POUR ÊTRE À DROITE) */
     .whatsapp-float { position: fixed; bottom: 25px; right: 25px; z-index: 9999; }
     .whatsapp-float img { width: 65px; height: 65px; }
 
     .wobble-badge-container {
-      /* Changement ici : absolute au lieu de fixed */
       position: absolute !important;
       top: 150px !important;
       right: 20px !important;
-      left: auto !important;
+      left: auto !important; /* Force l'annulation du centrage */
+      transform: none !important; /* Annule tout décalage hérité */
       width: fit-content !important;
-      z-index: 1000 !important;
+      z-index: 10000 !important;
       pointer-events: none;
       display: flex !important;
       justify-content: flex-end !important;
@@ -476,6 +475,7 @@ export default function App() {
       border: 1px solid #FCF6BA !important;
       overflow: hidden !important;
       position: relative !important;
+      /* Utilisation d'une animation qui ne réinitialise pas la position X */
       animation: liquidGold 4s infinite, wobble-badge 3s infinite ease-in-out !important;
       box-shadow: 0 4px 15px rgba(0,0,0,0.5) !important;
       white-space: nowrap;
@@ -483,7 +483,7 @@ export default function App() {
       text-decoration: none;
     }
 
-    /* 7. CATEGORIES OVERLAY (Positionnement sur l'image) */
+    /* 7. CATEGORIES OVERLAY */
     .promo-container {
       position: relative;
       width: 100%;
@@ -513,16 +513,20 @@ export default function App() {
       100% { transform: translateX(200%) rotate(25deg); }
     }
     @keyframes wobble-badge {
-      0% { transform: rotate(5deg) scale(1); }
-      50% { transform: rotate(-5deg) scale(1.05); }
-      100% { transform: rotate(5deg) scale(1); }
+      0% { transform: rotate(4deg); }
+      50% { transform: rotate(-4deg) scale(1.05); }
+      100% { transform: rotate(4deg); }
     }
 
     /* RESPONSIVE MOBILE */
     @media (max-width: 768px) {
       .logo-container-wrapper { top: 220px !important; left: 15px !important; }
       .moving-header-logo { height: 60px !important; }
-      .wobble-badge-container { top: 100px; right: 10px; }
+      .wobble-badge-container {
+        top: 100px !important;
+        right: 10px !important;
+        left: auto !important;
+      }
     }
   `}</style>
 <Helmet>
@@ -614,46 +618,23 @@ export default function App() {
     }}
   />
 
-  <div style={{
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    width: '100%',
-    height: '100%',
-    background: 'linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.5))',
-    zIndex: 1
-  }}></div>
+  {/* Overlay dégradé de l'image (ne pas toucher) */}
+<div style={{
+  position: 'absolute',
+  top: 0,
+  left: 0,
+  width: '100%',
+  height: '100%',
+  background: 'linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.5))',
+  zIndex: 1
+}}></div>
 
-  <div
-    className="wobble-badge gold-button-premium"
-    style={{
-      position: 'absolute',
-      top: '120px',
-      right: '20px',     /* Distance du bord droit de l'écran */
-      left: 'auto',      /* Désactive toute poussée vers la gauche */
-
-      // ANNULATION DU CENTRAGE HÉRITÉ
-      margin: '0',
-      transform: 'none',
-
-      // STYLE
-      color: '#000',
-      padding: '8px 20px',
-      borderRadius: '50px',
-      fontWeight: '950',
-      fontSize: '0.9rem',
-      zIndex: 1000,
-      border: '2px solid #000',
-      boxShadow: '0 4px 15px rgba(0,0,0,0.5)',
-      whiteSpace: 'nowrap',
-      cursor: 'pointer',
-      display: 'inline-block',
-      width: 'auto',
-      overflow: 'hidden'
-    }}
-  >
+{/* CORRECTION : On utilise le container pour forcer la position à droite */}
+<div className="wobble-badge-container">
+  <div className="wobble-badge gold-button-premium">
     🏆 #1 BURGER EN TORREVIEJA
   </div>
+</div>
 
   <div style={{ position: 'relative', zIndex: 2 }}>
     <h1 style={{
