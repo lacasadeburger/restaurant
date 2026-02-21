@@ -348,105 +348,125 @@ export default function App() {
   return (
     <div className="app-main-wrapper" style={{ position: 'relative', backgroundColor: '#111', color: '#fff' }}>
     <style>{`
-  /* 1. STRUCTURE DE BASE (Optimisée) */
+  /* 1. STRUCTURE DE BASE */
   html, body { max-width: 100%; overflow-x: hidden; margin: 0; padding: 0; }
   .app-main-wrapper { max-width: 100vw; overflow-x: hidden; box-sizing: border-box; }
   * { box-sizing: border-box; }
 
-  /* 2. ANIMATIONS UNIQUES (Corrigées pour PageSpeed) */
+  /* 2. ANIMATIONS (Optimisées PageSpeed) */
+  @keyframes liquidGold {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
 
-/* OK : background-position ne change pas la taille du bloc */
-@keyframes liquidGold {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
+  @keyframes mirrorReflection {
+    0% { transform: translateX(-200%); opacity: 0; }
+    10% { opacity: 1; }
+    35% { transform: translateX(200%); opacity: 1; }
+    100% { transform: translateX(200%); opacity: 0; }
+  }
 
-/* ⚠️ CORRIGÉ : On utilise transform: translateX au lieu de left */
-@keyframes mirrorReflection {
-  0% { transform: translateX(-200%); opacity: 0; }
-  10% { opacity: 1; }
-  35% { transform: translateX(200%); opacity: 1; }
-  100% { transform: translateX(200%); opacity: 0; }
-}
-.grid-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Force le mode "grille" */
-  gap: 20px;
-  padding: 20px;
-}
-/* La grille qui range les cartes 3 par 3 ou 2 par 2 */
+  @keyframes wobble-badge {
+    0% { transform: rotate(8deg) scale(1.1); }
+    50% { transform: rotate(-2deg) scale(1.15); }
+    100% { transform: rotate(8deg) scale(1.1); }
+  }
+
+  /* 3. GRILLE ET CARTES (Restauration du design d'origine) */
   .grid-cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+    gap: 25px;
     padding: 20px;
     width: 100%;
-    max-width: 1200px;
+    max-width: 1300px;
     margin: 0 auto;
   }
 
-  /* Pour que les images des burgers ne soient pas géantes */
-  .grid-cards img {
+  .grid-cards img.product-img {
     width: 100%;
-    height: 200px; /* Comme avant : une hauteur fixe pour l'harmonie */
+    height: 220px;
     object-fit: cover;
     border-radius: 15px 15px 0 0;
+    display: block;
   }
 
-  /* Style des cartes pour bien voir les options Extras/Quitar */
-  .menu-card {
-    background: #1a1a1a;
-    border-radius: 15px;
-    overflow: hidden;
+  /* 4. OPTIONS EXTRAS ET QUITAR (Couleurs dynamiques) */
+  .options-box {
     display: flex;
     flex-direction: column;
-    height: 100%; /* Aligne tous les boutons en bas */
-  }
-.promo-container {
-  width: 100%;
-  max-width: 600px; /* Limite la largeur du bloc promo */
-  margin: 0 auto;
-  border-radius: 20px;
-  overflow: hidden;
-  position: relative;
-}
-
-.promo-img {
-  width: 100%;
-  height: auto;
-  aspect-ratio: 16 / 9; /* Garde une proportion propre */
-  object-fit: cover;
-  display: block;
-}
-/* OK : transform ne provoque pas de décalage de mise en page */
-@keyframes wobble-badge {
-  0% { transform: rotate(8deg) scale(1.1); }
-  50% { transform: rotate(-2deg) scale(1.15); }
-  100% { transform: rotate(8deg) scale(1.1); }
-}
-  /* 3. LOGO (On enlève l'animation automatique pour le score CLS) */
-  .logo-container-wrapper { position: absolute; top: 205px; left: 35px; z-index: 99; }
-  .moving-header-logo {
-    height: 100px; width: auto; cursor: pointer;
-    transition: filter 0.3s, transform 0.3s;
-  }
-  .moving-header-logo:hover {
-    filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.7));
-    transform: scale(1.1);
-    animation: none; /* On ne lance l'animation que si tu le souhaites vraiment */
+    gap: 8px;
+    margin: 15px 0;
+    padding: 10px;
+    background: rgba(0,0,0,0.4);
+    border-radius: 12px;
   }
 
-  /* 4. BOUTONS ET BADGES GOLD */
+  .option-group-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: #BF953F;
+    letter-spacing: 1px;
+    font-weight: bold;
+    margin-bottom: 2px;
+  }
+
+  .chips-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 8px;
+  }
+
+  .chip {
+    padding: 7px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    background: #222;
+    color: #bbb;
+    border: 1px solid #444;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  /* État Actif pour EXTRAS (Gold Liquid) */
+  .chip.active {
+    background: linear-gradient(135deg, #BF953F 0%, #B38728 100%);
+    color: #000;
+    border-color: #FCF6BA;
+    font-weight: bold;
+    box-shadow: 0 0 10px rgba(191, 149, 63, 0.5);
+  }
+
+  /* État Actif pour QUITAR (Rouge) */
+  .chip.remove.active {
+    background: #ff4757;
+    color: white;
+    border-color: #ff6b81;
+    box-shadow: 0 0 10px rgba(255, 71, 87, 0.5);
+  }
+
+  /* 5. BOUTONS PREMIUM (Gold Liquid) */
   .gold-button-premium {
     background: linear-gradient(135deg, #BF953F, #FCF6BA, #D4AF37, #FBF5B7, #BF953F) !important;
     background-size: 200% 200% !important;
     animation: liquidGold 4s ease infinite !important;
-    position: relative; overflow: hidden; color: #000 !important;
-    font-weight: 950 !important; text-transform: uppercase;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3) !important;
-    transition: 0.3s;
+    position: relative;
+    overflow: hidden;
+    color: #000 !important;
+    font-weight: 950 !important;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 12px;
+    padding: 15px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
   }
+
   .gold-button-premium::after {
     content: ""; position: absolute; top: -50%; left: -150%; width: 45%; height: 200%;
     background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
@@ -454,25 +474,31 @@ export default function App() {
     animation: mirrorReflection 5s infinite;
   }
 
-  .wobble-badge.gold-button-premium {
-    display: inline-block;
-    animation: liquidGold 4s infinite, wobble-badge 3s infinite ease-in-out !important;
-    font-size: 0.7rem !important; padding: 6px 12px !important;
+  .gold-button-premium.success {
+    background: #2ed573 !important;
+    color: white !important;
+    animation: none !important;
   }
 
-  /* 5. RESPONSIVE QUICK FIX */
+  /* 6. PROMO & LOGO */
+  .promo-container {
+    width: 100%; max-width: 600px; margin: 0 auto 30px;
+    border-radius: 20px; overflow: hidden; position: relative;
+    border: 1px solid #BF953F;
+  }
+
+  .logo-container-wrapper { position: absolute; top: 205px; left: 35px; z-index: 99; }
+  .moving-header-logo { height: 100px; width: auto; transition: 0.3s; }
+
+  /* 7. RESPONSIVE */
   @media (max-width: 768px) {
     .logo-container-wrapper { top: 225px !important; left: 10px !important; }
     .moving-header-logo { height: 55px !important; }
-    .whatsapp-float { width: 70px; height: 70px; bottom: 20px; right: 15px; }
+    .whatsapp-float img { width: 70px; height: 70px; }
   }
 
-  /* WHATSAPP CLEAN */
-  .whatsapp-float { position: fixed; bottom: 25px; right: 25px; z-index: 10001; background: transparent; border: none; }
-
-  .floating-close {
-  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
-}
+  .whatsapp-float { position: fixed; bottom: 25px; right: 25px; z-index: 10001; }
+  .floating-close { transition: all 0.3s ease-in-out; }
 `}</style>
 
 <Helmet>
