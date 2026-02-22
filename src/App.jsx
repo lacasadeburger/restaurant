@@ -726,13 +726,20 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
   zIndex: 1
 }}></div>
 
-{/* CORRECTION : On force le container à DROITE uniquement pour ce badge de prestige */}
+{/* CORRECTION : On force le container à DROITE et on limite sa largeur */}
 <div className="wobble-badge-container" style={{
   left: 'auto',
   right: '20px',
-  top: '120px' /* Ajuste cette valeur pour le descendre ou le monter */
+  top: '120px',
+  width: 'fit-content',    /* Empêche le container de s'étaler */
+  display: 'block'         /* Assure un comportement propre */
 }}>
-  <div className="wobble-badge gold-button-premium">
+  <div className="wobble-badge gold-button-premium" style={{
+    width: 'fit-content',  /* Le badge ne prend que la place de son texte */
+    whiteSpace: 'nowrap',  /* Évite que le texte saute à la ligne */
+    padding: '8px 20px',   /* Lui donne une forme de pilule élégante */
+    fontSize: '0.9rem'     /* Taille "mignonne" et pro */
+  }}>
     🏆 #1 BURGER EN TORREVIEJA
   </div>
 </div>
