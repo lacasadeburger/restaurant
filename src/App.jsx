@@ -713,7 +713,6 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
     🏆 #1 BURGER EN TORREVIEJA
   </div>
 </div>
-
   <div style={{ position: 'relative', zIndex: 2 }}>
     <h1 style={{
       fontSize: 'clamp(2rem, 10vw, 3.5rem)',
@@ -1161,6 +1160,7 @@ style={{ objectFit: 'contain' }}
 />
 </a>
 </div>
+</div>
 
         {/* BLOC SEO MULTILINGUE (11 LANGUES) */}
         <div style={{ maxWidth: '1100px', margin: '0 auto 100px', padding: '0 20px' }}>
@@ -1247,31 +1247,30 @@ style={{ objectFit: 'contain' }}
             <strong style={{ color: '#fff' }}>The Artisan Burger Experience</strong>
           </address>
         </footer>
-
         {/* BOUTON WHATSAPP */}
-        <a
-          href="https://wa.me/34602597210"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="whatsapp-float"
-          aria-label={lang === 'es' ? "Hacer pedido por WhatsApp" : "Order via WhatsApp"}
-        >
-          <img
-            src="/wha2026.webp"
-            width="100"
-            height="100"
-            alt="WhatsApp La Casa de Burger"
-            style={{ objectFit: 'contain' }}
-            decoding="async"
-            loading="lazy"
-          />
-        </a>
-        {/* BOUTON ETAPE SUIVANTE */}
+                <a
+                  href="https://wa.me/34602597210"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="whatsapp-float"
+                  aria-label={lang === 'es' ? "Hacer pedido por WhatsApp" : "Order via WhatsApp"}
+                >
+                  <img
+                    src={whatsappIcon} // Utilisation de la variable importée
+                    width="100"
+                    height="100"
+                    alt="WhatsApp La Casa de Burger"
+                    style={{ objectFit: 'contain' }}
+                    decoding="async"
+                    loading="lazy"
+                  />
+                </a>
+
+                {/* BOUTON ETAPE SUIVANTE */}
                 {(showCardBurger || showCardDrink || showCardPostres) && (
                   <button
                     className="floating-close"
                     onClick={handleNextStep}
-                    aria-live="polite"
                     style={{
                       position: 'fixed',
                       bottom: '95px',
@@ -1284,7 +1283,6 @@ style={{ objectFit: 'contain' }}
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      contain: 'layout',
                       borderRadius: '12px',
                       fontWeight: '950',
                       zIndex: 10000,
@@ -1295,14 +1293,13 @@ style={{ objectFit: 'contain' }}
                       fontSize: '0.9rem'
                     }}
                   >
-                    <span style={{ textAlign: 'center' }}>
+                    <span>
                       {showCardBurger && (lang === 'en' ? 'NEXT: DRINKS ➔' : 'SIGUIENTE: BEBIDAS ➔')}
                       {showCardDrink && (lang === 'en' ? 'NEXT: DESSERTS ➔' : 'SIGUIENTE: POSTRES ➔')}
                       {showCardPostres && (lang === 'en' ? 'VIEW ORDER ➔' : 'VER MI PEDIDO ➔')}
-                      </span>
-                      </button>
-                    )}
-          </div>
-      </div>
-        ); // Fermeture du return (JSX)
-    } // Fermeture de la fonction App
+                    </span>
+                  </button>
+                )}
+              </div>
+            );
+        } // FIN DE LA FONCTION (Une seule accolade ici)
