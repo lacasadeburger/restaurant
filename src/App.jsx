@@ -357,220 +357,206 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
   return (
     <div className="app-main-wrapper" style={{ position: 'relative', backgroundColor: '#111', color: '#fff' }}>
     <style>{`
-                /* 1. STRUCTURE & GRID */
-                html, body { max-width: 100%; overflow-x: hidden; margin: 0; padding: 0; background-color: #000; }
+    /* 1. STRUCTURE & GRID - Vérifié : gère l'alignement global */
+    html, body { max-width: 100%; overflow-x: hidden; margin: 0; padding: 0; background-color: #000; }
 
-                h2, .SectionTitle, section h2, section h3 {
-                  text-align: center !important;
-                  width: 100%;
-                  display: block;
-                  margin: 40px auto 20px;
-                  color: #BF953F;
-                  font-weight: 900;
-                  text-transform: uppercase;
-                }
+    h2, .SectionTitle, section h2, section h3 {
+      text-align: center !important;
+      width: 100%;
+      display: block;
+      margin: 40px auto 20px;
+      color: #BF953F;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
 
-                .grid-cards {
-                  display: grid;
-                  grid-template-columns: repeat(auto-fill, minmax(320px, 360px));
-                  gap: 30px;
-                  padding: 20px;
-                  width: 100%;
-                  max-width: 1300px;
-                  margin: 0 auto;
-                  justify-content: center;
-                  align-items: stretch;
-                }
+    .grid-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 360px));
+      gap: 30px;
+      padding: 20px;
+      width: 100%;
+      max-width: 1300px;
+      margin: 0 auto;
+      justify-content: center;
+      align-items: stretch;
+    }
 
-                .grid-cards > div {
-                  display: flex;
-                  flex-direction: column;
-                  background: #111;
-                  border-radius: 12px;
-                  overflow: hidden;
-                  border: 1px solid rgba(191, 149, 63, 0.1);
-                  height: 100%;
-                  position: relative;
-                }
+    .grid-cards > div {
+      display: flex;
+      flex-direction: column;
+      background: #111;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(191, 149, 63, 0.1);
+      height: 100%;
+      position: relative;
+    }
 
-                /* 2. LOGO */
-                .logo-container-wrapper {
-                  position: absolute;
-                  top: 150px;
-                  left: 35px;
-                  z-index: 101;
-                  animation: wobble-inverse 5s infinite ease-in-out;
-                }
-                .moving-header-logo { height: auto; transition: 0.3s; width: 150px; }
+    /* 2. LOGO - Vérifié : gère le logo flottant */
+    .logo-container-wrapper {
+      position: absolute;
+      top: 150px;
+      left: 35px;
+      z-index: 101;
+      animation: wobble-inverse 5s infinite ease-in-out;
+    }
+    .moving-header-logo { height: auto; transition: 0.3s; width: 150px; }
 
-                /* 3. IMAGES PRODUITS (L'ANTI-DÉCALAGE RADICAL) */
-                .card-menu-image-container {
-                  width: 100% !important;
-                  height: 230px !important;
-                  min-height: 230px !important;
-                  max-height: 230px !important;
-                  background: #000 !important;
-                  position: relative !important;
-                  overflow: hidden !important;
-                  display: block !important; /* Force l'arrêt du comportement flex */
-                  padding: 0 !important;
-                  margin: 0 !important;
-                }
+    /* 3. IMAGES PRODUITS - Vérifié : Taille réduite à 180px pour éviter le vide */
+    .card-menu-image-container {
+      width: 100% !important;
+      height: 180px !important;
+      min-height: 180px !important;
+      max-height: 180px !important;
+      background: #000 !important;
+      position: relative !important;
+      overflow: hidden !important;
+      display: block !important;
+    }
 
-                .card-menu-image-container img {
-                  position: absolute !important;
-                  top: 50% !important;
-                  left: 50% !important;
-                  transform: translate(-50%, -50%) !important;
-                  width: 100% !important;
-                  height: 100% !important;
-                  object-fit: cover !important;
-                  display: block !important;
-                }
+    .card-menu-image-container img {
+      position: absolute !important;
+      top: 0 !important;
+      left: 0 !important;
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+    }
 
-                /* 4. TEXTES ET TITRES (VERROUILLÉS) */
-                .card-title {
-                  text-align: center;
-                  width: 100%;
-                  margin: 15px 0 10px;
-                  font-size: 1.4rem;
-                  text-transform: uppercase;
-                  background: linear-gradient(135deg, #BF953F 0%, #FCF6BA 45%, #B38728 55%, #FBF5B7 100%);
-                  -webkit-background-clip: text;
-                  -webkit-text-fill-color: transparent;
-                  font-weight: 900;
-                  height: 3.5rem !important;
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
-                  padding: 0 10px;
-                }
+    /* 4. TEXTES ET TITRES - Vérifié : Espacement serré */
+    .card-title {
+      margin: 10px 0 5px !important;
+      height: 2.8rem !important;
+      font-size: 1.2rem !important;
+      line-height: 1.2 !important;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0 10px;
+      font-weight: 900;
+      color: #fff;
+    }
 
-                .card-description {
-                  text-align: center;
-                  color: #ccc;
-                  font-size: 0.85rem;
-                  line-height: 1.5;
-                  padding: 0 15px;
-                  height: 3.5rem !important;
-                  overflow: hidden;
-                  display: -webkit-box;
-                  -webkit-line-clamp: 3;
-                  -webkit-box-orient: vertical;
-                  margin-bottom: 15px;
-                }
+    .card-description {
+      height: 3rem !important;
+      margin-bottom: 10px !important;
+      font-size: 0.8rem !important;
+      line-height: 1.3 !important;
+      text-align: center;
+      padding: 0 15px;
+      color: #ccc;
+    }
 
-                /* 5. BOUTONS PREMIUM */
-                .gold-button-premium {
-                  background: linear-gradient(135deg, #BF953F, #FCF6BA, #D4AF37, #FBF5B7, #BF953F) !important;
-                  background-size: 200% 200% !important;
-                  animation: liquidGold 4s ease infinite !important;
-                  color: #000 !important;
-                  font-weight: 950 !important;
-                  border: none !important;
-                  border-radius: 12px !important;
-                  padding: 15px !important;
-                  width: 100% !important;
-                  display: flex !important;
-                  justify-content: space-between !important;
-                  align-items: center !important;
-                  margin-top: auto !important;
-                  text-transform: uppercase !important;
-                }
+    /* 5. BOUTONS PREMIUM - Vérifié : Effet liquide et alignement bas */
+    .gold-button-premium {
+      background: ${GOLD_GRADIENT} !important;
+      background-size: 200% 200% !important;
+      animation: liquidGold 4s ease infinite !important;
+      color: #000 !important;
+      font-weight: 950 !important;
+      border: none !important;
+      border-radius: 12px !important;
+      padding: 15px !important;
+      width: 100% !important;
+      display: flex !important;
+      justify-content: space-between !important;
+      align-items: center !important;
+      margin-top: auto !important;
+      text-transform: uppercase !important;
+    }
 
-                /* 6. OPTIONS & EXTRAS */
-                .options-box {
-                  display: flex;
-                  flex-direction: column;
-                  align-items: center;
-                  gap: 6px;
-                  margin: 5px 15px 12px;
-                  padding: 8px;
-                  background: rgba(0,0,0,0.6);
-                  border: 1px solid rgba(191, 149, 63, 0.2);
-                  border-radius: 12px;
-                  min-height: 90px !important;
-                  justify-content: center;
-                }
+    /* 6. OPTIONS & EXTRAS - Vérifié : Encadré des options */
+    .options-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      margin: 5px 15px 12px;
+      padding: 8px;
+      background: rgba(0,0,0,0.6);
+      border: 1px solid rgba(191, 149, 63, 0.2);
+      border-radius: 12px;
+      min-height: 90px !important;
+      justify-content: center;
+    }
 
-                /* 7. BADGES (FORÇAGE GOLD TOTAL) */
-                .wobble-badge-container {
-                  position: absolute !important;
-                  top: 15px !important;
-                  right: 15px !important;
-                  z-index: 100 !important; /* Priorité maximale */
-                }
+    /* 7. BADGES - Vérifié : Forçage couleur OR et animation */
+    .wobble-badge-container {
+      position: absolute !important;
+      top: 15px !important;
+      right: 15px !important;
+      z-index: 100 !important;
+    }
 
-                .wobble-badge {
-                  /* On écrase TOUT ce qui pourrait rendre le badge blanc ou moche */
-                  background: linear-gradient(135deg, #BF953F, #FCF6BA, #D4AF37, #FBF5B7, #BF953F) !important;
-                  background-size: 200% 200% !important;
-                  animation: liquidGold 4s ease infinite, wobble-badge 3s infinite ease-in-out !important;
-                  color: #000 !important;
-                  -webkit-text-fill-color: #000 !important; /* Pour certains navigateurs mobiles */
-                  font-weight: 950 !important;
-                  text-transform: uppercase !important;
-                  padding: 8px 15px !important;
-                  border-radius: 50px !important;
-                  font-size: 0.75rem !important;
-                  box-shadow: 0 4px 15px rgba(0,0,0,0.8) !important;
-                  border: 1px solid rgba(0,0,0,0.2) !important;
-                  display: inline-block !important;
-                  visibility: visible !important;
-                  opacity: 1 !important;
-                }
+    .wobble-badge {
+      background: ${GOLD_GRADIENT} !important;
+      background-size: 200% 200% !important;
+      animation: liquidGold 4s ease infinite, wobble-badge 3s infinite ease-in-out !important;
+      color: #000 !important;
+      -webkit-text-fill-color: #000 !important;
+      font-weight: 950 !important;
+      text-transform: uppercase !important;
+      padding: 8px 15px !important;
+      border-radius: 50px !important;
+      font-size: 0.75rem !important;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.8) !important;
+      border: 1px solid rgba(0,0,0,0.2) !important;
+    }
 
-                /* 8. CATEGORIES OVERLAY */
-                .promo-container {
-                  position: relative;
-                  width: 100%;
-                  max-width: 800px;
-                  margin: 0 auto 30px;
-                  border-radius: 20px;
-                  overflow: hidden;
-                  border: 2px solid #BF953F;
-                  background: #000;
-                  height: 336px !important;
-                }
+    /* 8. CATEGORIES OVERLAY - Vérifié : Présent et ajusté */
+    .promo-container {
+      position: relative;
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto 30px;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 2px solid #BF953F;
+      background: #000;
+      height: 336px !important;
+    }
 
-                .promo-container a {
-                  display: flex !important;
-                  align-items: center;
-                  justify-content: center;
-                  width: 100% !important;
-                  height: 100% !important;
-                  position: relative;
-                  z-index: 2;
-                  text-decoration: none;
-                }
+    .promo-container a {
+      display: flex !important;
+      align-items: center;
+      justify-content: center;
+      width: 100% !important;
+      height: 100% !important;
+      position: relative;
+      z-index: 2;
+      text-decoration: none;
+    }
 
-                .promo-img {
-                  position: absolute !important;
-                  top: 0; left: 0; width: 100% !important; height: 100% !important;
-                  object-fit: cover !important;
-                  opacity: 0.5;
-                  z-index: 1;
-                }
+    .promo-img {
+      position: absolute !important;
+      top: 0; left: 0; width: 100% !important; height: 100% !important;
+      object-fit: cover !important;
+      opacity: 0.5;
+      z-index: 1;
+    }
 
-                .promo-container h3 {
-                  color: #fff !important;
-                  font-size: 2.5rem !important;
-                  font-weight: 900 !important;
-                  text-shadow: 2px 2px 10px #000 !important;
-                }
+    .promo-container h3 {
+      color: #fff !important;
+      font-size: 2.5rem !important;
+      font-weight: 900 !important;
+      text-shadow: 2px 2px 10px #000 !important;
+    }
 
-                /* 9. ANIMATIONS */
-                @keyframes liquidGold { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
-                @keyframes wobble-badge { 0% { transform: rotate(-5deg) scale(1); } 50% { transform: rotate(5deg) scale(1.1); } 100% { transform: rotate(-5deg) scale(1); } }
-                @keyframes wobble-inverse { 0% { transform: rotate(-4deg); } 50% { transform: rotate(4deg) scale(1.02); } 100% { transform: rotate(-4deg); } }
+    /* 9. ANIMATIONS - Vérifié : Toutes les keyframes sont là */
+    @keyframes liquidGold { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+    @keyframes wobble-badge { 0% { transform: rotate(-5deg) scale(1); } 50% { transform: rotate(5deg) scale(1.1); } 100% { transform: rotate(-5deg) scale(1); } }
+    @keyframes wobble-inverse { 0% { transform: rotate(-4deg); } 50% { transform: rotate(4deg) scale(1.02); } 100% { transform: rotate(-4deg); } }
 
-                /* 10. RESPONSIVE */
-                @media (max-width: 768px) {
-                  .card-menu-image-container { height: 180px !important; min-height: 180px !important; }
-                  .promo-container { height: 220px !important; width: 92%; }
-                  .card-title, .card-description { height: 3rem !important; }
-                }
-              `}</style>
+    /* 10. RESPONSIVE - Vérifié : Adaptation mobile */
+    @media (max-width: 768px) {
+      .card-menu-image-container { height: 160px !important; min-height: 160px !important; }
+      .promo-container { height: 220px !important; width: 92%; }
+      .card-title, .card-description { height: auto !important; min-height: 2.5rem; }
+    }
+`}</style>
+
 <Helmet>
 {/* 1. DYNAMIQUE : Titre et Description traduits (Indispensable) */}
 <title>{T[lang]?.seoTitle || T.es.seoTitle}</title>
