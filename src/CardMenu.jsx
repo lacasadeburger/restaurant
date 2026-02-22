@@ -13,7 +13,7 @@ export default function CardMenu(props) {
     return name || object || "Producto";
   }, [name, object, lang]);
 
-  // --- DICTIONNAIRE DE TRADUCTION COMPLET ---
+  // --- DICTIONNAIRE DE TRADUCTION ---
   const t = {
     extra: { es: "Extras", en: "Extras", fr: "Suppléments" },
     remove: { es: "Quitar", en: "Remove", fr: "Retirer" },
@@ -101,18 +101,46 @@ export default function CardMenu(props) {
       display: 'flex', flexDirection: 'column', height: '100%', position: 'relative'
     }}>
 
-      {/* 1. IMAGE & BADGE */}
-      <div className="card-menu-image-container" style={{ background: 'transparent', position: 'relative' }}>
+      {/* 1. IMAGE & BADGE (Correction Position Badge) */}
+      <div className="card-menu-image-container" style={{
+        background: 'transparent',
+        position: 'relative',
+        height: '230px',
+        width: '100%',
+        overflow: 'hidden'
+      }}>
+
+        {/* BADGE EN HAUT À GAUCHE */}
         {badge && (
-          <div className="wobble-badge-container">
-            <span className="wobble-badge">{badge}</span>
+          <div className="wobble-badge-container" style={{
+            position: 'absolute',
+            top: '10px',
+            left: '10px',
+            zIndex: 50
+          }}>
+            <span className="wobble-badge" style={{ margin: 0 }}>{badge}</span>
           </div>
         )}
+
+        {/* PRIX EN HAUT À DROITE */}
         <div className="price-tag-overlay" style={{
             position: 'absolute', top: '10px', right: '10px', backgroundColor: 'rgba(0,0,0,0.85)', color: GOLD_BRIGHT,
             padding: '5px 12px', borderRadius: '12px', fontWeight: '950', border: `2px solid ${GOLD_BRIGHT}`, zIndex: 40
         }}>{totalPrice}€</div>
-        <img src={image} alt={stableName} loading="lazy" style={{ background: 'transparent', width: '100%', display: 'block' }} />
+
+        <img
+          src={image}
+          alt={stableName}
+          loading="lazy"
+          style={{
+            background: 'transparent',
+            width: '100%',
+            height: '100%',
+            display: 'block',
+            objectFit: (isDrinkCard || isPostreCard) ? 'contain' : 'cover',
+            padding: (isDrinkCard || isPostreCard) ? '20px' : '0px'
+          }}
+        />
       </div>
 
       {/* 2. CONTENU TEXTE */}
@@ -129,7 +157,6 @@ export default function CardMenu(props) {
                 {getT("extra")}
             </span>
 
-            {/* EXTRAS PAYANTS */}
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', justifyContent: 'center', marginBottom: '10px' }}>
               {extrasList.map(item => {
                 const active = extraIngredients.includes(item.id);
@@ -148,7 +175,6 @@ export default function CardMenu(props) {
               })}
             </div>
 
-            {/* INGRÉDIENTS À ENLEVER */}
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', justifyContent: 'center' }}>
               {removableList.map(ing => {
                 const active = removedIngredients.includes(ing.id);

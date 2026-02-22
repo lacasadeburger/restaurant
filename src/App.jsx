@@ -357,209 +357,293 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
   return (
     <div className="app-main-wrapper" style={{ position: 'relative', backgroundColor: '#111', color: '#fff' }}>
     <style>{`
-              /* 1. STRUCTURE & GRID */
-              html, body { max-width: 100%; overflow-x: hidden; margin: 0; padding: 0; background-color: #000; }
+      /* 1. STRUCTURE & GRID */
+      html, body { max-width: 100%; overflow-x: hidden; margin: 0; padding: 0; background-color: #000; }
 
-              h2, .SectionTitle, section h2, section h3 {
-                text-align: center !important;
-                width: 100%;
-                display: block;
-                margin: 40px auto 20px;
-                color: #BF953F;
-                font-weight: 900;
-                text-transform: uppercase;
-              }
+      h2, .SectionTitle, section h2, section h3 {
+        text-align: center !important;
+        width: 100%;
+        display: block;
+        margin: 40px auto 20px;
+        color: #BF953F;
+        font-weight: 900;
+        text-transform: uppercase;
+      }
 
-              .grid-cards {
-                display: grid;
-                grid-template-columns: repeat(auto-fill, minmax(320px, 360px));
-                gap: 30px;
-                padding: 20px;
-                width: 100%;
-                max-width: 1300px;
-                margin: 0 auto;
-                justify-content: center;
-                align-items: stretch; /* Aligne le bas de toutes les cartes d'une même ligne */
-              }
+      .grid-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 30px;
+        padding: 20px;
+        width: 100%;
+        max-width: 1300px;
+        margin: 0 auto;
+        justify-content: center;
+      }
 
-              .grid-cards > div {
-                display: flex;
-                flex-direction: column;
-                background: #111;
-                border-radius: 12px;
-                overflow: hidden;
-                border: 1px solid rgba(191, 149, 63, 0.1);
-                height: 100%;
-                position: relative;
-              }
+      .card-menu {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        background: #111;
+        border-radius: 12px;
+        overflow: hidden;
+        border: 1px solid rgba(191, 149, 63, 0.1);
+        position: relative;
+      }
 
-              /* 2. LOGO ET NAVIGATION */
-              .logo-container-wrapper {
-                position: absolute;
-                top: 150px;
-                left: 35px;
-                z-index: 101;
-                animation: wobble-inverse 5s infinite ease-in-out;
-              }
-              .moving-header-logo { height: auto; transition: 0.3s; width: 150px; }
+      /* 2. LOGO ET NAVIGATION */
+      .logo-container-wrapper {
+        position: absolute;
+        top: 150px;
+        left: 35px;
+        z-index: 101;
+        animation: wobble-inverse 5s infinite ease-in-out;
+      }
+      .moving-header-logo { height: auto; transition: 0.3s; width: 150px; }
 
-              /* 3. IMAGES DES PRODUITS (SOLUTION ANTI-DÉCALAGE) */
-              .card-menu-image-container {
-                width: 100% !important;
-                height: 230px !important;
-                min-height: 230px !important;
-                max-height: 230px !important;
-                background: #000;
-                position: relative; /* Devient la référence pour l'image */
-                overflow: hidden !important;
-                border-bottom: 1px solid rgba(191, 149, 63, 0.2);
-              }
+      /* 3. PROMO / CATEGORIES (BOUTONS CENTRÉS EN BAS) */
+      .promo-container {
+        position: relative;
+        width: 100%;
+        max-width: 800px;
+        margin: 0 auto 30px;
+        border-radius: 20px;
+        overflow: hidden;
+        border: 2px solid #BF953F;
+        background: #000;
+        height: 336px;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: center;
+      }
 
-              .card-menu-image-container img {
-                /* FIX : L'image ne fait plus partie du flux, elle ne peut plus pousser le contenu */
-                position: absolute !important;
-                top: 0;
-                left: 0;
-                width: 100% !important;
-                height: 100% !important;
-                object-fit: cover !important; /* Remplit le cadre sans déformer */
-                object-position: center;
-                display: block !important;
-                transition: transform 0.5s ease;
-              }
+      .category-btn-overlay {
+        background: linear-gradient(135deg, #BF953F, #FCF6BA, #D4AF37, #FBF5B7, #BF953F);
+        background-size: 200% 200%;
+        animation: liquidGold 4s ease infinite;
+        color: #000;
+        font-weight: 950;
+        padding: 12px 35px;
+        border-radius: 50px;
+        text-transform: uppercase;
+        font-size: 1.1rem;
+        margin-bottom: 25px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+        z-index: 2;
+        border: 2px solid #000;
+        width: auto;
+        text-align: center;
+      }
 
-              /* 4. TEXTES ET TITRES (ALIGNEMENT STRICT) */
-              .card-title {
-                text-align: center;
-                width: 100%;
-                margin: 15px 0 10px;
-                font-size: 1.4rem;
-                text-transform: uppercase;
-                background: linear-gradient(135deg, #BF953F 0%, #FCF6BA 45%, #B38728 55%, #FBF5B7 100%);
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
-                font-weight: 900;
-                height: 3.5rem !important; /* Verrouille la position du titre */
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                padding: 0 10px;
-              }
+      .promo-img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.7;
+        transition: 0.4s ease;
+        z-index: 1;
+      }
 
-              .card-description {
-                text-align: center;
-                color: #ccc;
-                font-size: 0.85rem;
-                line-height: 1.5;
-                padding: 0 15px;
-                height: 3.5rem !important; /* Verrouille la hauteur de la description */
-                overflow: hidden;
-                display: -webkit-box;
-                -webkit-line-clamp: 3;
-                -webkit-box-orient: vertical;
-                margin-bottom: 15px;
-              }
+      .promo-container:hover .promo-img {
+        transform: scale(1.05);
+        opacity: 0.85;
+      }
 
-              /* 5. BOUTONS PREMIUM */
-              .gold-button-premium {
-                background: linear-gradient(135deg, #BF953F, #FCF6BA, #D4AF37, #FBF5B7, #BF953F);
-                background-size: 200% 200%;
-                animation: liquidGold 4s ease infinite;
-                color: #000 !important;
-                font-weight: 950;
-                border: none;
-                border-radius: 12px;
-                padding: 15px;
-                width: 100%;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                cursor: pointer;
-                position: relative;
-                overflow: hidden;
-                margin-top: auto; /* Force le bouton tout en bas */
-                text-transform: uppercase;
-              }
+      .promo-container a {
+        position: relative;
+        z-index: 2;
+        text-decoration: none;
+        display: flex;
+        width: 100%;
+        height: 100%;
+        justify-content: center;
+        align-items: flex-end;
+      }
 
-              /* 6. OPTIONS & EXTRAS */
-              .options-box {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                gap: 6px;
-                margin: 5px 15px 12px;
-                padding: 8px;
-                background: rgba(0,0,0,0.6);
-                border: 1px solid rgba(191, 149, 63, 0.2);
-                border-radius: 12px;
-                min-height: 90px !important; /* Hauteur identique pour toutes les cartes */
-                justify-content: center;
-              }
+      /* 4. IMAGES DES PRODUITS */
+      .card-menu-image-container {
+        width: 100%;
+        height: 230px;
+        background: #000;
+        position: relative;
+        overflow: hidden;
+        border-bottom: 1px solid rgba(191, 149, 63, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
 
-              /* 7. WHATSAPP & BADGES (NUEVO / TOP GOLD) */
-              .whatsapp-float { position: fixed; bottom: 25px; right: 25px; z-index: 9999; }
-              .whatsapp-float img { width: 100px; height: 100px; }
+      .card-menu-image-container img {
+        max-width: 100%;
+        max-height: 100%;
+        transition: transform 0.5s ease;
+      }
 
-              .wobble-badge-container {
-                position: absolute !important;
-                top: 15px !important;
-                right: 15px !important;
-                z-index: 20 !important;
-              }
+      /* 5. TEXTES ET TITRES */
+      .card-title {
+        text-align: center;
+        width: 100%;
+        margin: 15px 0 10px;
+        font-size: 1.4rem;
+        text-transform: uppercase;
+        background: linear-gradient(135deg, #BF953F 0%, #FCF6BA 45%, #B38728 55%, #FBF5B7 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: 900;
+        min-height: 3.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 10px;
+      }
 
-              .wobble-badge {
-                background: linear-gradient(135deg, #BF953F, #FCF6BA, #D4AF37, #FBF5B7, #BF953F) !important;
-                background-size: 200% 200% !important;
-                animation: liquidGold 4s ease infinite, wobble-badge 3s infinite ease-in-out !important;
-                color: #000 !important; /* Texte noir bien lisible sur l'or */
-                font-weight: 950 !important;
-                text-transform: uppercase;
-                padding: 8px 15px !important;
-                border-radius: 50px !important;
-                font-size: 0.75rem !important;
-                box-shadow: 0 4px 15px rgba(0,0,0,0.6) !important;
-                border: none !important;
-              }
+      .card-description {
+        text-align: center;
+        color: #ccc;
+        font-size: 0.85rem;
+        line-height: 1.5;
+        padding: 0 15px;
+        min-height: 3.5rem;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        margin-bottom: 15px;
+      }
 
-              /* 8. CATEGORIES OVERLAY (FULL WIDTH) */
-              .promo-container {
-                position: relative;
-                width: 100%;
-                max-width: 800px;
-                margin: 0 auto 30px;
-                border-radius: 20px;
-                overflow: hidden;
-                border: 2px solid #BF953F;
-                background: #000;
-                height: 336px !important;
-                cursor: pointer;
-              }
+      /* 6. BOUTONS ET OPTIONS */
+      .gold-button-premium {
+        background: linear-gradient(135deg, #BF953F, #FCF6BA, #D4AF37, #FBF5B7, #BF953F);
+        background-size: 200% 200%;
+        animation: liquidGold 4s ease infinite;
+        color: #000 !important;
+        font-weight: 950;
+        border: none;
+        border-radius: 12px;
+        padding: 15px;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+        text-transform: uppercase;
+      }
 
-              .promo-container a { display: block !important; width: 100% !important; height: 100% !important; }
+      .options-box {
+        margin: auto 15px 12px;
+        padding: 8px;
+        background: rgba(0,0,0,0.6);
+        border: 1px solid rgba(191, 149, 63, 0.2);
+        border-radius: 12px;
+        min-height: 110px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
 
-              .promo-img {
-                width: 100% !important;
-                height: 100% !important;
-                object-fit: cover !important;
-                display: block !important;
-                opacity: 0.75;
-                transition: 0.3s ease;
-              }
+      /* 7. BADGES (HAUT À GAUCHE) */
+      .wobble-badge-container {
+        position: absolute !important;
+        top: 10px !important;
+        left: 10px !important;
+        right: auto !important;
+        z-index: 50 !important;
+      }
 
-              /* 9. ANIMATIONS */
-              @keyframes liquidGold { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
-              @keyframes wobble-badge { 0% { transform: rotate(-5deg) scale(1); } 50% { transform: rotate(5deg) scale(1.05); } 100% { transform: rotate(-5deg) scale(1); } }
-              @keyframes wobble-inverse { 0% { transform: rotate(-4deg); } 50% { transform: rotate(4deg) scale(1.02); } 100% { transform: rotate(-4deg); } }
+      .wobble-badge {
+        background: linear-gradient(135deg, #BF953F, #FCF6BA, #D4AF37, #FBF5B7, #BF953F) !important;
+        background-size: 200% 200% !important;
+        animation: liquidGold 4s ease infinite, wobble-badge 3s infinite ease-in-out !important;
+        color: #000 !important;
+        font-weight: 950 !important;
+        text-transform: uppercase;
+        padding: 6px 12px !important;
+        border-radius: 50px !important;
+        font-size: 0.7rem !important;
+        display: inline-block;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.8);
+      }
 
-              /* 10. RESPONSIVE MOBILE */
-              @media (max-width: 768px) {
-                .grid-cards { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; }
-                .card-menu-image-container { height: 180px !important; min-height: 180px !important; }
-                .promo-container { height: 220px !important; width: 92%; }
-                .card-title, .card-description { height: 3rem !important; }
-                .options-box { min-height: 80px !important; }
-              }
-            `}</style>
+      /* 8. ANIMATIONS */
+      @keyframes liquidGold { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+      @keyframes wobble-badge { 0% { transform: rotate(-5deg); } 50% { transform: rotate(5deg) scale(1.05); } 100% { transform: rotate(-5deg); } }
+      @keyframes wobble-inverse { 0% { transform: rotate(-4deg); } 50% { transform: rotate(4deg); } 100% { transform: rotate(-4deg); } }
+
+      /* 9. RESPONSIVE MOBILE */
+      @media (max-width: 768px) {
+        .grid-cards { grid-template-columns: 1fr; gap: 20px; padding: 10px; }
+        .card-menu-image-container { height: 200px; }
+        .promo-container { height: 220px; width: 95%; }
+        .category-btn-overlay { font-size: 0.9rem; padding: 10px 25px; margin-bottom: 15px; }
+      }
+      /* 10. RESPONSIVE MOBILE - OPTIMUM */
+      @media (max-width: 768px) {
+        /* On passe les cartes en une seule colonne bien large */
+        .grid-cards {
+          grid-template-columns: 1fr;
+          gap: 20px;
+          padding: 15px;
+        }
+
+        /* Hauteur d'image ajustée pour mobile */
+        .card-menu-image-container {
+          height: 200px !important;
+          min-height: 200px !important;
+        }
+
+        /* Badge légèrement plus petit pour ne pas masquer l'image */
+        .wobble-badge {
+          padding: 5px 10px !important;
+          font-size: 0.65rem !important;
+        }
+
+        /* Sections catégories (Burgers, Boissons, Desserts) */
+        .promo-container {
+          height: 220px !important;
+          width: 95%;
+          margin-bottom: 20px;
+        }
+
+        /* Bouton de catégorie centré : on réduit la taille du texte et le padding */
+        .category-btn-overlay {
+          font-size: 0.9rem;
+          padding: 10px 22px;
+          margin-bottom: 15px; /* On le remonte un peu */
+          width: auto;
+          max-width: 80%; /* Pour éviter qu'il touche les bords si le texte est long */
+        }
+
+        /* Ajustement des titres et descriptions pour éviter les décalages */
+        .card-title {
+          font-size: 1.2rem;
+          min-height: 3rem;
+        }
+
+        .card-description {
+          font-size: 0.8rem;
+          min-height: 3rem;
+          -webkit-line-clamp: 2; /* On limite à 2 lignes sur mobile */
+        }
+
+        /* On réduit un peu la boîte d'options pour gagner de la place */
+        .options-box {
+          min-height: 100px;
+          margin: 10px 10px;
+        }
+
+        /* Bouton final "AJOUTER" plus compact */
+        .gold-button-premium {
+          padding: 12px;
+          font-size: 0.9rem;
+        }
+      }
+    `}</style>
 <Helmet>
 {/* 1. DYNAMIQUE : Titre et Description traduits (Indispensable) */}
 <title>{T[lang]?.seoTitle || T.es.seoTitle}</title>
@@ -794,70 +878,73 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
 </header>
 <main className="menu-page-container">
 
-  {/* SECTION BURGERS */}
-  <section id="sec-burgers" style={{ marginTop: '5px' }}>
-    <SectionTitle>{T[lang]?.catBurgers || T.es.catBurgers}</SectionTitle>
-    {showCardBurger ? (
-      <div className="grid-cards">
-        {burgers.map(item => (
-          <CardMenu key={item.id} {...item} addToCart={addToCart} lang={lang} hasExtras={!noExtrasIds.includes(item.id)} />
-        ))}
-      </div>
-    ) : (
-      <div className="promo-container" onClick={() => {
-        setShowCardBurger(true);
-        requestAnimationFrame(() => {
-          const el = document.getElementById("sec-burgers");
-          if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.pageYOffset - 100, behavior: "smooth" });
-        });
-      }} style={{ cursor: 'pointer' }}>
-        <img src={Burger} className="promo-img" alt="Mejor Hamburguesa Gourmet" fetchpriority="high" width="1024" height="573" />
-        <button className="btn-overlay gold-button-premium">{T[lang]?.btnSeeMenu || T.es.btnSeeMenu}</button>
-      </div>
-    )}
-  </section>
+{/* SECTION BURGERS */}
+<section id="sec-burgers" style={{ marginTop: '5px' }}>
+  <SectionTitle>{T[lang]?.catBurgers || T.es.catBurgers}</SectionTitle>
+  {showCardBurger ? (
+    <div className="grid-cards">
+      {burgers.map(item => (
+        <CardMenu key={item.id} {...item} addToCart={addToCart} lang={lang} hasExtras={!noExtrasIds.includes(item.id)} />
+      ))}
+    </div>
+  ) : (
+    <div className="promo-container" onClick={() => {
+      setShowCardBurger(true);
+      requestAnimationFrame(() => {
+        const el = document.getElementById("sec-burgers");
+        if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.pageYOffset - 100, behavior: "smooth" });
+      });
+    }}>
+      <img src={Burger} className="promo-img" alt="Mejor Hamburguesa Gourmet" fetchpriority="high" width="1024" height="573" />
+      {/* CHANGEMENT ICI : classe category-btn-overlay */}
+      <span className="category-btn-overlay">{T[lang]?.catBurgers || T.es.catBurgers}</span>
+    </div>
+  )}
+</section>
 
-  {/* SECTION BEBIDAS */}
-  <section id="sec-bebidas">
-    <SectionTitle>{T[lang]?.catDrinks || T.es.catDrinks}</SectionTitle>
-    {showCardDrink ? (
-      <div className="grid-cards">
-        {drinks.map(item => <CardMenu key={item.id} {...item} isDrinkCard={true} addToCart={addToCart} lang={lang} />)}
-      </div>
-    ) : (
-      <div className="promo-container" onClick={() => {
-        setShowCardDrink(true);
-        requestAnimationFrame(() => {
-          const el = document.getElementById("sec-bebidas");
-          if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.pageYOffset - 100, behavior: "smooth" });
-        });
-      }} style={{ cursor: 'pointer' }}>
-        <img src={Drink} className="promo-img" alt="Bebidas" loading="lazy" width="600" height="336" />
-        <button className="btn-overlay gold-button-premium">{T[lang]?.catDrinks || T.es.catDrinks}</button>
-      </div>
-    )}
-  </section>
+{/* SECTION BEBIDAS */}
+<section id="sec-bebidas">
+  <SectionTitle>{T[lang]?.catDrinks || T.es.catDrinks}</SectionTitle>
+  {showCardDrink ? (
+    <div className="grid-cards">
+      {drinks.map(item => <CardMenu key={item.id} {...item} isDrinkCard={true} addToCart={addToCart} lang={lang} />)}
+    </div>
+  ) : (
+    <div className="promo-container" onClick={() => {
+      setShowCardDrink(true);
+      requestAnimationFrame(() => {
+        const el = document.getElementById("sec-bebidas");
+        if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.pageYOffset - 100, behavior: "smooth" });
+      });
+    }}>
+      <img src={Drink} className="promo-img" alt="Bebidas" loading="lazy" width="600" height="336" />
+      {/* CHANGEMENT ICI : classe category-btn-overlay */}
+      <span className="category-btn-overlay">{T[lang]?.catDrinks || T.es.catDrinks}</span>
+    </div>
+  )}
+</section>
 
-  {/* SECTION POSTRES */}
-  <section id="sec-postres">
-    <SectionTitle>{T[lang]?.catDesserts || T.es.catDesserts}</SectionTitle>
-    {showCardPostres ? (
-      <div className="grid-cards">
-        {postres.map(item => <CardMenu key={item.id} {...item} isPostreCard={true} addToCart={addToCart} lang={lang} />)}
-      </div>
-    ) : (
-      <div className="promo-container" onClick={() => {
-        setShowCardPostres(true);
-        requestAnimationFrame(() => {
-          const el = document.getElementById("sec-postres");
-          if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.pageYOffset - 100, behavior: "smooth" });
-        });
-      }} style={{ cursor: 'pointer' }}>
-        <img src={Postre} className="promo-img" alt="Desserts" loading="lazy" width="600" height="336" />
-        <button className="btn-overlay gold-button-premium">{T[lang]?.catDesserts || T.es.catDesserts}</button>
-      </div>
-    )}
-  </section>
+{/* SECTION POSTRES */}
+<section id="sec-postres">
+  <SectionTitle>{T[lang]?.catDesserts || T.es.catDesserts}</SectionTitle>
+  {showCardPostres ? (
+    <div className="grid-cards">
+      {postres.map(item => <CardMenu key={item.id} {...item} isPostreCard={true} addToCart={addToCart} lang={lang} />)}
+    </div>
+  ) : (
+    <div className="promo-container" onClick={() => {
+      setShowCardPostres(true);
+      requestAnimationFrame(() => {
+        const el = document.getElementById("sec-postres");
+        if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.pageYOffset - 100, behavior: "smooth" });
+      });
+    }}>
+      <img src={Postre} className="promo-img" alt="Desserts" loading="lazy" width="600" height="336" />
+      {/* CHANGEMENT ICI : classe category-btn-overlay */}
+      <span className="category-btn-overlay">{T[lang]?.catDesserts || T.es.catDesserts}</span>
+    </div>
+  )}
+</section>
 
   {/* SECTION COMMANDE */}
   <section id="order" style={{ paddingBottom: '60px' }}>
