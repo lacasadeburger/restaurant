@@ -252,7 +252,7 @@ export default function App() {
   const [showCardBurger, setShowCardBurger] = useState(false);
   const [showCardDrink, setShowCardDrink] = useState(false);
   const [lang, setLang] = useState('es');
-
+  const [view, setView] = useState('categories'); // 'categories', 'combos', 'burgers', 'sides'
   const [loadMedia, setLoadMedia] = useState(false); // Pour YouTube (Manuel)
 const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-différé)
 
@@ -581,7 +581,7 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
                 @media (max-width: 768px) {
                   /* Rétablir une taille de logo plus petite pour libérer le texte */
                   .logo-container-wrapper {
-                    top: 120px !important;  /* On remonte le logo */
+                    top: 150px !important;  /* On remonte le logo */
                     left: 15px !important; /* On le colle un peu plus au bord */
                     z-index: 999 !important; /* On s'assure qu'il passe devant tout */
                   }
