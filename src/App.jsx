@@ -532,11 +532,11 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
 
         /* 7. BADGES (PAR DÉFAUT GAUCHE) */
         .wobble-badge-container {
-          position: absolute !important;
-          top: 10px !important;
-          left: 10px !important;
+          position: absolute;
+          top: 10px;
+          left: 10px;
           right: auto;
-          z-index: 50 !important;
+          z-index: 50;
         }
 
         .wobble-badge {
@@ -726,24 +726,30 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
   zIndex: 1
 }}></div>
 
-{/* CORRECTION : On force le container à DROITE et on limite sa largeur */}
+{/* BADGE DE PRESTIGE - FORCE À DROITE ET TAILLE MINI */}
 <div className="wobble-badge-container" style={{
-  left: 'auto',
-  right: '20px',
+  position: 'absolute',
   top: '120px',
-  width: 'fit-content',    /* Empêche le container de s'étaler */
-  display: 'block'         /* Assure un comportement propre */
+  right: '20px',
+  left: 'auto',
+  /* On utilise une astuce pour écraser le !important du CSS global */
+  cssText: 'left: auto !important; right: 20px !important;',
+  width: 'fit-content',
+  display: 'block',
+  zIndex: 110
 }}>
   <div className="wobble-badge gold-button-premium" style={{
-    width: 'fit-content',  /* Le badge ne prend que la place de son texte */
-    whiteSpace: 'nowrap',  /* Évite que le texte saute à la ligne */
-    padding: '8px 20px',   /* Lui donne une forme de pilule élégante */
-    fontSize: '0.9rem'     /* Taille "mignonne" et pro */
+    width: 'fit-content',
+    whiteSpace: 'nowrap',
+    padding: '8px 20px',
+    fontSize: '0.85rem',
+    display: 'flex',
+    alignItems: 'center',
+    gap: '8px'
   }}>
     🏆 #1 BURGER EN TORREVIEJA
   </div>
 </div>
-
 <div style={{ position: 'relative', zIndex: 2 }}>
   <h1 style={{
     fontSize: 'clamp(2rem, 10vw, 3.5rem)',
