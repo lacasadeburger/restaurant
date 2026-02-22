@@ -1085,7 +1085,7 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
                 </div>
                 <div>
                   <h4 style={{ color: GOLD_BRIGHT, marginBottom: '15px' }}>🕒 {T[lang]?.hours || T.es.hours}</h4>
-                  <p style={{ margin: '5px 0' }}>Lun - Sáb: 13:00 – 22:30</p>
+                  <p style={{ margin: '5px 0' }}>Lun - Sáb: 13:00 – 23:00</p>
                   <p style={{ margin: '5px 0', color: '#666' }}>Dom: Cerrado / Closed</p>
                 </div>
                 <div>
