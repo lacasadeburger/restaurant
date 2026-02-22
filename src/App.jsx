@@ -577,51 +577,60 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
         @keyframes liquidGold { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
         @keyframes wobble-badge { 0% { transform: rotate(-5deg); } 50% { transform: rotate(5deg) scale(1.05); } 100% { transform: rotate(-5deg); } }
         @keyframes wobble-inverse { 0% { transform: rotate(-4deg); } 50% { transform: rotate(4deg); } 100% { transform: rotate(-4deg); } }
-
         /* 10. RESPONSIVE MOBILE - OPTIMISÉ */
-        @media (max-width: 768px) {
-          .grid-cards {
-            grid-template-columns: 1fr;
-            gap: 20px;
-            padding: 15px;
-          }
+                @media (max-width: 768px) {
+                  /* Rétablir une taille de logo plus petite pour libérer le texte */
+                  .logo-container-wrapper {
+                    top: 70px !important;  /* On remonte le logo */
+                    left: 15px !important; /* On le colle un peu plus au bord */
+                  }
 
-          .card-menu-image-container {
-            height: 200px !important;
-          }
+                  .moving-header-logo {
+                    width: 85px !important; /* Taille réduite pour mobile */
+                  }
 
-          .promo-container {
-            height: 220px !important;
-            width: 95%;
-            margin-bottom: 20px;
-          }
+                  .grid-cards {
+                    grid-template-columns: 1fr;
+                    gap: 20px;
+                    padding: 15px;
+                  }
 
-          .category-btn-overlay {
-            font-size: 0.9rem;
-            padding: 10px 22px;
-            margin-bottom: 15px;
-            width: auto;
-            max-width: 80%;
-          }
+                  .card-menu-image-container {
+                    height: 200px !important;
+                  }
 
-          .card-title {
-            font-size: 1.2rem;
-            min-height: 3rem;
-          }
+                  .promo-container {
+                    height: 220px !important;
+                    width: 95%;
+                    margin-bottom: 20px;
+                  }
 
-          .card-description {
-            font-size: 0.8rem;
-            min-height: 3rem;
-            -webkit-line-clamp: 2;
-          }
+                  .category-btn-overlay {
+                    font-size: 0.9rem;
+                    padding: 10px 22px;
+                    margin-bottom: 15px;
+                    width: auto;
+                    max-width: 80%;
+                  }
 
-          .whatsapp-float {
-            width: 50px;
-            height: 50px;
-            bottom: 20px;
-            right: 20px;
-          }
-        }
+                  .card-title {
+                    font-size: 1.2rem;
+                    min-height: 3rem;
+                  }
+
+                  .card-description {
+                    font-size: 0.8rem;
+                    min-height: 3rem;
+                    -webkit-line-clamp: 2;
+                  }
+
+                  .whatsapp-float {
+                    width: 50px;
+                    height: 50px;
+                    bottom: 20px;
+                    right: 20px;
+                  }
+                }
       `}</style>
 <Helmet>
 {/* 1. DYNAMIQUE : Titre et Description traduits (Indispensable) */}
