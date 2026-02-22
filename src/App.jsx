@@ -581,12 +581,14 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
                 @media (max-width: 768px) {
                   /* Rétablir une taille de logo plus petite pour libérer le texte */
                   .logo-container-wrapper {
-                    top: 70px !important;  /* On remonte le logo */
+                    top: 120px !important;  /* On remonte le logo */
                     left: 15px !important; /* On le colle un peu plus au bord */
+                    z-index: 999 !important; /* On s'assure qu'il passe devant tout */
                   }
 
                   .moving-header-logo {
-                    width: 85px !important; /* Taille réduite pour mobile */
+                    width: 80px !important; /* Taille réduite pour mobile */
+                    height: auto !important;
                   }
 
                   .grid-cards {
@@ -1014,41 +1016,59 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
             )}
           </div>
 
-          {/* BLOC YOUTUBE OPTIMISÉ */}
-          <div
-            onClick={() => setLoadMedia(true)}
-            style={{
-              width: '90%', maxWidth: '800px', height: '400px', backgroundColor: '#050505',
-              borderRadius: '15px', overflow: 'hidden', border: `3px solid ${GOLD_BRIGHT || '#BF953F'}`,
-              margin: '30px auto', cursor: loadMedia ? 'default' : 'pointer', position: 'relative',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              boxShadow: '0 10px 30px rgba(0,0,0,0.5)', transition: 'transform 0.3s ease'
-            }}
-          >
-            {loadMedia === true ? (
-              <iframe
-                width="100%" height="100%"
-                src="https://www.youtube-nocookie.com/embed/qN6VZYBojLs?autoplay=1&mute=0"
-                title="Video de presentación"
-                frameBorder="0"
-                allow="autoplay; encrypted-media; picture-in-picture"
-                allowFullScreen
-              ></iframe>
-            ) : (
-              <div style={{
-                width: '100%', height: '100%', display: 'flex', flexDirection: 'column',
-                justifyContent: 'center', alignItems: 'center',
-                backgroundImage: `linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('/atenta.webp')`,
-                backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat', backgroundColor: '#000'
-              }}>
-                <img src="/atenta.webp" alt="" loading="lazy" style={{ display: 'none' }} fetchpriority="low" />
-                <div style={{ fontSize: '4.5rem', color: GOLD_BRIGHT || '#BF953F', marginBottom: '10px', filter: 'drop-shadow(0 0 15px rgba(0,0,0,0.8))', lineHeight: 1 }}>▶</div>
-                <p style={{ fontSize: '1.1rem', color: GOLD_BRIGHT || '#BF953F', letterSpacing: '3px', textTransform: 'uppercase', fontWeight: '900', margin: 0, textAlign: 'center', padding: '0 20px', textShadow: '2px 2px 10px rgba(0,0,0,1)' }}>
-                  {lang === 'es' ? 'Ver video gourmet' : lang === 'fr' ? 'Voir la vidéo gourmet' : 'Watch gourmet video'}
-                </p>
-              </div>
-            )}
-          </div>
+          {/* BLOC YOUTUBE AVEC TON IMAGE SIGNATURE */}
+  <div
+    onClick={() => setLoadMedia(true)}
+    style={{
+      width: '90%', maxWidth: '800px', height: '400px', backgroundColor: '#050505',
+      borderRadius: '15px', overflow: 'hidden', border: `3px solid ${GOLD_BRIGHT || '#BF953F'}`,
+      margin: '30px auto', cursor: loadMedia ? 'default' : 'pointer', position: 'relative',
+      display: 'flex', alignItems: 'center', justifyContent: 'center',
+      boxShadow: '0 10px 30px rgba(0,0,0,0.5)', transition: 'transform 0.3s ease'
+    }}
+  >
+    {loadMedia === true ? (
+      <iframe
+        width="100%" height="100%"
+        src="https://www.youtube-nocookie.com/embed/qN6VZYBojLs?autoplay=1&mute=0"
+        title="Video de presentación"
+        frameBorder="0"
+        allow="autoplay; encrypted-media; picture-in-picture"
+        allowFullScreen
+      ></iframe>
+    ) : (
+      <div style={{
+        width: '100%', height: '100%', display: 'flex', flexDirection: 'column',
+        justifyContent: 'center', alignItems: 'center',
+        /* On utilise ton image spécifique ici */
+        backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/burger-signature-torrevieja2.webp')`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat'
+      }}>
+        <div style={{
+          fontSize: '4.5rem',
+          color: GOLD_BRIGHT || '#BF953F',
+          marginBottom: '10px',
+          filter: 'drop-shadow(0 0 15px rgba(0,0,0,0.8))',
+          lineHeight: 1
+        }}>▶</div>
+        <p style={{
+          fontSize: '1.1rem',
+          color: GOLD_BRIGHT || '#BF953F',
+          letterSpacing: '3px',
+          textTransform: 'uppercase',
+          fontWeight: '900',
+          margin: 0,
+          textAlign: 'center',
+          padding: '0 20px',
+          textShadow: '2px 2px 10px rgba(0,0,0,1)'
+        }}>
+          {lang === 'es' ? 'Ver video gourmet' : lang === 'fr' ? 'Voir la vidéo gourmet' : 'Watch gourmet video'}
+        </p>
+      </div>
+    )}
+  </div>
 
           {/* RÉSEAUX SOCIAUX & REVIEWS */}
           <div style={{ display: 'flex', justifyContent: 'center', gap: '25px', flexWrap: 'wrap', marginBottom: '20px', marginTop: '20px', alignItems: 'center' }}>
