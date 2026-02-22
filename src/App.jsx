@@ -357,191 +357,163 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
   return (
     <div className="app-main-wrapper" style={{ position: 'relative', backgroundColor: '#111', color: '#fff' }}>
     <style>{`
-      /* 1. STRUCTURE & GRID (ALIGNEMENT STRICT) */
-      html, body { max-width: 100%; overflow-x: hidden; margin: 0; padding: 0; background-color: #000; }
+        /* 1. STRUCTURE & GRID */
+        html, body { max-width: 100%; overflow-x: hidden; margin: 0; padding: 0; background-color: #000; }
 
-      h2, .SectionTitle, section h2, section h3 {
-        text-align: center !important;
-        width: 100%;
-        display: block;
-        margin: 40px auto 20px;
-        color: #BF953F;
-        font-weight: 900;
-        text-transform: uppercase;
-      }
+        h2, .SectionTitle, section h2, section h3 {
+          text-align: center !important;
+          width: 100%;
+          display: block;
+          margin: 40px auto 20px;
+          color: #BF953F;
+          font-weight: 900;
+          text-transform: uppercase;
+        }
 
-      .grid-cards {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(320px, 360px));
-        gap: 30px;
-        padding: 20px;
-        width: 100%;
-        max-width: 1300px;
-        margin: 0 auto;
-        justify-content: center;
-        align-items: stretch; /* Force la hauteur égale sur chaque ligne */
-      }
+        .grid-cards {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(320px, 360px));
+          gap: 30px;
+          padding: 20px;
+          width: 100%;
+          max-width: 1300px;
+          margin: 0 auto;
+          justify-content: center;
+          align-items: stretch;
+        }
 
-      .grid-cards > div {
-        display: flex;
-        flex-direction: column;
-        background: #111;
-        border-radius: 12px;
-        overflow: hidden;
-        border: 1px solid rgba(191, 149, 63, 0.1);
-        height: 100%;
-        position: relative;
-      }
+        .grid-cards > div {
+          display: flex;
+          flex-direction: column;
+          background: #111;
+          border-radius: 12px;
+          overflow: hidden;
+          border: 1px solid rgba(191, 149, 63, 0.1);
+          height: 100%;
+          position: relative;
+        }
 
-      /* 2. LOGO ET NAVIGATION */
-      .logo-container-wrapper {
-        position: absolute;
-        top: 150px;
-        left: 35px;
-        z-index: 101;
-        animation: wobble-inverse 5s infinite ease-in-out;
-      }
-      .moving-header-logo { height: auto; transition: 0.3s; width: 150px; }
+        /* 2. LOGO ET NAVIGATION */
+        .logo-container-wrapper {
+          position: absolute;
+          top: 150px;
+          left: 35px;
+          z-index: 101;
+          animation: wobble-inverse 5s infinite ease-in-out;
+        }
+        .moving-header-logo { height: auto; transition: 0.3s; width: 150px; }
 
-      /* 3. IMAGES DES PRODUITS (CORRIGÉ : PLUS DE DÉFORMATION) */
-      .card-menu-image-container {
-        width: 100% !important;
-        height: 230px !important; /* Fixe la hauteur */
-        min-height: 230px !important; /* Empêche de rétrécir */
-        max-height: 230px !important; /* Empêche de pousser le cadre */
-        background: #000;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        overflow: hidden !important; /* Coupe tout ce qui dépasse */
-        position: relative;
-        border-bottom: 1px solid rgba(191, 149, 63, 0.2);
-      }
+        /* 3. IMAGES DES PRODUITS (LE VERROU TOTAL) */
+        .card-menu-image-container {
+          width: 100% !important;
+          /* On force le cadre à 230px, il ne bougera JAMAIS */
+          height: 230px !important;
+          min-height: 230px !important;
+          max-height: 230px !important;
+          background: #000;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          overflow: hidden !important;
+          position: relative;
+        }
 
-      .card-menu-image-container img {
-        width: 100% !important;
-        height: 100% !important;
-        object-fit: cover !important; /* L'image s'adapte au cadre sans le déformer */
-        transition: transform 0.5s ease;
-        display: block;
-      }
+        .card-menu-image-container img {
+          /* L'image est redimensionnée pour remplir le cadre */
+          width: 100% !important;
+          height: 100% !important;
+          /* Cover : l'image est découpée pour tenir dans le moule sans déformer */
+          object-fit: cover !important;
+          object-position: center;
+          transition: transform 0.5s ease;
+        }
 
-      /* 4. TEXTES ET TITRES (HAUTEURS VERROUILLÉES) */
-      .card-title {
-        text-align: center;
-        width: 100%;
-        margin: 15px 0 10px;
-        font-size: 1.4rem;
-        text-transform: uppercase;
-        background: linear-gradient(135deg, #BF953F 0%, #FCF6BA 45%, #B38728 55%, #FBF5B7 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        font-weight: 900;
-        letter-spacing: 1px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 3.5rem; /* Aligne les titres même sur 2 lignes */
-        padding: 0 10px;
-      }
+        /* 4. TEXTES ET TITRES (HAUTEURS FIXES POUR ALIGNEMENT) */
+        .card-title {
+          text-align: center;
+          width: 100%;
+          margin: 15px 0 10px;
+          font-size: 1.4rem;
+          text-transform: uppercase;
+          background: linear-gradient(135deg, #BF953F 0%, #FCF6BA 45%, #B38728 55%, #FBF5B7 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          font-weight: 900;
+          height: 3.5rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 0 10px;
+        }
 
-      .card-description {
-        text-align: center;
-        color: #ccc;
-        font-size: 0.85rem;
-        line-height: 1.5;
-        padding: 0 15px;
-        height: 3.5rem; /* Aligne les descriptions */
-        overflow: hidden;
-        display: -webkit-box;
-        -webkit-line-clamp: 3;
-        -webkit-box-orient: vertical;
-        margin-bottom: 15px;
-      }
+        .card-description {
+          text-align: center;
+          color: #ccc;
+          font-size: 0.85rem;
+          line-height: 1.5;
+          padding: 0 15px;
+          height: 3.5rem;
+          overflow: hidden;
+          display: -webkit-box;
+          -webkit-line-clamp: 3;
+          -webkit-box-orient: vertical;
+          margin-bottom: 15px;
+        }
 
-      /* 5. BOUTONS PREMIUM ET EFFET MIROIR */
-      .gold-button-premium {
-        background: linear-gradient(135deg, #BF953F, #FCF6BA, #D4AF37, #FBF5B7, #BF953F);
-        background-size: 200% 200%;
-        animation: liquidGold 4s ease infinite;
-        color: #000 !important;
-        font-weight: 950;
-        border: none;
-        border-radius: 12px;
-        padding: 15px;
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        cursor: pointer;
-        position: relative;
-        overflow: hidden;
-        margin-top: auto; /* Pousse le bouton au fond du cadre */
-        text-transform: uppercase;
-        transition: transform 0.2s;
-      }
+        /* 5. BOUTONS PREMIUM */
+        .gold-button-premium {
+          background: linear-gradient(135deg, #BF953F, #FCF6BA, #D4AF37, #FBF5B7, #BF953F);
+          background-size: 200% 200%;
+          animation: liquidGold 4s ease infinite;
+          color: #000 !important;
+          font-weight: 950;
+          border: none;
+          border-radius: 12px;
+          padding: 15px;
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          cursor: pointer;
+          position: relative;
+          overflow: hidden;
+          margin-top: auto;
+          text-transform: uppercase;
+        }
 
-      .gold-button-premium::after {
-        content: "";
-        position: absolute;
-        top: -50%; left: -150%;
-        width: 50%; height: 200%;
-        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-        transform: rotate(25deg);
-        animation: mirrorReflection 4s infinite;
-      }
+        .gold-button-premium::after {
+          content: "";
+          position: absolute;
+          top: -50%; left: -150%;
+          width: 50%; height: 200%;
+          background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+          transform: rotate(25deg);
+          animation: mirrorReflection 4s infinite;
+        }
 
-      /* 6. OPTIONS & EXTRAS */
-      .options-box {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 6px;
-        margin: 5px 15px 12px;
-        padding: 8px;
-        background: rgba(0,0,0,0.6);
-        border: 1px solid rgba(191, 149, 63, 0.2);
-        border-radius: 12px;
-        min-height: 85px; /* Assure un alignement visuel */
-        justify-content: center;
-      }
+        /* 6. OPTIONS & EXTRAS */
+        .options-box {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 6px;
+          margin: 5px 15px 12px;
+          padding: 8px;
+          background: rgba(0,0,0,0.6);
+          border: 1px solid rgba(191, 149, 63, 0.2);
+          border-radius: 12px;
+          min-height: 85px;
+          justify-content: center;
+        }
 
-      /* 7. WHATSAPP & BADGES FLOTTANTS */
-      .whatsapp-float {
-        position: fixed;
-        bottom: 25px; right: 25px;
-        z-index: 9999;
-        transition: transform 0.3s ease;
-      }
-      .whatsapp-float img { width: 100px; height: 100px; filter: drop-shadow(0 4px 15px rgba(0,0,0,0.4)); }
+        /* 7. WHATSAPP & BADGES */
+        .whatsapp-float { position: fixed; bottom: 25px; right: 25px; z-index: 9999; }
+        .whatsapp-float img { width: 100px; height: 100px; }
 
-      .wobble-badge-container {
-        position: absolute !important;
-        top: 150px !important; right: 20px !important;
-        z-index: 10000 !important;
-      }
-      .wobble-badge.gold-button-premium {
-        padding: 10px 18px !important;
-        font-size: 0.8rem !important;
-        border-radius: 50px !important;
-        animation: liquidGold 4s infinite, wobble-badge 3s infinite ease-in-out !important;
-      }
+        .wobble-badge-container { position: absolute !important; top: 150px !important; right: 20px !important; z-index: 10000 !important; }
+        .wobble-badge.gold-button-premium { padding: 10px 18px !important; font-size: 0.8rem !important; border-radius: 50px !important; }
 
-      .badge-promo {
-        position: absolute;
-        top: 10px; left: 10px;
-        z-index: 20;
-        padding: 5px 12px;
-        border-radius: 50px;
-        font-size: 0.7rem;
-        font-weight: 900;
-        text-transform: uppercase;
-        color: #000;
-        background: linear-gradient(135deg, #FCF6BA, #BF953F);
-        animation: pulse-badge 2s infinite;
-      }
-
-      /* 8. CATEGORIES OVERLAY */
+      /* 8. CATEGORIES OVERLAY (BURGER, BEBIDAS, POSTRE) */
       .promo-container {
         position: relative;
         width: 100%;
@@ -551,36 +523,53 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
         overflow: hidden;
         border: 2px solid #BF953F;
         background: #000;
-        height: 336px;
+
+        /* VERROUILLAGE STRICT DU CADRE */
+        height: 336px !important;
+        min-height: 336px !important;
+        max-height: 336px !important;
+
         display: flex;
         align-items: center;
         justify-content: center;
+        cursor: pointer;
       }
-      .promo-img { width: 100%; height: 100%; object-fit: cover; opacity: 0.75; transition: 0.3s ease; }
 
-      /* 9. TOUTES LES ANIMATIONS SONT ICI */
-      @keyframes liquidGold { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
-      @keyframes mirrorReflection { 0% { transform: translateX(-200%) rotate(25deg); } 100% { transform: translateX(200%) rotate(25deg); } }
-      @keyframes wobble-badge { 0% { transform: rotate(4deg); } 50% { transform: rotate(-4deg) scale(1.05); } 100% { transform: rotate(4deg); } }
-      @keyframes wobble-inverse { 0% { transform: rotate(-4deg); } 50% { transform: rotate(4deg) scale(1.02); } 100% { transform: rotate(-4deg); } }
-      @keyframes pulse-badge { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
+      .promo-img {
+        width: 100% !important;
+        height: 100% !important;
 
-      /* 10. RESPONSIVE MOBILE COMPLET */
-      @media (max-width: 768px) {
-        .logo-container-wrapper { top: 140px !important; left: 15px !important; }
-        .moving-header-logo { width: 110px !important; }
-        .wobble-badge-container { top: 110px !important; right: 15px !important; }
-        .grid-cards { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; padding: 10px; }
-        .card-menu-image-container {
-            height: 180px !important;
-            min-height: 180px !important;
-            max-height: 180px !important;
+        /* L'IMAGE DOIT REMPLIR LE MOULE SANS LE POUSSER */
+        object-fit: cover !important;
+
+        opacity: 0.75;
+        transition: 0.3s ease;
+      }
+
+      /* 9. ANIMATIONS */
+        @keyframes liquidGold { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        @keyframes mirrorReflection { 0% { transform: translateX(-200%) rotate(25deg); } 100% { transform: translateX(200%) rotate(25deg); } }
+        @keyframes wobble-badge { 0% { transform: rotate(4deg); } 50% { transform: rotate(-4deg) scale(1.05); } 100% { transform: rotate(4deg); } }
+        @keyframes wobble-inverse { 0% { transform: rotate(-4deg); } 50% { transform: rotate(4deg) scale(1.02); } 100% { transform: rotate(-4deg); } }
+        @keyframes pulse-badge { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
+
+        /* 10. RESPONSIVE MOBILE COMPLET */
+        @media (max-width: 768px) {
+          .grid-cards { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; }
+          .card-menu-image-container {
+              height: 180px !important;
+              min-height: 180px !important;
+              max-height: 180px !important;
+          }
+          .promo-container {
+              height: 220px !important;
+              min-height: 220px !important;
+              max-height: 220px !important;
+              width: 92%;
+          }
+          .card-title { font-size: 1.2rem; height: 3rem; }
         }
-        .promo-container { height: 220px; width: 92%; }
-        .whatsapp-float img { width: 70px; height: 70px; }
-        .card-title { font-size: 1.2rem; height: 3rem; }
-      }
-    `}</style>
+      `}</style>
 <Helmet>
 {/* 1. DYNAMIQUE : Titre et Description traduits (Indispensable) */}
 <title>{T[lang]?.seoTitle || T.es.seoTitle}</title>
