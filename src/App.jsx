@@ -5,7 +5,7 @@ import CardMenu from "./CardMenu";
 import data from "./data";
 import { Helmet } from "react-helmet";
 
-// --- ASSETS ---
+// --- ASSETS (Vérifiés) ---
 import fb from "./assets/FB.png";
 import Postre from "./assets/postre.webp";
 import Burger from "./assets/burger.webp";
@@ -220,7 +220,7 @@ const T = {
     location: "Locație",
     hours: "Program",
     seoTitle: "Cea mai bună burgerie artizanală din Torrevieja",
-    seoContent: "Punctul de referință pentru burgeri gourmet în Torrevieja. Carne de vită maturată premium, Smash Burger, chifle brioche locale. Opțiuni Halal, fără gluten și vegane."
+    seoContent: "Punctul de referință pentru burgeri gourmet în Torrevieja. Carne de vită maturată premium, Smash Burger, chifle brioche locale. Opzioni Halal, fără gluten și vegane."
   }
 };
 
@@ -228,7 +228,7 @@ const ALL_REVIEWS = [
   { es: "¡La mejor Smash de Torrevieja! Carne de calidad y entrega rápida.", en: "Best Smash in Torrevieja! Quality meat and fast delivery.", author: "Carlos R." },
   { es: "Increíble atención. Las patatas caseras son obligatorias. 10/10.", en: "Amazing service. Homemade fries are a must. 10/10.", author: "Sarah M." },
   { es: "La burger 'La Casa' es de otro planeta. La mejor que he probado.", en: "The 'La Casa' burger is from another planet. The best I've had.", author: "Juan P." },
-  { es: "Sabor auténtico y productos frescos. Se nota la diferencia.", en: "Authentic flavor and fresh products. You can taste the difference.", author: "Elena G." },
+  { es: "Sabor auténtico y produits frescos. Se nota la diferencia.", en: "Authentic flavor and fresh products. You can taste the difference.", author: "Elena G." },
   { es: "Calidad gourmet a un precio muy justo. Repetiremos seguro.", en: "Gourmet quality at a very fair price. We will definitely repeat.", author: "Sonia B." },
   { es: "He pedido a domicilio y llegó caliente y perfecto. ¡Sigan así!", en: "Ordered delivery and it arrived hot and perfect. Keep it up!", author: "Miguel T." },
   { es: "La salsa de la casa es adictiva. El pan brioche es súper tierno.", en: "The house sauce is addictive. The brioche bun is super soft.", author: "Laura V." },
