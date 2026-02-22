@@ -1206,6 +1206,7 @@ style={{ objectFit: 'contain' }}
           </div>
         </div>
 
+
         {/* FOOTER FINAL */}
         <footer style={{
           padding: '60px 20px 40px',
