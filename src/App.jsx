@@ -3,9 +3,9 @@ import Nav from "./Nav";
 import Order from "./Order";
 import CardMenu from "./CardMenu";
 import data from "./data";
-import { Helmet } from "react-helmet"
+import { Helmet } from "react-helmet";
 
-// --- ASSETS (Vérifiés) ---
+// --- ASSETS ---
 import fb from "./assets/FB.png";
 import Postre from "./assets/postre.webp";
 import Burger from "./assets/burger.webp";
@@ -16,7 +16,6 @@ import logo from "./assets/logo.webp";
 import BurgerSignature from "/burger-signature-torrevieja.webp";
 import insta from "./assets/instagram.png";
 import whatsappIcon from "/wha2026.webp";
-
 
 const T = {
   es: {
@@ -70,7 +69,7 @@ const T = {
     seoTitle: "La meilleure Hamburguérerie Artisanale de Torrevieja",
     seoContent: "À La Casa de Burger, nous sommes la référence des burgers gourmet à Torrevieja. Viande premium, Smash Burgers, pain brioche local et frites maison. Options Halal, sans gluten et véganes disponibles."
   },
-  nl: { // Ajout du Néerlandais
+  nl: {
     heroTitle: "De Beste Burger",
     heroSubtitle: "Gourmet Burgers & Smash Burgers: Premium Rundvlees",
     btnOrder: "BESTEL NU",
@@ -225,8 +224,6 @@ const T = {
   }
 };
 
-const instagramIcon = "/instagram.png";
-
 const ALL_REVIEWS = [
   { es: "¡La mejor Smash de Torrevieja! Carne de calidad y entrega rápida.", en: "Best Smash in Torrevieja! Quality meat and fast delivery.", author: "Carlos R." },
   { es: "Increíble atención. Las patatas caseras son obligatorias. 10/10.", en: "Amazing service. Homemade fries are a must. 10/10.", author: "Sarah M." },
@@ -242,7 +239,7 @@ const ALL_REVIEWS = [
 
 const SectionTitle = ({ children, id }) => (
   <header className="menuBurgers" id={id} style={{ margin: '10px 0 20px' }}>
-    <h2 style={{ textTransform: 'uppercase', letterSpacing: '2px', fontSize: '1.8rem', color: '#FFD700' }}>{children}</h2>
+    <h2 style={{ textTransform: 'uppercase', letterSpacing: '2px', fontSize: '1.8rem', color: '#BF953F', textAlign: 'center' }}>{children}</h2>
   </header>
 );
 
@@ -252,16 +249,14 @@ export default function App() {
   const [showCardBurger, setShowCardBurger] = useState(false);
   const [showCardDrink, setShowCardDrink] = useState(false);
   const [lang, setLang] = useState('es');
+  const [loadMaps, setLoadMaps] = useState(false);
+  const [activeTab, setActiveTab] = useState('burgers');
 
-  const [loadMedia, setLoadMedia] = useState(false); // Pour YouTube (Manuel)
-const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-différé)
+  const GOLD_GRADIENT = "linear-gradient(135deg, #BF953F 0%, #FCF6BA 45%, #B38728 55%, #FBF5B7 100%)";
 
-// --- 2. GESTION DE LA LANGUE + CHARGEMENT INTELLIGENT MAPS ---
   useEffect(() => {
-    // Gestion Langue
     const params = new URLSearchParams(window.location.search);
     const urlLang = params.get('lang');
-
     if (urlLang && T[urlLang]) {
       setLang(urlLang);
     } else {
@@ -270,7 +265,6 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
       setLang(T[code] ? code : 'es');
     }
 
-    // CHARGEMENT DE LA CARTE AU SCROLL (Optimisation Google Insights)
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
@@ -280,261 +274,182 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
       },
       { rootMargin: "300px" }
     );
-
     const mapTarget = document.querySelector('.map-container');
-    if (mapTarget) {
-      observer.observe(mapTarget);
-    }
-
+    if (mapTarget) observer.observe(mapTarget);
     return () => observer.disconnect();
   }, []);
-
-  const totalPrice = useMemo(() => {
-    return cart.reduce((acc, item) => {
-      const val = item.precio || item.price || "0";
-      const valStr = String(val);
-      const numericValue = valStr.replace(/[^0-9.,]/g, "").replace(",", ".");
-      return acc + (parseFloat(numericValue) || 0);
-    }, 0).toFixed(2);
-  }, [cart]);
-
-  // --- LOGIC: MÉLANGE DES AVIS (CONSERVÉ) ---
-  const randomReviews = useMemo(() => {
-    return [...ALL_REVIEWS].sort(() => 0.5 - Math.random()).slice(0, 2);
-  }, []);
-
-  const noExtrasIds = ["prod_nuggets", "prod_croquetas", "prod_fritas", "prod_bravas", "prod_cheddar-bacon"];
-
-  const addToCart = (item) => {
-    setCart(prev => [...prev, { ...item, uniqueKey: Math.random() }]);
-  };
-
-  const removeFromCart = (idx) => setCart(p => p.filter((_, i) => i !== idx));
-
-  const scrollToId = (id) => {
-    const el = document.getElementById(id);
-    if (el) {
-      const offset = 110;
-      const bodyRect = document.body.getBoundingClientRect().top;
-      const elementRect = el.getBoundingClientRect().top;
-      window.scrollTo({
-        top: elementRect - bodyRect - offset,
-        behavior: "smooth"
-      });
-    }
-  };
-
-  const handleStartOrder = () => {
-    setShowCardBurger(true);
-    setTimeout(() => scrollToId("sec-burgers"), 150);
-  };
-
-  const handleNextStep = () => {
-    if (showCardBurger) {
-      setShowCardBurger(false);
-      setShowCardDrink(true);
-      setTimeout(() => scrollToId("sec-bebidas"), 100);
-    }
-    else if (showCardDrink) {
-      setShowCardDrink(false);
-      setShowCardPostres(true);
-      setTimeout(() => scrollToId("sec-postres"), 100);
-    }
-    else if (showCardPostres) {
-      setShowCardPostres(false);
-      setTimeout(() => scrollToId("order"), 100);
-    }
-  };
 
   const burgers = useMemo(() => data.filter(i => i.category === "food"), []);
   const drinks = useMemo(() => data.filter(i => i.category === "drink"), []);
   const postres = useMemo(() => data.filter(i => i.category === "postre"), []);
+  const noExtrasIds = ["prod_nuggets", "prod_croquetas", "prod_fritas", "prod_bravas", "prod_cheddar-bacon"];
 
-  const GOLD_BRIGHT = "#FFD700";
-  const GOLD_GRADIENT = "linear-gradient(135deg, #BF953F 0%, #FCF6BA 45%, #B38728 55%, #FBF5B7 100%)";
-  const GOLD_SHADOW = "0 4px 15px rgba(255, 215, 0, 0.3)";
+  const addToCart = (item) => setCart(prev => [...prev, { ...item, uniqueKey: Math.random() }]);
+  const removeFromCart = (idx) => setCart(p => p.filter((_, i) => i !== idx));
 
   return (
-    <div className="app-main-wrapper" style={{ position: 'relative', backgroundColor: '#111', color: '#fff' }}>
-    <style>{`
-      /* 1. STRUCTURE & GRID */
-      html, body { max-width: 100%; overflow-x: hidden; margin: 0; padding: 0; background-color: #000; }
+    <div className="app-main-wrapper" style={{ position: 'relative', backgroundColor: '#000', color: '#fff' }}>
+      <Helmet>
+        <title>{T[lang]?.seoTitle || T.es.seoTitle}</title>
+      </Helmet>
 
-      h2, .SectionTitle, section h2, section h3 {
-        text-align: center !important;
-        width: 100%;
-        display: block;
-        margin: 40px auto 20px;
-        color: #BF953F;
-        font-weight: 900;
-        text-transform: uppercase;
-      }
+      <style>{`
+        /* 1. STRUCTURE & GRID */
+        html, body { max-width: 100%; overflow-x: hidden; margin: 0; padding: 0; background-color: #000; font-family: sans-serif; }
 
-      .grid-cards {
-        display: grid !important;
-        grid-template-columns: repeat(auto-fill, minmax(320px, 360px)) !important;
-        gap: 30px !important;
-        padding: 20px !important;
-        width: 100% !important;
-        max-width: 1300px !important;
-        margin: 0 auto !important;
-        justify-content: center !important;
-        align-items: stretch !important;
-      }
+        h2, .SectionTitle, section h2, section h3 {
+          text-align: center !important;
+          width: 100%;
+          display: block;
+          margin: 40px auto 20px;
+          color: #BF953F;
+          font-weight: 900;
+          text-transform: uppercase;
+        }
 
-      /* Ciblage direct du composant CardMenu pour éviter les conflits */
-      .card-menu {
-        display: flex !important;
-        flex-direction: column !important;
-        background: #111 !important;
-        border-radius: 12px !important;
-        overflow: hidden !important;
-        border: 1px solid rgba(191, 149, 63, 0.2) !important;
-        height: 100% !important; /* Laisse le grid stretch gérer la hauteur */
-        position: relative !important;
-        background-size: cover !important;
-        background-position: center !important;
-      }
+        .grid-cards {
+          display: grid !important;
+          grid-template-columns: repeat(auto-fill, minmax(320px, 360px)) !important;
+          gap: 30px !important;
+          padding: 20px !important;
+          width: 100% !important;
+          max-width: 1300px !important;
+          margin: 0 auto !important;
+          justify-content: center !important;
+          align-items: stretch !important;
+        }
 
-      /* 3. IMAGES PRODUITS - Fixées à 180px */
-      .card-menu-image-container {
-        width: 100% !important;
-        height: 180px !important;
-        min-height: 180px !important;
-        max-height: 180px !important;
-        background: #000 !important;
-        position: relative !important;
-        overflow: hidden !important;
-        display: block !important;
-        flex-shrink: 0 !important; /* Empêche l'image de rétrécir */
-      }
+        /* 2. CARD MENU */
+        .card-menu {
+          display: flex !important;
+          flex-direction: column !important;
+          background: #111 !important;
+          border-radius: 12px !important;
+          overflow: hidden !important;
+          border: 1px solid rgba(191, 149, 63, 0.2) !important;
+          height: 100% !important;
+          position: relative !important;
+        }
 
-      .card-menu-image-container img {
-        position: absolute !important;
-        top: 0 !important;
-        left: 0 !important;
-        width: 100% !important;
-        height: 100% !important;
-        object-fit: cover !important;
-      }
+        /* 3. IMAGES PRODUITS */
+        .card-menu-image-container {
+          width: 100% !important;
+          height: 180px !important;
+          background: #000 !important;
+          position: relative !important;
+          overflow: hidden !important;
+          display: block !important;
+          flex-shrink: 0 !important;
+        }
 
-      /* 4. TEXTES ET TITRES - Alignement strict */
-      .card-title {
-        margin: 15px 0 5px !important;
-        height: 3rem !important; /* Légèrement augmenté pour le confort */
-        font-size: 1.25rem !important;
-        line-height: 1.2 !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        text-align: center !important;
-        padding: 0 10px !important;
-        font-weight: 900 !important;
-        color: #fff !important;
-        text-transform: uppercase !important;
-      }
+        .card-menu-image-container img {
+          position: absolute !important;
+          top: 0 !important; left: 0 !important;
+          width: 100% !important; height: 100% !important;
+          object-fit: cover !important;
+        }
 
-      .card-description {
-        height: 3.2rem !important;
-        margin-bottom: 10px !important;
-        font-size: 0.85rem !important;
-        line-height: 1.4 !important;
-        text-align: center !important;
-        padding: 0 15px !important;
-        color: #ccc !important;
-        /* Système anti-débordement : 3 lignes max */
-        display: -webkit-box !important;
-        -webkit-line-clamp: 3 !important;
-        -webkit-box-orient: vertical !important;
-        overflow: hidden !important;
-      }
+        /* 4. TEXTES */
+        .card-title {
+          margin: 15px 0 5px !important;
+          height: 3rem !important;
+          font-size: 1.25rem !important;
+          line-height: 1.2 !important;
+          display: flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+          text-align: center !important;
+          padding: 0 10px !important;
+          font-weight: 900 !important;
+          color: #fff !important;
+          text-transform: uppercase !important;
+        }
 
-      /* 5. BOUTONS PREMIUM */
-      .gold-button-premium {
-        background: ${GOLD_GRADIENT} !important;
-        background-size: 200% 200% !important;
-        animation: liquidGold 4s ease infinite !important;
-        color: #000 !important;
-        font-weight: 950 !important;
-        border: none !important;
-        border-radius: 0 0 12px 12px !important; /* Épouse parfaitement le bas */
-        padding: 15px !important;
-        width: 100% !important;
-        display: flex !important;
-        justify-content: space-between !important;
-        align-items: center !important;
-        margin-top: auto !important; /* Le secret de l'alignement horizontal */
-        text-transform: uppercase !important;
-        cursor: pointer;
-      }
+        .card-description {
+          height: 3.2rem !important;
+          margin-bottom: 10px !important;
+          font-size: 0.85rem !important;
+          line-height: 1.4 !important;
+          text-align: center !important;
+          padding: 0 15px !important;
+          color: #ccc !important;
+          display: -webkit-box !important;
+          -webkit-line-clamp: 3 !important;
+          -webkit-box-orient: vertical !important;
+          overflow: hidden !important;
+        }
 
-      /* 6. OPTIONS & EXTRAS */
-      .options-box {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 6px;
-        margin: 5px 15px 15px;
-        padding: 10px;
-        background: rgba(0,0,0,0.6);
-        border: 1px solid rgba(191, 149, 63, 0.2);
-        border-radius: 12px;
-        min-height: 85px !important;
-        justify-content: center;
-      }
+        /* 5. BOUTONS PREMIUM */
+        .gold-button-premium {
+          background: ${GOLD_GRADIENT} !important;
+          background-size: 200% 200% !important;
+          animation: liquidGold 4s ease infinite !important;
+          color: #000 !important;
+          font-weight: 950 !important;
+          border: none !important;
+          border-radius: 50px !important;
+          padding: 15px 25px !important;
+          text-transform: uppercase !important;
+          cursor: pointer;
+        }
 
-      /* 7. BADGES */
-      .wobble-badge {
-        background: ${GOLD_GRADIENT} !important;
-        background-size: 200% 200% !important;
-        animation: liquidGold 4s ease infinite, wobble-badge 3s infinite ease-in-out !important;
-        color: #000 !important;
-        -webkit-text-fill-color: #000 !important;
-        font-weight: 950 !important;
-        text-transform: uppercase !important;
-        padding: 8px 15px !important;
-        border-radius: 50px !important;
-        font-size: 0.75rem !important;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.8) !important;
-        display: inline-block !important;
-      }
+        /* 11. NAVIGATION TABS */
+        .menu-tabs-container {
+          display: flex !important;
+          justify-content: center !important;
+          gap: 12px !important;
+          margin: 30px auto !important;
+          padding: 10px !important;
+          flex-wrap: wrap !important;
+        }
 
-      /* 8. CATEGORIES OVERLAY */
-      .promo-container {
-        position: relative;
-        width: 100%;
-        max-width: 800px;
-        margin: 0 auto 30px;
-        border-radius: 20px;
-        overflow: hidden;
-        border: 2px solid #BF953F;
-        background: #000;
-        height: 300px !important;
-      }
+        .category-btn {
+          background: #111 !important;
+          color: #BF953F !important;
+          border: 2px solid #BF953F !important;
+          padding: 12px 25px !important;
+          border-radius: 50px !important;
+          font-weight: 900 !important;
+          text-transform: uppercase !important;
+          cursor: pointer !important;
+          transition: all 0.3s ease !important;
+          min-width: 130px !important;
+        }
 
-      .promo-container h3 {
-        color: #fff !important;
-        font-size: 2.5rem !important;
-        font-weight: 900 !important;
-        text-shadow: 2px 2px 10px #000 !important;
-        position: relative;
-        z-index: 5;
-      }
+        .category-btn.active {
+          background: ${GOLD_GRADIENT} !important;
+          background-size: 200% 200% !important;
+          animation: liquidGold 4s ease infinite !important;
+          color: #000 !important;
+          border: none !important;
+          transform: scale(1.08) !important;
+        }
 
-      /* 9. ANIMATIONS */
-      @keyframes liquidGold { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
-      @keyframes wobble-badge { 0% { transform: rotate(-5deg) scale(1); } 50% { transform: rotate(5deg) scale(1.1); } 100% { transform: rotate(-5deg) scale(1); } }
-      @keyframes wobble-inverse { 0% { transform: rotate(-4deg); } 50% { transform: rotate(4deg) scale(1.02); } 100% { transform: rotate(-4deg); } }
+        /* PROMO CONTAINER */
+        .promo-container {
+          position: relative;
+          width: 100%;
+          max-width: 800px;
+          margin: 0 auto 30px;
+          border-radius: 20px;
+          overflow: hidden;
+          border: 2px solid #BF953F;
+          background: #000;
+          height: 300px !important;
+          cursor: pointer;
+        }
 
-      /* 10. RESPONSIVE */
-      @media (max-width: 768px) {
-        .grid-cards { grid-template-columns: 1fr !important; padding: 10px !important; }
-        .card-menu-image-container { height: 200px !important; }
-        .promo-container { height: 200px !important; width: 95%; }
-      }
-  `}</style>
+        .promo-img { width: 100%; height: 100%; object-fit: cover; opacity: 0.6; }
 
-<Helmet>
+        @keyframes liquidGold { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+
+        @media (max-width: 768px) {
+          .grid-cards { grid-template-columns: 1fr !important; }
+          .promo-container { height: 200px !important; width: 92%; }
+          .category-btn { min-width: 100px !important; font-size: 0.8rem !important; }
+        }
+      `}</style>
+      <Helmet>
 {/* 1. DYNAMIQUE : Titre et Description traduits (Indispensable) */}
 <title>{T[lang]?.seoTitle || T.es.seoTitle}</title>
 <meta name="description" content={T[lang]?.seoContent || T.es.seoContent} />
