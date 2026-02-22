@@ -256,28 +256,39 @@ export default function App() {
   const [loadMedia, setLoadMedia] = useState(false); // Pour YouTube (Manuel)
 const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-différé)
 
-// --- 2. GESTION DE LA LANGUE + CHARGEMENT DIFFÉRÉ MAPS ---
-useEffect(() => {
-  // Gestion Langue
-  const params = new URLSearchParams(window.location.search);
-  const urlLang = params.get('lang');
+// --- 2. GESTION DE LA LANGUE + CHARGEMENT INTELLIGENT MAPS ---
+  useEffect(() => {
+    // Gestion Langue
+    const params = new URLSearchParams(window.location.search);
+    const urlLang = params.get('lang');
 
-  if (urlLang && T[urlLang]) {
-    setLang(urlLang);
-  } else {
-    const browserLang = navigator.language || navigator.userLanguage;
-    const code = browserLang.substring(0, 2).toLowerCase();
-    setLang(T[code] ? code : 'es');
-  }
+    if (urlLang && T[urlLang]) {
+      setLang(urlLang);
+    } else {
+      const browserLang = navigator.language || navigator.userLanguage;
+      const code = browserLang.substring(0, 2).toLowerCase();
+      setLang(T[code] ? code : 'es');
+    }
 
-  // CHARGEMENT DE LA CARTE (1 seconde après l'arrivée sur le site)
-  // On utilise un timer court pour ne pas bloquer le score initial de Google
-  const mapsTimer = setTimeout(() => {
-    setLoadMaps(true);
-  }, 1000);
+    // CHARGEMENT DE LA CARTE AU SCROLL (Optimisation Google Insights)
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setLoadMaps(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "300px" }
+    );
 
-  return () => clearTimeout(mapsTimer); // Nettoyage propre du timer
-}, []); // Fermeture parfaite du useEffect
+    const mapTarget = document.querySelector('.map-container');
+    if (mapTarget) {
+      observer.observe(mapTarget);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   const totalPrice = useMemo(() => {
     return cart.reduce((acc, item) => {
       const val = item.precio || item.price || "0";
@@ -346,243 +357,253 @@ useEffect(() => {
   return (
     <div className="app-main-wrapper" style={{ position: 'relative', backgroundColor: '#111', color: '#fff' }}>
     <style>{`
-    /* 1. STRUCTURE & GRID */
-    html, body { max-width: 100%; overflow-x: hidden; margin: 0; padding: 0; background-color: #000; }
+      /* 1. STRUCTURE & GRID */
+      html, body { max-width: 100%; overflow-x: hidden; margin: 0; padding: 0; background-color: #000; }
 
-    .grid-cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 360px));
-      gap: 30px;
-      padding: 20px;
-      width: 100%;
-      max-width: 1300px;
-      margin: 0 auto;
-      justify-content: center;
-    }
+      .grid-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 360px));
+        gap: 30px;
+        padding: 20px;
+        width: 100%;
+        max-width: 1300px;
+        margin: 0 auto;
+        justify-content: center;
+      }
 
-    .grid-cards > div {
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-    }
+      .grid-cards > div {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }
 
-    /* 2. LOGO ET NAVIGATION */
-    .logo-container-wrapper {
-      position: absolute;
-      top: 150px;
-      left: 35px;
-      z-index: 101;
-      animation: wobble-inverse 5s infinite ease-in-out;
-    }
-    .moving-header-logo { height: auto; transition: 0.3s; }
+      /* 2. LOGO ET NAVIGATION */
+      .logo-container-wrapper {
+        position: absolute;
+        top: 150px;
+        left: 35px;
+        z-index: 101;
+        animation: wobble-inverse 5s infinite ease-in-out;
+      }
+      .moving-header-logo { height: auto; transition: 0.3s; }
 
-    /* 3. TITRES ET DESCRIPTIONS (OR GOURMET) */
-    .card-title {
-      text-align: center;
-      width: 100%;
-      margin: 15px 0 10px;
-      font-size: 1.4rem;
-      text-transform: uppercase;
-      background: linear-gradient(135deg, #BF953F 0%, #FCF6BA 45%, #B38728 55%, #FBF5B7 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      color: #D4AF37;
-      font-weight: 900;
-      letter-spacing: 1px;
-      display: block;
-    }
+      /* 3. TITRES ET DESCRIPTIONS (OR GOURMET) */
+      .card-title {
+        text-align: center;
+        width: 100%;
+        margin: 15px 0 10px;
+        font-size: 1.4rem;
+        text-transform: uppercase;
+        background: linear-gradient(135deg, #BF953F 0%, #FCF6BA 45%, #B38728 55%, #FBF5B7 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: #D4AF37;
+        font-weight: 900;
+        letter-spacing: 1px;
+        display: block;
+      }
 
-    .card-description {
-      text-align: center;
-      color: #ccc;
-      font-size: 0.85rem;
-      margin-bottom: 20px;
-      line-height: 1.5;
-      padding: 0 15px;
-      min-height: 45px;
-    }
+      .card-description {
+        text-align: center;
+        color: #ccc;
+        font-size: 0.85rem;
+        margin-bottom: 20px;
+        line-height: 1.5;
+        padding: 0 15px;
+        min-height: 45px;
+      }
 
-    /* 4. BOUTONS PREMIUM (LIQUID GOLD) */
-    .gold-button-premium {
-      background: linear-gradient(135deg, #BF953F, #FCF6BA, #D4AF37, #FBF5B7, #BF953F);
-      background-size: 200% 200%;
-      animation: liquidGold 4s ease infinite;
-      color: #000 !important;
-      font-weight: 950;
-      border: none;
-      border-radius: 12px;
-      padding: 15px;
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      cursor: pointer;
-      position: relative;
-      overflow: hidden;
-      margin-top: auto;
-      text-transform: uppercase;
-      transition: transform 0.2s;
-    }
+      /* 4. BOUTONS PREMIUM (LIQUID GOLD) */
+      .gold-button-premium {
+        background: linear-gradient(135deg, #BF953F, #FCF6BA, #D4AF37, #FBF5B7, #BF953F);
+        background-size: 200% 200%;
+        animation: liquidGold 4s ease infinite;
+        color: #000 !important;
+        font-weight: 950;
+        border: none;
+        border-radius: 12px;
+        padding: 15px;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        margin-top: auto;
+        text-transform: uppercase;
+        transition: transform 0.2s;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      }
 
-    /* État quand l'article est ajouté (VERT) */
-    .gold-button-premium.is-added {
-      background: #2ecc71 !important;
-      animation: none !important;
-      color: #fff !important;
-    }
+      .gold-button-premium.is-added {
+        background: #2ecc71 !important;
+        animation: none !important;
+        color: #fff !important;
+      }
 
-    .gold-button-premium::after {
-      content: "";
-      position: absolute;
-      top: -50%;
-      left: -150%;
-      width: 50%;
-      height: 200%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-      transform: rotate(25deg);
-      animation: mirrorReflection 4s infinite;
-    }
+      .gold-button-premium::after {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -150%;
+        width: 50%;
+        height: 200%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+        transform: rotate(25deg);
+        animation: mirrorReflection 4s infinite;
+      }
 
-    /* 5. BLOC OPTIONS & EXTRAS */
-    .options-box {
-      display: flex; flex-direction: column; align-items: center;
-      gap: 8px; margin: 15px 0; padding: 10px;
-      background: rgba(0,0,0,0.6); border: 1px solid rgba(191, 149, 63, 0.2);
-      border-radius: 12px;
-    }
-    .chips-container { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; width: 100%; }
-    .option-group-label {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      color: #FFD700;
-      letter-spacing: 1.5px;
-      font-weight: bold;
-      margin-bottom: 5px;
-    }
+      /* 5. BLOC OPTIONS & EXTRAS */
+      .options-box {
+        display: flex; flex-direction: column; align-items: center;
+        gap: 8px; margin: 15px 0; padding: 10px;
+        background: rgba(0,0,0,0.6); border: 1px solid rgba(191, 149, 63, 0.2);
+        border-radius: 12px;
+      }
+      .chips-container { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; width: 100%; }
+      .option-group-label {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        color: #FFD700;
+        letter-spacing: 1.5px;
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
 
-    /* 6. WHATSAPP & BADGE #1 (FIXÉ POUR LA TAILLE) */
-    .whatsapp-float {
-      position: fixed;
-      bottom: 25px;
-      right: 25px;
-      z-index: 9999;
-    }
-    .whatsapp-float img { width: 100px; height: 100px; filter: drop-shadow(0 4px 15px rgba(0,0,0,0.4)); }
+      /* 6. WHATSAPP & BADGES */
+      .whatsapp-float {
+        position: fixed;
+        bottom: 25px;
+        right: 25px;
+        z-index: 9999;
+        transition: transform 0.3s ease;
+      }
+      .whatsapp-float img { width: 100px; height: 100px; filter: drop-shadow(0 4px 15px rgba(0,0,0,0.4)); }
+      .whatsapp-float:hover { transform: scale(1.1); }
 
-    /* Correction du Badge #1 pour qu'il ne s'étire pas */
-    .wobble-badge-container {
-      position: absolute !important;
-      top: 150px !important;
-      right: 20px !important;
-      z-index: 10000 !important;
-      display: flex !important;
-      justify-content: flex-end !important;
-      width: auto !important;
-      left: auto !important;
-    }
+      /* BADGE #1 BURGER (Le bouton flottant compact) */
+      .wobble-badge-container {
+        position: absolute !important;
+        top: 150px !important;
+        right: 20px !important;
+        z-index: 10000 !important;
+        display: flex !important;
+        justify-content: flex-end !important;
+        width: auto !important;
+        left: auto !important;
+      }
 
-    .wobble-badge.gold-button-premium {
-      display: inline-block !important;
-      width: auto !important;
-      max-width: fit-content !important;
-      padding: 10px 18px !important;
-      font-size: 0.8rem !important;
-      border-radius: 50px !important;
-      border: 1px solid #FCF6BA !important;
-      animation: liquidGold 4s infinite, wobble-badge 3s infinite ease-in-out !important;
-      white-space: nowrap;
-    }
+      .wobble-badge.gold-button-premium {
+        display: inline-block !important;
+        width: auto !important;
+        max-width: fit-content !important;
+        padding: 10px 18px !important;
+        font-size: 0.8rem !important;
+        border-radius: 50px !important;
+        border: 1px solid #FCF6BA !important;
+        animation: liquidGold 4s infinite, wobble-badge 3s infinite ease-in-out !important;
+        white-space: nowrap;
+        pointer-events: auto;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.5) !important;
+      }
 
-    .badge-promo {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      z-index: 20;
-      padding: 5px 12px;
-      border-radius: 50px;
-      font-size: 0.7rem;
-      font-weight: 900;
-      text-transform: uppercase;
-      color: #000;
-      background: linear-gradient(135deg, #FCF6BA, #BF953F);
-      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-      animation: pulse-badge 2s infinite;
-    }
+      /* BADGE PROMO (Sur les images) */
+      .badge-promo {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        z-index: 20;
+        padding: 5px 12px;
+        border-radius: 50px;
+        font-size: 0.7rem;
+        font-weight: 900;
+        text-transform: uppercase;
+        color: #000;
+        background: linear-gradient(135deg, #FCF6BA, #BF953F);
+        box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        animation: pulse-badge 2s infinite;
+      }
 
-    /* 7. CATEGORIES OVERLAY */
-    .promo-container {
-      position: relative;
-      width: 100%;
-      max-width: 800px;
-      margin: 0 auto 30px;
-      border-radius: 20px;
-      overflow: hidden;
-      border: 2px solid #BF953F;
-      background: #000;
-      height: 336px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-    }
+      /* 7. CATEGORIES OVERLAY */
+      .promo-container {
+        position: relative;
+        width: 100%;
+        max-width: 800px;
+        margin: 0 auto 30px;
+        border-radius: 20px;
+        overflow: hidden;
+        border: 2px solid #BF953F;
+        background: #000;
+        height: 336px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+      }
+      .promo-img { width: 100%; height: 100%; object-fit: contain; opacity: 0.75; transition: 0.3s ease; }
+      .promo-container:hover .promo-img { opacity: 1; transform: scale(1.03); }
 
-    .promo-img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      opacity: 0.75;
-      transition: 0.3s ease;
-    }
+      .btn-overlay {
+        position: absolute;
+        bottom: 25px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 10;
+        min-width: 180px;
+        pointer-events: none;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.8) !important;
+        border-radius: 50px !important;
+      }
 
-    .btn-overlay {
-      position: absolute;
-      bottom: 25px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 10;
-      min-width: 180px;
-      pointer-events: none;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.8) !important;
-      border-radius: 50px !important;
-    }
+      /* 8. ANIMATIONS */
+      @keyframes liquidGold { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+      @keyframes mirrorReflection { 0% { transform: translateX(-200%) rotate(25deg); } 100% { transform: translateX(200%) rotate(25deg); } }
+      @keyframes wobble-badge { 0% { transform: rotate(4deg); } 50% { transform: rotate(-4deg) scale(1.05); } 100% { transform: rotate(4deg); } }
+      @keyframes wobble-inverse { 0% { transform: rotate(-4deg); } 50% { transform: rotate(4deg) scale(1.02); } 100% { transform: rotate(-4deg); } }
+      @keyframes pulse-badge { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
 
-    /* 8. ANIMATIONS */
-    @keyframes liquidGold { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
-    @keyframes mirrorReflection { 0% { transform: translateX(-200%) rotate(25deg); } 100% { transform: translateX(200%) rotate(25deg); } }
-    @keyframes wobble-badge { 0% { transform: rotate(4deg); } 50% { transform: rotate(-4deg) scale(1.05); } 100% { transform: rotate(4deg); } }
-    @keyframes wobble-inverse { 0% { transform: rotate(-4deg); } 50% { transform: rotate(4deg) scale(1.02); } 100% { transform: rotate(-4deg); } }
-    @keyframes pulse-badge { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
+      /* 9. IMAGES DES PRODUITS */
+      .card-menu-image-container {
+        width: 100%;
+        height: 230px;
+        background: #000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        border-radius: 12px 12px 0 0;
+      }
+      .card-menu-image-container img { width: 100%; height: 100%; object-fit: contain; padding: 5px; }
 
-    /* 9. IMAGES DES PRODUITS */
-    .card-menu-image-container {
-      width: 100%;
-      height: 230px;
-      background: #000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      border-radius: 12px 12px 0 0;
-    }
-    .card-menu-image-container img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      padding: 5px;
-    }
+      /* ============================================= */
+      /* RESPONSIVE MOBILE (CORRECTIFS HAUTEURS)       */
+      /* ============================================= */
+      @media (max-width: 768px) {
+        /* On remonte le LOGO */
+        .logo-container-wrapper {
+          top: 140px !important;
+          left: 15px !important;
+        }
+        .moving-header-logo { width: 110px !important; }
 
-    /* RESPONSIVE MOBILE */
-    @media (max-width: 768px) {
-      .logo-container-wrapper { top: 220px !important; left: 15px !important; }
-      .moving-header-logo { width: 110px !important; }
-      .grid-cards { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; padding: 10px; }
-      .whatsapp-float img { width: 70px; height: 70px; }
-      .promo-container { height: auto; aspect-ratio: 600 / 336; width: 92%; }
-      .btn-overlay { bottom: 15px; min-width: 140px; font-size: 0.75rem !important; }
-      .card-title { font-size: 1.2rem; }
-      .wobble-badge-container { top: 120px !important; right: 10px !important; }
-    }
-  `}</style>
+        /* On remonte le BADGE #1 BURGER */
+        .wobble-badge-container {
+          top: 110px !important;
+          right: 15px !important;
+        }
+        .wobble-badge.gold-button-premium {
+          padding: 8px 14px !important;
+          font-size: 0.7rem !important;
+        }
+
+        .grid-cards { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; padding: 10px; }
+        .whatsapp-float img { width: 70px; height: 70px; }
+        .promo-container { height: auto; aspect-ratio: 600 / 336; width: 92%; }
+        .btn-overlay { bottom: 15px; min-width: 140px; font-size: 0.75rem !important; }
+        .card-title { font-size: 1.2rem; }
+      }
+    `}</style>
 <Helmet>
 {/* 1. DYNAMIQUE : Titre et Description traduits (Indispensable) */}
 <title>{T[lang]?.seoTitle || T.es.seoTitle}</title>
@@ -1016,7 +1037,7 @@ useEffect(() => {
   )}
 </div>
 
-{/* 2. BLOC YOUTUBE OPTIMISÉ (Zéro CSS inutile au chargement) */}
+{/* 2. BLOC YOUTUBE OPTIMISÉ (Image WebP 18ko) */}
 <div
   onClick={() => setLoadMedia(true)}
   style={{
@@ -1036,10 +1057,7 @@ useEffect(() => {
     boxShadow: '0 10px 30px rgba(0,0,0,0.5)',
     transition: 'transform 0.3s ease'
   }}
-  onMouseEnter={(e) => !loadMedia && (e.currentTarget.style.transform = 'scale(1.02)')}
-  onMouseLeave={(e) => !loadMedia && (e.currentTarget.style.transform = 'scale(1)')}
 >
-  {/* PROTECTION RADICALE : L'iframe n'existe PAS si loadMedia est false */}
   {loadMedia === true ? (
     <iframe
       width="100%"
@@ -1051,7 +1069,6 @@ useEffect(() => {
       allowFullScreen
     ></iframe>
   ) : (
-    /* Ce bloc est le seul que Google verra au chargement */
     <div style={{
       width: '100%',
       height: '100%',
@@ -1059,11 +1076,23 @@ useEffect(() => {
       flexDirection: 'column',
       justifyContent: 'center',
       alignItems: 'center',
-      backgroundImage: `linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('/favicon.png')`,
+      /* Optimisation visuelle */
+      backgroundImage: `linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('/atenta.webp')`,
       backgroundSize: 'cover',
       backgroundPosition: 'center',
-      backgroundRepeat: 'no-repeat'
+      backgroundRepeat: 'no-repeat',
+      backgroundColor: '#000'
     }}>
+      {/* On ajoute une balise invisible juste pour forcer le Lazy Loading de l'image de fond */}
+      <img
+        src="/atenta.webp"
+        alt=""
+        loading="lazy"
+        style={{ display: 'none' }}
+        /* fetchPriority="low" est une propriété HTML, on peut la passer via l'objet d'attributs standard en React */
+        fetchpriority="low"
+      />
+
       <div style={{
         fontSize: '4.5rem',
         color: GOLD_BRIGHT || '#BF953F',
@@ -1091,7 +1120,6 @@ useEffect(() => {
     </div>
   )}
 </div>
-</div> {/* Ta fameuse div de fermeture parente que je garde précieusement ! */}
 <div style={{
 display: 'flex',
 justifyContent: 'center',
@@ -1275,5 +1303,6 @@ style={{ objectFit: 'contain' }}
                       </button>
                     )}
           </div>
+      </div>
         ); // Fermeture du return (JSX)
     } // Fermeture de la fonction App
