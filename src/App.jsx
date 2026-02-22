@@ -358,24 +358,30 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
     <div className="app-main-wrapper" style={{ position: 'relative', backgroundColor: '#111', color: '#fff' }}>
     <style>{`
       /* 1. STRUCTURE & GRID */
-      html, body { max-width: 100%; overflow-x: hidden; margin: 0; padding: 0; background-color: #000; }
+        html, body { max-width: 100%; overflow-x: hidden; margin: 0; padding: 0; background-color: #000; }
 
-      .grid-cards {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(320px, 360px));
-        gap: 30px;
-        padding: 20px;
-        width: 100%;
-        max-width: 1300px;
-        margin: 0 auto;
-        justify-content: center;
-      }
+        .grid-cards {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(320px, 360px));
+          gap: 30px;
+          padding: 20px;
+          width: 100%;
+          max-width: 1300px;
+          margin: 0 auto;
+          justify-content: center;
+          /* AJOUT ICI : empêche les cartes de s'étirer verticalement */
+          align-items: start;
+        }
 
-      .grid-cards > div {
-        display: flex;
-        flex-direction: column;
-        height: 100%;
-      }
+        .grid-cards > div {
+          display: flex;
+          flex-direction: column;
+          /* CHANGEMENT : auto au lieu de 100% */
+          height: auto;
+          background: #111; /* Optionnel: assure un fond si le contenu est court */
+          border-radius: 12px;
+          overflow: hidden;
+        }
 
       /* 2. LOGO ET NAVIGATION */
       .logo-container-wrapper {
@@ -407,10 +413,10 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
         text-align: center;
         color: #ccc;
         font-size: 0.85rem;
-        margin-bottom: 20px;
+        margin-bottom: 15px;
         line-height: 1.5;
         padding: 0 15px;
-        min-height: 45px;
+        min-height: unset;
       }
 
       /* 4. BOUTONS PREMIUM (LIQUID GOLD) */
@@ -456,19 +462,32 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
 
       /* 5. BLOC OPTIONS & EXTRAS */
       .options-box {
-        display: flex; flex-direction: column; align-items: center;
-        gap: 8px; margin: 15px 0; padding: 10px;
-        background: rgba(0,0,0,0.6); border: 1px solid rgba(191, 149, 63, 0.2);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;             /* Réduit l'espace entre le titre "Extras" et les boutons */
+        margin: 5px 15px 12px; /* Réduit l'espace en haut (5px) pour coller à la description */
+        padding: 8px;          /* Rend le cadre un peu plus compact */
+        background: rgba(0,0,0,0.6);
+        border: 1px solid rgba(191, 149, 63, 0.2);
         border-radius: 12px;
       }
-      .chips-container { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; width: 100%; }
+
+      .chips-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;             /* Rapproche les petits boutons d'extras entre eux */
+        justify-content: center;
+        width: 100%;
+      }
+
       .option-group-label {
-        font-size: 0.75rem;
+        font-size: 0.7rem;    /* Légèrement plus petit pour l'élégance */
         text-transform: uppercase;
         color: #FFD700;
-        letter-spacing: 1.5px;
+        letter-spacing: 1px;
         font-weight: bold;
-        margin-bottom: 5px;
+        margin-bottom: 2px;   /* Colle le label aux boutons */
       }
 
       /* 6. WHATSAPP & BADGES */
@@ -1186,6 +1205,7 @@ style={{ objectFit: 'contain' }}
             </div>
           </div>
         </div>
+
         {/* FOOTER FINAL */}
         <footer style={{
           padding: '60px 20px 40px',
