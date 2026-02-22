@@ -6,24 +6,14 @@
     <meta name="theme-color" content="#000000" />
     <link rel="canonical" href="https://lacasadeburger.es/" />
 
-    <link rel="preload" as="image" href="/burger-signature-torrevieja.webp" fetchpriority="high" imagesizes="100vw">
+    <link rel="preload" as="image" href="/burger-signature-torrevieja.webp" fetchpriority="high">
 
-    <title>La Casa de Burger | Las Mejores Hamburguesas de Torrevieja</title>
-    <meta name="description" content="Descubre las mejores hamburguesas gourmet y smash burgers en Torrevieja. Carne premium et ambiente inigualable. ¡Pide online!" />
-    <meta name="keywords" content="hamburguesas Torrevieja, burger gourmet, smash burger, delivery Torrevieja, burger artesanal, Halal" />
+    <title>La Casa de Burger | Meilleures Hamburguesas Gourmet de Torrevieja</title>
+    <meta name="description" content="Découvrez les meilleurs burgers gourmet et smash burgers à Torrevieja. Viande 100% artisanale hachée chaque jour. Terrasse, parking et options Halal/Veggie." />
+    <meta name="keywords" content="hamburguesas Torrevieja, burger gourmet, smash burger, delivery Torrevieja, burger artesanal, Halal Torrevieja, terrasse Torrevieja" />
     <meta name="robots" content="index, follow" />
 
-    <meta property="og:type" content="restaurant" />
-    <meta property="og:title" content="La Casa de Burger | Las Mejores Hamburguesas de Torrevieja" />
-    <meta property="og:description" content="Las mejores burgers gourmet y smash de Torrevieja con carne de ternera premium." />
-    <meta property="og:image" content="https://lacasadeburger.es/burger-signature-torrevieja.webp" />
-    <meta property="og:url" content="https://lacasadeburger.es/" />
-    <meta property="og:site_name" content="La Casa de Burger" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:image" content="https://lacasadeburger.es/burger-signature-torrevieja.webp" />
-
     <style>
-        /* 1. POLICES LOCALES (Supprime l'alerte Tier et booste la vitesse) */
         @font-face {
             font-family: 'Ysabeau';
             font-style: normal;
@@ -32,115 +22,20 @@
             src: url('/fonts/ysabeau-v5-latin-regular.woff2') format('woff2');
         }
         @font-face {
-            font-family: 'Ysabeau';
-            font-style: normal;
-            font-weight: 700;
-            font-display: swap;
-            src: url('/fonts/ysabeau-v5-latin-700.woff2') format('woff2');
-        }
-        @font-face {
             font-family: 'Sacramento';
             font-style: normal;
             font-weight: 400;
             font-display: swap;
             src: url('/fonts/sacramento-v15-latin-regular.woff2') format('woff2');
         }
-
-        /* CSS Critique & Reset */
         *{box-sizing:border-box;margin:0;padding:0}
         html{scroll-behavior:smooth;background-color:#000}
-        body{background-color:#000;color:#fff;font-family:'Ysabeau',sans-serif;line-height:1.5;font-size:18px;max-width:100%;overflow-x:hidden}
+        body{background-color:#000;color:#fff;font-family:'Ysabeau',sans-serif;line-height:1.5;overflow-x:hidden}
         #root{min-height:100vh}
-
-        /* OPTIMISATION LCP */
-        .hero-container-lcp {
-            position: relative;
-            width: 100%;
-            height: 100vh;
-            background: #000;
-            contain: paint layout;
-        }
-
-        /* OPTIMISATION HEADER (CLS) */
-        .header{
-            background-color:#000;
-            display:flex;
-            justify-content:space-between;
-            align-items:center;
-            position:fixed;
-            top:0;
-            left:0;
-            width:100%;
-            height:70px;
-            z-index:9999;
-            padding:0 20px;
-            contain: size layout;
-        }
-
-        .menuBurgers{padding:100px 20px 40px;text-align:center}
-
-        /* OPTIMISATION TITRE (CLS) */
-        .menuBurgers h1 {
-            font-size: 46px;
-            margin-bottom: 20px;
-            font-family: 'Sacramento', cursive;
-            color: #ffcc00;
-            min-height: 1.2em;
-            line-height: 1.2;
-        }
-
-        /* OPTIMISATION GRILLE */
-        .menu-items{
-            display:flex;
-            flex-wrap:wrap;
-            justify-content:center;
-            gap:20px;
-            content-visibility:auto;
-            contain-intrinsic-size: 1px 500px;
-        }
-
-        .responsive-image{
-            max-width:100%;
-            height:auto;
-            border-radius:8px;
-            display: block;
-        }
-
-        #order, .container-cards, section[id]{scroll-margin-top:100px!important}
-
-        /* Footer */
-        .footer{background-color:#111;color:white;padding:40px 0;text-align:center;border-top:1px solid #333}
-        .footer-content{display:flex;flex-direction:column;align-items:center;gap:20px;max-width:1200px;margin:0 auto}
-        .logoFooter{width:150px;height:auto;opacity:0.8}
-
-        /* ANIMATION GPU */
-        @keyframes pulse-cart {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-
-        .pulse-active {
-            animation: pulse-cart 1.5s infinite ease-in-out;
-            will-change: transform;
-            contain: layout;
-            backface-visibility: hidden;
-            transform: translateZ(0);
-        }
-
-        /* ANTI-CLS MOBILE */
-        @media (max-width:768px){
-            .menu-item{
-                width:100%;
-                max-width:350px;
-                min-height: 400px;
-            }
-            .menuBurgers h1{font-size:38px}
-        }
+        .header{background-color:#000;position:fixed;top:0;width:100%;height:70px;z-index:9999;contain: size layout;}
     </style>
 
     <link rel="icon" type="image/webp" href="/logo.webp" />
-    <link rel="apple-touch-icon" href="/logo.webp" />
-    <link rel="manifest" href="/manifest.json" />
 
     <script type="application/ld+json">
     {
@@ -156,7 +51,16 @@
       "url": "https://lacasadeburger.es",
       "telephone": "+34602597210",
       "priceRange": "€€",
-      "servesCuisine": ["Hamburguesas", "Smash Burgers", "Gourmet Burger", "Halal"],
+      "servesCuisine": [
+        "Hamburguesas Gourmet",
+        "Smash Burgers",
+        "Cocina Artesanal",
+        "Carne de Ternera Premium",
+        "Comida Halal",
+        "Opciones Vegetarianas",
+        "American Cuisine"
+      ],
+      "description": "Especialistas en Burger Gourmet Signature y Smash Burgers 100% artesanales en Torrevieja. Carne fresca picada a diario, terraza, parking y opciones Halal/Veggie.",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "AV. Diego Ramirez Pastor, 142",
@@ -173,9 +77,9 @@
       "openingHoursSpecification": [
         {
           "@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
           "opens": "13:00",
-          "closes": "23:00"
+          "closes": "22:30"
         }
       ],
       "aggregateRating": {
@@ -184,22 +88,62 @@
         "reviewCount": "250",
         "bestRating": "5",
         "worstRating": "1"
+      },
+      "knowsLanguage": ["es", "en", "fr", "de", "no", "pl", "ru", "ar", "sv", "uk", "nl"],
+      "amenityFeature": [
+        { "@type": "LocationFeatureSpecification", "name": "Terraza", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Fácil aparcamiento", "value": true }
+      ],
+      "hasMenu": {
+        "@type": "Menu",
+        "name": "Carta La Casa de Burger",
+        "hasMenuSection": [
+          {
+            "@type": "MenuSection",
+            "name": "Hamburguesas Gourmet",
+            "hasMenuItem": [
+              { "@type": "MenuItem", "name": "La Mexicana", "description": "Salsa Picante, Maiz, Cebolla Roja, Tocino, Cheddar", "offers": { "@type": "Offer", "price": "14.00", "priceCurrency": "EUR" } },
+              { "@type": "MenuItem", "name": "La Colombiana", "description": "Carne con ajo, perejil, Tocino, Papa, Piña, Cheddar", "offers": { "@type": "Offer", "price": "14.00", "priceCurrency": "EUR" } },
+              { "@type": "MenuItem", "name": "La Smash doble", "description": "Doble carne, Bacon, Crema Cheddar casera, Pepinillos", "offers": { "@type": "Offer", "price": "13.00", "priceCurrency": "EUR" } },
+              { "@type": "MenuItem", "name": "La Española", "description": "Pimiento de Padron, Cecina, Huevo Frito, Cheddar", "offers": { "@type": "Offer", "price": "14.00", "priceCurrency": "EUR" } },
+              { "@type": "MenuItem", "name": "La Italiana", "description": "Tomillo, Mozza Burrata, Trufa, Champiñones", "offers": { "@type": "Offer", "price": "13.00", "priceCurrency": "EUR" } },
+              { "@type": "MenuItem", "name": "La Suiza", "description": "Champiñones al ajillo, Salsa de Queso, Cebolla caramelizada", "offers": { "@type": "Offer", "price": "13.00", "priceCurrency": "EUR" } },
+              { "@type": "MenuItem", "name": "La Francesa", "description": "Cebolla Caramelizada, Queso de Cabra, Miel", "offers": { "@type": "Offer", "price": "13.00", "priceCurrency": "EUR" } },
+              { "@type": "MenuItem", "name": "La Marroqui", "description": "Especies, Berenjena frita, Salsa de Yogur", "offers": { "@type": "Offer", "price": "13.00", "priceCurrency": "EUR" } },
+              { "@type": "MenuItem", "name": "La Inglesa", "description": "Huevo Frito, Tocino, Salsa BBQ, Cheddar", "offers": { "@type": "Offer", "price": "13.00", "priceCurrency": "EUR" } },
+              { "@type": "MenuItem", "name": "La India", "description": "Salsa Curry casera, Cebolla frita, Cheddar", "offers": { "@type": "Offer", "price": "13.00", "priceCurrency": "EUR" } }
+            ]
+          },
+          {
+            "@type": "MenuSection",
+            "name": "Entrantes y Combos",
+            "hasMenuItem": [
+              { "@type": "MenuItem", "name": "Combo 1", "description": "La Inglesa + Patatas + 3 Nuggets", "offers": { "@type": "Offer", "price": "18.00", "priceCurrency": "EUR" } },
+              { "@type": "MenuItem", "name": "Patatas Cheddar y Bacon", "description": "Patatas caseras con salsa de cheddar y bacon", "offers": { "@type": "Offer", "price": "8.50", "priceCurrency": "EUR" } },
+              { "@type": "MenuItem", "name": "Patatas Bravas", "description": "Patatas caseras con salsa brava", "offers": { "@type": "Offer", "price": "6.50", "priceCurrency": "EUR" } },
+              { "@type": "MenuItem", "name": "Nuggets de Pollo", "description": "6 unidades de nuggets caseros", "offers": { "@type": "Offer", "price": "6.50", "priceCurrency": "EUR" } }
+            ]
+          },
+          {
+            "@type": "MenuSection",
+            "name": "Postres",
+            "hasMenuItem": [
+              { "@type": "MenuItem", "name": "Waffle XXL Nutella", "description": "Gofre casero con Nutella", "offers": { "@type": "Offer", "price": "7.00", "priceCurrency": "EUR" } }
+            ]
+          }
+        ]
       }
     }
     </script>
 </head>
 <body>
-    <img src="/burger-signature-torrevieja.webp" style="display:none" alt="preload-lcp">
-
     <div id="root"></div>
-
     <noscript>
-        <div style="text-align:center; padding:20px; background: #000; color: #fff;">
+        <div style="text-align:center; padding:50px; background: #000; color: #fff;">
             <h1>La Casa de Burger Torrevieja</h1>
-            <p>Necesitas activar JavaScript para ver nuestro menú.</p>
+            <p>Especialistas en Hamburguesas Gourmet 100% Artesanales. Activa JavaScript pour voir la carte.</p>
         </div>
     </noscript>
-
     <script type="module" src="/src/main.jsx"></script>
 </body>
 </html>
