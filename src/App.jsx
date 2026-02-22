@@ -403,24 +403,27 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
       }
       .moving-header-logo { height: auto; transition: 0.3s; width: 150px; }
 
-      /* 3. IMAGES DES PRODUITS (CADRE FIXE ROI) */
+      /* 3. IMAGES DES PRODUITS (CORRIGÉ : PLUS DE DÉFORMATION) */
       .card-menu-image-container {
-        width: 100%;
-        height: 230px;
+        width: 100% !important;
+        height: 230px !important; /* Fixe la hauteur */
+        min-height: 230px !important; /* Empêche de rétrécir */
+        max-height: 230px !important; /* Empêche de pousser le cadre */
         background: #000;
         display: flex;
         align-items: center;
         justify-content: center;
-        overflow: hidden;
+        overflow: hidden !important; /* Coupe tout ce qui dépasse */
         position: relative;
         border-bottom: 1px solid rgba(191, 149, 63, 0.2);
       }
 
       .card-menu-image-container img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover; /* Remplit le cadre 230px peu importe le ratio */
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important; /* L'image s'adapte au cadre sans le déformer */
         transition: transform 0.5s ease;
+        display: block;
       }
 
       /* 4. TEXTES ET TITRES (HAUTEURS VERROUILLÉES) */
@@ -568,7 +571,11 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
         .moving-header-logo { width: 110px !important; }
         .wobble-badge-container { top: 110px !important; right: 15px !important; }
         .grid-cards { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; padding: 10px; }
-        .card-menu-image-container { height: 180px; }
+        .card-menu-image-container {
+            height: 180px !important;
+            min-height: 180px !important;
+            max-height: 180px !important;
+        }
         .promo-container { height: 220px; width: 92%; }
         .whatsapp-float img { width: 70px; height: 70px; }
         .card-title { font-size: 1.2rem; height: 3rem; }
