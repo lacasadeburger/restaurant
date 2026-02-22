@@ -1186,7 +1186,7 @@ style={{ objectFit: 'contain' }}
             </div>
           </div>
         </div>
-        {/* FOOTER FINAL : LOGO + COPYRIGHT */}
+        {/* FOOTER FINAL */}
         <footer style={{
           padding: '60px 20px 40px',
           textAlign: 'center',
@@ -1198,108 +1198,50 @@ style={{ objectFit: 'contain' }}
           gap: '20px',
           marginTop: '50px'
         }}>
-
-          {/* LOGO OPTIMISÉ SEO */}
+          {/* LOGO */}
           {logo && (
             <img
               src={logo}
-              alt="La Casa de Burger Torrevieja - Hamburguesas Gourmet y Smash Burgers"
-              width="150" // Ajoute explicitement la largeur
-              height="80"  // Ajoute explicitement la hauteur
-              style={{
-                height: '80px',
-                width: 'auto',
-                filter: 'drop-shadow(0 0 10px rgba(255,255,255,0.1))',
-                marginBottom: '10px'
-              }}
+              alt="La Casa de Burger Torrevieja"
+              width="150"
+              height="80"
+              style={{ height: '80px', width: 'auto', filter: 'drop-shadow(0 0 10px rgba(255,255,255,0.1))' }}
             />
           )}
 
-          {/* LIGNE DE SÉPARATION DORÉE */}
-          <div style={{
-            width: '50px',
-            height: '2px',
-            background: 'linear-gradient(135deg, #BF953F 0%, #FCF6BA 45%, #B38728 55%, #FBF5B7 100%)',
-            borderRadius: '2px'
-          }} aria-hidden="true" />
+          <div style={{ width: '50px', height: '2px', background: 'linear-gradient(135deg, #BF953F, #FCF6BA, #B38728, #FBF5B7)', borderRadius: '2px' }} aria-hidden="true" />
 
-          {/* COPYRIGHT ET NAVIGATION FOOTER */}
+          {/* COPYRIGHT */}
           <div style={{ color: '#888', fontSize: '0.9rem', lineHeight: '1.6' }}>
-            <p style={{ margin: 0, fontWeight: 'bold', color: '#ccc' }}>
-              © 2026 LA CASA DE BURGER
-            </p>
-            <p style={{ margin: 0, fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '1px' }}>
-              {lang === 'es' ? 'Todos los derechos reservados' :
-               lang === 'fr' ? 'Tous droits réservés' :
-               'All rights reserved'}
+            <p style={{ margin: 0, fontWeight: 'bold', color: '#ccc' }}>© 2026 LA CASA DE BURGER</p>
+            <p style={{ margin: 0, fontSize: '0.75rem', textTransform: 'uppercase' }}>
+              {lang === 'es' ? 'Todos los derechos reservados' : lang === 'fr' ? 'Tous droits réservés' : 'All rights reserved'}
             </p>
           </div>
 
-          {/* ADRESSE PHYSIQUE */}
-          <address style={{
-            color: '#bbb',
-            fontSize: '0.85rem',
-            marginTop: '10px',
-            fontStyle: 'normal',
-            letterSpacing: '0.5px'
-          }}>
+          {/* ADRESSE (Maintenant bien dans le footer) */}
+          <address style={{ color: '#bbb', fontSize: '0.85rem', fontStyle: 'normal' }}>
             Av. Diego Ramírez Pastor, 142 • 03181 Torrevieja, Spain <br/>
             <strong style={{ color: '#fff' }}>The Artisan Burger Experience</strong>
           </address>
         </footer>
-        {/* BOUTON WHATSAPP */}
-                <a
-                  href="https://wa.me/34602597210"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="whatsapp-float"
-                  aria-label={lang === 'es' ? "Hacer pedido por WhatsApp" : "Order via WhatsApp"}
-                >
-                  <img
-                    src={whatsappIcon} // Utilisation de la variable importée
-                    width="100"
-                    height="100"
-                    alt="WhatsApp La Casa de Burger"
-                    style={{ objectFit: 'contain' }}
-                    decoding="async"
-                    loading="lazy"
-                  />
-                </a>
 
-                {/* BOUTON ETAPE SUIVANTE */}
-                {(showCardBurger || showCardDrink || showCardPostres) && (
-                  <button
-                    className="floating-close"
-                    onClick={handleNextStep}
-                    style={{
-                      position: 'fixed',
-                      bottom: '95px',
-                      left: '50%',
-                      transform: 'translateX(-50%)',
-                      backgroundColor: '#ff4757',
-                      color: '#fff',
-                      width: '280px',
-                      height: '60px',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      borderRadius: '12px',
-                      fontWeight: '950',
-                      zIndex: 10000,
-                      border: '3px solid #000',
-                      cursor: 'pointer',
-                      boxShadow: '0 5px 15px rgba(0,0,0,0.4)',
-                      textTransform: 'uppercase',
-                      fontSize: '0.9rem'
-                    }}
-                  >
-                    <span>
-                      {showCardBurger && (lang === 'en' ? 'NEXT: DRINKS ➔' : 'SIGUIENTE: BEBIDAS ➔')}
-                      {showCardDrink && (lang === 'en' ? 'NEXT: DESSERTS ➔' : 'SIGUIENTE: POSTRES ➔')}
-                      {showCardPostres && (lang === 'en' ? 'VIEW ORDER ➔' : 'VER MI PEDIDO ➔')}
-                    </span>
-                  </button>
-                )}
-              </div>
-            );
-        } // FIN DE LA FONCTION (Une seule accolade ici)
+        {/* BOUTON WHATSAPP */}
+        <a href="https://wa.me/34602597210" target="_blank" rel="noopener noreferrer" className="whatsapp-float">
+          <img src={whatsappIcon} width="100" height="100" alt="WhatsApp" style={{ objectFit: 'contain' }} />
+        </a>
+
+        {/* BOUTON ETAPE SUIVANTE */}
+        {(showCardBurger || showCardDrink || showCardPostres) && (
+          <button className="floating-close" onClick={handleNextStep} style={{ position: 'fixed', bottom: '95px', left: '50%', transform: 'translateX(-50%)', backgroundColor: '#ff4757', color: '#fff', width: '280px', height: '60px', borderRadius: '12px', fontWeight: '950', zIndex: 10000, border: '3px solid #000', cursor: 'pointer' }}>
+            <span>
+              {showCardBurger && (lang === 'en' ? 'NEXT: DRINKS ➔' : 'SIGUIENTE: BEBIDAS ➔')}
+              {showCardDrink && (lang === 'en' ? 'NEXT: DESSERTS ➔' : 'SIGUIENTE: POSTRES ➔')}
+              {showCardPostres && (lang === 'en' ? 'VIEW ORDER ➔' : 'VER MI PEDIDO ➔')}
+            </span>
+          </button>
+        )}
+
+      </div> // <--- FERMETURE DU WRAPPER PRINCIPAL (app-main-wrapper)
+    ); // <--- FIN DU RETURN
+}; // <--- FIN DE LA FONCTION COMPOSANT
