@@ -357,237 +357,234 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
   return (
     <div className="app-main-wrapper" style={{ position: 'relative', backgroundColor: '#111', color: '#fff' }}>
     <style>{`
-            /* 1. STRUCTURE & GRID */
-            html, body { max-width: 100%; overflow-x: hidden; margin: 0; padding: 0; background-color: #000; }
+              /* 1. STRUCTURE & GRID */
+              html, body { max-width: 100%; overflow-x: hidden; margin: 0; padding: 0; background-color: #000; }
 
-            h2, .SectionTitle, section h2, section h3 {
-              text-align: center !important;
-              width: 100%;
-              display: block;
-              margin: 40px auto 20px;
-              color: #BF953F;
-              font-weight: 900;
-              text-transform: uppercase;
-            }
+              h2, .SectionTitle, section h2, section h3 {
+                text-align: center !important;
+                width: 100%;
+                display: block;
+                margin: 40px auto 20px;
+                color: #BF953F;
+                font-weight: 900;
+                text-transform: uppercase;
+              }
 
-            .grid-cards {
-              display: grid;
-              grid-template-columns: repeat(auto-fill, minmax(320px, 360px));
-              gap: 30px;
-              padding: 20px;
-              width: 100%;
-              max-width: 1300px;
-              margin: 0 auto;
-              justify-content: center;
-              align-items: stretch;
-            }
+              .grid-cards {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(320px, 360px));
+                gap: 30px;
+                padding: 20px;
+                width: 100%;
+                max-width: 1300px;
+                margin: 0 auto;
+                justify-content: center;
+                align-items: stretch; /* Aligne le bas de toutes les cartes d'une même ligne */
+              }
 
-            .grid-cards > div {
-              display: flex;
-              flex-direction: column;
-              background: #111;
-              border-radius: 12px;
-              overflow: hidden;
-              border: 1px solid rgba(191, 149, 63, 0.1);
-              height: 100%;
-              position: relative;
-            }
+              .grid-cards > div {
+                display: flex;
+                flex-direction: column;
+                background: #111;
+                border-radius: 12px;
+                overflow: hidden;
+                border: 1px solid rgba(191, 149, 63, 0.1);
+                height: 100%;
+                position: relative;
+              }
 
-            /* 2. LOGO ET NAVIGATION */
-            .logo-container-wrapper {
-              position: absolute;
-              top: 150px;
-              left: 35px;
-              z-index: 101;
-              animation: wobble-inverse 5s infinite ease-in-out;
-            }
-            .moving-header-logo { height: auto; transition: 0.3s; width: 150px; }
+              /* 2. LOGO ET NAVIGATION */
+              .logo-container-wrapper {
+                position: absolute;
+                top: 150px;
+                left: 35px;
+                z-index: 101;
+                animation: wobble-inverse 5s infinite ease-in-out;
+              }
+              .moving-header-logo { height: auto; transition: 0.3s; width: 150px; }
 
-            /* 3. IMAGES DES PRODUITS (VERROU ABSOLU POUR NE RIEN DÉCALER) */
-            .card-menu-image-container {
-              width: 100% !important;
-              height: 230px !important;
-              min-height: 230px !important;
-              max-height: 230px !important;
-              background: #000;
-              position: relative; /* Référentiel pour l'image absolue */
-              overflow: hidden !important;
-              border-bottom: 1px solid rgba(191, 149, 63, 0.2);
-            }
-
-            .card-menu-image-container img {
-              /* Position absolue : l'image "flotte" et ne peut plus pousser le texte */
-              position: absolute !important;
-              top: 0;
-              left: 0;
-              width: 100% !important;
-              height: 100% !important;
-              object-fit: cover !important; /* Remplit sans déformer */
-              object-position: center;
-              transition: transform 0.5s ease;
-              display: block !important;
-            }
-
-            /* 4. TEXTES ET TITRES (ALIGNEMENT STRICT) */
-            .card-title {
-              text-align: center;
-              width: 100%;
-              margin: 15px 0 10px;
-              font-size: 1.4rem;
-              text-transform: uppercase;
-              background: linear-gradient(135deg, #BF953F 0%, #FCF6BA 45%, #B38728 55%, #FBF5B7 100%);
-              -webkit-background-clip: text;
-              -webkit-text-fill-color: transparent;
-              font-weight: 900;
-              height: 3.5rem !important; /* Hauteur fixe pour aligner */
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              padding: 0 10px;
-            }
-
-            .card-description {
-              text-align: center;
-              color: #ccc;
-              font-size: 0.85rem;
-              line-height: 1.5;
-              padding: 0 15px;
-              height: 3.5rem !important; /* Hauteur fixe pour aligner */
-              overflow: hidden;
-              display: -webkit-box;
-              -webkit-line-clamp: 3;
-              -webkit-box-orient: vertical;
-              margin-bottom: 15px;
-            }
-
-            /* 5. BOUTONS PREMIUM */
-            .gold-button-premium {
-              background: linear-gradient(135deg, #BF953F, #FCF6BA, #D4AF37, #FBF5B7, #BF953F);
-              background-size: 200% 200%;
-              animation: liquidGold 4s ease infinite;
-              color: #000 !important;
-              font-weight: 950;
-              border: none;
-              border-radius: 12px;
-              padding: 15px;
-              width: 100%;
-              display: flex;
-              justify-content: space-between;
-              align-items: center;
-              cursor: pointer;
-              position: relative;
-              overflow: hidden;
-              margin-top: auto; /* Pousse le bouton en bas de la carte */
-              text-transform: uppercase;
-            }
-
-            /* 6. OPTIONS & EXTRAS */
-            .options-box {
-              display: flex;
-              flex-direction: column;
-              align-items: center;
-              gap: 6px;
-              margin: 5px 15px 12px;
-              padding: 8px;
-              background: rgba(0,0,0,0.6);
-              border: 1px solid rgba(191, 149, 63, 0.2);
-              border-radius: 12px;
-              min-height: 90px !important; /* Hauteur fixe pour extras */
-              justify-content: center;
-            }
-            /* 7. WHATSAPP & BADGES (STYLE GOLD HARMONISÉ) */
-                    .whatsapp-float { position: fixed; bottom: 25px; right: 25px; z-index: 9999; }
-                    .whatsapp-float img { width: 100px; height: 100px; }
-
-                    .wobble-badge-container {
-                      position: absolute !important;
-                      top: 15px !important; /* Ajusté pour être sur l'image */
-                      right: 15px !important;
-                      z-index: 10 !important;
-                    }
-
-                    /* Le style GOLD pour tes badges Nuevo et Top */
-                    .wobble-badge {
-                      background: linear-gradient(135deg, #BF953F, #FCF6BA, #D4AF37, #FBF5B7, #BF953F) !important;
-                      background-size: 200% 200% !important;
-                      animation: liquidGold 4s ease infinite, wobble-badge 3s infinite ease-in-out !important;
-                      color: #000 !important; /* Texte noir pour trancher sur l'or */
-                      font-weight: 900 !important;
-                      text-transform: uppercase;
-                      padding: 8px 15px !important;
-                      border-radius: 50px !important;
-                      font-size: 0.75rem !important;
-                      border: 1px solid rgba(0,0,0,0.1) !important;
-                      box-shadow: 0 4px 15px rgba(0,0,0,0.5) !important;
-                      display: inline-block;
-                      letter-spacing: 1px;
-                    }
-
-                    /* Animation spécifique pour faire "danser" les badges */
-                    @keyframes wobble-badge {
-                      0% { transform: rotate(-5deg) scale(1); }
-                      50% { transform: rotate(5deg) scale(1.1); }
-                      100% { transform: rotate(-5deg) scale(1); }
-                    }
-            /* 8. CATEGORIES OVERLAY (FORÇAGE DU REMPLISSAGE TOTAL) */
-            .promo-container {
-              position: relative;
-              width: 100%;
-              max-width: 800px;
-              margin: 0 auto 30px;
-              border-radius: 20px;
-              overflow: hidden;
-              border: 2px solid #BF953F;
-              background: #000;
-              height: 336px !important;
-              min-height: 336px !important;
-              max-height: 336px !important;
-              cursor: pointer;
-              display: block !important; /* Sort du mode flex pour laisser l'image s'étendre */
-            }
-
-            /* Force le lien <a> à remplir tout le cadre de 800px */
-            .promo-container a {
-              display: block !important;
-              width: 100% !important;
-              height: 100% !important;
-            }
-
-            .promo-img {
-              width: 100% !important;
-              height: 100% !important;
-              min-width: 100% !important;
-              min-height: 100% !important;
-              object-fit: cover !important; /* Remplit le cadre sans déformation */
-              display: block !important;
-              max-width: none !important; /* Ignore les limites globales d'images */
-              opacity: 0.75;
-              transition: 0.3s ease;
-            }
-
-            /* 9. ANIMATIONS */
-            @keyframes liquidGold { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
-            @keyframes mirrorReflection { 0% { transform: translateX(-200%) rotate(25deg); } 100% { transform: translateX(200%) rotate(25deg); } }
-            @keyframes wobble-inverse { 0% { transform: rotate(-4deg); } 50% { transform: rotate(4deg) scale(1.02); } 100% { transform: rotate(-4deg); } }
-
-            /* 10. RESPONSIVE MOBILE COMPLET */
-            @media (max-width: 768px) {
-              .grid-cards { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; }
+              /* 3. IMAGES DES PRODUITS (SOLUTION ANTI-DÉCALAGE) */
               .card-menu-image-container {
-                  height: 180px !important;
-                  min-height: 180px !important;
-                  max-height: 180px !important;
+                width: 100% !important;
+                height: 230px !important;
+                min-height: 230px !important;
+                max-height: 230px !important;
+                background: #000;
+                position: relative; /* Devient la référence pour l'image */
+                overflow: hidden !important;
+                border-bottom: 1px solid rgba(191, 149, 63, 0.2);
               }
-              .promo-container {
-                  height: 220px !important;
-                  min-height: 220px !important;
-                  max-height: 220px !important;
-                  width: 92%;
+
+              .card-menu-image-container img {
+                /* FIX : L'image ne fait plus partie du flux, elle ne peut plus pousser le contenu */
+                position: absolute !important;
+                top: 0;
+                left: 0;
+                width: 100% !important;
+                height: 100% !important;
+                object-fit: cover !important; /* Remplit le cadre sans déformer */
+                object-position: center;
+                display: block !important;
+                transition: transform 0.5s ease;
               }
-              .card-title, .card-description { height: 3rem !important; }
-              .options-box { min-height: 80px !important; }
-            }
-          `}</style>
+
+              /* 4. TEXTES ET TITRES (ALIGNEMENT STRICT) */
+              .card-title {
+                text-align: center;
+                width: 100%;
+                margin: 15px 0 10px;
+                font-size: 1.4rem;
+                text-transform: uppercase;
+                background: linear-gradient(135deg, #BF953F 0%, #FCF6BA 45%, #B38728 55%, #FBF5B7 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                font-weight: 900;
+                height: 3.5rem !important; /* Verrouille la position du titre */
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 0 10px;
+              }
+
+              .card-description {
+                text-align: center;
+                color: #ccc;
+                font-size: 0.85rem;
+                line-height: 1.5;
+                padding: 0 15px;
+                height: 3.5rem !important; /* Verrouille la hauteur de la description */
+                overflow: hidden;
+                display: -webkit-box;
+                -webkit-line-clamp: 3;
+                -webkit-box-orient: vertical;
+                margin-bottom: 15px;
+              }
+
+              /* 5. BOUTONS PREMIUM */
+              .gold-button-premium {
+                background: linear-gradient(135deg, #BF953F, #FCF6BA, #D4AF37, #FBF5B7, #BF953F);
+                background-size: 200% 200%;
+                animation: liquidGold 4s ease infinite;
+                color: #000 !important;
+                font-weight: 950;
+                border: none;
+                border-radius: 12px;
+                padding: 15px;
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                cursor: pointer;
+                position: relative;
+                overflow: hidden;
+                margin-top: auto; /* Force le bouton tout en bas */
+                text-transform: uppercase;
+              }
+
+              /* 6. OPTIONS & EXTRAS */
+              .options-box {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 6px;
+                margin: 5px 15px 12px;
+                padding: 8px;
+                background: rgba(0,0,0,0.6);
+                border: 1px solid rgba(191, 149, 63, 0.2);
+                border-radius: 12px;
+                min-height: 90px !important; /* Hauteur identique pour toutes les cartes */
+                justify-content: center;
+              }
+
+              /* 7. WHATSAPP & BADGES (NUEVO / TOP GOLD) */
+              .whatsapp-float { position: fixed; bottom: 25px; right: 25px; z-index: 9999; }
+              .whatsapp-float img { width: 100px; height: 100px; }
+
+              .wobble-badge-container {
+                position: absolute !important;
+                top: 15px !important;
+                right: 15px !important;
+                z-index: 20 !important;
+              }
+
+              .wobble-badge {
+                background: linear-gradient(135deg, #BF953F, #FCF6BA, #D4AF37, #FBF5B7, #BF953F) !important;
+                background-size: 200% 200% !important;
+                animation: liquidGold 4s ease infinite, wobble-badge 3s infinite ease-in-out !important;
+                color: #000 !important; /* Texte noir bien lisible sur l'or */
+                font-weight: 950 !important;
+                text-transform: uppercase;
+                padding: 8px 15px !important;
+                border-radius: 50px !important;
+                font-size: 0.75rem !important;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.6) !important;
+                border: none !important;
+              }
+              /* 8. CATEGORIES OVERLAY (RETOUR DES TEXTES CENTRÉS) */
+                          .promo-container {
+                            position: relative;
+                            width: 100%;
+                            max-width: 800px;
+                            margin: 0 auto 30px;
+                            border-radius: 20px;
+                            overflow: hidden;
+                            border: 2px solid #BF953F;
+                            background: #000;
+                            height: 336px !important;
+                            cursor: pointer;
+                          }
+
+                          /* On transforme le lien en conteneur pour centrer le texte par-dessus l'image */
+                          .promo-container a {
+                            display: flex !important;
+                            align-items: center;
+                            justify-content: center;
+                            width: 100% !important;
+                            height: 100% !important;
+                            text-decoration: none;
+                            position: relative;
+                            z-index: 2; /* Place le texte au-dessus de l'image */
+                          }
+
+                          /* On force l'image à rester au fond sans gêner le texte */
+                          .promo-img {
+                            position: absolute !important;
+                            top: 0;
+                            left: 0;
+                            width: 100% !important;
+                            height: 100% !important;
+                            object-fit: cover !important;
+                            display: block !important;
+                            opacity: 0.6; /* Un peu plus sombre pour que le nom du menu ressorte mieux */
+                            z-index: 1; /* Derrière le texte */
+                            transition: 0.3s ease;
+                          }
+
+                          /* Style du texte du menu (Burgers, Bebidas, etc.) s'il n'est pas déjà défini */
+                          .promo-container h3, .promo-container span {
+                              position: relative;
+                              z-index: 3;
+                              color: #fff;
+                              font-size: 2.5rem;
+                              font-weight: 900;
+                              text-transform: uppercase;
+                              text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
+                          }
+
+              /* 9. ANIMATIONS */
+              @keyframes liquidGold { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+              @keyframes wobble-badge { 0% { transform: rotate(-5deg) scale(1); } 50% { transform: rotate(5deg) scale(1.05); } 100% { transform: rotate(-5deg) scale(1); } }
+              @keyframes wobble-inverse { 0% { transform: rotate(-4deg); } 50% { transform: rotate(4deg) scale(1.02); } 100% { transform: rotate(-4deg); } }
+
+              /* 10. RESPONSIVE MOBILE */
+              @media (max-width: 768px) {
+                .grid-cards { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; }
+                .card-menu-image-container { height: 180px !important; min-height: 180px !important; }
+                .promo-container { height: 220px !important; width: 92%; }
+                .card-title, .card-description { height: 3rem !important; }
+                .options-box { min-height: 80px !important; }
+              }
+            `}</style>
 <Helmet>
 {/* 1. DYNAMIQUE : Titre et Description traduits (Indispensable) */}
 <title>{T[lang]?.seoTitle || T.es.seoTitle}</title>
