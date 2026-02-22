@@ -3,7 +3,7 @@ import Nav from "./Nav";
 import Order from "./Order";
 import CardMenu from "./CardMenu";
 import data from "./data";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet"
 
 // --- ASSETS (Vérifiés) ---
 import fb from "./assets/FB.png";
@@ -16,6 +16,7 @@ import logo from "./assets/logo.webp";
 import BurgerSignature from "/burger-signature-torrevieja.webp";
 import insta from "./assets/instagram.png";
 import whatsappIcon from "/wha2026.webp";
+
 
 const T = {
   es: {
@@ -69,7 +70,7 @@ const T = {
     seoTitle: "La meilleure Hamburguérerie Artisanale de Torrevieja",
     seoContent: "À La Casa de Burger, nous sommes la référence des burgers gourmet à Torrevieja. Viande premium, Smash Burgers, pain brioche local et frites maison. Options Halal, sans gluten et véganes disponibles."
   },
-  nl: {
+  nl: { // Ajout du Néerlandais
     heroTitle: "De Beste Burger",
     heroSubtitle: "Gourmet Burgers & Smash Burgers: Premium Rundvlees",
     btnOrder: "BESTEL NU",
@@ -220,15 +221,17 @@ const T = {
     location: "Locație",
     hours: "Program",
     seoTitle: "Cea mai bună burgerie artizanală din Torrevieja",
-    seoContent: "Punctul de referință pentru burgeri gourmet în Torrevieja. Carne de vită maturată premium, Smash Burger, chifle brioche locale. Opzioni Halal, fără gluten și vegane."
+    seoContent: "Punctul de referință pentru burgeri gourmet în Torrevieja. Carne de vită maturată premium, Smash Burger, chifle brioche locale. Opțiuni Halal, fără gluten și vegane."
   }
 };
+
+const instagramIcon = "/instagram.png";
 
 const ALL_REVIEWS = [
   { es: "¡La mejor Smash de Torrevieja! Carne de calidad y entrega rápida.", en: "Best Smash in Torrevieja! Quality meat and fast delivery.", author: "Carlos R." },
   { es: "Increíble atención. Las patatas caseras son obligatorias. 10/10.", en: "Amazing service. Homemade fries are a must. 10/10.", author: "Sarah M." },
   { es: "La burger 'La Casa' es de otro planeta. La mejor que he probado.", en: "The 'La Casa' burger is from another planet. The best I've had.", author: "Juan P." },
-  { es: "Sabor auténtico y produits frescos. Se nota la diferencia.", en: "Authentic flavor and fresh products. You can taste the difference.", author: "Elena G." },
+  { es: "Sabor auténtico y productos frescos. Se nota la diferencia.", en: "Authentic flavor and fresh products. You can taste the difference.", author: "Elena G." },
   { es: "Calidad gourmet a un precio muy justo. Repetiremos seguro.", en: "Gourmet quality at a very fair price. We will definitely repeat.", author: "Sonia B." },
   { es: "He pedido a domicilio y llegó caliente y perfecto. ¡Sigan así!", en: "Ordered delivery and it arrived hot and perfect. Keep it up!", author: "Miguel T." },
   { es: "La salsa de la casa es adictiva. El pan brioche es súper tierno.", en: "The house sauce is addictive. The brioche bun is super soft.", author: "Laura V." },
@@ -239,7 +242,7 @@ const ALL_REVIEWS = [
 
 const SectionTitle = ({ children, id }) => (
   <header className="menuBurgers" id={id} style={{ margin: '10px 0 20px' }}>
-    <h2 style={{ textTransform: 'uppercase', letterSpacing: '2px', fontSize: '1.8rem', color: '#BF953F', textAlign: 'center' }}>{children}</h2>
+    <h2 style={{ textTransform: 'uppercase', letterSpacing: '2px', fontSize: '1.8rem', color: '#FFD700' }}>{children}</h2>
   </header>
 );
 
@@ -249,14 +252,16 @@ export default function App() {
   const [showCardBurger, setShowCardBurger] = useState(false);
   const [showCardDrink, setShowCardDrink] = useState(false);
   const [lang, setLang] = useState('es');
-  const [loadMaps, setLoadMaps] = useState(false);
-  const [activeTab, setActiveTab] = useState('burgers');
 
-  const GOLD_GRADIENT = "linear-gradient(135deg, #BF953F 0%, #FCF6BA 45%, #B38728 55%, #FBF5B7 100%)";
+  const [loadMedia, setLoadMedia] = useState(false); // Pour YouTube (Manuel)
+const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-différé)
 
+// --- 2. GESTION DE LA LANGUE + CHARGEMENT INTELLIGENT MAPS ---
   useEffect(() => {
+    // Gestion Langue
     const params = new URLSearchParams(window.location.search);
     const urlLang = params.get('lang');
+
     if (urlLang && T[urlLang]) {
       setLang(urlLang);
     } else {
@@ -265,6 +270,7 @@ export default function App() {
       setLang(T[code] ? code : 'es');
     }
 
+    // CHARGEMENT DE LA CARTE AU SCROLL (Optimisation Google Insights)
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
@@ -274,182 +280,287 @@ export default function App() {
       },
       { rootMargin: "300px" }
     );
+
     const mapTarget = document.querySelector('.map-container');
-    if (mapTarget) observer.observe(mapTarget);
+    if (mapTarget) {
+      observer.observe(mapTarget);
+    }
+
     return () => observer.disconnect();
   }, []);
+
+  const totalPrice = useMemo(() => {
+    return cart.reduce((acc, item) => {
+      const val = item.precio || item.price || "0";
+      const valStr = String(val);
+      const numericValue = valStr.replace(/[^0-9.,]/g, "").replace(",", ".");
+      return acc + (parseFloat(numericValue) || 0);
+    }, 0).toFixed(2);
+  }, [cart]);
+
+  // --- LOGIC: MÉLANGE DES AVIS (CONSERVÉ) ---
+  const randomReviews = useMemo(() => {
+    return [...ALL_REVIEWS].sort(() => 0.5 - Math.random()).slice(0, 2);
+  }, []);
+
+  const noExtrasIds = ["prod_nuggets", "prod_croquetas", "prod_fritas", "prod_bravas", "prod_cheddar-bacon"];
+
+  const addToCart = (item) => {
+    setCart(prev => [...prev, { ...item, uniqueKey: Math.random() }]);
+  };
+
+  const removeFromCart = (idx) => setCart(p => p.filter((_, i) => i !== idx));
+
+  const scrollToId = (id) => {
+    const el = document.getElementById(id);
+    if (el) {
+      const offset = 110;
+      const bodyRect = document.body.getBoundingClientRect().top;
+      const elementRect = el.getBoundingClientRect().top;
+      window.scrollTo({
+        top: elementRect - bodyRect - offset,
+        behavior: "smooth"
+      });
+    }
+  };
+
+  const handleStartOrder = () => {
+    setShowCardBurger(true);
+    setTimeout(() => scrollToId("sec-burgers"), 150);
+  };
+
+  const handleNextStep = () => {
+    if (showCardBurger) {
+      setShowCardBurger(false);
+      setShowCardDrink(true);
+      setTimeout(() => scrollToId("sec-bebidas"), 100);
+    }
+    else if (showCardDrink) {
+      setShowCardDrink(false);
+      setShowCardPostres(true);
+      setTimeout(() => scrollToId("sec-postres"), 100);
+    }
+    else if (showCardPostres) {
+      setShowCardPostres(false);
+      setTimeout(() => scrollToId("order"), 100);
+    }
+  };
 
   const burgers = useMemo(() => data.filter(i => i.category === "food"), []);
   const drinks = useMemo(() => data.filter(i => i.category === "drink"), []);
   const postres = useMemo(() => data.filter(i => i.category === "postre"), []);
-  const noExtrasIds = ["prod_nuggets", "prod_croquetas", "prod_fritas", "prod_bravas", "prod_cheddar-bacon"];
 
-  const addToCart = (item) => setCart(prev => [...prev, { ...item, uniqueKey: Math.random() }]);
-  const removeFromCart = (idx) => setCart(p => p.filter((_, i) => i !== idx));
+  const GOLD_BRIGHT = "#FFD700";
+  const GOLD_GRADIENT = "linear-gradient(135deg, #BF953F 0%, #FCF6BA 45%, #B38728 55%, #FBF5B7 100%)";
+  const GOLD_SHADOW = "0 4px 15px rgba(255, 215, 0, 0.3)";
 
   return (
-    <div className="app-main-wrapper" style={{ position: 'relative', backgroundColor: '#000', color: '#fff' }}>
-      <Helmet>
-        <title>{T[lang]?.seoTitle || T.es.seoTitle}</title>
-      </Helmet>
+    <div className="app-main-wrapper" style={{ position: 'relative', backgroundColor: '#111', color: '#fff' }}>
+    <style>{`
+              /* 1. STRUCTURE & GRID */
+              html, body { max-width: 100%; overflow-x: hidden; margin: 0; padding: 0; background-color: #000; }
 
-      <style>{`
-        /* 1. STRUCTURE & GRID */
-        html, body { max-width: 100%; overflow-x: hidden; margin: 0; padding: 0; background-color: #000; font-family: sans-serif; }
+              h2, .SectionTitle, section h2, section h3 {
+                text-align: center !important;
+                width: 100%;
+                display: block;
+                margin: 40px auto 20px;
+                color: #BF953F;
+                font-weight: 900;
+                text-transform: uppercase;
+              }
 
-        h2, .SectionTitle, section h2, section h3 {
-          text-align: center !important;
-          width: 100%;
-          display: block;
-          margin: 40px auto 20px;
-          color: #BF953F;
-          font-weight: 900;
-          text-transform: uppercase;
-        }
+              .grid-cards {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(320px, 360px));
+                gap: 30px;
+                padding: 20px;
+                width: 100%;
+                max-width: 1300px;
+                margin: 0 auto;
+                justify-content: center;
+                align-items: stretch; /* Aligne le bas de toutes les cartes d'une même ligne */
+              }
 
-        .grid-cards {
-          display: grid !important;
-          grid-template-columns: repeat(auto-fill, minmax(320px, 360px)) !important;
-          gap: 30px !important;
-          padding: 20px !important;
-          width: 100% !important;
-          max-width: 1300px !important;
-          margin: 0 auto !important;
-          justify-content: center !important;
-          align-items: stretch !important;
-        }
+              .grid-cards > div {
+                display: flex;
+                flex-direction: column;
+                background: #111;
+                border-radius: 12px;
+                overflow: hidden;
+                border: 1px solid rgba(191, 149, 63, 0.1);
+                height: 100%;
+                position: relative;
+              }
 
-        /* 2. CARD MENU */
-        .card-menu {
-          display: flex !important;
-          flex-direction: column !important;
-          background: #111 !important;
-          border-radius: 12px !important;
-          overflow: hidden !important;
-          border: 1px solid rgba(191, 149, 63, 0.2) !important;
-          height: 100% !important;
-          position: relative !important;
-        }
+              /* 2. LOGO ET NAVIGATION */
+              .logo-container-wrapper {
+                position: absolute;
+                top: 150px;
+                left: 35px;
+                z-index: 101;
+                animation: wobble-inverse 5s infinite ease-in-out;
+              }
+              .moving-header-logo { height: auto; transition: 0.3s; width: 150px; }
 
-        /* 3. IMAGES PRODUITS */
-        .card-menu-image-container {
-          width: 100% !important;
-          height: 180px !important;
-          background: #000 !important;
-          position: relative !important;
-          overflow: hidden !important;
-          display: block !important;
-          flex-shrink: 0 !important;
-        }
+              /* 3. IMAGES DES PRODUITS (SOLUTION ANTI-DÉCALAGE) */
+              .card-menu-image-container {
+                width: 100% !important;
+                height: 230px !important;
+                min-height: 230px !important;
+                max-height: 230px !important;
+                background: #000;
+                position: relative; /* Devient la référence pour l'image */
+                overflow: hidden !important;
+                border-bottom: 1px solid rgba(191, 149, 63, 0.2);
+              }
 
-        .card-menu-image-container img {
-          position: absolute !important;
-          top: 0 !important; left: 0 !important;
-          width: 100% !important; height: 100% !important;
-          object-fit: cover !important;
-        }
+              .card-menu-image-container img {
+                /* FIX : L'image ne fait plus partie du flux, elle ne peut plus pousser le contenu */
+                position: absolute !important;
+                top: 0;
+                left: 0;
+                width: 100% !important;
+                height: 100% !important;
+                object-fit: cover !important; /* Remplit le cadre sans déformer */
+                object-position: center;
+                display: block !important;
+                transition: transform 0.5s ease;
+              }
 
-        /* 4. TEXTES */
-        .card-title {
-          margin: 15px 0 5px !important;
-          height: 3rem !important;
-          font-size: 1.25rem !important;
-          line-height: 1.2 !important;
-          display: flex !important;
-          align-items: center !important;
-          justify-content: center !important;
-          text-align: center !important;
-          padding: 0 10px !important;
-          font-weight: 900 !important;
-          color: #fff !important;
-          text-transform: uppercase !important;
-        }
+              /* 4. TEXTES ET TITRES (ALIGNEMENT STRICT) */
+              .card-title {
+                text-align: center;
+                width: 100%;
+                margin: 15px 0 10px;
+                font-size: 1.4rem;
+                text-transform: uppercase;
+                background: linear-gradient(135deg, #BF953F 0%, #FCF6BA 45%, #B38728 55%, #FBF5B7 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                font-weight: 900;
+                height: 3.5rem !important; /* Verrouille la position du titre */
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 0 10px;
+              }
 
-        .card-description {
-          height: 3.2rem !important;
-          margin-bottom: 10px !important;
-          font-size: 0.85rem !important;
-          line-height: 1.4 !important;
-          text-align: center !important;
-          padding: 0 15px !important;
-          color: #ccc !important;
-          display: -webkit-box !important;
-          -webkit-line-clamp: 3 !important;
-          -webkit-box-orient: vertical !important;
-          overflow: hidden !important;
-        }
+              .card-description {
+                text-align: center;
+                color: #ccc;
+                font-size: 0.85rem;
+                line-height: 1.5;
+                padding: 0 15px;
+                height: 3.5rem !important; /* Verrouille la hauteur de la description */
+                overflow: hidden;
+                display: -webkit-box;
+                -webkit-line-clamp: 3;
+                -webkit-box-orient: vertical;
+                margin-bottom: 15px;
+              }
 
-        /* 5. BOUTONS PREMIUM */
-        .gold-button-premium {
-          background: ${GOLD_GRADIENT} !important;
-          background-size: 200% 200% !important;
-          animation: liquidGold 4s ease infinite !important;
-          color: #000 !important;
-          font-weight: 950 !important;
-          border: none !important;
-          border-radius: 50px !important;
-          padding: 15px 25px !important;
-          text-transform: uppercase !important;
-          cursor: pointer;
-        }
+              /* 5. BOUTONS PREMIUM */
+              .gold-button-premium {
+                background: linear-gradient(135deg, #BF953F, #FCF6BA, #D4AF37, #FBF5B7, #BF953F);
+                background-size: 200% 200%;
+                animation: liquidGold 4s ease infinite;
+                color: #000 !important;
+                font-weight: 950;
+                border: none;
+                border-radius: 12px;
+                padding: 15px;
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                cursor: pointer;
+                position: relative;
+                overflow: hidden;
+                margin-top: auto; /* Force le bouton tout en bas */
+                text-transform: uppercase;
+              }
 
-        /* 11. NAVIGATION TABS */
-        .menu-tabs-container {
-          display: flex !important;
-          justify-content: center !important;
-          gap: 12px !important;
-          margin: 30px auto !important;
-          padding: 10px !important;
-          flex-wrap: wrap !important;
-        }
+              /* 6. OPTIONS & EXTRAS */
+              .options-box {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 6px;
+                margin: 5px 15px 12px;
+                padding: 8px;
+                background: rgba(0,0,0,0.6);
+                border: 1px solid rgba(191, 149, 63, 0.2);
+                border-radius: 12px;
+                min-height: 90px !important; /* Hauteur identique pour toutes les cartes */
+                justify-content: center;
+              }
 
-        .category-btn {
-          background: #111 !important;
-          color: #BF953F !important;
-          border: 2px solid #BF953F !important;
-          padding: 12px 25px !important;
-          border-radius: 50px !important;
-          font-weight: 900 !important;
-          text-transform: uppercase !important;
-          cursor: pointer !important;
-          transition: all 0.3s ease !important;
-          min-width: 130px !important;
-        }
+              /* 7. WHATSAPP & BADGES (NUEVO / TOP GOLD) */
+              .whatsapp-float { position: fixed; bottom: 25px; right: 25px; z-index: 9999; }
+              .whatsapp-float img { width: 100px; height: 100px; }
 
-        .category-btn.active {
-          background: ${GOLD_GRADIENT} !important;
-          background-size: 200% 200% !important;
-          animation: liquidGold 4s ease infinite !important;
-          color: #000 !important;
-          border: none !important;
-          transform: scale(1.08) !important;
-        }
+              .wobble-badge-container {
+                position: absolute !important;
+                top: 15px !important;
+                right: 15px !important;
+                z-index: 20 !important;
+              }
 
-        /* PROMO CONTAINER */
-        .promo-container {
-          position: relative;
-          width: 100%;
-          max-width: 800px;
-          margin: 0 auto 30px;
-          border-radius: 20px;
-          overflow: hidden;
-          border: 2px solid #BF953F;
-          background: #000;
-          height: 300px !important;
-          cursor: pointer;
-        }
+              .wobble-badge {
+                background: linear-gradient(135deg, #BF953F, #FCF6BA, #D4AF37, #FBF5B7, #BF953F) !important;
+                background-size: 200% 200% !important;
+                animation: liquidGold 4s ease infinite, wobble-badge 3s infinite ease-in-out !important;
+                color: #000 !important; /* Texte noir bien lisible sur l'or */
+                font-weight: 950 !important;
+                text-transform: uppercase;
+                padding: 8px 15px !important;
+                border-radius: 50px !important;
+                font-size: 0.75rem !important;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.6) !important;
+                border: none !important;
+              }
 
-        .promo-img { width: 100%; height: 100%; object-fit: cover; opacity: 0.6; }
+              /* 8. CATEGORIES OVERLAY (FULL WIDTH) */
+              .promo-container {
+                position: relative;
+                width: 100%;
+                max-width: 800px;
+                margin: 0 auto 30px;
+                border-radius: 20px;
+                overflow: hidden;
+                border: 2px solid #BF953F;
+                background: #000;
+                height: 336px !important;
+                cursor: pointer;
+              }
 
-        @keyframes liquidGold { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+              .promo-container a { display: block !important; width: 100% !important; height: 100% !important; }
 
-        @media (max-width: 768px) {
-          .grid-cards { grid-template-columns: 1fr !important; }
-          .promo-container { height: 200px !important; width: 92%; }
-          .category-btn { min-width: 100px !important; font-size: 0.8rem !important; }
-        }
-      `}</style>
-      <Helmet>
+              .promo-img {
+                width: 100% !important;
+                height: 100% !important;
+                object-fit: cover !important;
+                display: block !important;
+                opacity: 0.75;
+                transition: 0.3s ease;
+              }
+
+              /* 9. ANIMATIONS */
+              @keyframes liquidGold { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+              @keyframes wobble-badge { 0% { transform: rotate(-5deg) scale(1); } 50% { transform: rotate(5deg) scale(1.05); } 100% { transform: rotate(-5deg) scale(1); } }
+              @keyframes wobble-inverse { 0% { transform: rotate(-4deg); } 50% { transform: rotate(4deg) scale(1.02); } 100% { transform: rotate(-4deg); } }
+
+              /* 10. RESPONSIVE MOBILE */
+              @media (max-width: 768px) {
+                .grid-cards { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; }
+                .card-menu-image-container { height: 180px !important; min-height: 180px !important; }
+                .promo-container { height: 220px !important; width: 92%; }
+                .card-title, .card-description { height: 3rem !important; }
+                .options-box { min-height: 80px !important; }
+              }
+            `}</style>
+<Helmet>
 {/* 1. DYNAMIQUE : Titre et Description traduits (Indispensable) */}
 <title>{T[lang]?.seoTitle || T.es.seoTitle}</title>
 <meta name="description" content={T[lang]?.seoContent || T.es.seoContent} />
