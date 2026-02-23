@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
     <meta name="theme-color" content="#000000" />
+
+    {/* Correction SEO : Lien canonique fixe pour le domaine principal */}
     <link rel="canonical" href="https://lacasadeburger.es/" />
 
     <link rel="preload" as="image" href="/burger-signature-torrevieja.webp" fetchpriority="high">
@@ -36,6 +38,7 @@
     </style>
 
     <link rel="icon" type="image/webp" href="/logo.webp" />
+
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -74,20 +77,20 @@
         "longitude": -0.6757
       },
       "potentialAction": {
-  "@type": "OrderAction",
-  "target": {
-    "@type": "EntryPoint",
-    "urlTemplate": "https://lacasadeburger.es/",
-    "inLanguage": ["es", "en", "fr"],
-    "actionPlatform": [
-      "https://schema.org/DesktopWebPlatform",
-      "https://schema.org/MobileWebPlatform"
-    ]
-  },
-  "deliveryMethod": [
-    "https://purl.org/goodrelations/v1#DeliveryModeOwnFleet"
-  ]
-},
+        "@type": "OrderAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://lacasadeburger.es/",
+          "inLanguage": ["es", "en", "fr"],
+          "actionPlatform": [
+            "https://schema.org/DesktopWebPlatform",
+            "https://schema.org/MobileWebPlatform"
+          ]
+        },
+        "deliveryMethod": [
+          "https://purl.org/goodrelations/v1#DeliveryModeOwnFleet"
+        ]
+      },
       "openingHoursSpecification": [
         {
           "@type": "OpeningHoursSpecification",
