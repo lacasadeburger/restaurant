@@ -9,6 +9,19 @@ export default function CardMenu(props) {
 
   const GOLD_BRIGHT = "#FFD700";
 
+  // --- LOGIQUE DE DÉTECTION SPECIALE (Boissons/Desserts) ---
+  // On élargit la détection pour être sûr de ne rien rater
+  const isSpecial = useMemo(() => {
+    return (
+      isDrinkCard ||
+      isPostreCard ||
+      category === "drink" ||
+      category === "postre" ||
+      category === "bebida" ||
+      category === "boisson"
+    );
+  }, [isDrinkCard, isPostreCard, category]);
+
   const stableName = useMemo(() => {
     if (typeof name === 'object') return name[lang] || name['es'];
     if (typeof object === 'object') return object[lang] || object['es'];
@@ -95,17 +108,21 @@ export default function CardMenu(props) {
     boxShadow: '0 4px 10px rgba(0,0,0,0.4)'
   };
 
-  // --- LOGIQUE DE DÉTECTION ---
-  const isSpecial = isDrinkCard || isPostreCard || category === "drink" || category === "postre";
-
   return (
     <div className="card-menu" style={{
-      backgroundImage: `url(${bgCard})`, backgroundSize: 'cover', backgroundPosition: 'center',
-      display: 'flex', flexDirection: 'column', height: '100%', position: 'relative', borderRadius: '15px', overflow: 'hidden',
+      backgroundImage: `url(${bgCard})`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      display: 'flex',
+      flexDirection: 'column',
+      height: '100%',
+      position: 'relative',
+      borderRadius: '15px',
+      overflow: 'hidden',
       border: '1px solid rgba(255,215,0,0.1)'
     }}>
 
-      {/* 1. CONTAINER IMAGE : On utilise Flexbox pour centrer parfaitement */}
+      {/* 1. CONTAINER IMAGE : Fixé pour empêcher le collapse */}
       <div style={{
         position: 'relative',
         height: '230px',
@@ -114,7 +131,8 @@ export default function CardMenu(props) {
         alignItems: 'center',
         justifyContent: 'center',
         overflow: 'hidden',
-        padding: isSpecial ? '12px' : '0px' // Padding léger pour les bouteilles
+        backgroundColor: 'rgba(0,0,0,0.2)', // Fond pour détacher l'image
+        padding: isSpecial ? '20px' : '0px'  // Plus d'espace pour les bouteilles
       }}>
 
         {badge && (
@@ -123,41 +141,57 @@ export default function CardMenu(props) {
           </div>
         )}
 
-        <div style={{ position: 'absolute', top: '10px', right: '10px', backgroundColor: 'rgba(0,0,0,0.85)', color: GOLD_BRIGHT, padding: '5px 12px', borderRadius: '12px', fontWeight: '950', border: `2px solid ${GOLD_BRIGHT}`, zIndex: 40 }}>
+        <div style={{
+          position: 'absolute',
+          top: '10px',
+          right: '10px',
+          backgroundColor: 'rgba(0,0,0,0.85)',
+          color: GOLD_BRIGHT,
+          padding: '5px 12px',
+          borderRadius: '12px',
+          fontWeight: '950',
+          border: `2px solid ${GOLD_BRIGHT}`,
+          zIndex: 40
+        }}>
           {totalPrice}€
         </div>
 
         <img
           src={image}
           alt={stableName}
-          onError={(e) => { e.target.src = "https://placehold.co/400x400/000000/FFD700?text=Logo"; }}
+          onError={(e) => {
+            console.warn("Image non trouvée:", image);
+            e.target.src = "https://placehold.co/400x400/000000/FFD700?text=Logo";
+          }}
           style={{
-            // LA CORRECTION EST ICI :
-            // Pour les boissons : on ne force pas la largeur à 100%, on la laisse s'adapter (auto)
-            // pour que la bouteille garde sa forme élancée.
+            // Si c'est une boisson, on garde le ratio d'origine (auto) pour éviter l'étirement
             width: isSpecial ? 'auto' : '100%',
-            height: isSpecial ? '100%' : '100%',
+            height: '100%',
             maxWidth: '100%',
             maxHeight: '100%',
+            // Contain pour les boissons (voir tout l'objet), Cover pour la nourriture (remplir le cadre)
             objectFit: isSpecial ? 'contain' : 'cover',
-            display: 'block'
+            display: 'block',
+            zIndex: 10
           }}
         />
       </div>
 
-      {/* 2. TEXTE */}
+      {/* 2. TEXTE ET CONTENU */}
       <div style={{ flex: 1, display: 'flex', flexDirection: 'column', padding: '15px' }}>
-        <h3 translate="no" style={{ margin: '0 0 10px 0', fontSize: '1.4rem', color: '#fff' }}>{stableName}</h3>
-        <p style={{ marginBottom: '15px', color: '#ddd', fontSize: '0.9rem', lineHeight: '1.4' }}>
+        <h3 translate="no" className="card-title" style={{ margin: '0 0 10px 0', color: '#fff' }}>
+          {stableName}
+        </h3>
+
+        <p className="card-description">
           {typeof description === 'object' ? (description[lang] || description['es']) : (description || "")}
         </p>
 
-        {/* 3. OPTIONS */}
+        {/* 3. OPTIONS : Uniquement si ce n'est pas une boisson/dessert sans extras */}
         {hasExtras && !isSpecial && (
           <div className="options-box" style={{ marginTop: 'auto' }}>
             <div style={labelGoldStyle}>{getT("extra")}</div>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', justifyContent: 'center', marginBottom: '12px' }}>
-              {/* Mapping des extras (identique à ton code) */}
               {[
                 { id: "Extra Huevo", name: getT("ingredients", "Extra Huevo"), price: 1.00 },
                 { id: "Extra Carne y Queso", name: getT("ingredients", "Extra Carne y Queso"), price: 4.50 },
@@ -178,7 +212,6 @@ export default function CardMenu(props) {
 
             <div style={labelGoldStyle}>{getT("remove")}</div>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', justifyContent: 'center' }}>
-              {/* Mapping des retraits */}
               {[
                 { id: "Tomate", name: getT("ingredients", "Tomate") },
                 { id: "Lechuga", name: getT("ingredients", "Lechuga") },
@@ -206,14 +239,23 @@ export default function CardMenu(props) {
         <button
           onClick={handleAddClick}
           className={`gold-button-premium ${isAdded ? 'is-added' : ''}`}
-          style={{ width: '100%', height: '50px', border: 'none', borderRadius: '12px', cursor: 'pointer' }}
+          style={{
+            width: '100%',
+            height: '55px',
+            border: 'none',
+            borderRadius: '12px',
+            cursor: 'pointer',
+            overflow: 'hidden'
+          }}
         >
           {isAdded ? (
             <span style={{ fontWeight: '950' }}>{getT("ready")}</span>
           ) : (
             <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', alignItems: 'center', padding: '0 10px' }}>
               <span style={{ fontWeight: '950' }}>{getT("add")}</span>
-              <span style={{ backgroundColor: 'rgba(0,0,0,0.2)', padding: '2px 10px', borderRadius: '6px' }}>{totalPrice}€</span>
+              <span style={{ backgroundColor: 'rgba(0,0,0,0.2)', padding: '4px 12px', borderRadius: '8px', fontSize: '0.9rem' }}>
+                {totalPrice}€
+              </span>
             </div>
           )}
         </button>
