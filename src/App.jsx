@@ -357,264 +357,173 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
   return (
     <div className="app-main-wrapper" style={{ position: 'relative', backgroundColor: '#111', color: '#fff' }}>
     <style>{`
-          /* 1. STRUCTURE & GRID */
-          html, body { max-width: 100%; overflow-x: hidden; margin: 0; padding: 0; background-color: #000; }
+  /* 1. STRUCTURE & GRID */
+  html, body { max-width: 100%; overflow-x: hidden; margin: 0; padding: 0; background-color: #000; }
 
-          h2, .SectionTitle, section h2, section h3 {
-            text-align: center !important;
-            width: 100%;
-            display: block;
-            margin: 40px auto 20px;
-            color: #BF953F;
-            font-weight: 900;
-            text-transform: uppercase;
-          }
+  h2, .SectionTitle, section h2, section h3 {
+    text-align: center !important;
+    width: 100%;
+    display: block;
+    margin: 40px auto 20px;
+    color: #BF953F;
+    font-weight: 900;
+    text-transform: uppercase;
+  }
 
-          .grid-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 30px;
-            padding: 20px;
-            width: 100%;
-            max-width: 1300px;
-            margin: 0 auto;
-            justify-content: center;
-          }
+  .grid-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 30px;
+    padding: 20px;
+    max-width: 1300px;
+    margin: 0 auto;
+    justify-content: center;
+  }
 
-          .card-menu {
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-            background: #111;
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid rgba(191, 149, 63, 0.1);
-            position: relative;
-          }
+  /* 2. CARD & IMAGE (LA ZONE CRITIQUE) */
+  .card-menu {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: #111;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(191, 149, 63, 0.1);
+    position: relative;
+    transition: transform 0.3s ease;
+  }
 
-          /* 2. LOGO ET NAVIGATION */
-          .logo-container-wrapper {
-            position: absolute;
-            top: 150px;
-            left: 35px;
-            z-index: 101;
-            animation: wobble-inverse 5s infinite ease-in-out;
-          }
-          .moving-header-logo { height: auto; transition: 0.3s; width: 150px; }
+  .card-menu:hover { transform: translateY(-5px); }
 
-          /* 3. PROMO / CATEGORIES */
-          .promo-container {
-            position: relative;
-            width: 100%;
-            max-width: 800px;
-            margin: 0 auto 30px;
-            border-radius: 20px;
-            overflow: hidden;
-            border: 2px solid #BF953F;
-            background: #000;
-            height: 336px;
-            cursor: pointer;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            align-items: center;
-          }
+  .card-menu-image-container {
+    width: 100% !important;
+    height: 230px !important;
+    min-height: 230px !important;
+    background: #000;
+    position: relative;
+    overflow: hidden;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid rgba(191, 149, 63, 0.2);
+  }
 
-          .category-btn-overlay {
-            background: linear-gradient(135deg, #BF953F, #FCF6BA, #D4AF37, #FBF5B7, #BF953F);
-            background-size: 200% 200%;
-            animation: liquidGold 4s ease infinite;
-            color: #000;
-            font-weight: 950;
-            padding: 12px 35px;
-            border-radius: 50px;
-            text-transform: uppercase;
-            font-size: 1.1rem;
-            margin-bottom: 25px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.6);
-            z-index: 2;
-            border: 2px solid #000;
-            width: auto;
-            text-align: center;
-          }
+  /* Force l'image à apparaître peu importe les scripts tiers */
+  .card-menu-image-container img {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transition: 0.5s ease;
+  }
 
-          .promo-img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100% !important;
-            height: 100% !important;
-            object-fit: cover;
-            opacity: 0.7;
-            transition: 0.4s ease;
-            z-index: 1;
-          }
+  .card-menu:hover .card-menu-image-container img { transform: scale(1.1); }
 
-          .promo-container:hover .promo-img {
-            transform: scale(1.05);
-            opacity: 0.85;
-          }
+  /* 3. LOGO ET NAVIGATION */
+  .logo-container-wrapper {
+    position: absolute;
+    top: 150px; left: 35px; z-index: 101;
+    animation: wobble-inverse 5s infinite ease-in-out;
+  }
+  .moving-header-logo { height: auto; transition: 0.3s; width: 150px; }
 
-          /* 4. IMAGES DES PRODUITS */
-          .card-menu-image-container {
-            width: 100%;
-            height: 230px;
-            background: #000;
-            position: relative;
-            overflow: hidden;
-            border-bottom: 1px solid rgba(191, 149, 63, 0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-          }
+  /* 4. PROMO / CATEGORIES */
+  .promo-container {
+    position: relative; width: 100%; max-width: 800px;
+    margin: 0 auto 30px; border-radius: 20px;
+    overflow: hidden; border: 2px solid #BF953F;
+    background: #000; height: 336px;
+    cursor: pointer; display: flex;
+    flex-direction: column; justify-content: flex-end; align-items: center;
+  }
 
-          /* 4.1 FORCE IMAGE DISPLAY - LA CORRECTION ICI */
-          .card-menu-image-container img {
-            display: block !important;
-            width: 100% !important;
-            height: 100% !important;
-            object-fit: cover !important; /* Remplit le cadre sans déformer */
-            opacity: 1 !important;
-            visibility: visible !important;
-          }
+  .promo-img {
+    position: absolute; top: 0; left: 0;
+    width: 100% !important; height: 100% !important;
+    object-fit: cover; opacity: 0.7; transition: 0.4s ease; z-index: 1;
+  }
 
-          /* 5. TEXTES ET TITRES */
-          .card-title {
-            text-align: center;
-            width: 100%;
-            margin: 15px 0 10px;
-            font-size: 1.4rem;
-            text-transform: uppercase;
-            background: linear-gradient(135deg, #BF953F 0%, #FCF6BA 45%, #B38728 55%, #FBF5B7 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-weight: 900;
-            min-height: 3.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0 10px;
-          }
+  /* 5. BOUTONS ET EFFETS GOLD */
+  .category-btn-overlay, .gold-button-premium, .wobble-badge, .options-box h4 {
+    background: linear-gradient(135deg, #BF953F, #FCF6BA, #D4AF37, #FBF5B7, #BF953F);
+    background-size: 200% 200%;
+    animation: liquidGold 4s ease infinite;
+    color: #000 !important;
+    font-weight: 950;
+    text-transform: uppercase;
+  }
 
-          .card-description {
-            text-align: center;
-            color: #ccc;
-            font-size: 0.85rem;
-            line-height: 1.5;
-            padding: 0 15px;
-            min-height: 3.5rem;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            margin-bottom: 15px;
-          }
+  .category-btn-overlay {
+    padding: 12px 35px; border-radius: 50px; font-size: 1.1rem;
+    margin-bottom: 25px; box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+    z-index: 2; border: 2px solid #000; text-align: center;
+  }
 
-          /* 6. BOUTONS ET OPTIONS */
-          .gold-button-premium {
-            background: linear-gradient(135deg, #BF953F, #FCF6BA, #D4AF37, #FBF5B7, #BF953F);
-            background-size: 200% 200%;
-            animation: liquidGold 4s ease infinite;
-            color: #000 !important;
-            font-weight: 950;
-            border: none;
-            border-radius: 12px;
-            padding: 15px;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            text-transform: uppercase;
-          }
+  /* 6. TEXTES ET TITRES (Restauration des dégradés complexes) */
+  .card-title {
+    text-align: center; width: 100%; margin: 15px 0 10px;
+    font-size: 1.4rem; font-weight: 900;
+    background: linear-gradient(135deg, #BF953F 0%, #FCF6BA 45%, #B38728 55%, #FBF5B7 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    min-height: 3.5rem; display: flex; align-items: center; justify-content: center; padding: 0 10px;
+  }
 
-          .options-box {
-            margin: auto 15px 12px;
-            padding: 8px;
-            background: rgba(0,0,0,0.6);
-            border: 1px solid rgba(191, 149, 63, 0.2);
-            border-radius: 12px;
-            min-height: 110px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-          }
+  .card-description {
+    text-align: center; color: #ccc; font-size: 0.85rem; line-height: 1.5;
+    padding: 0 15px; min-height: 3.5rem;
+    display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;
+    overflow: hidden; margin-bottom: 15px;
+  }
 
-          .options-box h4 {
-            background: linear-gradient(135deg, #BF953F, #FCF6BA, #D4AF37, #FBF5B7, #BF953F);
-            background-size: 200% 200%;
-            animation: liquidGold 4s ease infinite;
-            color: #000 !important;
-            text-align: center;
-            text-transform: uppercase;
-            font-weight: 900;
-            font-size: 0.8rem;
-            padding: 5px;
-            border-radius: 6px;
-            margin: 10px 0 8px 0;
-            letter-spacing: 1px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-          }
+  /* 7. OPTIONS BOX (Restauration de la section manquante) */
+  .options-box {
+    margin: auto 15px 12px; padding: 8px;
+    background: rgba(0,0,0,0.6); border: 1px solid rgba(191, 149, 63, 0.2);
+    border-radius: 12px; min-height: 110px;
+    display: flex; flex-direction: column; justify-content: center;
+  }
 
-          /* 7. BADGES */
-          .wobble-badge-container {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            z-index: 50;
-          }
+  .options-box h4 {
+    text-align: center; font-size: 0.8rem; padding: 5px;
+    border-radius: 6px; margin: 10px 0 8px 0;
+    letter-spacing: 1px; box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+  }
 
-          .wobble-badge {
-            background: linear-gradient(135deg, #BF953F, #FCF6BA, #D4AF37, #FBF5B7, #BF953F) !important;
-            background-size: 200% 200% !important;
-            animation: liquidGold 4s ease infinite, wobble-badge 3s infinite ease-in-out !important;
-            color: #000 !important;
-            font-weight: 950 !important;
-            text-transform: uppercase;
-            padding: 6px 12px !important;
-            border-radius: 50px !important;
-            font-size: 0.7rem !important;
-            display: inline-block;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.8);
-          }
+  /* 8. BADGES ET WHATSAPP */
+  .wobble-badge-container { position: absolute; top: 10px; left: 10px; z-index: 50; }
+  .wobble-badge {
+    padding: 6px 12px; border-radius: 50px; font-size: 0.7rem;
+    display: inline-block; box-shadow: 0 4px 10px rgba(0,0,0,0.8);
+  }
 
-          /* 8. WHATSAPP */
-          .whatsapp-float {
-            position: fixed !important;
-            bottom: 30px !important;
-            right: 25px !important;
-            z-index: 9999 !important;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: #25d366;
-            color: white;
-            width: 60px;
-            height: 60px;
-            border-radius: 50px;
-            box-shadow: 2px 5px 15px rgba(0,0,0,0.4);
-            transition: transform 0.3s ease;
-          }
-          .whatsapp-float:hover { transform: scale(1.1); }
+  .whatsapp-float {
+    position: fixed !important; bottom: 30px; right: 25px; z-index: 9999;
+    background-color: #25d366; color: white; width: 60px; height: 60px;
+    border-radius: 50px; display: flex; align-items: center; justify-content: center;
+    box-shadow: 2px 5px 15px rgba(0,0,0,0.4); transition: transform 0.3s ease;
+  }
+  .whatsapp-float:hover { transform: scale(1.1); }
 
-          /* 9. ANIMATIONS */
-          @keyframes liquidGold { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
-          @keyframes wobble-badge { 0% { transform: rotate(-5deg); } 50% { transform: rotate(5deg) scale(1.05); } 100% { transform: rotate(-5deg); } }
-          @keyframes wobble-inverse { 0% { transform: rotate(-4deg); } 50% { transform: rotate(4deg); } 100% { transform: rotate(-4deg); } }
+  /* 9. ANIMATIONS */
+  @keyframes liquidGold { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+  @keyframes wobble-badge { 0% { transform: rotate(-5deg); } 50% { transform: rotate(5deg) scale(1.05); } 100% { transform: rotate(-5deg); } }
+  @keyframes wobble-inverse { 0% { transform: rotate(-4deg); } 50% { transform: rotate(4deg); } 100% { transform: rotate(-4deg); } }
 
-          /* 10. RESPONSIVE MOBILE */
-          @media (max-width: 768px) {
-            .logo-container-wrapper { top: 150px !important; left: 15px !important; z-index: 999 !important; }
-            .moving-header-logo { width: 80px !important; }
-            .grid-cards { grid-template-columns: 1fr; gap: 20px; padding: 15px; }
-            .card-menu-image-container { height: 200px !important; }
-            .promo-container { height: 220px !important; width: 95%; }
-            .category-btn-overlay { font-size: 0.9rem; padding: 10px 22px; max-width: 80%; }
-            .card-title { font-size: 1.2rem; min-height: 3rem; }
-            .card-description { font-size: 0.8rem; min-height: 3rem; -webkit-line-clamp: 2; }
-            .whatsapp-float { width: 50px; height: 50px; bottom: 20px; right: 20px; }
-          }
-        `}</style>
+  /* 10. RESPONSIVE MOBILE (COMPLET) */
+  @media (max-width: 768px) {
+    .logo-container-wrapper { top: 150px !important; left: 15px !important; z-index: 999 !important; }
+    .moving-header-logo { width: 80px !important; }
+    .grid-cards { grid-template-columns: 1fr; gap: 20px; padding: 15px; }
+    .card-menu-image-container { height: 200px !important; min-height: 200px !important; }
+    .promo-container { height: 220px !important; width: 95%; }
+    .category-btn-overlay { font-size: 0.9rem; padding: 10px 22px; max-width: 80%; }
+    .card-title { font-size: 1.2rem; min-height: 3rem; }
+    .card-description { font-size: 0.8rem; min-height: 3rem; -webkit-line-clamp: 2; }
+    .whatsapp-float { width: 50px; height: 50px; bottom: 20px; right: 20px; }
+  }
+`}</style>
 <Helmet>
 {/* 1. DYNAMIQUE : Titre et Description traduits (Indispensable) */}
 <title>{T[lang]?.seoTitle || T.es.seoTitle}</title>
