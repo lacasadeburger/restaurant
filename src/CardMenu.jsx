@@ -13,7 +13,7 @@ export default function CardMenu(props) {
     return name || object || "Producto";
   }, [name, object, lang]);
 
-  // --- DICTIONNAIRE DE TRADUCTION ---
+  // --- DICTIONNAIRE DE TRADUCTION COMPLET ---
   const t = {
     extra: { es: "Extras", en: "Extras", fr: "Suppléments" },
     remove: { es: "Quitar", en: "Remove", fr: "Retirer" },
@@ -95,7 +95,7 @@ export default function CardMenu(props) {
     }, 800);
   };
 
-  // Style commun pour les étiquettes Or/Noir
+  // Style commun pour les étiquettes Or/Noir (Extras/Quitar)
   const labelGoldStyle = {
     background: 'linear-gradient(135deg, #BF953F, #FCF6BA, #D4AF37, #FBF5B7, #BF953F)',
     backgroundSize: '200% 200%',
@@ -104,10 +104,10 @@ export default function CardMenu(props) {
     textTransform: 'uppercase',
     fontWeight: '900',
     fontSize: '0.75rem',
-    padding: '5px 10px',
+    padding: '5px 12px',
     borderRadius: '8px',
-    margin: '10px auto 8px auto',
-    display: 'table', // Permet au bloc de s'adapter à la largeur du texte
+    margin: '12px auto 8px auto',
+    display: 'table',
     boxShadow: '0 4px 10px rgba(0,0,0,0.4)',
     letterSpacing: '1px'
   };
@@ -115,7 +115,7 @@ export default function CardMenu(props) {
   return (
     <div className="card-menu" style={{
       backgroundImage: `url(${bgCard})`, backgroundSize: 'cover', backgroundPosition: 'center',
-      display: 'flex', flexDirection: 'column', height: '100%', position: 'relative'
+      display: 'flex', flexDirection: 'column', height: '100%', position: 'relative', borderRadius: '15px', overflow: 'hidden'
     }}>
 
       {/* 1. IMAGE & BADGE */}
@@ -129,10 +129,7 @@ export default function CardMenu(props) {
 
         {badge && (
           <div className="wobble-badge-container" style={{
-            position: 'absolute',
-            top: '10px',
-            left: '10px',
-            zIndex: 50
+            position: 'absolute', top: '10px', left: '10px', zIndex: 50
           }}>
             <span className="wobble-badge" style={{ margin: 0 }}>{badge}</span>
           </div>
@@ -147,29 +144,27 @@ export default function CardMenu(props) {
           src={image}
           alt={stableName}
           loading="lazy"
+          onError={(e) => { e.target.src = "https://placehold.co/400x400/000000/FFD700?text=Logo"; }}
           style={{
             background: 'transparent',
-            width: '100%',
-            height: '100%',
-            display: 'block',
+            width: '100%', height: '100%', display: 'block',
             objectFit: (isDrinkCard || isPostreCard) ? 'contain' : 'cover',
-            padding: (isDrinkCard || isPostreCard) ? '20px' : '0px'
+            padding: (isDrinkCard || isPostreCard) ? '25px' : '0px'
           }}
         />
       </div>
 
       {/* 2. CONTENU TEXTE */}
       <div className="card-content" style={{ flex: 1, display: 'flex', flexDirection: 'column', padding: '15px' }}>
-        <h3 className="card-title" translate="no" style={{ margin: '0 0 10px 0' }}>{stableName}</h3>
-        <p className="card-description" style={{ marginBottom: '15px' }}>
+        <h3 className="card-title" translate="no" style={{ margin: '0 0 10px 0', fontSize: '1.4rem' }}>{stableName}</h3>
+        <p className="card-description" style={{ marginBottom: '15px', color: '#ddd' }}>
           {typeof description === 'object' ? (description[lang] || description['es']) : (description || "")}
         </p>
 
-        {/* 3. OPTIONS & EXTRAS (Style corrigé) */}
+        {/* 3. OPTIONS & EXTRAS (Style PREMIUM RE-VÉRIFIÉ) */}
         {!isDrinkCard && !isPostreCard && hasExtras && (
           <div className="options-box" style={{ marginTop: 'auto' }}>
 
-            {/* LABEL EXTRAS */}
             <div style={labelGoldStyle}>{getT("extra")}</div>
 
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', justifyContent: 'center', marginBottom: '12px' }}>
@@ -181,7 +176,7 @@ export default function CardMenu(props) {
                         backgroundColor: active ? '#2ecc71' : 'rgba(255,255,255,0.05)',
                         color: active ? '#fff' : '#2ecc71',
                         border: `1px solid ${active ? '#2ecc71' : 'rgba(46, 204, 113, 0.4)'}`,
-                        borderRadius: '20px', padding: '5px 10px', fontSize: '0.7rem', cursor: 'pointer', fontWeight: 'bold'
+                        borderRadius: '20px', padding: '6px 12px', fontSize: '0.7rem', cursor: 'pointer', fontWeight: 'bold'
                     }}
                   >
                     {item.name} (+{item.price.toFixed(2)}€)
@@ -190,7 +185,6 @@ export default function CardMenu(props) {
               })}
             </div>
 
-            {/* LABEL QUITAR */}
             <div style={labelGoldStyle}>{getT("remove")}</div>
 
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', justifyContent: 'center' }}>
@@ -202,7 +196,7 @@ export default function CardMenu(props) {
                         backgroundColor: active ? '#e74c3c' : 'rgba(255,255,255,0.05)',
                         color: active ? '#fff' : '#e74c3c',
                         border: `1px solid ${active ? '#e74c3c' : 'rgba(231, 76, 60, 0.4)'}`,
-                        borderRadius: '20px', padding: '5px 10px', fontSize: '0.7rem', cursor: 'pointer', fontWeight: 'bold'
+                        borderRadius: '20px', padding: '6px 12px', fontSize: '0.7rem', cursor: 'pointer', fontWeight: 'bold'
                     }}
                   >
                     ❌ {ing.name}
@@ -214,16 +208,25 @@ export default function CardMenu(props) {
         )}
       </div>
 
-      {/* 4. BOUTON FINAL */}
+      {/* 4. BOUTON FINAL PREMIUM */}
       <div className="card-footer" style={{ padding: '15px', paddingTop: '0' }}>
-        <button onClick={handleAddClick} className={`gold-button-premium ${isAdded ? 'is-added' : ''}`} style={{ width: '100%' }}>
+        <button
+          onClick={handleAddClick}
+          className={`gold-button-premium ${isAdded ? 'is-added' : ''}`}
+          style={{ width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+        >
           {isAdded ? (
-            <span style={{ width: '100%', textAlign: 'center' }}>{getT("ready")}</span>
+            <span style={{ fontWeight: '900' }}>{getT("ready")}</span>
           ) : (
-            <>
-              <span>{getT("add")}</span>
-              <span style={{ backgroundColor: 'rgba(0,0,0,0.2)', padding: '2px 8px', borderRadius: '6px' }}>{totalPrice}€</span>
-            </>
+            <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', alignItems: 'center', padding: '0 5px' }}>
+              <span style={{ fontWeight: '900' }}>{getT("add")}</span>
+              <span style={{
+                backgroundColor: 'rgba(0,0,0,0.2)',
+                padding: '2px 10px',
+                borderRadius: '6px',
+                fontSize: '0.9rem'
+              }}>{totalPrice}€</span>
+            </div>
           )}
         </button>
       </div>
