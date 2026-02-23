@@ -346,9 +346,9 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
     }
   };
 
-  const burgers = useMemo(() => data.filter(i => i.category === "food"), []);
-  const drinks = useMemo(() => data.filter(i => i.category === "drink"), []);
-  const postres = useMemo(() => data.filter(i => i.category === "postre"), []);
+  const burgers = useMemo(() => data.filter(i => i.category === "food"), [data]);
+  const drinks = useMemo(() => data.filter(i => i.category === "drink"), [data]);
+  const postres = useMemo(() => data.filter(i => i.category === "postre"), [data]);
 
   const GOLD_BRIGHT = "#FFD700";
   const GOLD_GRADIENT = "linear-gradient(135deg, #BF953F 0%, #FCF6BA 45%, #B38728 55%, #FBF5B7 100%)";
