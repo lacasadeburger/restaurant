@@ -1,11 +1,10 @@
 import React from 'react';
-// Imports sécurisés avec les bonnes extensions
+// Importation du logo (Assure-toi que le chemin et l'extension .webp sont corrects)
 import navLogo from "../assets/logo.webp";
-import devrod from "../assets/devrod-logo.png";
 
 export default function Footer({ lang }) {
 
-  // --- DICTIONNAIRE COMPLET (11 LANGUES) ---
+  // --- DICTIONNAIRE COMPLET (11 LANGUES) - RÉINTÉGRÉ ---
   const translations = {
     address: {
       es: "Dirección", en: "Address", fr: "Adresse", de: "Adresse",
@@ -36,7 +35,7 @@ export default function Footer({ lang }) {
       fr: "Pour les réservations, appelez ou via WhatsApp",
       de: "Für Reservierungen rufen Sie an oder per WhatsApp",
       ru: "Для бронирования звоните или пишите в WhatsApp",
-      uk: "Для бронювання телефонуйте або пишіть у WhatsApp",
+      uk: "Для бронювання телефонуйте або пишіть u WhatsApp",
       pl: "W celu rezerwacji zadzwoń lub napisz na WhatsApp",
       no: "For reservasjoner, ring eller bruk WhatsApp",
       sv: "För bokningar, ring eller använd WhatsApp",
@@ -58,47 +57,67 @@ export default function Footer({ lang }) {
       backgroundColor: '#000',
       color: '#ffffff',
       padding: '60px 20px 40px',
-      borderTop: '4px solid #ff4757'
+      borderTop: '4px solid #ff5e6c' // Rouge optimisé pour passer les tests Insights
     }}>
       <div className="footer-content" style={{
         display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'space-around',
+        flexDirection: 'column',
         alignItems: 'center',
         maxWidth: '1200px',
         margin: '0 auto',
         gap: '40px'
       }}>
 
-        {/* LOGOS SECTION */}
-        <div className="logo-container" style={{ display: 'flex', gap: '25px', alignItems: 'center' }}>
-          <img src={navLogo} alt="La Casa de Burger Logo" className="logoFooter" style={{ width: '85px', borderRadius: '12px' }} />
-          <a href="https://devrod.site/" target="_blank" rel="noreferrer" style={{ transition: 'opacity 0.3s' }}>
-            <img src={devrod} alt="Diseño Web Devrod" className="logoFooter" style={{ width: '130px' }} />
-          </a>
+        {/* LOGO SECTION */}
+        <div className="logo-container">
+          <img
+            src={navLogo}
+            alt="La Casa de Burger Logo"
+            style={{ width: '90px', height: 'auto', borderRadius: '12px' }}
+          />
         </div>
 
-        {/* CONTACT INFO SECTION (Optimisée contraste) */}
+        {/* CONTACT INFO SECTION */}
         <div className="info-container" style={{
-          textAlign: lang === 'ar' ? 'right' : 'left',
+          textAlign: 'center',
           fontSize: '1.05rem',
-          lineHeight: '1.9',
+          lineHeight: '2.2',
           color: '#ffffff'
         }}>
           <p style={{ margin: 0 }}>
-            <strong style={{ color: '#ff4757' }}>{getT("address")}:</strong> Av. Diego Ramírez Pastor, 142, 03181 Torrevieja<br />
-            <strong style={{ color: '#ff4757' }}>{getT("phone")}:</strong> <a href="tel:+34602597210" style={{ color: '#ffffff', textDecoration: 'none', borderBottom: '1px solid #ff4757' }}>602 59 72 10</a><br />
-            <strong style={{ color: '#ff4757' }}>WhatsApp:</strong> <a href="https://wa.me/34602597210" style={{ color: '#ffffff', textDecoration: 'none', borderBottom: '1px solid #ff4757' }}>602 59 72 10</a><br />
-            <span style={{ display: 'block', marginTop: '10px' }}>{getT("delivery")}</span>
-            <span style={{ color: '#ffffff', fontWeight: 'bold', display: 'block', backgroundColor: 'rgba(255, 71, 87, 0.1)', padding: '5px 10px', borderRadius: '5px', marginTop: '10px' }}>
+            <strong style={{ color: '#ff5e6c' }}>{getT("address")}:</strong> Av. Diego Ramírez Pastor, 142, 03181 Torrevieja<br />
+
+            <strong style={{ color: '#ff5e6c' }}>{getT("phone")}:</strong>
+            <a href="tel:+34602597210" style={{ color: '#ffffff', textDecoration: 'underline', textDecorationColor: '#ff5e6c', marginLeft: '5px' }}>
+              602 59 72 10
+            </a><br />
+
+            <strong style={{ color: '#ff5e6c' }}>WhatsApp:</strong>
+            <a href="https://wa.me/34602597210" style={{ color: '#ffffff', textDecoration: 'underline', textDecorationColor: '#ff5e6c', marginLeft: '5px' }}>
+              602 59 72 10
+            </a><br />
+
+            <span style={{ display: 'block', marginTop: '10px', color: '#BDBDBD' }}>
+              {getT("delivery")}
+            </span>
+
+            <span style={{
+              color: '#ffffff',
+              fontWeight: 'bold',
+              display: 'inline-block',
+              backgroundColor: 'rgba(255, 94, 108, 0.15)',
+              padding: '8px 16px',
+              borderRadius: '8px',
+              marginTop: '15px',
+              border: '1px solid rgba(255, 94, 108, 0.4)'
+            }}>
               {getT("booking")}
             </span>
           </p>
         </div>
-
       </div>
 
-      {/* DIVIDER GOLD (Optionnel mais premium) */}
+      {/* DIVIDER GOLD */}
       <div style={{
         width: '80px',
         height: '2px',
@@ -107,17 +126,24 @@ export default function Footer({ lang }) {
         borderRadius: '2px'
       }} aria-hidden="true" />
 
-      {/* COPYRIGHT SECTION (Gris clair conforme WCAG) */}
+      {/* COPYRIGHT & SLOGAN SECTION */}
       <div style={{ textAlign: 'center' }}>
         <p className="copyright" style={{
-          color: '#BDBDBD',
-          fontSize: '0.9rem',
+          color: '#BDBDBD', // Gris validé WCAG
+          fontSize: '1rem',
           margin: '0',
           letterSpacing: '0.5px'
         }}>
           La Casa de Burger &copy; {new Date().getFullYear()} | Torrevieja | The Artisan Experience
         </p>
-        <p style={{ color: '#888', fontSize: '0.75rem', marginTop: '10px', textTransform: 'uppercase' }}>
+
+        <p style={{
+          color: '#AAAAAA', // Gris clair optimisé pour Insights
+          fontSize: '0.85rem',
+          marginTop: '12px',
+          textTransform: 'uppercase',
+          letterSpacing: '2px'
+        }}>
           {lang === 'es' ? 'El mejor burger de Torrevieja' : 'Best burger in Torrevieja'}
         </p>
       </div>
