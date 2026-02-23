@@ -4,9 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
     <meta name="theme-color" content="#000000" />
-
     <link rel="canonical" href="https://lacasadeburger.es/" />
-
     <link rel="preload" href="/fonts/ysabeau-v5-latin-regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
     <link rel="preload" as="image" href="/burger-signature-torrevieja.webp" fetchpriority="high">
 
@@ -16,37 +14,27 @@
     <meta name="robots" content="index, follow" />
 
     <style>
-        @font-face {
-            font-family: 'Ysabeau';
-            font-style: normal;
-            font-weight: 400;
-            font-display: swap;
-            src: url('/fonts/ysabeau-v5-latin-regular.woff2') format('woff2');
-        }
-        @font-face {
-            font-family: 'Sacramento';
-            font-style: normal;
-            font-weight: 400;
-            font-display: swap;
-            src: url('/fonts/sacramento-v15-latin-regular.woff2') format('woff2');
-        }
+        @font-face{font-family:'Ysabeau';font-style:normal;font-weight:400;font-display:swap;src:url('/fonts/ysabeau-v5-latin-regular.woff2') format('woff2')}
+        @font-face{font-family:'Sacramento';font-style:normal;font-weight:400;font-display:swap;src:url('/fonts/sacramento-v15-latin-regular.woff2') format('woff2')}
         *{box-sizing:border-box;margin:0;padding:0}
         html{scroll-behavior:smooth;background-color:#000}
         body{background-color:#000;color:#fff;font-family:'Ysabeau',sans-serif;line-height:1.5;overflow-x:hidden}
         #root{min-height:100vh}
-
-        .header{
-            background-color:#000;
-            position:fixed;
-            top:0;
-            width:100%;
-            height:70px;
-            z-index:9999;
-            contain: layout paint;
-        }
+        .header{background-color:#000;position:fixed;top:0;width:100%;height:70px;z-index:9999;contain:layout paint}
     </style>
-
     <link rel="icon" type="image/webp" href="/logo.webp" />
+</head>
+<body>
+    <div id="root"></div>
+
+    <noscript>
+        <div style="text-align:center; padding:50px; background: #000; color: #fff;">
+            <h1>La Casa de Burger Torrevieja</h1>
+            <p>Especialistas en Hamburguesas Gourmet 100% Artesanales.</p>
+        </div>
+    </noscript>
+
+    <script type="module" src="/src/main.jsx"></script>
 
     <script type="application/ld+json">
     {
@@ -54,72 +42,20 @@
       "@type": "Restaurant",
       "name": "La Casa de Burger",
       "alternateName": "La Casa de Burger Torrevieja",
-      "image": [
-        "https://lacasadeburger.es/burger-signature-torrevieja.webp",
-        "https://lacasadeburger.es/logo.webp"
-      ],
+      "image": ["https://lacasadeburger.es/burger-signature-torrevieja.webp","https://lacasadeburger.es/logo.webp"],
       "@id": "https://lacasadeburger.es",
       "url": "https://lacasadeburger.es",
       "telephone": "+34602597210",
       "priceRange": "€€",
-      "servesCuisine": [
-        "Hamburguesas Gourmet",
-        "Smash Burgers",
-        "Cocina Artesanal",
-        "Carne de Ternera Premium",
-        "Comida Halal",
-        "Opciones Vegetarianas",
-        "American Cuisine"
-      ],
+      "servesCuisine": ["Hamburguesas Gourmet","Smash Burgers","Cocina Artesanal","Carne de Ternera Premium","Comida Halal","Opciones Vegetarianas","American Cuisine"],
       "description": "Especialistas en Burger Gourmet Signature y Smash Burgers 100% artesanales en Torrevieja. Carne fresca picada a diario, terraza, parking et options Halal/Veggie.",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "AV. Diego Ramirez Pastor, 142",
-        "addressLocality": "Torrevieja",
-        "postalCode": "03181",
-        "addressRegion": "Alicante",
-        "addressCountry": "ES"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": 37.9806,
-        "longitude": -0.6757
-      },
-      "potentialAction": {
-        "@type": "OrderAction",
-        "target": {
-          "@type": "EntryPoint",
-          "urlTemplate": "https://lacasadeburger.es/",
-          "inLanguage": ["es", "en", "fr"],
-          "actionPlatform": [
-            "https://schema.org/DesktopWebPlatform",
-            "https://schema.org/MobileWebPlatform"
-          ]
-        },
-        "deliveryMethod": [
-          "https://purl.org/goodrelations/v1#DeliveryModeOwnFleet"
-        ]
-      },
-      "openingHoursSpecification": [
-        {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-          "opens": "13:00",
-          "closes": "23:00"
-        }
-      ],
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "4.9",
-        "reviewCount": "250",
-        "bestRating": "5",
-        "worstRating": "1"
-      },
-      "knowsLanguage": ["es", "en", "fr", "de", "no", "pl", "ru", "ar", "sv", "uk", "nl"],
-      "amenityFeature": [
-        { "@type": "LocationFeatureSpecification", "name": "Terraza", "value": true },
-        { "@type": "LocationFeatureSpecification", "name": "Fácil aparcamiento", "value": true }
-      ],
+      "address": {"@type":"PostalAddress","streetAddress":"AV. Diego Ramirez Pastor, 142","addressLocality":"Torrevieja","postalCode":"03181","addressRegion":"Alicante","addressCountry":"ES"},
+      "geo": {"@type":"GeoCoordinates","latitude":37.9806,"longitude":-0.6757},
+      "potentialAction": {"@type":"OrderAction","target":{"@type":"EntryPoint","urlTemplate":"https://lacasadeburger.es/","inLanguage":["es","en","fr"],"actionPlatform":["https://schema.org/DesktopWebPlatform","https://schema.org/MobileWebPlatform"]},"deliveryMethod":["https://purl.org/goodrelations/v1#DeliveryModeOwnFleet"]},
+      "openingHoursSpecification": [{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"opens":"13:00","closes":"23:00"}],
+      "aggregateRating": {"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"250","bestRating":"5","worstRating":"1"},
+      "knowsLanguage": ["es","en","fr","de","no","pl","ru","ar","sv","uk","nl"],
+      "amenityFeature": [{"@type":"LocationFeatureSpecification","name":"Terraza","value":true},{"@type":"LocationFeatureSpecification","name":"Fácil aparcamiento","value":true}],
       "hasMenu": {
         "@type": "Menu",
         "name": "Carta La Casa de Burger",
@@ -128,48 +64,38 @@
             "@type": "MenuSection",
             "name": "Hamburguesas Gourmet",
             "hasMenuItem": [
-              { "@type": "MenuItem", "name": "La Mexicana", "description": "Salsa Picante, Maiz, Cebolla Roja, Tocino, Cheddar", "offers": { "@type": "Offer", "price": "14.00", "priceCurrency": "EUR" } },
-              { "@type": "MenuItem", "name": "La Colombiana", "description": "Carne con ajo, perejil, Tocino, Papa, Piña, Cheddar", "offers": { "@type": "Offer", "price": "14.00", "priceCurrency": "EUR" } },
-              { "@type": "MenuItem", "name": "La Smash doble", "description": "Doble carne, Bacon, Crema Cheddar casera, Pepinillos", "offers": { "@type": "Offer", "price": "13.00", "priceCurrency": "EUR" } },
-              { "@type": "MenuItem", "name": "La Española", "description": "Pimiento de Padron, Cecina, Huevo Frito, Cheddar", "offers": { "@type": "Offer", "price": "14.00", "priceCurrency": "EUR" } },
-              { "@type": "MenuItem", "name": "La Italiana", "description": "Tomillo, Mozza Burrata, Trufa, Champiñones", "offers": { "@type": "Offer", "price": "13.00", "priceCurrency": "EUR" } },
-              { "@type": "MenuItem", "name": "La Suisse", "description": "Champiñones al ajillo, Salsa de Queso, Cebolla caramelizada", "offers": { "@type": "Offer", "price": "13.00", "priceCurrency": "EUR" } },
-              { "@type": "MenuItem", "name": "La Francesa", "description": "Cebolla Caramelizada, Queso de Cabra, Miel", "offers": { "@type": "Offer", "price": "13.00", "priceCurrency": "EUR" } },
-              { "@type": "MenuItem", "name": "La Marroqui", "description": "Especies, Berenjena frita, Salsa de Yogur", "offers": { "@type": "Offer", "price": "13.00", "priceCurrency": "EUR" } },
-              { "@type": "MenuItem", "name": "La Inglesa", "description": "Huevo Frito, Tocino, Salsa BBQ, Cheddar", "offers": { "@type": "Offer", "price": "13.00", "priceCurrency": "EUR" } },
-              { "@type": "MenuItem", "name": "La India", "description": "Salsa Curry casera, Cebolla frita, Cheddar", "offers": { "@type": "Offer", "price": "13.00", "priceCurrency": "EUR" } }
+              {"@type":"MenuItem","name":"La Mexicana","description":"Salsa Picante, Maiz, Cebolla Roja, Tocino, Cheddar","offers":{"@type":"Offer","price":"14.00","priceCurrency":"EUR"}},
+              {"@type":"MenuItem","name":"La Colombiana","description":"Carne con ajo, perejil, Tocino, Papa, Piña, Cheddar","offers":{"@type":"Offer","price":"14.00","priceCurrency":"EUR"}},
+              {"@type":"MenuItem","name":"La Smash doble","description":"Doble carne, Bacon, Crema Cheddar casera, Pepinillos","offers":{"@type":"Offer","price":"13.00","priceCurrency":"EUR"}},
+              {"@type":"MenuItem","name":"La Española","description":"Pimiento de Padron, Cecina, Huevo Frito, Cheddar","offers":{"@type":"Offer","price":"14.00","priceCurrency":"EUR"}},
+              {"@type":"MenuItem","name":"La Italiana","description":"Tomillo, Mozza Burrata, Trufa, Champiñones","offers":{"@type":"Offer","price":"13.00","priceCurrency":"EUR"}},
+              {"@type":"MenuItem","name":"La Suisse","description":"Champiñones al ajillo, Salsa de Queso, Cebolla caramelizada","offers":{"@type":"Offer","price":"13.00","priceCurrency":"EUR"}},
+              {"@type":"MenuItem","name":"La Francesa","description":"Cebolla Caramelizada, Queso de Cabra, Miel","offers":{"@type":"Offer","price":"13.00","priceCurrency":"EUR"}},
+              {"@type":"MenuItem","name":"La Marroqui","description":"Especies, Berenjena frita, Salsa de Yogur","offers":{"@type":"Offer","price":"13.00","priceCurrency":"EUR"}},
+              {"@type":"MenuItem","name":"La Inglesa","description":"Huevo Frito, Tocino, Salsa BBQ, Cheddar","offers":{"@type":"Offer","price":"13.00","priceCurrency":"EUR"}},
+              {"@type":"MenuItem","name":"La India","description":"Salsa Curry casera, Cebolla frita, Cheddar","offers":{"@type":"Offer","price":"13.00","priceCurrency":"EUR"}}
             ]
           },
           {
             "@type": "MenuSection",
             "name": "Entrantes y Combos",
             "hasMenuItem": [
-              { "@type": "MenuItem", "name": "Combo 1", "description": "La Inglesa + Patatas + 3 Nuggets", "offers": { "@type": "Offer", "price": "18.00", "priceCurrency": "EUR" } },
-              { "@type": "MenuItem", "name": "Patatas Cheddar y Bacon", "description": "Patatas caseras con salsa de cheddar et bacon", "offers": { "@type": "Offer", "price": "8.50", "priceCurrency": "EUR" } },
-              { "@type": "MenuItem", "name": "Patatas Bravas", "description": "Patatas caseras con salsa brava", "offers": { "@type": "Offer", "price": "6.50", "priceCurrency": "EUR" } },
-              { "@type": "MenuItem", "name": "Nuggets de Pollo", "description": "6 unités de nuggets caseros", "offers": { "@type": "Offer", "price": "6.50", "priceCurrency": "EUR" } }
+              {"@type":"MenuItem","name":"Combo 1","description":"La Inglesa + Patatas + 3 Nuggets","offers":{"@type":"Offer","price":"18.00","priceCurrency":"EUR"}},
+              {"@type":"MenuItem","name":"Patatas Cheddar y Bacon","description":"Patatas caseras con salsa de cheddar et bacon","offers":{"@type":"Offer","price":"8.50","priceCurrency":"EUR"}},
+              {"@type":"MenuItem","name":"Patatas Bravas","description":"Patatas caseras con salsa brava","offers":{"@type":"Offer","price":"6.50","priceCurrency":"EUR"}},
+              {"@type":"MenuItem","name":"Nuggets de Pollo","description":"6 unités de nuggets caseros","offers":{"@type":"Offer","price":"6.50","priceCurrency":"EUR"}}
             ]
           },
           {
             "@type": "MenuSection",
             "name": "Postres",
             "hasMenuItem": [
-              { "@type": "MenuItem", "name": "Waffle XXL Nutella", "description": "Gofre casero con Nutella", "offers": { "@type": "Offer", "price": "7.00", "priceCurrency": "EUR" } }
+              {"@type":"MenuItem","name":"Waffle XXL Nutella","description":"Gofre casero con Nutella","offers":{"@type":"Offer","price":"7.00","priceCurrency":"EUR"}}
             ]
           }
         ]
       }
     }
     </script>
-</head>
-<body>
-    <div id="root"></div>
-    <noscript>
-        <div style="text-align:center; padding:50px; background: #000; color: #fff;">
-            <h1>La Casa de Burger Torrevieja</h1>
-            <p>Especialistas en Hamburguesas Gourmet 100% Artesanales.</p>
-        </div>
-    </noscript>
-    <script type="module" src="/src/main.jsx"></script>
 </body>
 </html>
