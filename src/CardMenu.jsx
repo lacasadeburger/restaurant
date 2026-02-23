@@ -2,7 +2,8 @@ import React, { useState, useMemo } from "react";
 import bgCard from "./assets/bg-c.jpg";
 
 export default function CardMenu(props) {
-  const { image, name, object, description, precio, addToCart, isDrinkCard, isPostreCard, lang, hasExtras, badge } = props;
+  // Respect strict des props d'origine + ajout de 'category' pour la précision de l'image
+  const { image, name, object, description, precio, addToCart, isDrinkCard, isPostreCard, lang, hasExtras, badge, category } = props;
 
   const GOLD_BRIGHT = "#FFD700";
 
@@ -72,7 +73,7 @@ export default function CardMenu(props) {
       return sum + (ingredient ? ingredient.price : 0);
     }, 0);
     return (base + extrasTotal).toFixed(2);
-  }, [precio, extraIngredients]);
+  }, [precio, extraIngredients, extrasList]); // Ajout extrasList dans les dépendances pour la sécurité
 
   const toggleExtra = (id) => setExtraIngredients(prev => prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id]);
   const toggleRemove = (id) => setRemovedIngredients(prev => prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id]);
@@ -112,6 +113,9 @@ export default function CardMenu(props) {
     letterSpacing: '1px'
   };
 
+  // Détection pour le style de l'image (Boissons et Desserts de ton data.js)
+  const isContain = isDrinkCard || isPostreCard || category === "drink" || category === "postre";
+
   return (
     <div className="card-menu" style={{
       backgroundImage: `url(${bgCard})`, backgroundSize: 'cover', backgroundPosition: 'center',
@@ -148,8 +152,8 @@ export default function CardMenu(props) {
           style={{
             background: 'transparent',
             width: '100%', height: '100%', display: 'block',
-            objectFit: (isDrinkCard || isPostreCard) ? 'contain' : 'cover',
-            padding: (isDrinkCard || isPostreCard) ? '25px' : '0px'
+            objectFit: isContain ? 'contain' : 'cover',
+            padding: isContain ? '25px' : '0px'
           }}
         />
       </div>
@@ -162,7 +166,7 @@ export default function CardMenu(props) {
         </p>
 
         {/* 3. OPTIONS & EXTRAS (Style PREMIUM RE-VÉRIFIÉ) */}
-        {!isDrinkCard && !isPostreCard && hasExtras && (
+        {!isDrinkCard && !isPostreCard && category !== "drink" && hasExtras && (
           <div className="options-box" style={{ marginTop: 'auto' }}>
 
             <div style={labelGoldStyle}>{getT("extra")}</div>
