@@ -122,17 +122,17 @@ export default function CardMenu(props) {
       border: '1px solid rgba(255,215,0,0.1)'
     }}>
 
-      {/* 1. CONTAINER IMAGE : Fixé pour empêcher le collapse */}
-      <div style={{
+    {/* 1. CONTAINER IMAGE : Fixé et optimisé */}
+      <div className="card-menu-image-container" style={{
         position: 'relative',
         height: '230px',
         width: '100%',
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center',
+        justifycontent: 'center',
         overflow: 'hidden',
-        backgroundColor: 'rgba(0,0,0,0.2)', // Fond pour détacher l'image
-        padding: isSpecial ? '20px' : '0px'  // Plus d'espace pour les bouteilles
+        backgroundColor: '#0a0a0a',
+        padding: isSpecial ? '15px' : '0px'
       }}>
 
         {badge && (
@@ -159,17 +159,18 @@ export default function CardMenu(props) {
         <img
           src={image}
           alt={stableName}
+          /* CRUCIAL : On lie l'image aux classes CSS du <style> */
+          className={isDrinkCard || category === "drink" ? "img-drink" : isPostreCard ? "img-postre" : "img-burger"}
           onError={(e) => {
             console.warn("Image non trouvée:", image);
-            e.target.src = "https://placehold.co/400x400/000000/FFD700?text=Logo";
+            e.target.src = "https://placehold.co/400x400/000000/FFD700?text=Menu";
           }}
           style={{
-            // Si c'est une boisson, on garde le ratio d'origine (auto) pour éviter l'étirement
-            width: isSpecial ? 'auto' : '100%',
+            width: '100%', /* On force 100% pour que l'image occupe l'espace */
             height: '100%',
             maxWidth: '100%',
             maxHeight: '100%',
-            // Contain pour les boissons (voir tout l'objet), Cover pour la nourriture (remplir le cadre)
+            /* On laisse le style inline en secours, mais la classe className fera le job */
             objectFit: isSpecial ? 'contain' : 'cover',
             display: 'block',
             zIndex: 10
