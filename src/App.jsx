@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo } from "react";
 import Nav from "./Nav";
-const Order = lazy(() => import("./Order"));
-const CardMenu = lazy(() => import("./CardMenu"));
+import Order from "./Order";
+import CardMenu from "./CardMenu";
 import data from "./data";
 import { Helmet } from "react-helmet"
 
