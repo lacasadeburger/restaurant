@@ -1091,17 +1091,17 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
                     </p>
                   </div>
 
-                  <div style={{ display: 'flex', gap: '15px 25px', flexWrap: 'wrap', color: GOLD_BRIGHT, fontSize: '0.9rem', fontWeight: 'bold', marginBottom: '20px', justifyContent: 'center' }}>
+                  <div style={{ display: 'flex', gap: '15px 25px', flexWrap: 'wrap', color: GOLD_BRIGHT, fontSize: '1.1rem', fontWeight: 'bold', marginBottom: '20px', justifyContent: 'center' }}>
                     <span>🥩 100% Artesanal</span>
                     <span>☀️ Terraza</span>
                     <span>🚗 Parking fácil</span>
                     <span>🥡 Take Away & Delivery</span>
                   </div>
 
-                  <div style={{ fontSize: '0.85rem', color: '#bbb', lineHeight: '1.6', textAlign: 'center' }}>
+                  <div style={{ fontSize: '1.1rem', color: '#bbb', lineHeight: '1.6', textAlign: 'center' }}>
                     <strong style={{ color: '#fff' }}>📍 ZONAS DE REPARTO / DELIVERY AREAS:</strong>
                     <br />
-                    <span style={{ color: '#777' }}>
+                    <span style={{ color: '#BDBDBD' }}>
                       Torrevieja Centro, Playa del Cura, Playa de los Locos, Paseo Marítimo, Puerto, La Mata, Punta Prima, Los Balcones, Aguas Nuevas, La Siesta, El Acequión, La Veleta, San Roque, Rocío del Mar, Los Altos, Lago Jardín, Torreta I, II, III, El Salado, Urbanización Doña Inés, Jardín del Mar, Las Nations, Centro Comercial Habaneras et hôtels.
                     </span>
                   </div>
@@ -1127,7 +1127,7 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
                 <img src={logo} alt="La Casa de Burger Torrevieja" width="150" height="80" style={{ height: '80px', width: 'auto', filter: 'drop-shadow(0 0 10px rgba(255,255,255,0.1))' }} />
               )}
 
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '40px', width: '100%', maxWidth: '1100px', textAlign: 'center', fontSize: '0.9rem', color: '#bbb' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '40px', width: '100%', maxWidth: '1100px', textAlign: 'center', fontSize: '1.1rem', color: '#bbb' }}>
                 <div>
                   <h3 style={{ color: '#ff4757', fontSize: '1.2rem', marginBottom: '15px' }}>La Casa de Burger</h3>
                   <p style={{ lineHeight: '1.6' }}>
@@ -1149,8 +1149,8 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
 
               <div style={{ width: '60px', height: '2px', background: 'linear-gradient(135deg, #BF953F, #FCF6BA, #B38728, #FBF5B7)', borderRadius: '2px', margin: '10px 0' }} aria-hidden="true" />
 
-              <div style={{ color: '#555', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '1px' }}>
-                <p style={{ margin: 0, fontWeight: 'bold', color: '#888' }}>© {new Date().getFullYear()} LA CASA DE BURGER | THE ARTISAN EXPERIENCE</p>
+              <div style={{ color: '#AAAAAA', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '1px' }}>
+                <p style={{ margin: 0, fontWeight: 'bold', color: '#CCCCCC' }}>© {new Date().getFullYear()} LA CASA DE BURGER | THE ARTISAN EXPERIENCE</p>
                 <p style={{ margin: '5px 0 0' }}>{lang === 'es' ? 'El mejor burger de Torrevieja' : 'Best burger in Torrevieja'}</p>
               </div>
             </footer>

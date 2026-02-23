@@ -65,7 +65,7 @@ export default function Footer({ lang }) {
           </a>
         </div>
 
-        <div className="info-container" style={{ textAlign: lang === 'ar' ? 'right' : 'left', fontSize: '0.9rem', lineHeight: '1.8' }}>
+        <div className="info-container" style={{ textAlign: lang === 'ar' ? 'right' : 'left', fontSize: '1.1rem', lineHeight: '1.8' }}>
           <p>
             <strong>{getT("address")}:</strong> Av. Diego Ramírez Pastor, 142, 03181 Torrevieja<br />
             <strong>{getT("phone")}:</strong> <a href="tel:+34602597210" style={{ color: '#fff', textDecoration: 'none' }}>602 59 72 10</a><br />
@@ -76,7 +76,7 @@ export default function Footer({ lang }) {
         </div>
 
       </div>
-      <p className="copyright" style={{ textAlign: 'center', marginTop: '40px', opacity: 0.5, fontSize: '0.8rem' }}>
+      <p className="copyright" style={{ textAlign: 'center', marginTop: '40px', color: '#BDBDBD', fontSize: '0.8rem' }}>
         La Casa de Burger &copy; {new Date().getFullYear()} | Torrevieja
       </p>
     </footer>
