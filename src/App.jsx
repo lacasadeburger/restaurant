@@ -1111,49 +1111,54 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
             </div> {/* FIN backgroundColor #0a0a0a */}
           </div> {/* FIN maxWidth 1100px */}
 
-          {/* --- FOOTER FINAL UNIQUE --- */}
-            <footer style={{
-              padding: '60px 20px 40px',
-              textAlign: 'center',
-              backgroundColor: '#050505',
-              borderTop: '1px solid #1a1a1a',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              gap: '30px',
-              marginTop: '50px'
-            }}>
-              {logo && (
-                <img src={logo} alt="La Casa de Burger Torrevieja" width="150" height="80" style={{ height: '80px', width: 'auto', filter: 'drop-shadow(0 0 10px rgba(255,255,255,0.1))' }} />
-              )}
+          {/* --- FOOTER FINAL UNIQUE (OPTIMISÉ INSIGHTS) --- */}
+              <footer style={{
+                padding: '60px 20px 40px',
+                textAlign: 'center',
+                backgroundColor: '#050505',
+                borderTop: '4px solid #ff5e6c', // Uniformisé avec le Footer.jsx pour le contraste
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                gap: '30px',
+                marginTop: '50px'
+              }}>
+                {logo && (
+                  <img src={logo} alt="La Casa de Burger Torrevieja" width="150" height="80" style={{ height: '80px', width: 'auto', filter: 'drop-shadow(0 0 10px rgba(255,255,255,0.1))' }} />
+                )}
 
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '40px', width: '100%', maxWidth: '1100px', textAlign: 'center', fontSize: '1.1rem', color: '#bbb' }}>
-                <div>
-                  <h3 style={{ color: '#ff4757', fontSize: '1.2rem', marginBottom: '15px' }}>La Casa de Burger</h3>
-                  <p style={{ lineHeight: '1.6' }}>
-                    {lang === 'es' ? 'Especialistas en Smash Burgers y Hamburguesas Gourmet de autor. Carne de ternera premium, buey y procesos artesanales.' : 'Specialists in Signature Gourmet & Smash Burgers. Premium beef and artisan processes.'}
-                  </p>
-                </div>
-                <div>
-                  <h4 style={{ color: GOLD_BRIGHT, marginBottom: '15px' }}>🕒 {T[lang]?.hours || T.es.hours}</h4>
-                  <p style={{ margin: '5px 0' }}>Lun - Sáb: 13:00 – 23:00</p>
-                  <p style={{ margin: '5px 0', color: '#666' }}>Dom: Cerrado / Closed</p>
-                </div>
-                <div>
-                  <h4 style={{ color: GOLD_BRIGHT, marginBottom: '15px' }}>📍 {T[lang]?.location || T.es.location}</h4>
-                  <p style={{ margin: '5px 0' }}>Av. Diego Ramírez Pastor, 142</p>
-                  <p style={{ margin: '5px 0' }}>03181 Torrevieja, Spain</p>
-                  <p style={{ marginTop: '10px' }}>📞 <a href="tel:+34602597210" style={{ color: '#fff', textDecoration: 'none', fontWeight: 'bold' }}>+34 602 59 72 10</a></p>
-                </div>
-              </div>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '40px', width: '100%', maxWidth: '1100px', textAlign: 'center', fontSize: '1.1rem', color: '#CCCCCC' }}>
+                  <div>
+                    <h3 style={{ color: '#ff5e6c', fontSize: '1.2rem', marginBottom: '15px' }}>La Casa de Burger</h3>
+                    <p style={{ lineHeight: '1.8' }}>
+                      {lang === 'es' ? 'Especialistas en Smash Burgers y Hamburguesas Gourmet de autor. Carne de ternera premium, buey y procesos artesanales.' : 'Specialists in Signature Gourmet & Smash Burgers. Premium beef and artisan processes.'}
+                    </p>
+                  </div>
 
-              <div style={{ width: '60px', height: '2px', background: 'linear-gradient(135deg, #BF953F, #FCF6BA, #B38728, #FBF5B7)', borderRadius: '2px', margin: '10px 0' }} aria-hidden="true" />
+                  <div>
+                    <h4 style={{ color: GOLD_BRIGHT, marginBottom: '15px' }}>🕒 {T[lang]?.hours || T.es.hours}</h4>
+                    <p style={{ margin: '8px 0' }}>Lun - Sáb: 13:00 – 23:00</p>
+                    {/* CORRECTION RADICALE : On passe de #666 à #AAAAAA pour le contraste */}
+                    <p style={{ margin: '8px 0', color: '#AAAAAA', fontWeight: '500' }}>Dom: Cerrado / Closed</p>
+                  </div>
 
-              <div style={{ color: '#AAAAAA', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '1px' }}>
-                <p style={{ margin: 0, fontWeight: 'bold', color: '#CCCCCC' }}>© {new Date().getFullYear()} LA CASA DE BURGER | THE ARTISAN EXPERIENCE</p>
-                <p style={{ margin: '5px 0 0' }}>{lang === 'es' ? 'El mejor burger de Torrevieja' : 'Best burger in Torrevieja'}</p>
-              </div>
-            </footer>
+                  <div>
+                    <h4 style={{ color: GOLD_BRIGHT, marginBottom: '15px' }}>📍 {T[lang]?.location || T.es.location}</h4>
+                    <p style={{ margin: '8px 0' }}>Av. Diego Ramírez Pastor, 142</p>
+                    <p style={{ margin: '8px 0' }}>03181 Torrevieja, Spain</p>
+                    <p style={{ marginTop: '15px' }}>
+                      📞 <a href="tel:+34602597210" style={{ color: '#ffffff', textDecoration: 'underline', textDecorationColor: '#ff5e6c', fontWeight: 'bold' }}>+34 602 59 72 10</a>
+                    </p>
+                  </div>
+                </div>
+
+                <div style={{ width: '60px', height: '2px', background: 'linear-gradient(135deg, #BF953F, #FCF6BA, #B38728, #FBF5B7)', borderRadius: '2px', margin: '10px 0' }} aria-hidden="true" />
+
+                <div style={{ color: '#AAAAAA', fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '1px' }}>
+                  <p style={{ margin: 0, fontWeight: 'bold', color: '#BDBDBD' }}>© {new Date().getFullYear()} LA CASA DE BURGER | THE ARTISAN EXPERIENCE</p>
+                  <p style={{ margin: '8px 0 0' }}>{lang === 'es' ? 'El mejor burger de Torrevieja' : 'Best burger in Torrevieja'}</p>
+                </div>
+              </footer>
 
             {/* --- ÉLÉMENTS FLOTTANTS --- */}
             <a href="https://wa.me/34602597210" target="_blank" rel="noopener noreferrer" className="whatsapp-float">
