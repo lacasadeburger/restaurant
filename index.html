@@ -7,7 +7,7 @@
 
     <link rel="canonical" href="https://lacasadeburger.es/" />
 
-    <link rel="preload" href="/fonts/ysabeau-v5-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/ysabeau-v5-latin-regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
     <link rel="preload" as="image" href="/burger-signature-torrevieja.webp" fetchpriority="high">
 
     <title>La Casa de Burger | Meilleures Hamburguesas Gourmet de Torrevieja</title>
@@ -35,7 +35,7 @@
         body{background-color:#000;color:#fff;font-family:'Ysabeau',sans-serif;line-height:1.5;overflow-x:hidden}
         #root{min-height:100vh}
 
-        /* Isoler le header sans bloquer le thread principal sur Desktop */
+        /* Isoler le header : on reste sur layout paint pour la fluidité PC */
         .header{
             background-color:#000;
             position:fixed;
@@ -130,7 +130,7 @@
             "name": "Hamburguesas Gourmet",
             "hasMenuItem": [
               { "@type": "MenuItem", "name": "La Mexicana", "description": "Salsa Picante, Maiz, Cebolla Roja, Tocino, Cheddar", "offers": { "@type": "Offer", "price": "14.00", "priceCurrency": "EUR" } },
-              { "@type": "MenuItem", "name": "La Colombiana", "description": "Carne con ajo, perejil, Tocino, Papa, Piña, Cheddar", "offers": { "@type": "Offer", "price": "14.00", "priceCurrency": "EUR" } },
+              { "@type": { "@type": "MenuItem" }, "name": "La Colombiana", "description": "Carne con ajo, perejil, Tocino, Papa, Piña, Cheddar", "offers": { "@type": "Offer", "price": "14.00", "priceCurrency": "EUR" } },
               { "@type": "MenuItem", "name": "La Smash doble", "description": "Doble carne, Bacon, Crema Cheddar casera, Pepinillos", "offers": { "@type": "Offer", "price": "13.00", "priceCurrency": "EUR" } },
               { "@type": "MenuItem", "name": "La Española", "description": "Pimiento de Padron, Cecina, Huevo Frito, Cheddar", "offers": { "@type": "Offer", "price": "14.00", "priceCurrency": "EUR" } },
               { "@type": "MenuItem", "name": "La Italiana", "description": "Tomillo, Mozza Burrata, Trufa, Champiñones", "offers": { "@type": "Offer", "price": "13.00", "priceCurrency": "EUR" } },
@@ -148,7 +148,7 @@
               { "@type": "MenuItem", "name": "Combo 1", "description": "La Inglesa + Patatas + 3 Nuggets", "offers": { "@type": "Offer", "price": "18.00", "priceCurrency": "EUR" } },
               { "@type": "MenuItem", "name": "Patatas Cheddar y Bacon", "description": "Patatas caseras con salsa de cheddar y bacon", "offers": { "@type": "Offer", "price": "8.50", "priceCurrency": "EUR" } },
               { "@type": "MenuItem", "name": "Patatas Bravas", "description": "Patatas caseras con salsa brava", "offers": { "@type": "Offer", "price": "6.50", "priceCurrency": "EUR" } },
-              { "@type": "MenuItem", "name": "Nuggets de Pollo", "description": "6 unidades de nuggets caseros", "offers": { "@type": "Offer", "price": "6.50", "priceCurrency": "EUR" } }
+              { "@type": "MenuItem", "name": "Nuggets de Pollo", "description": "6 unités de nuggets caseros", "offers": { "@type": "Offer", "price": "6.50", "priceCurrency": "EUR" } }
             ]
           },
           {
@@ -168,7 +168,7 @@
     <noscript>
         <div style="text-align:center; padding:50px; background: #000; color: #fff;">
             <h1>La Casa de Burger Torrevieja</h1>
-            <p>Especialistas en Hamburguesas Gourmet 100% Artesanales. Activa JavaScript para ver la carta.</p>
+            <p>Especialistas en Hamburguesas Gourmet 100% Artesanales. Activa JavaScript pour voir la carte.</p>
         </div>
     </noscript>
     <script type="module" src="/src/main.jsx"></script>
