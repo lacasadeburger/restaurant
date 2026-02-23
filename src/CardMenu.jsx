@@ -3,7 +3,10 @@ import bgCard from "./assets/bg-c.jpg";
 
 export default function CardMenu(props) {
   // Respect strict des props d'origine + ajout de 'category' pour la précision de l'image
-  const { image, name, object, description, precio, addToCart, isDrinkCard, isPostreCard, lang, hasExtras, badge, category } = props;
+  const {
+    image, name, object, description, precio, addToCart,
+    isDrinkCard, isPostreCard, lang, hasExtras, badge, category
+  } = props;
 
   const GOLD_BRIGHT = "#FFD700";
 
@@ -73,7 +76,7 @@ export default function CardMenu(props) {
       return sum + (ingredient ? ingredient.price : 0);
     }, 0);
     return (base + extrasTotal).toFixed(2);
-  }, [precio, extraIngredients, extrasList]); // Ajout extrasList dans les dépendances pour la sécurité
+  }, [precio, extraIngredients]);
 
   const toggleExtra = (id) => setExtraIngredients(prev => prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id]);
   const toggleRemove = (id) => setRemovedIngredients(prev => prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id]);
@@ -113,7 +116,7 @@ export default function CardMenu(props) {
     letterSpacing: '1px'
   };
 
-  // Détection pour le style de l'image (Boissons et Desserts de ton data.js)
+  // Détection pour le style de l'image (Modifié pour être plus souple)
   const isContain = isDrinkCard || isPostreCard || category === "drink" || category === "postre";
 
   return (
@@ -128,7 +131,10 @@ export default function CardMenu(props) {
         position: 'relative',
         height: '230px',
         width: '100%',
-        overflow: 'hidden'
+        overflow: 'hidden',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center'
       }}>
 
         {badge && (
@@ -151,9 +157,13 @@ export default function CardMenu(props) {
           onError={(e) => { e.target.src = "https://placehold.co/400x400/000000/FFD700?text=Logo"; }}
           style={{
             background: 'transparent',
-            width: '100%', height: '100%', display: 'block',
+            width: '100%',
+            height: '100%',
+            display: 'block',
+            // CORRECTION : objectFit 'contain' pour les boissons pour voir toute la bouteille,
+            // mais padding réduit à 5px (au lieu de 25px) pour ne pas réduire l'image à néant.
             objectFit: isContain ? 'contain' : 'cover',
-            padding: isContain ? '25px' : '0px'
+            padding: isContain ? '5px' : '0px'
           }}
         />
       </div>
@@ -165,8 +175,8 @@ export default function CardMenu(props) {
           {typeof description === 'object' ? (description[lang] || description['es']) : (description || "")}
         </p>
 
-        {/* 3. OPTIONS & EXTRAS (Style PREMIUM RE-VÉRIFIÉ) */}
-        {!isDrinkCard && !isPostreCard && category !== "drink" && hasExtras && (
+        {/* 3. OPTIONS & EXTRAS - Affiché UNIQUEMENT si ce n'est PAS une boisson/dessert */}
+        {!isDrinkCard && !isPostreCard && category !== "drink" && category !== "postre" && hasExtras && (
           <div className="options-box" style={{ marginTop: 'auto' }}>
 
             <div style={labelGoldStyle}>{getT("extra")}</div>
@@ -217,7 +227,7 @@ export default function CardMenu(props) {
         <button
           onClick={handleAddClick}
           className={`gold-button-premium ${isAdded ? 'is-added' : ''}`}
-          style={{ width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+          style={{ width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', cursor: 'pointer', border: 'none', borderRadius: '12px' }}
         >
           {isAdded ? (
             <span style={{ fontWeight: '900' }}>{getT("ready")}</span>
