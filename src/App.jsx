@@ -633,6 +633,22 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
                     right: 20px;
                   }
                 }
+                /* Style Premium pour les titres Extras et Quitar */
+.options-box h4 {
+  background: linear-gradient(135deg, #BF953F, #FCF6BA, #D4AF37, #FBF5B7, #BF953F);
+  background-size: 200% 200%;
+  animation: liquidGold 4s ease infinite;
+  color: #000 !important; /* Lettres noires */
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 900;
+  font-size: 0.8rem;
+  padding: 5px;
+  border-radius: 6px;
+  margin: 10px 0 8px 0;
+  letter-spacing: 1px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
       `}</style>
 <Helmet>
 {/* 1. DYNAMIQUE : Titre et Description traduits (Indispensable) */}

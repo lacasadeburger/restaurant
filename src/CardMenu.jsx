@@ -95,13 +95,30 @@ export default function CardMenu(props) {
     }, 800);
   };
 
+  // Style commun pour les étiquettes Or/Noir
+  const labelGoldStyle = {
+    background: 'linear-gradient(135deg, #BF953F, #FCF6BA, #D4AF37, #FBF5B7, #BF953F)',
+    backgroundSize: '200% 200%',
+    color: '#000',
+    textAlign: 'center',
+    textTransform: 'uppercase',
+    fontWeight: '900',
+    fontSize: '0.75rem',
+    padding: '5px 10px',
+    borderRadius: '8px',
+    margin: '10px auto 8px auto',
+    display: 'table', // Permet au bloc de s'adapter à la largeur du texte
+    boxShadow: '0 4px 10px rgba(0,0,0,0.4)',
+    letterSpacing: '1px'
+  };
+
   return (
     <div className="card-menu" style={{
       backgroundImage: `url(${bgCard})`, backgroundSize: 'cover', backgroundPosition: 'center',
       display: 'flex', flexDirection: 'column', height: '100%', position: 'relative'
     }}>
 
-      {/* 1. IMAGE & BADGE (Correction Position Badge) */}
+      {/* 1. IMAGE & BADGE */}
       <div className="card-menu-image-container" style={{
         background: 'transparent',
         position: 'relative',
@@ -110,7 +127,6 @@ export default function CardMenu(props) {
         overflow: 'hidden'
       }}>
 
-        {/* BADGE EN HAUT À GAUCHE */}
         {badge && (
           <div className="wobble-badge-container" style={{
             position: 'absolute',
@@ -122,7 +138,6 @@ export default function CardMenu(props) {
           </div>
         )}
 
-        {/* PRIX EN HAUT À DROITE */}
         <div className="price-tag-overlay" style={{
             position: 'absolute', top: '10px', right: '10px', backgroundColor: 'rgba(0,0,0,0.85)', color: GOLD_BRIGHT,
             padding: '5px 12px', borderRadius: '12px', fontWeight: '950', border: `2px solid ${GOLD_BRIGHT}`, zIndex: 40
@@ -150,22 +165,22 @@ export default function CardMenu(props) {
           {typeof description === 'object' ? (description[lang] || description['es']) : (description || "")}
         </p>
 
-        {/* 3. OPTIONS & EXTRAS */}
+        {/* 3. OPTIONS & EXTRAS (Style corrigé) */}
         {!isDrinkCard && !isPostreCard && hasExtras && (
           <div className="options-box" style={{ marginTop: 'auto' }}>
-            <span style={{ color: GOLD_BRIGHT, fontSize: '0.75rem', textTransform: 'uppercase', fontWeight: 'bold', display: 'block', textAlign: 'center', marginBottom: '8px' }}>
-                {getT("extra")}
-            </span>
 
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', justifyContent: 'center', marginBottom: '10px' }}>
+            {/* LABEL EXTRAS */}
+            <div style={labelGoldStyle}>{getT("extra")}</div>
+
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', justifyContent: 'center', marginBottom: '12px' }}>
               {extrasList.map(item => {
                 const active = extraIngredients.includes(item.id);
                 return (
                   <button key={item.id} onClick={() => toggleExtra(item.id)}
                     style={{
-                        backgroundColor: active ? '#2ecc71' : 'rgba(0,0,0,0.5)',
+                        backgroundColor: active ? '#2ecc71' : 'rgba(255,255,255,0.05)',
                         color: active ? '#fff' : '#2ecc71',
-                        border: `1px solid ${active ? '#2ecc71' : 'rgba(46, 204, 113, 0.5)'}`,
+                        border: `1px solid ${active ? '#2ecc71' : 'rgba(46, 204, 113, 0.4)'}`,
                         borderRadius: '20px', padding: '5px 10px', fontSize: '0.7rem', cursor: 'pointer', fontWeight: 'bold'
                     }}
                   >
@@ -175,15 +190,18 @@ export default function CardMenu(props) {
               })}
             </div>
 
+            {/* LABEL QUITAR */}
+            <div style={labelGoldStyle}>{getT("remove")}</div>
+
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', justifyContent: 'center' }}>
               {removableList.map(ing => {
                 const active = removedIngredients.includes(ing.id);
                 return (
                   <button key={ing.id} onClick={() => toggleRemove(ing.id)}
                     style={{
-                        backgroundColor: active ? '#e74c3c' : 'rgba(0,0,0,0.5)',
+                        backgroundColor: active ? '#e74c3c' : 'rgba(255,255,255,0.05)',
                         color: active ? '#fff' : '#e74c3c',
-                        border: `1px solid ${active ? '#e74c3c' : 'rgba(231, 76, 60, 0.5)'}`,
+                        border: `1px solid ${active ? '#e74c3c' : 'rgba(231, 76, 60, 0.4)'}`,
                         borderRadius: '20px', padding: '5px 10px', fontSize: '0.7rem', cursor: 'pointer', fontWeight: 'bold'
                     }}
                   >
