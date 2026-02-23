@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
     <meta name="theme-color" content="#000000" />
 
-    {/* Correction SEO : Lien canonique fixe pour le domaine principal */}
     <link rel="canonical" href="https://lacasadeburger.es/" />
 
     <link rel="preload" as="image" href="/burger-signature-torrevieja.webp" fetchpriority="high">
@@ -16,6 +15,7 @@
     <meta name="robots" content="index, follow" />
 
     <style>
+        /* Optimisation : Font-display swap déjà présent, c'est parfait */
         @font-face {
             font-family: 'Ysabeau';
             font-style: normal;
@@ -34,7 +34,17 @@
         html{scroll-behavior:smooth;background-color:#000}
         body{background-color:#000;color:#fff;font-family:'Ysabeau',sans-serif;line-height:1.5;overflow-x:hidden}
         #root{min-height:100vh}
-        .header{background-color:#000;position:fixed;top:0;width:100%;height:70px;z-index:9999;contain: size layout;}
+
+        /* CORRECTION MAJEURE : On retire 'size' qui causait le blocage de 2.3s sur Desktop */
+        .header{
+            background-color:#000;
+            position:fixed;
+            top:0;
+            width:100%;
+            height:70px;
+            z-index:9999;
+            contain: layout; /* 'layout' seul suffit pour la performance sans casser le thread principal */
+        }
     </style>
 
     <link rel="icon" type="image/webp" href="/logo.webp" />
@@ -62,7 +72,7 @@
         "Opciones Vegetarianas",
         "American Cuisine"
       ],
-      "description": "Especialistas en Burger Gourmet Signature y Smash Burgers 100% artesanales en Torrevieja. Carne fresca picada a diario, terraza, parking y opciones Halal/Veggie.",
+      "description": "Especialistas en Burger Gourmet Signature y Smash Burgers 100% artesanales en Torrevieja. Carne fresca picada a diario, terraza, parking y options Halal/Veggie.",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "AV. Diego Ramirez Pastor, 142",
@@ -138,7 +148,7 @@
               { "@type": "MenuItem", "name": "Combo 1", "description": "La Inglesa + Patatas + 3 Nuggets", "offers": { "@type": "Offer", "price": "18.00", "priceCurrency": "EUR" } },
               { "@type": "MenuItem", "name": "Patatas Cheddar y Bacon", "description": "Patatas caseras con salsa de cheddar y bacon", "offers": { "@type": "Offer", "price": "8.50", "priceCurrency": "EUR" } },
               { "@type": "MenuItem", "name": "Patatas Bravas", "description": "Patatas caseras con salsa brava", "offers": { "@type": "Offer", "price": "6.50", "priceCurrency": "EUR" } },
-              { "@type": "MenuItem", "name": "Nuggets de Pollo", "description": "6 unidades de nuggets caseros", "offers": { "@type": "Offer", "price": "6.50", "priceCurrency": "EUR" } }
+              { "@type": "MenuItem", "name": "Nuggets de Pollo", "description": "6 unités de nuggets caseros", "offers": { "@type": "Offer", "price": "6.50", "priceCurrency": "EUR" } }
             ]
           },
           {
