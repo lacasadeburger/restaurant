@@ -1,10 +1,10 @@
 import React from 'react';
-// Importation du logo (Assure-toi que le chemin et l'extension .webp sont corrects)
+// Importation du logo (Assure-toi que le chemin vers logo.webp est correct)
 import navLogo from "../assets/logo.webp";
 
 export default function Footer({ lang }) {
 
-  // --- DICTIONNAIRE COMPLET (11 LANGUES) - RÉINTÉGRÉ ---
+  // --- DICTIONNAIRE COMPLET (11 LANGUES) - CONSERVÉ ---
   const translations = {
     address: {
       es: "Dirección", en: "Address", fr: "Adresse", de: "Adresse",
@@ -33,13 +33,13 @@ export default function Footer({ lang }) {
       es: "Para reservaciones, llamar al teléfono o por WhatsApp",
       en: "For reservations, call or WhatsApp",
       fr: "Pour les réservations, appelez ou via WhatsApp",
-      de: "Für Reservierungen rufen Sie an oder per WhatsApp",
+      de: "Für Reservierungen rufen Sie an ou per WhatsApp",
       ru: "Для бронирования звоните или пишите в WhatsApp",
-      uk: "Для бронювання телефонуйте або пишіть u WhatsApp",
+      uk: "Для бронювання телефонуйте або пишіть у WhatsApp",
       pl: "W celu rezerwacji zadzwoń lub napisz na WhatsApp",
       no: "For reservasjoner, ring eller bruk WhatsApp",
       sv: "För bokningar, ring eller använd WhatsApp",
-      ro: "Pentru rezervări, sunați sau scrieți pe WhatsApp",
+      ro: "Pour les réservations, appelez ou via WhatsApp",
       ar: "للحجز، اتصل بنا أو عبر الواتساب"
     }
   };
@@ -57,18 +57,18 @@ export default function Footer({ lang }) {
       backgroundColor: '#000',
       color: '#ffffff',
       padding: '60px 20px 40px',
-      borderTop: '4px solid #ff5e6c' // Rouge optimisé pour passer les tests Insights
+      borderTop: '4px solid #ff5e6c' // Optimisé pour le contraste Insights
     }}>
       <div className="footer-content" style={{
         display: 'flex',
-        flexDirection: 'column',
+        flexDirection: 'column', // Centrage propre suite à la suppression de Devrod
         alignItems: 'center',
         maxWidth: '1200px',
         margin: '0 auto',
         gap: '40px'
       }}>
 
-        {/* LOGO SECTION */}
+        {/* LOGO SECTION - UNIQUE */}
         <div className="logo-container">
           <img
             src={navLogo}
@@ -77,23 +77,23 @@ export default function Footer({ lang }) {
           />
         </div>
 
-        {/* CONTACT INFO SECTION */}
+        {/* CONTACT INFO SECTION (Optimisée contraste & mobile) */}
         <div className="info-container" style={{
           textAlign: 'center',
           fontSize: '1.05rem',
-          lineHeight: '2.2',
+          lineHeight: '2.1', // Espacement pour éviter l'erreur "Tap targets too close"
           color: '#ffffff'
         }}>
           <p style={{ margin: 0 }}>
             <strong style={{ color: '#ff5e6c' }}>{getT("address")}:</strong> Av. Diego Ramírez Pastor, 142, 03181 Torrevieja<br />
 
             <strong style={{ color: '#ff5e6c' }}>{getT("phone")}:</strong>
-            <a href="tel:+34602597210" style={{ color: '#ffffff', textDecoration: 'underline', textDecorationColor: '#ff5e6c', marginLeft: '5px' }}>
+            <a href="tel:+34602597210" style={{ color: '#ffffff', textDecoration: 'underline', textDecorationColor: '#ff5e6c' }}>
               602 59 72 10
             </a><br />
 
             <strong style={{ color: '#ff5e6c' }}>WhatsApp:</strong>
-            <a href="https://wa.me/34602597210" style={{ color: '#ffffff', textDecoration: 'underline', textDecorationColor: '#ff5e6c', marginLeft: '5px' }}>
+            <a href="https://wa.me/34602597210" style={{ color: '#ffffff', textDecoration: 'underline', textDecorationColor: '#ff5e6c' }}>
               602 59 72 10
             </a><br />
 
@@ -115,6 +115,7 @@ export default function Footer({ lang }) {
             </span>
           </p>
         </div>
+
       </div>
 
       {/* DIVIDER GOLD */}
@@ -126,11 +127,11 @@ export default function Footer({ lang }) {
         borderRadius: '2px'
       }} aria-hidden="true" />
 
-      {/* COPYRIGHT & SLOGAN SECTION */}
+      {/* COPYRIGHT SECTION (Gris conformes WCAG) */}
       <div style={{ textAlign: 'center' }}>
         <p className="copyright" style={{
-          color: '#BDBDBD', // Gris validé WCAG
-          fontSize: '1rem',
+          color: '#BDBDBD',
+          fontSize: '1.1rem',
           margin: '0',
           letterSpacing: '0.5px'
         }}>
@@ -138,11 +139,11 @@ export default function Footer({ lang }) {
         </p>
 
         <p style={{
-          color: '#AAAAAA', // Gris clair optimisé pour Insights
+          color: '#AAAAAA', // Gris plus clair que #888 pour valider le test
           fontSize: '0.85rem',
           marginTop: '12px',
           textTransform: 'uppercase',
-          letterSpacing: '2px'
+          letterSpacing: '1px'
         }}>
           {lang === 'es' ? 'El mejor burger de Torrevieja' : 'Best burger in Torrevieja'}
         </p>
