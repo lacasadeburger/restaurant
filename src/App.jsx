@@ -1101,7 +1101,7 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
                   <div style={{ fontSize: '1.1rem', color: '#bbb', lineHeight: '1.6', textAlign: 'center' }}>
                     <strong style={{ color: '#fff' }}>📍 ZONAS DE REPARTO / DELIVERY AREAS:</strong>
                     <br />
-                    <span style={{ color: '#BDBDBD' }}>
+                    <span style={{ color: '#BDBDBD', fontSize: '1.1rem' }}>
                       Torrevieja Centro, Playa del Cura, Playa de los Locos, Paseo Marítimo, Puerto, La Mata, Punta Prima, Los Balcones, Aguas Nuevas, La Siesta, El Acequión, La Veleta, San Roque, Rocío del Mar, Los Altos, Lago Jardín, Torreta I, II, III, El Salado, Urbanización Doña Inés, Jardín del Mar, Las Nations, Centro Comercial Habaneras et hôtels.
                     </span>
                   </div>
