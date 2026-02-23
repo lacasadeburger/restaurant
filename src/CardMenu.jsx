@@ -134,7 +134,6 @@ export default function CardMenu(props) {
         backgroundColor: '#0a0a0a',
         padding: isSpecial ? '15px' : '0px'
       }}>
-
         {badge && (
           <div style={{ position: 'absolute', top: '10px', left: '10px', zIndex: 50 }}>
             <span className="wobble-badge">{badge}</span>
