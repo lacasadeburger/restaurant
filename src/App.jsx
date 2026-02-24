@@ -714,6 +714,7 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
     position: 'absolute',
     top: '120px',
     right: '20px',
+    left: 'auto',
     zIndex: 110,
     width: 'fit-content'
   }}>
