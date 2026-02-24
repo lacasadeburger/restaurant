@@ -162,9 +162,15 @@
     </script>
 </head>
 <body>
-    <div id="root">
-        <img src="/burger-signature-torrevieja.webp" alt="La mejor hamburguesa gourmet de Torrevieja - La Casa de Burger" fetchpriority="high" loading="eager" decoding="sync" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 1;">
-    </div>
+    <img src="/burger-signature-torrevieja.webp"
+         alt="La mejor hamburguesa gourmet de Torrevieja - La Casa de Burger"
+         fetchpriority="high"
+         loading="eager"
+         decoding="sync"
+         style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1;">
+
+    <div id="root"></div>
+
     <noscript>
         <div style="text-align:center; padding:50px; background: #000; color: #fff;">
             <h1>La Casa de Burger Torrevieja</h1>
