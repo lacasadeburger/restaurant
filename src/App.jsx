@@ -13,7 +13,6 @@ import Drink from "./assets/drink.webp";
 import tripadvisor from "./assets/tripadvisor.png";
 import googleIcon from "./assets/google.png";
 import logo from "./assets/logo.webp";
-import BurgerSignature from "/burger-signature-torrevieja.webp";
 import insta from "./assets/instagram.png";
 import whatsappIcon from "/wha2026.webp";
 
@@ -690,73 +689,58 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
   textAlign: 'center',
   position: 'relative',
   borderRadius: '0 0 50px 50px',
-  borderBottom: `5px solid #ff4757`,
-  overflow: 'hidden'
+  borderBottom: '5px solid #ff4757',
+  backgroundColor: 'transparent', // On voit l'image de l'index.html
+  overflow: 'hidden',
+  minHeight: '480px', // Prévient le CLS (mouvement de page)
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center'
 }}>
-  <img
-    src={BurgerSignature}
-    alt="La mejor hamburguesa gourmet de Torrevieja - La Casa de Burger"
-    fetchPriority="high"
-    loading="eager"
-    decoding="sync"
-    style={{
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      width: '100%',
-      height: '100%',
-      objectFit: 'cover',
-      objectPosition: 'center',
-      zIndex: 0
-    }}
-  />
+  {/* 1. OVERLAY DEGRADÉ (Indispensable pour la lisibilité) */}
+  <div style={{
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+    background: 'linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6))',
+    zIndex: 1
+  }}></div>
 
-  {/* Overlay dégradé de l'image (ne pas toucher) */}
-<div style={{
-  position: 'absolute',
-  top: 0,
-  left: 0,
-  width: '100%',
-  height: '100%',
-  background: 'linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.5))',
-  zIndex: 1
-}}></div>
-
-{/* BADGE DE PRESTIGE - FORCE À DROITE ET TAILLE MINI */}
-<div className="wobble-badge-container" style={{
-  position: 'absolute',
-  top: '120px',
-  right: '20px',
-  left: 'auto',
-  /* On utilise une astuce pour écraser le !important du CSS global */
-  cssText: 'left: auto !important; right: 20px !important;',
-  width: 'fit-content',
-  display: 'block',
-  zIndex: 110
-}}>
-  <div className="wobble-badge gold-button-premium" style={{
-    width: 'fit-content',
-    whiteSpace: 'nowrap',
-    padding: '8px 20px',
-    fontSize: '0.85rem',
-    display: 'flex',
-    alignItems: 'center',
-    gap: '8px'
+  {/* 2. BADGE DE PRESTIGE (Optimisé) */}
+  <div className="wobble-badge-container" style={{
+    position: 'absolute',
+    top: '120px',
+    right: '20px',
+    zIndex: 110,
+    width: 'fit-content'
   }}>
-    🏆 #1 BURGER EN TORREVIEJA
+    <div className="wobble-badge gold-button-premium" style={{
+      padding: '8px 20px',
+      fontSize: '0.85rem',
+      display: 'flex',
+      alignItems: 'center',
+      gap: '8px',
+      whiteSpace: 'nowrap'
+    }}>
+      🏆 #1 BURGER EN TORREVIEJA
+    </div>
   </div>
-</div>
-<div style={{ position: 'relative', zIndex: 2 }}>
-  <h1 style={{
-    fontSize: 'clamp(2rem, 10vw, 3.5rem)',
-    fontWeight: '900',
-    textTransform: 'uppercase',
-    textShadow: '2px 2px 15px rgba(0,0,0,0.9)',
-    margin: 0,
-    color: '#fff',
-    lineHeight: '1.1'
-  }}>
-        {T[lang]?.heroTitle || T.es.heroTitle}
+
+  {/* 3. CONTENU TEXTUEL ET BOUTONS */}
+  <div style={{ position: 'relative', zIndex: 2, width: '100%' }}>
+    <h1 style={{
+      fontSize: 'clamp(2rem, 10vw, 3.5rem)',
+      fontWeight: '900',
+      textTransform: 'uppercase',
+      textShadow: '2px 2px 15px rgba(0,0,0,0.9)',
+      margin: 0,
+      color: '#fff',
+      lineHeight: '1.1'
+    }}>
+      {T[lang]?.heroTitle || T.es.heroTitle}
       <br />
       {
         lang === 'fr' ? 'à Torrevieja' :
@@ -776,7 +760,7 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
 
     <h2 style={{
       fontSize: '1.5rem',
-      color: typeof GOLD_BRIGHT !== 'undefined' ? GOLD_BRIGHT : '#FFD700',
+      color: '#FFD700',
       fontWeight: '700',
       textShadow: '1px 1px 10px rgba(0,0,0,1)',
       marginTop: '10px',
@@ -854,15 +838,13 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
           {T[lang]?.btnCall || T.es.btnCall}
         </a>
 
-        <span
-          style={{
-            color: '#FFFFFF',
-            fontSize: '0.75rem',
-            fontWeight: '900',
-            textTransform: 'uppercase',
-            letterSpacing: '1px'
-          }}
-        >
+        <span style={{
+          color: '#FFFFFF',
+          fontSize: '0.75rem',
+          fontWeight: '900',
+          textTransform: 'uppercase',
+          letterSpacing: '1px'
+        }}>
           {lang === 'es' ? '¡LLÁMANOS!' : 'CALL US!'}
         </span>
       </div>
