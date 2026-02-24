@@ -30,14 +30,12 @@
             src: url('/fonts/sacramento-v15-latin-regular.woff2') format('woff2');
         }
         *{box-sizing:border-box;margin:0;padding:0}
-        html{scroll-behavior:smooth;background-color:#000}
-        body{background-color:#000;color:#fff;font-family:'Ysabeau',sans-serif;line-height:1.5;overflow-x:hidden}
+        html, body{background-color:#000;color:#fff;font-family:'Ysabeau',sans-serif;line-height:1.5;overflow-x:hidden;min-height:100%}
 
-        /* Correction chirurgicale : plus d'image de fond ici pour éviter le conflit */
         #root {
             min-height: 100vh;
             position: relative;
-            z-index: 1;
+            z-index: 1; /* S'affiche au-dessus de l'image */
             background: transparent !important;
         }
 
@@ -51,15 +49,14 @@
             contain: layout paint;
         }
 
-        /* Classe pour affichage instantané de l'image LCP */
         .lcp-background {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
+            width: 100vw;
+            height: 100vh;
             object-fit: cover;
-            z-index: 0;
+            z-index: -1; /* Indispensable pour tuer le délai d'affichage */
             display: block;
         }
     </style>
@@ -197,6 +194,6 @@
         </div>
     </noscript>
 
-    <script type="module" src="/src/main.jsx"></script>
+    <script type="module" src="/src/main.jsx" async></script>
 </body>
 </html>
