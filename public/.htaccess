@@ -12,32 +12,38 @@ Header set X-Content-Type-Options "nosniff"
 RewriteCond %{HTTPS} off
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-# 3. COMPRESSION GZIP (PERFORMANCE MAXIMALE)
+# 3. COMPRESSION GZIP (On exclut les images déjà compressées pour libérer le CPU)
 <IfModule mod_deflate.c>
     AddOutputFilterByType DEFLATE text/plain text/html text/xml text/css text/javascript
     AddOutputFilterByType DEFLATE application/xml application/xhtml+xml application/rss+xml
     AddOutputFilterByType DEFLATE application/javascript application/x-javascript application/json application/wasm
     AddOutputFilterByType DEFLATE font/woff font/woff2 image/svg+xml image/x-icon
+
+    # Sécurité pour les vieux navigateurs
+    BrowserMatch ^Mozilla/4 gzip-only-text/html
+    BrowserMatch ^Mozilla/4\.0[678] no-gzip
+    BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
 </IfModule>
 
-# 4. CACHE NAVIGATEUR LONGUE DURÉE
+# 4. CACHE NAVIGATEUR (Expires + Cache-Control pour PageSpeed)
 <IfModule mod_expires.c>
     ExpiresActive On
     ExpiresDefault "access plus 1 month"
 
-    # Assets (JS/CSS) - On garde 1 an car Vite génère des noms uniques
+    # Assets & Images (1 an)
     ExpiresByType text/css "access plus 1 year"
     ExpiresByType application/javascript "access plus 1 year"
-
-    # Images
     ExpiresByType image/x-icon "access plus 1 year"
     ExpiresByType image/jpeg "access plus 1 year"
     ExpiresByType image/png "access plus 1 year"
     ExpiresByType image/webp "access plus 1 year"
     ExpiresByType image/svg+xml "access plus 1 year"
-
-    # Polices
     ExpiresByType font/woff2 "access plus 1 year"
+
+    # On force le Header Cache-Control pour PageSpeed Insights
+    <FilesMatch "\.(css|js|woff2|jpg|jpeg|png|webp|ico|svg)$">
+        Header set Cache-Control "max-age=31536000, public, immutable"
+    </FilesMatch>
 </IfModule>
 
 # 5. GESTION DES ERREURS
