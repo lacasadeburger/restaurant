@@ -690,15 +690,15 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
   position: 'relative',
   borderRadius: '0 0 50px 50px',
   borderBottom: '5px solid #ff4757',
-  backgroundColor: 'transparent', // On voit l'image de l'index.html
+  backgroundColor: 'transparent',
   overflow: 'hidden',
-  minHeight: '520px', // Prévient le CLS (mouvement de page)
+  minHeight: '520px',
   display: 'flex',
   flexDirection: 'column',
-  justifyContent: 'flex-start',
+  justifyContent: 'flex-start', // Garde le titre aligné avec l'index.html
   alignItems: 'center'
 }}>
-  {/* 1. OVERLAY DEGRADÉ (Indispensable pour la lisibilité) */}
+  {/* 1. OVERLAY DÉGRADÉ */}
   <div style={{
     position: 'absolute',
     top: 0,
@@ -709,7 +709,7 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
     zIndex: 1
   }}></div>
 
-  {/* 2. BADGE DE PRESTIGE (Optimisé) */}
+  {/* 2. BADGE DE PRESTIGE */}
   <div className="wobble-badge-container" style={{
     position: 'absolute',
     top: '120px',
@@ -751,7 +751,7 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
         lang === 'sv' ? 'i Torrevieja' :
         lang === 'pl' ? 'w Torrevieja' :
         lang === 'uk' ? 'у Торрев’єнті' :
-        lang === 'ru' ? 'в Торревьехе' :
+        lang === 'ru' ? 'в Торreviexe' :
         lang === 'ar' ? 'في توريفايجا' :
         lang === 'ro' ? 'în Torrevieja' :
         'en Torrevieja'
@@ -769,6 +769,7 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
       {T[lang]?.heroSubtitle || T.es.heroSubtitle}
     </h2>
 
+    {/* BLOC BOUTONS */}
     <div style={{ marginTop: '20px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px' }}>
       <button
         onClick={() => {
@@ -801,7 +802,7 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
       </button>
 
       <button
-        onClick={() => window.open("https://app.tableo.com/widget/la-casa-de-burger-hamburguesa-gourmet-torrevieja-hamburgueseria-casero-best-burger-in-town-spain?bgColor=%23ff0000&textColor=%23000000&googleFont=Police+par+d%C3%A9faut&fontSize=14&cornerStyle=none&textAlignment=left&formControlBgColor=%23ffffff&formControlColor=%23000000&formControlBorderColor=%23444444&formControlBorderShadow=6&formControlBorderWidth=1&formControlBorderOpacity=0.1&buttonBgColor=%23000000&buttonTextColor=%23ffffff", "_blank")}
+        onClick={() => window.open("https://app.tableo.com/widget/la-casa-de-burger-hamburguesa-gourmet-torrevieja-hamburgueseria-casero-best-burger-in-town-spain", "_blank")}
         className="gold-button-premium"
         style={{
           padding: '18px 40px',
@@ -810,7 +811,8 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
           width: '90%',
           maxWidth: '450px',
           marginTop: '10px',
-          display: 'block'
+          display: 'block',
+          cursor: 'pointer'
         }}
       >
         📅 RESERVAR MESA
