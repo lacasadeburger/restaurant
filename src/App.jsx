@@ -713,7 +713,7 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
   <div className="wobble-badge-container" style={{
     position: 'absolute',
     top: '120px',
-    left: '20px',
+    right: '20px',
     zIndex: 110,
     width: 'fit-content'
   }}>
