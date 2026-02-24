@@ -198,36 +198,38 @@
          decoding="sync"
          class="lcp-background">
 
-    <div id="fallback-text" style="position: absolute; top: 85px; left: 0; width: 100%; text-align: center; z-index: 2; font-family: 'Ysabeau', sans-serif; pointer-events: none;">
-        <h1 style="font-size: clamp(2rem, 10vw, 3.5rem); font-weight: 900; text-transform: uppercase; color: #ffffff; text-shadow: 2px 2px 15px rgba(0,0,0,0.9); margin: 0; line-height: 1.1;">
-            LAS MEJORES HAMBURGUESAS GOURMET<br>EN TORREVIEJA
-        </h1>
-        <h2 style="font-size: 1.5rem; color: #FFD700; font-weight: 700; text-shadow: 1px 1px 10px rgba(0,0,0,1); margin-top: 10px; text-transform: uppercase;">
-            GOURMET BURGER JOINT: GOURMET BURGERS, SMASH BURGERS & PREMIUM BEEF
-        </h2>
-    </div>
+         <div id="fallback-text" style="position: absolute; top: 85px; left: 0; width: 100%; text-align: center; z-index: 2; font-family: 'Ysabeau', sans-serif; pointer-events: none;">
+             <h1 style="font-size: clamp(2rem, 10vw, 3.5rem); font-weight: 900; text-transform: uppercase; color: #ffffff; text-shadow: 2px 2px 15px rgba(0,0,0,0.9); margin: 0; line-height: 1.1;">
+                 LAS MEJORES HAMBURGUESAS GOURMET<br>EN TORREVIEJA
+             </h1>
+             <h2 style="font-size: 1.5rem; color: #FFD700; font-weight: 700; text-shadow: 1px 1px 10px rgba(0,0,0,1); margin-top: 10px; text-transform: uppercase;">
+                 GOURMET BURGER JOINT: GOURMET BURGERS, SMASH BURGERS & PREMIUM BEEF
+             </h2>
 
-    <div id="root"></div>
+             <div style="margin-top: 20px; height: 160px; width: 100%;"></div>
+         </div>
 
-    <noscript>
-        <div style="text-align:center; padding:50px; background: #000; color: #fff;">
-            <h1>La Casa de Burger Torrevieja</h1>
-            <p>Especialistas en Hamburguesas Gourmet 100% Artesanales.</p>
-        </div>
-    </noscript>
+         <div id="root"></div>
 
-    <script>
-        // Execution immédiate dès que le DOM change
-        const observer = new MutationObserver(() => {
-            const root = document.getElementById('root');
-            if (root && root.children.length > 0) {
-                const fallback = document.getElementById('fallback-text');
-                if (fallback) fallback.style.display = 'none';
-                observer.disconnect();
-            }
-        });
-        observer.observe(document.getElementById('root'), { childList: true });
-    </script>
+         <noscript>
+             <div style="text-align:center; padding:50px; background: #000; color: #fff;">
+                 <h1>La Casa de Burger Torrevieja</h1>
+                 <p>Especialistas en Hamburguesas Gourmet 100% Artesanales.</p>
+             </div>
+         </noscript>
+
+         <script>
+             // Execution immédiate dès que le DOM change
+             const observer = new MutationObserver(() => {
+                 const root = document.getElementById('root');
+                 if (root && root.children.length > 0) {
+                     const fallback = document.getElementById('fallback-text');
+                     if (fallback) fallback.style.display = 'none';
+                     observer.disconnect();
+                 }
+             });
+             observer.observe(document.getElementById('root'), { childList: true });
+         </script>
 
     <script type="module" src="/src/main.jsx" async></script>
 </body>
