@@ -4,17 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
     <meta name="theme-color" content="#000000" />
-
     <link rel="canonical" href="https://lacasadeburger.es/" />
-
     <link rel="preload" href="/fonts/ysabeau-v5-latin-regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
     <link rel="preload" as="image" href="/burger-signature-torrevieja.webp" fetchpriority="high">
-
     <title>La Casa de Burger | Meilleures Hamburguesas Gourmet de Torrevieja</title>
     <meta name="description" content="Découvrez les meilleurs burgers gourmet et smash burgers à Torrevieja. Viande 100% artisanale hachée chaque jour. Terrasse, parking et options Halal/Veggie." />
     <meta name="keywords" content="hamburguesas Torrevieja, burger gourmet, smash burger, delivery Torrevieja, burger artesanal, Halal Torrevieja, terrasse Torrevieja" />
     <meta name="robots" content="index, follow" />
-
     <style>
         @font-face {
             font-family: 'Ysabeau';
@@ -33,8 +29,13 @@
         *{box-sizing:border-box;margin:0;padding:0}
         html{scroll-behavior:smooth;background-color:#000}
         body{background-color:#000;color:#fff;font-family:'Ysabeau',sans-serif;line-height:1.5;overflow-x:hidden}
-        #root{min-height:100vh; position: relative; background-color: #000;}
-
+        #root {
+            min-height: 100vh;
+            background-image: url('/burger-signature-torrevieja.webp');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
         .header{
             background-color:#000;
             position:fixed;
@@ -45,9 +46,7 @@
             contain: layout paint;
         }
     </style>
-
     <link rel="icon" type="image/webp" href="/logo.webp" />
-
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -116,11 +115,6 @@
         "worstRating": "1"
       },
       "knowsLanguage": ["es", "en", "fr", "de", "no", "pl", "ru", "ar", "sv", "uk", "nl"],
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "4.9",
-        "reviewCount": "250"
-      },
       "amenityFeature": [
         { "@type": "LocationFeatureSpecification", "name": "Terraza", "value": true },
         { "@type": "LocationFeatureSpecification", "name": "Fácil aparcamiento", "value": true }
@@ -169,21 +163,14 @@
 </head>
 <body>
     <div id="root">
-        <img src="/burger-signature-torrevieja.webp"
-             alt="La mejor hamburguesa gourmet de Torrevieja - La Casa de Burger"
-             fetchpriority="high"
-             loading="eager"
-             decoding="sync"
-             style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; object-fit: cover; z-index: 0;">
+        <img src="/burger-signature-torrevieja.webp" alt="La mejor hamburguesa gourmet de Torrevieja - La Casa de Burger" fetchpriority="high" loading="eager" decoding="sync" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 1;">
     </div>
-
     <noscript>
         <div style="text-align:center; padding:50px; background: #000; color: #fff;">
             <h1>La Casa de Burger Torrevieja</h1>
             <p>Especialistas en Hamburguesas Gourmet 100% Artesanales.</p>
         </div>
     </noscript>
-
     <script type="module" src="/src/main.jsx"></script>
 </body>
 </html>
