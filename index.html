@@ -34,14 +34,13 @@
         html{scroll-behavior:smooth;background-color:#000}
         body{background-color:#000;color:#fff;font-family:'Ysabeau',sans-serif;line-height:1.5;overflow-x:hidden}
 
-        /* On garde cette méthode car c'est elle qui t'a donné le 100/100 */
+        /* MODIFICATION LCP ICI : On force l'image en fond du root immédiatement */
         #root {
             min-height: 100vh;
             background-image: url('/burger-signature-torrevieja.webp');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            position: relative;
         }
 
         .header{
@@ -178,7 +177,7 @@
              fetchpriority="high"
              loading="eager"
              decoding="sync"
-             style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+             style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 1;">
     </div>
 
     <noscript>
