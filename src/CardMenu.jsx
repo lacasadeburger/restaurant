@@ -110,7 +110,7 @@ export default function CardMenu(props) {
 
   return (
     <div className="card-menu" style={{
-      backgroundImage: `url(${bgCard})`,
+      backgroundImage: `url(${bgCard})`, // 1. BIEN VÉRIFIER QUE bgCard EST IMPORTÉ
       backgroundSize: 'cover',
       backgroundPosition: 'center',
       display: 'flex',
@@ -119,19 +119,20 @@ export default function CardMenu(props) {
       position: 'relative',
       borderRadius: '15px',
       overflow: 'hidden',
-      border: '1px solid rgba(255,215,0,0.1)'
+      border: '1px solid rgba(255,215,0,0.3)', // On augmente un peu l'éclat doré
+      backgroundColor: '#000' // Fond de secours si bgCard met du temps
     }}>
 
-    {/* 1. CONTAINER IMAGE : Fixé et optimisé */}
+    {/* 1. CONTAINER IMAGE : On enlève le noir total pour plus de douceur */}
       <div className="card-menu-image-container" style={{
         position: 'relative',
         height: '230px',
         width: '100%',
         display: 'flex',
         alignItems: 'center',
-        justifycontent: 'center',
+        justifyContent: 'center', // Correction de la majuscule 'C'
         overflow: 'hidden',
-        backgroundColor: '#0a0a0a',
+        backgroundColor: 'rgba(0,0,0,0.2)', // 2. PLUS DE NOIR OPAQUE ICI
         padding: isSpecial ? '15px' : '0px'
       }}>
         {badge && (

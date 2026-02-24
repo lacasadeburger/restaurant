@@ -7,6 +7,7 @@
     <link rel="canonical" href="https://lacasadeburger.es/" />
 
     <link rel="preload" href="/fonts/ysabeau-v5-latin-regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    <link rel="preload" href="/fonts/sacramento-v15-latin-regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
     <link rel="preload" as="image" href="/burger-signature-torrevieja.webp" fetchpriority="high">
 
     <title>La Casa de Burger | Meilleures Hamburguesas Gourmet de Torrevieja</title>
@@ -15,6 +16,7 @@
     <meta name="robots" content="index, follow" />
 
     <style>
+        /* POLICES */
         @font-face {
             font-family: 'Ysabeau';
             font-style: normal;
@@ -29,26 +31,20 @@
             font-display: swap;
             src: url('/fonts/sacramento-v15-latin-regular.woff2') format('woff2');
         }
+
+        /* RESET ET BASE */
         *{box-sizing:border-box;margin:0;padding:0}
         html, body{background-color:#000;color:#fff;font-family:'Ysabeau',sans-serif;line-height:1.5;overflow-x:hidden;min-height:100%}
 
+        /* STRUCTURE REACT ET TRANSPARENCE */
         #root {
             min-height: 100vh;
             position: relative;
-            z-index: 1; /* S'affiche par-dessus l'image */
+            z-index: 1;
             background: transparent !important;
         }
 
-        .header{
-            background-color:#000;
-            position:fixed;
-            top:0;
-            width:100%;
-            height:70px;
-            z-index:9999;
-            contain: layout paint;
-        }
-
+        /* L'IMAGE DE FOND LCP */
         .lcp-background {
             position: fixed !important;
             top: 0;
@@ -56,9 +52,23 @@
             width: 100vw;
             height: 100vh;
             object-fit: cover;
-            z-index: -1; /* Élimine le délai d'affichage */
+            z-index: -2 !important;
             display: block;
             pointer-events: none;
+        }
+
+        /* CORRECTIF LISIBILITÉ SECTIONS */
+        .section-menus {
+            background-color: rgba(0, 0, 0, 0.7) !important;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-radius: 30px;
+            padding: 20px 10px;
+        }
+
+        /* Force la transparence globale */
+        #root, body {
+            background-color: transparent !important;
         }
     </style>
 
@@ -178,14 +188,14 @@
     }
     </script>
 </head>
+
 <body>
     <img src="/burger-signature-torrevieja.webp"
          alt="La mejor hamburguesa gourmet de Torrevieja - La Casa de Burger"
          fetchpriority="high"
          loading="eager"
          decoding="sync"
-         class="lcp-background"
-         style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; object-fit: cover; z-index: -1;">
+         class="lcp-background">
 
     <div id="fallback-text" style="position: absolute; top: 85px; left: 0; width: 100%; text-align: center; z-index: 2; font-family: 'Ysabeau', sans-serif; pointer-events: none;">
         <h1 style="font-size: clamp(2rem, 10vw, 3.5rem); font-weight: 900; text-transform: uppercase; color: #ffffff; text-shadow: 2px 2px 15px rgba(0,0,0,0.9); margin: 0; line-height: 1.1;">
@@ -196,7 +206,7 @@
         </h2>
     </div>
 
-    <div id="root" style="background: transparent !important; position: relative; z-index: 3;"></div>
+    <div id="root"></div>
 
     <noscript>
         <div style="text-align:center; padding:50px; background: #000; color: #fff;">
@@ -206,7 +216,6 @@
     </noscript>
 
     <script>
-        // Ce petit script supprimera le texte statique dès que React sera prêt
         const observer = new MutationObserver(() => {
             const root = document.getElementById('root');
             if (root && root.children.length > 0) {

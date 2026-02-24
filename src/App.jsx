@@ -354,7 +354,7 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
   const GOLD_SHADOW = "0 4px 15px rgba(255, 215, 0, 0.3)";
 
   return (
-    <div className="app-main-wrapper" style={{ position: 'relative', backgroundColor: '#111', color: '#fff' }}>
+<div className="app-main-wrapper" style={{ position: 'relative', backgroundColor: 'transparent', color: '#fff' }}>
     <style>{`
   /* 1. STRUCTURE & GRID */
   html, body { max-width: 100%; overflow-x: hidden; margin: 0; padding: 0; background-color: #000; }
@@ -713,7 +713,7 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
   <div className="wobble-badge-container" style={{
     position: 'absolute',
     top: '120px',
-    right: '20px',
+    left: '20px',
     zIndex: 110,
     width: 'fit-content'
   }}>
