@@ -184,9 +184,10 @@
          fetchpriority="high"
          loading="eager"
          decoding="sync"
-         class="lcp-background">
+         class="lcp-background"
+         style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; object-fit: cover; z-index: -1;">
 
-    <div style="position: absolute; top: 85px; left: 0; width: 100%; text-align: center; z-index: 2; font-family: 'Ysabeau', sans-serif; pointer-events: none;">
+    <div id="fallback-text" style="position: absolute; top: 85px; left: 0; width: 100%; text-align: center; z-index: 2; font-family: 'Ysabeau', sans-serif; pointer-events: none;">
         <h1 style="font-size: clamp(2rem, 10vw, 3.5rem); font-weight: 900; text-transform: uppercase; color: #ffffff; text-shadow: 2px 2px 15px rgba(0,0,0,0.9); margin: 0; line-height: 1.1;">
             LAS MEJORES HAMBURGUESAS GOURMET<br>EN TORREVIEJA
         </h1>
@@ -195,7 +196,7 @@
         </h2>
     </div>
 
-    <div id="root" style="background: transparent;"></div>
+    <div id="root" style="background: transparent !important; position: relative; z-index: 3;"></div>
 
     <noscript>
         <div style="text-align:center; padding:50px; background: #000; color: #fff;">
@@ -203,6 +204,19 @@
             <p>Especialistas en Hamburguesas Gourmet 100% Artesanales.</p>
         </div>
     </noscript>
+
+    <script>
+        // Ce petit script supprimera le texte statique dès que React sera prêt
+        const observer = new MutationObserver(() => {
+            const root = document.getElementById('root');
+            if (root && root.children.length > 0) {
+                const fallback = document.getElementById('fallback-text');
+                if (fallback) fallback.style.display = 'none';
+                observer.disconnect();
+            }
+        });
+        observer.observe(document.getElementById('root'), { childList: true });
+    </script>
 
     <script type="module" src="/src/main.jsx" async></script>
 </body>
