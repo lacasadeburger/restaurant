@@ -35,7 +35,7 @@
         #root {
             min-height: 100vh;
             position: relative;
-            z-index: 1; /* S'affiche au-dessus de l'image */
+            z-index: 1; /* S'affiche par-dessus l'image */
             background: transparent !important;
         }
 
@@ -50,14 +50,15 @@
         }
 
         .lcp-background {
-            position: fixed;
+            position: fixed !important;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
             object-fit: cover;
-            z-index: -1; /* Indispensable pour tuer le délai d'affichage */
+            z-index: -1; /* Élimine le délai d'affichage */
             display: block;
+            pointer-events: none;
         }
     </style>
 
