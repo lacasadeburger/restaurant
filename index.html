@@ -12,39 +12,14 @@
     <meta name="keywords" content="hamburguesas Torrevieja, burger gourmet, smash burger, delivery Torrevieja, burger artesanal, Halal Torrevieja, terrasse Torrevieja" />
     <meta name="robots" content="index, follow" />
     <style>
-        @font-face {
-            font-family: 'Ysabeau';
-            font-style: normal;
-            font-weight: 400;
-            font-display: swap;
-            src: url('/fonts/ysabeau-v5-latin-regular.woff2') format('woff2');
-        }
-        @font-face {
-            font-family: 'Sacramento';
-            font-style: normal;
-            font-weight: 400;
-            font-display: swap;
-            src: url('/fonts/sacramento-v15-latin-regular.woff2') format('woff2');
-        }
+        @font-face {font-family:'Ysabeau';font-style:normal;font-weight:400;font-display:swap;src:url('/fonts/ysabeau-v5-latin-regular.woff2') format('woff2');}
+        @font-face {font-family:'Sacramento';font-style:normal;font-weight:400;font-display:swap;src:url('/fonts/sacramento-v15-latin-regular.woff2') format('woff2');}
         *{box-sizing:border-box;margin:0;padding:0}
         html{scroll-behavior:smooth;background-color:#000}
         body{background-color:#000;color:#fff;font-family:'Ysabeau',sans-serif;line-height:1.5;overflow-x:hidden}
-        #root {
-            min-height: 100vh;
-            background-image: url('/burger-signature-torrevieja.webp');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-        }
-        .header{
-            background-color:#000;
-            position:fixed;
-            top:0;
-            width:100%;
-            height:70px;
-            z-index:9999;
-            contain: layout paint;
-        }
+        /* Suppression du background-image ici pour laisser la balise IMG faire le travail (plus rapide) */
+        #root { min-height: 100vh; position: relative; z-index: 1; }
+        .header{background-color:#000;position:fixed;top:0;width:100%;height:70px;z-index:9999;contain:layout paint;}
     </style>
     <link rel="icon" type="image/webp" href="/logo.webp" />
     <script type="application/ld+json">
@@ -53,72 +28,20 @@
       "@type": "Restaurant",
       "name": "La Casa de Burger",
       "alternateName": "La Casa de Burger Torrevieja",
-      "image": [
-        "https://lacasadeburger.es/burger-signature-torrevieja.webp",
-        "https://lacasadeburger.es/logo.webp"
-      ],
+      "image": ["https://lacasadeburger.es/burger-signature-torrevieja.webp","https://lacasadeburger.es/logo.webp"],
       "@id": "https://lacasadeburger.es",
       "url": "https://lacasadeburger.es",
       "telephone": "+34602597210",
       "priceRange": "€€",
-      "servesCuisine": [
-        "Hamburguesas Gourmet",
-        "Smash Burgers",
-        "Cocina Artesanal",
-        "Carne de Ternera Premium",
-        "Comida Halal",
-        "Opciones Vegetarianas",
-        "American Cuisine"
-      ],
+      "servesCuisine": ["Hamburguesas Gourmet","Smash Burgers","Cocina Artesanal","Carne de Ternera Premium","Comida Halal","Opciones Vegetarianas","American Cuisine"],
       "description": "Especialistas en Burger Gourmet Signature y Smash Burgers 100% artesanales en Torrevieja. Carne fresca picada a diario, terrasse, parking et options Halal/Veggie.",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "AV. Diego Ramirez Pastor, 142",
-        "addressLocality": "Torrevieja",
-        "postalCode": "03181",
-        "addressRegion": "Alicante",
-        "addressCountry": "ES"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": 37.9806,
-        "longitude": -0.6757
-      },
-      "potentialAction": {
-        "@type": "OrderAction",
-        "target": {
-          "@type": "EntryPoint",
-          "urlTemplate": "https://lacasadeburger.es/",
-          "inLanguage": ["es", "en", "fr"],
-          "actionPlatform": [
-            "https://schema.org/DesktopWebPlatform",
-            "https://schema.org/MobileWebPlatform"
-          ]
-        },
-        "deliveryMethod": [
-          "https://purl.org/goodrelations/v1#DeliveryModeOwnFleet"
-        ]
-      },
-      "openingHoursSpecification": [
-        {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-          "opens": "13:00",
-          "closes": "23:00"
-        }
-      ],
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "4.9",
-        "reviewCount": "250",
-        "bestRating": "5",
-        "worstRating": "1"
-      },
+      "address": {"@type": "PostalAddress","streetAddress": "AV. Diego Ramirez Pastor, 142","addressLocality": "Torrevieja","postalCode": "03181","addressRegion": "Alicante","addressCountry": "ES"},
+      "geo": {"@type": "GeoCoordinates","latitude": 37.9806,"longitude": -0.6757},
+      "potentialAction": {"@type": "OrderAction","target": {"@type": "EntryPoint","urlTemplate": "https://lacasadeburger.es/","inLanguage": ["es", "en", "fr"],"actionPlatform": ["https://schema.org/DesktopWebPlatform","https://schema.org/MobileWebPlatform"]},"deliveryMethod": ["https://purl.org/goodrelations/v1#DeliveryModeOwnFleet"]},
+      "openingHoursSpecification": [{"@type": "OpeningHoursSpecification","dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],"opens": "13:00","closes": "23:00"}],
+      "aggregateRating": {"@type": "AggregateRating","ratingValue": "4.9","reviewCount": "250","bestRating": "5","worstRating": "1"},
       "knowsLanguage": ["es", "en", "fr", "de", "no", "pl", "ru", "ar", "sv", "uk", "nl"],
-      "amenityFeature": [
-        { "@type": "LocationFeatureSpecification", "name": "Terraza", "value": true },
-        { "@type": "LocationFeatureSpecification", "name": "Fácil aparcamiento", "value": true }
-      ],
+      "amenityFeature": [{ "@type": "LocationFeatureSpecification", "name": "Terraza", "value": true },{ "@type": "LocationFeatureSpecification", "name": "Fácil aparcamiento", "value": true }],
       "hasMenu": {
         "@type": "Menu",
         "name": "Carta La Casa de Burger",
@@ -163,11 +86,11 @@
 </head>
 <body>
     <img src="/burger-signature-torrevieja.webp"
-         alt="La mejor hamburguesa gourmet de Torrevieja - La Casa de Burger"
+         alt="La mejor hamburguesa gourmet de Torrevieja"
          fetchpriority="high"
          loading="eager"
          decoding="sync"
-         style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1;">
+         style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;">
 
     <div id="root"></div>
 
