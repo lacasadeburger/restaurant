@@ -44,13 +44,13 @@
             background: transparent !important;
         }
 
-        /* L'IMAGE DE FOND LCP */
+        /* L'IMAGE DE FOND LCP - FIXÉE À LA HAUTEUR DU HEADER */
         .lcp-background {
             position: absolute !important;
             top: 0;
             left: 0;
-            width: 100vw;
-            height: 100%;
+            width: 100%;
+            height: 520px; /* Aligné sur ton minHeight App.jsx */
             object-fit: cover;
             z-index: -1 !important;
             display: block;
@@ -66,7 +66,6 @@
             padding: 20px 10px;
         }
 
-        /* Force la transparence globale */
         #root, body {
             background-color: transparent !important;
         }
@@ -192,6 +191,8 @@
 <body>
     <img src="/burger-signature-torrevieja.webp"
          alt="La mejor hamburguesa gourmet de Torrevieja - La Casa de Burger"
+         width="1920"
+         height="520"
          fetchpriority="high"
          loading="eager"
          decoding="sync"
@@ -216,6 +217,7 @@
     </noscript>
 
     <script>
+        // Execution immédiate dès que le DOM change
         const observer = new MutationObserver(() => {
             const root = document.getElementById('root');
             if (root && root.children.length > 0) {
