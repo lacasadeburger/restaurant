@@ -692,10 +692,10 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
   borderBottom: '5px solid #ff4757',
   backgroundColor: 'transparent', // On voit l'image de l'index.html
   overflow: 'hidden',
-  minHeight: '480px', // Prévient le CLS (mouvement de page)
+  minHeight: '520px', // Prévient le CLS (mouvement de page)
   display: 'flex',
   flexDirection: 'column',
-  justifyContent: 'center',
+  justifyContent: 'flex-start',
   alignItems: 'center'
 }}>
   {/* 1. OVERLAY DEGRADÉ (Indispensable pour la lisibilité) */}
