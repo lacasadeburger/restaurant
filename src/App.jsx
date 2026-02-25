@@ -1068,7 +1068,7 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
             </a>
           </div>
         </div>
-
+      </main>
         {/* --- BLOC SEO MULTILINGUE (LES 11 LANGUES - VERSION COMPLÈTE) --- */}
         <div style={{ maxWidth: '1100px', margin: '0 auto 100px', padding: '0 20px' }}>
           <div style={{ backgroundColor: '#0a0a0a', padding: '35px', borderRadius: '15px', border: '1px solid #222', textAlign: 'justify' }}>
@@ -1190,7 +1190,7 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
                 </span>
               </button>
             )}
-              </main>
+
             </div>
 
         ); // Fermeture du return
