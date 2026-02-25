@@ -16,6 +16,7 @@
     "ship": "npm run build && git add . && git commit -m \"Performance: Optimized chunks and LCP\" && git push origin main && node deploy.js"
   },
   "dependencies": {
+    "dotenv": "^17.3.1",
     "gh-pages": "^6.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
