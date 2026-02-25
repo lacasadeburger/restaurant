@@ -606,17 +606,29 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
     0%, 100% { transform: rotate(-4deg); }
     50% { transform: rotate(4deg); }
   }
+  /* 10. RESPONSIVE MOBILE - RÉVISÉ */
+    @media (max-width: 768px) {
+      /* Position du Badge #1 sur mobile */
+      .wobble-badge-container {
+        top: 85px !important;
+        right: 15px !important;
+        left: auto !important;
+        position: absolute !important;
+      }
 
-  /* 10. RESPONSIVE MOBILE */
-  @media (max-width: 768px) {
-    .logo-container-wrapper { top: 150px !important; left: 15px !important; z-index: 999 !important; }
-    .moving-header-logo { width: 80px !important; }
-    .grid-cards { grid-template-columns: 1fr; gap: 20px; padding: 15px; }
-    .card-menu-image-container { height: 200px !important; }
-    .promo-container { height: 220px !important; width: 95%; }
-    .card-title { font-size: 1.2rem; min-height: 3rem; }
-    .card-description { font-size: 0.8rem; min-height: 3rem; -webkit-line-clamp: 2; }
-  }
+      /* Réglages Logo */
+      .logo-container-wrapper { top: 150px !important; left: 15px !important; z-index: 999 !important; }
+      .moving-header-logo { width: 80px !important; }
+
+      /* Grille et Cartes */
+      .grid-cards { grid-template-columns: 1fr; gap: 20px; padding: 15px; }
+      .card-menu-image-container { height: 200px !important; }
+      .promo-container { height: 220px !important; width: 95%; }
+
+      /* Textes */
+      .card-title { font-size: 1.2rem; min-height: 3rem; }
+      .card-description { font-size: 0.8rem; min-height: 3rem; -webkit-line-clamp: 2; }
+    }
 `}</style>
 <Helmet>
 {/* 1. DYNAMIQUE : Titre et Description traduits (Indispensable) */}
