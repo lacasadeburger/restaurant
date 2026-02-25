@@ -63,6 +63,7 @@ async function purgeCloudflare() {
     }
 }
 
+
 ftpDeploy
     .deploy(config)
     .then(async (res) => {
