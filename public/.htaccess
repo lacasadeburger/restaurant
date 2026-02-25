@@ -28,21 +28,30 @@ RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 # 4. CACHE NAVIGATEUR (Expires + Cache-Control pour PageSpeed)
 <IfModule mod_expires.c>
     ExpiresActive On
-    ExpiresDefault "access plus 1 month"
 
-    # Assets & Images (1 an)
+    # Par défaut, on ne cache pas (sécurité pour le HTML)
+    ExpiresDefault "access plus 0 seconds"
+
+    # Assets avec Hash (1 an) - Très sûr grâce à Vite
     ExpiresByType text/css "access plus 1 year"
     ExpiresByType application/javascript "access plus 1 year"
+    ExpiresByType font/woff2 "access plus 1 year"
+
+    # Images (1 an)
     ExpiresByType image/x-icon "access plus 1 year"
     ExpiresByType image/jpeg "access plus 1 year"
     ExpiresByType image/png "access plus 1 year"
     ExpiresByType image/webp "access plus 1 year"
     ExpiresByType image/svg+xml "access plus 1 year"
-    ExpiresByType font/woff2 "access plus 1 year"
 
-    # On force le Header Cache-Control pour PageSpeed Insights
+    # On force le Header Cache-Control pour PageSpeed
+    # On ajoute "no-cache" spécifiquement pour l'index.html
     <FilesMatch "\.(css|js|woff2|jpg|jpeg|png|webp|ico|svg)$">
         Header set Cache-Control "max-age=31536000, public, immutable"
+    </FilesMatch>
+
+    <FilesMatch "\.(html)$">
+        Header set Cache-Control "no-cache, no-store, must-revalidate"
     </FilesMatch>
 </IfModule>
 

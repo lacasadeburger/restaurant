@@ -1,48 +1,85 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react-swc'
 
+/**
+ * CONFIGURATION VITE - VERSION ÉLITE PRO
+ * ---------------------------------------------------
+ * - Découpage granulaire (Chunking) pour parallélisme HTTP/2
+ * - Nettoyage profond (Terser) pour réduire le poids JS
+ * - Optimisation du cache via hachage persistant
+ * - Désactivation des polyfills inutiles pour navigateurs modernes
+ */
 export default defineConfig({
   plugins: [react()],
   base: '/',
+
   build: {
-    // 1. Nettoyage automatique du dossier dist
+    // 1. PERFORMANCE GLOBALE
     emptyOutDir: true,
     assetsDir: 'assets',
+    target: 'esnext', // Génère un code moderne et ultra-léger
 
-    // 2. Activation de la minification ultra-poussée avec Terser
+    // 2. OPTIMISATION DU PRÉCHARGEMENT (Nouveau)
+    modulePreload: {
+      polyfill: false, // Économise du poids en supposant un navigateur moderne
+    },
+
+    // 3. MINIFICATION HAUTE PRESSION (Terser)
     minify: 'terser',
     terserOptions: {
       compress: {
-        // Supprime les console.log et debugger qui alourdissent le JS final
-        drop_console: true,
-        drop_debugger: true,
+        drop_console: true,   // Supprime les logs
+        drop_debugger: true,  // Supprime les debugger
+        pure_funcs: [
+          'console.info',
+          'console.debug',
+          'console.warn',
+          'console.log'
+        ],
+        passes: 3, // 3 passes pour une optimisation maximale du code
       },
       output: {
-        // Supprime les commentaires inutiles
-        comments: false,
+        comments: false, // 0 commentaires dans le build final
       },
     },
 
-    // 3. Optimisation du découpage du code (Chunking)
+    // 4. STRATÉGIE DE DÉCOUPAGE (Chunking)
     rollupOptions: {
       output: {
-        // Force la création de noms de fichiers avec des hash (ex: main-a1b2c3.js)
-        // C'est indispensable pour que ton cache .htaccess fonctionne sans erreur
+        // Naming pour Cache Immortel (Synchronisé avec ton .htaccess)
         entryFileNames: `assets/[name]-[hash].js`,
         chunkFileNames: `assets/[name]-[hash].js`,
         assetFileNames: `assets/[name]-[hash].[ext]`,
 
-        // Regrouper les bibliothèques externes (React, etc.) dans un fichier séparé
-        // pour que le navigateur ne les recharge pas si tu changes juste un texte dans App.jsx
+        // DÉCOUPAGE DU "BLOC BLEU" NODE_MODULES
         manualChunks(id) {
           if (id.includes('node_modules')) {
-            return 'vendor';
+            // Noyau React (Ne change presque jamais)
+            if (id.includes('react') || id.includes('react-dom') || id.includes('scheduler')) {
+              return 'vendor-core';
+            }
+            // Interface & Icônes (Souvent lourd)
+            if (id.includes('lucide') || id.includes('font-awesome')) {
+              return 'vendor-ui';
+            }
+            // Moteur d'animations
+            if (id.includes('framer-motion') || id.includes('motion')) {
+              return 'vendor-animations';
+            }
+            // Le reste des utilitaires (Tailwind, etc.)
+            return 'vendor-utils';
           }
         },
       },
     },
 
-    // 4. Augmenter la limite d'avertissement de taille de chunk
-    chunkSizeWarningLimit: 1000,
+    // 5. SÉCURITÉ & LIMITES
+    chunkSizeWarningLimit: 600, // Alerte de taille
+    reportCompressedSize: false, // Accélère le build
   },
+
+  // 6. OPTIMISATION DE DÉMARRAGE DÉVELOPPEUR
+  optimizeDeps: {
+    include: ['react', 'react-dom'],
+  }
 })
