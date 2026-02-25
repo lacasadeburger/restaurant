@@ -610,7 +610,7 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
     @media (max-width: 768px) {
       /* Position du Badge #1 sur mobile */
       .wobble-badge-container {
-        top: 45px !important;
+        top: 25px !important;
         right: 15px !important;
         left: auto !important;
         position: absolute !important;
