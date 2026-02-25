@@ -33,14 +33,16 @@ const data = [
   {
     id: "prod_combo1",
     image: combo,
+    badge: "BEST SELLER",
     name: {
-      es: "El COMBO 1", en: "COMBO 1", fr: "Le COMBO 1", no: "KOMBO 1", pl: "ZESTAW 1",
-      uk: "КОМБО 1", ru: "КОМБО 1", ar: "كومبو 1", sv: "KOMBO 1", de: "KOMBO 1", ro: "COMBO 1"
+      es: "Combo Signature 1", en: "Signature Combo 1", fr: "Combo Signature 1", nl: "Handtekening Combo 1", no: "Signature Kombo 1", pl: "Zestaw Signature 1",
+      uk: "КОМБО 1", ru: "КОМБО 1", ar: "كومبو 1", sv: "Signature Kombo 1", de: "Signature Kombo 1", ro: "Combo Signature 1"
     },
     description: {
-      es: "La Inglesa + Patatas Fritas caseras + 3 Nuggets Caseros",
-      en: "The English + Homemade Fries + 3 Homemade Nuggets",
-      fr: "L'Anglaise + Frites Maison + 3 Nuggets Maison",
+      es: "La Inglesa (Signature) + Patatas Fritas caseras + 3 Nuggets Artesanales",
+      en: "The English (Signature) + Homemade Fries + 3 Artisanal Nuggets",
+      fr: "L'Anglaise (Signature) + Frites Maison + 3 Nuggets Artisanaux",
+      nl: "De Engelse (Handtekening) + Huisgemaakte Frieten + 3 Ambachtelijke Nuggets",
       no: "The English + Hjemmelaget pommes frites + 3 Nuggets",
       pl: "La Inglesa + Domowe frytki + 3 nuggetsy",
       uk: "The English + Домашня картопля фрі + 3 нагетси",
@@ -56,14 +58,16 @@ const data = [
   {
     id: "prod_combo3",
     image: combo3,
+    badge: "BEST SELLER",
     name: {
-      es: "El COMBO 2", en: "COMBO 2", fr: "Le COMBO 2", no: "KOMBO 2", pl: "ZESTAW 2",
-      uk: "КОМБО 2", ru: "КОМБО 2", ar: "كومبو 2", sv: "KOMBO 2", de: "KOMBO 2", ro: "COMBO 2"
+      es: "Combo Signature 2", en: "Signature Combo 2", fr: "Combo Signature 2", nl: "Handtekening Combo 2", no: "Signature Kombo 2", pl: "Zestaw Signature 2",
+      uk: "КОМБО 2", ru: "КОМБО 2", ar: "كومبو 2", sv: "Signature Kombo 2", de: "Signature Kombo 2", ro: "Combo Signature 2"
     },
     description: {
-      es: "La Inglesa + Patatas Fritas caseras + 3 Croquetas Caseras",
-      en: "The English + Homemade Fries + 3 Homemade Croquettes",
-      fr: "L'Anglaise + Frites Maison + 3 Croquettes Maison",
+      es: "La Inglesa (Signature) + Patatas Fritas caseras + 3 Croquetas Caseras",
+      en: "The English (Signature) + Homemade Fries + 3 Homemade Croquettes",
+      fr: "L'Anglaise (Signature) + Frites Maison + 3 Croquettes Maison",
+      nl: "De Engelse (Handtekening) + Huisgemaakte Frieten + 3 Huisgemaakte Krokketten",
       no: "The English + Hjemmelaget pommes frites + 3 Kroketter",
       pl: "La Inglesa + Domowe frytki + 3 krokiety",
       uk: "The English + Домашня картопля фрі + 3 крокети",
@@ -80,13 +84,14 @@ const data = [
     id: "prod_india",
     image: india,
     name: {
-      es: "La India", en: "The India", fr: "L'Indienne", no: "La India", pl: "India",
+      es: "La India Gourmet", en: "The India Gourmet", fr: "L'Indienne Gourmet", nl: "De Indiase Gourmet", no: "La India", pl: "India",
       uk: "Індія", ru: "Индия", ar: "الهندية", sv: "Indien", de: "Die Indische", ro: "India"
     },
     description: {
-      es: "Pollo Marinado con Especias, Cheddar, Tomate, Cebolla, Lechuga, Pepenillos",
-      en: "Marinated Chicken with Spices, Cheddar, Tomato, Onion, Lettuce, Pickles",
-      fr: "Poulet Mariné aux Épices, Cheddar, Tomate, Oignon, Laitue, Cornichons",
+      es: "Pollo Marinado con Especias Orientales, Cheddar, Tomate, Cebolla, Lechuga, Pepenillos",
+      en: "Marinated Chicken with Oriental Spices, Cheddar, Tomato, Onion, Lettuce, Pickles",
+      fr: "Poulet Mariné aux Épices Orientales, Cheddar, Tomate, Oignon, Laitue, Cornichons",
+      nl: "Gemarineerde Kip met Oosterse Kruiden, Cheddar, Tomaat, Ui, Sla, Augurken",
       no: "Marinert kylling med krydder, Cheddar, tomat, løk, salat, sylteagurk",
       pl: "Marynowany kurczak z przyprawami, Cheddar, pomidor, cebula, sałata, ogórki",
       uk: "Маринована курка зі спеціями, чеддер, томат, цибуля, салат, огірки",
@@ -102,14 +107,16 @@ const data = [
   {
     id: "prod_francesa",
     image: francesa1,
+    badge: "SIGNATURE",
     name: {
-      es: "La Francesa", en: "The French", fr: "La Française", no: "Den Franske", pl: "Francuska",
+      es: "La Francesa Signature", en: "The French Signature", fr: "La Française Signature", nl: "De Franse Signature", no: "Den Franske", pl: "Francuska",
       uk: "Французька", ru: "Французская", ar: "الفرنسية", sv: "Fransmannen", de: "Die Französische", ro: "Franceza"
     },
     description: {
-      es: "Carne y Hierbas Provenciales, Reblochon, Purée de papa y tocino... Tomate, Cebolla, Lechuga, Pepenillos",
-      en: "Beef with Provencal Herbs, Reblochon Cheese, Mashed Potatoes and Bacon... Tomato, Onion, Lettuce, Pickles",
-      fr: "Bœuf et Herbes de Provence, Reblochon, Purée de pomme de terre et bacon... Tomate, Oignon, Laitue, Cornichons",
+      es: "Carne Premium, Hierbas Provenciales, Queso Reblochon, Purée de papa y tocino... Vegetales Frescos",
+      en: "Premium Beef, Provencal Herbs, Reblochon Cheese, Mashed Potatoes and Bacon... Fresh Veggies",
+      fr: "Bœuf Premium, Herbes de Provence, Reblochon, Purée de pomme de terre et bacon... Légumes Frais",
+      nl: "Premium Rundvlees, Provençaalse Kruiden, Reblochon Kaas, Aardappelpuree en Bacon... Verse Groenten",
       no: "Kjøtt med urter, Reblochon, potetmos og bacon... Tomat, løk, salat, sylteagurk",
       pl: "Wołowina z ziołami prowansalskimi, ser Reblochon, purée ziemniaczane i bekon... Pomidor, cebula, sałata, ogórki",
       uk: "Яловичина з прованськими травами, сир реблошон, картопляне пюре та бекон... Томат, цибуля, салат, огірки",
@@ -126,13 +133,14 @@ const data = [
     id: "prod_inglesa",
     image: inglesa,
     name: {
-      es: "La Inglesa", en: "The English", fr: "L'Anglaise", no: "Den Engelske", pl: "Angielska",
+      es: "La Inglesa Classic", en: "The English Classic", fr: "L'Anglaise Classic", nl: "De Engelse Classic", no: "Den Engelske", pl: "Angielska",
       uk: "Англійська", ru: "Английская", ar: "الإنجليزية", sv: "Engelsmannen", de: "Die Englische", ro: "Engleza"
     },
     description: {
-      es: "Carne, Crema de Cheddar Casera y Cheddar, Tomate, Cebolla, Lechuga, Pepenillos",
-      en: "Beef, Homemade Cheddar Cream and Cheddar, Tomato, Onion, Lettuce, Pickles",
-      fr: "Bœuf, Crème de Cheddar Maison et Cheddar, Tomate, Oignon, Laitue, Cornichons",
+      es: "Carne Premium, Crema de Cheddar Casera, Cheddar fundido, Vegetales Frescos y Pepenillos",
+      en: "Premium Beef, Homemade Cheddar Cream, Melted Cheddar, Fresh Veggies and Pickles",
+      fr: "Bœuf Premium, Crème de Cheddar Maison, Cheddar Fondu, Légumes Frais et Cornichons",
+      nl: "Premium Rundvlees, Huisgemaakte Cheddar Crème, Gesmolten Cheddar, Verse Groenten en Augurken",
       no: "Kjøtt, hjemmelaget cheddar-krem og cheddar, tomat, løk, salat, sylteagurk",
       pl: "Wołowina, domowy krem cheddar i cheddar, pomidor, cebula, sałata, ogórki",
       uk: "Яловичина, домашній сирний соус чеддер, томат, цибуля, салат, огірки",
@@ -148,14 +156,16 @@ const data = [
   {
     id: "prod_marroqi",
     image: marroqi,
+    badge: "AUTHENTIC",
     name: {
-      es: "La Marroqui", en: "The Moroccan", fr: "La Marocaine", no: "Den Marokkanske", pl: "Marokańska",
+      es: "La Marroqui Signature", en: "The Moroccan Signature", fr: "La Marocaine Signature", nl: "De Marokkaanse Signature", no: "Den Marokkanske", pl: "Marokańska",
       uk: "Марокканська", ru: "Марокканская", ar: "المغربية", sv: "Marockanen", de: "Die Marokkanische", ro: "Marocana"
     },
     description: {
-      es: "Carne con Ajo, Perejil, Cebolla y Comino, Cheddar y crema de Cheddar Casera, Tomate, Cebolla, Lechuga, Pepenillos",
-      en: "Beef with Garlic, Parsley, Onion and Cumin, Cheddar and Homemade Cheddar Cream, Tomato, Onion, Lettuce, Pickles",
-      fr: "Bœuf avec Ail, Persil, Oignon et Cumin, Cheddar et Crème de Cheddar Maison, Tomate, Oignon, Laitue, Cornichons",
+      es: "Carne Especiada (Ajo, Perejil, Comino), Cheddar, Crema de Cheddar Casera y Vegetales Frescos",
+      en: "Spiced Beef (Garlic, Parsley, Cumin), Cheddar, Homemade Cheddar Cream and Fresh Veggies",
+      fr: "Bœuf Épicé (Ail, Persil, Cumin), Cheddar, Crème de Cheddar Maison et Légumes Frais",
+      nl: "Gekruid Rundvlees (Knoflook, Peterselie, Komijn), Cheddar, Huisgemaakte Cheddar Crème en Verse Groenten",
       no: "Kjøtt med hvitløk, persille, løk og spisskummen, cheddar og hjemmelaget cheddar-krem, tomat, løk, salat, sylteagurk",
       pl: "Wołowina z czosnkiem, pietruszką, cebulą i kuminem, cheddar i domowy krem cheddar, pomidor, cebula, sałata, ogórki",
       uk: "Яловичина з часником, петрушкою, цибулею та кумином, чеддер та домашній сирний соус, томат, цибуля, салат, огірки",
@@ -171,14 +181,16 @@ const data = [
   {
     id: "prod_smash",
     image: smash,
+    badge: "TRENDING",
     name: {
-      es: "La Smash doble", en: "Double Smash", fr: "Double Smash", no: "Dobbel Smash", pl: "Double Smash",
+      es: "La Smash Doble", en: "Double Smash Burger", fr: "Double Smash Burger", nl: "Double Smash Burger", no: "Dobbel Smash", pl: "Double Smash",
       uk: "Подвійний Смеш", ru: "Двойной Смэш", ar: "سماش مزدوج", sv: "Dubbel Smash", de: "Doppelter Smash", ro: "Smash Dublu"
     },
     description: {
-      es: "Carne doble, Bacon, Cheddar y crema de Cheddar Casera, Cebolla y Pepenillos",
-      en: "Double Beef Patty, Bacon, Cheddar and Homemade Cheddar Cream, Onion and Pickles",
-      fr: "Double Steak, Bacon, Cheddar et Crème de Cheddar Maison, Oignon et Cornichons",
+      es: "Doble Carne Smash Premium, Bacon, Cheddar fundido, nuestra Crema de Cheddar Casera, Cebolla y Pepenillos",
+      en: "Double Premium Smash Beef, Bacon, Melted Cheddar, our Homemade Cheddar Cream, Onion and Pickles",
+      fr: "Double Bœuf Smash Premium, Bacon, Cheddar fondu, notre Crème de Cheddar Maison, Oignon et Cornichons",
+      nl: "Dubbel Premium Smash Rundvlees, Bacon, Gesmolten Cheddar, onze Huisgemaakte Cheddar Crème, Ui en Augurken",
       no: "Dobbel burger, bacon, cheddar og hjemmelaget cheddar-krem, løk og sylteagurk",
       pl: "Podwójna wołowina, bekon, cheddar i domowy krem cheddar, cebula i ogórki",
       uk: "Подвійна котлета, бекон, чеддер та домашній сирний соус, цибуля та огірки",
@@ -194,14 +206,16 @@ const data = [
   {
     id: "prod_italiana",
     image: italiana,
+    badge: "DELUXE",
     name: {
-      es: "La Italiana", en: "The Italian", fr: "L'Italienne", no: "Den Italienske", pl: "Włoska",
+      es: "La Italiana Gourmet", en: "The Italian Gourmet", fr: "L'Italienne Gourmet", nl: "De Italiaanse Gourmet", no: "Den Italienske", pl: "Włoska",
       uk: "Італійська", ru: "Итальянская", ar: "الإيطالية", sv: "Italienaren", de: "Die Italienische", ro: "Italiana"
     },
     description: {
-      es: "Carne y Tomillo, Mozza Burrata, Crema de Champiñon con Trufa, Tomate, Cebolla, Lechuga, Pepenillos",
-      en: "Beef and Thyme, Mozza Burrata, Mushroom Cream with Truffle, Tomato, Onion, Lettuce, Pickles",
-      fr: "Bœuf et Thym, Mozza Burrata, Crème de Champignons à la Truffe, Tomate, Oignon, Laitue, Cornichons",
+      es: "Carne al Tomillo, Mozza Burrata, Crema de Champiñones y Trufa Negra, Vegetales Frescos",
+      en: "Thyme Beef, Mozza Burrata, Mushroom and Black Truffle Cream, Fresh Veggies",
+      fr: "Bœuf au Thym, Mozza Burrata, Crème de Champignons et Truffe Noire, Légumes Frais",
+      nl: "Rundvlees met Tijm, Mozza Burrata, Champignon- en Zwarte Truffelcrème, Verse Groenten",
       no: "Kjøtt og timian, Mozza Burrata, soppkrem med trøffel, tomat, løk, salat, sylteagurk",
       pl: "Wołowina i tymianek, Mozza Burrata, krem pieczarkowy z truflą, pomidor, cebula, sałata, ogórki",
       uk: "Яловичина з чебрецем, моцарела буррата, грибний соус з трюфелем, томат, цибуля, салат, огірки",
@@ -218,13 +232,14 @@ const data = [
     id: "prod_suiza",
     image: suiza,
     name: {
-      es: "La Auvergna", en: "The Auvergne", fr: "L'Auvergnate", no: "L'Auvergna", pl: "Auvergna",
+      es: "La Auvergna Signature", en: "The Auvergne Signature", fr: "L'Auvergnate Signature", nl: "De Auvergne Signature", no: "L'Auvergna", pl: "Auvergna",
       uk: "Овернь", ru: "Овернь", ar: "أوفرنيا", sv: "L'Auvergna", de: "Die Auvergner", ro: "Auvergna"
     },
     description: {
-      es: "Ternera caramelizada con Panela, Salsa de queso Azul de Francia, Tomate, Cebolla, Lechuga, Pepenillos",
-      en: "Caramelized Beef with Panela, French Blue Cheese Sauce, Tomato, Onion, Lettuce, Pickles",
-      fr: "Bœuf caramélisé à la Panela, Sauce au Bleu de France, Tomate, Oignon, Laitue, Cornichons",
+      es: "Ternera caramelizada con Panela, Salsa Gourmet de Queso Azul de Francia y Vegetales Frescos",
+      en: "Caramelized Beef with Panela, Gourmet French Blue Cheese Sauce and Fresh Veggies",
+      fr: "Bœuf caramélisé à la Panela, Sauce Gourmet au Bleu de France et Légumes Frais",
+      nl: "Gekaramelliseerd Rundvlees met Panela, Gourmet Franse Blauwe Kaassaus en Verse Groenten",
       no: "Karamellisert biff med panela, fransk blåmuggostsaus, tomat, løk, salat, sylteagurk",
       pl: "Wołowina karmelizowana z panelą, francuski sos z niebieskiego sera, pomidor, cebula, sałata, ogórki",
       uk: "Яловичина карамелізована з панелою, французький соус із блакитним сиром, томат, цибуля, салат, огірки",
@@ -240,14 +255,16 @@ const data = [
   {
     id: "prod_espanola",
     image: espanola,
+    badge: "TOP SELLER",
     name: {
-      es: "La Española", en: "The Spanish", fr: "L'Espagnole", no: "Den Spanske", pl: "Hiszpańska",
+      es: "La Española Signature", en: "The Spanish Signature", fr: "L'Espagnole Signature", nl: "De Spaanse Signature", no: "Den Spanske", pl: "Hiszpańska",
       uk: "Іспанська", ru: "Испанская", ar: "الإسبانية", sv: "Spanjoren", de: "Die Spanische", ro: "Spaniola"
     },
     description: {
-      es: "Carne con Pimiento de Padron, Cecina, Huevo Frito, Cheddar, Tomate, Cebolla, Lechuga, Pepenillos",
-      en: "Beef with Padrón Peppers, Cecina (Cured Meat), Fried Egg, Cheddar, Tomato, Onion, Lettuce, Pickles",
-      fr: "Bœuf avec Piment de Padrón, Cecina, Œuf au plat, Cheddar, Tomate, Oignon, Laitue, Cornichons",
+      es: "Carne Premium, Pimiento de Padrón, Cecina, Huevo Frito de corral, Cheddar y Vegetales",
+      en: "Premium Beef, Padrón Peppers, Cecina, Free-range Fried Egg, Cheddar and Veggies",
+      fr: "Bœuf Premium, Piment de Padrón, Cecina, Œuf au plat fermier, Cheddar et Légumes",
+      nl: "Premium Rundvlees, Padrón Peppers, Cecina, Scharrelei, Cheddar en Verse Groenten",
       no: "Kjøtt med Padron-pepper, Cecina, stekt egg, cheddar, tomat, løk, salat, sylteagurk",
       pl: "Wołowina z papryczkami Padrón, Cecina, jajko sadzone, cheddar, pomidor, cebula, sałata, ogórki",
       uk: "Яловичина з перцем падрон, сесіна (в'ялене м'ясо), яєчня, чеддер, томат, цибуля, салат, огірки",
@@ -263,15 +280,16 @@ const data = [
   {
     id: "prod_colombiana",
     image: colombiana,
-    badge: "TOP",
+    badge: "TOP SELLER",
     name: {
-      es: "La Colombiana", en: "The Colombian", fr: "La Colombienne", no: "Den Colombianske", pl: "Kolumbijska",
+      es: "La Colombiana Signature", en: "The Colombian Signature", fr: "La Colombienne Signature", nl: "De Colombiaanse Signature", no: "Den Colombianske", pl: "Kolumbijska",
       uk: "Колумбійська", ru: "Колумбийская", ar: "كولومبية", sv: "Colombianen", de: "Die Kolumbianische", ro: "Columbiana"
     },
     description: {
-      es: "Carne con ajo, perejil, cebolla y comino, Tocino, Papa, Piña, Tomate, Cebolla, Lechuga, Pepenillos, Queso Cheddar",
-      en: "Beef with Garlic, Parsley, Onion and Cumin, Bacon, Potato, Pineapple, Tomato, Onion, Lettuce, Pickles, Cheddar",
-      fr: "Bœuf avec Ail, Persil, Oignon et Cumin, Bacon, Pomme de Terre, Ananas, Tomate, Oignon, Laitue, Cornichons, Cheddar",
+      es: "Receta de la casa: Carne especiada, Tocino, Papa, Piña natural, Vegetales frescos et Doble Cheddar",
+      en: "House Recipe: Spiced Beef, Bacon, Potato, Fresh Pineapple, Fresh Veggies and Double Cheddar",
+      fr: "Recette Maison : Bœuf épicé, Bacon, Pomme de Terre, Ananas frais, Légumes frais et Double Cheddar",
+      nl: "Huisrecept: Gekruid Rundvlees, Spek, Aardappel, Verse Ananas, Verse Groenten en Dubbele Cheddar",
       no: "Kjøtt med hvitløk, persille, løk og spisskummen, bacon, potet, ananas, tomat, løk, salat, sylteagurk, cheddar",
       pl: "Wołowina z czosnkiem, pietruszką, cebulą i kuminem, bekon, ziemniak, ananas, pomidor, cebula, sałata, ogórki, cheddar",
       uk: "Яловичина з часником, петрушкою, цибулею та кумином, бекон, картопля, ананас, томат, цибуля, салат, огірки, чеддер",
@@ -289,17 +307,18 @@ const data = [
     image: mexicana,
     badge: "NUEVO",
     name: {
-      es: "La Mexicana", en: "The Mexican", fr: "La Mexicaine", no: "Den Meksikanske", pl: "Meksykańska",
+      es: "La Mexicana Signature", en: "The Mexican Signature", fr: "La Mexicaine Signature", nl: "De Mexicaanse Signature", no: "Den Meksikanske", pl: "Meksykańska",
       uk: "Мексиканська", ru: "Мексиканская", ar: "المكسيكية", sv: "Mexikanen", de: "Die Mexikanische", ro: "Mexicana"
     },
     description: {
-      es: "Carne, Salsa de Pimiento Picante Casera, Salsa de Maiz Casera, Cebolla Roja, Tocino, Tomate, Lechuga, Pepenillos, Queso Cheddar",
-      en: "Beef, Homemade Hot Pepper Sauce, Homemade Corn Sauce, Red Onion, Bacon, Tomato, Lettuce, Pickles, Cheddar",
-      fr: "Bœuf, Sauce Piment Maison, Sauce Maïs Maison, Oignon Rouge, Bacon, Tomate, Laitue, Cornichons, Cheddar",
+      es: "Carne Premium, Salsa de Pimiento Picante Casera, Crema de Maiz Artesanal, Cebolla Roja, Tocino y Cheddar fundido",
+      en: "Premium Beef, Homemade Hot Pepper Sauce, Artisanal Corn Cream, Red Onion, Bacon and Melted Cheddar",
+      fr: "Bœuf Premium, Sauce Piment Maison, Crème de Maïs Artisanale, Oignon Rouge, Bacon et Cheddar Fondu",
+      nl: "Premium Rundvlees, Huisgemaakte Hete Pepersaus, Ambachtelijke Maiscrème, Rode Ui, Spek en Gesmolten Cheddar",
       no: "Kjøtt, hjemmelaget chilisaus, hjemmelaget maissaus, rødløk, bacon, tomat, salat, sylteagurk, cheddar",
       pl: "Wołowina, domowy sos z ostrej papryki, domowy sos kukurydziany, czerwona cebula, bekon, pomidor, sałata, ogórki, cheddar",
       uk: "Яловичина, домашній гострий соус, домашній кукурудзяний соус, червона цибуля, бекон, томат, салат, огірки, чеддер",
-      ru: "Говядина, домашний острый соус, домашний кукурузный соус, красный лук, бекон, томат, салат, огурцы, чеддер",
+      ru: "Говядина, домашний острый соус, домашний кукурузный соус, красный лук, бекон, томат, salat, огурцы, чеддер",
       ar: "لحم، صلصة الفلفل الحار المنزلية، صلصة الذرة المنزلية، بصل أحمر، لحم مقدد، طماطم، خس، مخلل، جبنة تشيدر",
       sv: "Nötkött, hemgjord stark paprikasås, hemgjord majssås, rödlök, bacon, tomat, sallad, gurka, cheddar",
       de: "Rindfleisch, hausgemachte scharfe Paprikasauce, hausgemachte Maissauce, rote Zwiebel, Speck, Tomate, Salat, Gewürzgurken, Cheddar",
@@ -312,11 +331,11 @@ const data = [
     id: "prod_nuggets",
     image: nuggets,
     name: {
-      es: "Nuggets de Pollo", en: "Chicken Nuggets", fr: "Nuggets de Poulet", no: "Kyllingnuggets", pl: "Nuggetsy z kurczaka",
+      es: "Nuggets de Pollo Artesanos", en: "Artisanal Chicken Nuggets", fr: "Nuggets de Poulet Artisanaux", nl: "Ambachtelijke Kipnuggets", no: "Kyllingnuggets", pl: "Nuggetsy z kurczaka",
       uk: "Курячі нагетси", ru: "Куриные наггетса", ar: "ناجيتس دجاج", sv: "Kycklingnuggets", de: "Hähnchen-Nuggets", ro: "Nuggets de pui"
     },
     description: {
-      es: "3 Nuggets Caseros", en: "3 Homemade Nuggets", fr: "3 Nuggets Maison", no: "3 hjemmelaget nuggets", pl: "3 domowe nuggetsy",
+      es: "3 Nuggets Caseros Crujientes", en: "3 Crunchy Homemade Nuggets", fr: "3 Nuggets Maison Croustillants", nl: "3 Krokante Huisgemaakte Nuggets", no: "3 hjemmelaget nuggets", pl: "3 domowe nuggetsy",
       uk: "3 домашні нагетси", ru: "3 домашних наггетса", ar: "3 قطع ناجيتس منزلية", sv: "3 hemgjorda nuggets", de: "3 hausgemachte Nuggets", ro: "3 Nuggets de casă"
     },
     precio: "€6.00",
@@ -326,11 +345,11 @@ const data = [
     id: "prod_croquetas",
     image: croquetas,
     name: {
-      es: "Croquetas de Pollo", en: "Chicken Croquettes", fr: "Croquettes de Poulet", no: "Kyllingkroketter", pl: "Krokiety z kurczaka",
+      es: "Croquetas Gourmet", en: "Gourmet Croquettes", fr: "Croquettes Gourmet", nl: "Gourmet Krokketten", no: "Kyllingkroketter", pl: "Krokiety z kurczaka",
       uk: "Курячі крокети", ru: "Куриные крокеты", ar: "كروكيت دجاج", sv: "Kycklingkroketter", de: "Hähnchen-Kroketten", ro: "Crochete de pui"
     },
     description: {
-      es: "3 Croquetas de Pollo con Cheddar", en: "3 Chicken Croquettes with Cheddar", fr: "3 Croquettes de Poulet au Cheddar", no: "3 kyllingkroketter med cheddar", pl: "3 krokiety z kurczaka z cheddarem",
+      es: "3 Croquetas de Pollo Cremosas con Cheddar", en: "3 Creamy Chicken Croquettes with Cheddar", fr: "3 Croquettes de Poulet Crémeuses au Cheddar", nl: "3 Romige Kipkrokketten met Cheddar", no: "3 kyllingkroketter med cheddar", pl: "3 krokiety z kurczaka z cheddarem",
       uk: "3 курячі крокети з чеддером", ru: "3 куриных крокета с чеддером", ar: "3 قطع كروكيت دجاج مع تشيدر", sv: "3 kycklingkroketter med cheddar", de: "3 Hähnchen-Kroketten mit Cheddar", ro: "3 Crochete de pui cu Cheddar"
     },
     precio: "€6.00",
@@ -340,11 +359,11 @@ const data = [
     id: "prod_fritas",
     image: fritas,
     name: {
-      es: "Patatas Fritas", en: "French Fries", fr: "Frites", no: "Pommes frites", pl: "Frytki",
+      es: "Patatas Fritas Caseras", en: "Homemade French Fries", fr: "Frites Maison", nl: "Huisgemaakte Frieten", no: "Pommes frites", pl: "Frytki",
       uk: "Картопля фрі", ru: "Картофель фри", ar: "بطاطس مقلية", sv: "Pommes frites", de: "Pommes Frites", ro: "Cartofi prăjiți"
     },
     description: {
-      es: "Papas fritas Caseras", en: "Homemade Fries", fr: "Frites Maison", no: "Hjemmelaget pommes frites", pl: "Domowe frytki",
+      es: "Papas fritas cortadas a mano", en: "Hand-cut French fries", fr: "Frites coupées à la main", nl: "Handgesneden frietjes", no: "Hjemmelaget pommes frites", pl: "Domowe frytki",
       uk: "Домашня картопля фрі", ru: "Домашний картофель фри", ar: "بطاطس مقلية منزلية", sv: "Hemgjorda pommes frites", de: "Hausgemachte Pommes", ro: "Cartofi prăjiți de casă"
     },
     precio: "€4.50",
@@ -353,12 +372,13 @@ const data = [
   {
     id: "prod_gofre",
     image: gofre,
+    badge: "DESSERT",
     name: {
-      es: "Waffle XXL", en: "Waffle XXL", fr: "Gaufre XXL", no: "Vaffel XXL", pl: "Gofry XXL",
+      es: "Waffle XXL Nutella", en: "Waffle XXL Nutella", fr: "Gaufre XXL Nutella", nl: "Wafel XXL Nutella", no: "Vaffel XXL", pl: "Gofry XXL",
       uk: "Вафлі XXL", ru: "Вафли XXL", ar: "وافل XXL", sv: "Våffla XXL", de: "Waffel XXL", ro: "Gofre XXL"
     },
     description: {
-      es: "Waffle Casera con Nutella", en: "Homemade Waffle with Nutella", fr: "Gaufre Maison au Nutella", no: "Hjemmelaget vaffel med Nutella", pl: "Domowe gofry z Nutellą",
+      es: "Waffle Casera con Nutella generosa", en: "Homemade Waffle with generous Nutella", fr: "Gaufre Maison au Nutella généreux", nl: "Huisgemaakte Wafel met royale Nutella", no: "Hjemmelaget vaffel med Nutella", pl: "Domowe gofry z Nutellą",
       uk: "Домашня вафля з Nutella", ru: "Домашняя вафля с Nutella", ar: "وافل منزلي مع نوتيلا", sv: "Hemgjord våffla med Nutella", de: "Hausgemachte Waffel mit Nutella", ro: "Gofre de casă cu Nutella"
     },
     precio: "€7.00",
@@ -368,13 +388,14 @@ const data = [
     id: "prod_bravas",
     image: bravas,
     name: {
-      es: "Patatas Bravas", en: "Patatas Bravas", fr: "Patatas Bravas", no: "Patatas Bravas", pl: "Patatas Bravas",
+      es: "Patatas Bravas Casa", en: "House Patatas Bravas", fr: "Patatas Bravas Maison", nl: "Huisgemaakte Patatas Bravas", no: "Patatas Bravas", pl: "Patatas Bravas",
       uk: "Пататас Бравас", ru: "Пататас Бравас", ar: "باتاتاس برافاس", sv: "Patatas Bravas", de: "Patatas Bravas", ro: "Patatas Bravas"
     },
     description: {
-      es: "Patatas Bravas Caseras con Salsa Brava de la Casa (Picante)",
-      en: "Homemade Patatas Bravas with Homemade Spicy Sauce",
-      fr: "Patatas Bravas Maison avec Sauce Spicy Maison (Piquant)",
+      es: "Patatas Bravas Caseras con Salsa Secreta Picante",
+      en: "Homemade Patatas Bravas with Secret Spicy Sauce",
+      fr: "Patatas Bravas Maison avec Sauce Secrète Picante",
+      nl: "Huisgemaakte Patatas Bravas met Geheime Pittige Saus",
       no: "Hjemmelaget Patatas Bravas med spicy saus",
       pl: "Domowe Patatas Bravas z ostrym sosem własnej roboty",
       uk: "Домашня пататас бравас із фірмовим гострим соусом",
@@ -390,14 +411,16 @@ const data = [
   {
     id: "prod_cheddar-bacon",
     image: cheddarbacon,
+    badge: "LOADED",
     name: {
-      es: "Patatas Cheddar y Bacon", en: "Cheddar and Bacon Fries", fr: "Frites Cheddar et Bacon", no: "Cheddar og bacon frites", pl: "Frytki z cheddarem i bekonem",
+      es: "Fritas Cheddar & Bacon", en: "Cheddar & Bacon Fries", fr: "Frites Cheddar & Bacon", nl: "Cheddar & Bacon Frieten", no: "Cheddar og bacon frites", pl: "Frytki z cheddarem i bekonem",
       uk: "Картопля з чеддером та беконом", ru: "Картофель с чеддером и беконом", ar: "بطاطس بالتشيدر ولحم مقدد", sv: "Pommes med cheddar och bacon", de: "Cheddar-Speck-Pommes", ro: "Cartofi cu Cheddar și Bacon"
     },
     description: {
-      es: "Patatas Fritas Caseras con Salsa de Cheddar de la Casa y Bacon",
-      en: "Homemade Fries with Homemade Cheddar Sauce and Bacon",
-      fr: "Frites Maison avec Sauce Cheddar Maison et Bacon",
+      es: "Patatas Fritas Caseras avec Salsa de Cheddar de la Casa y Bacon Crujiente",
+      en: "Homemade Fries with Homemade Cheddar Sauce and Crunchy Bacon",
+      fr: "Frites Maison avec Sauce Cheddar Maison et Bacon Croustillant",
+      nl: "Huisgemaakte Frieten met Huisgemaakte Cheddarsaus en Krokante Bacon",
       no: "Hjemmelaget pommes frites med cheddarsaus og bacon",
       pl: "Domowe frytki z sosem cheddar własnej roboty i bekonem",
       uk: "Домашня картопля фрі з фірмовим сирним соусом та беконом",
@@ -413,88 +436,88 @@ const data = [
   {
     id: "prod_cocacola",
     image: cocaCola,
-    name: { es: "Coca-Cola", en: "Coca-Cola", fr: "Coca-Cola", no: "Coca-Cola", pl: "Coca-Cola", uk: "Кока-Кола", ru: "Кока-Кола", ar: "كوكاكولا", sv: "Coca-Cola", de: "Coca-Cola", ro: "Coca-Cola" },
-    description: { es: "Sabor Original Lata 330ml", en: "Original Taste Can 330ml", fr: "Goût Original Canette 330ml", no: "Original smak 330ml boks", pl: "Smak oryginalny puszka 330ml", uk: "Оригінальний смак 330мл", ru: "Оригинальный вкус 330мл", ar: "طعم أصلي علبة 330 مل", sv: "Originalsmak burk 330ml", de: "Originalgeschmack Dose 330ml", ro: "Gust Original Doză 330ml" },
+    name: { es: "Coca-Cola", en: "Coca-Cola", fr: "Coca-Cola", nl: "Coca-Cola", no: "Coca-Cola", pl: "Coca-Cola", uk: "Кока-Кола", ru: "Кока-Кола", ar: "كوكاكولا", sv: "Coca-Cola", de: "Coca-Cola", ro: "Coca-Cola" },
+    description: { es: "Sabor Original Lata 330ml", en: "Original Taste Can 330ml", fr: "Goût Original Canette 330ml", nl: "Originele Smaak Blikje 330ml", no: "Original smak 330ml boks", pl: "Smak oryginalny puszka 330ml", uk: "Оригінальний смак 330мл", ru: "Оригинальный вкус 330мл", ar: "طعم أصلي علبة 330 مل", sv: "Originalsmak burk 330ml", de: "Originalgeschmack Dose 330ml", ro: "Gust Original Doză 330ml" },
     precio: "€2.20",
     category: "drink"
   },
   {
     id: "prod_cocazero",
     image: cocaZero,
-    name: { es: "Coca-Cola Zero", en: "Coca-Cola Zero", fr: "Coca-Cola Zero", no: "Coca-Cola Zero", pl: "Coca-Cola Zero", uk: "Кока-Кола Зеро", ru: "Кока-Кола Зеро", ar: "كوكاكولا زيرو", sv: "Coca-Cola Zero", de: "Coca-Cola Zero", ro: "Coca-Cola Zero" },
-    description: { es: "Zero Azúcar Lata 330ml", en: "Zero Sugar Can 330ml", fr: "Sans Sucres Canette 330ml", no: "Sukkerfri 330ml boks", pl: "Bez cukru puszka 330ml", uk: "Зеро цукру 330мл", ru: "Зеро сахара 330мл", ar: "بدون سكر علبة 330 مل", sv: "Sockerfri burk 330ml", de: "Zuckerfrei Dose 330ml", ro: "Zero Zahăr Doză 330ml" },
+    name: { es: "Coca-Cola Zero", en: "Coca-Cola Zero", fr: "Coca-Cola Zero", nl: "Coca-Cola Zero", no: "Coca-Cola Zero", pl: "Coca-Cola Zero", uk: "Кока-Кола Зеро", ru: "Кока-Кола Зеро", ar: "كوكاكولا زيرو", sv: "Coca-Cola Zero", de: "Coca-Cola Zero", ro: "Coca-Cola Zero" },
+    description: { es: "Zero Azúcar Lata 330ml", en: "Zero Sugar Can 330ml", fr: "Sans Sucres Canette 330ml", nl: "Zonder Suiker Blikje 330ml", no: "Sukkerfri 330ml boks", pl: "Bez cukru puszka 330ml", uk: "Зеро цукру 330мл", ru: "Зеро сахара 330мл", ar: "بدون سكر علبة 330 مل", sv: "Sockerfri burk 330ml", de: "Zuckerfrei Dose 330ml", ro: "Zero Zahăr Doză 330ml" },
     precio: "€2.20",
     category: "drink"
   },
   {
     id: "prod_fantalimon",
     image: fantaLimon,
-    name: { es: "Fanta Limón", en: "Lemon Fanta", fr: "Fanta Citron", no: "Fanta Sitron", pl: "Fanta Cytrynowa", uk: "Фанта Лимон", ru: "Фанта Лимон", ar: "فانتا ليمون", sv: "Fanta Citron", de: "Fanta Zitrone", ro: "Fanta Lămâie" },
-    description: { es: "Fanta Limón Lata 330ml", en: "Lemon Fanta Can 330ml", fr: "Fanta Citron Canette 330ml", no: "Sitron 330ml boks", pl: "Puszka 330ml", uk: "330мл", ru: "330мл", ar: "علبة 330 مل", sv: "Burk 330ml", de: "Dose 330ml", ro: "Doză 330ml" },
+    name: { es: "Fanta Limón", en: "Lemon Fanta", fr: "Fanta Citron", nl: "Fanta Citroen", no: "Fanta Sitron", pl: "Fanta Cytrynowa", uk: "Фанта Лимон", ru: "Фанта Лимон", ar: "فانتا ليمون", sv: "Fanta Citron", de: "Fanta Zitrone", ro: "Fanta Lămâie" },
+    description: { es: "Fanta Limón Lata 330ml", en: "Lemon Fanta Can 330ml", fr: "Fanta Citron Canette 330ml", nl: "Fanta Citroen Blikje 330ml", no: "Sitron 330ml boks", pl: "Puszka 330ml", uk: "330мл", ru: "330мл", ar: "علبة 330 مل", sv: "Burk 330ml", de: "Dose 330ml", ro: "Doză 330ml" },
     precio: "€2.20",
     category: "drink"
   },
   {
     id: "prod_fantanaranja",
     image: fantaNaranja,
-    name: { es: "Fanta Naranja", en: "Orange Fanta", fr: "Fanta Orange", no: "Fanta Appelsin", pl: "Fanta Pomarańczowa", uk: "Фанта Апельсин", ru: "Фанта Апельсин", ar: "فانتا برتقال", sv: "Fanta Apelsin", de: "Fanta Orange", ro: "Fanta Portocale" },
-    description: { es: "Fanta Naranja Lata 33cl", en: "Orange Fanta Can 33cl", fr: "Fanta Orange Canette 33cl", no: "Appelsin 33cl boks", pl: "Puszka 33cl", uk: "33cl", ru: "33cl", ar: "علبة 33 مل", sv: "Burk 33cl", de: "Dose 33cl", ro: "Doză 33cl" },
+    name: { es: "Fanta Naranja", en: "Orange Fanta", fr: "Fanta Orange", nl: "Fanta Sinaasappel", no: "Fanta Appelsin", pl: "Fanta Pomarańczowa", uk: "Фанта Апельсин", ru: "Фанта Апельсин", ar: "فانتا برتقال", sv: "Fanta Apelsin", de: "Fanta Orange", ro: "Fanta Portocale" },
+    description: { es: "Fanta Naranja Lata 33cl", en: "Orange Fanta Can 33cl", fr: "Fanta Orange Canette 33cl", nl: "Fanta Sinaasappel Blikje 33cl", no: "Appelsin 33cl boks", pl: "Puszka 33cl", uk: "33cl", ru: "33cl", ar: "علبة 33 مل", sv: "Burk 33cl", de: "Dose 33cl", ro: "Doză 33cl" },
     precio: "€2.20",
     category: "drink"
   },
   {
     id: "prod_sprite",
     image: sprite,
-    name: { es: "Sprite", en: "Sprite", fr: "Sprite", no: "Sprite", pl: "Sprite", uk: "Спрайт", ru: "Спрайт", ar: "سبرايت", sv: "Sprite", de: "Sprite", ro: "Sprite" },
-    description: { es: "Sprite Lata 33cl", en: "Sprite Can 33cl", fr: "Sprite Canette 33cl", no: "33cl boks", pl: "Puszka 33cl", uk: "33cl", ru: "33cl", ar: "علبة 33 مل", sv: "Burk 33cl", de: "Dose 33cl", ro: "Doză 33cl" },
+    name: { es: "Sprite", en: "Sprite", fr: "Sprite", nl: "Sprite", no: "Sprite", pl: "Sprite", uk: "Спрайт", ru: "Спрайт", ar: "سبرايت", sv: "Sprite", de: "Sprite", ro: "Sprite" },
+    description: { es: "Sprite Lata 33cl", en: "Sprite Can 33cl", fr: "Sprite Canette 33cl", nl: "Sprite Blikje 33cl", no: "33cl boks", pl: "Puszka 33cl", uk: "33cl", ru: "33cl", ar: "علبة 33 مل", sv: "Burk 33cl", de: "Dose 33cl", ro: "Doză 33cl" },
     precio: "€2.20",
     category: "drink"
   },
   {
     id: "prod_aquariuslimon",
     image: aquarius,
-    name: { es: "Aquarius Limón", en: "Lemon Aquarius", fr: "Aquarius Citron", no: "Aquarius Sitron", pl: "Aquarius Cytrynowy", uk: "Акваріус Лимон", ru: "Аквариус Лимон", ar: "أكواريوس ليمون", sv: "Aquarius Citron", de: "Aquarius Zitrone", ro: "Aquarius Lămâie" },
-    description: { es: "Aquarius 33cl.", en: "Aquarius 33cl.", fr: "Aquarius 33cl.", no: "33cl.", pl: "33cl.", uk: "33cl.", ru: "33cl.", ar: "33 مل", sv: "33cl.", de: "33cl.", ro: "33cl." },
+    name: { es: "Aquarius Limón", en: "Lemon Aquarius", fr: "Aquarius Citron", nl: "Aquarius Citroen", no: "Aquarius Sitron", pl: "Aquarius Cytrynowy", uk: "Акваріус Лимон", ru: "Аквариус Лимон", ar: "أكواريوس ليمون", sv: "Aquarius Citron", de: "Aquarius Zitrone", ro: "Aquarius Lămâie" },
+    description: { es: "Aquarius 33cl.", en: "Aquarius 33cl.", fr: "Aquarius 33cl.", nl: "Aquarius 33cl.", no: "33cl.", pl: "33cl.", uk: "33cl.", ru: "33cl.", ar: "33 مل", sv: "33cl.", de: "33cl.", ro: "33cl." },
     precio: "€2.80",
     category: "drink"
   },
   {
     id: "prod_aquariusnaranja",
     image: aquariusNaranja,
-    name: { es: "Aquarius Naranja", en: "Orange Aquarius", fr: "Aquarius Orange", no: "Aquarius Appelsin", pl: "Aquarius Pomarańczowy", uk: "Акваріус Апельсин", ru: "Аквариус Апельсин", ar: "أكواريوس برتقال", sv: "Aquarius Apelsin", de: "Aquarius Orange", ro: "Aquarius Portocale" },
-    description: { es: "Aquarius Naranja 33cl", en: "Orange Aquarius 33cl", fr: "Aquarius Orange 33cl", no: "33cl", pl: "33cl", uk: "33cl", ru: "33cl", ar: "33 مل", sv: "33cl", de: "33cl", ro: "33cl" },
+    name: { es: "Aquarius Naranja", en: "Orange Aquarius", fr: "Aquarius Orange", nl: "Aquarius Sinaasappel", no: "Aquarius Appelsin", pl: "Aquarius Pomarańczowy", uk: "Акваріус Апельсин", ru: "Аквариус Апельсин", ar: "أكواريوس برتقال", sv: "Aquarius Apelsin", de: "Aquarius Orange", ro: "Aquarius Portocale" },
+    description: { es: "Aquarius Naranja 33cl", en: "Orange Aquarius 33cl", fr: "Aquarius Orange 33cl", nl: "Aquarius Sinaasappel 33cl", no: "33cl", pl: "33cl", uk: "33cl", ru: "33cl", ar: "33 مل", sv: "33cl", de: "33cl", ro: "33cl" },
     precio: "€2.80",
     category: "drink"
   },
   {
     id: "prod_sanpellegrino",
     image: aguaSanPellegrino,
-    name: { es: "Agua con Gas", en: "Sparkling Water", fr: "Eau Pétillante", no: "Farris", pl: "Woda gazowana", uk: "Газована вода", ru: "Газированная вода", ar: "مياه فوارة", sv: "Kolsyrat vatten", de: "Sprudelwasser", ro: "Apă Minerală" },
-    description: { es: "Agua con Gas 50cl", en: "Sparkling Water 50cl", fr: "Eau Pétillante 50cl", no: "50cl", pl: "50cl", uk: "50cl", ru: "50cl", ar: "50 مل", sv: "50cl", de: "50cl", ro: "50cl" },
+    name: { es: "Agua con Gas", en: "Sparkling Water", fr: "Eau Pétillante", nl: "Bruisend Water", no: "Farris", pl: "Woda gazowana", uk: "Газована вода", ru: "Газированная вода", ar: "مياه فوارة", sv: "Kolsyrat vatten", de: "Sprudelwasser", ro: "Apă Minerală" },
+    description: { es: "Agua con Gas 50cl", en: "Sparkling Water 50cl", fr: "Eau Pétillante 50cl", nl: "Bruisend Water 50cl", no: "50cl", pl: "50cl", uk: "50cl", ru: "50cl", ar: "50 مل", sv: "50cl", de: "50cl", ro: "50cl" },
     precio: "€3.00",
     category: "drink"
   },
   {
     id: "prod_aguasingas",
     image: agua,
-    name: { es: "Agua Sin Gas", en: "Still Water", fr: "Eau Plate", no: "Vann", pl: "Woda niegazowana", uk: "Вода без газу", ru: "Вода без газа", ar: "مياه معدنية", sv: "Vatten", de: "Stillen Wasser", ro: "Apă Plată" },
-    description: { es: "Agua mineral natural 50cl", en: "Natural Mineral Water 50cl", fr: "Eau minérale naturelle 50cl", no: "50cl", pl: "50cl", uk: "50cl", ru: "50cl", ar: "50 مل", sv: "50cl", de: "50cl", ro: "50cl" },
+    name: { es: "Agua Sin Gas", en: "Still Water", fr: "Eau Plate", nl: "Plat Water", no: "Vann", pl: "Woda niegazowana", uk: "Вода без газу", ru: "Вода без газа", ar: "مياه معدنية", sv: "Vatten", de: "Stillen Wasser", ro: "Apă Plată" },
+    description: { es: "Agua mineral natural 50cl", en: "Natural Mineral Water 50cl", fr: "Eau minérale naturelle 50cl", nl: "Natuurlijk Mineraalwater 50cl", no: "50cl", pl: "50cl", uk: "50cl", ru: "50cl", ar: "50 مل", sv: "50cl", de: "50cl", ro: "50cl" },
     precio: "€2.50",
     category: "drink"
   },
   {
     id: "prod_vinorojo",
     image: vinoRojo,
-    name: { es: "Vino tinto", en: "Red Wine", fr: "Vin rouge", no: "Rødvin", pl: "Czerwone wino", uk: "Червоне вино", ru: "Красное вино", ar: "نبيذ أحمر", sv: "Rödvin", de: "Rotwein", ro: "Vin Roșu" },
-    description: { es: "Botella de Vino Bullas 75cl", en: "Bullas Wine Bottle 75cl", fr: "Bouteille de vin Bullas 75cl", no: "Bullas flaske 75cl", pl: "Butelka wina Bullas 75cl", uk: "Пляшка вина Бульяс 75cl", ru: "Бутылка вина Бульяс 75cl", ar: "زجاجة نبيذ بوياس 75 مل", sv: "Flaska Bullas vin 75cl", de: "Flasche Bullas Wein 75cl", ro: "Sticlă de vin Bullas 75cl" },
+    name: { es: "Vino tinto", en: "Red Wine", fr: "Vin rouge", nl: "Rode Wijn", no: "Rødvin", pl: "Czerwone wino", uk: "Червоне вино", ru: "Красное вино", ar: "نبيذ أحمر", sv: "Rödvin", de: "Rotwein", ro: "Vin Roșu" },
+    description: { es: "Botella de Vino Bullas 75cl", en: "Bullas Wine Bottle 75cl", fr: "Bouteille de vin Bullas 75cl", nl: "Fles Bullas Wijn 75cl", no: "Bullas flaske 75cl", pl: "Butelka wina Bullas 75cl", uk: "Пляшка вина Бульяс 75cl", ru: "Бутылка вина Бульяс 75cl", ar: "زجاجة نبيذ بوياس 75 مل", sv: "Flaska Bullas vin 75cl", de: "Flasche Bullas Wein 75cl", ro: "Sticlă de vin Bullas 75cl" },
     precio: "€15.00",
     category: "drink"
   },
   {
     id: "prod_mahou",
     image: mahou,
-    name: { es: "Cerveza Mahou", en: "Mahou Beer", fr: "Bière Mahou", no: "Mahou øl", pl: "Piwo Mahou", uk: "Пиво Махоу", ru: "Пиво Махоу", ar: "بيرة ماهو", sv: "Mahou öl", de: "Mahou Bier", ro: "Bere Mahou" },
-    description: { es: "Lata de cerveza 33cl", en: "Beer Can 33cl", fr: "Bière Canette 33cl", no: "33cl boks", pl: "Puszka piwa 33cl", uk: "Банка пива 33cl", ru: "Банка пива 33cl", ar: "علبة بيرة 33 مل", sv: "Ölburk 33cl", de: "Bierdose 33cl", ro: "Bere doză 33cl" },
+    name: { es: "Cerveza Mahou", en: "Mahou Beer", fr: "Bière Mahou", nl: "Mahou Bier", no: "Mahou øl", pl: "Piwo Mahou", uk: "Пиво Махоу", ru: "Пиво Махоу", ar: "بيرة ماهو", sv: "Mahou öl", de: "Mahou Bier", ro: "Bere Mahou" },
+    description: { es: "Lata de cerveza 33cl", en: "Beer Can 33cl", fr: "Bière Canette 33cl", nl: "Bier Blikje 33cl", no: "33cl boks", pl: "Puszka piwa 33cl", uk: "Банка пива 33cl", ru: "Банка пива 33cl", ar: "علبة بيرة 33 مل", sv: "Ölburk 33cl", de: "Bierdose 33cl", ro: "Bere doză 33cl" },
     precio: "€2.80",
     category: "drink"
   }
