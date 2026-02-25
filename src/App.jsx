@@ -20,7 +20,7 @@ import whatsappIcon from "/wha2026.webp";
 const T = {
   es: {
     heroTitle: "La Casa de Burger",
-    heroSubtitle: "Burgers Gourmet de Autor: Recetas Signature, Smash Burgers y Carne Premium al Mejor Precio",
+    heroSubtitle: "Burgers Gourmet de Autor: Recetas Unicas, Smash Burgers y Carne Premium al Mejor Precio",
     btnOrder: "PEDIR A DOMICILIO",
     btnCall: "LLAMAR",
     catBurgers: "Burgers Signature",
@@ -1074,7 +1074,7 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
           <div style={{ backgroundColor: '#0a0a0a', padding: '35px', borderRadius: '15px', border: '1px solid #222', textAlign: 'justify' }}>
             <div style={{ color: '#aaa', fontSize: '0.85rem', lineHeight: '1.6', margin: 0 }}>
 
-              <p><strong>🇪🇸 ESPAÑOL:</strong> <strong>La Casa de Burger</strong> – Tu hamburguesería de referencia y el mejor restaurante de <strong>burger en Torrevieja</strong>. Especialistas en <strong>Smash Burgers</strong> y <strong>Burger Gourmet Signature</strong> 100% artesanal con carne picada a diario. Opciones <strong>Halal y Vegetarianas (bajo reserva)</strong>. Disfruta de nuestra terraza y fácil aparcamiento. Servicio a domicilio (delivery) en todo Torrevieja.</p>
+              <p><strong>🇪🇸 ESPAÑOL:</strong> <strong>La Casa de Burger</strong> – Tu hamburguesería de referencia y el mejor restaurante de <strong>burger en Torrevieja</strong>. Especialistas en <strong>Smash Burgers</strong> y <strong>Burger Gourmet de Autor</strong> 100% artesanal con carne picada a diario. Opciones <strong>Halal y Vegetarianas (bajo reserva)</strong>. Disfruta de nuestra terraza y fácil aparcamiento. Servicio a domicilio (delivery) en todo Torrevieja.</p>
 
               <p><strong>🇬🇧 ENGLISH:</strong> <strong>Best gourmet burgers in Torrevieja</strong>. Specialists in 100% artisan <strong>Signature Burgers</strong> and <strong>Smash Burgers</strong> with freshly minced beef. <strong>Halal and Vegetarian options available (on request)</strong>. Enjoy our terrace and easy parking near the city center.</p>
 
