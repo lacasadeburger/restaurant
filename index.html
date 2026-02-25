@@ -10,80 +10,69 @@
     <link rel="preload" href="/fonts/sacramento-v15-latin-regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
     <link rel="preload" as="image" href="/burger-signature-torrevieja.webp" fetchpriority="high">
 
-    <title>La Casa de Burger | Meilleures Hamburguesas Gourmet de Torrevieja</title>
-    <meta name="description" content="Découvrez les meilleurs burgers gourmet et smash burgers à Torrevieja. Viande 100% artisanale hachée chaque jour. Terrasse, parking et options Halal/Veggie." />
-    <meta name="keywords" content="hamburguesas Torrevieja, burger gourmet, smash burger, delivery Torrevieja, burger artesanal, Halal Torrevieja, terrasse Torrevieja" />
+    <title>La Casa de Burger | Mejores Hamburguesas Gourmet de Torrevieja</title>
+    <meta name="description" content="Descubre las mejores burgers gourmet y smash burgers en Torrevieja. Carne 100% artesanal picada a diario. Terraza, parking y opciones Halal/Veggie." />
+    <meta name="keywords" content="hamburguesas Torrevieja, burger gourmet, smash burger, delivery Torrevieja, burger artesanal, Halal Torrevieja, terraza Torrevieja" />
     <meta name="robots" content="index, follow" />
+
     <style>
-        /* 1. POLICES : Optimisation du rendu atomique */
+        /* 1. POLICES */
         @font-face {
             font-family: 'Ysabeau';
-            font-style: normal;
-            font-weight: 400;
-            font-display: swap;
+            font-style: normal; font-weight: 400; font-display: swap;
             src: url('/fonts/ysabeau-v5-latin-regular.woff2') format('woff2');
         }
         @font-face {
             font-family: 'Sacramento';
-            font-style: normal;
-            font-weight: 400;
-            font-display: swap;
+            font-style: normal; font-weight: 400; font-display: swap;
             src: url('/fonts/sacramento-v15-latin-regular.woff2') format('woff2');
         }
 
-        /* 2. RESET CRITIQUE : Accélère le premier dessin du navigateur */
-        *{box-sizing:border-box;margin:0;padding:0}
-        html, body{
-            background-color:#000;
-            color:#fff;
-            font-family:'Ysabeau', system-ui, -apple-system, sans-serif; /* Fallback system pour éviter le vide */
-            line-height:1.5;
-            overflow-x:hidden;
-            min-height:100%;
-            -webkit-font-smoothing: antialiased; /* Rendu plus net */
+        /* 2. RESET ET PERFORMANCE CRITIQUE */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html, body {
+            background-color: #000; color: #fff;
+            font-family: 'Ysabeau', system-ui, -apple-system, sans-serif;
+            line-height: 1.5; overflow-x: hidden; min-height: 100%;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* 3. FIX CLS : On verrouille les dimensions du texte de secours */
+        /* 3. FIX CLS : Verrouillage strict du texte de secours */
         #fallback-text {
-            contain: layout size; /* Dit au navigateur que ce bloc ne changera pas de taille */
+            position: absolute; top: 85px; left: 0; width: 100%;
+            text-align: center; z-index: 2; pointer-events: none;
+            contain: layout size;
         }
         #fallback-text h1 {
-            min-height: 2.2em; /* Réserve la place exacte pour 2 lignes */
-            line-height: 1.1;
+            font-size: clamp(2.2rem, 10vw, 3.8rem); font-weight: 900;
+            text-transform: uppercase; text-shadow: 2px 2px 15px rgba(0,0,0,0.9);
+            line-height: 1.1; min-height: 2.2em;
+        }
+        #fallback-text h2 {
+            font-size: 1.5rem; color: #FFD700; font-weight: 700;
+            text-shadow: 1px 1px 10px rgba(0,0,0,1); margin-top: 10px;
+            text-transform: uppercase;
         }
 
-        /* 4. STRUCTURE REACT ET TRANSPARENCE */
-        #root {
-            min-height: 100vh;
-            position: relative;
-            z-index: 1;
-            background: transparent !important;
-            contain: paint; /* Optimisation de rendu pour le scroll */
-        }
-
-        /* 5. IMAGE LCP : Forçage du rendu hardware */
+        /* 4. IMAGE LCP : Accélération matérielle */
         .lcp-background {
-            position: absolute !important;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 520px;
-            object-fit: cover;
-            z-index: -1 !important;
-            display: block;
-            pointer-events: none;
-            transform: translateZ(0); /* Force l'accélération GPU */
+            position: absolute !important; top: 0; left: 0; width: 100%; height: 520px;
+            object-fit: cover; z-index: -1 !important; display: block;
+            pointer-events: none; transform: translateZ(0);
             will-change: contents;
+        }
+
+        /* 5. STRUCTURE REACT */
+        #root {
+            min-height: 100vh; position: relative; z-index: 1;
+            background: transparent !important; contain: paint;
         }
 
         /* 6. CORRECTIF LISIBILITÉ SECTIONS */
         .section-menus {
             background-color: rgba(0, 0, 0, 0.7) !important;
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            border-radius: 30px;
-            padding: 20px 10px;
-            contain: content;
+            backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+            border-radius: 30px; padding: 20px 10px; contain: content;
         }
 
         #root, body { background-color: transparent !important; }
@@ -105,16 +94,8 @@
       "url": "https://lacasadeburger.es",
       "telephone": "+34602597210",
       "priceRange": "€€",
-      "servesCuisine": [
-        "Hamburguesas Gourmet",
-        "Smash Burgers",
-        "Cocina Artesanal",
-        "Carne de Ternera Premium",
-        "Comida Halal",
-        "Opciones Vegetarianas",
-        "American Cuisine"
-      ],
-      "description": "Especialistas en Burger Gourmet Signature y Smash Burgers 100% artesanales en Torrevieja. Carne fresca picada a diario, terrasse, parking et options Halal/Veggie.",
+      "servesCuisine": ["Hamburguesas Gourmet", "Smash Burgers", "Comida Halal", "Opciones Vegetarianas"],
+      "description": "Especialistas en Burger Gourmet Signature y Smash Burgers 100% artesanales en Torrevieja. Carne fresca picada a diario, terraza y parking.",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "AV. Diego Ramirez Pastor, 142",
@@ -128,21 +109,6 @@
         "latitude": 37.9806,
         "longitude": -0.6757
       },
-      "potentialAction": {
-        "@type": "OrderAction",
-        "target": {
-          "@type": "EntryPoint",
-          "urlTemplate": "https://lacasadeburger.es/",
-          "inLanguage": ["es", "en", "fr"],
-          "actionPlatform": [
-            "https://schema.org/DesktopWebPlatform",
-            "https://schema.org/MobileWebPlatform"
-          ]
-        },
-        "deliveryMethod": [
-          "https://purl.org/goodrelations/v1#DeliveryModeOwnFleet"
-        ]
-      },
       "openingHoursSpecification": [
         {
           "@type": "OpeningHoursSpecification",
@@ -154,15 +120,8 @@
       "aggregateRating": {
         "@type": "AggregateRating",
         "ratingValue": "4.9",
-        "reviewCount": "250",
-        "bestRating": "5",
-        "worstRating": "1"
+        "reviewCount": "250"
       },
-      "knowsLanguage": ["es", "en", "fr", "de", "no", "pl", "ru", "ar", "sv", "uk", "nl"],
-      "amenityFeature": [
-        { "@type": "LocationFeatureSpecification", "name": "Terraza", "value": true },
-        { "@type": "LocationFeatureSpecification", "name": "Fácil aparcamiento", "value": true }
-      ],
       "hasMenu": {
         "@type": "Menu",
         "name": "Carta La Casa de Burger",
@@ -188,9 +147,9 @@
             "name": "Entrantes y Combos",
             "hasMenuItem": [
               { "@type": "MenuItem", "name": "Combo 1", "description": "La Inglesa + Patatas + 3 Nuggets", "offers": { "@type": "Offer", "price": "18.00", "priceCurrency": "EUR" } },
-              { "@type": "MenuItem", "name": "Patatas Cheddar y Bacon", "description": "Patatas caseras con salsa de cheddar et bacon", "offers": { "@type": "Offer", "price": "8.50", "priceCurrency": "EUR" } },
+              { "@type": "MenuItem", "name": "Patatas Cheddar y Bacon", "description": "Patatas caseras con salsa de cheddar y bacon", "offers": { "@type": "Offer", "price": "8.50", "priceCurrency": "EUR" } },
               { "@type": "MenuItem", "name": "Patatas Bravas", "description": "Patatas caseras con salsa brava", "offers": { "@type": "Offer", "price": "6.50", "priceCurrency": "EUR" } },
-              { "@type": "MenuItem", "name": "Nuggets de Pollo", "description": "6 unités de nuggets caseros", "offers": { "@type": "Offer", "price": "6.50", "priceCurrency": "EUR" } }
+              { "@type": "MenuItem", "name": "Nuggets de Pollo", "description": "6 unidades de nuggets caseros", "offers": { "@type": "Offer", "price": "6.50", "priceCurrency": "EUR" } }
             ]
           },
           {
@@ -209,45 +168,40 @@
 <body>
     <img src="/burger-signature-torrevieja.webp"
          alt="La mejor hamburguesa gourmet de Torrevieja - La Casa de Burger"
-         width="1920"
-         height="520"
-         fetchpriority="high"
-         loading="eager"
-         decoding="sync"
+         width="1920" height="520"
+         fetchpriority="high" loading="eager" decoding="sync"
          class="lcp-background">
 
-         <div id="fallback-text" style="position: absolute; top: 85px; left: 0; width: 100%; text-align: center; z-index: 2; font-family: 'Ysabeau', sans-serif; pointer-events: none;">
-             <h1 style="font-size: clamp(2rem, 10vw, 3.5rem); font-weight: 900; text-transform: uppercase; color: #ffffff; text-shadow: 2px 2px 15px rgba(0,0,0,0.9); margin: 0; line-height: 1.1;">
-                 LAS MEJORES HAMBURGUESAS GOURMET<br>EN TORREVIEJA
-             </h1>
-             <h2 style="font-size: 1.5rem; color: #FFD700; font-weight: 700; text-shadow: 1px 1px 10px rgba(0,0,0,1); margin-top: 10px; text-transform: uppercase;">
-                 GOURMET BURGER JOINT: GOURMET BURGERS, SMASH BURGERS & PREMIUM BEEF
-             </h2>
+    <div id="fallback-text">
+        <h1>LAS MEJORES HAMBURGUESAS GOURMET<br>EN TORREVIEJA</h1>
+        <h2>GOURMET BURGER JOINT: GOURMET BURGERS, SMASH BURGERS & PREMIUM BEEF</h2>
+        <div style="margin-top: 20px; height: 160px; width: 100%;"></div>
+    </div>
 
-             <div style="margin-top: 20px; height: 160px; width: 100%;"></div>
-         </div>
+    <div id="root"></div>
 
-         <div id="root"></div>
+    <noscript>
+        <div style="text-align:center; padding:50px; background: #000; color: #fff;">
+            <h1>La Casa de Burger Torrevieja</h1>
+            <p>Especialistas en Hamburguesas Gourmet 100% Artesanales.</p>
+        </div>
+    </noscript>
 
-         <noscript>
-             <div style="text-align:center; padding:50px; background: #000; color: #fff;">
-                 <h1>La Casa de Burger Torrevieja</h1>
-                 <p>Especialistas en Hamburguesas Gourmet 100% Artesanales.</p>
-             </div>
-         </noscript>
-
-         <script>
-             // Execution immédiate dès que le DOM change
-             const observer = new MutationObserver(() => {
-                 const root = document.getElementById('root');
-                 if (root && root.children.length > 0) {
-                     const fallback = document.getElementById('fallback-text');
-                     if (fallback) fallback.style.display = 'none';
-                     observer.disconnect();
-                 }
-             });
-             observer.observe(document.getElementById('root'), { childList: true });
-         </script>
+    <script>
+        (function() {
+            const root = document.getElementById('root');
+            const fallback = document.getElementById('fallback-text');
+            const observer = new MutationObserver(() => {
+                if (root && root.hasChildNodes()) {
+                    requestAnimationFrame(() => {
+                        if (fallback) fallback.style.display = 'none';
+                    });
+                    observer.disconnect();
+                }
+            });
+            if (root) observer.observe(root, { childList: true });
+        })();
+    </script>
 
     <script type="module" src="/src/main.jsx" async></script>
 </body>
