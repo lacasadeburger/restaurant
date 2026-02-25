@@ -14,9 +14,8 @@
     <meta name="description" content="Découvrez les meilleurs burgers gourmet et smash burgers à Torrevieja. Viande 100% artisanale hachée chaque jour. Terrasse, parking et options Halal/Veggie." />
     <meta name="keywords" content="hamburguesas Torrevieja, burger gourmet, smash burger, delivery Torrevieja, burger artesanal, Halal Torrevieja, terrasse Torrevieja" />
     <meta name="robots" content="index, follow" />
-
     <style>
-        /* POLICES */
+        /* 1. POLICES : Optimisation du rendu atomique */
         @font-face {
             font-family: 'Ysabeau';
             font-style: normal;
@@ -32,43 +31,62 @@
             src: url('/fonts/sacramento-v15-latin-regular.woff2') format('woff2');
         }
 
-        /* RESET ET BASE */
+        /* 2. RESET CRITIQUE : Accélère le premier dessin du navigateur */
         *{box-sizing:border-box;margin:0;padding:0}
-        html, body{background-color:#000;color:#fff;font-family:'Ysabeau',sans-serif;line-height:1.5;overflow-x:hidden;min-height:100%}
+        html, body{
+            background-color:#000;
+            color:#fff;
+            font-family:'Ysabeau', system-ui, -apple-system, sans-serif; /* Fallback system pour éviter le vide */
+            line-height:1.5;
+            overflow-x:hidden;
+            min-height:100%;
+            -webkit-font-smoothing: antialiased; /* Rendu plus net */
+        }
 
-        /* STRUCTURE REACT ET TRANSPARENCE */
+        /* 3. FIX CLS : On verrouille les dimensions du texte de secours */
+        #fallback-text {
+            contain: layout size; /* Dit au navigateur que ce bloc ne changera pas de taille */
+        }
+        #fallback-text h1 {
+            min-height: 2.2em; /* Réserve la place exacte pour 2 lignes */
+            line-height: 1.1;
+        }
+
+        /* 4. STRUCTURE REACT ET TRANSPARENCE */
         #root {
             min-height: 100vh;
             position: relative;
             z-index: 1;
             background: transparent !important;
+            contain: paint; /* Optimisation de rendu pour le scroll */
         }
 
-        /* L'IMAGE DE FOND LCP - FIXÉE À LA HAUTEUR DU HEADER */
+        /* 5. IMAGE LCP : Forçage du rendu hardware */
         .lcp-background {
             position: absolute !important;
             top: 0;
             left: 0;
             width: 100%;
-            height: 520px; /* Aligné sur ton minHeight App.jsx */
+            height: 520px;
             object-fit: cover;
             z-index: -1 !important;
             display: block;
             pointer-events: none;
+            transform: translateZ(0); /* Force l'accélération GPU */
+            will-change: contents;
         }
 
-        /* CORRECTIF LISIBILITÉ SECTIONS */
+        /* 6. CORRECTIF LISIBILITÉ SECTIONS */
         .section-menus {
             background-color: rgba(0, 0, 0, 0.7) !important;
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
             border-radius: 30px;
             padding: 20px 10px;
+            contain: content;
         }
 
-        #root, body {
-            background-color: transparent !important;
-        }
+        #root, body { background-color: transparent !important; }
     </style>
 
     <link rel="icon" type="image/webp" href="/logo.webp" />
