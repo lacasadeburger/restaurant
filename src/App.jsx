@@ -629,6 +629,24 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
       .card-title { font-size: 1.2rem; min-height: 3rem; }
       .card-description { font-size: 0.8rem; min-height: 3rem; -webkit-line-clamp: 2; }
     }
+    /* 11. BOUTON FLOTTANT SUIVANT */
+  .floating-close {
+    position: fixed !important;
+    bottom: 95px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    z-index: 20000 !important; /* On le met AU-DESSUS de WhatsApp (9999) */
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.8) !important;
+    animation: bounce-subtle 2s infinite ease-in-out;
+  }
+
+  @keyframes bounce-subtle {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-5px); }
+  }
 `}</style>
 <Helmet>
 {/* 1. DYNAMIQUE : Titre et Description traduits (Indispensable) */}
