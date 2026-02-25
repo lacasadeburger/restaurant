@@ -1,103 +1,112 @@
 import React from 'react';
-// Importation du logo (Assure-toi que le chemin vers logo.webp est correct)
 import navLogo from "../assets/logo.webp";
 
 export default function Footer({ lang }) {
 
-  // --- DICTIONNAIRE COMPLET (11 LANGUES) - CONSERVÉ ---
+  // --- DICTIONNAIRE COMPLET (12 LANGUES) OPTIMISÉ ---
   const translations = {
     address: {
       es: "Dirección", en: "Address", fr: "Adresse", de: "Adresse",
       ru: "Адрес", uk: "Адреса", pl: "Adres", no: "Adresse",
-      sv: "Adress", ro: "Adresă", ar: "العنوان"
+      sv: "Adress", ro: "Adresă", ar: "العنوان", nl: "Adres"
     },
     phone: {
       es: "Teléfono", en: "Phone", fr: "Téléphone", de: "Telefon",
       ru: "Телефон", uk: "Телефон", pl: "Telefon", no: "Telefon",
-      sv: "Telefon", ro: "Telefon", ar: "الهاتف"
+      sv: "Telefon", ro: "Telefon", ar: "الهاتف", nl: "Telefoon"
     },
     delivery: {
-      es: "Pedidos a domicilio, para llevar",
-      en: "Delivery and take away",
-      fr: "Livraison et à emporter",
-      de: "Lieferung und zum Mitnehmen",
-      ru: "Доставка и навынос",
-      uk: "Доставка та самовивіз",
-      pl: "Dostawa i na wynos",
-      no: "Levering og takeaway",
-      sv: "Leverans och takeaway",
-      ro: "Livrare și la pachet",
-      ar: "التوصيل والاستلام"
+      es: "Burgers Gourmet & Signature: A domicilio y para llevar",
+      en: "Gourmet & Signature Burgers: Delivery and takeaway",
+      fr: "Burgers Gourmet & Signature : Livraison et à emporter",
+      de: "Gourmet & Signature Burgers: Lieferung und zum Mitnehmen",
+      ru: "Гурме и Signature Бургеры: Доставка и навынос",
+      uk: "Гурме та Signature Бургери: Доставка та самовивіз",
+      pl: "Burgery Gourmet i Signature: Dostawa i na wynos",
+      no: "Gourmet & Signature Burgere: Levering og takeaway",
+      sv: "Gourmet & Signature Burgare: Leverans och takeaway",
+      ro: "Burgeri Gourmet și Signature: Livrare și la pachet",
+      ar: "برجر غوارميه وسيجنتشر: التوصيل والاستلام",
+      nl: "Gourmet & Signature Burgers: Bezorging en afhalen"
     },
     booking: {
-      es: "Para reservaciones, llamar al teléfono o por WhatsApp",
-      en: "For reservations, call or WhatsApp",
-      fr: "Pour les réservations, appelez ou via WhatsApp",
-      de: "Für Reservierungen rufen Sie an ou per WhatsApp",
-      ru: "Для бронирования звоните или пишите в WhatsApp",
-      uk: "Для бронювання телефонуйте або пишіть у WhatsApp",
-      pl: "W celu rezerwacji zadzwoń lub napisz na WhatsApp",
-      no: "For reservasjoner, ring eller bruk WhatsApp",
-      sv: "För bokningar, ring eller använd WhatsApp",
-      ro: "Pour les réservations, appelez ou via WhatsApp",
-      ar: "للحجز، اتصل بنا أو عبر الواتساب"
+      es: "Reservas por Teléfono o WhatsApp",
+      en: "Reservations by Phone or WhatsApp",
+      fr: "Réservations par Téléphone ou WhatsApp",
+      de: "Reservierungen per Telefon oder WhatsApp",
+      ru: "Бронирование по телефону или WhatsApp",
+      uk: "Бронювання за телефоном або WhatsApp",
+      pl: "Rezerwacja telefoniczna lub przez WhatsApp",
+      no: "Reservasjoner via telefon eller WhatsApp",
+      sv: "Bokningar via telefon eller WhatsApp",
+      ro: "Rezervări prin Telefon sau WhatsApp",
+      ar: "للحجز عبر الهاتف أو الواتساب",
+      nl: "Reserveringen via telefoon of WhatsApp"
     }
   };
 
-  // --- ACCESSEUR SÉCURISÉ ---
   const getT = (key) => {
     if (!translations[key]) return "";
-    const result = translations[key][lang] || translations[key]['es'];
-    if (typeof result === 'object') return result['es'] || "";
-    return result;
+    return translations[key][lang] || translations[key]['es'];
   };
+
+  const currentYear = new Date().getFullYear();
 
   return (
     <footer className='footer' style={{
       backgroundColor: '#000',
       color: '#ffffff',
       padding: '60px 20px 40px',
-      borderTop: '4px solid #ff5e6c' // Optimisé pour le contraste Insights
+      borderTop: '4px solid #ff5e6c'
     }}>
       <div className="footer-content" style={{
         display: 'flex',
-        flexDirection: 'column', // Centrage propre suite à la suppression de Devrod
+        flexDirection: 'column',
         alignItems: 'center',
         maxWidth: '1200px',
         margin: '0 auto',
-        gap: '40px'
+        gap: '30px'
       }}>
 
-        {/* LOGO SECTION - UNIQUE */}
+        {/* LOGO SECTION */}
         <div className="logo-container">
           <img
             src={navLogo}
             alt="La Casa de Burger Logo"
-            style={{ width: '90px', height: 'auto', borderRadius: '12px' }}
+            style={{ width: '100px', height: 'auto', borderRadius: '15px', border: '1px solid #333' }}
           />
         </div>
 
-        {/* CONTACT INFO SECTION (Optimisée contraste & mobile) */}
+        {/* CONTACT INFO SECTION */}
         <div className="info-container" style={{
           textAlign: 'center',
           fontSize: '1.05rem',
-          lineHeight: '2.1', // Espacement pour éviter l'erreur "Tap targets too close"
+          lineHeight: '2.2',
           color: '#ffffff'
         }}>
           <p style={{ margin: 0 }}>
-            <strong style={{ color: '#ff5e6c' }}>{getT("address")}:</strong> Av. Diego Ramírez Pastor, 142, 03181 Torrevieja<br />
+            {/* LIEN MAPS POUR SEO LOCAL */}
+            <strong style={{ color: '#ff5e6c' }}>{getT("address")}:</strong><br />
+            <a
+              href="https://www.google.com/maps/search/?api=1&query=Av.+Diego+Ramírez+Pastor,+142,+03181+Torrevieja"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: '#ffffff', textDecoration: 'none', borderBottom: '1px dashed #ff5e6c' }}
+            >
+              Av. Diego Ramírez Pastor, 142, 03181 Torrevieja (Centro)
+            </a><br />
 
             <strong style={{ color: '#ff5e6c' }}>{getT("phone")}:</strong>
-            <a href="tel:+34602597210" style={{ color: '#ffffff', textDecoration: 'underline', textDecorationColor: '#ff5e6c' }}>
+            <a href="tel:+34602597210" style={{ color: '#ffffff', textDecoration: 'none', marginLeft: '5px' }}>
               602 59 72 10
             </a><br />
 
             <strong style={{ color: '#ff5e6c' }}>WhatsApp:</strong>
-            <a href="https://wa.me/34602597210" style={{ color: '#ffffff', textDecoration: 'underline', textDecorationColor: '#ff5e6c' }}>
+            <a href="https://wa.me/34602597210" style={{ color: '#ffffff', textDecoration: 'none', marginLeft: '5px' }}>
               602 59 72 10
             </a><br />
 
-            <span style={{ display: 'block', marginTop: '10px', color: '#BDBDBD' }}>
+            <span style={{ display: 'block', marginTop: '10px', color: '#BDBDBD', fontStyle: 'italic' }}>
               {getT("delivery")}
             </span>
 
@@ -105,11 +114,11 @@ export default function Footer({ lang }) {
               color: '#ffffff',
               fontWeight: 'bold',
               display: 'inline-block',
-              backgroundColor: 'rgba(255, 94, 108, 0.15)',
-              padding: '8px 16px',
-              borderRadius: '8px',
+              backgroundColor: 'rgba(255, 94, 108, 0.2)',
+              padding: '10px 20px',
+              borderRadius: '50px',
               marginTop: '15px',
-              border: '1px solid rgba(255, 94, 108, 0.4)'
+              border: '1px solid #ff5e6c'
             }}>
               {getT("booking")}
             </span>
@@ -118,34 +127,34 @@ export default function Footer({ lang }) {
 
       </div>
 
-      {/* DIVIDER GOLD */}
+      {/* DIVIDER GOLD LUXE */}
       <div style={{
-        width: '80px',
+        width: '120px',
         height: '2px',
-        background: 'linear-gradient(90deg, #BF953F, #FCF6BA, #B38728)',
+        background: 'linear-gradient(90deg, transparent, #BF953F, #FCF6BA, #B38728, transparent)',
         margin: '40px auto 20px',
-        borderRadius: '2px'
       }} aria-hidden="true" />
 
-      {/* COPYRIGHT SECTION (Gris conformes WCAG) */}
+      {/* COPYRIGHT & BRANDING */}
       <div style={{ textAlign: 'center' }}>
         <p className="copyright" style={{
           color: '#BDBDBD',
-          fontSize: '1.1rem',
+          fontSize: '1rem',
           margin: '0',
-          letterSpacing: '0.5px'
+          fontWeight: '500'
         }}>
-          La Casa de Burger &copy; {new Date().getFullYear()} | Torrevieja | The Artisan Experience
+          LA CASA DE BURGER &copy; {currentYear} | Torrevieja | THE ARTISAN EXPERIENCE
         </p>
 
         <p style={{
-          color: '#AAAAAA', // Gris plus clair que #888 pour valider le test
+          color: '#ff5e6c',
           fontSize: '0.85rem',
-          marginTop: '12px',
+          marginTop: '10px',
           textTransform: 'uppercase',
-          letterSpacing: '1px'
+          letterSpacing: '2px',
+          fontWeight: 'bold'
         }}>
-          {lang === 'es' ? 'El mejor burger de Torrevieja' : 'Best burger in Torrevieja'}
+          {lang === 'es' ? 'La mejor hamburguesa gourmet de autor' : 'The best signature gourmet burger'}
         </p>
       </div>
     </footer>
