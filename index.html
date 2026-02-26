@@ -88,7 +88,10 @@
               z-index: 3;
               pointer-events: none;
               transition: opacity 0.3s ease;
-          }
+
+              /* Par ça (beaucoup plus rapide pour le processeur) : */
+              transition: opacity 0.3s ease, transform 0.3s ease;
+              will-change: opacity;          }
           #fallback-text h1 {
               font-size: clamp(2.2rem, 10vw, 3.8rem); font-weight: 900;
               text-transform: uppercase;
