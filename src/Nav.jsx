@@ -105,7 +105,7 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang, setLa
       <div style={{
         marginTop: '80px',
         display: 'flex', justifyContent: 'center', gap: '6px', padding: '12px 8px',
-        flexWrap: 'wrap', backgroundColor: 'rgba(15, 15, 15, 0.95)',
+        flexWrap: 'wrap', backgroundColor: 'transparent',
         position: 'relative', zIndex: 9999, borderBottom: '1px solid #333',
         minHeight: '44px',
         boxSizing: 'border-box'
@@ -157,7 +157,7 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang, setLa
 
       {/* BARRE DE PROMO */}
       <div style={{
-        background: 'linear-gradient(to right, #000, #1a1a1a, #000)',
+        background: 'rgba(0, 0, 0, 0.4)',
         color: '#fff', textAlign: 'center', padding: '10px 8px',
         borderBottom: `2px solid ${GOLD_BRIGHT}`,
         fontSize: '0.82rem', fontWeight: '900',
