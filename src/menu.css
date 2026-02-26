@@ -204,20 +204,22 @@ html, body {
   top: 0;
   left: 0;
   width: 100% !important;
-  /* On ajuste la hauteur pour qu'elle puisse montrer plus de ton image 1024x1024 */
-  height: 600px !important;
+  /* On synchronise avec la hauteur de ton header React (520px) */
+  height: 520px !important;
   object-fit: cover !important;
-  /* On positionne à 20% du haut pour éviter de couper le haut du burger */
-  object-position: center 20% !important;
+  /* IMPORTANTE CORRECTION POUR IMAGE 1024x1024 :
+     On force l'image à montrer le haut pour ne pas couper le burger */
+  object-position: center top !important;
   z-index: 1 !important;
   display: block !important;
   pointer-events: none;
-  filter: brightness(0.9) contrast(1.1) !important;
+  filter: brightness(1) contrast(1.05) !important;
 }
 
 @media (max-width: 768px) {
   .lcp-background {
+    /* Sur mobile on garde la même hauteur que le header */
     height: 520px !important;
-    object-position: center !important;
+    object-position: center center !important;
   }
 }
