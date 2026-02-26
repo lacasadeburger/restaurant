@@ -1,4 +1,4 @@
-/* menu.css - Styles du catalogue et des cartes */
+/* menu.css - Version Finale Optimisée LCP/CLS */
 
 h2, .SectionTitle, section h2, section h3 {
   text-align: center !important;
@@ -184,13 +184,14 @@ h2, .SectionTitle, section h2, section h3 {
   .card-description { font-size: 0.8rem; min-height: 3rem; -webkit-line-clamp: 2; }
 }
 
-/* --- CONFIGURATION IMAGE DE FOND --- */
+/* --- CONFIGURATION IMAGE DE FOND (CORRECTION FINALE) --- */
 
 html, body {
   background-color: #000 !important;
   margin: 0;
   padding: 0;
   position: relative;
+  min-height: 100%;
 }
 
 #root {
@@ -204,22 +205,30 @@ html, body {
   top: 0;
   left: 0;
   width: 100% !important;
-  /* On synchronise avec la hauteur de ton header React (520px) */
+  /* On fixe la hauteur à 520px pour tout le monde au début */
   height: 520px !important;
+
+  /* L'IMAGE ENTIÈRE : on utilise 'cover' mais on remonte la position
+     pour que le burger (souvent au centre d'un carré) soit visible */
   object-fit: cover !important;
-  /* IMPORTANTE CORRECTION POUR IMAGE 1024x1024 :
-     On force l'image à montrer le haut pour ne pas couper le burger */
-  object-position: center top !important;
+  object-position: center center !important;
+
   z-index: 1 !important;
   display: block !important;
   pointer-events: none;
-  filter: brightness(1) contrast(1.05) !important;
+
+  /* SANS MASQUE POUR ÉVITER LE LAG D'AFFICHAGE */
+  mask-image: none !important;
+  -webkit-mask-image: none !important;
+
+  filter: brightness(0.9) contrast(1.1) !important;
 }
 
+/* Optimisation Mobile Spécifique */
 @media (max-width: 768px) {
   .lcp-background {
-    /* Sur mobile on garde la même hauteur que le header */
-    height: 520px !important;
-    object-position: center center !important;
+    /* Sur mobile, on augmente un peu la hauteur pour mieux voir l'image carrée */
+    height: 600px !important;
+    object-position: center 20% !important;
   }
 }

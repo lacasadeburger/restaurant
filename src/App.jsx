@@ -508,7 +508,7 @@ animation: bounce-subtle 2s infinite ease-in-out;
   borderRadius: '0 0 50px 50px',
   borderBottom: '5px solid #ff4757',
   backgroundColor: 'transparent',
-  overflow: 'hidden',
+  overflow: 'visible',
   minHeight: '520px',
   display: 'flex',
   flexDirection: 'column',
