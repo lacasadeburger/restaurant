@@ -182,19 +182,19 @@ h2, .SectionTitle, section h2, section h3 {
   .card-description { font-size: 0.8rem; min-height: 3rem; -webkit-line-clamp: 2; }
 }
 
-/* --- LA CORRECTION FINALE POUR L'IMAGE DE FOND --- */
+/* --- CONFIGURATION IMAGE DE FOND (Z-INDEX & FUSION NOIRE) --- */
 
 html, body {
   background-color: #000 !important;
   margin: 0;
   padding: 0;
-  position: relative; /* Indispensable pour que le z-index de l'image fonctionne */
+  position: relative;
 }
 
 #root {
   background-color: transparent !important;
   position: relative;
-  z-index: 2; /* React passe au-dessus de l'image (1) */
+  z-index: 2;
 }
 
 .lcp-background {
@@ -204,14 +204,20 @@ html, body {
   width: 100% !important;
   height: 520px !important;
   object-fit: cover !important;
-  /* CHANGEMENT ICI : On passe à 1 pour être au-dessus du fond noir du body */
   z-index: 1 !important;
   display: block !important;
   pointer-events: none;
+
+  /* L'image devient transparente à sa base pour laisser place au noir du site */
+  mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+
+  /* On garde l'éclat original de la photo */
+  filter: brightness(1) contrast(1.05) !important;
 }
 
 @media (max-width: 768px) {
   .lcp-background {
-    height: 520px !important;
+    height: 520px !important; /* Maintient le cadre Helmet sur mobile */
   }
 }
