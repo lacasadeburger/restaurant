@@ -188,12 +188,15 @@
 </head>
 
 <body>
-  <img src="/burger-signature-torrevieja.webp"
-     alt="La mejor hamburguesa gourmet de Torrevieja - La Casa de Burger"
-     fetchpriority="high"
-     loading="eager"
-     decoding="sync"
-     class="lcp-background">
+    <img src="/burger-signature-torrevieja.webp"
+         srcset="/burger-signature-torrevieja.webp 800w, /burger-signature-torrevieja.webp 1024w"
+         sizes="(max-width: 768px) 800px, 1024px"
+         alt="La mejor hamburguesa gourmet de Torrevieja - La Casa de Burger"
+         fetchpriority="high"
+         loading="eager"
+         decpriority="high"
+         decoding="sync"
+         class="lcp-background">
 
     <div id="fallback-text">
         <h1>LAS MEJORES HAMBURGUESAS GOURMET<br>EN TORREVIEJA</h1>
@@ -218,6 +221,7 @@
             if (root) observer.observe(root, { childList: true });
         })();
     </script>
+
     <script type="module" src="/src/main.jsx" async></script>
 </body>
 </html>
