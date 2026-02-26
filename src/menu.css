@@ -199,42 +199,50 @@ html, body {
   z-index: 2;
 }
 
-/* --- CONFIGURATION IMAGE DE FOND (LARGEUR TOTALE & ANTI-ZOOM) --- */
+/* --- CONFIGURATION IMAGE DE FOND (SOUS LE NAV & LARGEUR TOTALE) --- */
 
 .lcp-background {
   position: absolute !important;
-  top: 0;
+  /* 1. DECALAGE : On descend l'image pour qu'elle commence sous la barre de navigation */
+  /* Ajuste '80px' selon la hauteur réelle de ton Nav */
+  top: 80px !important;
+
   left: 0;
-  width: 100% !important; /* Prend toute la largeur sur PC */
+  width: 100% !important;
 
-  /* SUR PC : On adapte la hauteur pour que le carré ne zoome pas */
-  height: 60vh !important;
-  min-height: 500px;
+  /* 2. HAUTEUR DU CADRE : On garde une belle zone d'affichage */
+  height: 700px !important;
 
-  /* L'image remplit l'espace sans dépasser ses proportions */
+  /* 3. AFFICHAGE : 'cover' pour toute la largeur, 'bottom' pour voir le burger */
   object-fit: cover !important;
-
-  /* ON PRIORITISE LE BAS DE L'IMAGE */
   object-position: center bottom !important;
 
   z-index: 1 !important;
   display: block !important;
   pointer-events: none;
 
-  /* Dégradé pour fondre l'image dans le noir du site */
-  mask-image: linear-gradient(to bottom, black 70%, transparent 100%) !important;
-  -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%) !important;
+  /* 4. FINITION : Fondre l'image dans le noir en bas */
+  mask-image: linear-gradient(to bottom, black 75%, transparent 100%) !important;
+  -webkit-mask-image: linear-gradient(to bottom, black 75%, transparent 100%) !important;
 
   filter: brightness(0.9) contrast(1.1) !important;
 }
 
-/* --- AJUSTEMENT MOBILE (POUR ÉVITER LE ZOOM) --- */
+/* --- AJUSTEMENT PC (DESKTOP) --- */
+@media (min-width: 1024px) {
+  .lcp-background {
+    height: 800px !important;
+    /* Sur PC, on remonte un peu le focus pour ne pas trop couper le haut */
+    object-position: center 85% !important;
+  }
+}
+
+/* --- AJUSTEMENT MOBILE (ANTI-ZOOM) --- */
 @media (max-width: 768px) {
   .lcp-background {
-    /* Sur mobile, on réduit la hauteur.
-       Si le cadre est trop haut (800px), l'image est obligée de zoomer pour remplir.
-       Avec 450px, ton image carrée restera bcp plus naturelle. */
-    height: 450px !important;
+    /* On descend le top pour le mobile car le Nav est souvent plus petit ou différent */
+    top: 70px !important;
+    height: 500px !important;
     object-fit: cover !important;
     object-position: center bottom !important;
   }
