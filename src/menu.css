@@ -1,4 +1,4 @@
-/* menu.css - Version Finale Optimisée LCP/CLS */
+/* menu.css - Version Finale Optimisée LCP/CLS & Full Display */
 
 h2, .SectionTitle, section h2, section h3 {
   text-align: center !important;
@@ -184,7 +184,7 @@ h2, .SectionTitle, section h2, section h3 {
   .card-description { font-size: 0.8rem; min-height: 3rem; -webkit-line-clamp: 2; }
 }
 
-/* --- CONFIGURATION IMAGE DE FOND (CORRECTION FINALE) --- */
+/* --- CONFIGURATION IMAGE DE FOND (CORRECTION FINALE ULTIMATE) --- */
 
 html, body {
   background-color: #000 !important;
@@ -205,30 +205,29 @@ html, body {
   top: 0;
   left: 0;
   width: 100% !important;
-  /* On fixe la hauteur à 520px pour tout le monde au début */
   height: 520px !important;
-
-  /* L'IMAGE ENTIÈRE : on utilise 'cover' mais on remonte la position
-     pour que le burger (souvent au centre d'un carré) soit visible */
   object-fit: cover !important;
-  object-position: center center !important;
-
+  object-position: center 10% !important; /* Pour ne pas couper le haut par défaut */
   z-index: 1 !important;
   display: block !important;
   pointer-events: none;
-
-  /* SANS MASQUE POUR ÉVITER LE LAG D'AFFICHAGE */
   mask-image: none !important;
   -webkit-mask-image: none !important;
-
   filter: brightness(0.9) contrast(1.1) !important;
 }
 
-/* Optimisation Mobile Spécifique */
+/* --- AJUSTEMENT ORDINATEUR (DESKTOP) --- */
+@media (min-width: 1024px) {
+  .lcp-background {
+    height: 650px !important; /* Plus de hauteur pour voir l'image entière */
+    object-position: center 0% !important; /* Colle l'image tout en haut du fichier */
+  }
+}
+
+/* --- AJUSTEMENT MOBILE (MOBILE) --- */
 @media (max-width: 768px) {
   .lcp-background {
-    /* Sur mobile, on augmente un peu la hauteur pour mieux voir l'image carrée */
     height: 600px !important;
-    object-position: center 20% !important;
+    object-position: center 20% !important; /* Ajustement burger centré mobile */
   }
 }
