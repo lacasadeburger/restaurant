@@ -204,30 +204,33 @@ html, body {
   top: 0;
   left: 0;
   width: 100% !important;
-  /* On définit la hauteur demandée de 800px */
   height: 800px !important;
 
-  object-fit: cover !important;
+  /* 1. ON ARRÊTE LE ZOOM : 'contain' affiche l'image sans la déformer ni la grossir */
+  object-fit: contain !important;
 
-  /* L'ASTUCE : 'bottom' force le navigateur à montrer le bas de l'image.
-     Si ton burger est en bas de ton fichier carré, il sera parfait. */
+  /* 2. ON LE COLLE AU BAS du cadre de 800px */
   object-position: center bottom !important;
+
+  /* 3. FOND NOIR pour combler les côtés si l'image est moins large que l'écran */
+  background-color: #000 !important;
 
   z-index: 1 !important;
   display: block !important;
   pointer-events: none;
 
-  /* On garde le masque pour une transition douce vers le noir du menu */
-  mask-image: linear-gradient(to bottom, black 85%, transparent 100%) !important;
-  -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%) !important;
+  /* 4. MASQUE DOUX pour l'intégration */
+  mask-image: linear-gradient(to bottom, black 80%, transparent 100%) !important;
+  -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%) !important;
 
   filter: brightness(0.9) contrast(1.1) !important;
 }
 
-/* Sur mobile, on garde les 800px ou on adapte si besoin */
+/* Sur mobile, le carré remplit mieux l'écran, donc on reste cohérent */
 @media (max-width: 768px) {
   .lcp-background {
     height: 800px !important;
+    object-fit: cover !important; /* Sur mobile, cover est mieux car l'écran est étroit */
     object-position: center bottom !important;
   }
 }
