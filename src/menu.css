@@ -199,38 +199,43 @@ html, body {
   z-index: 2;
 }
 
+/* --- CONFIGURATION IMAGE DE FOND (LARGEUR TOTALE & ANTI-ZOOM) --- */
+
 .lcp-background {
   position: absolute !important;
   top: 0;
   left: 0;
-  width: 100% !important;
-  height: 800px !important;
+  width: 100% !important; /* Prend toute la largeur sur PC */
 
-  /* 1. ON ARRÊTE LE ZOOM : 'contain' affiche l'image sans la déformer ni la grossir */
-  object-fit: contain !important;
+  /* SUR PC : On adapte la hauteur pour que le carré ne zoome pas */
+  height: 60vh !important;
+  min-height: 500px;
 
-  /* 2. ON LE COLLE AU BAS du cadre de 800px */
+  /* L'image remplit l'espace sans dépasser ses proportions */
+  object-fit: cover !important;
+
+  /* ON PRIORITISE LE BAS DE L'IMAGE */
   object-position: center bottom !important;
-
-  /* 3. FOND NOIR pour combler les côtés si l'image est moins large que l'écran */
-  background-color: #000 !important;
 
   z-index: 1 !important;
   display: block !important;
   pointer-events: none;
 
-  /* 4. MASQUE DOUX pour l'intégration */
-  mask-image: linear-gradient(to bottom, black 80%, transparent 100%) !important;
-  -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%) !important;
+  /* Dégradé pour fondre l'image dans le noir du site */
+  mask-image: linear-gradient(to bottom, black 70%, transparent 100%) !important;
+  -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%) !important;
 
   filter: brightness(0.9) contrast(1.1) !important;
 }
 
-/* Sur mobile, le carré remplit mieux l'écran, donc on reste cohérent */
+/* --- AJUSTEMENT MOBILE (POUR ÉVITER LE ZOOM) --- */
 @media (max-width: 768px) {
   .lcp-background {
-    height: 800px !important;
-    object-fit: cover !important; /* Sur mobile, cover est mieux car l'écran est étroit */
+    /* Sur mobile, on réduit la hauteur.
+       Si le cadre est trop haut (800px), l'image est obligée de zoomer pour remplir.
+       Avec 450px, ton image carrée restera bcp plus naturelle. */
+    height: 450px !important;
+    object-fit: cover !important;
     object-position: center bottom !important;
   }
 }
