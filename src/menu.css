@@ -219,7 +219,7 @@ html, body {
 /* --- AJUSTEMENT ORDINATEUR (DESKTOP) --- */
 @media (min-width: 1024px) {
   .lcp-background {
-    height: 900px !important; /* Plus de hauteur pour voir l'image entière */
+    height: 850px !important; /* Plus de hauteur pour voir l'image entière */
     object-position: center 0% !important; /* Colle l'image tout en haut du fichier */
   }
 }
