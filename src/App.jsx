@@ -355,298 +355,85 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
 
   return (
 <div className="app-main-wrapper" style={{ position: 'relative', backgroundColor: 'transparent', color: '#fff' }}>
-    <style>{`
-  /* 1. STRUCTURE & GRID */
-  html, body { max-width: 100%; overflow-x: hidden; margin: 0; padding: 0; background-color: #000; }
+<style>{`
+/* App.jsx - Styles Interactifs et Flottants */
 
-  h2, .SectionTitle, section h2, section h3 {
-    text-align: center !important;
-    width: 100%;
-    display: block;
-    margin: 40px auto 20px;
-    color: #BF953F;
-    font-weight: 900;
-    text-transform: uppercase;
-  }
+.logo-container-wrapper {
+position: absolute;
+top: 150px;
+left: 35px;
+z-index: 10;
+animation: wobble-inverse 5s infinite ease-in-out;
+pointer-events: none;
+}
+.moving-header-logo { height: auto; transition: 0.3s; width: 150px; }
 
-  .grid-cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 30px;
-    padding: 20px;
-    width: 100%;
-    max-width: 1300px;
-    margin: 0 auto;
-    justify-content: center;
-  }
+.whatsapp-float {
+position: fixed !important;
+bottom: 30px !important;
+right: 25px !important;
+z-index: 9999 !important;
+display: flex;
+align-items: center;
+justify-content: center;
+background-color: #25d366;
+color: white;
+width: 60px;
+height: 60px;
+border-radius: 50px;
+box-shadow: 2px 5px 15px rgba(0,0,0,0.4);
+}
 
-  .card-menu {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    background: #111;
-    border-radius: 12px;
-    overflow: hidden;
-    border: 1px solid rgba(191, 149, 63, 0.1);
-    position: relative;
-  }
+.wobble-badge-container {
+position: absolute;
+top: 10px;
+left: 10px;
+z-index: 50;
+}
 
-  /* 2. LOGO ET NAVIGATION */
-  .logo-container-wrapper {
-    position: absolute;
-    top: 150px;
-    left: 35px;
-    z-index: 101;
-    animation: wobble-inverse 5s infinite ease-in-out;
-  }
-  .moving-header-logo { height: auto; transition: 0.3s; width: 150px; }
+.wobble-badge {
+background: linear-gradient(135deg, #BF953F, #FCF6BA, #D4AF37, #FBF5B7, #BF953F) !important;
+color: #000 !important;
+text-transform: uppercase;
+padding: 6px 12px !important;
+border-radius: 50px !important;
+font-size: 0.7rem !important;
+display: inline-block;
+box-shadow: 0 4px 10px rgba(0,0,0,0.8);
+animation: wobble-badge 3s infinite ease-in-out !important;
+}
 
-  /* 3. PROMO / CATEGORIES & GOLD BUTTONS (GPU OPTIMIZED) */
-  .gold-button-premium, .category-btn-overlay, .wobble-badge {
-    background: linear-gradient(135deg, #BF953F, #FCF6BA, #D4AF37, #FBF5B7, #BF953F) !important;
-    background-size: 100% 100% !important; /* Fixe pour performance CPU */
-    position: relative;
-    overflow: hidden;
-    z-index: 1;
-    border: none;
-    color: #000 !important;
-  }
+.floating-close {
+position: fixed !important;
+bottom: 95px !important;
+left: 50% !important;
+transform: translateX(-50%) !important;
+z-index: 20000 !important;
+display: flex !important;
+align-items: center;
+justify-content: center;
+box-shadow: 0 10px 30px rgba(0,0,0,0.8) !important;
+animation: bounce-subtle 2s infinite ease-in-out;
+}
 
-  /* L'effet brillant "Lumière Liquide" qui remplace l'ancien code lourd */
-  .gold-button-premium::after, .category-btn-overlay::after, .wobble-badge::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100px;
-    height: 100%;
-    background: linear-gradient(
-      90deg,
-      rgba(255,255,255,0) 0%,
-      rgba(255,255,255,0.6) 50%,
-      rgba(255,255,255,0) 100%
-    );
-    animation: shine-luxury 3s infinite ease-in-out;
-    z-index: 2;
-    pointer-events: none;
-  }
+@keyframes wobble-inverse {
+0%, 100% { transform: rotate(-4deg); }
+50% { transform: rotate(4deg); }
+}
+@keyframes wobble-badge {
+0%, 100% { transform: rotate(-5deg); }
+50% { transform: rotate(5deg); }
+}
+@keyframes bounce-subtle {
+0%, 100% { transform: translateX(-50%) translateY(0); }
+50% { transform: translateX(-50%) translateY(-5px); }
+}
 
-  .promo-container {
-    position: relative;
-    width: 100%;
-    max-width: 800px;
-    margin: 0 auto 30px;
-    border-radius: 20px;
-    overflow: hidden;
-    border: 2px solid #BF953F;
-    background: #000;
-    height: 336px;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: center;
-  }
-
-  .category-btn-overlay {
-    font-weight: 950;
-    padding: 12px 35px;
-    border-radius: 50px;
-    text-transform: uppercase;
-    font-size: 1.1rem;
-    margin-bottom: 25px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.6);
-    border: 2px solid #000;
-    width: auto;
-    text-align: center;
-  }
-
-  .promo-img {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: cover;
-    opacity: 0.7;
-    transition: 0.4s ease;
-    z-index: 1;
-  }
-
-  /* 4. IMAGES DES PRODUITS */
-  .card-menu-image-container {
-    width: 100%;
-    height: 230px;
-    background: #0a0a0a;
-    position: relative;
-    overflow: hidden;
-    border-bottom: 1px solid rgba(191, 149, 63, 0.2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .card-menu-image-container img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 1;
-    visibility: visible;
-    transition: transform 0.3s ease;
-  }
-
-  .card-menu-image-container img.img-drink,
-  .card-menu-image-container img.img-postre {
-    object-fit: contain !important;
-    padding: 10px;
-  }
-
-  /* 5. TEXTES ET TITRES */
-  .card-title {
-    text-align: center;
-    width: 100%;
-    margin: 15px 0 10px;
-    font-size: 1.4rem;
-    text-transform: uppercase;
-    background: linear-gradient(135deg, #BF953F 0%, #FCF6BA 45%, #B38728 55%, #FBF5B7 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-weight: 900;
-    min-height: 3.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 10px;
-  }
-
-  .card-description {
-    text-align: center;
-    color: #ccc;
-    font-size: 0.85rem;
-    line-height: 1.5;
-    padding: 0 15px;
-    min-height: 3.5rem;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    margin-bottom: 15px;
-  }
-
-  /* 6. BOUTONS ET OPTIONS */
-  .gold-button-premium {
-    font-weight: 950;
-    border-radius: 12px;
-    padding: 15px;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    cursor: pointer;
-    text-transform: uppercase;
-  }
-
-  .options-box {
-    margin: auto 15px 12px;
-    padding: 8px;
-    background: rgba(0,0,0,0.6);
-    border: 1px solid rgba(191, 149, 63, 0.2);
-    border-radius: 12px;
-    min-height: 110px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  /* 7. BADGES */
-  .wobble-badge-container {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    z-index: 50;
-  }
-
-  .wobble-badge {
-    text-transform: uppercase;
-    padding: 6px 12px !important;
-    border-radius: 50px !important;
-    font-size: 0.7rem !important;
-    display: inline-block;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.8);
-    animation: shine-luxury 3s infinite ease-in-out, wobble-badge 3s infinite ease-in-out !important;
-  }
-
-  /* 8. WHATSAPP */
-  .whatsapp-float {
-    position: fixed !important;
-    bottom: 30px !important;
-    right: 25px !important;
-    z-index: 9999 !important;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #25d366;
-    color: white;
-    width: 60px;
-    height: 60px;
-    border-radius: 50px;
-    box-shadow: 2px 5px 15px rgba(0,0,0,0.4);
-  }
-
-  /* 9. ANIMATIONS (GPU OPTIMIZED - No more background-position-x) */
-  @keyframes shine-luxury {
-    0% { transform: translateX(-200%) skewX(-20deg); }
-    100% { transform: translateX(300%) skewX(-20deg); }
-  }
-  @keyframes wobble-badge {
-    0%, 100% { transform: rotate(-5deg); }
-    50% { transform: rotate(5deg); }
-  }
-  @keyframes wobble-inverse {
-    0%, 100% { transform: rotate(-4deg); }
-    50% { transform: rotate(4deg); }
-  }
-  /* 10. RESPONSIVE MOBILE - RÉVISÉ */
-    @media (max-width: 768px) {
-      /* Position du Badge #1 sur mobile */
-      .wobble-badge-container {
-        top: 25px !important;
-        right: 15px !important;
-        left: auto !important;
-        position: absolute !important;
-      }
-
-      /* Réglages Logo */
-      .logo-container-wrapper { top: 150px !important; left: 15px !important; z-index: 999 !important; }
-      .moving-header-logo { width: 80px !important; }
-
-      /* Grille et Cartes */
-      .grid-cards { grid-template-columns: 1fr; gap: 20px; padding: 15px; }
-      .card-menu-image-container { height: 200px !important; }
-      .promo-container { height: 220px !important; width: 95%; }
-
-      /* Textes */
-      .card-title { font-size: 1.2rem; min-height: 3rem; }
-      .card-description { font-size: 0.8rem; min-height: 3rem; -webkit-line-clamp: 2; }
-    }
-    /* 11. BOUTON FLOTTANT SUIVANT */
-  .floating-close {
-    position: fixed !important;
-    bottom: 95px !important;
-    left: 50% !important;
-    transform: translateX(-50%) !important;
-    z-index: 20000 !important; /* On le met AU-DESSUS de WhatsApp (9999) */
-    display: flex !important;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.8) !important;
-    animation: bounce-subtle 2s infinite ease-in-out;
-  }
-
-  @keyframes bounce-subtle {
-    0%, 100% { transform: translateX(-50%) translateY(0); }
-    50% { transform: translateX(-50%) translateY(-5px); }
-  }
+@media (max-width: 768px) {
+.wobble-badge-container { top: 25px !important; right: 15px !important; left: auto !important; }
+.logo-container-wrapper { top: 150px !important; left: 15px !important; z-index: 999 !important; }
+.moving-header-logo { width: 80px !important; }
+}
 `}</style>
 <Helmet>
 {/* 1. DYNAMIQUE : Titre et Description traduits (Indispensable) */}

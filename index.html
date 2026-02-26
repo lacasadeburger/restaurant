@@ -2,6 +2,8 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8" />
+    <link rel="preconnect" href="https://lacasadeburger.es">
+    <link rel="dns-prefetch" href="https://lacasadeburger.es">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
     <meta name="theme-color" content="#000000" />
     <link rel="canonical" href="https://lacasadeburger.es/" />
@@ -28,25 +30,32 @@
             src: url('/fonts/sacramento-v15-latin-regular.woff2') format('woff2');
         }
 
-        /* 2. RESET ET PERFORMANCE CRITIQUE */
+        /* 2. RESET & SQUELETTE */
         * { box-sizing: border-box; margin: 0; padding: 0; }
         html, body {
             background-color: #000; color: #fff;
-            font-family: 'Ysabeau', system-ui, -apple-system, sans-serif;
+            font-family: 'Ysabeau', system-ui, sans-serif;
             line-height: 1.5; overflow-x: hidden; min-height: 100%;
             -webkit-font-smoothing: antialiased;
         }
 
-        /* 3. FIX CLS : Verrouillage strict du texte de secours */
+        /* 3. IMAGE LCP (OPTIMISÉE) */
+        .lcp-background {
+            position: absolute !important; top: 0; left: 0; width: 100%; height: 520px;
+            object-fit: cover; z-index: -1 !important; display: block;
+            pointer-events: none; transform: translateZ(0); contain: paint;
+        }
+
+        /* 4. FALLBACK TEXT (ANTI-FLASH) */
         #fallback-text {
             position: absolute; top: 25px; left: 0; width: 100%;
             text-align: center; z-index: 2; pointer-events: none;
-            contain: layout size;
+            transition: opacity 0.3s ease;
         }
         #fallback-text h1 {
             font-size: clamp(2.2rem, 10vw, 3.8rem); font-weight: 900;
             text-transform: uppercase; text-shadow: 2px 2px 15px rgba(0,0,0,0.9);
-            line-height: 1.1; min-height: 2.2em;
+            line-height: 1.1;
         }
         #fallback-text h2 {
             font-size: 1.5rem; color: #FFD700; font-weight: 700;
@@ -54,29 +63,7 @@
             text-transform: uppercase;
         }
 
-        /* 4. IMAGE LCP : Accélération matérielle */
-        .lcp-background {
-            position: absolute !important; top: 0; left: 0; width: 100%; height: 520px;
-            object-fit: cover; z-index: -1 !important; display: block;
-            pointer-events: none; transform: translateZ(0);
-            will-change: contents;
-        }
-
-        /* 5. STRUCTURE REACT */
-  #root {
-      min-height: 100vh;
-      /* On enlève position: relative et contain: paint */
-      background: transparent !important;
-  }
-
-        /* 6. CORRECTIF LISIBILITÉ SECTIONS */
-        .section-menus {
-            background-color: rgba(0, 0, 0, 0.7) !important;
-            backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
-            border-radius: 30px; padding: 20px 10px; contain: content;
-        }
-
-        #root, body { background-color: transparent !important; }
+        #root { background: transparent !important; min-height: 100vh; }
     </style>
 
     <link rel="icon" type="image/webp" href="/logo.webp" />
@@ -121,7 +108,9 @@
       "aggregateRating": {
         "@type": "AggregateRating",
         "ratingValue": "4.9",
-        "reviewCount": "250"
+        "reviewCount": "250",
+        "bestRating": "5",
+        "worstRating": "1"
       },
       "hasMenu": {
         "@type": "Menu",
@@ -175,18 +164,10 @@
 
     <div id="fallback-text">
         <h1>LAS MEJORES HAMBURGUESAS GOURMET<br>EN TORREVIEJA</h1>
-        <h2>GOURMET BURGER JOINT: GOURMET BURGERS, SMASH BURGERS & PREMIUM BEEF</h2>
-        <div style="margin-top: 20px; height: 160px; width: 100%;"></div>
+        <h2>GOURMET BURGER JOINT: SMASH BURGERS & PREMIUM BEEF</h2>
     </div>
 
     <div id="root"></div>
-
-    <noscript>
-        <div style="text-align:center; padding:50px; background: #000; color: #fff;">
-            <h1>La Casa de Burger Torrevieja</h1>
-            <p>Especialistas en Hamburguesas Gourmet 100% Artesanales.</p>
-        </div>
-    </noscript>
 
     <script>
         (function() {
@@ -194,16 +175,16 @@
             const fallback = document.getElementById('fallback-text');
             const observer = new MutationObserver(() => {
                 if (root && root.hasChildNodes()) {
-                    requestAnimationFrame(() => {
-                        if (fallback) fallback.style.display = 'none';
-                    });
+                    if (fallback) {
+                        fallback.style.opacity = '0';
+                        setTimeout(() => fallback.remove(), 350);
+                    }
                     observer.disconnect();
                 }
             });
             if (root) observer.observe(root, { childList: true });
         })();
     </script>
-
     <script type="module" src="/src/main.jsx" async></script>
 </body>
 </html>
