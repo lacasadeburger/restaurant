@@ -182,7 +182,7 @@ h2, .SectionTitle, section h2, section h3 {
   .card-description { font-size: 0.8rem; min-height: 3rem; -webkit-line-clamp: 2; }
 }
 
-/* --- CONFIGURATION IMAGE DE FOND (Z-INDEX & FUSION NOIRE) --- */
+/* --- CONFIGURATION IMAGE DE FOND (Z-INDEX & AFFICHAGE TOTAL) --- */
 
 html, body {
   background-color: #000 !important;
@@ -202,22 +202,22 @@ html, body {
   top: 0;
   left: 0;
   width: 100% !important;
-  height: 520px !important;
+  height: 520px !important; /* Hauteur fixe du cadre Helmet */
   object-fit: cover !important;
-  z-index: 1 !important;
+  z-index: 1 !important; /* Passe devant le fond noir du body */
   display: block !important;
   pointer-events: none;
 
-  /* L'image devient transparente à sa base pour laisser place au noir du site */
-  mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+  /* AUCUNE TRANSPARENCE : IMAGE 100% VISIBLE */
+  mask-image: none !important;
+  -webkit-mask-image: none !important;
 
-  /* On garde l'éclat original de la photo */
+  /* On garde l'éclat original */
   filter: brightness(1) contrast(1.05) !important;
 }
 
 @media (max-width: 768px) {
   .lcp-background {
-    height: 520px !important; /* Maintient le cadre Helmet sur mobile */
+    height: 520px !important;
   }
 }
