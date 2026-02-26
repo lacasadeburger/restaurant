@@ -38,12 +38,18 @@
             line-height: 1.5; overflow-x: hidden; min-height: 100%;
             -webkit-font-smoothing: antialiased;
         }
-
-        /* 3. IMAGE LCP (OPTIMISÉE) */
+        /* 3. IMAGE LCP (CORRIGÉE) */
         .lcp-background {
-            position: absolute !important; top: 0; left: 0; width: 100%; height: 520px;
-            object-fit: cover; z-index: -1 !important; display: block;
-            pointer-events: none; transform: translateZ(0); contain: paint;
+            position: fixed !important; /* "fixed" pour qu'elle reste en fond même au scroll */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh; /* On utilise toute la hauteur pour être sûr */
+            object-fit: cover;
+            z-index: -1 !important;
+            display: block;
+            pointer-events: none;
+            contain: paint;
         }
 
         /* 4. FALLBACK TEXT (ANTI-FLASH) */

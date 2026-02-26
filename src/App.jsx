@@ -513,7 +513,8 @@ animation: bounce-subtle 2s infinite ease-in-out;
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'flex-start', // Garde le titre aligné avec l'index.html
-  alignItems: 'center'
+  alignItems: 'center',
+  zIndex: 1
 }}>
   {/* 1. OVERLAY DÉGRADÉ */}
   <div style={{
@@ -523,7 +524,8 @@ animation: bounce-subtle 2s infinite ease-in-out;
     width: '100%',
     height: '100%',
     background: 'linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6))',
-    zIndex: 1
+    zIndex: 0,
+    pointerEvents: 'none'
   }}></div>
 
   {/* 2. BADGE DE PRESTIGE */}
