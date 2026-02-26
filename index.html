@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8" />
-    <link rel="preconnect" href="https://lacasadeburger.es">
+    <link rel="preconnect" href="https://lacasadeburger.es" crossorigin>
     <link rel="dns-prefetch" href="https://lacasadeburger.es">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
     <meta name="theme-color" content="#000000" />
@@ -18,7 +18,7 @@
     <meta name="robots" content="index, follow" />
 
     <style>
-        /* 1. POLICES */
+        /* 1. POLICES (Chemins relatifs pour le Sanitizer) */
         @font-face {
             font-family: 'Ysabeau';
             font-style: normal; font-weight: 400; font-display: swap;
@@ -30,11 +30,11 @@
             src: url('/fonts/sacramento-v15-latin-regular.woff2') format('woff2');
         }
 
-        /* 2. RESET & SQUELETTE (TRANSPARENCE FORCÉE) */
+        /* 2. RESET & SQUELETTE (RETOUR AU NOIR LUXE #000) */
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
         html, body {
-            background-color: transparent !important; /* Pour voir l'image derrière */
+            background-color: #000 !important; /* On tue le gris ici */
             color: #fff;
             font-family: 'Ysabeau', system-ui, sans-serif;
             line-height: 1.5;
@@ -44,35 +44,49 @@
         }
 
         #root {
-            background-color: transparent !important; /* Indispensable pour React */
+            background-color: transparent !important;
             min-height: 100vh;
             position: relative;
             z-index: 1;
         }
 
-        /* 3. IMAGE DE FOND (LCP) */
+        /* 3. IMAGE DE FOND (LCP) - CORRECTION REMPLISSAGE TOTAL */
         .lcp-background {
             position: absolute !important;
             top: 0;
             left: 0;
             width: 100%;
-            height: 100vh;
-            object-fit: cover;
-            z-index: -1 !important; /* Derrière tout le monde */
+            height: 75vh; /* Elle occupe 75% du haut de l'écran */
+            object-fit: cover; /* Remplit tout le cadre sans déformer */
+            object-position: center 25%;
+            z-index: 0 !important;
             display: block;
             pointer-events: none;
             contain: paint;
+
+            /* Transition vers le noir pur (Fini le gris !) */
+            mask-image: linear-gradient(to bottom, black 75%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, black 75%, transparent 100%);
+
+            /* Boost de contraste pour le look premium */
+            filter: brightness(0.85) contrast(1.1);
         }
 
         /* 4. FALLBACK TEXT (ANTI-FLASH) */
         #fallback-text {
-            position: absolute; top: 25px; left: 0; width: 100%;
-            text-align: center; z-index: 2; pointer-events: none;
+            position: absolute;
+            top: 130px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            z-index: 2;
+            pointer-events: none;
             transition: opacity 0.3s ease;
         }
         #fallback-text h1 {
             font-size: clamp(2.2rem, 10vw, 3.8rem); font-weight: 900;
-            text-transform: uppercase; text-shadow: 2px 2px 15px rgba(0,0,0,0.9);
+            text-transform: uppercase;
+            text-shadow: 2px 2px 25px rgba(0,0,0,1);
             line-height: 1.1;
         }
         #fallback-text h2 {

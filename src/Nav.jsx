@@ -48,11 +48,16 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang, setLa
 
   return (
     <>
+      {/* BARRE DE NAVIGATION PRINCIPALE (REMISE EN NOIR LUXUEUX) */}
       <nav style={{
         position: 'fixed', top: 0, left: 0, width: '100%', height: '80px',
-        backgroundColor: 'rgba(0, 0, 0, 0.98)', backdropFilter: 'blur(15px)', WebkitBackdropFilter: 'blur(15px)',
+        backgroundColor: 'rgba(0, 0, 0, 0.98)',
+        backdropFilter: 'blur(15px)',
+        WebkitBackdropFilter: 'blur(15px)',
         display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-        padding: '0 12px', zIndex: 10000, borderBottom: `3px solid ${VIBRANT_RED}`, boxSizing: 'border-box'
+        padding: '0 12px', zIndex: 10000,
+        borderBottom: `3px solid ${VIBRANT_RED}`,
+        boxSizing: 'border-box'
       }}>
 
         <div style={{ width: '35%', display: 'flex', alignItems: 'center' }}>
@@ -101,11 +106,12 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang, setLa
         </div>
       </nav>
 
-      {/* SÉLECTEUR DE LANGUES */}
+      {/* SÉLECTEUR DE LANGUES (SOUS LA NAV) */}
       <div style={{
         marginTop: '80px',
         display: 'flex', justifyContent: 'center', gap: '6px', padding: '12px 8px',
-        flexWrap: 'wrap', backgroundColor: 'transparent',
+        flexWrap: 'wrap',
+        backgroundColor: 'rgba(0, 0, 0, 0.4)', /* Un peu plus sombre pour la lisibilité */
         position: 'relative', zIndex: 9999, borderBottom: '1px solid #333',
         minHeight: '44px',
         boxSizing: 'border-box'
@@ -135,29 +141,29 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang, setLa
               boxSizing: 'border-box'
             }}
           >
-          <img
-  src={`/flags/${l.flag}.webp`}
-  width="26"
-  height="18"
-  alt={l.label}
-  decoding="async"
-  loading="eager"
-  style={{
-    borderRadius: '2px',
-    display: 'block',
-    pointerEvents: 'none',
-    width: '26px',
-    height: '18px',
-    objectFit: 'cover'
-  }}
-/>
+            <img
+              src={`/flags/${l.flag}.webp`}
+              width="26"
+              height="18"
+              alt={l.label}
+              decoding="async"
+              loading="eager"
+              style={{
+                borderRadius: '2px',
+                display: 'block',
+                pointerEvents: 'none',
+                width: '26px',
+                height: '18px',
+                objectFit: 'cover'
+              }}
+            />
           </button>
         ))}
       </div>
 
       {/* BARRE DE PROMO */}
       <div style={{
-        background: 'rgba(0, 0, 0, 0.4)',
+        background: 'rgba(0, 0, 0, 0.7)', /* Plus sombre pour ressortir sur l'image */
         color: '#fff', textAlign: 'center', padding: '10px 8px',
         borderBottom: `2px solid ${GOLD_BRIGHT}`,
         fontSize: '0.82rem', fontWeight: '900',
