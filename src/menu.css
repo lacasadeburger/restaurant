@@ -1,4 +1,4 @@
-/* menu.css - Version Finale Optimisée LCP/CLS & Full Display */
+/* menu.css - Version Finale Optimisée - Priorité Bas d'image */
 
 h2, .SectionTitle, section h2, section h3 {
   text-align: center !important;
@@ -184,14 +184,13 @@ h2, .SectionTitle, section h2, section h3 {
   .card-description { font-size: 0.8rem; min-height: 3rem; -webkit-line-clamp: 2; }
 }
 
-/* --- CONFIGURATION IMAGE DE FOND (CORRECTION FINALE ULTIMATE) --- */
+/* --- CONFIGURATION IMAGE DE FOND (CADRE 800PX & FOCUS BAS) --- */
 
 html, body {
   background-color: #000 !important;
   margin: 0;
   padding: 0;
   position: relative;
-  min-height: 100%;
 }
 
 #root {
@@ -205,29 +204,30 @@ html, body {
   top: 0;
   left: 0;
   width: 100% !important;
-  height: 520px !important;
+  /* On définit la hauteur demandée de 800px */
+  height: 800px !important;
+
   object-fit: cover !important;
-  object-position: center 10% !important; /* Pour ne pas couper le haut par défaut */
+
+  /* L'ASTUCE : 'bottom' force le navigateur à montrer le bas de l'image.
+     Si ton burger est en bas de ton fichier carré, il sera parfait. */
+  object-position: center bottom !important;
+
   z-index: 1 !important;
   display: block !important;
   pointer-events: none;
-  mask-image: none !important;
-  -webkit-mask-image: none !important;
+
+  /* On garde le masque pour une transition douce vers le noir du menu */
+  mask-image: linear-gradient(to bottom, black 85%, transparent 100%) !important;
+  -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%) !important;
+
   filter: brightness(0.9) contrast(1.1) !important;
 }
 
-/* --- AJUSTEMENT ORDINATEUR (DESKTOP) --- */
-@media (min-width: 1024px) {
-  .lcp-background {
-    height: 800px !important; /* Plus de hauteur pour voir l'image entière */
-    object-position: center 0% !important; /* Colle l'image tout en haut du fichier */
-  }
-}
-
-/* --- AJUSTEMENT MOBILE (MOBILE) --- */
+/* Sur mobile, on garde les 800px ou on adapte si besoin */
 @media (max-width: 768px) {
   .lcp-background {
-    height: 600px !important;
-    object-position: center 20% !important; /* Ajustement burger centré mobile */
+    height: 800px !important;
+    object-position: center bottom !important;
   }
 }
