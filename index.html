@@ -18,85 +18,92 @@
     <meta name="robots" content="index, follow" />
 
     <style>
-        /* 1. POLICES (Chemins relatifs pour le Sanitizer) */
-        @font-face {
-            font-family: 'Ysabeau';
-            font-style: normal; font-weight: 400; font-display: swap;
-            src: url('/fonts/ysabeau-v5-latin-regular.woff2') format('woff2');
-        }
-        @font-face {
-            font-family: 'Sacramento';
-            font-style: normal; font-weight: 400; font-display: swap;
-            src: url('/fonts/sacramento-v15-latin-regular.woff2') format('woff2');
-        }
+          /* 1. POLICES */
+          @font-face {
+              font-family: 'Ysabeau';
+              font-style: normal; font-weight: 400; font-display: swap;
+              src: url('/fonts/ysabeau-v5-latin-regular.woff2') format('woff2');
+          }
+          @font-face {
+              font-family: 'Sacramento';
+              font-style: normal; font-weight: 400; font-display: swap;
+              src: url('/fonts/sacramento-v15-latin-regular.woff2') format('woff2');
+          }
 
-        /* 2. RESET & SQUELETTE (RETOUR AU NOIR LUXE #000) */
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+          /* 2. RESET & SQUELETTE */
+          * { box-sizing: border-box; margin: 0; padding: 0; }
 
-        html, body {
-                background-color: #000 !important;
-                color: #fff;
-                font-family: 'Ysabeau', system-ui, sans-serif;
-                line-height: 1.5;
-                overflow-x: hidden;
-                min-height: 100%;
-                -webkit-font-smoothing: antialiased;
-                /* AJOUTE CETTE LIGNE : C'est la clé pour que l'image absolue apparaisse */
-                position: relative;
-            }
+          html, body {
+              background-color: #000 !important;
+              color: #fff;
+              font-family: 'Ysabeau', system-ui, sans-serif;
+              line-height: 1.5;
+              overflow-x: hidden;
+              min-height: 100%;
+              -webkit-font-smoothing: antialiased;
+              position: relative;
+          }
 
-        #root {
-            background-color: transparent !important;
-            min-height: 100vh;
-            position: relative;
-            z-index: 1;
-        }
+          #root {
+              background-color: transparent !important;
+              min-height: 100vh;
+              position: relative;
+              z-index: 2; /* On monte le z-index pour être au-dessus de l'image */
+          }
 
-        /* 3. IMAGE DE FOND (LCP) - CORRECTION REMPLISSAGE TOTAL */
-        .lcp-background {
-            position: absolute !important;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 75vh; /* Elle occupe 75% du haut de l'écran */
-            object-fit: cover; /* Remplit tout le cadre sans déformer */
-            object-position: center 25%;
-            z-index: 1 !important;
-            display: block;
-            pointer-events: none;
-            contain: paint;
+          /* 3. IMAGE DE FOND (LCP) - OPTIMISÉE 100/100 */
+          .lcp-background {
+              position: absolute !important;
+              top: 80px !important; /* Commence sous le NAV */
+              left: 0 !important;
+              width: 100% !important;
+              height: 500px !important; /* Taille mobile idéale pour éviter le zoom */
+              object-fit: cover !important;
+              object-position: center bottom !important; /* Priorité au bas du burger */
+              z-index: 1 !important;
+              display: block !important;
+              pointer-events: none;
+              contain: paint;
 
-            /* Transition vers le noir pur (Fini le gris !) */
-            mask-image: linear-gradient(to bottom, black 75%, transparent 100%);
-            -webkit-mask-image: linear-gradient(to bottom, black 75%, transparent 100%);
+              /* Transition vers le noir pur */
+              mask-image: linear-gradient(to bottom, black 75%, transparent 100%);
+              -webkit-mask-image: linear-gradient(to bottom, black 75%, transparent 100%);
 
-            /* Boost de contraste pour le look premium */
-            filter: brightness(0.85) contrast(1.1);
-        }
+              /* Look premium */
+              filter: brightness(0.85) contrast(1.1);
+          }
 
-        /* 4. FALLBACK TEXT (ANTI-FLASH) */
-        #fallback-text {
-            position: absolute;
-            top: 130px;
-            left: 0;
-            width: 100%;
-            text-align: center;
-            z-index: 2;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-        }
-        #fallback-text h1 {
-            font-size: clamp(2.2rem, 10vw, 3.8rem); font-weight: 900;
-            text-transform: uppercase;
-            text-shadow: 2px 2px 25px rgba(0,0,0,1);
-            line-height: 1.1;
-        }
-        #fallback-text h2 {
-            font-size: 1.5rem; color: #FFD700; font-weight: 700;
-            text-shadow: 1px 1px 10px rgba(0,0,0,1); margin-top: 10px;
-            text-transform: uppercase;
-        }
-    </style>
+          /* Ajustement PC : On augmente la hauteur pour le grand écran */
+          @media (min-width: 1024px) {
+              .lcp-background {
+                  height: 800px !important;
+                  object-position: center bottom !important;
+              }
+          }
+
+          /* 4. FALLBACK TEXT (ANTI-FLASH) */
+          #fallback-text {
+              position: absolute;
+              top: 130px;
+              left: 0;
+              width: 100%;
+              text-align: center;
+              z-index: 3;
+              pointer-events: none;
+              transition: opacity 0.3s ease;
+          }
+          #fallback-text h1 {
+              font-size: clamp(2.2rem, 10vw, 3.8rem); font-weight: 900;
+              text-transform: uppercase;
+              text-shadow: 2px 2px 25px rgba(0,0,0,1);
+              line-height: 1.1;
+          }
+          #fallback-text h2 {
+              font-size: 1.5rem; color: #FFD700; font-weight: 700;
+              text-shadow: 1px 1px 10px rgba(0,0,0,1); margin-top: 10px;
+              text-transform: uppercase;
+          }
+      </style>
 
     <link rel="icon" type="image/webp" href="/logo.webp" />
 

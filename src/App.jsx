@@ -512,9 +512,9 @@ animation: bounce-subtle 2s infinite ease-in-out;
   minHeight: '520px',
   display: 'flex',
   flexDirection: 'column',
-  justifyContent: 'flex-start', // Garde le titre aligné avec l'index.html
+  justifyContent: 'flex-start', // ✅ Corrigé : camelCase sans tiret
   alignItems: 'center',
-  zIndex: 1
+  zIndex: 2 // ✅ Mis à 2 pour être au-dessus de l'image de fond
 }}>
   {/* 1. OVERLAY DÉGRADÉ */}
   <div style={{

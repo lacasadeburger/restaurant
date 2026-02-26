@@ -1,5 +1,6 @@
 /* menu.css - Version Finale Optimisée - Priorité Bas d'image */
 
+/* --- TYPOGRAPHIE & TITRES --- */
 h2, .SectionTitle, section h2, section h3 {
   text-align: center !important;
   width: 100%;
@@ -10,6 +11,7 @@ h2, .SectionTitle, section h2, section h3 {
   text-transform: uppercase;
 }
 
+/* --- GRILLE DE CARTES --- */
 .grid-cards {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -32,6 +34,7 @@ h2, .SectionTitle, section h2, section h3 {
   position: relative;
 }
 
+/* --- SECTIONS PROMO --- */
 .promo-container {
   position: relative;
   width: 100%;
@@ -77,6 +80,7 @@ h2, .SectionTitle, section h2, section h3 {
   overflow: hidden;
 }
 
+/* --- IMAGES DES PLATS --- */
 .card-menu-image-container {
   width: 100%;
   height: 230px;
@@ -104,6 +108,7 @@ h2, .SectionTitle, section h2, section h3 {
   padding: 10px;
 }
 
+/* --- TEXTES DES CARTES --- */
 .card-title {
   text-align: center;
   width: 100%;
@@ -135,6 +140,7 @@ h2, .SectionTitle, section h2, section h3 {
   margin-bottom: 15px;
 }
 
+/* --- BOUTONS PREMIUM --- */
 .gold-button-premium {
   background: linear-gradient(135deg, #BF953F, #FCF6BA, #D4AF37, #FBF5B7, #BF953F) !important;
   color: #000 !important;
@@ -176,6 +182,7 @@ h2, .SectionTitle, section h2, section h3 {
   100% { transform: translateX(300%) skewX(-20deg); }
 }
 
+/* --- RESPONSIVE GENERAL --- */
 @media (max-width: 768px) {
   .grid-cards { grid-template-columns: 1fr; gap: 20px; padding: 15px; }
   .card-menu-image-container { height: 200px !important; }
@@ -184,7 +191,7 @@ h2, .SectionTitle, section h2, section h3 {
   .card-description { font-size: 0.8rem; min-height: 3rem; -webkit-line-clamp: 2; }
 }
 
-/* --- CONFIGURATION IMAGE DE FOND (CADRE 800PX & FOCUS BAS) --- */
+/* --- CONFIGURATION IMAGE DE FOND (LCP) --- */
 
 html, body {
   background-color: #000 !important;
@@ -196,54 +203,39 @@ html, body {
 #root {
   background-color: transparent !important;
   position: relative;
-  z-index: 2;
+  z-index: 2; /* Pour rester au dessus de l'image de fond */
 }
-
-/* --- CONFIGURATION IMAGE DE FOND (SOUS LE NAV & LARGEUR TOTALE) --- */
 
 .lcp-background {
   position: absolute !important;
-  /* 1. DECALAGE : On descend l'image pour qu'elle commence sous la barre de navigation */
-  /* Ajuste '80px' selon la hauteur réelle de ton Nav */
-  top: 80px !important;
-
+  top: 80px !important; /* Calage sous le Nav */
   left: 0;
   width: 100% !important;
-
-  /* 2. HAUTEUR DU CADRE : On garde une belle zone d'affichage */
-  height: 700px !important;
-
-  /* 3. AFFICHAGE : 'cover' pour toute la largeur, 'bottom' pour voir le burger */
+  height: 500px !important; /* Hauteur mobile par défaut */
   object-fit: cover !important;
-  object-position: center bottom !important;
-
+  object-position: center bottom !important; /* Priorité burger */
   z-index: 1 !important;
   display: block !important;
   pointer-events: none;
 
-  /* 4. FINITION : Fondre l'image dans le noir en bas */
+  /* Dégradé doux vers le noir */
   mask-image: linear-gradient(to bottom, black 75%, transparent 100%) !important;
   -webkit-mask-image: linear-gradient(to bottom, black 75%, transparent 100%) !important;
-
   filter: brightness(0.9) contrast(1.1) !important;
 }
 
-/* --- AJUSTEMENT PC (DESKTOP) --- */
+/* Ajustement PC */
 @media (min-width: 1024px) {
   .lcp-background {
     height: 800px !important;
-    /* Sur PC, on remonte un peu le focus pour ne pas trop couper le haut */
-    object-position: center 85% !important;
+    object-position: center bottom !important;
   }
 }
 
-/* --- AJUSTEMENT MOBILE (ANTI-ZOOM) --- */
+/* Ajustement spécifique Tablettes/Mobile */
 @media (max-width: 768px) {
   .lcp-background {
-    /* On descend le top pour le mobile car le Nav est souvent plus petit ou différent */
-    top: 70px !important;
+    top: 70px !important; /* On ajuste le décalage si le nav mobile est plus petit */
     height: 500px !important;
-    object-fit: cover !important;
-    object-position: center bottom !important;
   }
 }
