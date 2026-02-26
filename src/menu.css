@@ -60,21 +60,20 @@ h2, .SectionTitle, section h2, section h3 {
   z-index: 1;
 }
 
-/* --- BOUTONS CATÉGORIES (CORRECTION OPACITÉ) --- */
 .category-btn-overlay {
   background: linear-gradient(135deg, #BF953F, #FCF6BA, #D4AF37, #FBF5B7, #BF953F) !important;
-  opacity: 1 !important; /* Force l'opacité totale */
+  opacity: 1 !important;
   font-weight: 950;
   padding: 12px 35px;
   border-radius: 50px;
   text-transform: uppercase;
   font-size: 1.1rem;
   margin-bottom: 25px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.8); /* Ombre plus forte pour le relief */
+  box-shadow: 0 10px 25px rgba(0,0,0,0.8);
   border: 2px solid #000;
   color: #000 !important;
   position: relative;
-  z-index: 5 !important; /* S'assure de passer devant l'image promo-img */
+  z-index: 5 !important;
   overflow: hidden;
 }
 
@@ -185,7 +184,7 @@ h2, .SectionTitle, section h2, section h3 {
   .card-description { font-size: 0.8rem; min-height: 3rem; -webkit-line-clamp: 2; }
 }
 
-/* --- CONFIGURATION IMAGE DE FOND LCP (100% VISIBLE) --- */
+/* --- CONFIGURATION IMAGE DE FOND --- */
 
 html, body {
   background-color: #000 !important;
@@ -205,18 +204,20 @@ html, body {
   top: 0;
   left: 0;
   width: 100% !important;
-  height: 520px !important;
+  /* On ajuste la hauteur pour qu'elle puisse montrer plus de ton image 1024x1024 */
+  height: 600px !important;
   object-fit: cover !important;
+  /* On positionne à 20% du haut pour éviter de couper le haut du burger */
+  object-position: center 20% !important;
   z-index: 1 !important;
   display: block !important;
   pointer-events: none;
-  mask-image: none !important;
-  -webkit-mask-image: none !important;
-  filter: brightness(1) contrast(1.05) !important;
+  filter: brightness(0.9) contrast(1.1) !important;
 }
 
 @media (max-width: 768px) {
   .lcp-background {
     height: 520px !important;
+    object-position: center !important;
   }
 }
