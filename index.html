@@ -34,14 +34,16 @@
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
         html, body {
-            background-color: #000 !important; /* On tue le gris ici */
-            color: #fff;
-            font-family: 'Ysabeau', system-ui, sans-serif;
-            line-height: 1.5;
-            overflow-x: hidden;
-            min-height: 100%;
-            -webkit-font-smoothing: antialiased;
-        }
+                background-color: #000 !important;
+                color: #fff;
+                font-family: 'Ysabeau', system-ui, sans-serif;
+                line-height: 1.5;
+                overflow-x: hidden;
+                min-height: 100%;
+                -webkit-font-smoothing: antialiased;
+                /* AJOUTE CETTE LIGNE : C'est la clé pour que l'image absolue apparaisse */
+                position: relative;
+            }
 
         #root {
             background-color: transparent !important;
