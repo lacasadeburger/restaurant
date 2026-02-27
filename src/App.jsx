@@ -498,7 +498,16 @@ animation: bounce-subtle 2s infinite ease-in-out;
   setLang={setLang}
   logo={logo}
 />
-
+{<div style={{
+  position: 'absolute',
+  top: '450px',
+  left: 0,
+  width: '100%',
+  height: '150px',
+  background: 'linear-gradient(to bottom, transparent, #000)',
+  zIndex: 1,
+  pointerEvents: 'none'
+}}></div>}
 <header style={{
   padding: '85px 20px 80px',
   textAlign: 'center',
