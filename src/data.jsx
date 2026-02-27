@@ -24,7 +24,7 @@ import francesa1 from "./assets/francesa1.png";
 import combo from "./assets/combo.png";
 import nuggets from "./assets/nuggets.png";
 import croquetas from "./assets/croquetas.png";
-import combo3 from "./assets/combo3.png";
+import combo3 from "./assets/combocroquetas.png";
 import mexicana from "./assets/mexicana.png";
 import smash from "./assets/smash.png";
 import cheddarbacon from "./assets/cheddarbacon.webp";
