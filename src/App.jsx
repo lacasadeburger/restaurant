@@ -12,6 +12,7 @@ import logo from "./assets/logo.webp";
 import insta from "./assets/instagram.png";
 import whatsappIcon from "/wha2026.webp";
 
+
 const T = {
   es: {
     heroTitle: "La Casa de Burger",
