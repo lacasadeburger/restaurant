@@ -1,11 +1,10 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect, useMemo, Suspense, lazy } from "react";
 import Nav from "./Nav";
-import Order from "./Order";
-import CardMenu from "./CardMenu";
 import data from "./data";
-import { Helmet } from "react-helmet"
+import { Helmet } from "react-helmet";
+const Order = lazy(() => import("./Order"));
+const CardMenu = lazy(() => import("./CardMenu"));
 
-// --- ASSETS (Vérifiés) ---
 import fb from "./assets/FB.png";
 import Postre from "./assets/postre.webp";
 import Burger from "./assets/burger.webp";
@@ -15,7 +14,6 @@ import googleIcon from "./assets/google.png";
 import logo from "./assets/logo.webp";
 import insta from "./assets/instagram.png";
 import whatsappIcon from "/wha2026.webp";
-
 
 const T = {
   es: {
@@ -674,92 +672,110 @@ animation: bounce-subtle 2s infinite ease-in-out;
   </div>
 </header>
 <main className="menu-page-container">
+  {/* Le Suspense permet d'afficher le Header immédiatement sans attendre le code du menu */}
+  <Suspense fallback={<div style={{ textAlign: 'center', padding: '50px', color: '#BF953F', fontWeight: 'bold' }}>Cargando menú...</div>}>
 
-{/* SECTION BURGERS */}
-<section id="sec-burgers" style={{ marginTop: '5px' }}>
-  <SectionTitle>{T[lang]?.catBurgers || T.es.catBurgers}</SectionTitle>
-  {showCardBurger ? (
-    <div className="grid-cards">
-      {burgers.map(item => (
-        <CardMenu key={item.id} {...item} addToCart={addToCart} lang={lang} hasExtras={!noExtrasIds.includes(item.id)} />
-      ))}
-    </div>
-  ) : (
-    <div className="promo-container" onClick={() => {
-      setShowCardBurger(true);
-      requestAnimationFrame(() => {
-        const el = document.getElementById("sec-burgers");
-        if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.pageYOffset - 100, behavior: "smooth" });
-      });
-    }}>
-      <img src={Burger} className="promo-img" alt="Mejor Hamburguesa Gourmet" fetchpriority="high" width="1024" height="573" />
-      {/* CHANGEMENT ICI : classe category-btn-overlay */}
-      <span className="category-btn-overlay">{T[lang]?.catBurgers || T.es.catBurgers}</span>
-    </div>
-  )}
-</section>
+    {/* SECTION BURGERS */}
+    <section id="sec-burgers" style={{ marginTop: '5px' }}>
+      <SectionTitle>{T[lang]?.catBurgers || T.es.catBurgers}</SectionTitle>
+      {showCardBurger ? (
+        <div className="grid-cards">
+          {burgers.map(item => (
+            <CardMenu key={item.id} {...item} addToCart={addToCart} lang={lang} hasExtras={!noExtrasIds.includes(item.id)} />
+          ))}
+        </div>
+      ) : (
+        <div className="promo-container" onClick={() => {
+          setShowCardBurger(true);
+          requestAnimationFrame(() => {
+            const el = document.getElementById("sec-burgers");
+            if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.pageYOffset - 100, behavior: "smooth" });
+          });
+        }}>
+          <img src={Burger} className="promo-img" alt="Mejor Hamburguesa Gourmet" fetchpriority="high" width="1024" height="573" />
+          <span className="category-btn-overlay">{T[lang]?.catBurgers || T.es.catBurgers}</span>
+        </div>
+      )}
+    </section>
 
-{/* SECTION BEBIDAS */}
-<section id="sec-bebidas">
-  <SectionTitle>{T[lang]?.catDrinks || T.es.catDrinks}</SectionTitle>
-  {showCardDrink ? (
-    <div className="grid-cards">
-      {drinks.map(item => <CardMenu key={item.id} {...item} isDrinkCard={true} addToCart={addToCart} lang={lang} />)}
-    </div>
-  ) : (
-    <div className="promo-container" onClick={() => {
-      setShowCardDrink(true);
-      requestAnimationFrame(() => {
-        const el = document.getElementById("sec-bebidas");
-        if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.pageYOffset - 100, behavior: "smooth" });
-      });
-    }}>
-      <img src={Drink} className="promo-img" alt="Bebidas" loading="lazy" width="600" height="336" />
-      {/* CHANGEMENT ICI : classe category-btn-overlay */}
-      <span className="category-btn-overlay">{T[lang]?.catDrinks || T.es.catDrinks}</span>
-    </div>
-  )}
-</section>
+    {/* SECTION BEBIDAS */}
+    <section id="sec-bebidas">
+      <SectionTitle>{T[lang]?.catDrinks || T.es.catDrinks}</SectionTitle>
+      {showCardDrink ? (
+        <div className="grid-cards">
+          {drinks.map(item => <CardMenu key={item.id} {...item} isDrinkCard={true} addToCart={addToCart} lang={lang} />)}
+        </div>
+      ) : (
+        <div className="promo-container" onClick={() => {
+          setShowCardDrink(true);
+          requestAnimationFrame(() => {
+            const el = document.getElementById("sec-bebidas");
+            if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.pageYOffset - 100, behavior: "smooth" });
+          });
+        }}>
+          <img src={Drink} className="promo-img" alt="Bebidas" loading="lazy" width="600" height="336" />
+          <span className="category-btn-overlay">{T[lang]?.catDrinks || T.es.catDrinks}</span>
+        </div>
+      )}
+    </section>
 
-{/* SECTION POSTRES */}
-<section id="sec-postres">
-  <SectionTitle>{T[lang]?.catDesserts || T.es.catDesserts}</SectionTitle>
-  {showCardPostres ? (
-    <div className="grid-cards">
-      {postres.map(item => <CardMenu key={item.id} {...item} isPostreCard={true} addToCart={addToCart} lang={lang} />)}
-    </div>
-  ) : (
-    <div className="promo-container" onClick={() => {
-      setShowCardPostres(true);
-      requestAnimationFrame(() => {
-        const el = document.getElementById("sec-postres");
-        if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.pageYOffset - 100, behavior: "smooth" });
-      });
-    }}>
-      <img src={Postre} className="promo-img" alt="Desserts" loading="lazy" width="600" height="336" />
-      {/* CHANGEMENT ICI : classe category-btn-overlay */}
-      <span className="category-btn-overlay">{T[lang]?.catDesserts || T.es.catDesserts}</span>
-    </div>
-  )}
-</section>
+    {/* SECTION POSTRES */}
+    <section id="sec-postres">
+      <SectionTitle>{T[lang]?.catDesserts || T.es.catDesserts}</SectionTitle>
+      {showCardPostres ? (
+        <div className="grid-cards">
+          {postres.map(item => <CardMenu key={item.id} {...item} isPostreCard={true} addToCart={addToCart} lang={lang} />)}
+        </div>
+      ) : (
+        <div className="promo-container" onClick={() => {
+          setShowCardPostres(true);
+          requestAnimationFrame(() => {
+            const el = document.getElementById("sec-postres");
+            if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.pageYOffset - 100, behavior: "smooth" });
+          });
+        }}>
+          <img src={Postre} className="promo-img" alt="Desserts" loading="lazy" width="600" height="336" />
+          <span className="category-btn-overlay">{T[lang]?.catDesserts || T.es.catDesserts}</span>
+        </div>
+      )}
+    </section>
 
-  {/* SECTION COMMANDE */}
-  <section id="order" style={{ paddingBottom: '60px' }}>
-    <SectionTitle>{lang === 'es' ? 'Tu Pedido' : lang === 'fr' ? 'Votre Commande' : 'Your Order'}</SectionTitle>
-    <Order cart={cart} removeFromCart={removeFromCart} lang={lang} />
-  </section>
+    {/* SECTION COMMANDE (Lazy Loaded via Suspense) */}
+    <section id="order" style={{ paddingBottom: '60px' }}>
+      <SectionTitle>{lang === 'es' ? 'Tu Pedido' : lang === 'fr' ? 'Votre Commande' : 'Your Order'}</SectionTitle>
+      <Order cart={cart} removeFromCart={removeFromCart} lang={lang} />
+    </section>
 
-  {/* SECTION SEO DYNAMIQUE */}
-  <section style={{ padding: '40px 20px', backgroundColor: 'rgba(255,255,255,0.02)', borderRadius: '20px', marginBottom: '40px', textAlign: lang === 'ar' ? 'right' : 'left', border: '1px solid #222' }}>
-    <div style={{ maxWidth: '900px', margin: '0 auto' }}>
-      <h2 style={{ color: GOLD_BRIGHT, fontSize: '1.6rem', marginBottom: '15px', textAlign: 'center' }}>
-        {T[lang]?.seoTitle || T.es.seoTitle}
-      </h2>
-      <p style={{ lineHeight: '1.8', color: '#ccc', fontSize: '1rem' }}>
-        {T[lang]?.seoContent || T.es.seoContent}
-      </p>
-    </div>
-  </section>
+    {/* --- BOUTON DE NAVIGATION RAPIDE (Flottant quand le menu est ouvert) --- */}
+    {(showCardBurger || showCardDrink || showCardPostres) && (
+      <button
+        className="floating-close"
+        onClick={() => {
+            if (showCardBurger) { setShowCardBurger(false); setShowCardDrink(true); document.getElementById('sec-bebidas')?.scrollIntoView({behavior:'smooth'}); }
+            else if (showCardDrink) { setShowCardDrink(false); setShowCardPostres(true); document.getElementById('sec-postres')?.scrollIntoView({behavior:'smooth'}); }
+            else { setShowCardPostres(false); document.getElementById('order')?.scrollIntoView({behavior:'smooth'}); }
+        }}
+        style={{ position: 'fixed', bottom: '95px', left: '50%', transform: 'translateX(-50%)', backgroundColor: '#ff4757', color: '#fff', width: '280px', height: '60px', borderRadius: '12px', fontWeight: '950', zIndex: 10000, border: '3px solid #000', cursor: 'pointer' }}
+      >
+        <span>
+          {showCardBurger && (lang === 'fr' ? 'SUIVANT : BOISSONS ➔' : 'SIGUIENTE: BEBIDAS ➔')}
+          {showCardDrink && (lang === 'fr' ? 'SUIVANT : DESSERTS ➔' : 'SIGUIENTE: POSTRES ➔')}
+          {showCardPostres && (lang === 'fr' ? 'VOIR MON PANIER ➔' : 'VER MI PEDIDO ➔')}
+        </span>
+      </button>
+    )}
+
+    {/* SECTION SEO DYNAMIQUE */}
+    <section style={{ padding: '40px 20px', backgroundColor: 'rgba(255,255,255,0.02)', borderRadius: '20px', marginBottom: '40px', textAlign: lang === 'ar' ? 'right' : 'left', border: '1px solid #222' }}>
+      <div style={{ maxWidth: '900px', margin: '0 auto' }}>
+        <h2 style={{ color: '#BF953F', fontSize: '1.6rem', marginBottom: '15px', textAlign: 'center' }}>
+          {T[lang]?.seoTitle || T.es.seoTitle}
+        </h2>
+        <p style={{ lineHeight: '1.8', color: '#ccc', fontSize: '1rem' }}>
+          {T[lang]?.seoContent || T.es.seoContent}
+        </p>
+      </div>
+    </section>
 
   {/* REVIEWS */}
   <section style={{ padding: '20px 0 80px' }}>
@@ -875,6 +891,7 @@ animation: bounce-subtle 2s infinite ease-in-out;
             </a>
           </div>
         </div>
+        </Suspense>
       </main>
         {/* --- BLOC SEO MULTILINGUE (LES 11 LANGUES - VERSION COMPLÈTE) --- */}
         <div style={{ maxWidth: '1100px', margin: '0 auto 100px', padding: '0 20px' }}>
