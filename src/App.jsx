@@ -4,14 +4,12 @@ import data from "./data";
 import { Helmet } from "react-helmet";
 const Order = lazy(() => import("./Order"));
 const CardMenu = lazy(() => import("./CardMenu"));
-
-import fb from "./assets/FB.png";
-import tripadvisor from "./assets/tripadvisor.webp";
-import googleIcon from "./assets/google.webp";
-import logo from "./assets/logo.webp";
-import insta from "./assets/instagram.png";
-import whatsappIcon from "/wha2026.webp";
-
+const fb = "/FB.png";
+const tripadvisor = "/tripadvisor.webp";
+const googleIcon = "/google.webp";
+const logo = "/logo.webp";
+const instagramIcon = "/instagram.png";
+const whatsappIcon = "/wha2026.webp";
 
 const T = {
   es: {
@@ -219,8 +217,6 @@ const T = {
     seoContent: "مطعم البرجر الغوارميه الأول في وسط توريفايجا. وصفات سيجنتشر أصلية، سماش برجر، ولحم حلال ممتاز بأفضل الأسعار بالقرب من بلايا ديل كورا."
   }
 };
-
-const instagramIcon = "/instagram.png";
 
 const ALL_REVIEWS = [
   { es: "¡La mejor Smash de Torrevieja! Carne de calidad y entrega rápida.", en: "Best Smash in Torrevieja! Quality meat and fast delivery.", author: "Carlos R." },
