@@ -1,36 +1,130 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
+<head>
     <meta charset="UTF-8" />
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://flagcdn.com">
-    <link rel="preconnect" href="https://cdn-icons-png.flaticon.com" crossorigin>
-
-    <link rel="icon" type="image/jpeg" href="/assets/logo-a775eaad.jpg" />
-    <link rel="apple-touch-icon" href="/assets/logo-a775eaad.jpg" />
-    <link rel="manifest" href="/manifest.json" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
-    <meta name="theme-color" content="#ff4757" />
-
-    <link rel="preload" as="image" href="/assets/burger-signature-torrevieja-4738656c.webp" fetchpriority="high">
-
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Courgette&display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Courgette&display=swap" media="print" onload="this.media='all'">
-    <noscript>
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Courgette&display=swap">
-    </noscript>
-
-    <meta property="og:type" content="restaurant.restaurant" />
-    <meta property="og:title" content="La Casa de Burger | The Best Burger in Torrevieja" />
-    <meta property="og:image" content="https://lacasadeburger.es/logo-social.jpg" />
-    <script type="module" crossorigin src="/assets/index-22c96106.js"></script>
-    <link rel="stylesheet" href="/assets/index-3cad96be.css">
-  </head>
-  <body>
+    <meta name="theme-color" content="#000000" />
+    <link rel="canonical" href="https://lacasadeburger.es/" />
+    <link rel="preload" as="image" href="/burger-signature-torrevieja.webp"
+        imagesrcset="/burger-signature-torrevieja.webp 800w, /burger-signature-torrevieja.webp 1024w"
+        imagesizes="(max-width: 768px) 800px, 1024px" fetchpriority="high">
+  <link rel="preload" href="/fonts/ysabeau-v5-latin-regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="/fonts/sacramento-v15-latin-regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    <title>La Casa de Burger | Mejores Hamburguesas Gourmet de Torrevieja</title>
+    <meta name="description" content="Descubre las mejores burgers gourmet y smash burgers en Torrevieja. Carne 100% artesanal picada a diario. Terraza, parking y opciones Halal/Veggie." />
+    <meta name="keywords" content="hamburguesas Torrevieja, burger gourmet, smash burger, delivery Torrevieja, burger artesanal, Halal Torrevieja, terraza Torrevieja" />
+    <meta name="robots" content="index, follow" />
+    <style>
+          @font-face {
+              font-family: 'Ysabeau';
+              font-style: normal; font-weight: 400; font-display: swap;
+              src: url('/fonts/ysabeau-v5-latin-regular.woff2') format('woff2');
+          }
+          @font-face {
+              font-family: 'Sacramento';
+              font-style: normal; font-weight: 400; font-display: swap;
+              src: url('/fonts/sacramento-v15-latin-regular.woff2') format('woff2');
+          }
+          * { box-sizing: border-box; margin: 0; padding: 0; }
+          html, body {
+              background-color: #000 !important;
+              color: #fff;
+              font-family: 'Ysabeau', system-ui, sans-serif;
+              line-height: 1.5;
+              overflow-x: hidden;
+              min-height: 100%;
+              -webkit-font-smoothing: antialiased;
+              position: relative;
+          }
+          #root {
+              background-color: transparent !important;
+              min-height: 100vh;
+              position: relative;
+              z-index: 2;
+          }
+          .lcp-background {
+              position: absolute !important;
+              top: 80px !important;
+              left: 0 !important;
+              width: 100% !important;
+              height: 500px !important;
+              object-fit: cover !important;
+              object-position: center bottom !important;
+              z-index: 1 !important;
+              display: block !important;
+              pointer-events: none;
+              contain: paint;
+              transform: translateZ(0); /* Force le GPU */
+              mask-image: linear-gradient(to bottom, black 75%, transparent 100%);
+              -webkit-mask-image: linear-gradient(to bottom, black 75%, transparent 100%);
+              filter: brightness(0.85) contrast(1.1);
+          }
+          @media (min-width: 1024px) {
+              .lcp-background {
+                  height: 800px !important;
+                  object-position: center bottom !important;
+              }
+          }
+          #fallback-text {
+              position: absolute;
+              top: 130px;
+              left: 0;
+              width: 100%;
+              text-align: center;
+              z-index: 3;
+              pointer-events: none;
+              transition: opacity 0.3s ease, transform 0.3s ease;
+              will-change: opacity;          }
+          #fallback-text h1 {
+              font-size: clamp(2.2rem, 10vw, 3.8rem); font-weight: 900;
+              text-transform: uppercase;
+              text-shadow: 2px 2px 25px rgba(0,0,0,1);
+              line-height: 1.1;
+          }
+          #fallback-text h2 {
+              font-size: 1.5rem; color: #FFD700; font-weight: 700;
+              text-shadow: 1px 1px 10px rgba(0,0,0,1); margin-top: 10px;
+              text-transform: uppercase;
+          }
+      </style>
+    <link rel="icon" type="image/webp" href="/logo.webp" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Restaurant","name":"La Casa de Burger","alternateName":"La Casa de Burger Torrevieja","image":["https://lacasadeburger.es/burger-signature-torrevieja.webp","https://lacasadeburger.es/logo.webp"],"@id":"https://lacasadeburger.es","url":"https://lacasadeburger.es","telephone":"+34602597210","priceRange":"€€","servesCuisine":["Hamburguesas Gourmet","Smash Burgers","Comida Halal"],"description":"Especialistas en Burger Gourmet Signature y Smash Burgers 100% artesanales en Torrevieja.","address":{"@type":"PostalAddress","streetAddress":"AV. Diego Ramirez Pastor, 142","addressLocality":"Torrevieja","postalCode":"03181","addressRegion":"Alicante","addressCountry":"ES"},"geo":{"@type":"GeoCoordinates","latitude":37.9806,"longitude":-0.6757},"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"opens":"13:00","closes":"23:00"}],"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"250","bestRating":"5","worstRating":"1"},"hasMenu":{"@type":"Menu","name":"Carta","hasMenuSection":[{"@type":"MenuSection","name":"Combos","hasMenuItem":[{"@type":"MenuItem","name":"Combo 1","description":"Inglesa+Fritas+3Nuggets","offers":{"@type":"Offer","price":"18.00","priceCurrency":"EUR"}},{"@type":"MenuItem","name":"Combo 2","description":"Inglesa+Fritas+3Croquetas","offers":{"@type":"Offer","price":"18.00","priceCurrency":"EUR"}}]},{"@type":"MenuSection","name":"Burgers","hasMenuItem":[{"@type":"MenuItem","name":"Mexicana","description":"Picante,Maiz,Cebolla Roja,Tocino,Cheddar","offers":{"@type":"Offer","price":"14.00","priceCurrency":"EUR"}},{"@type":"MenuItem","name":"Colombiana","description":"Tocino,Papa,Piña,Cheddar","offers":{"@type":"Offer","price":"14.00","priceCurrency":"EUR"}},{"@type":"MenuItem","name":"Española","description":"Pimiento Padrón,Cecina,Huevo","offers":{"@type":"Offer","price":"14.00","priceCurrency":"EUR"}},{"@type":"MenuItem","name":"Smash Doble","description":"Bacon,Cheddar,Pepinillos","offers":{"@type":"Offer","price":"13.00","priceCurrency":"EUR"}},{"@type":"MenuItem","name":"Italiana","description":"Burrata,Trufa,Champiñones","offers":{"@type":"Offer","price":"13.00","priceCurrency":"EUR"}},{"@type":"MenuItem","name":"Auvergna","description":"Queso Azul,Panela","offers":{"@type":"Offer","price":"12.00","priceCurrency":"EUR"}},{"@type":"MenuItem","name":"Francesa","description":"Reblochon,Puree,Bacon","offers":{"@type":"Offer","price":"12.00","priceCurrency":"EUR"}},{"@type":"MenuItem","name":"Marroqui","description":"Especias,Cheddar Casero","offers":{"@type":"Offer","price":"12.00","priceCurrency":"EUR"}},{"@type":"MenuItem","name":"Inglesa","description":"Cheddar,Pepinillos","offers":{"@type":"Offer","price":"10.00","priceCurrency":"EUR"}},{"@type":"MenuItem","name":"India","description":"Pollo,Especias,Cheddar","offers":{"@type":"Offer","price":"9.00","priceCurrency":"EUR"}}]}]}}
+    </script>
+  <script type="module" crossorigin src="/assets/index-2774d09e.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/vendor-utils-52c18f8b.js">
+  <link rel="modulepreload" crossorigin href="/assets/vendor-core-19f7498f.js">
+  <link rel="stylesheet" href="/assets/index-240f6743.css">
+</head>
+<body>
+    <img src="/burger-signature-torrevieja.webp"
+         srcset="/burger-signature-torrevieja.webp 800w, /burger-signature-torrevieja.webp 1024w"
+         sizes="(max-width: 768px) 800px, 1024px"
+         alt="La mejor hamburguesa gourmet de Torrevieja - La Casa de Burger"
+         fetchpriority="high"
+         loading="eager"
+         decoding="sync"
+         class="lcp-background">
+    <div id="fallback-text">
+        <h1>LAS MEJORES HAMBURGUESAS GOURMET<br>EN TORREVIEJA</h1>
+        <h2>GOURMET BURGER JOINT: SMASH BURGERS & PREMIUM BEEF</h2>
+    </div>
     <div id="root"></div>
-
+    <script>
+        (function() {
+            const root = document.getElementById('root');
+            const fallback = document.getElementById('fallback-text');
+            const observer = new MutationObserver(() => {
+                if (root && root.hasChildNodes()) {
+                    if (fallback) {
+                        fallback.style.opacity = '0';
+                        setTimeout(() => fallback.remove(), 350);
+                    }
+                    observer.disconnect();
+                }
+            });
+            if (root) observer.observe(root, { childList: true });
+        })();
+    </script>
     
-  </body>
+</body>
 </html>
