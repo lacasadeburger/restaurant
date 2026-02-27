@@ -191,7 +191,7 @@ h2, .SectionTitle, section h2, section h3 {
   .card-description { font-size: 0.8rem; min-height: 3rem; -webkit-line-clamp: 2; }
 }
 
-//* --- CONFIGURATION IMAGE DE FOND (LCP) OPTIMISÉE --- */
+  /* --- CONFIGURATION IMAGE DE FOND (LCP) OPTIMISÉE --- */
 
 html, body {
   background-color: #000 !important;
