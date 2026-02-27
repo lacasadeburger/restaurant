@@ -695,7 +695,7 @@ animation: bounce-subtle 2s infinite ease-in-out;
             if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.pageYOffset - 100, behavior: "smooth" });
           });
         }}>
-          <img src={Burger} className="promo-img" alt="Mejor Hamburguesa Gourmet" fetchpriority="high" width="1024" height="573" />
+          <img src="/Burger.webp" className="promo-img" alt="Mejor Hamburguesa Gourmet" fetchpriority="high" width="1024" height="573" />
           <span className="category-btn-overlay">{T[lang]?.catBurgers || T.es.catBurgers}</span>
         </div>
       )}
@@ -716,7 +716,7 @@ animation: bounce-subtle 2s infinite ease-in-out;
             if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.pageYOffset - 100, behavior: "smooth" });
           });
         }}>
-          <img src={Drink} className="promo-img" alt="Bebidas" loading="lazy" width="600" height="336" />
+          <img src="/Drink.webp" className="promo-img" alt="Bebidas" loading="lazy" width="600" height="336" />
           <span className="category-btn-overlay">{T[lang]?.catDrinks || T.es.catDrinks}</span>
         </div>
       )}
@@ -737,7 +737,7 @@ animation: bounce-subtle 2s infinite ease-in-out;
             if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.pageYOffset - 100, behavior: "smooth" });
           });
         }}>
-          <img src={Postre} className="promo-img" alt="Desserts" loading="lazy" width="600" height="336" />
+          <img src="/Postre.webp" className="promo-img" alt="Desserts" loading="lazy" width="600" height="336" />
           <span className="category-btn-overlay">{T[lang]?.catDesserts || T.es.catDesserts}</span>
         </div>
       )}
