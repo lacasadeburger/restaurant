@@ -552,32 +552,32 @@ animation: bounce-subtle 2s infinite ease-in-out;
 
   {/* 3. CONTENU TEXTUEL ET BOUTONS */}
   <div style={{ position: 'relative', zIndex: 2, width: '100%' }}>
-    <h1 style={{
-      fontSize: 'clamp(2rem, 10vw, 3.5rem)',
-      fontWeight: '900',
-      textTransform: 'uppercase',
-      textShadow: '2px 2px 15px rgba(0,0,0,0.9)',
-      margin: 0,
-      color: '#fff',
-      lineHeight: '1.1'
-    }}>
-      {T[lang]?.heroTitle || T.es.heroTitle}
-      <br />
-      {
-        lang === 'fr' ? 'à Torrevieja' :
-        lang === 'en' ? 'in Torrevieja' :
-        lang === 'de' ? 'in Torrevieja' :
-        lang === 'nl' ? 'in Torrevieja' :
-        lang === 'no' ? 'i Torrevieja' :
-        lang === 'sv' ? 'i Torrevieja' :
-        lang === 'pl' ? 'w Torrevieja' :
-        lang === 'uk' ? 'у Торрев’єнті' :
-        lang === 'ru' ? 'в Торreviexe' :
-        lang === 'ar' ? 'في توريفايجا' :
-        lang === 'ro' ? 'în Torrevieja' :
-        'en Torrevieja'
-      }
-    </h1>
+  <h1 style={{
+    fontSize: 'clamp(2rem, 10vw, 3.5rem)',
+    fontWeight: '900',
+    textTransform: 'uppercase',
+    textShadow: '2px 2px 15px rgba(0,0,0,0.9)',
+    margin: 0,
+    color: '#fff',
+    lineHeight: '1.1'
+  }}>
+    {T[lang]?.heroTitle || T.es.heroTitle}
+    <br />
+    {
+      lang === 'fr' ? 'à Torrevieja' :
+      lang === 'en' ? 'in Torrevieja' :
+      lang === 'de' ? 'in Torrevieja' :
+      lang === 'nl' ? 'in Torrevieja' :
+      lang === 'no' ? 'i Torrevieja' :
+      lang === 'sv' ? 'i Torrevieja' :
+      lang === 'pl' ? 'w Torrevieja' :
+      lang === 'uk' ? 'у Торрев’єнті' :
+      lang === 'ru' ? 'в Торreviexe' :
+      lang === 'ar' ? 'في توريفايجا' :
+      lang === 'ro' ? 'în Torrevieja' :
+      'en Torrevieja'
+    }
+  </h1>
 
     <h2 style={{
       fontSize: '1.5rem',

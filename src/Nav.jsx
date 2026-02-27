@@ -56,7 +56,8 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang, setLa
         display: 'flex', justifyContent: 'space-between', alignItems: 'center',
         padding: '0 12px', zIndex: 10000,
         borderBottom: `3px solid ${VIBRANT_RED}`,
-        boxSizing: 'border-box'
+        boxSizing: 'border-box',
+        fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
       }}>
         <div style={{ width: '35%', display: 'flex', alignItems: 'center' }}>
           <a href="tel:+34602597210" aria-label="Llamar" style={{ display: 'flex', alignItems: 'center', gap: '6px', textDecoration: 'none' }}>
@@ -104,7 +105,6 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang, setLa
         </div>
       </nav>
 
-      {/* SÉLECTEUR DE LANGUES CORRIGÉ (Performance GPU) */}
       <div style={{
         marginTop: '80px',
         display: 'flex', justifyContent: 'center', gap: '6px', padding: '12px 8px',
@@ -121,16 +121,11 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang, setLa
             aria-label={l.label}
             style={{
               backgroundColor: 'transparent',
-              background: 'none',
-              /* On garde une bordure de couleur fixe (Or).
-                 C'est l'OPACITÉ du bouton qui change pour l'état actif.
-              */
               border: `1px solid ${GOLD_BRIGHT}`,
               borderRadius: '6px',
               cursor: 'pointer',
               padding: '3px',
               transition: 'transform 0.2s ease, opacity 0.2s ease',
-              /* Opacité réduite si non sélectionné, pleine si sélectionné */
               opacity: lang === l.code ? 1 : 0.4,
               transform: lang === l.code ? 'scale(1.15)' : 'scale(1)',
               filter: lang === l.code ? 'grayscale(0%)' : 'grayscale(100%)',
@@ -166,9 +161,11 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang, setLa
         background: 'rgba(0, 0, 0, 0.7)',
         color: '#fff', textAlign: 'center', padding: '10px 8px',
         borderBottom: `2px solid ${GOLD_BRIGHT}`,
-        fontSize: '0.82rem', fontWeight: '900',
+        fontSize: '0.82rem',
+        fontWeight: '900',
+        fontFamily: 'Georgia, serif', // LOOK GOURMET SANS FICHIER EXTERNE
         display: 'block', width: '100%', boxSizing: 'border-box',
-        letterSpacing: '0.3px', position: 'relative', zIndex: 9998
+        letterSpacing: '0.5px', position: 'relative', zIndex: 9998
       }}>
         <span style={{ color: GOLD_BRIGHT }}>★</span>
         {` ${promoTexts[lang] || promoTexts.en} `}

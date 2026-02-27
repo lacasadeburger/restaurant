@@ -1,5 +1,5 @@
 {
-  "name": "restaurante",
+  "name": "lacasadeburger",
   "private": true,
   "homepage": "https://lacasadeburger.es/",
   "version": "1.0.0",
@@ -13,7 +13,7 @@
     "predeploy": "npm run build && echo lacasadeburger.es > ./dist/CNAME",
     "deploy": "gh-pages -d dist",
     "ovh-deploy": "npm run build && node deploy.js",
-    "ship": "npm run build && git add . && git commit -m \"Performance: Optimized chunks and LCP\" && git push origin main && node deploy.js"
+    "ship": "git add . && git commit -m \"Performance: System Fonts, WebP flags and CNAME setup\" && git push origin main && npm run build && node deploy.js"
   },
   "dependencies": {
     "dotenv": "^17.3.1",

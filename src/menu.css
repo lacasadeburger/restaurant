@@ -1,7 +1,9 @@
-/* menu.css - Version Finale Optimisée - Priorité Bas d'image */
+/* menu.css - Version Finale Optimisée - Polices Système Génériques */
 
 /* --- TYPOGRAPHIE & TITRES --- */
 h2, .SectionTitle, section h2, section h3 {
+  /* Utilisation de Georgia (Serif générique présent partout) pour le look Gourmet */
+  font-family: "Georgia", "Times New Roman", serif !important;
   text-align: center !important;
   width: 100%;
   display: block;
@@ -9,6 +11,17 @@ h2, .SectionTitle, section h2, section h3 {
   color: #BF953F;
   font-weight: 900;
   text-transform: uppercase;
+}
+
+/* --- CONFIGURATION GLOBALE --- */
+html, body {
+  background-color: #000 !important;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  /* Stack système ultra-rapide pour le texte courant */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+  color: #fff;
 }
 
 /* --- GRILLE DE CARTES --- */
@@ -191,15 +204,7 @@ h2, .SectionTitle, section h2, section h3 {
   .card-description { font-size: 0.8rem; min-height: 3rem; -webkit-line-clamp: 2; }
 }
 
-  /* --- CONFIGURATION IMAGE DE FOND (LCP) OPTIMISÉE --- */
-
-html, body {
-  background-color: #000 !important;
-  margin: 0;
-  padding: 0;
-  position: relative;
-}
-
+/* --- IMAGE DE FOND (LCP) --- */
 #root {
   background-color: transparent !important;
   position: relative;
@@ -217,13 +222,10 @@ html, body {
   z-index: 1 !important;
   display: block !important;
   pointer-events: none;
-
-  /* OPTIMISATION : On supprime le mask-image qui ralentit le LCP */
   filter: brightness(0.8) contrast(1.1) !important;
   opacity: 0.9;
 }
 
-/* Ajustement PC */
 @media (min-width: 1024px) {
   .lcp-background {
     height: 800px !important;
@@ -231,7 +233,6 @@ html, body {
   }
 }
 
-/* Ajustement spécifique Tablettes/Mobile */
 @media (max-width: 768px) {
   .lcp-background {
     top: 70px !important;
