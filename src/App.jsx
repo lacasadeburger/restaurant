@@ -6,9 +6,6 @@ const Order = lazy(() => import("./Order"));
 const CardMenu = lazy(() => import("./CardMenu"));
 
 import fb from "./assets/FB.png";
-import Postre from "./assets/postre.webp";
-import Burger from "./assets/burger.webp";
-import Drink from "./assets/drink.webp";
 import tripadvisor from "./assets/tripadvisor.webp";
 import googleIcon from "./assets/google.webp";
 import logo from "./assets/logo.webp";
