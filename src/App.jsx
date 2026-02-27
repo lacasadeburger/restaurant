@@ -579,48 +579,61 @@ animation: bounce-subtle 2s infinite ease-in-out;
     }
   </h1>
 
-    <h2 style={{
+  <h2 style={{
       fontSize: '1.5rem',
       color: '#FFD700',
       fontWeight: '700',
       textShadow: '1px 1px 10px rgba(0,0,0,1)',
       marginTop: '10px',
-      textTransform: 'uppercase'
+      textTransform: 'uppercase',
+      minHeight: '4.5rem',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      lineHeight: '1.2'
     }}>
       {T[lang]?.heroSubtitle || T.es.heroSubtitle}
     </h2>
 
     {/* BLOC BOUTONS */}
-    <div style={{ marginTop: '20px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px' }}>
-      <button
-        onClick={() => {
-          setShowCardBurger(true);
-          setTimeout(() => {
-            const el = document.getElementById("sec-burgers");
-            if (el) el.scrollIntoView({ behavior: 'smooth' });
-          }, 150);
-        }}
-        className="pulse-gold-btn gold-button-premium"
-        style={{
-            color: '#000',
-            padding: '22px 50px',
-            borderRadius: '50px',
-            border: '3px solid #000',
-            fontWeight: '950',
-            cursor: 'pointer',
-            fontSize: '1.5rem',
-            boxShadow: '0 4px 15px rgba(0,0,0,0.5)',
-            textTransform: 'uppercase',
-            width: '90%',
-            maxWidth: '450px',
-            height: '80px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center'
-        }}
-      >
-        🚀 {T[lang]?.btnOrder || T.es.btnOrder}
-      </button>
+      <div style={{ marginTop: '20px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px' }}>
+        <button
+          onClick={() => {
+            setShowCardBurger(true); // 1. On active l'affichage
+            // 2. On attend que React injecte le menu dans la page
+            requestAnimationFrame(() => {
+              setTimeout(() => {
+                const el = document.getElementById("sec-burgers");
+                if (el) {
+                  // 3. Calcul de position précis (avec -100px pour ne pas coller au haut de l'écran)
+                  const yOffset = -100;
+                  const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                  window.scrollTo({ top: y, behavior: 'smooth' });
+                }
+              }, 100);
+            });
+          }}
+          className="pulse-gold-btn gold-button-premium"
+          style={{
+              color: '#000',
+              padding: '22px 50px',
+              borderRadius: '50px',
+              border: '3px solid #000',
+              fontWeight: '950',
+              cursor: 'pointer',
+              fontSize: '1.5rem',
+              boxShadow: '0 4px 15px rgba(0,0,0,0.5)',
+              textTransform: 'uppercase',
+              width: '90%',
+              maxWidth: '450px',
+              height: '80px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+          }}
+        >
+          🚀 {T[lang]?.btnOrder || T.es.btnOrder}
+        </button>
 
       <button
         onClick={() => window.open("https://app.tableo.com/widget/la-casa-de-burger-hamburguesa-gourmet-torrevieja-hamburgueseria-casero-best-burger-in-town-spain", "_blank")}
