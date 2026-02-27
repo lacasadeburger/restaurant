@@ -48,7 +48,6 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang, setLa
 
   return (
     <>
-      {/* BARRE DE NAVIGATION PRINCIPALE (REMISE EN NOIR LUXUEUX) */}
       <nav style={{
         position: 'fixed', top: 0, left: 0, width: '100%', height: '80px',
         backgroundColor: 'rgba(0, 0, 0, 0.98)',
@@ -59,7 +58,6 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang, setLa
         borderBottom: `3px solid ${VIBRANT_RED}`,
         boxSizing: 'border-box'
       }}>
-
         <div style={{ width: '35%', display: 'flex', alignItems: 'center' }}>
           <a href="tel:+34602597210" aria-label="Llamar" style={{ display: 'flex', alignItems: 'center', gap: '6px', textDecoration: 'none' }}>
             <div style={{
@@ -106,12 +104,12 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang, setLa
         </div>
       </nav>
 
-      {/* SÉLECTEUR DE LANGUES (SOUS LA NAV) */}
+      {/* SÉLECTEUR DE LANGUES CORRIGÉ (Performance GPU) */}
       <div style={{
         marginTop: '80px',
         display: 'flex', justifyContent: 'center', gap: '6px', padding: '12px 8px',
         flexWrap: 'wrap',
-        backgroundColor: 'rgba(0, 0, 0, 0.4)', /* Un peu plus sombre pour la lisibilité */
+        backgroundColor: 'rgba(0, 0, 0, 0.4)',
         position: 'relative', zIndex: 9999, borderBottom: '1px solid #333',
         minHeight: '44px',
         boxSizing: 'border-box'
@@ -122,17 +120,20 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang, setLa
             onClick={() => setLang(l.code)}
             aria-label={l.label}
             style={{
-              backgroundColor: lang === l.code ? 'rgba(255,255,255,0.1)' : 'transparent',
+              backgroundColor: 'transparent',
               background: 'none',
-              borderStyle: 'solid',
-              borderWidth: '1px',
-              borderColor: lang === l.code ? GOLD_BRIGHT : '#444',
+              /* On garde une bordure de couleur fixe (Or).
+                 C'est l'OPACITÉ du bouton qui change pour l'état actif.
+              */
+              border: `1px solid ${GOLD_BRIGHT}`,
               borderRadius: '6px',
               cursor: 'pointer',
               padding: '3px',
-              transition: '0.2s ease-in-out',
+              transition: 'transform 0.2s ease, opacity 0.2s ease',
+              /* Opacité réduite si non sélectionné, pleine si sélectionné */
+              opacity: lang === l.code ? 1 : 0.4,
               transform: lang === l.code ? 'scale(1.15)' : 'scale(1)',
-              filter: lang === l.code ? 'grayscale(0%)' : 'grayscale(50%)',
+              filter: lang === l.code ? 'grayscale(0%)' : 'grayscale(100%)',
               width: '34px',
               height: '28px',
               display: 'flex',
@@ -161,9 +162,8 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang, setLa
         ))}
       </div>
 
-      {/* BARRE DE PROMO */}
       <div style={{
-        background: 'rgba(0, 0, 0, 0.7)', /* Plus sombre pour ressortir sur l'image */
+        background: 'rgba(0, 0, 0, 0.7)',
         color: '#fff', textAlign: 'center', padding: '10px 8px',
         borderBottom: `2px solid ${GOLD_BRIGHT}`,
         fontSize: '0.82rem', fontWeight: '900',
