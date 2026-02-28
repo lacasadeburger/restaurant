@@ -556,13 +556,14 @@ animation: bounce-subtle 2s infinite ease-in-out;
   margin: '0 auto',
   color: '#fff',
   lineHeight: '1.2',
-  /* --- LE FIX ANTI-CLS --- */
-  display: 'grid',
-  gridTemplateRows: '1fr auto', // Réserve l'espace pour les deux lignes
+  /* --- LE FIX ANTI-CLS ULTIME --- */
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
   alignItems: 'center',
-  minHeight: '160px', // Force une hauteur fixe pour le bloc complet du titre
-  /* ----------------------- */
-  textAlign: 'center'
+  textAlign: 'center',
+  minHeight: '180px', // On augmente un peu pour être large
+  contain: 'layout size' // Bloque tout mouvement interne pour le navigateur
 }}>
   <span style={{ display: 'block' }}>
     {T[lang]?.heroTitle || T.es.heroTitle}
@@ -570,7 +571,8 @@ animation: bounce-subtle 2s infinite ease-in-out;
   <span style={{
     fontSize: '0.8em',
     display: 'block',
-    minHeight: '1.2em' // Réserve spécifiquement la hauteur de la ville
+    minHeight: '45px', // FIX : On utilise des PX fixes au lieu de EM
+    lineHeight: '45px' // Aligne le texte au milieu de ces 45px
   }}>
     {
       lang === 'fr' ? 'à Torrevieja' :
