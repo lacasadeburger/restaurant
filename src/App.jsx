@@ -217,7 +217,6 @@ const T = {
     seoContent: "مطعم البرجر الغوارميه الأول في وسط توريفايجا. وصفات سيجنتشر أصلية، سماش برجر، ولحم حلال ممتاز بأفضل الأسعار بالقرب من بلايا ديل كورا."
   }
 };
-
 const ALL_REVIEWS = [
   { es: "¡La mejor Smash de Torrevieja! Carne de calidad y entrega rápida.", en: "Best Smash in Torrevieja! Quality meat and fast delivery.", author: "Carlos R." },
   { es: "Increíble atención. Las patatas caseras son obligatorias. 10/10.", en: "Amazing service. Homemade fries are a must. 10/10.", author: "Sarah M." },
@@ -230,13 +229,11 @@ const ALL_REVIEWS = [
   { es: "¡Brutal! La cocción de la carne en su punto. Muy recomendable.", en: "Brutal! The meat was cooked to perfection. Highly recommended.", author: "Roberto F." },
   { es: "A hidden gem in Torrevieja. Real ingredients and great taste.", en: "Una joya escondida en Torrevieja. Ingredientes reales y gran sabor.", author: "Emma S." }
 ];
-
 const SectionTitle = ({ children, id }) => (
   <header className="menuBurgers" id={id} style={{ margin: '10px 0 20px' }}>
     <h2 style={{ textTransform: 'uppercase', letterSpacing: '2px', fontSize: '1.8rem', color: '#FFD700' }}>{children}</h2>
   </header>
 );
-
 export default function App() {
   const [cart, setCart] = useState([]);
   const [showCardPostres, setShowCardPostres] = useState(false);
@@ -246,7 +243,6 @@ export default function App() {
   const [view, setView] = useState('categories'); // 'categories', 'combos', 'burgers', 'sides'
   const [loadMedia, setLoadMedia] = useState(false); // Pour YouTube (Manuel)
 const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-différé)
-
 // --- 2. GESTION DE LA LANGUE + CHARGEMENT INTELLIGENT MAPS ---
   useEffect(() => {
     // Gestion Langue
