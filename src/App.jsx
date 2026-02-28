@@ -960,8 +960,15 @@ aspectRatio: '169 / 127' // Indispensable pour éviter le CLS
         </div>
         </Suspense>
       </main>
-        {/* --- BLOC SEO MULTILINGUE (LES 11 LANGUES - VERSION COMPLÈTE) --- */}
-        <div style={{ maxWidth: '1100px', margin: '0 auto 100px', padding: '0 20px' }}>
+      {/* --- BLOC SEO MULTILINGUE (OPTIMISÉ POUR LA VITESSE) --- */}
+        <div style={{
+          maxWidth: '1100px',
+          margin: '0 auto 100px',
+          padding: '0 20px',
+          /* 🚀 PERFORMANCE : On ne calcule pas ce bloc massif au démarrage */
+          contentVisibility: 'auto',
+          containIntrinsicSize: '0 800px'
+        }}>
           <div style={{ backgroundColor: '#0a0a0a', padding: '35px', borderRadius: '15px', border: '1px solid #222', textAlign: 'justify' }}>
             <div style={{ color: '#aaa', fontSize: '0.85rem', lineHeight: '1.6', margin: 0 }}>
 
@@ -987,86 +994,86 @@ aspectRatio: '169 / 127' // Indispensable pour éviter le CLS
 
               <p><strong>🇳🇱 NEDERLANDS:</strong> <strong>Beste gourmet burgers in Torrevieja</strong>. 100% ambachtelijke <strong>Signature Burgers</strong> en <strong>Smash Burgers</strong>. <strong>Halal en vegetarische opties (op aanvraag)</strong>. Geniet van ons terras en gemakkelijk parkeren.</p>
 
-                {/* --- SERVICES & ZONES (DERNIÈRE SECTION DU BLOC SEO) --- */}
-                <div style={{ marginTop: '25px', borderTop: '1px solid #222', paddingTop: '25px' }}>
-                  <div style={{ textAlign: 'center', marginBottom: '20px' }}>
-                    <h4 style={{ color: '#fff', fontSize: '1.1rem', marginBottom: '5px', textTransform: 'uppercase', letterSpacing: '1px' }}>
-                      Especialistas en <span style={{ color: GOLD_BRIGHT }}>Burger Gourmet Signature</span> & <span style={{ color: GOLD_BRIGHT }}>Smash Burgers</span>
-                    </h4>
-                    <p style={{ color: '#888', fontSize: '0.85rem', fontStyle: 'italic' }}>
-                      Experiencia 100% Artesanal • Carne fresca picada a diario
-                    </p>
-                  </div>
-
-                  <div style={{ display: 'flex', gap: '15px 25px', flexWrap: 'wrap', color: GOLD_BRIGHT, fontSize: '1.1rem', fontWeight: 'bold', marginBottom: '20px', justifyContent: 'center' }}>
-                    <span>🥩 100% Artesanal</span>
-                    <span>☀️ Terraza</span>
-                    <span>🚗 Parking fácil</span>
-                    <span>🥡 Take Away & Delivery</span>
-                  </div>
-
-                  <div style={{ fontSize: '1.1rem', color: '#bbb', lineHeight: '1.6', textAlign: 'center' }}>
-                    <strong style={{ color: '#fff' }}>📍 ZONAS DE REPARTO / DELIVERY AREAS:</strong>
-                    <br />
-                    <span style={{ color: '#BDBDBD', fontSize: '1.1rem' }}>
-                      Torrevieja Centro, Playa del Cura, Playa de los Locos, Paseo Marítimo, Puerto, La Mata, Punta Prima, Los Balcones, Aguas Nuevas, La Siesta, El Acequión, La Veleta, San Roque, Rocío del Mar, Los Altos, Lago Jardín, Torreta I, II, III, El Salado, Urbanización Doña Inés, Jardín del Mar, Las Nations, Centro Comercial Habaneras et hôtels.
-                    </span>
-                  </div>
+              <div style={{ marginTop: '25px', borderTop: '1px solid #222', paddingTop: '25px' }}>
+                <div style={{ textAlign: 'center', marginBottom: '20px' }}>
+                  <h4 style={{ color: '#fff', fontSize: '1.1rem', marginBottom: '5px', textTransform: 'uppercase', letterSpacing: '1px' }}>
+                    Especialistas en <span style={{ color: '#FFD700' }}>Burger Gourmet Signature</span> & <span style={{ color: '#FFD700' }}>Smash Burgers</span>
+                  </h4>
+                  <p style={{ color: '#888', fontSize: '0.85rem', fontStyle: 'italic' }}>
+                    Experiencia 100% Artesanal • Carne fresca picada a diario
+                  </p>
                 </div>
 
-              </div> {/* FIN color #aaa */}
-            </div> {/* FIN backgroundColor #0a0a0a */}
-          </div> {/* FIN maxWidth 1100px */}
-
-          {/* --- FOOTER FINAL UNIQUE (OPTIMISÉ INSIGHTS) --- */}
-              <footer style={{
-                padding: '60px 20px 40px',
-                textAlign: 'center',
-                backgroundColor: '#050505',
-                borderTop: '4px solid #ff5e6c', // Uniformisé avec le Footer.jsx pour le contraste
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                gap: '30px',
-                marginTop: '50px'
-              }}>
-                {logo && (
-                  <img src={logo} alt="La Casa de Burger Torrevieja" width="150" height="80" style={{ height: '80px', width: 'auto', filter: 'drop-shadow(0 0 10px rgba(255,255,255,0.1))' }} />
-                )}
-
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '40px', width: '100%', maxWidth: '1100px', textAlign: 'center', fontSize: '1.1rem', color: '#CCCCCC' }}>
-                  <div>
-                    <h3 style={{ color: '#ff5e6c', fontSize: '1.2rem', marginBottom: '15px' }}>La Casa de Burger</h3>
-                    <p style={{ lineHeight: '1.8' }}>
-                      {lang === 'es' ? 'Especialistas en Smash Burgers y Hamburguesas Gourmet de autor. Carne de ternera premium, buey y procesos artesanales.' : 'Specialists in Signature Gourmet & Smash Burgers. Premium beef and artisan processes.'}
-                    </p>
-                  </div>
-
-                  <div>
-                    <h4 style={{ color: GOLD_BRIGHT, marginBottom: '15px' }}>🕒 {T[lang]?.hours || T.es.hours}</h4>
-                    <p style={{ margin: '8px 0' }}>Lun - Sáb: 13:00 – 23:00</p>
-                    {/* CORRECTION RADICALE : On passe de #666 à #AAAAAA pour le contraste */}
-                    <p style={{ margin: '8px 0', color: '#AAAAAA', fontWeight: '500' }}>Dom: Cerrado / Closed</p>
-                  </div>
-
-                  <div>
-                    <h4 style={{ color: GOLD_BRIGHT, marginBottom: '15px' }}>📍 {T[lang]?.location || T.es.location}</h4>
-                    <p style={{ margin: '8px 0' }}>Av. Diego Ramírez Pastor, 142</p>
-                    <p style={{ margin: '8px 0' }}>03181 Torrevieja, Spain</p>
-                    <p style={{ marginTop: '15px' }}>
-                      📞 <a href="tel:+34602597210" style={{ color: '#ffffff', textDecoration: 'underline', textDecorationColor: '#ff5e6c', fontWeight: 'bold' }}>+34 602 59 72 10</a>
-                    </p>
-                  </div>
+                <div style={{ display: 'flex', gap: '15px 25px', flexWrap: 'wrap', color: '#FFD700', fontSize: '1.1rem', fontWeight: 'bold', marginBottom: '20px', justifyContent: 'center' }}>
+                  <span>🥩 100% Artesanal</span>
+                  <span>☀️ Terraza</span>
+                  <span>🚗 Parking fácil</span>
+                  <span>🥡 Take Away & Delivery</span>
                 </div>
 
-                <div style={{ width: '60px', height: '2px', background: 'linear-gradient(135deg, #BF953F, #FCF6BA, #B38728, #FBF5B7)', borderRadius: '2px', margin: '10px 0' }} aria-hidden="true" />
-
-                <div style={{ color: '#AAAAAA', fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '1px' }}>
-                  <p style={{ margin: 0, fontWeight: 'bold', color: '#BDBDBD' }}>© {new Date().getFullYear()} LA CASA DE BURGER | THE ARTISAN EXPERIENCE</p>
-                  <p style={{ margin: '8px 0 0' }}>{lang === 'es' ? 'El mejor burger de Torrevieja' : 'Best burger in Torrevieja'}</p>
+                <div style={{ fontSize: '1.1rem', color: '#bbb', lineHeight: '1.6', textAlign: 'center' }}>
+                  <strong style={{ color: '#fff' }}>📍 ZONAS DE REPARTO / DELIVERY AREAS:</strong>
+                  <br />
+                  <span style={{ color: '#BDBDBD' }}>
+                    Torrevieja Centro, Playa del Cura, Playa de los Locos, Paseo Marítimo, Puerto, La Mata, Punta Prima, Los Balcones, Aguas Nuevas, La Siesta, El Acequión, La Veleta, San Roque, Rocío del Mar, Los Altos, Lago Jardín, Torreta I, II, III, El Salado, Urbanización Doña Inés, Jardín del Mar, Las Nations, Centro Comercial Habaneras et hôtels.
+                  </span>
                 </div>
-              </footer>
+              </div>
 
+            </div>
+          </div>
+        </div>
+
+        {/* --- FOOTER FINAL UNIQUE (OPTIMISÉ POUR LA VITESSE) --- */}
+        <footer style={{
+          padding: '60px 20px 40px',
+          textAlign: 'center',
+          backgroundColor: '#050505',
+          borderTop: '4px solid #ff5e6c',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          gap: '30px',
+          marginTop: '50px',
+          /* 🚀 PERFORMANCE : Le footer ne bloque plus l'affichage du haut de page */
+          contentVisibility: 'auto',
+          containIntrinsicSize: '0 500px'
+        }}>
+          {logo && (
+            <img src={logo} alt="La Casa de Burger Torrevieja" width="150" height="80" style={{ height: '80px', width: 'auto', filter: 'drop-shadow(0 0 10px rgba(255,255,255,0.1))' }} />
+          )}
+
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '40px', width: '100%', maxWidth: '1100px', textAlign: 'center', fontSize: '1.1rem', color: '#CCCCCC' }}>
+            <div>
+              <h3 style={{ color: '#ff5e6c', fontSize: '1.2rem', marginBottom: '15px' }}>La Casa de Burger</h3>
+              <p style={{ lineHeight: '1.8' }}>
+                {lang === 'es' ? 'Especialistas en Smash Burgers y Hamburguesas Gourmet de autor. Carne de ternera premium, buey y procesos artesanales.' : 'Specialists in Signature Gourmet & Smash Burgers. Premium beef and artisan processes.'}
+              </p>
+            </div>
+
+            <div>
+              <h4 style={{ color: '#FFD700', marginBottom: '15px' }}>🕒 {T[lang]?.hours || T.es.hours}</h4>
+              <p style={{ margin: '8px 0' }}>Lun - Sáb: 13:00 – 23:00</p>
+              <p style={{ margin: '8px 0', color: '#AAAAAA', fontWeight: '500' }}>Dom: Cerrado / Closed</p>
+            </div>
+
+            <div>
+              <h4 style={{ color: '#FFD700', marginBottom: '15px' }}>📍 {T[lang]?.location || T.es.location}</h4>
+              <p style={{ margin: '8px 0' }}>Av. Diego Ramírez Pastor, 142</p>
+              <p style={{ margin: '8px 0' }}>03181 Torrevieja, Spain</p>
+              <p style={{ marginTop: '15px' }}>
+                📞 <a href="tel:+34602597210" style={{ color: '#ffffff', textDecoration: 'underline', textDecorationColor: '#ff5e6c', fontWeight: 'bold' }}>+34 602 59 72 10</a>
+              </p>
+            </div>
+          </div>
+
+          <div style={{ width: '60px', height: '2px', background: 'linear-gradient(135deg, #BF953F, #FCF6BA, #B38728, #FBF5B7)', borderRadius: '2px', margin: '10px 0' }} aria-hidden="true" />
+
+          <div style={{ color: '#AAAAAA', fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '1px' }}>
+            <p style={{ margin: 0, fontWeight: 'bold', color: '#BDBDBD' }}>© {new Date().getFullYear()} LA CASA DE BURGER | THE ARTISAN EXPERIENCE</p>
+            <p style={{ margin: '8px 0 0' }}>{lang === 'es' ? 'El mejor burger de Torrevieja' : 'Best burger in Torrevieja'}</p>
+          </div>
+        </footer>
             {/* --- ÉLÉMENTS FLOTTANTS --- */}
             <a href="https://wa.me/34602597210" target="_blank" rel="noopener noreferrer" className="whatsapp-float">
               <img src={whatsappIcon} width="100" height="100" alt="WhatsApp" style={{ objectFit: 'contain' }} />
