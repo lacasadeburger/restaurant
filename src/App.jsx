@@ -592,103 +592,105 @@ animation: bounce-subtle 2s infinite ease-in-out;
       {T[lang]?.heroSubtitle || T.es.heroSubtitle}
     </h2>
 
-    <button
-  onClick={() => {
-    // 1. On force l'affichage du menu
-    setShowCardBurger(true);
+    {/* BLOC BOUTONS */}
+        <div style={{ marginTop: '20px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px' }}>
+          <button
+            onClick={() => {
+              setShowCardBurger(true);
+              // Fonction "Retry" pour garantir le scroll même si le menu met du temps à charger
+              const scrollToMenu = (attempts) => {
+                const el = document.getElementById("sec-burgers");
+                if (el) {
+                  const yOffset = -100;
+                  const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                  window.scrollTo({ top: y, behavior: 'smooth' });
+                } else if (attempts > 0) {
+                  setTimeout(() => scrollToMenu(attempts - 1), 100);
+                }
+              };
+              scrollToMenu(8); // Réessaie pendant 800ms max
+            }}
+            className="pulse-gold-btn gold-button-premium"
+            style={{
+                color: '#000',
+                padding: '22px 50px',
+                borderRadius: '50px',
+                border: '3px solid #000',
+                fontWeight: '950',
+                cursor: 'pointer',
+                fontSize: '1.5rem',
+                boxShadow: '0 4px 15px rgba(0,0,0,0.5)',
+                textTransform: 'uppercase',
+                width: '90%',
+                maxWidth: '450px',
+                height: '80px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+            }}
+          >
+            🚀 {T[lang]?.btnOrder || T.es.btnOrder}
+          </button>
 
-    // 2. Fonction intelligente qui réessaie si la section n'est pas encore prête
-    const scrollToMenu = (attempts) => {
-      const el = document.getElementById("sec-burgers");
+          <button
+            onClick={() => window.open("https://app.tableo.com/widget/la-casa-de-burger-hamburguesa-gourmet-torrevieja-hamburgueseria-casero-best-burger-in-town-spain", "_blank")}
+            className="gold-button-premium"
+            style={{
+              padding: '18px 40px',
+              borderRadius: '50px',
+              fontSize: '1.3rem',
+              width: '90%',
+              maxWidth: '450px',
+              marginTop: '10px',
+              display: 'block',
+              cursor: 'pointer'
+            }}
+          >
+            📅 RESERVAR MESA
+          </button>
 
-      if (el) {
-        // L'élément existe ! On calcule et on scroll
-        const yOffset = -100;
-        const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
-        window.scrollTo({ top: y, behavior: 'smooth' });
-      } else if (attempts > 0) {
-        // L'élément n'est pas encore là (React travaille), on réessaie dans 100ms
-        setTimeout(() => scrollToMenu(attempts - 1), 100);
-      }
-    };
+          {/* SECTION APPEL ET LOGOS */}
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '15px', gap: '8px' }}>
+            <a
+              href="tel:+34602597210"
+              aria-label={T[lang]?.btnCall || T.es.btnCall}
+              style={{
+                background: '#ffffff',
+                color: '#000000',
+                padding: '14px 30px',
+                borderRadius: '50px',
+                textDecoration: 'none',
+                fontWeight: '950',
+                border: '2px solid #000000',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+                boxShadow: '0 4px 15px rgba(0,0,0,0.3)'
+              }}
+            >
+              <span aria-hidden="true">📞</span>
+              {T[lang]?.btnCall || T.es.btnCall}
+            </a>
 
-    // On lance la tentative (elle réessaiera jusqu'à 8 fois si besoin, soit 800ms)
-    scrollToMenu(8);
-  }}
-  className="pulse-gold-btn gold-button-premium"
-  style={{
-      color: '#000',
-      padding: '22px 50px',
-      borderRadius: '50px',
-      border: '3px solid #000',
-      fontWeight: '950',
-      cursor: 'pointer',
-      fontSize: '1.5rem',
-      boxShadow: '0 4px 15px rgba(0,0,0,0.5)',
-      textTransform: 'uppercase',
-      width: '90%',
-      maxWidth: '450px',
-      height: '80px',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center'
-  }}
->
-  🚀 {T[lang]?.btnOrder || T.es.btnOrder}
-</button>
+            <span style={{
+              color: '#FFFFFF',
+              fontSize: '0.75rem',
+              fontWeight: '900',
+              textTransform: 'uppercase',
+              letterSpacing: '1px'
+            }}>
+              {lang === 'es' ? '¡LLÁMANOS!' : 'CALL US!'}
+            </span>
 
-      <button
-        onClick={() => window.open("https://app.tableo.com/widget/la-casa-de-burger-hamburguesa-gourmet-torrevieja-hamburgueseria-casero-best-burger-in-town-spain", "_blank")}
-        className="gold-button-premium"
-        style={{
-          padding: '18px 40px',
-          borderRadius: '50px',
-          fontSize: '1.3rem',
-          width: '90%',
-          maxWidth: '450px',
-          marginTop: '10px',
-          display: 'block',
-          cursor: 'pointer'
-        }}
-      >
-        📅 RESERVAR MESA
-      </button>
-
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '15px', gap: '8px' }}>
-        <a
-          href="tel:+34602597210"
-          aria-label={T[lang]?.btnCall || T.es.btnCall}
-          style={{
-            background: '#ffffff',
-            color: '#000000',
-            padding: '14px 30px',
-            borderRadius: '50px',
-            textDecoration: 'none',
-            fontWeight: '950',
-            border: '2px solid #000000',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '8px',
-            boxShadow: '0 4px 15px rgba(0,0,0,0.3)'
-          }}
-        >
-          <span aria-hidden="true">📞</span>
-          {T[lang]?.btnCall || T.es.btnCall}
-        </a>
-
-        <span style={{
-          color: '#FFFFFF',
-          fontSize: '0.75rem',
-          fontWeight: '900',
-          textTransform: 'uppercase',
-          letterSpacing: '1px'
-        }}>
-          {lang === 'es' ? '¡LLÁMANOS!' : 'CALL US!'}
-        </span>
-      </div>
-    </div>
-  </div>
-</header>
+            {/* AJOUT DES LOGOS GOOGLE/TRIPADVISOR ICI POUR LE SEO */}
+            <div style={{ display: 'flex', gap: '15px', marginTop: '10px' }}>
+              <img src={google} width="118" height="66" alt="Google" style={{ height: '35px', width: 'auto' }} />
+              <img src={tripadvisor} width="169" height="127" alt="Tripadvisor" style={{ height: '35px', width: 'auto' }} />
+            </div>
+          </div>
+        </div> {/* Ferme BLOC BOUTONS */}
+      </div> {/* Ferme CONTENU TEXTUEL (zIndex 2) */}
+    </header>
 <main className="menu-page-container">
   {/* Le Suspense permet d'afficher le Header immédiatement sans attendre le code du menu */}
   <Suspense fallback={<div style={{ textAlign: 'center', padding: '50px', color: '#BF953F', fontWeight: 'bold' }}>Cargando menú...</div>}>
