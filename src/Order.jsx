@@ -40,7 +40,6 @@ export default function Order({ cart, removeFromCart, lang }) {
 
   const handleOrder = (e) => {
     e.preventDefault();
-    // Alertes forcées en Espagnol
     if (!name || !phone) {
       Swal.fire({ title: 'Atención', text: 'Nombre y teléfono son obligatorios', icon: "warning", confirmButtonColor: "#ff4757" });
       return;
@@ -53,16 +52,18 @@ export default function Order({ cart, removeFromCart, lang }) {
     let orderList = "";
     cart.forEach((item, index) => {
       const displayPrice = item.precio || item.totalPrice || "0€";
-      // FORCE LE NOM DU BURGER EN ESPAGNOL
+
+      // --- FORCE LE NOM DU BURGER EN ESPAGNOL ---
       const itemName = (typeof item.name === 'object' ? (item.name.es || item.object) : item.object || "Producto").toUpperCase();
 
       orderList += `\n*${index + 1}. ${itemName}* - ${displayPrice}\n`;
       if (item.removed && item.removed.length > 0) {
+        // --- ICI ON FORCE "SIN" EN ESPAGNOL POUR LE WHATSAPP ---
         orderList += `    ❌ SIN: ${item.removed.join(", ").toUpperCase()}\n`;
       }
     });
 
-    // ÉTIQUETTES WHATSAPP EN ESPAGNOL
+    // --- ÉTIQUETTES WHATSAPP FORCÉES EN ESPAGNOL ---
     const headerWa = translations.whatsappHeader.es;
     const pickupWa = translations.pickup.es;
 
