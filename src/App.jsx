@@ -548,33 +548,40 @@ animation: bounce-subtle 2s infinite ease-in-out;
 
   {/* 3. CONTENU TEXTUEL ET BOUTONS */}
   <div style={{ position: 'relative', zIndex: 2, width: '100%' }}>
-    <h1 style={{
-      fontSize: 'clamp(2rem, 10vw, 3.5rem)',
-      fontWeight: '900',
-      textTransform: 'uppercase',
-      textShadow: '2px 2px 15px rgba(0,0,0,0.9)',
-      margin: 0,
-      color: '#fff',
-      lineHeight: '1.2',
-      minHeight: '2.4em' // Anti-CLS : réserve l'espace pour les 2 lignes
-    }}>
-      {T[lang]?.heroTitle || T.es.heroTitle}
-      <br />
-      {
-        lang === 'fr' ? 'à Torrevieja' :
-        lang === 'en' ? 'in Torrevieja' :
-        lang === 'de' ? 'in Torrevieja' :
-        lang === 'nl' ? 'in Torrevieja' :
-        lang === 'no' ? 'i Torrevieja' :
-        lang === 'sv' ? 'i Torrevieja' :
-        lang === 'pl' ? 'w Torrevieja' :
-        lang === 'uk' ? 'у Торрев’єнті' :
-        lang === 'ru' ? 'в Торreviexe' :
-        lang === 'ar' ? 'في توريفايجا' :
-        lang === 'ro' ? 'în Torrevieja' :
-        'en Torrevieja'
-      }
-    </h1>
+  <h1 style={{
+  fontSize: 'clamp(2rem, 10vw, 3.5rem)',
+  fontWeight: '900',
+  textTransform: 'uppercase',
+  textShadow: '2px 2px 15px rgba(0,0,0,0.9)',
+  margin: '0 auto',
+  color: '#fff',
+  lineHeight: '1.2',
+  /* On force une hauteur minimale calculée sur la taille du texte */
+  minHeight: 'calc(1.2 * clamp(2rem, 10vw, 3.5rem) * 2)',
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
+  textAlign: 'center'
+}}>
+  <span>{T[lang]?.heroTitle || T.es.heroTitle}</span>
+  <span style={{ fontSize: '0.9em' }}>
+    {
+      lang === 'fr' ? 'à Torrevieja' :
+      lang === 'en' ? 'in Torrevieja' :
+      lang === 'de' ? 'in Torrevieja' :
+      lang === 'nl' ? 'in Torrevieja' :
+      lang === 'no' ? 'i Torrevieja' :
+      lang === 'sv' ? 'i Torrevieja' :
+      lang === 'pl' ? 'w Torrevieja' :
+      lang === 'uk' ? 'у Торрев’єнті' :
+      lang === 'ru' ? 'в Торreviexe' :
+      lang === 'ar' ? 'في توريفايجا' :
+      lang === 'ro' ? 'în Torrevieja' :
+      'en Torrevieja'
+    }
+  </span>
+</h1>
 
     <h2 style={{
         fontSize: '1.5rem',
