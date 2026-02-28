@@ -900,11 +900,38 @@ animation: bounce-subtle 2s infinite ease-in-out;
               <img src={instagramIcon} width="45" height="45" alt="Instagram" loading="lazy" decoding="async" />
             </a>
             <a href="https://www.google.com/search?q=la+casa+de+burger+torrevieja" target="_blank" rel="noreferrer">
-              <img src={googleIcon} width="140" height="40" alt="Google Reviews" loading="lazy" decoding="async" style={{ objectFit: 'contain' }} />
-            </a>
-            <a href="https://www.tripadvisor.es/Restaurant_Review-g187527-d26835169-Reviews-La_Casa_De_Burger-Torrevieja" target="_blank" rel="noreferrer">
-              <img src={tripadvisor} width="140" height="40" alt="Tripadvisor" loading="lazy" decoding="async" style={{ objectFit: 'contain' }} />
-            </a>
+  <img
+    src={googleIcon}
+    width="118"
+    height="66"
+    alt="Google Reviews"
+    loading="lazy"
+    decoding="async"
+    style={{
+      objectFit: 'contain',
+      width: '118px',
+      height: '66px', // On fixe la taille exacte
+      aspectRatio: '118 / 66',
+      imageRendering: 'auto'
+    }}
+  />
+</a>
+<a href="https://www.tripadvisor.es/Restaurant_Review-g187527-d26835169-Reviews-La_Casa_De_Burger-Torrevieja" target="_blank" rel="noreferrer">
+<img
+src={tripadvisor}
+width="169"  // La dimension RÉELLE de ton nouveau fichier
+height="127" // La dimension RÉELLE de ton nouveau fichier
+alt="Tripadvisor"
+loading="lazy"
+decoding="async"
+style={{
+objectFit: 'contain',
+width: '110px', // On l'affiche un peu plus petit pour le design
+height: 'auto',
+aspectRatio: '169 / 127' // Indispensable pour éviter le CLS
+}}
+/>
+</a>
           </div>
         </div>
         </Suspense>
