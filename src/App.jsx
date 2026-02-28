@@ -546,8 +546,6 @@ animation: bounce-subtle 2s infinite ease-in-out;
     </div>
   </div>
 
-  {/* 3. CONTENU TEXTUEL ET BOUTONS */}
-  <div style={{ position: 'relative', zIndex: 2, width: '100%' }}>
   <h1 style={{
     fontSize: 'clamp(2rem, 10vw, 3.5rem)',
     fontWeight: '900',
@@ -555,7 +553,10 @@ animation: bounce-subtle 2s infinite ease-in-out;
     textShadow: '2px 2px 15px rgba(0,0,0,0.9)',
     margin: 0,
     color: '#fff',
-    lineHeight: '1.1'
+    lineHeight: '1.2', // Légèrement augmenté pour laisser respirer les lettres
+    minHeight: '2.4em', // RÉGLAGE CLS : Réserve l'espace pour 2 lignes de texte
+    display: 'block',
+    overflow: 'hidden' // Évite que le texte ne dépasse pendant le calcul
   }}>
     {T[lang]?.heroTitle || T.es.heroTitle}
     <br />
@@ -591,45 +592,50 @@ animation: bounce-subtle 2s infinite ease-in-out;
       {T[lang]?.heroSubtitle || T.es.heroSubtitle}
     </h2>
 
-    {/* BLOC BOUTONS */}
-      <div style={{ marginTop: '20px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px' }}>
-        <button
-          onClick={() => {
-            setShowCardBurger(true); // 1. On active l'affichage
-            // 2. On attend que React injecte le menu dans la page
-            requestAnimationFrame(() => {
-              setTimeout(() => {
-                const el = document.getElementById("sec-burgers");
-                if (el) {
-                  // 3. Calcul de position précis (avec -100px pour ne pas coller au haut de l'écran)
-                  const yOffset = -100;
-                  const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
-                  window.scrollTo({ top: y, behavior: 'smooth' });
-                }
-              }, 100);
-            });
-          }}
-          className="pulse-gold-btn gold-button-premium"
-          style={{
-              color: '#000',
-              padding: '22px 50px',
-              borderRadius: '50px',
-              border: '3px solid #000',
-              fontWeight: '950',
-              cursor: 'pointer',
-              fontSize: '1.5rem',
-              boxShadow: '0 4px 15px rgba(0,0,0,0.5)',
-              textTransform: 'uppercase',
-              width: '90%',
-              maxWidth: '450px',
-              height: '80px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center'
-          }}
-        >
-          🚀 {T[lang]?.btnOrder || T.es.btnOrder}
-        </button>
+    <button
+  onClick={() => {
+    // 1. On force l'affichage du menu
+    setShowCardBurger(true);
+
+    // 2. Fonction intelligente qui réessaie si la section n'est pas encore prête
+    const scrollToMenu = (attempts) => {
+      const el = document.getElementById("sec-burgers");
+
+      if (el) {
+        // L'élément existe ! On calcule et on scroll
+        const yOffset = -100;
+        const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      } else if (attempts > 0) {
+        // L'élément n'est pas encore là (React travaille), on réessaie dans 100ms
+        setTimeout(() => scrollToMenu(attempts - 1), 100);
+      }
+    };
+
+    // On lance la tentative (elle réessaiera jusqu'à 8 fois si besoin, soit 800ms)
+    scrollToMenu(8);
+  }}
+  className="pulse-gold-btn gold-button-premium"
+  style={{
+      color: '#000',
+      padding: '22px 50px',
+      borderRadius: '50px',
+      border: '3px solid #000',
+      fontWeight: '950',
+      cursor: 'pointer',
+      fontSize: '1.5rem',
+      boxShadow: '0 4px 15px rgba(0,0,0,0.5)',
+      textTransform: 'uppercase',
+      width: '90%',
+      maxWidth: '450px',
+      height: '80px',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center'
+  }}
+>
+  🚀 {T[lang]?.btnOrder || T.es.btnOrder}
+</button>
 
       <button
         onClick={() => window.open("https://app.tableo.com/widget/la-casa-de-burger-hamburguesa-gourmet-torrevieja-hamburgueseria-casero-best-burger-in-town-spain", "_blank")}
