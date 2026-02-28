@@ -549,32 +549,35 @@ animation: bounce-subtle 2s infinite ease-in-out;
   {/* 3. CONTENU TEXTUEL ET BOUTONS */}
   <div style={{ position: 'relative', zIndex: 2, width: '100%' }}>
   <h1 style={{
-  fontSize: 'clamp(2rem, 10vw, 3.5rem)',
-  fontWeight: '900',
-  textTransform: 'uppercase',
-  textShadow: '2px 2px 15px rgba(0,0,0,0.9)',
-  margin: '0 auto',
-  color: '#fff',
-  lineHeight: '1.2',
-  /* --- LE FIX ANTI-CLS ULTIME --- */
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  alignItems: 'center',
-  textAlign: 'center',
-  minHeight: '180px', // On augmente un peu pour être large
-  contain: 'layout size' // Bloque tout mouvement interne pour le navigateur
-}}>
-  <span style={{ display: 'block' }}>
-    {T[lang]?.heroTitle || T.es.heroTitle}
-  </span>
-  <span style={{
-    fontSize: '0.8em',
-    display: 'block',
-    minHeight: '45px', // FIX : On utilise des PX fixes au lieu de EM
-    lineHeight: '45px' // Aligne le texte au milieu de ces 45px
+    fontSize: 'clamp(2rem, 10vw, 3.5rem)',
+    fontWeight: '900',
+    textTransform: 'uppercase',
+    textShadow: '2px 2px 15px rgba(0,0,0,0.9)',
+    margin: '0 auto',
+    color: '#fff',
+    lineHeight: '1.2',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    textAlign: 'center',
+    minHeight: '180px',
+    /* --- PROTECTION NUCLEAIRE --- */
+    contain: 'paint layout', // Dit au navigateur de ne pas recalculer l'extérieur
+    overflow: 'hidden'       // Empêche tout micro-débordement de police
   }}>
-    {
+    <span style={{ display: 'block' }}>
+      {T[lang]?.heroTitle || T.es.heroTitle}
+    </span>
+    <span style={{
+      fontSize: '0.8em',
+      display: 'block',
+      minHeight: '45px',
+      lineHeight: '45px',
+      overflow: 'hidden',    // Sécurité supplémentaire
+      visibility: 'visible'  // Assure que le texte ne clignote pas
+    }}>
+      {
       lang === 'fr' ? 'à Torrevieja' :
       lang === 'en' ? 'in Torrevieja' :
       lang === 'de' ? 'in Torrevieja' :
