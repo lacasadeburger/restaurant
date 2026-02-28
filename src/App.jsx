@@ -244,12 +244,27 @@ export default function App() {
   const [view, setView] = useState('categories'); // 'categories', 'combos', 'burgers', 'sides'
   const [loadMedia, setLoadMedia] = useState(false); // Pour YouTube (Manuel)
 const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-différé)
-// --- 2. GESTION DE LA LANGUE + CHARGEMENT INTELLIGENT MAPS ---
+// --- 2. GESTION DE LA LANGUE + MAPS + EFFET BACKGROUND ---
   useEffect(() => {
-    // Gestion Langue
+    // A. Logique de disparition de l'image (Performance GPU)
+    const bgImg = document.getElementById('hero-bg-perf');
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      const threshold = 800; // Point de disparition totale
+      if (bgImg) {
+        const newOpacity = Math.max(0, 1 - scrollY / threshold);
+        if (scrollY <= threshold + 100) {
+          bgImg.style.opacity = newOpacity;
+        } else if (bgImg.style.opacity !== "0") {
+          bgImg.style.opacity = "0";
+        }
+      }
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    // B. Gestion Langue
     const params = new URLSearchParams(window.location.search);
     const urlLang = params.get('lang');
-
     if (urlLang && T[urlLang]) {
       setLang(urlLang);
     } else {
@@ -258,7 +273,7 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
       setLang(T[code] ? code : 'es');
     }
 
-    // CHARGEMENT DE LA CARTE AU SCROLL (Optimisation Google Insights)
+    // C. Chargement Carte au Scroll
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
@@ -274,7 +289,11 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
       observer.observe(mapTarget);
     }
 
-    return () => observer.disconnect();
+    // Nettoyage complet
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      observer.disconnect();
+    };
   }, []);
 
   const totalPrice = useMemo(() => {
@@ -343,85 +362,110 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
   const GOLD_SHADOW = "0 4px 15px rgba(255, 215, 0, 0.3)";
 
   return (
-<div className="app-main-wrapper" style={{ position: 'relative', backgroundColor: 'transparent', color: '#fff' }}>
-<style>{`
-/* App.jsx - Styles Interactifs et Flottants */
+      <div className="app-main-wrapper" style={{ position: 'relative', backgroundColor: 'transparent', color: '#fff' }}>
 
+        {/* --- BACKGROUND FIXE (PERFORMANCE) --- */}
+        <div className="hero-fixed-container">
+          <img
+            id="hero-bg-perf"
+            src={hero}
+            className="hero-fixed-bg"
+            alt="La Casa de Burger Background"
+          />
+        </div>
+<style>{`
+/* --- PERFORMANCE & BACKGROUND FIXE --- */
+.hero-fixed-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: -1;
+  background-color: #000;
+  overflow: hidden;
+  pointer-events: none;
+}
+.hero-fixed-bg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  will-change: opacity;
+  transform: translateZ(0);
+  transition: opacity 0.1s linear;
+}
+
+/* --- LOGO & ANIMATIONS --- */
 .logo-container-wrapper {
-position: absolute;
-top: 150px;
-left: 35px;
-z-index: 10;
-animation: wobble-inverse 5s infinite ease-in-out;
-pointer-events: none;
+  position: absolute;
+  top: 150px;
+  left: 35px;
+  z-index: 10;
+  animation: wobble-inverse 5s infinite ease-in-out;
+  pointer-events: none;
 }
 .moving-header-logo { height: auto; transition: 0.3s; width: 150px; }
 
+/* --- ÉLÉMENTS FLOTTANTS (WhatsApp & Close) --- */
 .whatsapp-float {
-position: fixed !important;
-bottom: 30px !important;
-right: 25px !important;
-z-index: 9999 !important;
-display: flex;
-align-items: center;
-justify-content: center;
-background-color: #25d366;
-color: white;
-width: 60px;
-height: 60px;
-border-radius: 50px;
-box-shadow: 2px 5px 15px rgba(0,0,0,0.4);
-}
-
-.wobble-badge-container {
-position: absolute;
-top: 10px;
-left: 10px;
-z-index: 50;
-}
-
-.wobble-badge {
-background: linear-gradient(135deg, #BF953F, #FCF6BA, #D4AF37, #FBF5B7, #BF953F) !important;
-color: #000 !important;
-text-transform: uppercase;
-padding: 6px 12px !important;
-border-radius: 50px !important;
-font-size: 0.7rem !important;
-display: inline-block;
-box-shadow: 0 4px 10px rgba(0,0,0,0.8);
-animation: wobble-badge 3s infinite ease-in-out !important;
+  position: fixed !important;
+  bottom: 30px !important;
+  right: 25px !important;
+  z-index: 9999 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #25d366;
+  color: white;
+  width: 60px;
+  height: 60px;
+  border-radius: 50px;
+  box-shadow: 2px 5px 15px rgba(0,0,0,0.4);
 }
 
 .floating-close {
-position: fixed !important;
-bottom: 95px !important;
-left: 50% !important;
-transform: translateX(-50%) !important;
-z-index: 20000 !important;
-display: flex !important;
-align-items: center;
-justify-content: center;
-box-shadow: 0 10px 30px rgba(0,0,0,0.8) !important;
-animation: bounce-subtle 2s infinite ease-in-out;
+  position: fixed !important;
+  bottom: 95px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  z-index: 20000 !important;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.8) !important;
+  animation: bounce-subtle 2s infinite ease-in-out;
 }
 
-@keyframes wobble-inverse {
-0%, 100% { transform: rotate(-4deg); }
-50% { transform: rotate(4deg); }
+/* --- BADGES & DÉTAILS --- */
+.wobble-badge-container {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 50;
 }
-@keyframes wobble-badge {
-0%, 100% { transform: rotate(-5deg); }
-50% { transform: rotate(5deg); }
-}
-@keyframes bounce-subtle {
-0%, 100% { transform: translateX(-50%) translateY(0); }
-50% { transform: translateX(-50%) translateY(-5px); }
+.wobble-badge {
+  background: linear-gradient(135deg, #BF953F, #FCF6BA, #D4AF37, #FBF5B7, #BF953F) !important;
+  color: #000 !important;
+  text-transform: uppercase;
+  padding: 6px 12px !important;
+  border-radius: 50px !important;
+  font-size: 0.7rem !important;
+  display: inline-block;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.8);
+  animation: wobble-badge 3s infinite ease-in-out !important;
 }
 
+/* --- KEYFRAMES --- */
+@keyframes wobble-inverse { 0%, 100% { transform: rotate(-4deg); } 50% { transform: rotate(4deg); } }
+@keyframes wobble-badge { 0%, 100% { transform: rotate(-5deg); } 50% { transform: rotate(5deg); } }
+@keyframes bounce-subtle { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(-5px); } }
+
+/* --- RESPONSIVE MOBILE --- */
 @media (max-width: 768px) {
-.wobble-badge-container { top: 25px !important; right: 15px !important; left: auto !important; }
-.logo-container-wrapper { top: 150px !important; left: 15px !important; z-index: 999 !important; }
-.moving-header-logo { width: 80px !important; }
+  .wobble-badge-container { top: 25px !important; right: 15px !important; left: auto !important; }
+  .logo-container-wrapper { top: 150px !important; left: 15px !important; z-index: 999 !important; }
+  .moving-header-logo { width: 80px !important; }
 }
 `}</style>
 <Helmet>
@@ -505,7 +549,7 @@ animation: bounce-subtle 2s infinite ease-in-out;
   position: 'relative',
   borderRadius: '0 0 50px 50px',
   borderBottom: '5px solid #ff4757',
-  backgroundColor: 'transparent', // CHANGÉ : transparent pour voir l'image
+  backgroundColor: 'transparent', // Laisse passer le fond fixe qui s'estompe au scroll
   overflow: 'hidden',
   minHeight: '850px',
   display: 'flex',
@@ -514,36 +558,9 @@ animation: bounce-subtle 2s infinite ease-in-out;
   alignItems: 'center',
   zIndex: 1
 }}>
-  {/* --- IMAGE DE FOND RÉPARÉE --- */}
-  <img
-    src="/burger-signature-torrevieja.webp"
-    alt="La Casa de Burger Gourmet"
-    fetchpriority="high"
-    style={{
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      width: '100%',
-      height: '100%',
-      objectFit: 'cover',
-      zIndex: -1, // CHANGÉ : -1 pour être derrière le texte
-      opacity: 1
-    }}
-  />
+  {/* VERIFICATION : L'image n'est plus ici car elle est gérée par le hero-fixed-container au début du return() pour la performance GPU */}
 
-  {/* 1. OVERLAY DÉGRADÉ */}
-  <div style={{
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    width: '100%',
-    height: '100%',
-    background: 'linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 65%, rgba(0,0,0,0.8) 85%, rgba(0,0,0,1) 100%)',
-    zIndex: 0, // Derrière le texte mais devant l'image
-    pointerEvents: 'none'
-  }}></div>
-
-  {/* 2. BADGE DE PRESTIGE */}
+  {/* 1. BADGE DE PRESTIGE (GARDÉ) */}
   <div className="wobble-badge-container" style={{
     position: 'absolute',
     top: '125px',
@@ -564,7 +581,7 @@ animation: bounce-subtle 2s infinite ease-in-out;
     </div>
   </div>
 
-  {/* 3. CONTENU TEXTUEL ET BOUTONS */}
+  {/* 2. CONTENU TEXTUEL (L'ARMURE SEO) */}
   <div style={{ position: 'relative', zIndex: 3, width: '100%' }}>
     <h1 style={{
       fontSize: 'clamp(2rem, 10vw, 3.5rem)',
@@ -580,22 +597,19 @@ animation: bounce-subtle 2s infinite ease-in-out;
       alignItems: 'center',
       textAlign: 'center',
       minHeight: '180px',
-      width: '100%',
-      contain: 'strict',
-      overflow: 'hidden'
+      width: '100%'
     }}>
+      {/* TITRE PRINCIPAL : Récupère la traduction (Ex: La Casa de Burger) */}
       <span style={{ display: 'block', width: '100%' }}>
         {T[lang]?.heroTitle || T.es.heroTitle}
       </span>
+
+      {/* MOT-CLÉ LOCALISATION : Très important pour Google Maps/Torrevieja */}
       <span style={{
         fontSize: '0.8em',
         display: 'block',
         width: '100%',
-        minHeight: '45px',
-        lineHeight: '45px',
-        whiteSpace: 'nowrap',
-        overflow: 'hidden',
-        textOverflow: 'ellipsis'
+        textShadow: '2px 2px 10px rgba(0,0,0,1)'
       }}>
         {
           lang === 'fr' ? 'à Torrevieja' :
@@ -614,6 +628,7 @@ animation: bounce-subtle 2s infinite ease-in-out;
       </span>
     </h1>
 
+    {/* H2 SEO : Burgers Gourmet, Smash Burgers, etc. */}
     <h2 style={{
         fontSize: '1.5rem',
         color: '#FFD700',
@@ -630,6 +645,7 @@ animation: bounce-subtle 2s infinite ease-in-out;
         {T[lang]?.heroSubtitle || T.es.heroSubtitle}
     </h2>
 
+    {/* 3. LES DEUX BOUTONS PRINCIPAUX (ACTION & RÉSERVATION) */}
     <div style={{ marginTop: '20px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px' }}>
       <button
         onClick={() => {
@@ -686,6 +702,7 @@ animation: bounce-subtle 2s infinite ease-in-out;
         📅 RESERVAR MESA
       </button>
 
+      {/* 4. BLOC APPEL TÉLÉPHONIQUE (GARDÉ) */}
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '15px', gap: '8px' }}>
         <a
           href="tel:+34602597210"
@@ -707,7 +724,6 @@ animation: bounce-subtle 2s infinite ease-in-out;
           <span aria-hidden="true">📞</span>
           {T[lang]?.btnCall || T.es.btnCall}
         </a>
-
         <span style={{
           color: '#FFFFFF',
           fontSize: '0.75rem',
