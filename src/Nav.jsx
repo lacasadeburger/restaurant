@@ -10,7 +10,6 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang, setLa
   const isWorkingHours = currentHour >= 13 && currentHour < 23;
   const isOpen = isWorkingHours && !isSunday;
   const statusColor = isOpen ? '#2ed573' : '#ff4757';
-
   // --- 2. DICTIONNAIRE ---
   const promoTexts = {
     es: "AHORRE HASTA UN 20% A VISITARNOS",
