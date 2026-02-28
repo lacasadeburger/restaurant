@@ -504,23 +504,41 @@ animation: bounce-subtle 2s infinite ease-in-out;
   position: 'relative',
   borderRadius: '0 0 50px 50px',
   borderBottom: '5px solid #ff4757',
-  backgroundColor: 'transparent',
-  overflow: 'visible',
-  minHeight: '520px',
+  backgroundColor: '#000',
+  overflow: 'hidden',
+  minHeight: '800px', // Ajusté pour ton image de 800px
   display: 'flex',
   flexDirection: 'column',
-  justifyContent: 'flex-start',
+  justifyContent: 'center',
   alignItems: 'center',
   zIndex: 2
 }}>
-  {/* 1. OVERLAY DÉGRADÉ */}
+  {/* --- IMAGE DE FOND EN ABSOLUTE (Remplace le Fixed global) --- */}
+  <img
+    src="/burger-hero.webp"
+    alt="La Casa de Burger Gourmet"
+    fetchpriority="high"
+    style={{
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      width: '100%',
+      height: '100%',
+      objectFit: 'cover',
+      zIndex: -1,
+      opacity: 0.85 // Légèrement plus opaque pour un look premium
+    }}
+  />
+
+  {/* 1. OVERLAY DÉGRADÉ POUR LA LISIBILITÉ */}
   <div style={{
     position: 'absolute',
     top: 0,
     left: 0,
     width: '100%',
     height: '100%',
-    background: 'linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6))',
+    // Dégradé vers le noir pur pour fusionner avec le fond du site au scroll
+    background: 'linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,1) 100%)',
     zIndex: 0,
     pointerEvents: 'none'
   }}></div>
@@ -548,54 +566,53 @@ animation: bounce-subtle 2s infinite ease-in-out;
 
   {/* 3. CONTENU TEXTUEL ET BOUTONS */}
   <div style={{ position: 'relative', zIndex: 2, width: '100%' }}>
-  <h1 style={{
-  fontSize: 'clamp(2rem, 10vw, 3.5rem)',
-  fontWeight: '900',
-  textTransform: 'uppercase',
-  textShadow: '2px 2px 15px rgba(0,0,0,0.9)',
-  margin: '0 auto',
-  color: '#fff',
-  lineHeight: '1.2',
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  alignItems: 'center',
-  textAlign: 'center',
-  minHeight: '180px',
-  width: '100%',
-  /* --- PROTECTION ABSOLUE --- */
-  contain: 'strict', // Indique que rien à l'intérieur ne peut changer la taille du bloc
-  overflow: 'hidden'
-}}>
-  <span style={{ display: 'block', width: '100%' }}>
-    {T[lang]?.heroTitle || T.es.heroTitle}
-  </span>
-  <span style={{
-    fontSize: '0.8em',
-    display: 'block',
-    width: '100%',
-    minHeight: '45px',
-    lineHeight: '45px',
-    whiteSpace: 'nowrap', // Empêche le texte de s'étaler sur 2 lignes pendant le chargement
-    overflow: 'hidden',
-    textOverflow: 'ellipsis'
-  }}>
-    {
-      lang === 'fr' ? 'à Torrevieja' :
-      lang === 'en' ? 'in Torrevieja' :
-      lang === 'de' ? 'in Torrevieja' :
-      lang === 'nl' ? 'in Torrevieja' :
-      lang === 'no' ? 'i Torrevieja' :
-      lang === 'sv' ? 'i Torrevieja' :
-      lang === 'pl' ? 'w Torrevieja' :
-      lang === 'uk' ? 'у Торрев’єнті' :
-      lang === 'ru' ? 'в Торreviexe' :
-      lang === 'ar' ? 'في توريفايجا' :
-      lang === 'ro' ? 'în Torrevieja' :
-      'en Torrevieja'
-    }
-  </span>
-</h1>
+    <h1 style={{
+      fontSize: 'clamp(2rem, 10vw, 3.5rem)',
+      fontWeight: '900',
+      textTransform: 'uppercase',
+      textShadow: '2px 2px 15px rgba(0,0,0,0.9)',
+      margin: '0 auto',
+      color: '#fff',
+      lineHeight: '1.2',
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+      textAlign: 'center',
+      minHeight: '180px',
+      width: '100%',
+      contain: 'strict',
+      overflow: 'hidden'
+    }}>
+      <span style={{ display: 'block', width: '100%' }}>
+        {T[lang]?.heroTitle || T.es.heroTitle}
+      </span>
+      <span style={{
+        fontSize: '0.8em',
+        display: 'block',
+        width: '100%',
+        minHeight: '45px',
+        lineHeight: '45px',
+        whiteSpace: 'nowrap',
+        overflow: 'hidden',
+        textOverflow: 'ellipsis'
+      }}>
+        {
+          lang === 'fr' ? 'à Torrevieja' :
+          lang === 'en' ? 'in Torrevieja' :
+          lang === 'de' ? 'in Torrevieja' :
+          lang === 'nl' ? 'in Torrevieja' :
+          lang === 'no' ? 'i Torrevieja' :
+          lang === 'sv' ? 'i Torrevieja' :
+          lang === 'pl' ? 'w Torrevieja' :
+          lang === 'uk' ? 'у Торрев’єнті' :
+          lang === 'ru' ? 'в Торreviexe' :
+          lang === 'ar' ? 'في توريفايجا' :
+          lang === 'ro' ? 'în Torrevieja' :
+          'en Torrevieja'
+        }
+      </span>
+    </h1>
 
     <h2 style={{
         fontSize: '1.5rem',
@@ -612,12 +629,12 @@ animation: bounce-subtle 2s infinite ease-in-out;
       }}>
         {T[lang]?.heroSubtitle || T.es.heroSubtitle}
     </h2>
+
     {/* BLOC BOUTONS */}
     <div style={{ marginTop: '20px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px' }}>
       <button
         onClick={() => {
           setShowCardBurger(true);
-          // Fonction Auto-Retry : vérifie si l'élément existe avant de scroller
           const scrollToMenu = (attempts) => {
             const el = document.getElementById("sec-burgers");
             if (el) {
@@ -628,7 +645,7 @@ animation: bounce-subtle 2s infinite ease-in-out;
               setTimeout(() => scrollToMenu(attempts - 1), 100);
             }
           };
-          scrollToMenu(8); // Réessaie 8 fois (pendant 800ms)
+          scrollToMenu(8);
         }}
         className="pulse-gold-btn gold-button-premium"
         style={{
