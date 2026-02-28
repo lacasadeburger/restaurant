@@ -48,7 +48,7 @@ export default function CardMenu(props) {
     },
     ingredients: {
       "Extra Huevo": { es: "Extra Huevo", en: "Extra Egg", fr: "Œuf suppl.", de: "Extra Ei", ru: "Доп. яйцо", uk: "Дод. яйце", pl: "Dodatkowe jajko", ro: "Ou extra", ar: "بيضة إضافية", no: "Ekstra egg", sv: "Extra ägg", nl: "Extra ei" },
-      "Extra Carne y Queso": { es: "Extra Carne y Queso", en: "Extra Meat & Cheese", fr: "Viande & Fromage suppl.", de: "Extra Fleisch & Käse", ru: "Доп. мясо и сыр", uk: "Дод. м'ясо та сир", pl: "Dodatkowe mięso i ser", ro: "Carne și brânză extra", ar: "لحم وجبن إضافي", no: "Ekstra kjøtt og ost", sv: "Extra kött och ost", nl: "Extra vlees en kaas" },
+      "Extra Carne y Queso": { es: "Extra Carne y Queso", en: "Extra Meat & Cheese", fr: "Viande & Fromage suppl.", de: "Extra Fleisch & Käse", ru: "Доп. мясо и сыр", uk: "Дод. м'm'ясо та сир", pl: "Dodatkowe mięso i ser", ro: "Carne și brânză extra", ar: "لحم وجبن إضافي", no: "Ekstra kjøtt og ost", sv: "Extra kött och ost", nl: "Extra vlees en kaas" },
       "Extra Tocino": { es: "Extra Tocino", en: "Extra Bacon", fr: "Bacon suppl.", de: "Extra Speck", ru: "Доп. бекон", uk: "Дод. бекон", pl: "Dodatkowy bekon", ro: "Bacon extra", ar: "لحم قديد إضافي", no: "Ekstra bacon", sv: "Extra bacon", nl: "Extra spek" },
       "Salsa Picante": { es: "Salsa Picante", en: "Hot Sauce", fr: "Sauce Piquante", de: "Scharfe Soße", ru: "Острый соус", uk: "Гострий соус", pl: "Ostry sos", ro: "Sos iute", ar: "صلصة حارة", no: "Sterk saus", sv: "Stark sås", nl: "Hete saus" },
       "Tomate": { es: "Tomate", en: "Tomato", fr: "Tomate", de: "Tomate", ru: "Помидор", uk: "Помідор", pl: "Pomidor", ro: "Roșie", ar: "طماطم", no: "Tomat", sv: "Tomat", nl: "Tomaat" },
@@ -89,15 +89,24 @@ export default function CardMenu(props) {
   const toggleExtra = (id) => setExtraIngredients(prev => prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id]);
   const toggleRemove = (id) => setRemovedIngredients(prev => prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id]);
 
+  // --- LOGIQUE D'AJOUT CORRIGÉE POUR WHATSAPP (FORCER L'ESPAGNOL) ---
   const handleAddClick = () => {
+    // Fonction pour toujours avoir la valeur "es" de l'ingrédient
+    const getSpanishIngredient = (id) => {
+        return t.ingredients[id] ? t.ingredients[id]['es'] : id;
+    };
+
     const itemToAdd = {
       ...props,
       precio: `${totalPrice}€`,
+      // On force le nom du produit en ESPAGNOL
       object: extraIngredients.length > 0
-        ? `${stableName} (+${extraIngredients.map(id => getT("ingredients", id)).join(", ")})`
-        : stableName,
-      removed: removedIngredients.map(id => getT("ingredients", id))
+        ? `${typeof name === 'object' ? name.es : stableName} (+${extraIngredients.map(id => getSpanishIngredient(id)).join(", ")})`
+        : (typeof name === 'object' ? name.es : stableName),
+      // On force les ingrédients retirés en ESPAGNOL
+      removed: removedIngredients.map(id => getSpanishIngredient(id))
     };
+
     addToCart(itemToAdd);
     setIsAdded(true);
     setTimeout(() => {
