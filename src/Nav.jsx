@@ -105,11 +105,12 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang, setLa
         </div>
       </nav>
 
+      {/* --- BLOC DRAPEAUX (Fond Noir pour boucher la vue sur l'image) --- */}
       <div style={{
         marginTop: '80px',
         display: 'flex', justifyContent: 'center', gap: '6px', padding: '12px 8px',
         flexWrap: 'wrap',
-        backgroundColor: 'rgba(0, 0, 0, 0.4)',
+        backgroundColor: '#000', // MODIFIÉ: Noir pur
         position: 'relative', zIndex: 9999, borderBottom: '1px solid #333',
         minHeight: '44px',
         boxSizing: 'border-box'
@@ -157,13 +158,14 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang, setLa
         ))}
       </div>
 
+      {/* --- BLOC PROMO (Fond Noir pour boucher la vue sur l'image) --- */}
       <div style={{
-        background: 'rgba(0, 0, 0, 0.7)',
+        background: '#000', // MODIFIÉ: Noir pur
         color: '#fff', textAlign: 'center', padding: '10px 8px',
         borderBottom: `2px solid ${GOLD_BRIGHT}`,
         fontSize: '0.82rem',
         fontWeight: '900',
-        fontFamily: 'Georgia, serif', // LOOK GOURMET SANS FICHIER EXTERNE
+        fontFamily: 'Georgia, serif',
         display: 'block', width: '100%', boxSizing: 'border-box',
         letterSpacing: '0.5px', position: 'relative', zIndex: 9998
       }}>

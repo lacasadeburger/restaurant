@@ -506,14 +506,14 @@ animation: bounce-subtle 2s infinite ease-in-out;
   borderBottom: '5px solid #ff4757',
   backgroundColor: '#000',
   overflow: 'hidden',
-  minHeight: '800px', // Ajusté pour ton image de 800px
+  minHeight: '800px',
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
   alignItems: 'center',
-  zIndex: 2
+  zIndex: 1 // VÉRIFIÉ : Mis à 1 pour glisser SOUS le Nav au scroll
 }}>
-  {/* --- IMAGE DE FOND EN ABSOLUTE (Remplace le Fixed global) --- */}
+  {/* --- IMAGE DE FOND --- */}
   <img
     src="/burger-hero.webp"
     alt="La Casa de Burger Gourmet"
@@ -526,19 +526,19 @@ animation: bounce-subtle 2s infinite ease-in-out;
       height: '100%',
       objectFit: 'cover',
       zIndex: -1,
-      opacity: 0.85 // Légèrement plus opaque pour un look premium
+      opacity: 1 // VÉRIFIÉ : Opacité max pour un burger éclatant
     }}
   />
 
-  {/* 1. OVERLAY DÉGRADÉ POUR LA LISIBILITÉ */}
+  {/* 1. OVERLAY DÉGRADÉ (Lisibilité & Transition) */}
   <div style={{
     position: 'absolute',
     top: 0,
     left: 0,
     width: '100%',
     height: '100%',
-    // Dégradé vers le noir pur pour fusionner avec le fond du site au scroll
-    background: 'linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,1) 100%)',
+    // VÉRIFIÉ : Transparent (rgba 0) jusqu'à 75% pour que le burger soit net
+    background: 'linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 75%, rgba(0,0,0,1) 95%)',
     zIndex: 0,
     pointerEvents: 'none'
   }}></div>
@@ -630,7 +630,6 @@ animation: bounce-subtle 2s infinite ease-in-out;
         {T[lang]?.heroSubtitle || T.es.heroSubtitle}
     </h2>
 
-    {/* BLOC BOUTONS */}
     <div style={{ marginTop: '20px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px' }}>
       <button
         onClick={() => {
