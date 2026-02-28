@@ -549,35 +549,38 @@ animation: bounce-subtle 2s infinite ease-in-out;
   {/* 3. CONTENU TEXTUEL ET BOUTONS */}
   <div style={{ position: 'relative', zIndex: 2, width: '100%' }}>
   <h1 style={{
-    fontSize: 'clamp(2rem, 10vw, 3.5rem)',
-    fontWeight: '900',
-    textTransform: 'uppercase',
-    textShadow: '2px 2px 15px rgba(0,0,0,0.9)',
-    margin: '0 auto',
-    color: '#fff',
-    lineHeight: '1.2',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    textAlign: 'center',
-    minHeight: '180px',
-    /* --- PROTECTION NUCLEAIRE --- */
-    contain: 'paint layout', // Dit au navigateur de ne pas recalculer l'extérieur
-    overflow: 'hidden'       // Empêche tout micro-débordement de police
+  fontSize: 'clamp(2rem, 10vw, 3.5rem)',
+  fontWeight: '900',
+  textTransform: 'uppercase',
+  textShadow: '2px 2px 15px rgba(0,0,0,0.9)',
+  margin: '0 auto',
+  color: '#fff',
+  lineHeight: '1.2',
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
+  textAlign: 'center',
+  minHeight: '180px',
+  width: '100%',
+  /* --- PROTECTION ABSOLUE --- */
+  contain: 'strict', // Indique que rien à l'intérieur ne peut changer la taille du bloc
+  overflow: 'hidden'
+}}>
+  <span style={{ display: 'block', width: '100%' }}>
+    {T[lang]?.heroTitle || T.es.heroTitle}
+  </span>
+  <span style={{
+    fontSize: '0.8em',
+    display: 'block',
+    width: '100%',
+    minHeight: '45px',
+    lineHeight: '45px',
+    whiteSpace: 'nowrap', // Empêche le texte de s'étaler sur 2 lignes pendant le chargement
+    overflow: 'hidden',
+    textOverflow: 'ellipsis'
   }}>
-    <span style={{ display: 'block' }}>
-      {T[lang]?.heroTitle || T.es.heroTitle}
-    </span>
-    <span style={{
-      fontSize: '0.8em',
-      display: 'block',
-      minHeight: '45px',
-      lineHeight: '45px',
-      overflow: 'hidden',    // Sécurité supplémentaire
-      visibility: 'visible'  // Assure que le texte ne clignote pas
-    }}>
-      {
+    {
       lang === 'fr' ? 'à Torrevieja' :
       lang === 'en' ? 'in Torrevieja' :
       lang === 'de' ? 'in Torrevieja' :
