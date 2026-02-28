@@ -24,22 +24,38 @@ export default function CardMenu(props) {
     return name || object || "Producto";
   }, [name, object, lang]);
 
-  // --- SYSTÈME DE TRADUCTION INTÉGRAL ---
+  // --- SYSTÈME DE TRADUCTION INTÉGRAL (12 LANGUES) ---
   const t = {
-    extra: { es: "Extras", en: "Extras", fr: "Suppléments" },
-    remove: { es: "Quitar", en: "Remove", fr: "Retirer" },
-    add: { es: "AÑADIR", en: "ADD", fr: "AJOUTER" },
-    ready: { es: "¡LISTO!", en: "READY!", fr: "PRÊT !" },
+    extra: {
+      es: "Extras", en: "Extras", fr: "Suppléments", de: "Extras",
+      ru: "Добавки", uk: "Добавки", pl: "Dodatki", ro: "Extra",
+      ar: "إضافات", no: "Ekstra", sv: "Extra", nl: "Extra's"
+    },
+    remove: {
+      es: "Quitar", en: "Remove", fr: "Retirer", de: "Entfernen",
+      ru: "Удалить", uk: "Видалити", pl: "Usuń", ro: "Elimină",
+      ar: "إزالة", no: "Fjern", sv: "Ta bort", nl: "Verwijderen"
+    },
+    add: {
+      es: "AÑADIR", en: "ADD", fr: "AJOUTER", de: "HINZUFÜGEN",
+      ru: "ДОБАВИТЬ", uk: "ДОДАТИ", pl: "DODAJ", ro: "ADAUGĂ",
+      ar: "إضافة", no: "LEGG TIL", sv: "LÄGG TILL", nl: "TOEVOEGEN"
+    },
+    ready: {
+      es: "¡LISTO!", en: "READY!", fr: "PRÊT !", de: "FERTIG!",
+      ru: "ГОТОВО!", uk: "ГОТОВО!", pl: "GOTOWE!", ro: "GATA!",
+      ar: "جاهز!", no: "KLAR!", sv: "KLAR!", nl: "KLAAR!"
+    },
     ingredients: {
-      "Extra Huevo": { es: "Extra Huevo", en: "Extra Egg", fr: "Œuf suppl." },
-      "Extra Carne y Queso": { es: "Extra Carne y Queso", en: "Extra Meat & Cheese", fr: "Viande & Fromage suppl." },
-      "Extra Tocino": { es: "Extra Tocino", en: "Extra Bacon", fr: "Bacon suppl." },
-      "Salsa Picante": { es: "Salsa Picante", en: "Hot Sauce", fr: "Sauce Piquante" },
-      "Tomate": { es: "Tomate", en: "Tomato", fr: "Tomate" },
-      "Lechuga": { es: "Lechuga", en: "Lettuce", fr: "Laitue" },
-      "Pepinillos": { es: "Pepinillos", en: "Pickles", fr: "Cornichons" },
-      "Cebolla": { es: "Cebolla", en: "Onion", fr: "Oignon" },
-      "Queso": { es: "Queso", en: "Cheese", fr: "Fromage" }
+      "Extra Huevo": { es: "Extra Huevo", en: "Extra Egg", fr: "Œuf suppl.", de: "Extra Ei", ru: "Доп. яйцо", uk: "Дод. яйце", pl: "Dodatkowe jajko", ro: "Ou extra", ar: "بيضة إضافية", no: "Ekstra egg", sv: "Extra ägg", nl: "Extra ei" },
+      "Extra Carne y Queso": { es: "Extra Carne y Queso", en: "Extra Meat & Cheese", fr: "Viande & Fromage suppl.", de: "Extra Fleisch & Käse", ru: "Доп. мясо и сыр", uk: "Дод. м'ясо та сир", pl: "Dodatkowe mięso i ser", ro: "Carne și brânză extra", ar: "لحم وجبن إضافي", no: "Ekstra kjøtt og ost", sv: "Extra kött och ost", nl: "Extra vlees en kaas" },
+      "Extra Tocino": { es: "Extra Tocino", en: "Extra Bacon", fr: "Bacon suppl.", de: "Extra Speck", ru: "Доп. бекон", uk: "Дод. бекон", pl: "Dodatkowy bekon", ro: "Bacon extra", ar: "لحم قديد إضافي", no: "Ekstra bacon", sv: "Extra bacon", nl: "Extra spek" },
+      "Salsa Picante": { es: "Salsa Picante", en: "Hot Sauce", fr: "Sauce Piquante", de: "Scharfe Soße", ru: "Острый соус", uk: "Гострий соус", pl: "Ostry sos", ro: "Sos iute", ar: "صلصة حارة", no: "Sterk saus", sv: "Stark sås", nl: "Hete saus" },
+      "Tomate": { es: "Tomate", en: "Tomato", fr: "Tomate", de: "Tomate", ru: "Помидор", uk: "Помідор", pl: "Pomidor", ro: "Roșie", ar: "طماطم", no: "Tomat", sv: "Tomat", nl: "Tomaat" },
+      "Lechuga": { es: "Lechuga", en: "Lettuce", fr: "Laitue", de: "Salat", ru: "Салат", uk: "Салат", pl: "Sałata", ro: "Salată", ar: "خس", no: "Salat", sv: "Sallad", nl: "Sla" },
+      "Pepinillos": { es: "Pepinillos", en: "Pickles", fr: "Cornichons", de: "Essiggurken", ru: "Огурцы", uk: "Огірки", pl: "Ogórki", ro: "Castraveți murați", ar: "مخلل", no: "Sylteagurk", sv: "Gurka", nl: "Augurken" },
+      "Cebolla": { es: "Cebolla", en: "Onion", fr: "Oignon", de: "Zwiebel", ru: "Лук", uk: "Цибуля", pl: "Cebula", ro: "Ceapă", ar: "بصل", no: "Løk", sv: "Lök", nl: "Ui" },
+      "Queso": { es: "Queso", en: "Cheese", fr: "Fromage", de: "Käse", ru: "Сыр", uk: "Сир", pl: "Ser", ro: "Brânză", ar: "جبن", no: "Ost", sv: "Ost", nl: "Kaas" }
     }
   };
 
@@ -177,7 +193,6 @@ export default function CardMenu(props) {
 
         {hasExtras && !isSpecial && (
           <div className="options-box" style={{ marginTop: 'auto' }}>
-            {/* --- TITRE EXTRAS TRADUIT --- */}
             <div style={labelGoldStyle}>{getT("extra")}</div>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', justifyContent: 'center', marginBottom: '12px' }}>
               {[
@@ -198,7 +213,6 @@ export default function CardMenu(props) {
               ))}
             </div>
 
-            {/* --- TITRE QUITAR TRADUIT --- */}
             <div style={labelGoldStyle}>{getT("remove")}</div>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', justifyContent: 'center' }}>
               {[
