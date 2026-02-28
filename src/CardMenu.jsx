@@ -9,16 +9,12 @@ export default function CardMenu(props) {
 
   const GOLD_BRIGHT = "#FFD700";
 
-  // --- LOGIQUE DE DÉTECTION SPECIALE (Boissons/Desserts) ---
-  // On élargit la détection pour être sûr de ne rien rater
+  // --- LOGIQUE DE DÉTECTION SPÉCIALE ---
   const isSpecial = useMemo(() => {
     return (
       isDrinkCard ||
       isPostreCard ||
-      category === "drink" ||
-      category === "postre" ||
-      category === "bebida" ||
-      category === "boisson"
+      ["drink", "postre", "bebida", "boisson"].includes(category)
     );
   }, [isDrinkCard, isPostreCard, category]);
 
@@ -28,6 +24,7 @@ export default function CardMenu(props) {
     return name || object || "Producto";
   }, [name, object, lang]);
 
+  // --- SYSTÈME DE TRADUCTION INTÉGRAL ---
   const t = {
     extra: { es: "Extras", en: "Extras", fr: "Suppléments" },
     remove: { es: "Quitar", en: "Remove", fr: "Retirer" },
@@ -60,13 +57,13 @@ export default function CardMenu(props) {
   const totalPrice = useMemo(() => {
     const numericValue = String(precio).replace(/[^0-9.,]/g, "").replace(",", ".");
     const base = parseFloat(numericValue) || 0;
+    const extrasList = [
+      { id: "Extra Huevo", price: 1.00 },
+      { id: "Extra Carne y Queso", price: 4.50 },
+      { id: "Extra Tocino", price: 1.00 },
+      { id: "Salsa Picante", price: 0.50 }
+    ];
     const extrasTotal = extraIngredients.reduce((sum, ingId) => {
-      const extrasList = [
-        { id: "Extra Huevo", price: 1.00 },
-        { id: "Extra Carne y Queso", price: 4.50 },
-        { id: "Extra Tocino", price: 1.00 },
-        { id: "Salsa Picante", price: 0.50 }
-      ];
       const ingredient = extrasList.find(item => item.id === ingId);
       return sum + (ingredient ? ingredient.price : 0);
     }, 0);
@@ -110,7 +107,7 @@ export default function CardMenu(props) {
 
   return (
     <div className="card-menu" style={{
-      backgroundImage: `url(${bgCard})`, // 1. BIEN VÉRIFIER QUE bgCard EST IMPORTÉ
+      backgroundImage: `url(${bgCard})`,
       backgroundSize: 'cover',
       backgroundPosition: 'center',
       display: 'flex',
@@ -119,20 +116,19 @@ export default function CardMenu(props) {
       position: 'relative',
       borderRadius: '15px',
       overflow: 'hidden',
-      border: '1px solid rgba(255,215,0,0.3)', // On augmente un peu l'éclat doré
-      backgroundColor: '#000' // Fond de secours si bgCard met du temps
+      border: '1px solid rgba(255,215,0,0.3)',
+      backgroundColor: '#000'
     }}>
 
-    {/* 1. CONTAINER IMAGE : On enlève le noir total pour plus de douceur */}
       <div className="card-menu-image-container" style={{
         position: 'relative',
         height: '230px',
         width: '100%',
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center', // Correction de la majuscule 'C'
+        justifyContent: 'center',
         overflow: 'hidden',
-        backgroundColor: 'rgba(0,0,0,0.2)', // 2. PLUS DE NOIR OPAQUE ICI
+        backgroundColor: 'rgba(0,0,0,0.2)',
         padding: isSpecial ? '15px' : '0px'
       }}>
         {badge && (
@@ -159,18 +155,10 @@ export default function CardMenu(props) {
         <img
           src={image}
           alt={stableName}
-          /* CRUCIAL : On lie l'image aux classes CSS du <style> */
           className={isDrinkCard || category === "drink" ? "img-drink" : isPostreCard ? "img-postre" : "img-burger"}
-          onError={(e) => {
-            console.warn("Image non trouvée:", image);
-            e.target.src = "https://placehold.co/400x400/000000/FFD700?text=Menu";
-          }}
           style={{
-            width: '100%', /* On force 100% pour que l'image occupe l'espace */
+            width: '100%',
             height: '100%',
-            maxWidth: '100%',
-            maxHeight: '100%',
-            /* On laisse le style inline en secours, mais la classe className fera le job */
             objectFit: isSpecial ? 'contain' : 'cover',
             display: 'block',
             zIndex: 10
@@ -178,7 +166,6 @@ export default function CardMenu(props) {
         />
       </div>
 
-      {/* 2. TEXTE ET CONTENU */}
       <div style={{ flex: 1, display: 'flex', flexDirection: 'column', padding: '15px' }}>
         <h3 translate="no" className="card-title" style={{ margin: '0 0 10px 0', color: '#fff' }}>
           {stableName}
@@ -188,16 +175,16 @@ export default function CardMenu(props) {
           {typeof description === 'object' ? (description[lang] || description['es']) : (description || "")}
         </p>
 
-        {/* 3. OPTIONS : Uniquement si ce n'est pas une boisson/dessert sans extras */}
         {hasExtras && !isSpecial && (
           <div className="options-box" style={{ marginTop: 'auto' }}>
+            {/* --- TITRE EXTRAS TRADUIT --- */}
             <div style={labelGoldStyle}>{getT("extra")}</div>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', justifyContent: 'center', marginBottom: '12px' }}>
               {[
-                { id: "Extra Huevo", name: getT("ingredients", "Extra Huevo"), price: 1.00 },
-                { id: "Extra Carne y Queso", name: getT("ingredients", "Extra Carne y Queso"), price: 4.50 },
-                { id: "Extra Tocino", name: getT("ingredients", "Extra Tocino"), price: 1.00 },
-                { id: "Salsa Picante", name: getT("ingredients", "Salsa Picante"), price: 0.50 }
+                { id: "Extra Huevo", price: 1.00 },
+                { id: "Extra Carne y Queso", price: 4.50 },
+                { id: "Extra Tocino", price: 1.00 },
+                { id: "Salsa Picante", price: 0.50 }
               ].map(item => (
                 <button key={item.id} onClick={() => toggleExtra(item.id)}
                   style={{
@@ -206,19 +193,20 @@ export default function CardMenu(props) {
                     border: '1px solid #2ecc71', borderRadius: '20px', padding: '6px 12px', fontSize: '0.7rem', cursor: 'pointer', fontWeight: 'bold'
                   }}
                 >
-                  {item.name} (+{item.price.toFixed(2)}€)
+                  {getT("ingredients", item.id)} (+{item.price.toFixed(2)}€)
                 </button>
               ))}
             </div>
 
+            {/* --- TITRE QUITAR TRADUIT --- */}
             <div style={labelGoldStyle}>{getT("remove")}</div>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', justifyContent: 'center' }}>
               {[
-                { id: "Tomate", name: getT("ingredients", "Tomate") },
-                { id: "Lechuga", name: getT("ingredients", "Lechuga") },
-                { id: "Pepinillos", name: getT("ingredients", "Pepinillos") },
-                { id: "Cebolla", name: getT("ingredients", "Cebolla") },
-                { id: "Queso", name: getT("ingredients", "Queso") }
+                { id: "Tomate" },
+                { id: "Lechuga" },
+                { id: "Pepinillos" },
+                { id: "Cebolla" },
+                { id: "Queso" }
               ].map(ing => (
                 <button key={ing.id} onClick={() => toggleRemove(ing.id)}
                   style={{
@@ -227,7 +215,7 @@ export default function CardMenu(props) {
                     border: '1px solid #e74c3c', borderRadius: '20px', padding: '6px 12px', fontSize: '0.7rem', cursor: 'pointer', fontWeight: 'bold'
                   }}
                 >
-                  ❌ {ing.name}
+                  ❌ {getT("ingredients", ing.id)}
                 </button>
               ))}
             </div>
@@ -235,7 +223,6 @@ export default function CardMenu(props) {
         )}
       </div>
 
-      {/* 4. BOUTON FINAL */}
       <div style={{ padding: '15px', paddingTop: '0' }}>
         <button
           onClick={handleAddClick}
