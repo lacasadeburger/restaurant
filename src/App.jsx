@@ -500,21 +500,21 @@ animation: bounce-subtle 2s infinite ease-in-out;
   pointerEvents: 'none'
 }}></div>}
 <header style={{
-  padding: '85px 20px 80px',
+  padding: '110px 20px 80px',
   textAlign: 'center',
   position: 'relative',
   borderRadius: '0 0 50px 50px',
   borderBottom: '5px solid #ff4757',
   backgroundColor: '#000',
   overflow: 'hidden',
-  minHeight: '800px',
+  minHeight: '850px',
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
   alignItems: 'center',
-  zIndex: 1 // VÉRIFIÉ : Mis à 1 pour glisser SOUS le Nav au scroll
+  zIndex: 1
 }}>
-  {/* --- IMAGE DE FOND --- */}
+  {/* --- IMAGE DE FOND (Désormais au-dessus du fond noir du header) --- */}
   <img
     src="/burger-hero.webp"
     alt="La Casa de Burger Gourmet"
@@ -526,31 +526,30 @@ animation: bounce-subtle 2s infinite ease-in-out;
       width: '100%',
       height: '100%',
       objectFit: 'cover',
-      zIndex: -1,
-      opacity: 1 // VÉRIFIÉ : Opacité max pour un burger éclatant
+      zIndex: 1,
+      opacity: 1
     }}
   />
 
-  {/* 1. OVERLAY DÉGRADÉ (Lisibilité & Transition) */}
+  {/* 1. OVERLAY DÉGRADÉ (Transparent en haut, noir en bas) */}
   <div style={{
     position: 'absolute',
     top: 0,
     left: 0,
     width: '100%',
     height: '100%',
-    // VÉRIFIÉ : Transparent (rgba 0) jusqu'à 75% pour que le burger soit net
-    background: 'linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 75%, rgba(0,0,0,1) 95%)',
-    zIndex: 0,
+    background: 'linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 65%, rgba(0,0,0,0.8) 85%, rgba(0,0,0,1) 100%)',
+    zIndex: 2,
     pointerEvents: 'none'
   }}></div>
 
   {/* 2. BADGE DE PRESTIGE */}
   <div className="wobble-badge-container" style={{
     position: 'absolute',
-    top: '120px',
+    top: '125px',
     right: '20px',
     left: 'auto',
-    zIndex: 110,
+    zIndex: 3,
     width: 'fit-content'
   }}>
     <div className="wobble-badge gold-button-premium" style={{
@@ -566,12 +565,12 @@ animation: bounce-subtle 2s infinite ease-in-out;
   </div>
 
   {/* 3. CONTENU TEXTUEL ET BOUTONS */}
-  <div style={{ position: 'relative', zIndex: 2, width: '100%' }}>
+  <div style={{ position: 'relative', zIndex: 3, width: '100%' }}>
     <h1 style={{
       fontSize: 'clamp(2rem, 10vw, 3.5rem)',
       fontWeight: '900',
       textTransform: 'uppercase',
-      textShadow: '2px 2px 15px rgba(0,0,0,0.9)',
+      textShadow: '2px 2px 20px rgba(0,0,0,1)',
       margin: '0 auto',
       color: '#fff',
       lineHeight: '1.2',
@@ -619,7 +618,7 @@ animation: bounce-subtle 2s infinite ease-in-out;
         fontSize: '1.5rem',
         color: '#FFD700',
         fontWeight: '700',
-        textShadow: '1px 1px 10px rgba(0,0,0,1)',
+        textShadow: '1px 1px 15px rgba(0,0,0,1)',
         marginTop: '10px',
         textTransform: 'uppercase',
         minHeight: '4.5rem',
