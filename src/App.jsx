@@ -505,7 +505,7 @@ animation: bounce-subtle 2s infinite ease-in-out;
   position: 'relative',
   borderRadius: '0 0 50px 50px',
   borderBottom: '5px solid #ff4757',
-  backgroundColor: '#000',
+  backgroundColor: 'transparent', // CHANGÉ : transparent pour voir l'image
   overflow: 'hidden',
   minHeight: '850px',
   display: 'flex',
@@ -514,9 +514,9 @@ animation: bounce-subtle 2s infinite ease-in-out;
   alignItems: 'center',
   zIndex: 1
 }}>
-  {/* --- IMAGE DE FOND (Désormais au-dessus du fond noir du header) --- */}
+  {/* --- IMAGE DE FOND RÉPARÉE --- */}
   <img
-    src="/burger-hero.webp"
+    src="/burger-signature-torrevieja.webp"
     alt="La Casa de Burger Gourmet"
     fetchpriority="high"
     style={{
@@ -526,12 +526,12 @@ animation: bounce-subtle 2s infinite ease-in-out;
       width: '100%',
       height: '100%',
       objectFit: 'cover',
-      zIndex: 1,
+      zIndex: -1, // CHANGÉ : -1 pour être derrière le texte
       opacity: 1
     }}
   />
 
-  {/* 1. OVERLAY DÉGRADÉ (Transparent en haut, noir en bas) */}
+  {/* 1. OVERLAY DÉGRADÉ */}
   <div style={{
     position: 'absolute',
     top: 0,
@@ -539,7 +539,7 @@ animation: bounce-subtle 2s infinite ease-in-out;
     width: '100%',
     height: '100%',
     background: 'linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 65%, rgba(0,0,0,0.8) 85%, rgba(0,0,0,1) 100%)',
-    zIndex: 2,
+    zIndex: 0, // Derrière le texte mais devant l'image
     pointerEvents: 'none'
   }}></div>
 
