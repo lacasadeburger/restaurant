@@ -588,6 +588,7 @@ animation: bounce-subtle 2s infinite ease-in-out;
     }
   </span>
 </h1>
+
     <h2 style={{
         fontSize: '1.5rem',
         color: '#FFD700',
