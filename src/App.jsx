@@ -556,16 +556,22 @@ animation: bounce-subtle 2s infinite ease-in-out;
   margin: '0 auto',
   color: '#fff',
   lineHeight: '1.2',
-  /* On force une hauteur minimale calculée sur la taille du texte */
-  minHeight: 'calc(1.2 * clamp(2rem, 10vw, 3.5rem) * 2)',
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
+  /* --- LE FIX ANTI-CLS --- */
+  display: 'grid',
+  gridTemplateRows: '1fr auto', // Réserve l'espace pour les deux lignes
   alignItems: 'center',
+  minHeight: '160px', // Force une hauteur fixe pour le bloc complet du titre
+  /* ----------------------- */
   textAlign: 'center'
 }}>
-  <span>{T[lang]?.heroTitle || T.es.heroTitle}</span>
-  <span style={{ fontSize: '0.9em' }}>
+  <span style={{ display: 'block' }}>
+    {T[lang]?.heroTitle || T.es.heroTitle}
+  </span>
+  <span style={{
+    fontSize: '0.8em',
+    display: 'block',
+    minHeight: '1.2em' // Réserve spécifiquement la hauteur de la ville
+  }}>
     {
       lang === 'fr' ? 'à Torrevieja' :
       lang === 'en' ? 'in Torrevieja' :
@@ -582,7 +588,6 @@ animation: bounce-subtle 2s infinite ease-in-out;
     }
   </span>
 </h1>
-
     <h2 style={{
         fontSize: '1.5rem',
         color: '#FFD700',
@@ -598,7 +603,6 @@ animation: bounce-subtle 2s infinite ease-in-out;
       }}>
         {T[lang]?.heroSubtitle || T.es.heroSubtitle}
     </h2>
-
     {/* BLOC BOUTONS */}
     <div style={{ marginTop: '20px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px' }}>
       <button
