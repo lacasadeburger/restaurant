@@ -1,114 +1,88 @@
-/* --- TYPOGRAPHIE & BASES --- */
-h2, .SectionTitle, section h2, section h3 {
-  font-family: Georgia, "Times New Roman", serif !important;
-  text-align: center !important;
-  width: 100%;
-  display: block;
-  margin: 40px auto 20px;
-  color: #BF953F;
-  font-weight: 900;
-  text-transform: uppercase;
-}
-
+/* --- 1. BASE & PERFORMANCE (CLS 0) --- */
 html, body {
   background-color: #000 !important;
-  margin: 0;
-  padding: 0;
-  position: relative;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+  margin: 0; padding: 0;
   color: #fff;
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
 }
 
-header {
+/* --- 2. IMAGE FIXE + FILTRE NOIR (LCP PERFECT) --- */
+.hero-fixed-container {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100vh;
+  z-index: -1;
   background-color: #000;
+  overflow: hidden;
 }
 
-/* --- GRILLE & CARTES MENU --- */
-.grid-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 30px;
-  padding: 20px;
-  width: 100%;
-  max-width: 1300px;
-  margin: 0 auto;
-  justify-content: center;
+/* Le filtre noir qui protège ton texte */
+.hero-fixed-container::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.6); /* 60% noir */
+  z-index: 1;
 }
 
-.card-menu {
+.hero-fixed-bg {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* --- 3. HEADER & LOGO (Z-INDEX SANDWICH) --- */
+header {
+  position: relative;
+  z-index: 10 !important; /* Devant tout */
+  background: transparent !important;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  height: 100%;
-  background: #111;
-  border-radius: 12px;
-  overflow: hidden;
-  border: 1px solid rgba(191, 149, 63, .1);
-  position: relative;
+  align-items: center;
+  padding-top: 60px;
 }
 
-/* --- BOUTONS & EFFETS GOLD --- */
-.category-btn-overlay,
-.gold-button-premium {
-  background: linear-gradient(135deg, #BF953F, #FCF6BA, #D4AF37, #FBF5B7, #BF953F) !important;
-  color: #000 !important;
-  font-weight: 950;
-  padding: 12px 35px;
-  border-radius: 50px;
-  text-transform: uppercase;
-  font-size: 1.1rem;
-  position: relative;
-  z-index: 5 !important;
-  overflow: hidden;
-  /* Animation Or Liquide avec délai SEO */
-  animation: gold-liquid 6s ease infinite 2.5s;
-}
-
-/* CORRECTION : L'EFFET DE LUMIÈRE (SHIMMER) */
-.category-btn-overlay::after,
-.gold-button-premium::after {
-  content: "";
-  display: block; /* ÉTAIT EN DISPLAY: NONE DANS TON FICHIER GRIS */
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100px;
-  height: 100%;
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, .6) 50%, rgba(255, 255, 255, 0) 100%);
-  /* Animation Shimmer avec délai SEO */
-  animation: shine-luxury 3s infinite ease-in-out 3s;
-}
-
-/* --- LOGO SANDWICH --- */
 .logo-container-wrapper {
   position: absolute;
-  top: 200px;
+  top: 150px;
   left: 35px;
-  z-index: 2 !important; /* Derrière le texte header(5) */
+  z-index: 2 !important; /* Derrière le texte header (10) */
   animation: wobble-inverse 5s infinite ease-in-out;
-  pointer-events: none;
 }
 
-/* --- ANIMATIONS --- */
-@keyframes shine-luxury {
-  0% { transform: translateX(-200%) skewX(-20deg); }
-  100% { transform: translateX(300%) skewX(-20deg); }
+/* --- 4. BOUTONS GOLD (SHIMMER FIXÉ) --- */
+.gold-button-premium {
+  background: linear-gradient(135deg, #BF953F, #FCF6BA, #D4AF37, #FBF5B7, #BF953F) !important;
+  background-size: 400% 400% !important;
+  color: #000 !important;
+  position: relative !important;
+  overflow: hidden !important;
+  z-index: 5 !important;
+  animation: gold-liquid 6s ease infinite 2.5s !important;
+  border: none !important;
 }
 
-@keyframes gold-liquid {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
+.gold-button-premium::after {
+  content: "" !important;
+  display: block !important;
+  position: absolute;
+  top: -50%; left: -150%; width: 100%; height: 200%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
+  transform: rotate(25deg);
+  animation: shine-luxury 3s infinite 3s !important;
 }
 
-@keyframes wobble-inverse {
-  0%, 100% { transform: rotate(-4deg); }
-  50% { transform: rotate(4deg); }
-}
+/* --- 5. ANIMATIONS --- */
+@keyframes shine-luxury { 0% { left: -150%; } 30% { left: 150%; } 100% { left: 150%; } }
+@keyframes gold-liquid { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+@keyframes wobble-inverse { 0%, 100% { transform: rotate(-4deg); } 50% { transform: rotate(4deg); } }
 
-/* --- RESPONSIVE --- */
+/* --- 6. MOBILE --- */
 @media (max-width: 768px) {
-  .grid-cards { grid-template-columns: 1fr; gap: 20px; padding: 15px; }
-  .promo-container { height: 220px !important; width: 95%; }
-  .card-title { font-size: 1.2rem; }
-  .logo-container-wrapper { top: 180px !important; left: 15px !important; }
+  .logo-container-wrapper { top: 120px !important; left: 15px !important; }
+  .moving-header-logo { width: 100px !important; }
+  header h1 { font-size: 2.2rem !important; }
 }
