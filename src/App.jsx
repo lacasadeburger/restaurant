@@ -11,7 +11,6 @@ const logo = "/logo.webp";
 const instagramIcon = "/instagram.png";
 const whatsappIcon = "/wha2026.webp";
 const hero = "/burger-signature-torrevieja.webp";
-
 const T = {
   es: {
     heroTitle: "La Casa de Burger",
