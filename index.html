@@ -2,85 +2,144 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/logo.webp" />
+    <link rel="preconnect" href="https://lacasadeburger.es">
+    <link rel="preload" as="image" href="/burger-signature-torrevieja.webp" fetchpriority="high">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
     <meta name="theme-color" content="#000000" />
     <link rel="canonical" href="https://lacasadeburger.es/" />
-    <title>La Casa de Burger | Mejor Hamburguesería Gourmet en Torrevieja</title>
-    <meta name="description" content="Descubre las mejores burgers gourmet de Torrevieja. Combos Signature, Smash Burgers dobles y recetas internacionales artesanales." />
+
+    <title>La Casa de Burger | Mejores Hamburguesas Gourmet de Torrevieja</title>
+    <meta name="description" content="Descubre las mejores burgers gourmet y smash burgers en Torrevieja. Carne 100% artesanal, combos signature y recetas únicas." />
 
     <style>
+        /* CSS Critique pour affichage instantané */
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        html, body { background-color: #000 !important; color: #fff; font-family: sans-serif; overflow-x: hidden; }
-        .nav-fixed { position: fixed; top: 0; left: 0; width: 100%; height: 80px; background: #000; display: flex; justify-content: space-between; align-items: center; padding: 0 12px; z-index: 10000; border-bottom: 3px solid #ff4757; }
-        .flags-fixed { margin-top: 80px; height: 68px; display: flex; justify-content: center; align-items: center; gap: 6px; border-bottom: 1px solid #333; }
-        .flag-box { width: 34px; height: 28px; border: 1px solid #FFD700; border-radius: 6px; opacity: 0.4; }
-        .promo-fixed { height: 36px; background: #000; border-bottom: 2px solid #FFD700; display: flex; align-items: center; justify-content: center; font-size: 0.82rem; font-weight: 900; }
-        .hero-static { padding: 40px 15px; text-align: center; }
-        .price-badge { background: #e60023; padding: 8px 12px; border-radius: 10px; border: 2px solid #FFD700; font-weight: 950; }
+        html, body { background-color: #000 !important; color: #fff; font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif; overflow-x: hidden; }
+
+        /* L'image fixe en fond qui assure le LCP */
+        .lcp-background {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100% !important;
+            height: 520px !important;
+            object-fit: cover !important;
+            z-index: 1 !important;
+            aspect-ratio: 1/1;
+            transform: translateZ(0);
+        }
+
+        /* Texte d'attente (Skeleton) placé par-dessus l'image */
+        #fallback-text {
+            position: absolute;
+            top: 100px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: opacity 0.4s ease;
+        }
+
+        #fallback-text h1 {
+            font-size: clamp(2rem, 8vw, 3rem);
+            font-weight: 950;
+            text-transform: uppercase;
+            line-height: 1.1;
+            max-width: 90%;
+            text-shadow: 2px 2px 25px rgba(0,0,0,1);
+        }
+
+        /* Le root React est au-dessus de tout une fois chargé */
+        #root { position: relative; z-index: 10; }
     </style>
+
+    <link rel="icon" type="image/webp" href="/logo.webp" />
+
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "Restaurant",
       "name": "La Casa de Burger",
-      "image": "https://lacasadeburger.es/logo.webp",
+      "image": "https://lacasadeburger.es/burger-signature-torrevieja.webp",
       "telephone": "+34602597210",
-      "address": { "@type": "PostalAddress", "streetAddress": "Torrevieja", "addressLocality": "Torrevieja", "postalCode": "03181", "addressCountry": "ES" },
-      "aggregateRating": { "@type": "AggregateRating", "ratingValue": "5.0", "reviewCount": "150", "worstRating": "1", "bestRating": "5" },
+      "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "AV. Diego Ramirez Pastor, 142",
+          "addressLocality": "Torrevieja",
+          "postalCode": "03181",
+          "addressCountry": "ES"
+      },
+      "aggregateRating": { "@type": "AggregateRating", "ratingValue": "5.0", "reviewCount": "250", "bestRating": "5" },
       "hasMenu": {
         "@type": "Menu",
         "name": "Carta La Casa de Burger",
-        "hasMenuSection": [{
-          "@type": "MenuSection",
-          "name": "Burgers & Combos Signature",
-          "hasMenuItem": [
-            {"@type":"MenuItem","name":"Combo Signature 1","offers":{"@type":"Offer","price":"18.00","priceCurrency":"EUR"}},
-            {"@type":"MenuItem","name":"Combo Signature 2","offers":{"@type":"Offer","price":"18.00","priceCurrency":"EUR"}},
-            {"@type":"MenuItem","name":"La India Gourmet","offers":{"@type":"Offer","price":"9.00","priceCurrency":"EUR"}},
-            {"@type":"MenuItem","name":"La Francesa Signature","offers":{"@type":"Offer","price":"12.00","priceCurrency":"EUR"}},
-            {"@type":"MenuItem","name":"La Inglesa Classic","offers":{"@type":"Offer","price":"10.00","priceCurrency":"EUR"}},
-            {"@type":"MenuItem","name":"La Marroqui Signature","offers":{"@type":"Offer","price":"12.00","priceCurrency":"EUR"}},
-            {"@type":"MenuItem","name":"La Smash Doble","offers":{"@type":"Offer","price":"13.00","priceCurrency":"EUR"}},
-            {"@type":"MenuItem","name":"La Italiana Gourmet","offers":{"@type":"Offer","price":"13.00","priceCurrency":"EUR"}},
-            {"@type":"MenuItem","name":"La Auvergna Signature","offers":{"@type":"Offer","price":"12.00","priceCurrency":"EUR"}},
-            {"@type":"MenuItem","name":"La Española Signature","offers":{"@type":"Offer","price":"14.00","priceCurrency":"EUR"}},
-            {"@type":"MenuItem","name":"La Colombiana Signature","offers":{"@type":"Offer","price":"14.00","priceCurrency":"EUR"}},
-            {"@type":"MenuItem","name":"La Mexicana Signature","offers":{"@type":"Offer","price":"14.00","priceCurrency":"EUR"}},
-            {"@type":"MenuItem","name":"Patatas Bravas Casa","offers":{"@type":"Offer","price":"5.50","priceCurrency":"EUR"}},
-            {"@type":"MenuItem","name":"Waffle XXL Nutella","offers":{"@type":"Offer","price":"7.00","priceCurrency":"EUR"}}
-          ]
-        }]
+        "hasMenuSection": [
+          {
+            "@type": "MenuSection",
+            "name": "Burgers & Combos",
+            "hasMenuItem": [
+              {"@type":"MenuItem","name":"Combo Signature 1","offers":{"@type":"Offer","price":"18.00","priceCurrency":"EUR"}},
+              {"@type":"MenuItem","name":"La Francesa Signature","offers":{"@type":"Offer","price":"12.00","priceCurrency":"EUR"}},
+              {"@type":"MenuItem","name":"La Marroqui Signature","offers":{"@type":"Offer","price":"12.00","priceCurrency":"EUR"}},
+              {"@type":"MenuItem","name":"La Smash Doble","offers":{"@type":"Offer","price":"13.00","priceCurrency":"EUR"}},
+              {"@type":"MenuItem","name":"La Italiana Gourmet","offers":{"@type":"Offer","price":"13.00","priceCurrency":"EUR"}},
+              {"@type":"MenuItem","name":"La Española Signature","offers":{"@type":"Offer","price":"14.00","priceCurrency":"EUR"}},
+              {"@type":"MenuItem","name":"La Colombiana Signature","offers":{"@type":"Offer","price":"14.00","priceCurrency":"EUR"}},
+              {"@type":"MenuItem","name":"La Mexicana Signature","offers":{"@type":"Offer","price":"14.00","priceCurrency":"EUR"}},
+              {"@type":"MenuItem","name":"La India Gourmet","offers":{"@type":"Offer","price":"9.00","priceCurrency":"EUR"}},
+              {"@type":"MenuItem","name":"La Auvergna Signature","offers":{"@type":"Offer","price":"12.00","priceCurrency":"EUR"}},
+              {"@type":"MenuItem","name":"Patatas Bravas Casa","offers":{"@type":"Offer","price":"5.50","priceCurrency":"EUR"}},
+              {"@type":"MenuItem","name":"Fritas Cheddar & Bacon","offers":{"@type":"Offer","price":"8.50","priceCurrency":"EUR"}},
+              {"@type":"MenuItem","name":"Nuggets Artesanos","offers":{"@type":"Offer","price":"6.00","priceCurrency":"EUR"}},
+              {"@type":"MenuItem","name":"Waffle XXL Nutella","offers":{"@type":"Offer","price":"7.00","priceCurrency":"EUR"}}
+            ]
+          }
+        ]
       }
     }
     </script>
 </head>
 <body>
-    <div id="root">
-        <nav class="nav-fixed">
-            <div style="width:35%; display:flex; align-items:center; gap:6px;">
-                <div style="background:linear-gradient(135deg,#BF953F,#FCF6BA,#B38728,#FBF5B7); width:35px; height:35px; border-radius:8px;"></div>
-                <span style="color:#FFD700; font-size:0.85rem; font-weight:900;">602 597 210</span>
-            </div>
-            <div style="flex:1; display:flex; flex-direction:column; align-items:center;">
-                <div style="width:8px; height:8px; background:#2ed573; border-radius:50%; margin-bottom:2px;"></div>
-                <span style="color:#2ed573; font-size:1.1rem; font-weight:1000;">OPEN</span>
-            </div>
-            <div style="width:35%; display:flex; justify-content:flex-end;">
-                <div class="price-badge">0.00€</div>
-            </div>
-        </nav>
-        <div class="flags-fixed">
-            <div class="flag-box"></div><div class="flag-box"></div><div class="flag-box"></div><div class="flag-box"></div><div class="flag-box"></div><div class="flag-box"></div>
-        </div>
-        <div class="promo-fixed">★ SAVE UP TO 20% BY VISITING US ★</div>
-        <main class="hero-static">
-            <h1 style="font-size:2.5rem; font-weight:900; text-transform:uppercase; line-height:1.1; margin-top:20px;">
-                LA CASA DE BURGER <span style="color:#FFD700; font-size:0.6em; display:block;">IN TORREVIEJA</span>
-            </h1>
-            <h2 style="font-size:1.1rem; margin-top:20px; text-transform:uppercase;">SIGNATURE GOURMET & SMASH BURGERS</h2>
-        </main>
+    <img src="/burger-signature-torrevieja.webp" alt="Mejor burger Torrevieja" fetchpriority="high" loading="eager" decoding="sync" class="lcp-background">
+
+    <div id="fallback-text">
+        <h1>LAS MEJORES BURGERS GOURMET<br>EN TORREVIEJA</h1>
+        <h2 style="font-size:1.3rem;color:#FFD700;font-weight:700;margin-top:10px;text-transform:uppercase">14 RECETAS SIGNATURE & SMASH</h2>
     </div>
+
+    <div id="root"></div>
+
+    <script>
+        // Logique de transition sécurisée entre le HTML statique et React
+        (function() {
+            function initObserver() {
+                const r = document.getElementById('root');
+                const f = document.getElementById('fallback-text');
+
+                if (!r) {
+                    setTimeout(initObserver, 20);
+                    return;
+                }
+
+                const observer = new MutationObserver((mutations, obs) => {
+                    if (r.hasChildNodes()) {
+                        if (f) {
+                            f.style.opacity = '0';
+                            setTimeout(() => f.remove(), 400);
+                        }
+                        obs.disconnect();
+                    }
+                });
+
+                observer.observe(r, { childList: true });
+            }
+            initObserver();
+        })();
+    </script>
+
     <script type="module" src="/src/main.jsx" defer></script>
 </body>
 </html>
