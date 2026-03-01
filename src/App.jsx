@@ -381,7 +381,7 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
   />
 </div>
 <style>{`
-  /* --- 1. TYPOGRAPHIE & OR 24 CARATS --- */
+  /* --- 1. TYPOGRAPHIE & EFFETS OR (LE MÉLANGE PRÉCIEUX) --- */
   header h1 span:first-of-type {
     background: linear-gradient(135deg, #BF953F 0%, #FCF6BA 20%, #B38728 40%, #FBF5B7 60%, #AA771C 80%, #FFF5C1 100%) !important;
     -webkit-background-clip: text !important;
@@ -413,7 +413,7 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
     filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4));
   }
 
-  /* --- 2. LE BOUTON PREMIUM --- */
+  /* --- 2. BOUTONS & CLIC UNIQUE (RÉGLAGE PC/MOBILE) --- */
   .gold-button-premium, .category-btn-overlay {
     position: relative;
     background: linear-gradient(135deg, #BF953F 0%, #FCF6BA 25%, #B38728 50%, #FBF5B7 75%, #AA771C 100%) !important;
@@ -432,64 +432,45 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
     animation: gold-liquid 6s ease infinite !important;
   }
 
-  .gold-button-premium {
-    width: 100% !important;
-    height: 55px !important;
-    border-radius: 50px !important;
-    box-shadow: 0 4px 15px rgba(191,149,63,0.4) !important;
+  /* pointer-events: none = CLIC UNIQUE (traverse le bouton vers le container) */
+  .category-btn-overlay {
+    position: absolute !important;
+    bottom: 20px !important;
+    right: 20px !important;
+    padding: 12px 25px !important;
+    border-radius: 50px;
+    z-index: 20 !important;
+    min-width: 180px;
+    pointer-events: none !important;
   }
 
-  .gold-button-premium.is-added {
-    background: #2ecc71 !important;
-    color: #fff !important;
-    animation: none !important;
-    transform: scale(0.95);
-    box-shadow: 0 0 20px rgba(46, 204, 113, 0.6) !important;
-  }
-
-  /* EFFET LUMINEUX CORRIGÉ (3s pour plus de dynamisme) */
   .gold-button-premium::after, .category-btn-overlay::after {
     content: '';
     position: absolute;
-    top: 0;
-    left: -150%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg,
-      rgba(255,255,255,0) 0%,
-      rgba(255,255,255,0.8) 50%,
-      rgba(255,255,255,0) 100%
-    );
+    top: 0; left: -150%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.8) 50%, rgba(255,255,255,0) 100%);
     transform: skewX(-25deg);
     pointer-events: none;
     animation: shimmer-gold-clean 3s infinite;
   }
 
-  /* --- 3. STRUCTURE, BADGES & LOGO ANIMÉ --- */
-
+  /* --- 3. STRUCTURES FIXES (ANTI-CLS) --- */
   .logo-container-wrapper {
     position: absolute !important;
-    top: 180px;
-    left: 20px;
-    z-index: 100;
+    top: 180px; left: 20px; z-index: 100;
     pointer-events: none;
   }
 
   .moving-header-logo {
-    width: 150px;
-    height: auto;
+    width: 150px; height: auto;
     pointer-events: auto;
-    cursor: pointer;
-    filter: drop-shadow(0 0 10px rgba(191,149,63,0.7));
-    animation: float-logo 4s ease-in-out infinite !important;
-    transition: all 0.3s ease;
+    animation: float-logo 4s ease-in-out infinite !important; /* ANIMATION RESTAURÉE */
   }
 
   .wobble-badge-container {
     position: absolute !important;
-    top: 180px;
-    right: 20px;
-    z-index: 105;
+    top: 180px; right: 20px; z-index: 105;
     pointer-events: none;
   }
 
@@ -501,83 +482,68 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
     padding: 8px 15px !important;
     animation: wobble-inverse 5s infinite ease-in-out !important;
     border-radius: 5px;
-    font-size: 0.8rem;
-    white-space: nowrap;
     box-shadow: 0 4px 15px rgba(0,0,0,0.4);
   }
 
+  .language-switcher {
+    display: flex !important;
+    justify-content: center !important;
+    gap: 15px !important;
+    min-height: 45px !important; /* ESPACE RÉSERVÉ DRAPEAUX */
+    margin: 10px auto !important;
+  }
+
+  /* --- 4. DIMENSIONS PROMO 600x336 (VERROUILLÉES) --- */
   .promo-container {
     position: relative !important;
     width: 100%;
     max-width: 600px;
-    margin: 10px auto;
+    height: 336px !important; /* HAUTEUR PC RESTAURÉE */
+    margin: 15px auto;
     border-radius: 20px;
     overflow: hidden;
     cursor: pointer;
     z-index: 5;
+    background: #111;
   }
 
-  .category-btn-overlay {
-    position: absolute !important;
-    bottom: 20px !important;
-    right: 20px !important;
-    padding: 12px 25px !important;
-    border-radius: 50px;
-    z-index: 20 !important;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-    min-width: 180px;
-    pointer-events: none !important;
-  }
-
-  .card-menu {
-    display: flex !important;
-    flex-direction: column !important;
+  .promo-img {
+    width: 100% !important;
     height: 100% !important;
+    object-fit: cover !important; /* PAS DE DÉFORMATION */
+    display: block;
+    transition: transform 0.5s ease;
   }
 
-  /* --- 4. ANIMATIONS --- */
+  .promo-container:hover .promo-img { transform: scale(1.05); }
+
+  /* --- 5. ANIMATIONS (VÉRIFIÉES) --- */
   @keyframes gold-liquid { 0%, 100% { filter: brightness(1); } 50% { filter: brightness(1.15); } }
   @keyframes wobble-inverse { 0%, 100% { transform: rotate(-4deg); } 50% { transform: rotate(4deg); } }
-  @keyframes float-logo {
-    0%, 100% { transform: translateY(0) rotate(0deg); }
-    50% { transform: translateY(-10px) rotate(2deg); }
-  }
+  @keyframes float-logo { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-10px) rotate(2deg); } }
   @keyframes shimmer-gold-clean {
     0% { transform: translateX(-100%) skewX(-25deg); opacity: 0; }
     5% { opacity: 1; }
     25% { transform: translateX(250%) skewX(-25deg); opacity: 1; }
-    30% { opacity: 0; }
     100% { transform: translateX(250%) skewX(-25deg); opacity: 0; }
   }
 
-  /* --- 5. RESPONSIVE --- */
+  /* --- 6. RESPONSIVE (CONCENTRÉ & PROPRE) --- */
   @media (max-width: 768px) {
-    header h1 {
-      font-size: 2.2rem !important;
-      padding-top: 30px;
+    header h1 { font-size: 2.2rem !important; padding-top: 35px; }
+
+    .promo-container { height: 200px !important; } /* HAUTEUR MOBILE DÉDIÉE */
+
+    /* BADGE & LOGO MOBILE (REPLACÉS) */
+    .wobble-badge-container { top: 175px !important; right: 10px; }
+    .logo-container-wrapper { top: 165px !important; left: 10px; }
+    .moving-header-logo { width: 90px !important; }
+
+    .category-btn-overlay {
+      bottom: 15px; right: 15px;
+      font-size: 0.9rem; padding: 10px 20px !important;
+      min-width: 150px;
     }
-    .grid-cards { grid-template-columns: 1fr !important; }
-
-    /* BADGE MOBILE : Redescendu pour éviter la nav */
-    .wobble-badge-container {
-      top: 180px !important;
-      right: 10px;
-    }
-
-    .category-btn-overlay { bottom: 15px; right: 15px; font-size: 0.9rem; padding: 10px 20px !important; }
-
-    /* LOGO MOBILE */
-    .logo-container-wrapper {
-      top: 165px !important;
-      left: 10px;
-    }
-
-    .moving-header-logo {
-      width: 90px !important;
-      filter: drop-shadow(0 0 5px rgba(191,149,63,0.5));
-    }
-
-    .wobble-badge { font-size: 0.7rem; padding: 6px 10px !important; }
   }
 `}</style>
 <Helmet>
