@@ -373,100 +373,49 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
           />
         </div>
         <style>{`
-      /* --- 1. PERFORMANCE & FOND --- */
-      .hero-fixed-container {
-        position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
-        z-index: -1; background-color: #000; overflow: hidden; pointer-events: none;
-      }
-      .hero-fixed-bg {
-        width: 100%; height: 100%; object-fit: cover; display: block;
-        will-change: opacity; transform: translateZ(0); transition: opacity 0.1s linear;
-      }
+      /* 1. FOND & PERF */
+      .hero-fixed-container { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: -1; background-color: #000; overflow: hidden; pointer-events: none; }
+      .hero-fixed-bg { width: 100%; height: 100%; object-fit: cover; display: block; will-change: opacity; transform: translateZ(0); transition: opacity 0.1s linear; }
 
-      /* --- 2. LOGO (SANDWICH) --- */
-      .logo-container-wrapper {
-        position: absolute; top: 200px; left: 35px;
-        z-index: 2 !important;
-        animation: wobble-inverse 5s infinite ease-in-out;
-        pointer-events: none;
-      }
+      /* 2. LOGO (DERRIÈRE LE TEXTE) */
+      .logo-container-wrapper { position: absolute; top: 200px; left: 35px; z-index: 2 !important; animation: wobble-inverse 5s infinite ease-in-out; pointer-events: none; }
       .moving-header-logo { height: auto; transition: 0.3s; width: 150px; }
 
-      /* --- 3. BOUTONS GOLD AVEC ÉCLAIR DE LUMIÈRE --- */
+      /* 3. BOUTONS GOLD + ÉCLAIR (DÉLAI SEO 2.5s/3s) */
       .gold-button-premium {
-        position: relative !important;
-        overflow: hidden !important; /* Indispensable pour l'éclair */
+        position: relative !important; overflow: hidden !important;
         background: linear-gradient(135deg, #BF953F 0%, #FCF6BA 45%, #B38728 55%, #FBF5B7 100%) !important;
-        background-size: 400% 400% !important;
-        color: #000 !important;
-        z-index: 5 !important;
-        display: inline-flex;
-        align-items: center; justify-content: center;
-        animation: gold-liquid 6s ease infinite !important;
+        background-size: 400% 400% !important; color: #000 !important; z-index: 5 !important;
+        display: inline-flex; align-items: center; justify-content: center;
+        animation: gold-liquid 6s ease infinite 2.5s !important;
       }
-
-      /* L'ÉCLAIR DE LUMIÈRE (SHIMMER) RECTIFIÉ */
       .gold-button-premium::after {
-        content: "";
-        position: absolute;
-        top: -50%;
-        left: -150%;
-        width: 100%;
-        height: 200%;
-        background: linear-gradient(
-          to right,
-          transparent 0%,
-          rgba(255, 255, 255, 0.8) 50%,
-          transparent 100%
-        );
-        transform: rotate(30deg);
-        animation: shimmer-light 3s infinite !important; /* Temps réduit pour le voir mieux */
-        z-index: 10 !important; /* Devant le texte du bouton */
-        pointer-events: none;
+        content: ""; position: absolute; top: -50%; left: -150%; width: 100%; height: 200%;
+        background: linear-gradient(to right, transparent 0%, rgba(255, 255, 255, 0.9) 50%, transparent 100%);
+        transform: rotate(30deg); animation: shimmer-light 4s infinite 3s !important;
+        z-index: 10 !important; pointer-events: none;
       }
 
-      /* --- 4. HEADER (TEXTE DEVANT LOGO) --- */
+      /* 4. TEXTE DEVANT LOGO & DRAPEAUX CENTRÉS */
       header { position: relative; z-index: 5 !important; }
-      header h1, header h2 { position: relative; z-index: 6 !important; }
-
-      /* --- 5. BADGE & FLOTTANTS --- */
-      .wobble-badge-container { position: absolute; top: 20px; right: 20px; z-index: 50; }
-      .wobble-badge {
-        text-transform: uppercase; padding: 8px 16px !important; border-radius: 50px !important;
-        font-size: 0.75rem !important; font-weight: 950;
-        animation: gold-liquid 6s ease infinite, wobble-badge 3s infinite ease-in-out !important;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.6);
-      }
-
-      /* --- 6. DRAPEAUX CENTRÉS --- */
+      header h1, header h2 { position: relative; z-index: 6 !important; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
       nav + div {
-        display: flex !important; justify-content: center !important;
-        flex-wrap: wrap !important; gap: 10px !important; padding: 10px !important;
-        background-color: #000 !important; min-height: 68px !important;
-        position: relative; z-index: 10001;
+        display: flex !important; justify-content: center !important; flex-wrap: wrap !important;
+        gap: 10px !important; padding: 10px !important; background-color: #000 !important;
+        min-height: 68px !important; position: relative; z-index: 10001;
       }
 
-      /* --- 7. KEYFRAMES --- */
-      @keyframes gold-liquid {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
-      }
-
-      @keyframes shimmer-light {
-        0% { left: -150%; }
-        30% { left: 150%; } /* L'éclair traverse vite */
-        100% { left: 150%; } /* Puis attend avant de recommencer */
-      }
-
+      /* 5. ANIMATIONS */
+      @keyframes gold-liquid { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+      @keyframes shimmer-light { 0% { left: -150%; } 25% { left: 150%; } 100% { left: 150%; } }
       @keyframes wobble-inverse { 0%, 100% { transform: rotate(-4deg); } 50% { transform: rotate(4deg); } }
-      @keyframes wobble-badge { 0%, 100% { transform: rotate(-5deg); } 50% { transform: rotate(5deg); } }
 
-      /* --- 8. MOBILE --- */
+      /* 6. RESPONSIVE */
       @media (max-width: 768px) {
         .logo-container-wrapper { top: 180px !important; left: 15px !important; }
         .moving-header-logo { width: 100px !important; }
         header h1 { font-size: 2.2rem !important; }
+        nav + div button { width: 36px !important; height: 26px !important; }
       }
     `}</style>
 <Helmet>
