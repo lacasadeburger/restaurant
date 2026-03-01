@@ -373,101 +373,159 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
             alt="La Casa de Burger Background"
           />
         </div>
-<style>{`
-/* --- PERFORMANCE & BACKGROUND FIXE --- */
-.hero-fixed-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  z-index: -1;
-  background-color: #000;
-  overflow: hidden;
-  pointer-events: none;
-}
-.hero-fixed-bg {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  will-change: opacity;
-  transform: translateZ(0);
-  transition: opacity 0.1s linear;
-}
+        <style>{`
+        /* --- PERFORMANCE & BACKGROUND FIXE --- */
+        .hero-fixed-container {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100vh;
+          z-index: -1;
+          background-color: #000;
+          overflow: hidden;
+          pointer-events: none;
+        }
+        .hero-fixed-bg {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+          will-change: opacity;
+          transform: translateZ(0);
+          transition: opacity 0.1s linear;
+        }
 
-/* --- LOGO & ANIMATIONS --- */
-.logo-container-wrapper {
-  position: absolute;
-  top: 150px;
-  left: 35px;
-  z-index: 10;
-  animation: wobble-inverse 5s infinite ease-in-out;
-  pointer-events: none;
-}
-.moving-header-logo { height: auto; transition: 0.3s; width: 150px; }
+        /* --- LOGO & ANIMATIONS --- */
+        .logo-container-wrapper {
+          position: absolute;
+          top: 150px;
+          left: 35px;
+          z-index: 10;
+          animation: wobble-inverse 5s infinite ease-in-out;
+          pointer-events: none;
+        }
+        .moving-header-logo { height: auto; transition: 0.3s; width: 150px; }
 
-/* --- ÉLÉMENTS FLOTTANTS (WhatsApp & Close) --- */
-.whatsapp-float {
-  position: fixed !important;
-  bottom: 30px !important;
-  right: 25px !important;
-  z-index: 9999 !important;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #25d366;
-  color: white;
-  width: 60px;
-  height: 60px;
-  border-radius: 50px;
-  box-shadow: 2px 5px 15px rgba(0,0,0,0.4);
-}
+        /* --- EFFET GOLD LIQUID & SHIMMER (PRÉMIUM) --- */
+        .gold-button-premium {
+          position: relative;
+          overflow: hidden;
+          background: linear-gradient(135deg, #BF953F, #FCF6BA, #D4AF37, #FBF5B7, #BF953F) !important;
+          background-size: 400% 400% !important;
+          color: #000 !important;
+          /* Délai de 2.5s pour la performance LCP/TBT */
+          animation: gold-liquid 6s ease infinite 2.5s !important;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+        }
 
-.floating-close {
-  position: fixed !important;
-  bottom: 95px !important;
-  left: 50% !important;
-  transform: translateX(-50%) !important;
-  z-index: 20000 !important;
-  display: flex !important;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.8) !important;
-  animation: bounce-subtle 2s infinite ease-in-out;
-}
+        /* L'éclair de lumière qui traverse le bouton */
+        .gold-button-premium::after {
+          content: "";
+          position: absolute;
+          top: -50%;
+          left: -150%;
+          width: 50%;
+          height: 200%;
+          background: rgba(255, 255, 255, 0.4);
+          transform: rotate(30deg);
+          animation: shimmer-light 4s infinite 2.5s;
+          pointer-events: none;
+        }
 
-/* --- BADGES & DÉTAILS --- */
-.wobble-badge-container {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  z-index: 50;
-}
-.wobble-badge {
-  background: linear-gradient(135deg, #BF953F, #FCF6BA, #D4AF37, #FBF5B7, #BF953F) !important;
-  color: #000 !important;
-  text-transform: uppercase;
-  padding: 6px 12px !important;
-  border-radius: 50px !important;
-  font-size: 0.7rem !important;
-  display: inline-block;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.8);
-  animation: wobble-badge 3s infinite ease-in-out !important;
-}
+        /* --- ÉLÉMENTS FLOTTANTS --- */
+        .whatsapp-float {
+          position: fixed !important;
+          bottom: 30px !important;
+          right: 25px !important;
+          z-index: 9999 !important;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background-color: #25d366;
+          color: white;
+          width: 60px;
+          height: 60px;
+          border-radius: 50px;
+          box-shadow: 2px 5px 15px rgba(0,0,0,0.4);
+        }
 
-/* --- KEYFRAMES --- */
-@keyframes wobble-inverse { 0%, 100% { transform: rotate(-4deg); } 50% { transform: rotate(4deg); } }
-@keyframes wobble-badge { 0%, 100% { transform: rotate(-5deg); } 50% { transform: rotate(5deg); } }
-@keyframes bounce-subtle { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(-5px); } }
+        .floating-close {
+          position: fixed !important;
+          bottom: 95px !important;
+          left: 50% !important;
+          transform: translateX(-50%) !important;
+          z-index: 20000 !important;
+          display: flex !important;
+          align-items: center;
+          justify-content: center;
+          box-shadow: 0 10px 30px rgba(0,0,0,0.8) !important;
+          animation: bounce-subtle 2s infinite ease-in-out;
+        }
 
-/* --- RESPONSIVE MOBILE --- */
-@media (max-width: 768px) {
-  .wobble-badge-container { top: 25px !important; right: 15px !important; left: auto !important; }
-  .logo-container-wrapper { top: 150px !important; left: 15px !important; z-index: 999 !important; }
-  .moving-header-logo { width: 80px !important; }
-}
-`}</style>
+        /* --- BADGES #1 BURGER (CALÉ À DROITE) --- */
+        .wobble-badge-container {
+          position: absolute;
+          top: 20px;
+          right: 20px;
+          left: auto;
+          z-index: 50;
+          width: fit-content;
+          pointer-events: auto;
+        }
+
+        .wobble-badge {
+          /* Hérite de l'effet Gold Liquid via la classe gold-button-premium dans le JSX */
+          text-transform: uppercase;
+          padding: 8px 16px !important;
+          border-radius: 50px !important;
+          font-size: 0.75rem !important;
+          font-weight: 950;
+          box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+          /* Combine l'effet liquide et le balancement (wobble) */
+          animation: gold-liquid 6s ease infinite 2.5s, wobble-badge 3s infinite ease-in-out !important;
+          white-space: nowrap;
+          border: 1px solid rgba(0,0,0,0.2);
+        }
+
+        /* --- KEYFRAMES --- */
+        @keyframes gold-liquid {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
+
+        @keyframes shimmer-light {
+          0% { left: -150%; }
+          30% { left: 150%; }
+          100% { left: 150%; }
+        }
+
+        @keyframes wobble-inverse { 0%, 100% { transform: rotate(-4deg); } 50% { transform: rotate(4deg); } }
+        @keyframes wobble-badge { 0%, 100% { transform: rotate(-5deg); } 50% { transform: rotate(5deg); } }
+        @keyframes bounce-subtle { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(-5px); } }
+
+        /* --- RESPONSIVE MOBILE (UNIFIÉ) --- */
+        @media (max-width: 768px) {
+          .wobble-badge-container {
+            top: 25px !important;
+            right: 15px !important;
+            left: auto !important;
+          }
+          .wobble-badge {
+            font-size: 0.65rem !important;
+            padding: 6px 12px !important;
+          }
+          .logo-container-wrapper {
+            top: 150px !important;
+            left: 15px !important;
+            z-index: 999 !important;
+          }
+          .moving-header-logo { width: 80px !important; }
+        }
+        `}</style>
 <Helmet>
 {/* 1. DYNAMIQUE : Titre et Description traduits (Indispensable) */}
 <title>{T[lang]?.seoTitle || T.es.seoTitle}</title>
