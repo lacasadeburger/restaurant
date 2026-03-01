@@ -373,109 +373,102 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
           />
         </div>
         <style>{`
-    /* --- 1. PERFORMANCE & BACKGROUND FIXE --- */
-    .hero-fixed-container {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
-      z-index: -1; background-color: #000; overflow: hidden; pointer-events: none;
-    }
-    .hero-fixed-bg {
-      width: 100%; height: 100%; object-fit: cover; display: block;
-      will-change: opacity; transform: translateZ(0); transition: opacity 0.1s linear;
-    }
+      /* --- 1. PERFORMANCE & FOND --- */
+      .hero-fixed-container {
+        position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+        z-index: -1; background-color: #000; overflow: hidden; pointer-events: none;
+      }
+      .hero-fixed-bg {
+        width: 100%; height: 100%; object-fit: cover; display: block;
+        will-change: opacity; transform: translateZ(0); transition: opacity 0.1s linear;
+      }
 
-    /* --- 2. LOGO (PROFONDEUR INTERMÉDIAIRE) --- */
-    .logo-container-wrapper {
-      position: absolute;
-      top: 200px;
-      left: 35px;
-      z-index: 2 !important; /* Devant le fond (-1) mais derrière le header (3+) */
-      animation: wobble-inverse 5s infinite ease-in-out;
-      pointer-events: none;
-    }
-    .moving-header-logo { height: auto; transition: 0.3s; width: 150px; }
+      /* --- 2. LOGO (SANDWICH) --- */
+      .logo-container-wrapper {
+        position: absolute; top: 200px; left: 35px;
+        z-index: 2 !important;
+        animation: wobble-inverse 5s infinite ease-in-out;
+        pointer-events: none;
+      }
+      .moving-header-logo { height: auto; transition: 0.3s; width: 150px; }
 
-    /* --- 3. HEADER & TEXTE (PREMIER PLAN) --- */
-    header {
-      position: relative;
-      z-index: 5 !important; /* Passe devant le logo */
-    }
+      /* --- 3. BOUTONS GOLD AVEC ÉCLAIR DE LUMIÈRE --- */
+      .gold-button-premium {
+        position: relative !important;
+        overflow: hidden !important; /* Indispensable pour l'éclair */
+        background: linear-gradient(135deg, #BF953F 0%, #FCF6BA 45%, #B38728 55%, #FBF5B7 100%) !important;
+        background-size: 400% 400% !important;
+        color: #000 !important;
+        z-index: 5 !important;
+        display: inline-flex;
+        align-items: center; justify-content: center;
+        animation: gold-liquid 6s ease infinite !important;
+      }
 
-    /* --- 4. BOUTONS GOLD PREMIUM (LIQUID + SHIMMER) --- */
-    .gold-button-premium {
-      position: relative !important;
-      overflow: hidden !important;
-      background: linear-gradient(135deg, #BF953F 0%, #FCF6BA 45%, #B38728 55%, #FBF5B7 100%) !important;
-      background-size: 400% 400% !important;
-      color: #000 !important;
-      z-index: 10;
-      display: inline-flex;
-      align-items: center; justify-content: center;
-      animation: gold-liquid 6s ease infinite 2.5s !important;
-    }
-    .gold-button-premium::after {
-      content: ""; position: absolute; top: 0; left: -200%; width: 100%; height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
-      transform: skewX(-20deg); animation: shimmer-light 4s infinite 2.5s !important;
-      z-index: 11; pointer-events: none;
-    }
+      /* L'ÉCLAIR DE LUMIÈRE (SHIMMER) RECTIFIÉ */
+      .gold-button-premium::after {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -150%;
+        width: 100%;
+        height: 200%;
+        background: linear-gradient(
+          to right,
+          transparent 0%,
+          rgba(255, 255, 255, 0.8) 50%,
+          transparent 100%
+        );
+        transform: rotate(30deg);
+        animation: shimmer-light 3s infinite !important; /* Temps réduit pour le voir mieux */
+        z-index: 10 !important; /* Devant le texte du bouton */
+        pointer-events: none;
+      }
 
-    /* --- 5. BADGE PRESTIGE --- */
-    .wobble-badge-container {
-      position: absolute; top: 20px; right: 20px; z-index: 50; width: fit-content;
-    }
-    .wobble-badge {
-      text-transform: uppercase; padding: 8px 16px !important; border-radius: 50px !important;
-      font-size: 0.75rem !important; font-weight: 950;
-      animation: gold-liquid 6s ease infinite 2.5s, wobble-badge 3s infinite ease-in-out !important;
-      white-space: nowrap; border: 1px solid rgba(0,0,0,0.2);
-      box-shadow: 0 4px 15px rgba(0,0,0,0.6);
-    }
+      /* --- 4. HEADER (TEXTE DEVANT LOGO) --- */
+      header { position: relative; z-index: 5 !important; }
+      header h1, header h2 { position: relative; z-index: 6 !important; }
 
-    /* --- 6. ÉLÉMENTS FLOTTANTS --- */
-    .whatsapp-float {
-      position: fixed !important; bottom: 30px !important; right: 25px !important;
-      z-index: 9999 !important; display: flex; align-items: center; justify-content: center;
-      background-color: #25d366; color: white; width: 60px; height: 60px;
-      border-radius: 50px; box-shadow: 2px 5px 15px rgba(0,0,0,0.4);
-    }
-    .floating-close {
-      position: fixed !important; bottom: 95px !important; left: 50% !important;
-      transform: translateX(-50%) !important; z-index: 20000 !important;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.8) !important;
-      animation: bounce-subtle 2s infinite ease-in-out;
-    }
+      /* --- 5. BADGE & FLOTTANTS --- */
+      .wobble-badge-container { position: absolute; top: 20px; right: 20px; z-index: 50; }
+      .wobble-badge {
+        text-transform: uppercase; padding: 8px 16px !important; border-radius: 50px !important;
+        font-size: 0.75rem !important; font-weight: 950;
+        animation: gold-liquid 6s ease infinite, wobble-badge 3s infinite ease-in-out !important;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+      }
 
-    /* --- 7. FIX DES DRAPEAUX (CENTRÉS) --- */
-    nav + div {
-      display: flex !important;
-      justify-content: center !important;
-      flex-wrap: wrap !important;
-      height: auto !important; min-height: 68px !important;
-      gap: 10px !important; padding: 10px !important;
-      background-color: #000 !important;
-      overflow: hidden !important;
-      z-index: 10001; /* Toujours au-dessus du reste */
-      position: relative;
-    }
-    nav + div button { flex-shrink: 0 !important; transition: 0.2s; }
+      /* --- 6. DRAPEAUX CENTRÉS --- */
+      nav + div {
+        display: flex !important; justify-content: center !important;
+        flex-wrap: wrap !important; gap: 10px !important; padding: 10px !important;
+        background-color: #000 !important; min-height: 68px !important;
+        position: relative; z-index: 10001;
+      }
 
-    /* --- 8. KEYFRAMES --- */
-    @keyframes gold-liquid { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
-    @keyframes shimmer-light { 0% { left: -200%; } 25% { left: 200%; } 100% { left: 200%; } }
-    @keyframes wobble-inverse { 0%, 100% { transform: rotate(-4deg); } 50% { transform: rotate(4deg); } }
-    @keyframes wobble-badge { 0%, 100% { transform: rotate(-5deg); } 50% { transform: rotate(5deg); } }
-    @keyframes bounce-subtle { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(-5px); } }
+      /* --- 7. KEYFRAMES --- */
+      @keyframes gold-liquid {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+      }
 
-    /* --- 9. RESPONSIVE MOBILE --- */
-    @media (max-width: 768px) {
-      .wobble-badge-container { top: 25px !important; right: 15px !important; }
-      .logo-container-wrapper { top: 180px !important; left: 15px !important; z-index: 2 !important; }
-      .moving-header-logo { width: 100px !important; }
-      nav + div { gap: 6px !important; padding: 5px !important; }
-      nav + div button { width: 36px !important; height: 26px !important; }
-      header h1 { font-size: 2.2rem !important; }
-    }
-  `}</style>
+      @keyframes shimmer-light {
+        0% { left: -150%; }
+        30% { left: 150%; } /* L'éclair traverse vite */
+        100% { left: 150%; } /* Puis attend avant de recommencer */
+      }
+
+      @keyframes wobble-inverse { 0%, 100% { transform: rotate(-4deg); } 50% { transform: rotate(4deg); } }
+      @keyframes wobble-badge { 0%, 100% { transform: rotate(-5deg); } 50% { transform: rotate(5deg); } }
+
+      /* --- 8. MOBILE --- */
+      @media (max-width: 768px) {
+        .logo-container-wrapper { top: 180px !important; left: 15px !important; }
+        .moving-header-logo { width: 100px !important; }
+        header h1 { font-size: 2.2rem !important; }
+      }
+    `}</style>
 <Helmet>
 {/* 1. DYNAMIQUE : Titre et Description traduits (Indispensable) */}
 <title>{T[lang]?.seoTitle || T.es.seoTitle}</title>
