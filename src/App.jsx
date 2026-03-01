@@ -413,16 +413,13 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
     filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4));
   }
 
-  /* --- 2. LE BOUTON PREMIUM (FUSIONNÉ) --- */
-  .gold-button-premium {
+  /* --- 2. LE BOUTON PREMIUM --- */
+  .gold-button-premium, .category-btn-overlay {
     position: relative !important;
-    width: 100% !important;
-    height: 55px !important;
     background: linear-gradient(135deg, #BF953F 0%, #FCF6BA 25%, #B38728 50%, #FBF5B7 75%, #AA771C 100%) !important;
     background-size: 400% 400% !important;
     color: #000 !important;
     font-weight: 950 !important;
-    border-radius: 50px !important;
     text-transform: uppercase;
     border: none !important;
     display: flex;
@@ -431,11 +428,17 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
     cursor: pointer;
     overflow: hidden;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(191,149,63,0.4) !important;
+    z-index: 1;
     animation: gold-liquid 6s ease infinite !important;
   }
 
-  /* État au clic / Ajouté */
+  .gold-button-premium {
+    width: 100% !important;
+    height: 55px !important;
+    border-radius: 50px !important;
+    box-shadow: 0 4px 15px rgba(191,149,63,0.4) !important;
+  }
+
   .gold-button-premium.is-added {
     background: #2ecc71 !important;
     color: #fff !important;
@@ -444,64 +447,107 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
     box-shadow: 0 0 20px rgba(46, 204, 113, 0.6) !important;
   }
 
-  /* Effet de brillance (shimmer) */
-  .gold-button-premium::after {
+  .gold-button-premium::after, .category-btn-overlay::after {
     content: '';
     position: absolute;
-    top: -50%; left: -50%;
-    width: 200%; height: 200%;
-    background: rgba(255, 255, 255, 0.2);
-    transform: rotate(45deg);
+    top: 0; left: -150%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%);
+    transform: skewX(-25deg);
     pointer-events: none;
-    animation: shimmer-gold 3s infinite;
+    opacity: 0;
+    animation: shimmer-gold-clean 4s infinite;
   }
 
-  /* --- 3. STRUCTURE & BADGES --- */
-  .card-menu {
-    display: flex !important;
-    flex-direction: column !important;
-    height: 100% !important;
-    content-visibility: auto;
-    contain-intrinsic-size: 400px;
+  /* --- 3. STRUCTURE & BADGES (CORRIGÉ POUR LA DROITE) --- */
+  .wobble-badge-container {
+    position: absolute !important;
+    top: 180px; /* Aligné sur la hauteur du logo */
+    right: 20px; /* Fixé à droite */
+    z-index: 105;
+    pointer-events: none;
   }
 
   .wobble-badge {
+    pointer-events: auto;
     background: linear-gradient(135deg, #BF953F, #FCF6BA, #AA771C) !important;
     color: #000 !important;
     font-weight: 900;
     padding: 8px 15px !important;
     animation: wobble-inverse 5s infinite ease-in-out !important;
     border-radius: 5px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+  }
+
+  .card-menu {
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100% !important;
   }
 
   .category-btn-overlay {
     position: absolute !important;
     bottom: 20px !important; right: 20px !important;
-    background: linear-gradient(135deg, #BF953F, #FCF6BA, #AA771C) !important;
     padding: 12px 25px !important;
     border-radius: 50px;
-    font-weight: 950;
-    color: #000;
+    z-index: 10;
   }
 
   /* --- 4. ANIMATIONS --- */
-  @keyframes gold-liquid { 0%, 100% { filter: brightness(1); } 50% { filter: brightness(1.2); } }
+  @keyframes gold-liquid { 0%, 100% { filter: brightness(1); } 50% { filter: brightness(1.15); } }
   @keyframes wobble-inverse { 0%, 100% { transform: rotate(-4deg); } 50% { transform: rotate(4deg); } }
-  @keyframes shimmer-gold {
-    0% { transform: translateX(-150%) rotate(45deg); }
-    100% { transform: translateX(150%) rotate(45deg); }
+
+  @keyframes shimmer-gold-clean {
+    0% { transform: translateX(-100%) skewX(-25deg); opacity: 0; }
+    10% { opacity: 1; }
+    30% { transform: translateX(250%) skewX(-25deg); opacity: 1; }
+    31% { opacity: 0; }
+    100% { opacity: 0; }
   }
 
   /* --- 5. RESPONSIVE --- */
   @media (max-width: 768px) {
     header h1 { font-size: 2.4rem !important; }
     .grid-cards { grid-template-columns: 1fr !important; }
+    .wobble-badge { font-size: 0.7rem; padding: 6px 10px !important; }
+    .wobble-badge-container { top: 185px; right: 10px; }
   }
 `}</style>
 <Helmet>
+  {/* SEO Dynamique selon la langue sélectionnée */}
   <title>{T[lang]?.seoTitle || T.es.seoTitle}</title>
   <meta name="description" content={T[lang]?.seoContent || T.es.seoContent} />
-  {/* ... Tes liens hreflang restent ici ... */}
+  <link rel="canonical" href="https://lacasadeburger.es" />
+
+  {/* --- CONFIGURATION HREFLANG POUR TES 12 LANGUES --- */}
+  <link rel="alternate" href="https://lacasadeburger.es" hreflang="es" />
+  <link rel="alternate" href="https://lacasadeburger.es" hreflang="en" />
+  <link rel="alternate" href="https://lacasadeburger.es" hreflang="fr" />
+  <link rel="alternate" href="https://lacasadeburger.es" hreflang="de" />
+  <link rel="alternate" href="https://lacasadeburger.es" hreflang="sv" />
+  <link rel="alternate" href="https://lacasadeburger.es" hreflang="nl" />
+  <link rel="alternate" href="https://lacasadeburger.es" hreflang="no" />
+  <link rel="alternate" href="https://lacasadeburger.es" hreflang="pl" />
+  <link rel="alternate" href="https://lacasadeburger.es" hreflang="ru" />
+  <link rel="alternate" href="https://lacasadeburger.es" hreflang="uk" />
+  <link rel="alternate" href="https://lacasadeburger.es" hreflang="ro" />
+  <link rel="alternate" href="https://lacasadeburger.es" hreflang="ar" />
+
+  {/* Langue par défaut (Espagnol) pour les autres zones */}
+  <link rel="alternate" href="https://lacasadeburger.es" hreflang="x-default" />
+
+  {/* Open Graph pour WhatsApp, Facebook & Partages */}
+  <meta property="og:title" content={T[lang]?.seoTitle || T.es.seoTitle} />
+  <meta property="og:description" content={T[lang]?.seoContent || T.es.seoContent} />
+  <meta property="og:image" content="https://lacasadeburger.es/logo.webp" />
+  <meta property="og:url" content="https://lacasadeburger.es" />
+  <meta property="og:type" content="website" />
+
+  {/* Meta pour les langues s'écrivant de droite à gauche (Arabe) */}
+  {lang === 'ar' && <html lang="ar" dir="rtl" />}
+  {lang !== 'ar' && <html lang={lang} dir="ltr" />}
 </Helmet>
 
 {/* --- LOGO ANIMÉ --- */}
@@ -635,76 +681,79 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
     </div>
   }>
 
-    {/* SECTION BURGERS */}
-    <section id="sec-burgers" style={{ marginTop: '5px', display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}>
-      <SectionTitle>{T[lang]?.catBurgers || T.es.catBurgers}</SectionTitle>
-      {showCardBurger ? (
-        <div className="grid-cards" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px', width: '100%', padding: '15px', maxWidth: '1200px' }}>
-          {burgers.map(item => (
-            <CardMenu key={item.id} {...item} addToCart={addToCart} lang={lang} hasExtras={!noExtrasIds.includes(item.id)} />
-          ))}
-        </div>
-      ) : (
-        <div className="promo-container" onClick={() => {
-          setShowCardBurger(true);
-          requestAnimationFrame(() => {
-            setTimeout(() => {
-              const el = document.getElementById("sec-burgers");
-              if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.pageYOffset - 100, behavior: "smooth" });
-            }, 150);
-          });
-        }}>
-          <img src="/Burger.webp" width="600" height="336" className="promo-img" alt="Burger" fetchpriority="high" style={{ width: '100%', height: 'auto', objectFit: 'cover', display: 'block' }} />
-          <span className="category-btn-overlay">{T[lang]?.catBurgers || T.es.catBurgers}</span>
-        </div>
-      )}
-    </section>
+  {/* SECTION BURGERS */}
+  <section id="sec-burgers" style={{ marginTop: '5px', display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}>
+    <SectionTitle>{T[lang]?.catBurgers || T.es.catBurgers}</SectionTitle>
+    {showCardBurger ? (
+      <div className="grid-cards" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px', width: '100%', padding: '15px', maxWidth: '1200px' }}>
+        {burgers.map(item => (
+          <CardMenu key={item.id} {...item} addToCart={addToCart} lang={lang} hasExtras={!noExtrasIds.includes(item.id)} />
+        ))}
+      </div>
+    ) : (
+      <div className="promo-container" onClick={() => {
+        setShowCardBurger(true);
+        setTimeout(() => {
+          const el = document.getElementById("sec-burgers");
+          if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.pageYOffset - 100, behavior: "smooth" });
+        }, 150);
+      }}>
+        <img src="/Burger.webp" className="promo-img" alt="Burger" style={{ width: '100%', height: 'auto', display: 'block' }} />
+        {/* CORRECTION ICI : Utilisation de button et de la classe correcte */}
+        <button className="category-btn-overlay">{T[lang]?.catBurgers || T.es.catBurgers} ➔</button>
+      </div>
+    )}
+  </section>
 
-    {/* SECTION BEBIDAS */}
-    <section id="sec-bebidas" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}>
-      <SectionTitle>{T[lang]?.catDrinks || T.es.catDrinks}</SectionTitle>
-      {showCardDrink ? (
-        <div className="grid-cards" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px', width: '100%', padding: '15px', maxWidth: '1200px' }}>
-          {drinks.map(item => <CardMenu key={item.id} {...item} isDrinkCard={true} addToCart={addToCart} lang={lang} />)}
-        </div>
-      ) : (
-        <div className="promo-container" onClick={() => {
-          setShowCardDrink(true);
-          requestAnimationFrame(() => {
-            setTimeout(() => {
-              const el = document.getElementById("sec-bebidas");
-              if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.pageYOffset - 100, behavior: "smooth" });
-            }, 150);
-          });
-        }}>
-          <img src="/Drink.webp" width="600" height="336" className="promo-img" alt="Bebidas" loading="lazy" style={{ width: '100%', height: 'auto', objectFit: 'cover', display: 'block' }} />
-          <span className="category-btn-overlay">{T[lang]?.catDrinks || T.es.catDrinks}</span>
-        </div>
-      )}
-    </section>
+  {/* SECTION BEBIDAS */}
+  <section id="sec-bebidas" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}>
+    <SectionTitle>{T[lang]?.catDrinks || T.es.catDrinks}</SectionTitle>
+    {showCardDrink ? (
+      <div className="grid-cards" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px', width: '100%', padding: '15px', maxWidth: '1200px' }}>
+        {drinks.map(item => <CardMenu key={item.id} {...item} isDrinkCard={true} addToCart={addToCart} lang={lang} />)}
+      </div>
+    ) : (
+      <div className="promo-container" onClick={() => {
+        setShowCardDrink(true);
+        setTimeout(() => {
+          const el = document.getElementById("sec-bebidas");
+          if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.pageYOffset - 100, behavior: "smooth" });
+        }, 150);
+      }}>
+        <img src="/Drink.webp" className="promo-img" alt="Bebidas" style={{ width: '100%', height: 'auto', display: 'block' }} />
+        {/* CORRECTION ICI */}
+        <button className="category-btn-overlay">{T[lang]?.catDrinks || T.es.catDrinks} ➔</button>
+      </div>
+    )}
+  </section>
 
-    {/* SECTION POSTRES */}
-    <section id="sec-postres" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', marginTop: '20px' }}>
-      <SectionTitle>{T[lang]?.catDesserts || "POSTRES"}</SectionTitle>
-      {showCardPostres ? (
-        <div className="grid-cards" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px', width: '100%', padding: '15px', maxWidth: '1200px' }}>
-          {desserts.map(item => (
-            <CardMenu key={item.id} {...item} addToCart={addToCart} lang={lang} />
-          ))}
-        </div>
-      ) : (
-        <div className="promo-container" onClick={() => {
-          setShowCardPostres(true);
-          setTimeout(() => {
-            const el = document.getElementById("sec-postres");
-            if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.pageYOffset - 100, behavior: "smooth" });
-          }, 150);
-        }}>
-          <img src="/Postre.webp" width="600" height="336" className="promo-img" alt="Postres" loading="lazy" style={{ width: '100%', height: 'auto', objectFit: 'cover', display: 'block' }} />
-          <span className="category-btn-overlay">{T[lang]?.catDesserts || "POSTRES"}</span>
-        </div>
-      )}
-    </section>
+  {/* SECTION POSTRES */}
+  <section id="sec-postres" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', marginTop: '20px' }}>
+    <SectionTitle>{T[lang]?.catDesserts || "POSTRES"}</SectionTitle>
+    {showCardPostres ? (
+      <div className="grid-cards" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px', width: '100%', padding: '15px', maxWidth: '1200px' }}>
+        {/* ON UTILISE 'postres' ICI CAR C'EST LE NOM DE TA VARIABLE USEMEMO */}
+        {postres && postres.length > 0 ? (
+          postres.map(item => (
+            <CardMenu key={item.id} {...item} addToCart={addToCart} lang={lang} isPostreCard={true} />
+          ))
+        ) : (
+          <p style={{ color: '#fff' }}>Cargando delicias...</p>
+        )}
+      </div>
+    ) : (
+      <div className="promo-container" onClick={() => {
+        setShowCardPostres(true);
+        setTimeout(() => {
+          const el = document.getElementById("sec-postres");
+          if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.pageYOffset - 100, behavior: "smooth" });
+        }, 150);
+      }}>
+        <img src="/Postre.webp" className="promo-img" alt="Postres" style={{ width: '100%', height: 'auto', display: 'block' }} />
+        <button className="category-btn-overlay">{T[lang]?.catDesserts || "POSTRES"} ➔</button>
+      </div>
+    )}
+  </section>
 
     {/* SECTION COMMANDE */}
     <section id="order" style={{ paddingBottom: '60px', display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}>
