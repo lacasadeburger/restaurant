@@ -373,51 +373,68 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
           />
         </div>
         <style>{`
-      /* 1. FOND & PERF */
-      .hero-fixed-container { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: -1; background-color: #000; overflow: hidden; pointer-events: none; }
-      .hero-fixed-bg { width: 100%; height: 100%; object-fit: cover; display: block; will-change: opacity; transform: translateZ(0); transition: opacity 0.1s linear; }
+    /* 1. ON FORCE L'OR ET L'AFFICHAGE DU SHIMMER */
+    /* On utilise .is-luxury pour matcher la structure de ton fichier et gagner la priorité */
+    .gold-button-premium, .is-luxury .gold-button-premium {
+      background: linear-gradient(135deg, #BF953F 0%, #FCF6BA 45%, #B38728 55%, #FBF5B7 100%) !important;
+      background-size: 400% 400% !important;
+      position: relative !important;
+      overflow: hidden !important;
+      display: inline-flex !important;
+      animation: gold-liquid 6s ease infinite 2.5s !important;
+    }
 
-      /* 2. LOGO (DERRIÈRE LE TEXTE) */
-      .logo-container-wrapper { position: absolute; top: 200px; left: 35px; z-index: 2 !important; animation: wobble-inverse 5s infinite ease-in-out; pointer-events: none; }
-      .moving-header-logo { height: auto; transition: 0.3s; width: 150px; }
+    /* 2. ON FORCE LE SHIMMER QUI ÉTAIT EN "DISPLAY: NONE" */
+    .gold-button-premium::after, .is-luxury .gold-button-premium::after {
+      content: "" !important;
+      display: block !important; /* ON ANNULE LE DISPLAY: NONE */
+      position: absolute !important;
+      top: -50% !important;
+      left: -150% !important;
+      width: 100% !important;
+      height: 200% !important;
+      background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.8) 50%,
+        transparent 100%
+      ) !important;
+      transform: rotate(25deg) !important;
+      animation: shine-luxury 3s infinite ease-in-out 3s !important; /* On utilise ton animation existante avec délai */
+      z-index: 10 !important;
+    }
 
-      /* 3. BOUTONS GOLD + ÉCLAIR (DÉLAI SEO 2.5s/3s) */
-      .gold-button-premium {
-        position: relative !important; overflow: hidden !important;
-        background: linear-gradient(135deg, #BF953F 0%, #FCF6BA 45%, #B38728 55%, #FBF5B7 100%) !important;
-        background-size: 400% 400% !important; color: #000 !important; z-index: 5 !important;
-        display: inline-flex; align-items: center; justify-content: center;
-        animation: gold-liquid 6s ease infinite 2.5s !important;
-      }
-      .gold-button-premium::after {
-        content: ""; position: absolute; top: -50%; left: -150%; width: 100%; height: 200%;
-        background: linear-gradient(to right, transparent 0%, rgba(255, 255, 255, 0.9) 50%, transparent 100%);
-        transform: rotate(30deg); animation: shimmer-light 4s infinite 3s !important;
-        z-index: 10 !important; pointer-events: none;
-      }
+    /* 3. LOGO (TOUJOURS EN SANDWICH) */
+    .logo-container-wrapper {
+      position: absolute; top: 200px; left: 35px; z-index: 2 !important;
+      animation: wobble-inverse 5s infinite ease-in-out; pointer-events: none;
+    }
+    .moving-header-logo { height: auto; width: 150px; }
 
-      /* 4. TEXTE DEVANT LOGO & DRAPEAUX CENTRÉS */
-      header { position: relative; z-index: 5 !important; }
-      header h1, header h2 { position: relative; z-index: 6 !important; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
-      nav + div {
-        display: flex !important; justify-content: center !important; flex-wrap: wrap !important;
-        gap: 10px !important; padding: 10px !important; background-color: #000 !important;
-        min-height: 68px !important; position: relative; z-index: 10001;
-      }
+    /* 4. TEXTE DEVANT LE LOGO */
+    header { position: relative; z-index: 5 !important; }
+    header h1, header h2 { position: relative; z-index: 6 !important; }
 
-      /* 5. ANIMATIONS */
-      @keyframes gold-liquid { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
-      @keyframes shimmer-light { 0% { left: -150%; } 25% { left: 150%; } 100% { left: 150%; } }
-      @keyframes wobble-inverse { 0%, 100% { transform: rotate(-4deg); } 50% { transform: rotate(4deg); } }
+    /* 5. DRAPEAUX CENTRÉS */
+    nav + div {
+      display: flex !important; justify-content: center !important; flex-wrap: wrap !important;
+      gap: 10px !important; padding: 10px !important; background-color: #000 !important;
+      min-height: 68px !important; position: relative; z-index: 10001;
+    }
 
-      /* 6. RESPONSIVE */
-      @media (max-width: 768px) {
-        .logo-container-wrapper { top: 180px !important; left: 15px !important; }
-        .moving-header-logo { width: 100px !important; }
-        header h1 { font-size: 2.2rem !important; }
-        nav + div button { width: 36px !important; height: 26px !important; }
-      }
-    `}</style>
+    /* 6. KEYFRAMES */
+    @keyframes gold-liquid { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+    @keyframes wobble-inverse { 0%, 100% { transform: rotate(-4deg); } 50% { transform: rotate(4deg); } }
+    /* L'animation shine-luxury est déjà dans ton fichier, on l'utilise ! */
+
+    /* 7. MOBILE */
+    @media (max-width: 768px) {
+      .logo-container-wrapper { top: 180px !important; left: 15px !important; }
+      .moving-header-logo { width: 100px !important; }
+      header h1 { font-size: 2.2rem !important; }
+      nav + div button { width: 36px !important; height: 26px !important; }
+    }
+  `}</style>
 <Helmet>
 {/* 1. DYNAMIQUE : Titre et Description traduits (Indispensable) */}
 <title>{T[lang]?.seoTitle || T.es.seoTitle}</title>
