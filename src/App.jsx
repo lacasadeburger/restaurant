@@ -686,7 +686,7 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
     {/* SECTION POSTRES */}
     <section id="sec-postres" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', marginTop: '20px' }}>
       <SectionTitle>{T[lang]?.catDesserts || "POSTRES"}</SectionTitle>
-      {showCardDessert ? (
+      {showCardPostres ? (
         <div className="grid-cards" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px', width: '100%', padding: '15px', maxWidth: '1200px' }}>
           {desserts.map(item => (
             <CardMenu key={item.id} {...item} addToCart={addToCart} lang={lang} />
@@ -694,7 +694,7 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
         </div>
       ) : (
         <div className="promo-container" onClick={() => {
-          setShowCardDessert(true);
+          setShowCardPostres(true);
           setTimeout(() => {
             const el = document.getElementById("sec-postres");
             if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.pageYOffset - 100, behavior: "smooth" });
@@ -713,20 +713,20 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
     </section>
 
     {/* --- BOUTON DE NAVIGATION RAPIDE CORRIGÉ --- */}
-    {(showCardBurger || showCardDrink || showCardDessert) && (
+    {(showCardBurger || showCardDrink || showCardPostres) && (
       <button
         className="floating-close"
         onClick={() => {
             if (showCardBurger) { setShowCardBurger(false); setShowCardDrink(true); document.getElementById('sec-bebidas')?.scrollIntoView({behavior:'smooth'}); }
-            else if (showCardDrink) { setShowCardDrink(false); setShowCardDessert(true); document.getElementById('sec-postres')?.scrollIntoView({behavior:'smooth'}); }
-            else { setShowCardDessert(false); document.getElementById('order')?.scrollIntoView({behavior:'smooth'}); }
+            else if (showCardDrink) { setShowCardDrink(false); setShowCardPostres(true); document.getElementById('sec-postres')?.scrollIntoView({behavior:'smooth'}); }
+            else { setShowCardPostres(false); document.getElementById('order')?.scrollIntoView({behavior:'smooth'}); }
         }}
         style={{ position: 'fixed', bottom: '95px', left: '50%', transform: 'translateX(-50%)', backgroundColor: '#ff4757', color: '#fff', width: '280px', height: '60px', borderRadius: '12px', fontWeight: '950', zIndex: 10000, border: '3px solid #000', cursor: 'pointer', boxShadow: '0 10px 20px rgba(0,0,0,0.5)' }}
       >
         <span>
           {showCardBurger && (lang === 'fr' ? 'SUIVANT : BOISSONS ➔' : 'SIGUIENTE: BEBIDAS ➔')}
           {showCardDrink && (lang === 'fr' ? 'SUIVANT : DESSERTS ➔' : 'SIGUIENTE: POSTRES ➔')}
-          {showCardDessert && (lang === 'fr' ? 'VOIR MON PANIER ➔' : 'VER MI PEDIDO ➔')}
+          {showCardPostres && (lang === 'fr' ? 'VOIR MON PANIER ➔' : 'VER MI PEDIDO ➔')}
         </span>
       </button>
     )}
@@ -999,13 +999,13 @@ aspectRatio: '169 / 127' // Indispensable pour éviter le CLS
         <img src={whatsappIcon} width="60" height="60" alt="WhatsApp" style={{ animation: 'wobble-inverse 3s infinite ease-in-out' }} />
       </a>
 
-      {/* BOUTON DE NAVIGATION RAPIDE (Correction du nom showCardDessert) */}
-      {(showCardBurger || showCardDrink || showCardDessert) && (
+      {/* BOUTON DE NAVIGATION RAPIDE (Correction du nom showCardpostre) */}
+      {(showCardBurger || showCardDrink || showCardPostres ) && (
         <button className="floating-close" onClick={handleNextStep} style={{ position: 'fixed', bottom: '95px', left: '50%', transform: 'translateX(-50%)', backgroundColor: '#ff4757', color: '#fff', width: '280px', height: '60px', borderRadius: '12px', fontWeight: '950', zIndex: 10000, border: '3px solid #000', cursor: 'pointer' }}>
           <span>
             {showCardBurger && (lang === 'en' ? 'NEXT: DRINKS ➔' : 'SIGUIENTE: BEBIDAS ➔')}
             {showCardDrink && (lang === 'en' ? 'NEXT: DESSERTS ➔' : 'SIGUIENTE: POSTRES ➔')}
-            {showCardDessert && (lang === 'en' ? 'VIEW ORDER ➔' : 'VER MI PEDIDO ➔')}
+            {showCardPostres && (lang === 'en' ? 'VIEW ORDER ➔' : 'VER MI PEDIDO ➔')}
           </span>
         </button>
       )}
