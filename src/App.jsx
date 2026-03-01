@@ -447,7 +447,7 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
     box-shadow: 0 0 20px rgba(46, 204, 113, 0.6) !important;
   }
 
-  /* EFFET LUMINEUX CORRIGÉ */
+  /* EFFET LUMINEUX CORRIGÉ (3s pour plus de dynamisme) */
   .gold-button-premium::after, .category-btn-overlay::after {
     content: '';
     position: absolute;
@@ -462,7 +462,6 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
     );
     transform: skewX(-25deg);
     pointer-events: none;
-    /* L'opacité est gérée par l'animation pour rester invisible entre les cycles */
     animation: shimmer-gold-clean 3s infinite;
   }
 
@@ -496,6 +495,7 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
     border-radius: 20px;
     overflow: hidden;
     cursor: pointer;
+    z-index: 5;
   }
 
   .category-btn-overlay {
@@ -507,6 +507,8 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
     z-index: 20 !important;
     box-shadow: 0 5px 15px rgba(0,0,0,0.5);
     min-width: 180px;
+    /* INDISPENSABLE POUR LE CLIC UNIQUE SUR PC/MOBILE */
+    pointer-events: none !important;
   }
 
   .card-menu {
@@ -519,13 +521,12 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
   @keyframes gold-liquid { 0%, 100% { filter: brightness(1); } 50% { filter: brightness(1.15); } }
   @keyframes wobble-inverse { 0%, 100% { transform: rotate(-4deg); } 50% { transform: rotate(4deg); } }
 
-  /* ANIMATION DE L'ÉCLAIR CORRIGÉE */
   @keyframes shimmer-gold-clean {
     0% { transform: translateX(-100%) skewX(-25deg); opacity: 0; }
-    5% { opacity: 1; } /* L'éclair devient visible dès qu'il commence */
+    5% { opacity: 1; }
     25% { transform: translateX(250%) skewX(-25deg); opacity: 1; }
-    30% { opacity: 0; } /* Disparaît après la traversée */
-    100% { transform: translateX(250%) skewX(-25deg); opacity: 0; } /* Reste invisible jusqu'au prochain tour */
+    30% { opacity: 0; }
+    100% { transform: translateX(250%) skewX(-25deg); opacity: 0; }
   }
 
   /* --- 5. RESPONSIVE --- */
