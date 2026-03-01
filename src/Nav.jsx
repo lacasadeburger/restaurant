@@ -61,36 +61,58 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang, setLa
         </div>
       </div>
 
-      {/* NIVEAU 2 : DRAPEAUX (Hauteur 45px - Plus discret et propre) */}
-      <div style={{
-        height: '45px',
-        display: 'flex',
-        alignItems: 'center',
-        gap: '12px',
-        padding: '0 15px',
-        overflowX: 'auto',
-        backgroundColor: '#0a0a0a',
-        borderBottom: '1px solid #333',
-        WebkitOverflowScrolling: 'touch' // Scroll fluide sur iPhone
-      }}>
-        {languages.map((l) => (
-          <button
-            key={l.code}
-            onClick={() => setLang(l.code)}
-            style={{
-              flexShrink: 0,
-              padding: '2px',
-              backgroundColor: 'transparent',
-              border: lang === l.code ? '2px solid #FFD700' : '1px solid #444',
-              borderRadius: '4px',
-              opacity: lang === l.code ? 1 : 0.4,
-              transition: '0.3s'
-            }}
-          >
-            <img src={`/flags/${l.flag}.webp`} width="28" height="20" alt={l.code} style={{ display: 'block', borderRadius: '2px' }} />
-          </button>
-        ))}
-      </div>
+      {/* NIVEAU 2 : DRAPEAUX (Hauteur 45px - Calage parfait) */}
+        <div style={{
+          height: '45px',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '12px',
+          padding: '0 15px',
+          overflowX: 'auto',
+          backgroundColor: '#0a0a0a',
+          borderBottom: '1px solid #333',
+          WebkitOverflowScrolling: 'touch',
+          scrollbarWidth: 'none', // Cache la barre de scroll sur Firefox
+          msOverflowStyle: 'none'   // Cache la barre de scroll sur IE/Edge
+        }}>
+          {/* Style pour cacher la barre de scroll sur Chrome/Safari */}
+          <style>{`
+            div::-webkit-scrollbar { display: none; }
+          `}</style>
+
+          {languages.map((l) => (
+            <button
+              key={l.code}
+              onClick={() => setLang(l.code)}
+              style={{
+                flexShrink: 0,
+                padding: '0', // On enlève le padding pour un contrôle total
+                backgroundColor: 'transparent',
+                border: lang === l.code ? '2px solid #BF953F' : '1px solid #444',
+                borderRadius: '4px',
+                opacity: lang === l.code ? 1 : 0.5,
+                transition: '0.3s',
+                overflow: 'hidden', // Pour que l'image respecte l'arrondi
+                width: '32px',      // Largeur fixe forcée
+                height: '22px'      // Hauteur fixe forcée
+              }}
+            >
+              <img
+                src={`/flags/${l.flag}.webp`}
+                width="32"
+                height="22"
+                alt={l.code}
+                style={{
+                  display: 'block',
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover', // Empêche la déformation (coupe l'excès)
+                  borderRadius: '2px'
+                }}
+              />
+            </button>
+          ))}
+        </div>
 
       {/* NIVEAU 3 : BANDEAU PROMO (Hauteur 35px - Or Premium) */}
       <div style={{

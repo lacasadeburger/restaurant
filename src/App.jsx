@@ -407,7 +407,7 @@ header h1 span:last-of-type {
 .extra-item { color: #2ecc71 !important; font-weight: bold !important; }
 .quitar-item { color: #e74c3c !important; font-weight: bold !important; text-decoration: line-through; }
 
-/* --- 3. BOUTONS & BADGES OR PRESTIGE (L'OR D'HIER) --- */
+/* --- 3. BOUTONS & BADGES OR PRESTIGE --- */
 .gold-button-premium, .category-btn-overlay, .wobble-badge {
   background: linear-gradient(135deg,
     #BF953F 0%,
@@ -423,16 +423,26 @@ header h1 span:last-of-type {
   position: relative !important;
   overflow: hidden !important;
   box-shadow: 0 4px 15px rgba(191,149,63,0.4) !important;
-  /* Animation Or Liquide pour tous */
   animation: gold-liquid 6s ease infinite !important;
 }
 
-/* Seul le badge oscille, les autres restent fixes et élégants */
-.wobble-badge {
-  animation: gold-liquid 6s ease infinite, wobble-inverse 5s infinite ease-in-out !important;
+/* --- 4. LE BADGE #1 (CORRECTION PRIORITÉ VISUELLE) --- */
+.wobble-badge-container {
+  position: fixed !important;    /* Fixé à l'écran pour passer devant le Nav */
+  top: 175px !important;         /* Descendu sous les 3 niveaux de Nav */
+  right: 15px !important;
+  z-index: 11000 !important;     /* Supérieur au Nav (10000) */
+  pointer-events: none !important; /* Laisse passer les clics au travers */
 }
 
-/* Effet Shimmer (Reflet de lumière blanche) */
+.wobble-badge {
+  animation: gold-liquid 6s ease infinite, wobble-inverse 5s infinite ease-in-out !important;
+  padding: 8px 15px !important;
+  display: flex !important;
+  align-items: center;
+}
+
+/* Effet Shimmer (Reflet de lumière) */
 .gold-button-premium::after, .category-btn-overlay::after, .wobble-badge::after {
   content: "" !important;
   display: block !important;
@@ -444,9 +454,23 @@ header h1 span:last-of-type {
   z-index: 1;
 }
 
-.gold-button-premium span { position: relative; z-index: 2; }
+/* --- 5. GRILLE & CARTES PRODUITS (CENTRAGE TOTAL) --- */
+.card-menu {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  text-align: center !important;
+  padding: 15px !important;
+}
 
-/* --- 4. FIX CATEGORIES (CENTRAGE & BOUTONS) --- */
+.card-menu h3,
+.card-menu p,
+.product-price {
+  width: 100% !important;
+  text-align: center !important;
+}
+
+/* --- 6. FIX CATEGORIES & IMAGES --- */
 .promo-container {
   position: relative !important;
   display: flex !important;
@@ -467,50 +491,17 @@ header h1 span:last-of-type {
   object-fit: cover;
   transition: transform 0.5s ease;
 }
-.promo-container:hover .promo-img { transform: scale(1.05); }
 
-.category-btn-overlay {
-  position: absolute !important;
-  bottom: 25px !important;
-  left: 50% !important;
-  transform: translateX(-50%) !important;
-  width: auto !important;
-  min-width: 200px !important;
-  padding: 12px 25px !important;
-  white-space: nowrap;
-  z-index: 10;
-  text-align: center;
-}
-
-/* --- 5. ANIMATIONS & RESPONSIVE --- */
+/* --- 7. ANIMATIONS & RESPONSIVE --- */
 @keyframes gold-liquid { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
 @keyframes shine-luxury { 0% { transform: translateX(-200%) rotate(25deg); } 30%, 100% { transform: translateX(300%) rotate(25deg); } }
 @keyframes wobble-inverse { 0%, 100% { transform: rotate(-4deg); } 50% { transform: rotate(4deg); } }
 
-.wobble-badge-container {
-  position: absolute !important;
-  top: 20px !important; right: 15px !important;
-  z-index: 100 !important;
-}
-
 @media (max-width: 768px) {
-  .logo-container-wrapper { top: 180px !important; left: 15px !important; }
+  .logo-container-wrapper { top: 200px !important; left: 15px !important; }
+  .wobble-badge-container { top: 165px !important; } /* Ajustement mobile */
   header h1 { font-size: 2.2rem !important; }
   .grid-cards { grid-template-columns: 1fr !important; }
-}
-.card-menu {
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important; /* Centre horizontalement les éléments Flex */
-  text-align: center !important;  /* Centre le texte à l'intérieur des balises */
-  padding: 15px !important;
-}
-
-.card-menu h3,
-.card-menu p,
-.product-price {
-  width: 100% !important;
-  text-align: center !important;
 }
 `}</style>
 <Helmet>
