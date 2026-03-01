@@ -544,38 +544,36 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
   pointerEvents: 'none'
 }}></div>}
 <header style={{
-  padding: '110px 20px 80px',
+  // Calcul précis : on réduit le padding car la Nav occupe déjà 184px
+  padding: '40px 15px 80px',
   textAlign: 'center',
   position: 'relative',
   borderRadius: '0 0 50px 50px',
   borderBottom: '5px solid #ff4757',
-  backgroundColor: 'transparent', // Laisse passer le fond fixe qui s'estompe au scroll
+  backgroundColor: 'transparent',
   overflow: 'hidden',
-  minHeight: '850px',
+  // minHeight réduit pour éviter un immense espace vide avant le chargement des images
+  minHeight: '700px',
   display: 'flex',
   flexDirection: 'column',
-  justifyContent: 'center',
+  justifyContent: 'flex-start', // Aligne en haut pour la stabilité
   alignItems: 'center',
   zIndex: 1
 }}>
-  {/* VERIFICATION : L'image n'est plus ici car elle est gérée par le hero-fixed-container au début du return() pour la performance GPU */}
-
-  {/* 1. BADGE DE PRESTIGE (GARDÉ) */}
+  {/* 1. BADGE DE PRESTIGE - Position ajustée pour éviter les chevauchements */}
   <div className="wobble-badge-container" style={{
     position: 'absolute',
-    top: '125px',
-    right: '20px',
-    left: 'auto',
-    zIndex: 3,
-    width: 'fit-content'
+    top: '20px',
+    right: '15px',
+    zIndex: 3
   }}>
     <div className="wobble-badge gold-button-premium" style={{
-      padding: '8px 20px',
-      fontSize: '0.85rem',
+      padding: '6px 15px',
+      fontSize: '0.75rem',
       display: 'flex',
       alignItems: 'center',
-      gap: '8px',
-      whiteSpace: 'nowrap'
+      gap: '5px',
+      fontWeight: '900'
     }}>
       🏆 #1 BURGER EN TORREVIEJA
     </div>
@@ -584,117 +582,87 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
   {/* 2. CONTENU TEXTUEL (L'ARMURE SEO) */}
   <div style={{ position: 'relative', zIndex: 3, width: '100%' }}>
     <h1 style={{
-      fontSize: 'clamp(2rem, 10vw, 3.5rem)',
+      fontSize: 'clamp(2.2rem, 8vw, 3.5rem)',
       fontWeight: '900',
       textTransform: 'uppercase',
-      textShadow: '2px 2px 20px rgba(0,0,0,1)',
+      textShadow: '2px 2px 15px rgba(0,0,0,0.8)',
       margin: '0 auto',
       color: '#fff',
-      lineHeight: '1.2',
+      lineHeight: '1.1',
+      // On fixe la hauteur minimale du bloc de titre pour éviter le CLS
+      minHeight: '120px',
       display: 'flex',
       flexDirection: 'column',
-      justifyContent: 'center',
-      alignItems: 'center',
-      textAlign: 'center',
-      minHeight: '180px',
-      width: '100%'
+      justifyContent: 'center'
     }}>
-      {/* TITRE PRINCIPAL : Récupère la traduction (Ex: La Casa de Burger) */}
       <span style={{ display: 'block', width: '100%' }}>
         {T[lang]?.heroTitle || T.es.heroTitle}
       </span>
 
-      {/* MOT-CLÉ LOCALISATION : Très important pour Google Maps/Torrevieja */}
       <span style={{
-        fontSize: '0.8em',
+        fontSize: '0.6em',
         display: 'block',
         width: '100%',
-        textShadow: '2px 2px 10px rgba(0,0,0,1)'
+        color: '#FFD700', // Jaune pour le contraste LCP
+        marginTop: '5px'
       }}>
-        {
-          lang === 'fr' ? 'à Torrevieja' :
-          lang === 'en' ? 'in Torrevieja' :
-          lang === 'de' ? 'in Torrevieja' :
-          lang === 'nl' ? 'in Torrevieja' :
-          lang === 'no' ? 'i Torrevieja' :
-          lang === 'sv' ? 'i Torrevieja' :
-          lang === 'pl' ? 'w Torrevieja' :
-          lang === 'uk' ? 'у Торрев’єнті' :
-          lang === 'ru' ? 'в Торreviexe' :
-          lang === 'ar' ? 'في توريفايجا' :
-          lang === 'ro' ? 'în Torrevieja' :
-          'en Torrevieja'
-        }
+        {lang === 'fr' ? 'À TORREVIEJA' :
+         lang === 'en' ? 'IN TORREVIEJA' :
+         lang === 'es' ? 'EN TORREVIEJA' : 'IN TORREVIEJA'}
       </span>
     </h1>
 
-    {/* H2 SEO : Burgers Gourmet, Smash Burgers, etc. */}
+    {/* H2 SEO : Burgers Gourmet */}
     <h2 style={{
-        fontSize: '1.5rem',
-        color: '#FFD700',
+        fontSize: '1.2rem',
+        color: '#fff',
         fontWeight: '700',
-        textShadow: '1px 1px 15px rgba(0,0,0,1)',
-        marginTop: '10px',
+        marginTop: '15px',
         textTransform: 'uppercase',
-        minHeight: '4.5rem',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        lineHeight: '1.2'
+        minHeight: '3rem',
+        padding: '0 10px'
       }}>
         {T[lang]?.heroSubtitle || T.es.heroSubtitle}
     </h2>
 
-    {/* 3. LES DEUX BOUTONS PRINCIPAUX (ACTION & RÉSERVATION) */}
-    <div style={{ marginTop: '20px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px' }}>
+    {/* 3. BOUTONS D'ACTION */}
+    <div style={{ marginTop: '30px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '15px' }}>
+
+      {/* BOUTON COMMANDER - Priorité LCP */}
       <button
         onClick={() => {
           setShowCardBurger(true);
-          const scrollToMenu = (attempts) => {
-            const el = document.getElementById("sec-burgers");
-            if (el) {
-              const yOffset = -100;
-              const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
-              window.scrollTo({ top: y, behavior: 'smooth' });
-            } else if (attempts > 0) {
-              setTimeout(() => scrollToMenu(attempts - 1), 100);
-            }
-          };
-          scrollToMenu(8);
+          const el = document.getElementById("sec-burgers");
+          if (el) el.scrollIntoView({ behavior: 'smooth' });
         }}
         className="pulse-gold-btn gold-button-premium"
         style={{
             color: '#000',
-            padding: '22px 50px',
+            padding: '20px',
             borderRadius: '50px',
             border: '3px solid #000',
             fontWeight: '950',
             cursor: 'pointer',
-            fontSize: '1.5rem',
-            boxShadow: '0 4px 15px rgba(0,0,0,0.5)',
+            fontSize: '1.4rem',
             textTransform: 'uppercase',
             width: '90%',
-            maxWidth: '450px',
-            height: '80px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center'
+            maxWidth: '400px',
+            height: '75px'
         }}
       >
         🚀 {T[lang]?.btnOrder || T.es.btnOrder}
       </button>
 
+      {/* BOUTON RÉSERVER */}
       <button
-        onClick={() => window.open("https://app.tableo.com/widget/la-casa-de-burger-hamburguesa-gourmet-torrevieja-hamburgueseria-casero-best-burger-in-town-spain", "_blank")}
+        onClick={() => window.open("https://app.tableo.com/widget/la-casa-de-burger", "_blank")}
         className="gold-button-premium"
         style={{
-          padding: '18px 40px',
+          padding: '15px',
           borderRadius: '50px',
-          fontSize: '1.3rem',
-          width: '90%',
-          maxWidth: '450px',
-          marginTop: '10px',
-          display: 'block',
+          fontSize: '1.1rem',
+          width: '80%',
+          maxWidth: '350px',
           cursor: 'pointer',
           fontWeight: '700'
         }}
@@ -702,37 +670,25 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
         📅 RESERVAR MESA
       </button>
 
-      {/* 4. BLOC APPEL TÉLÉPHONIQUE (GARDÉ) */}
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '15px', gap: '8px' }}>
+      {/* 4. BLOC APPEL */}
+      <div style={{ marginTop: '10px' }}>
         <a
           href="tel:+34602597210"
-          aria-label={T[lang]?.btnCall || T.es.btnCall}
           style={{
             background: '#ffffff',
             color: '#000000',
-            padding: '14px 30px',
+            padding: '12px 25px',
             borderRadius: '50px',
             textDecoration: 'none',
             fontWeight: '950',
-            border: '2px solid #000000',
             display: 'flex',
             alignItems: 'center',
             gap: '8px',
-            boxShadow: '0 4px 15px rgba(0,0,0,0.3)'
+            fontSize: '1rem'
           }}
         >
-          <span aria-hidden="true">📞</span>
-          {T[lang]?.btnCall || T.es.btnCall}
+          📞 {T[lang]?.btnCall || T.es.btnCall}
         </a>
-        <span style={{
-          color: '#FFFFFF',
-          fontSize: '0.75rem',
-          fontWeight: '900',
-          textTransform: 'uppercase',
-          letterSpacing: '1px'
-        }}>
-          {lang === 'es' ? '¡LLÁMANOS!' : 'CALL US!'}
-        </span>
       </div>
     </div>
   </div>

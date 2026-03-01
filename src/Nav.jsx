@@ -10,6 +10,7 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang, setLa
   const isWorkingHours = currentHour >= 13 && currentHour < 23;
   const isOpen = isWorkingHours && !isSunday;
   const statusColor = isOpen ? '#2ed573' : '#ff4757';
+
   // --- 2. DICTIONNAIRE ---
   const promoTexts = {
     es: "AHORRE HASTA UN 20% A VISITARNOS",
@@ -47,31 +48,26 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang, setLa
 
   return (
     <>
+      {/* --- 1. NAV BAR (FIXE 80PX) --- */}
       <nav style={{
         position: 'fixed', top: 0, left: 0, width: '100%', height: '80px',
-        backgroundColor: 'rgba(0, 0, 0, 0.98)',
-        backdropFilter: 'blur(15px)',
-        WebkitBackdropFilter: 'blur(15px)',
+        backgroundColor: '#000000', // Noir pur pour perfs LCP
         display: 'flex', justifyContent: 'space-between', alignItems: 'center',
         padding: '0 12px', zIndex: 10000,
         borderBottom: `3px solid ${VIBRANT_RED}`,
-        boxSizing: 'border-box',
-        fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
+        boxSizing: 'border-box'
       }}>
         <div style={{ width: '35%', display: 'flex', alignItems: 'center' }}>
-          <a href="tel:+34602597210" aria-label="Llamar" style={{ display: 'flex', alignItems: 'center', gap: '6px', textDecoration: 'none' }}>
+          <a href="tel:+34602597210" style={{ display: 'flex', alignItems: 'center', gap: '6px', textDecoration: 'none' }}>
             <div style={{
               background: GOLD_GRADIENT, width: '35px', height: '35px', borderRadius: '8px',
-              display: 'flex', justifyContent: 'center', alignItems: 'center', flexShrink: 0,
-              boxShadow: '0 4px 10px rgba(0,0,0,0.5)'
+              display: 'flex', justifyContent: 'center', alignItems: 'center', flexShrink: 0
             }}>
               <span style={{ fontSize: '1.1rem' }}>📞</span>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column' }}>
-              <span className="nav-phone-number" style={{ color: GOLD_BRIGHT, fontSize: '0.85rem', fontWeight: '900', whiteSpace: 'nowrap' }}>
-                602 597 210
-              </span>
-              <span style={{ color: '#FFFFFF', fontSize: '0.7rem', fontWeight: '900', animation: 'pulse-text 2s infinite', letterSpacing: '0.5px' }}>
+              <span style={{ color: GOLD_BRIGHT, fontSize: '0.85rem', fontWeight: '900' }}>602 597 210</span>
+              <span style={{ color: '#FFFFFF', fontSize: '0.7rem', fontWeight: '900' }}>
                 {(lang === 'es' || lang === 'ar') ? 'LLÁMANOS' : lang === 'fr' ? 'APPELER' : 'CALL US'}
               </span>
             </div>
@@ -79,98 +75,66 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang, setLa
         </div>
 
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-          <div style={{
-            width: '8px', height: '8px', backgroundColor: statusColor, borderRadius: '50%',
-            boxShadow: isOpen ? `0 0 10px ${statusColor}` : 'none',
-            animation: isOpen ? 'blink-neon 1.5s infinite alternate' : 'none',
-            marginBottom: '2px'
-          }} />
-          <span style={{ color: statusColor, fontSize: '1.1rem', fontWeight: '1000', lineHeight: 1 }}>
-            {isOpen
-              ? (lang === 'es' ? "ABIERTO" : lang === 'fr' ? "OUVERT" : "OPEN")
-              : (lang === 'es' ? "CERRADO" : lang === 'fr' ? "FERMÉ" : "CLOSED")
-            }
+          <div style={{ width: '8px', height: '8px', backgroundColor: statusColor, borderRadius: '50%', marginBottom: '2px' }} />
+          <span style={{ color: statusColor, fontSize: '1.1rem', fontWeight: '1000' }}>
+            {isOpen ? (lang === 'es' ? "ABIERTO" : lang === 'fr' ? "OUVERT" : "OPEN") : (lang === 'es' ? "CERRADO" : lang === 'fr' ? "FERMÉ" : "CLOSED")}
           </span>
         </div>
 
         <div onClick={scrollToOrder} style={{ width: '35%', display: 'flex', justifyContent: 'flex-end', cursor: 'pointer' }}>
-          <div className={cartLength > 0 ? 'pulse-active' : ''} style={{
-            backgroundColor: '#e60023', padding: '8px 12px', borderRadius: '10px',
-            border: `2px solid ${GOLD_BRIGHT}`, display: 'flex', alignItems: 'center',
-            boxShadow: '0 4px 12px rgba(255, 71, 87, 0.4)'
-          }}>
+          <div style={{ backgroundColor: '#e60023', padding: '8px 12px', borderRadius: '10px', border: `2px solid ${GOLD_BRIGHT}` }}>
             <span style={{ color: '#fff', fontWeight: '950', fontSize: '1.1rem' }}>{totalPrice}€</span>
           </div>
         </div>
       </nav>
 
-      {/* --- BLOC DRAPEAUX (Fond Noir pour boucher la vue sur l'image) --- */}
+      {/* --- 2. BLOC DRAPEAUX (FIXE 68PX) --- */}
       <div style={{
         marginTop: '80px',
-        display: 'flex', justifyContent: 'center', gap: '6px', padding: '12px 8px',
-        flexWrap: 'wrap',
-        backgroundColor: '#000', // MODIFIÉ: Noir pur
+        height: '68px', // HAUTEUR FIXE POUR CLS
+        display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '6px',
+        backgroundColor: '#000',
         position: 'relative', zIndex: 9999, borderBottom: '1px solid #333',
-        minHeight: '44px',
-        boxSizing: 'border-box'
+        boxSizing: 'border-box',
+        overflowX: 'auto', // Scroll horizontal si trop de drapeaux sur petit écran au lieu de wrapper
+        overflowY: 'hidden'
       }}>
         {languages.map((l) => (
           <button
             key={l.code}
             onClick={() => setLang(l.code)}
-            aria-label={l.label}
             style={{
               backgroundColor: 'transparent',
               border: `1px solid ${GOLD_BRIGHT}`,
               borderRadius: '6px',
-              cursor: 'pointer',
               padding: '3px',
-              transition: 'transform 0.2s ease, opacity 0.2s ease',
               opacity: lang === l.code ? 1 : 0.4,
-              transform: lang === l.code ? 'scale(1.15)' : 'scale(1)',
-              filter: lang === l.code ? 'grayscale(0%)' : 'grayscale(100%)',
-              width: '34px',
-              height: '28px',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              boxSizing: 'border-box'
+              width: '34px', height: '28px',
+              display: 'flex', justifyContent: 'center', alignItems: 'center',
+              flexShrink: 0
             }}
           >
-            <img
-              src={`/flags/${l.flag}.webp`}
-              width="26"
-              height="18"
-              alt={l.label}
-              decoding="async"
-              loading="eager"
-              style={{
-                borderRadius: '2px',
-                display: 'block',
-                pointerEvents: 'none',
-                width: '26px',
-                height: '18px',
-                objectFit: 'cover'
-              }}
-            />
+            <img src={`/flags/${l.flag}.webp`} width="26" height="18" alt={l.label} loading="eager" />
           </button>
         ))}
       </div>
 
-      {/* --- BLOC PROMO (Fond Noir pour boucher la vue sur l'image) --- */}
+      {/* --- 3. BLOC PROMO (FIXE 36PX) --- */}
       <div style={{
-        background: '#000', // MODIFIÉ: Noir pur
-        color: '#fff', textAlign: 'center', padding: '10px 8px',
+        height: '36px', // HAUTEUR FIXE POUR CLS
+        background: '#000',
+        color: '#fff',
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
         borderBottom: `2px solid ${GOLD_BRIGHT}`,
         fontSize: '0.82rem',
         fontWeight: '900',
-        fontFamily: 'Georgia, serif',
-        display: 'block', width: '100%', boxSizing: 'border-box',
-        letterSpacing: '0.5px', position: 'relative', zIndex: 9998
+        width: '100%',
+        boxSizing: 'border-box',
+        position: 'relative', zIndex: 9998
       }}>
-        <span style={{ color: GOLD_BRIGHT }}>★</span>
-        {` ${promoTexts[lang] || promoTexts.en} `}
-        <span style={{ color: GOLD_BRIGHT }}>★</span>
+        <span style={{ color: GOLD_BRIGHT, marginRight: '5px' }}>★</span>
+        {promoTexts[lang] || promoTexts.en}
+        <span style={{ color: GOLD_BRIGHT, marginLeft: '5px' }}>★</span>
       </div>
     </>
   );

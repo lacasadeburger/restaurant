@@ -9,18 +9,20 @@
 <meta name="theme-color" content="#000000"/>
 <link rel="canonical" href="https://lacasadeburger.es/"/>
 <title>La Casa de Burger | Mejores Hamburguesas Gourmet de Torrevieja</title>
-<meta name="description" content="Descubre 12+ burgers gourmet y combos en Torrevieja. Carne premium, recetas Signature et options Halal."/>
+<meta name="description" content="Descubre nuestras 14 burgers gourmet y combos en Torrevieja. Recetas Signature únicas, Smash Burgers y carne premium. ¡Reserva o pide a domicilio!"/>
+
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-html,body{background-color:#000!important;color:#fff;font-family:sans-serif;overflow-x:hidden}
-#root{min-height:100vh}
-.cls-header-reserver{height:184px;width:100%;background:#000;display:flex;flex-direction:column;border-bottom:3px solid #ff4757}
-.nav-mock{height:80px;display:flex;justify-content:space-between;align-items:center;padding:0 12px}
-.logo-static{width:180px;height:auto;aspect-ratio:250/162;display:block}
-.flags-mock{height:68px;display:flex;justify-content:center;align-items:center;gap:6px;border-top:1px solid #222;border-bottom:1px solid #333}
-.promo-mock{height:36px;display:flex;justify-content:center;align-items:center;font-weight:900;font-size:0.82rem;color:#FFD700}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background-color:#000!important;color:#fff;font-family:sans-serif;overflow-x:hidden}
+  #root{min-height:100vh}
+  /* STABILITÉ TOTALE : 184PX POUR LA NAV */
+  .cls-header-reserver{height:184px;width:100%;background:#000;display:flex;flex-direction:column;border-bottom:3px solid #ff4757}
+  .nav-mock{height:80px;display:flex;justify-content:space-between;align-items:center;padding:0 12px}
+  .logo-static{width:180px;height:auto;aspect-ratio:250/162;display:block}
+  .flags-mock{height:68px;display:flex;justify-content:center;align-items:center;gap:6px;border-top:1px solid #222}
+  .promo-mock{height:36px;display:flex;justify-content:center;align-items:center;font-weight:900;font-size:0.82rem;color:#FFD700;border-top:1px solid #333;border-bottom:2px solid #FFD700}
 </style>
-<link rel="icon" type="image/webp" href="/logo.webp"/>
+
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -29,6 +31,7 @@ html,body{background-color:#000!important;color:#fff;font-family:sans-serif;over
   "image": "https://lacasadeburger.es/logo.webp",
   "priceRange": "€€",
   "telephone": "+34602597210",
+  "url": "https://lacasadeburger.es",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "AV. Diego Ramirez Pastor, 142",
@@ -45,22 +48,34 @@ html,body{background-color:#000!important;color:#fff;font-family:sans-serif;over
   },
   "hasMenu": {
     "@type": "Menu",
-    "name": "Carta",
+    "name": "Carta Completa",
     "hasMenuSection": [
       {
         "@type": "MenuSection",
-        "name": "Burgers",
+        "name": "Burgers Signature & Smash",
         "hasMenuItem": [
-          {"@name": "Combo 1"}, {"@name": "Combo 2"}, {"@name": "La India"}, {"@name": "La Francesa"},
-          {"@name": "La Inglesa"}, {"@name": "La Marroqui"}, {"@name":"La Smash"}, {"@name":"La Italiana"},
-          {"@name":"La Auvergna"}, {"@name":"La Española"}, {"@name":"La Colombiana"}, {"@name":"La Mexicana"}
+          { "@type": "MenuItem", "name": "La India", "description": "Pollo crispy, salsa curry secreto, cebolla caramelizada.", "offers": { "@type": "Offer", "price": "10.90", "priceCurrency": "EUR" }},
+          { "@type": "MenuItem", "name": "La Francesa", "description": "Queso Brie premium, cebolla caramelizada y salsa suave.", "offers": { "@type": "Offer", "price": "11.50", "priceCurrency": "EUR" }},
+          { "@type": "MenuItem", "name": "La Inglesa", "description": "Bacon crujiente, huevo campero y cheddar fundido.", "offers": { "@type": "Offer", "price": "11.50", "priceCurrency": "EUR" }},
+          { "@type": "MenuItem", "name": "La Marroqui", "description": "Carne especiada al estilo Magreb, sabor auténtico.", "offers": { "@type": "Offer", "price": "11.90", "priceCurrency": "EUR" }},
+          { "@type": "MenuItem", "name": "La Smash", "description": "Doble carne smash premium, extra queso y bacon.", "offers": { "@type": "Offer", "price": "10.50", "priceCurrency": "EUR" }},
+          { "@type": "MenuItem", "name": "La Italiana", "description": "Pesto casero, mozzarella fundida y tomates secos.", "offers": { "@type": "Offer", "price": "11.90", "priceCurrency": "EUR" }},
+          { "@type": "MenuItem", "name": "La Auvergna", "description": "Queso azul premium (Bleu d'Auvergne) y nueces.", "offers": { "@type": "Offer", "price": "12.50", "priceCurrency": "EUR" }},
+          { "@type": "MenuItem", "name": "La Española", "description": "Jamón ibérico de bellota y queso manchego.", "offers": { "@type": "Offer", "price": "12.50", "priceCurrency": "EUR" }},
+          { "@type": "MenuItem", "name": "La Colombiana", "description": "Salsa de piña artesanal y queso costeño.", "offers": { "@type": "Offer", "price": "12.50", "priceCurrency": "EUR" }},
+          { "@type": "MenuItem", "name": "La Mexicana", "description": "Guacamole casero, jalapeños y salsa chili.", "offers": { "@type": "Offer", "price": "12.50", "priceCurrency": "EUR" }},
+          { "@type": "MenuItem", "name": "La Veggie Gourmet", "description": "Burger vegetal de alta calidad con verduras frescas.", "offers": { "@type": "Offer", "price": "10.90", "priceCurrency": "EUR" }},
+          { "@type": "MenuItem", "name": "La Classic Burger", "description": "Carne premium 180g, lechuga, tomate y cebolla.", "offers": { "@type": "Offer", "price": "9.50", "priceCurrency": "EUR" }},
+          { "@type": "MenuItem", "name": "Combo 1 Persona", "description": "Cualquier Burger + Patatas + Bebida.", "offers": { "@type": "Offer", "price": "14.90", "priceCurrency": "EUR" }},
+          { "@type": "MenuItem", "name": "Combo Duo", "description": "2 Burgers + 2 Patatas + 2 Bebidas.", "offers": { "@type": "Offer", "price": "27.90", "priceCurrency": "EUR" }}
         ]
       },
       {
         "@type": "MenuSection",
-        "name": "Extras",
+        "name": "Entrantes y Postres",
         "hasMenuItem": [
-          {"@name": "Nuggets"}, {"@name": "Croquetas"}, {"@name": "Fritas"}, {"@name": "Waffle XXL"}
+          { "@type": "MenuItem", "name": "Nuggets de Pollo", "offers": { "@type": "Offer", "price": "5.50", "priceCurrency": "EUR" }},
+          { "@type": "MenuItem", "name": "Waffle XXL Nutella", "offers": { "@type": "Offer", "price": "6.50", "priceCurrency": "EUR" }}
         ]
       }
     ]
@@ -69,30 +84,41 @@ html,body{background-color:#000!important;color:#fff;font-family:sans-serif;over
 </script>
 </head>
 <body>
+
 <div id="root">
-<div class="cls-header-reserver">
-<div class="nav-mock">
-<img src="/logo.webp" alt="Logo" width="180" height="117" class="logo-static">
-<div style="text-align:right">
-<span style="color:#2ed573;font-weight:bold">OPEN</span><br><b>0.00€</b>
+  <div class="cls-header-reserver">
+    <div class="nav-mock">
+      <img src="/logo.webp" alt="Logo" width="180" height="117" class="logo-static">
+      <div style="text-align:right">
+        <span style="color:#2ed573;font-weight:bold">OPEN</span><br><b>0.00€</b>
+      </div>
+    </div>
+    <div class="flags-mock">
+      <div style="width:30px;height:20px;background:#222;border-radius:2px"></div>
+      <div style="width:30px;height:20px;background:#222;border-radius:2px"></div>
+      <div style="width:30px;height:20px;background:#222;border-radius:2px"></div>
+      <div style="width:30px;height:20px;background:#222;border-radius:2px"></div>
+      <div style="width:30px;height:20px;background:#222;border-radius:2px"></div>
+    </div>
+    <div class="promo-mock">★ SAVE UP TO 20% BY VISITING US ★</div>
+  </div>
+
+  <div style="background-color:#000; padding-top:40px; text-align:center;">
+    <h1 style="font-size:2.5rem; font-weight:900; margin:0; text-transform:uppercase; color:#fff; line-height:1.1;">
+      LA CASA DE BURGER
+      <span style="font-size:0.6em; display:block; color:#FFD700; margin-top:8px;">IN TORREVIEJA</span>
+    </h1>
+
+    <div style="color:#FFD700; font-size:1.2rem; margin-top:10px;">
+      ★★★★★ <span style="color:#fff; font-size:0.9rem; font-weight:bold;">4.9/5 (250+ Reviews)</span>
+    </div>
+
+    <h2 style="font-size:1.2rem; color:#fff; font-weight:700; margin-top:15px; text-transform:uppercase; letter-spacing:1px;">
+      14 SIGNATURE GOURMET BURGERS
+    </h2>
+  </div>
 </div>
-</div>
-<div class="flags-mock">
-<div style="width:26px;height:18px;background:#333;border-radius:2px"></div>
-<div style="width:26px;height:18px;background:#333;border-radius:2px"></div>
-<div style="width:26px;height:18px;background:#333;border-radius:2px"></div>
-<div style="width:26px;height:18px;background:#333;border-radius:2px"></div>
-<div style="width:26px;height:18px;background:#333;border-radius:2px"></div>
-</div>
-<div class="promo-mock">★ SAVE UP TO 20% BY VISITING US ★</div>
-</div>
-<div style="background-color:#000;height:calc(100vh - 184px);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px">
-<h1 style="font-size:2.5rem;font-weight:900;margin:0;text-transform:uppercase;color:#fff">LA CASA DE BURGER</h1>
-<h2 id="lcp-title" style="font-size:1.3rem;color:#FFD700;font-weight:700;margin-top:10px;text-transform:uppercase" fetchpriority="high">
-SIGNATURE GOURMET BURGERS<span style="font-size:0.8em;display:block;height:24px;width:100%;color:#fff;margin-top:5px">IN TORREVIEJA</span>
-</h2>
-</div>
-</div>
+
 <script type="module" src="/src/main.jsx" defer></script>
 </body>
 </html>
