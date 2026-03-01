@@ -1,4 +1,4 @@
-/* --- 1. BASE & PERFORMANCE (CLS 0) --- */
+/* --- 1. RESET & BASE --- */
 html, body {
   background-color: #000 !important;
   margin: 0; padding: 0;
@@ -8,22 +8,23 @@ html, body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
 }
 
-/* --- 2. IMAGE FIXE + FILTRE NOIR (LCP PERFECT) --- */
+/* --- 2. LE FOND (L'IMAGE ET LE VOILE) --- */
 .hero-fixed-container {
   position: fixed;
   top: 0; left: 0;
   width: 100%; height: 100vh;
-  z-index: -1;
+  z-index: -1; /* Tout au fond */
   background-color: #000;
   overflow: hidden;
+  pointer-events: none;
 }
 
-/* Le filtre noir qui protège ton texte */
+/* Le voile noir qui garantit la lisibilité */
 .hero-fixed-container::after {
   content: "";
   position: absolute;
   top: 0; left: 0; width: 100%; height: 100%;
-  background: rgba(0, 0, 0, 0.6); /* 60% noir */
+  background: rgba(0, 0, 0, 0.65) !important; /* 65% de noir */
   z-index: 1;
 }
 
@@ -31,38 +32,34 @@ html, body {
   width: 100%; height: 100%;
   object-fit: cover;
   display: block;
+  z-index: 0;
 }
 
-/* --- 3. HEADER & LOGO (Z-INDEX SANDWICH) --- */
-header {
-  position: relative;
-  z-index: 10 !important; /* Devant tout */
-  background: transparent !important;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 60px;
-}
-
+/* --- 3. LE LOGO (ENTRE LE FOND ET LE TEXTE) --- */
 .logo-container-wrapper {
-  position: absolute;
-  top: 150px;
+  position: absolute !important;
+  top: 200px;
   left: 35px;
-  z-index: 2 !important; /* Derrière le texte header (10) */
+  z-index: 2 !important; /* Devant le voile (1) mais derrière le texte (10) */
   animation: wobble-inverse 5s infinite ease-in-out;
+  pointer-events: none;
 }
 
-/* --- 4. BOUTONS GOLD (SHIMMER FIXÉ) --- */
+/* --- 4. LE HEADER (CONTENU) --- */
+header {
+  position: relative !important;
+  z-index: 10 !important; /* Priorité maximale pour le texte et boutons */
+  background: transparent !important;
+}
+
+/* --- 5. BOUTONS OR & SHIMMER (L'ÉCLAIR) --- */
 .gold-button-premium {
   background: linear-gradient(135deg, #BF953F, #FCF6BA, #D4AF37, #FBF5B7, #BF953F) !important;
   background-size: 400% 400% !important;
-  color: #000 !important;
   position: relative !important;
   overflow: hidden !important;
-  z-index: 5 !important;
+  z-index: 11 !important;
   animation: gold-liquid 6s ease infinite 2.5s !important;
-  border: none !important;
 }
 
 .gold-button-premium::after {
@@ -73,16 +70,26 @@ header {
   background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
   transform: rotate(25deg);
   animation: shine-luxury 3s infinite 3s !important;
+  z-index: 12;
 }
 
-/* --- 5. ANIMATIONS --- */
-@keyframes shine-luxury { 0% { left: -150%; } 30% { left: 150%; } 100% { left: 150%; } }
-@keyframes gold-liquid { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
-@keyframes wobble-inverse { 0%, 100% { transform: rotate(-4deg); } 50% { transform: rotate(4deg); } }
+/* --- 6. ANIMATIONS --- */
+@keyframes shine-luxury {
+    0% { left: -150%; }
+    30% { left: 150%; }
+    100% { left: 150%; }
+}
+@keyframes gold-liquid {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+@keyframes wobble-inverse {
+    0%, 100% { transform: rotate(-4deg); }
+    50% { transform: rotate(4deg); }
+}
 
-/* --- 6. MOBILE --- */
+/* --- 7. MOBILE --- */
 @media (max-width: 768px) {
   .logo-container-wrapper { top: 120px !important; left: 15px !important; }
   .moving-header-logo { width: 100px !important; }
-  header h1 { font-size: 2.2rem !important; }
 }

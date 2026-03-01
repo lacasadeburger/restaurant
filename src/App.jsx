@@ -373,81 +373,21 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
           />
         </div>
         <style>{`
-      /* 1. RÉPARATION DE L'OVERLAY (Empêche l'image double et le texte illisible) */
-      .hero-fixed-container {
-          z-index: -1 !important;
-      }
-      .hero-fixed-container::after {
-          content: "" !important;
-          position: absolute !important;
-          top: 0; left: 0; width: 100%; height: 100%;
-          background: rgba(0, 0, 0, 0.6) !important; /* Le filtre noir est ICI */
-          z-index: 1 !important;
-      }
-
-      /* 2. FORCE L'OR ET LE SHIMMER (Priorité maximale) */
-      .gold-button-premium, .is-luxury .gold-button-premium {
-        background: linear-gradient(135deg, #BF953F 0%, #FCF6BA 45%, #B38728 55%, #FBF5B7 100%) !important;
-        background-size: 400% 400% !important;
-        position: relative !important;
-        overflow: hidden !important;
-        display: inline-flex !important;
-        animation: gold-liquid 6s ease infinite 2.5s !important;
-        border: none !important;
-      }
-
-      /* 3. RÉACTIVATION DE L'ÉCLAIR (ANNULE LE DISPLAY: NONE) */
-      .gold-button-premium::after, .is-luxury .gold-button-premium::after {
-        content: "" !important;
-        display: block !important;
-        position: absolute !important;
-        top: -50% !important;
-        left: -150% !important;
-        width: 100% !important;
-        height: 200% !important;
-        background: linear-gradient(
-          90deg,
-          transparent 0%,
-          rgba(255, 255, 255, 0.8) 50%,
-          transparent 100%
-        ) !important;
-        transform: rotate(25deg) !important;
-        animation: shine-luxury 3s infinite ease-in-out 3s !important;
-        z-index: 10 !important;
-      }
-
-      /* 4. LOGO SANDWICH (BIEN POSITIONNÉ) */
-      .logo-container-wrapper {
-        position: absolute !important;
-        top: 150px !important;
-        left: 35px !important;
-        z-index: 2 !important; /* Derrière texte (5) mais devant fond (-1) */
-        animation: wobble-inverse 5s infinite ease-in-out !important;
-        pointer-events: none !important;
-      }
-
-      /* 5. TEXTE DEVANT LOGO ET FILTRE */
-      header {
+      /* On garde uniquement les ajustements de priorité et le responsive du texte */
+      header h1, header h2 {
           position: relative !important;
-          z-index: 5 !important;
-          background: transparent !important;
-      }
-      header h1, header h2 { position: relative !important; z-index: 6 !important; }
-
-      /* 6. KEYFRAMES (Indispensables pour que ça bouge) */
-      @keyframes gold-liquid { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
-      @keyframes wobble-inverse { 0%, 100% { transform: rotate(-4deg); } 50% { transform: rotate(4deg); } }
-      @keyframes shine-luxury {
-          0% { transform: translateX(-200%) rotate(25deg); }
-          30% { transform: translateX(300%) rotate(25deg); }
-          100% { transform: translateX(300%) rotate(25deg); }
+          z-index: 15 !important;
+          text-shadow: 2px 2px 15px rgba(0,0,0,0.9) !important;
       }
 
-      /* 7. MOBILE */
+      /* On s'assure que le bouton flottant est au-dessus de tout */
+      .floating-close {
+          z-index: 10005 !important;
+      }
+
       @media (max-width: 768px) {
-        .logo-container-wrapper { top: 120px !important; left: 15px !important; }
-        .moving-header-logo { width: 100px !important; }
-        header h1 { font-size: 2.2rem !important; }
+          header h1 { font-size: 2.2rem !important; }
+          .logo-container-wrapper { top: 120px !important; left: 15px !important; }
       }
   `}</style>
 <Helmet>
