@@ -224,22 +224,22 @@ export default function CardMenu(props) {
       </div>
 
       <div style={{ padding: '15px', paddingTop: '0' }}>
-        <button
-          onClick={handleAddClick}
-          className={`gold-button-premium ${isAdded ? 'is-added' : ''}`}
-          style={{ width: '100%', height: '55px', border: 'none', borderRadius: '12px', cursor: 'pointer', overflow: 'hidden' }}
-        >
-          {isAdded ? (
-            <span style={{ fontWeight: '950' }}>{getT("ready")}</span>
-          ) : (
-            <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', alignItems: 'center', padding: '0 10px' }}>
-              <span style={{ fontWeight: '950' }}>{getT("add")}</span>
-              <span style={{ backgroundColor: 'rgba(0,0,0,0.2)', padding: '4px 12px', borderRadius: '8px', fontSize: '0.9rem' }}>
-                {totalPrice}€
-              </span>
-            </div>
-          )}
-        </button>
+      <button
+  onClick={handleAddClick}
+  className={`gold-button-premium ${isAdded ? 'is-added' : ''}`}
+  style={{ cursor: 'pointer' }}
+>
+  {isAdded ? (
+    <span style={{ fontWeight: '950' }}>{getT("ready")}</span>
+  ) : (
+    <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', alignItems: 'center', padding: '0 10px' }}>
+      <span style={{ fontWeight: '950' }}>{getT("add")}</span>
+      <span style={{ backgroundColor: 'rgba(0,0,0,0.2)', padding: '4px 12px', borderRadius: '8px', fontSize: '0.9rem' }}>
+        {totalPrice}€
+      </span>
+    </div>
+  )}
+</button>
       </div>
     </div>
   );

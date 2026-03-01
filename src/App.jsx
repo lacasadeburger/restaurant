@@ -381,128 +381,153 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
   />
 </div>
 <style>{`
-/* --- 1. HIÉRARCHIE DES TEXTES & OR PRESTIGE --- */
-header h1 span:first-of-type {
-  color: #BF953F !important;
-  text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
-}
-header h1 span:last-of-type {
-  color: #FCF6BA !important;
-  font-weight: 300 !important;
-}
+  /* --- 1. TYPOGRAPHIE & OR 24 CARATS (PRESTIGE & VISIBILITÉ) --- */
 
-/* Titres de Cartes et Prix en Or Prestige */
-.card-menu h3, .product-price {
-  background: linear-gradient(135deg, #BF953F 0%, #FCF6BA 25%, #B38728 50%, #FBF5B7 75%, #AA771C 100%) !important;
-  -webkit-background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
-  font-weight: 950 !important;
-  text-transform: uppercase;
-  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
-}
+  /* H1 : L'effet Or Brillant 24k (Multicouche pour le reflet) */
+  header h1 span:first-of-type {
+    background: linear-gradient(135deg, #BF953F 0%, #FCF6BA 20%, #B38728 40%, #FBF5B7 60%, #AA771C 80%, #FFF5C1 100%) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    text-shadow: 0px 4px 15px rgba(0,0,0,0.5);
+    font-weight: 950 !important;
+    display: inline-block;
+  }
 
-.card-menu p { color: #f0f0f0 !important; text-align: center !important; }
+  /* H1 : "À TORREVIEJA" - Impact maximum */
+  header h1 span:last-of-type {
+    color: #FCF6BA !important;
+    font-weight: 800 !important;
+    font-size: 1.25em !important;
+    letter-spacing: 2px;
+    display: block;
+    margin-top: 8px;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+    text-transform: uppercase;
+  }
 
-/* --- 2. EXTRAS (VERT) & QUITARS (ROUGE) --- */
-.extra-item { color: #2ecc71 !important; font-weight: bold !important; }
-.quitar-item { color: #e74c3c !important; font-weight: bold !important; text-decoration: line-through; }
+  /* H3 & TITRES : Harmonisation Or Gourmet 24k */
+  h3.home-subtitle, .card-menu h3, .product-price, .SectionTitle, #order h2 {
+    background: linear-gradient(135deg, #BF953F 0%, #FCF6BA 25%, #B38728 50%, #FBF5B7 75%, #AA771C 100%) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    font-weight: 800 !important;
+    text-transform: uppercase;
+    text-align: center !important;
+    font-size: 1.2rem !important;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4));
+    font-family: 'Arial Black', sans-serif;
+    font-display: optional !important;
+    margin-bottom: 15px;
+  }
 
-/* --- 3. BOUTONS & BADGES OR PRESTIGE --- */
-.gold-button-premium, .category-btn-overlay, .wobble-badge {
-  background: linear-gradient(135deg,
-    #BF953F 0%,
-    #FCF6BA 25%,
-    #B38728 50%,
-    #FBF5B7 75%,
-    #AA771C 100%
-  ) !important;
-  background-size: 400% 400% !important;
-  color: #000 !important;
-  font-weight: 950 !important;
-  border-radius: 50px !important;
-  position: relative !important;
-  overflow: hidden !important;
-  box-shadow: 0 4px 15px rgba(191,149,63,0.4) !important;
-  animation: gold-liquid 6s ease infinite !important;
-}
+  /* --- 2. ÉLÉMENTS INTERACTIFS (PERFORMANCE & STYLE) --- */
+  .gold-button-premium, .category-btn-overlay {
+    background: linear-gradient(135deg, #BF953F 0%, #FCF6BA 25%, #B38728 50%, #FBF5B7 75%, #AA771C 100%) !important;
+    background-size: 400% 400% !important;
+    color: #000 !important;
+    font-weight: 950 !important;
+    border-radius: 50px !important;
+    text-transform: uppercase;
+    animation: gold-liquid 6s ease infinite !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none !important;
+    transition: transform 0.2s ease, filter 0.3s ease;
+    contain: content;
+  }
 
-/* --- 4. LE BADGE #1 (CORRECTION PRIORITÉ VISUELLE) --- */
-.wobble-badge-container {
-  position: fixed !important;    /* Fixé à l'écran pour passer devant le Nav */
-  top: 175px !important;         /* Descendu sous les 3 niveaux de Nav */
-  right: 15px !important;
-  z-index: 11000 !important;     /* Supérieur au Nav (10000) */
-  pointer-events: none !important; /* Laisse passer les clics au travers */
-}
+  .gold-button-premium {
+    position: relative !important;
+    width: 100% !important;
+    height: 55px !important;
+    box-shadow: 0 4px 15px rgba(191,149,63,0.4) !important;
+  }
 
-.wobble-badge {
-  animation: gold-liquid 6s ease infinite, wobble-inverse 5s infinite ease-in-out !important;
-  padding: 8px 15px !important;
-  display: flex !important;
-  align-items: center;
-}
+  /* --- 3. STRUCTURE DE LA CARTE & STABILITÉ --- */
+  .card-menu {
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100% !important;
+    justify-content: space-between !important;
+    content-visibility: auto;
+    contain-intrinsic-size: 400px;
+  }
 
-/* Effet Shimmer (Reflet de lumière) */
-.gold-button-premium::after, .category-btn-overlay::after, .wobble-badge::after {
-  content: "" !important;
-  display: block !important;
-  position: absolute;
-  top: -50%; left: -150%; width: 100%; height: 200%;
-  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.9) 50%, transparent 100%) !important;
-  transform: rotate(25deg);
-  animation: shine-luxury 3s infinite ease-in-out 3s !important;
-  z-index: 1;
-}
+  .card-description {
+    flex-grow: 1 !important;
+    color: #f0f0f0 !important;
+    margin-bottom: 20px !important;
+    font-size: 0.95rem;
+    line-height: 1.4;
+  }
 
-/* --- 5. GRILLE & CARTES PRODUITS (CENTRAGE TOTAL) --- */
-.card-menu {
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  text-align: center !important;
-  padding: 15px !important;
-}
+  #order h2 { min-height: 45px; margin-bottom: 20px !important; }
 
-.card-menu h3,
-.card-menu p,
-.product-price {
-  width: 100% !important;
-  text-align: center !important;
-}
+  /* --- 4. LE BADGE FLOTTANT --- */
+  .wobble-badge-container {
+    position: absolute !important; top: 175px !important; right: 15px !important;
+    z-index: 1000 !important; pointer-events: none !important;
+  }
+  .wobble-badge {
+    animation: gold-liquid 6s ease infinite, wobble-inverse 5s infinite ease-in-out !important;
+    padding: 8px 15px !important;
+    contain: content;
+  }
 
-/* --- 6. FIX CATEGORIES & IMAGES --- */
-.promo-container {
-  position: relative !important;
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-  width: 90% !important;
-  max-width: 600px;
-  margin: 0 auto 30px auto !important;
-  cursor: pointer;
-  border-radius: 20px;
-  overflow: hidden;
-}
+  /* --- 5. IMAGES & BOUTONS SUR IMAGES (PRECISION ANCHORING) --- */
+  .promo-container {
+    position: relative !important; /* Pour ancrer le bouton à l'intérieur */
+    max-width: 600px;
+    margin: 0 auto 30px auto !important;
+    cursor: pointer;
+    border-radius: 20px;
+    overflow: hidden;
+    aspect-ratio: 600 / 336;
+    background: rgba(255, 255, 255, 0.05);
+  }
 
-.promo-img {
-  width: 100% !important;
-  height: auto !important;
-  display: block !important;
-  object-fit: cover;
-  transition: transform 0.5s ease;
-}
+  .promo-img {
+    width: 100% !important;
+    height: auto !important;
+    transition: transform 0.5s ease;
+    object-fit: cover;
+    display: block;
+  }
 
-/* --- 7. ANIMATIONS & RESPONSIVE --- */
-@keyframes gold-liquid { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
-@keyframes shine-luxury { 0% { transform: translateX(-200%) rotate(25deg); } 30%, 100% { transform: translateX(300%) rotate(25deg); } }
-@keyframes wobble-inverse { 0%, 100% { transform: rotate(-4deg); } 50% { transform: rotate(4deg); } }
+  .category-btn-overlay {
+    position: absolute !important;
+    bottom: 20px !important;
+    right: 20px !important;
+    z-index: 100 !important;
+    padding: 12px 25px !important;
+    font-size: 0.9rem !important;
+    white-space: nowrap !important;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.6) !important;
+    border: 1px solid rgba(255, 255, 255, 0.4) !important;
+  }
 
-@media (max-width: 768px) {
-  .logo-container-wrapper { top: 200px !important; left: 15px !important; }
-  .wobble-badge-container { top: 165px !important; } /* Ajustement mobile */
-  header h1 { font-size: 2.2rem !important; }
-  .grid-cards { grid-template-columns: 1fr !important; }
-}
+  .category-btn-overlay:hover {
+    transform: scale(1.05) translateY(-2px);
+    filter: brightness(1.2);
+  }
+
+  /* --- 6. ANIMATIONS GPU --- */
+  @keyframes gold-liquid { 0%, 100% { filter: brightness(1); } 50% { filter: brightness(1.2); } }
+  @keyframes wobble-inverse { 0%, 100% { transform: rotate(-4deg); } 50% { transform: rotate(4deg); } }
+
+  .gold-button-premium, .wobble-badge, .category-btn-overlay { will-change: transform, opacity, filter; }
+
+  /* --- 7. RESPONSIVE --- */
+  @media (max-width: 768px) {
+    .logo-container-wrapper { top: 200px !important; left: 15px !important; }
+    header h1 { font-size: 2.4rem !important; }
+    header h1 span:last-of-type { font-size: 0.95rem !important; margin-top: 4px; }
+    .grid-cards { grid-template-columns: 1fr !important; width: 100%; }
+    .promo-container { aspect-ratio: auto; min-height: 180px; }
+    h3.home-subtitle { font-size: 1rem !important; }
+    .category-btn-overlay { bottom: 15px !important; right: 15px !important; padding: 10px 18px !important; font-size: 0.8rem !important; }
+  }
 `}</style>
 <Helmet>
 {/* 1. DYNAMIQUE : Titre et Description traduits (Indispensable) */}
@@ -755,7 +780,7 @@ header h1 span:last-of-type {
         ))}
       </div>
     ) : (
-      <div className="promo-container" style={{ width: '100%', maxWidth: '1000px', overflow: 'hidden', borderRadius: '15px' }} onClick={() => {
+      <div className="promo-container" onClick={() => {
         setShowCardBurger(true);
         requestAnimationFrame(() => {
           setTimeout(() => {
@@ -766,8 +791,11 @@ header h1 span:last-of-type {
       }}>
         <img
           src="/Burger.webp"
+          width="600"
+          height="336"
           className="promo-img"
           alt="Burger"
+          fetchpriority="high" // Boost le LCP pour l'image principale
           style={{ width: '100%', height: 'auto', objectFit: 'cover', display: 'block' }}
         />
         <span className="category-btn-overlay">{T[lang]?.catBurgers || T.es.catBurgers}</span>
@@ -790,7 +818,7 @@ header h1 span:last-of-type {
         {drinks.map(item => <CardMenu key={item.id} {...item} isDrinkCard={true} addToCart={addToCart} lang={lang} />)}
       </div>
     ) : (
-      <div className="promo-container" style={{ width: '100%', maxWidth: '1000px', overflow: 'hidden', borderRadius: '15px' }} onClick={() => {
+      <div className="promo-container" onClick={() => {
         setShowCardDrink(true);
         requestAnimationFrame(() => {
           setTimeout(() => {
@@ -801,8 +829,11 @@ header h1 span:last-of-type {
       }}>
         <img
           src="/Drink.webp"
+          width="600"
+          height="336"
           className="promo-img"
           alt="Bebidas"
+          loading="lazy" // Optimise le Speed Index (chargé seulement si besoin)
           style={{ width: '100%', height: 'auto', objectFit: 'cover', display: 'block' }}
         />
         <span className="category-btn-overlay">{T[lang]?.catDrinks || T.es.catDrinks}</span>
@@ -810,8 +841,52 @@ header h1 span:last-of-type {
     )}
   </section>
 
-    {/* SECTION COMMANDE (Lazy Loaded via Suspense) */}
-    <section id="order" style={{ paddingBottom: '60px' }}>
+  {/* SECTION POSTRES */}
+  <section id="sec-postres" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', marginTop: '20px' }}>
+    <SectionTitle>{T[lang]?.catDesserts || "POSTRES"}</SectionTitle>
+    {showCardDessert ? (
+      <div className="grid-cards" style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+        gap: '20px',
+        width: '100%',
+        padding: '15px',
+        maxWidth: '1200px'
+      }}>
+        {desserts.map(item => (
+          <CardMenu key={item.id} {...item} addToCart={addToCart} lang={lang} />
+        ))}
+      </div>
+    ) : (
+      <div className="promo-container" onClick={() => {
+        setShowCardDessert(true);
+        setTimeout(() => {
+          const el = document.getElementById("sec-postres");
+          if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.pageYOffset - 100, behavior: "smooth" });
+        }, 150);
+      }}>
+        <img
+          src="/Postre.webp"
+          width="600"
+          height="336"
+          className="promo-img"
+          alt="Postres"
+          loading="lazy" // Optimise le Speed Index
+          style={{ width: '100%', height: 'auto', objectFit: 'cover', display: 'block' }}
+        />
+        <span className="category-btn-overlay">{T[lang]?.catDesserts || "POSTRES"}</span>
+      </div>
+    )}
+  </section>
+
+    {/* SECTION COMMANDE */}
+    <section id="order" style={{
+      paddingBottom: '60px',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      width: '100%'
+    }}>
       <SectionTitle>{lang === 'es' ? 'Tu Pedido' : lang === 'fr' ? 'Votre Commande' : 'Your Order'}</SectionTitle>
       <Order cart={cart} removeFromCart={removeFromCart} lang={lang} />
     </section>
