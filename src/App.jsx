@@ -363,102 +363,77 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
   return (
       <div className="app-main-wrapper" style={{ position: 'relative', backgroundColor: 'transparent', color: '#fff' }}>
 
-        {/* --- BACKGROUND FIXE (PERFORMANCE) --- */}
-        <div className="hero-fixed-container">
-          <img
-            id="hero-bg-perf"
-            src={hero}
-            className="hero-fixed-bg"
-            alt="La Casa de Burger Background"
-          />
-        </div>
+      {/* --- BACKGROUND FIXE (PERFORMANCE) --- */}
+<div className="hero-fixed-container">
+  <img
+    id="hero-bg-perf"
+    src={hero}
+    className="hero-fixed-bg"
+    alt="La Casa de Burger Background"
+    /* On force l'image à rester au niveau 1 pour que le voile (niveau 2) soit devant elle */
+    style={{ zIndex: 1 }}
+  />
+</div>
         <style>{`
-        /* --- 1. NAVIGATION & SCROLL (FIXE & OPAQUE) --- */
-        nav {
-          background-color: #000 !important;
-          z-index: 10001 !important;
-          position: sticky !important;
-          top: 0;
-        }
+      /* --- 1. HIÉRARCHIE DES TEXTES LUXE --- */
+      header h1 span:first-of-type { color: #BF953F !important; text-shadow: 2px 2px 10px rgba(0,0,0,0.8); } /* OR */
+      header h1 span:last-of-type { color: #FFD700 !important; font-weight: 300 !important; } /* JAUNE */
+      header h2 { color: #ffffff !important; text-align: center !important; opacity: 0.9; }
 
-        /* --- 2. HIÉRARCHIE DES TEXTES LUXE (OR, BLANC, JAUNE) --- */
-        /* Titre principal : OR ROYAL */
-        header h1 span:first-of-type {
-          color: #BF953F !important;
-          text-shadow: 2px 2px 15px rgba(0,0,0,0.8) !important;
-        }
-        /* Torrevieja : JAUNE AMBRE (Contraste SEO) */
-        header h1 span:last-of-type {
-          color: #FFD700 !important;
-          font-weight: 300 !important;
-        }
-        /* Sous-titre : BLANC CRISTAL (Lisibilité) */
-        header h2 {
-          color: #ffffff !important;
-          text-align: center !important;
-          opacity: 0.9;
-        }
+      /* Burgers : Nom en Or / Desc en Blanc / Prix en Jaune */
+      .card-menu h3 {
+        background: linear-gradient(135deg, #BF953F 0%, #FCF6BA 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-align: center !important;
+        font-weight: 950 !important;
+        text-transform: uppercase;
+      }
+      .card-menu p { color: #f0f0f0 !important; text-align: center !important; }
+      .product-price { color: #FFD700 !important; font-weight: 900; text-align: center; font-size: 1.3rem; }
 
-        /* --- 3. L'OR ROYAL & SHIMMER (BOUTONS & BADGE) --- */
-        .gold-button-premium, .category-btn-overlay, .wobble-badge {
-          background: linear-gradient(135deg, #BF953F 0%, #FCF6BA 45%, #B38728 55%, #FBF5B7 100%) !important;
-          background-size: 400% 400% !important;
-          color: #000 !important;
-          font-weight: 950 !important;
-          border-radius: 50px !important;
-          position: relative !important;
-          overflow: hidden !important;
-          animation: gold-liquid 6s ease infinite 2.5s !important;
-        }
+      /* --- 2. EXTRAS (VERT) & QUITARS (ROUGE) --- */
+      .extra-item { color: #2ecc71 !important; font-weight: bold !important; }
+      .quitar-item { color: #e74c3c !important; font-weight: bold !important; text-decoration: line-through; }
 
-        .gold-button-premium::after, .category-btn-overlay::after {
-          content: "" !important;
-          display: block !important;
-          position: absolute;
-          top: -50%; left: -150%; width: 100%; height: 200%;
-          background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.8) 50%, transparent 100%) !important;
-          transform: rotate(25deg);
-          animation: shine-luxury 3s infinite ease-in-out 3s !important;
-          z-index: 10;
-        }
+      /* --- 3. BOUTONS OR & SHIMMER --- */
+      .gold-button-premium, .category-btn-overlay, .wobble-badge {
+        background: linear-gradient(135deg, #BF953F 0%, #FCF6BA 45%, #B38728 55%, #FBF5B7 100%) !important;
+        background-size: 400% 400% !important;
+        color: #000 !important;
+        font-weight: 950 !important;
+        border-radius: 50px !important;
+        animation: gold-liquid 6s ease infinite 2.5s !important;
+        position: relative !important;
+        overflow: hidden !important;
+      }
 
-        /* --- 4. LES PRODUITS (NOM EN OR / DESC EN BLANC) --- */
-        .card-menu h3 {
-          background: linear-gradient(135deg, #BF953F 0%, #FCF6BA 100%);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          text-align: center !important;
-          font-weight: 950 !important;
-          text-transform: uppercase;
-        }
-        .card-menu p {
-          text-align: center !important;
-          color: #f0f0f0 !important; /* Blanc cassé luxe */
-        }
-        .product-price {
-          color: #FFD700 !important; /* Prix en Jaune Ambre */
-          font-weight: 900;
-        }
+      .gold-button-premium::after, .category-btn-overlay::after {
+        content: "" !important;
+        display: block !important;
+        position: absolute;
+        top: -50%; left: -150%; width: 100%; height: 200%;
+        background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.8) 50%, transparent 100%) !important;
+        transform: rotate(25deg);
+        animation: shine-luxury 3s infinite ease-in-out 3s !important;
+      }
 
-        /* --- 5. EXTRAS (VERT) & QUITARS (ROUGE) --- */
-        .extra-item, .text-green-500 { color: #2ecc71 !important; font-weight: bold !important; }
-        .quitar-item, .text-red-500 { color: #e74c3c !important; font-weight: bold !important; text-decoration: line-through; }
+      /* --- 4. ANIMATIONS & RESPONSIVE --- */
+      @keyframes gold-liquid { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+      @keyframes shine-luxury { 0% { transform: translateX(-200%) rotate(25deg); } 30%, 100% { transform: translateX(300%) rotate(25deg); } }
 
-        /* --- 6. ANIMATIONS & PLACEMENT --- */
-        @keyframes gold-liquid { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
-        @keyframes shine-luxury { 0% { transform: translateX(-200%) rotate(25deg); } 30%, 100% { transform: translateX(300%) rotate(25deg); } }
+      .wobble-badge-container {
+        position: absolute !important;
+        top: 20px !important; right: 15px !important;
+        z-index: 100 !important;
+      }
 
-        .wobble-badge-container {
-          position: absolute !important;
-          top: 20px !important; right: 15px !important;
-          z-index: 100 !important;
-        }
-
-        @media (max-width: 768px) {
-          .logo-container-wrapper { top: 180px !important; left: 15px !important; }
-          header h1 { font-size: 2.2rem !important; }
-        }
-      `}</style>
+      @media (max-width: 768px) {
+        .logo-container-wrapper { top: 180px !important; left: 15px !important; }
+        header h1 { font-size: 2.2rem !important; }
+        .grid-cards { grid-template-columns: 1fr !important; }
+      }
+    `}</style>
 <Helmet>
 {/* 1. DYNAMIQUE : Titre et Description traduits (Indispensable) */}
 <title>{T[lang]?.seoTitle || T.es.seoTitle}</title>
