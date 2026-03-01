@@ -1013,5 +1013,3 @@ aspectRatio: '169 / 127' // Indispensable pour éviter le CLS
     </div> // Fermeture du container principal (menu-page-container ?)
     );
   };
-
-  export default App;
