@@ -498,6 +498,20 @@ header h1 span:last-of-type {
   header h1 { font-size: 2.2rem !important; }
   .grid-cards { grid-template-columns: 1fr !important; }
 }
+.card-menu {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important; /* Centre horizontalement les éléments Flex */
+  text-align: center !important;  /* Centre le texte à l'intérieur des balises */
+  padding: 15px !important;
+}
+
+.card-menu h3,
+.card-menu p,
+.product-price {
+  width: 100% !important;
+  text-align: center !important;
+}
 `}</style>
 <Helmet>
 {/* 1. DYNAMIQUE : Titre et Description traduits (Indispensable) */}
@@ -576,67 +590,74 @@ header h1 span:last-of-type {
   pointerEvents: 'none'
 }}></div>}
 <header style={{
-  // Calcul précis : on réduit le padding car la Nav occupe déjà 184px
-  padding: '40px 15px 80px',
+  // On augmente le padding top à 220px pour laisser passer la Nav (184px) + un petit espace
+  padding: '220px 15px 60px',
   textAlign: 'center',
   position: 'relative',
   borderRadius: '0 0 50px 50px',
   borderBottom: '5px solid #ff4757',
   backgroundColor: 'transparent',
-  overflow: 'hidden',
-  // minHeight réduit pour éviter un immense espace vide avant le chargement des images
-  minHeight: '700px',
+  overflow: 'visible', // On change hidden en visible pour que le badge ne soit pas coupé
+  minHeight: '650px',
   display: 'flex',
   flexDirection: 'column',
-  justifyContent: 'flex-start', // Aligne en haut pour la stabilité
+  justifyContent: 'flex-start',
   alignItems: 'center',
   zIndex: 1
 }}>
-  {/* 1. BADGE DE PRESTIGE - Position ajustée pour éviter les chevauchements */}
+
+  {/* 1. BADGE DE PRESTIGE - Ajusté pour la nouvelle Nav */}
   <div className="wobble-badge-container" style={{
     position: 'absolute',
-    top: '20px',
+    top: '200px',        // Aligné avec le bas de la Nav
     right: '15px',
-    zIndex: 3
+    zIndex: 999
   }}>
     <div className="wobble-badge gold-button-premium" style={{
-      padding: '6px 15px',
+      padding: '8px 15px',
       fontSize: '0.75rem',
       display: 'flex',
       alignItems: 'center',
       gap: '5px',
-      fontWeight: '900'
+      fontWeight: '900',
+      boxShadow: '0 4px 15px rgba(191,149,63,0.6)',
+      border: '1px solid rgba(255,255,255,0.3)'
     }}>
       🏆 #1 BURGER EN TORREVIEJA
     </div>
   </div>
 
-  {/* 2. CONTENU TEXTUEL (L'ARMURE SEO) */}
-  <div style={{ position: 'relative', zIndex: 3, width: '100%' }}>
+  {/* 2. CONTENU TEXTUEL - Descendu pour laisser la place au Logo flottant */}
+  <div style={{
+    position: 'relative',
+    zIndex: 3,
+    width: '100%',
+    marginTop: '100px' // Cet espace permet au logo flottant de respirer à gauche
+  }}>
     <h1 style={{
       fontSize: 'clamp(2.2rem, 8vw, 3.5rem)',
-      fontWeight: '900',
+      fontWeight: '950',
       textTransform: 'uppercase',
       textShadow: '2px 2px 15px rgba(0,0,0,0.8)',
       margin: '0 auto',
       color: '#fff',
       lineHeight: '1.1',
-      // On fixe la hauteur minimale du bloc de titre pour éviter le CLS
-      minHeight: '120px',
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'center'
     }}>
-      <span style={{ display: 'block', width: '100%' }}>
+      {/* On applique ton Or 24K ici si tu veux qu'il brille */}
+      <span className="product-price" style={{ display: 'block', width: '100%' }}>
         {T[lang]?.heroTitle || T.es.heroTitle}
       </span>
 
       <span style={{
-        fontSize: '0.6em',
+        fontSize: '0.5em',
         display: 'block',
         width: '100%',
-        color: '#FFD700', // Jaune pour le contraste LCP
-        marginTop: '5px'
+        color: '#FFD700',
+        marginTop: '10px',
+        letterSpacing: '3px'
       }}>
         {lang === 'fr' ? 'À TORREVIEJA' :
          lang === 'en' ? 'IN TORREVIEJA' :
@@ -646,77 +667,74 @@ header h1 span:last-of-type {
 
     {/* H2 SEO : Burgers Gourmet */}
     <h2 style={{
-        fontSize: '1.2rem',
-        color: '#fff',
-        fontWeight: '700',
-        marginTop: '15px',
+        fontSize: '1.1rem',
+        color: '#f0f0f0',
+        fontWeight: '600',
+        marginTop: '20px',
         textTransform: 'uppercase',
-        minHeight: '3rem',
-        padding: '0 10px'
+        letterSpacing: '1px',
+        padding: '0 20px'
       }}>
         {T[lang]?.heroSubtitle || T.es.heroSubtitle}
     </h2>
 
-    {/* 3. BOUTONS D'ACTION */}
-    <div style={{ marginTop: '30px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '15px' }}>
+    {/* 3. BOUTONS D'ACTION (RESTE INCHANGÉ MAIS BIEN ALIGNÉ) */}
+    <div style={{ marginTop: '40px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '20px' }}>
 
-      {/* BOUTON COMMANDER - Priorité LCP */}
       <button
         onClick={() => {
           setShowCardBurger(true);
           const el = document.getElementById("sec-burgers");
-          if (el) el.scrollIntoView({ behavior: 'smooth' });
+          if (el) window.scrollTo({ top: el.offsetTop - 150, behavior: 'smooth' });
         }}
         className="pulse-gold-btn gold-button-premium"
         style={{
             color: '#000',
             padding: '20px',
             borderRadius: '50px',
-            border: '3px solid #000',
+            border: '2px solid #000',
             fontWeight: '950',
             cursor: 'pointer',
-            fontSize: '1.4rem',
+            fontSize: '1.3rem',
             textTransform: 'uppercase',
             width: '90%',
-            maxWidth: '400px',
-            height: '75px'
+            maxWidth: '400px'
         }}
       >
         🚀 {T[lang]?.btnOrder || T.es.btnOrder}
       </button>
 
-      {/* BOUTON RÉSERVER */}
       <button
         onClick={() => window.open("https://app.tableo.com/widget/la-casa-de-burger", "_blank")}
         className="gold-button-premium"
         style={{
           padding: '15px',
           borderRadius: '50px',
-          fontSize: '1.1rem',
+          fontSize: '1rem',
           width: '80%',
           maxWidth: '350px',
           cursor: 'pointer',
-          fontWeight: '700'
+          fontWeight: '800'
         }}
       >
         📅 RESERVAR MESA
       </button>
 
-      {/* 4. BLOC APPEL */}
       <div style={{ marginTop: '10px' }}>
         <a
           href="tel:+34602597210"
           style={{
             background: '#ffffff',
             color: '#000000',
-            padding: '12px 25px',
+            padding: '12px 30px',
             borderRadius: '50px',
             textDecoration: 'none',
             fontWeight: '950',
             display: 'flex',
             alignItems: 'center',
             gap: '8px',
-            fontSize: '1rem'
+            fontSize: '1rem',
+            boxShadow: '0 4px 10px rgba(255,255,255,0.2)'
           }}
         >
           📞 {T[lang]?.btnCall || T.es.btnCall}
@@ -1095,10 +1113,36 @@ aspectRatio: '169 / 127' // Indispensable pour éviter le CLS
             <p style={{ margin: '8px 0 0' }}>{lang === 'es' ? 'El mejor burger de Torrevieja' : 'Best burger in Torrevieja'}</p>
           </div>
         </footer>
-            {/* --- ÉLÉMENTS FLOTTANTS --- */}
-            <a href="https://wa.me/34602597210" target="_blank" rel="noopener noreferrer" className="whatsapp-float">
-              <img src={whatsappIcon} width="100" height="100" alt="WhatsApp" style={{ objectFit: 'contain' }} />
-            </a>
+        {/* --- ÉLÉMENTS FLOTTANTS --- */}
+<a
+href="https://wa.me/34602597210"
+target="_blank"
+rel="noopener noreferrer"
+className="whatsapp-float"
+style={{
+  position: 'fixed',    // Obligatoire pour flotter pendant le scroll
+  bottom: '25px',       // Distance du bas
+  right: '20px',        // À DROITE
+  zIndex: 99999,        // Passe au-dessus de tout
+  width: '70px',        // Taille du cercle
+  height: '70px',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  filter: 'drop-shadow(0px 4px 10px rgba(0,0,0,0.5))' // Ombre pour le relief
+}}
+>
+<img
+  src={whatsappIcon}
+  width="60"
+  height="60"
+  alt="WhatsApp"
+  style={{
+    objectFit: 'contain',
+    animation: 'wobble-inverse 3s infinite ease-in-out' // Optionnel: pour qu'il bouge un peu
+  }}
+/>
+</a>
 
             {(showCardBurger || showCardDrink || showCardPostres) && (
               <button className="floating-close" onClick={handleNextStep} style={{ position: 'fixed', bottom: '95px', left: '50%', transform: 'translateX(-50%)', backgroundColor: '#ff4757', color: '#fff', width: '280px', height: '60px', borderRadius: '12px', fontWeight: '950', zIndex: 10000, border: '3px solid #000', cursor: 'pointer' }}>
