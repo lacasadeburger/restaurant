@@ -383,14 +383,31 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
       will-change: opacity; transform: translateZ(0); transition: opacity 0.1s linear;
     }
 
-    /* --- 2. BOUTONS GOLD PREMIUM (LIQUID + SHIMMER) --- */
+    /* --- 2. LOGO (PROFONDEUR INTERMÉDIAIRE) --- */
+    .logo-container-wrapper {
+      position: absolute;
+      top: 200px;
+      left: 35px;
+      z-index: 2 !important; /* Devant le fond (-1) mais derrière le header (3+) */
+      animation: wobble-inverse 5s infinite ease-in-out;
+      pointer-events: none;
+    }
+    .moving-header-logo { height: auto; transition: 0.3s; width: 150px; }
+
+    /* --- 3. HEADER & TEXTE (PREMIER PLAN) --- */
+    header {
+      position: relative;
+      z-index: 5 !important; /* Passe devant le logo */
+    }
+
+    /* --- 4. BOUTONS GOLD PREMIUM (LIQUID + SHIMMER) --- */
     .gold-button-premium {
       position: relative !important;
       overflow: hidden !important;
       background: linear-gradient(135deg, #BF953F 0%, #FCF6BA 45%, #B38728 55%, #FBF5B7 100%) !important;
       background-size: 400% 400% !important;
       color: #000 !important;
-      z-index: 1;
+      z-index: 10;
       display: inline-flex;
       align-items: center; justify-content: center;
       animation: gold-liquid 6s ease infinite 2.5s !important;
@@ -399,16 +416,10 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
       content: ""; position: absolute; top: 0; left: -200%; width: 100%; height: 100%;
       background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
       transform: skewX(-20deg); animation: shimmer-light 4s infinite 2.5s !important;
-      z-index: 2; pointer-events: none;
+      z-index: 11; pointer-events: none;
     }
 
-    /* --- 3. LOGO & BADGE PRESTIGE --- */
-    .logo-container-wrapper {
-      position: absolute; top: 200px; left: 35px; z-index: 10;
-      animation: wobble-inverse 5s infinite ease-in-out; pointer-events: none;
-    }
-    .moving-header-logo { height: auto; transition: 0.3s; width: 150px; }
-
+    /* --- 5. BADGE PRESTIGE --- */
     .wobble-badge-container {
       position: absolute; top: 20px; right: 20px; z-index: 50; width: fit-content;
     }
@@ -420,7 +431,7 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
       box-shadow: 0 4px 15px rgba(0,0,0,0.6);
     }
 
-    /* --- 4. ÉLÉMENTS FLOTTANTS (WHATSAPP & CLOSE) --- */
+    /* --- 6. ÉLÉMENTS FLOTTANTS --- */
     .whatsapp-float {
       position: fixed !important; bottom: 30px !important; right: 25px !important;
       z-index: 9999 !important; display: flex; align-items: center; justify-content: center;
@@ -434,8 +445,7 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
       animation: bounce-subtle 2s infinite ease-in-out;
     }
 
-    /* --- 5. LE FIX CHIRURGICAL DES DRAPEAUX --- */
-    /* On cible uniquement la div des langues (celle après la nav) */
+    /* --- 7. FIX DES DRAPEAUX (CENTRÉS) --- */
     nav + div {
       display: flex !important;
       justify-content: center !important;
@@ -444,24 +454,26 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
       gap: 10px !important; padding: 10px !important;
       background-color: #000 !important;
       overflow: hidden !important;
+      z-index: 10001; /* Toujours au-dessus du reste */
+      position: relative;
     }
     nav + div button { flex-shrink: 0 !important; transition: 0.2s; }
-    nav + div button:hover { transform: scale(1.1); }
 
-    /* --- 6. KEYFRAMES --- */
+    /* --- 8. KEYFRAMES --- */
     @keyframes gold-liquid { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
     @keyframes shimmer-light { 0% { left: -200%; } 25% { left: 200%; } 100% { left: 200%; } }
     @keyframes wobble-inverse { 0%, 100% { transform: rotate(-4deg); } 50% { transform: rotate(4deg); } }
     @keyframes wobble-badge { 0%, 100% { transform: rotate(-5deg); } 50% { transform: rotate(5deg); } }
     @keyframes bounce-subtle { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(-5px); } }
 
-    /* --- 7. RESPONSIVE MOBILE --- */
+    /* --- 9. RESPONSIVE MOBILE --- */
     @media (max-width: 768px) {
       .wobble-badge-container { top: 25px !important; right: 15px !important; }
-      .logo-container-wrapper { top: 200px !important; left: 15px !important; z-index: 999 !important; }
-      .moving-header-logo { width: 80px !important; }
+      .logo-container-wrapper { top: 180px !important; left: 15px !important; z-index: 2 !important; }
+      .moving-header-logo { width: 100px !important; }
       nav + div { gap: 6px !important; padding: 5px !important; }
       nav + div button { width: 36px !important; height: 26px !important; }
+      header h1 { font-size: 2.2rem !important; }
     }
   `}</style>
 <Helmet>
