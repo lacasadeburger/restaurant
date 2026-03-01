@@ -5,26 +5,20 @@ html, body {
   color: #fff;
   scroll-behavior: smooth;
   overflow-x: hidden;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
 }
 
-/* --- 2. LE FOND (L'IMAGE ET LE VOILE) --- */
+/* --- 2. STRUCTURE DE BASE (FOND & VOILE) --- */
 .hero-fixed-container {
   position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100vh;
-  z-index: -1; /* Tout au fond */
-  background-color: #000;
-  overflow: hidden;
-  pointer-events: none;
+  top: 0; left: 0; width: 100%; height: 100vh;
+  z-index: -1 !important;
 }
 
-/* Le voile noir qui garantit la lisibilité */
 .hero-fixed-container::after {
   content: "";
   position: absolute;
   top: 0; left: 0; width: 100%; height: 100%;
-  background: rgba(0, 0, 0, 0.65) !important; /* 65% de noir */
+  background: rgba(0, 0, 0, 0.65) !important; /* TON VOILE NOIR */
   z-index: 1;
 }
 
@@ -32,64 +26,38 @@ html, body {
   width: 100%; height: 100%;
   object-fit: cover;
   display: block;
-  z-index: 0;
 }
 
-/* --- 3. LE LOGO (ENTRE LE FOND ET LE TEXTE) --- */
+/* --- 3. LE LOGO (200px DU HAUT) --- */
 .logo-container-wrapper {
   position: absolute !important;
-  top: 200px;
-  left: 35px;
-  z-index: 2 !important; /* Devant le voile (1) mais derrière le texte (10) */
+  top: 200px !important;
+  left: 35px !important;
+  z-index: 99 !important; /* DEVANT LE VOILE */
   animation: wobble-inverse 5s infinite ease-in-out;
   pointer-events: none;
 }
 
-/* --- 4. LE HEADER (CONTENU) --- */
-header {
-  position: relative !important;
-  z-index: 10 !important; /* Priorité maximale pour le texte et boutons */
-  background: transparent !important;
-}
-
-/* --- 5. BOUTONS OR & SHIMMER (L'ÉCLAIR) --- */
-.gold-button-premium {
-  background: linear-gradient(135deg, #BF953F, #FCF6BA, #D4AF37, #FBF5B7, #BF953F) !important;
-  background-size: 400% 400% !important;
-  position: relative !important;
-  overflow: hidden !important;
-  z-index: 11 !important;
-  animation: gold-liquid 6s ease infinite 2.5s !important;
-}
-
-.gold-button-premium::after {
-  content: "" !important;
+/* --- 4. WHATSAPP (TOUJOURS DEVANT) --- */
+.whatsapp-float {
+  position: fixed !important;
+  bottom: 20px !important;
+  right: 20px !important;
+  z-index: 10000 !important;
   display: block !important;
-  position: absolute;
-  top: -50%; left: -150%; width: 100%; height: 200%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
-  transform: rotate(25deg);
-  animation: shine-luxury 3s infinite 3s !important;
-  z-index: 12;
 }
 
-/* --- 6. ANIMATIONS --- */
-@keyframes shine-luxury {
-    0% { left: -150%; }
-    30% { left: 150%; }
-    100% { left: 150%; }
+/* --- 5. GRILLE DES CATÉGORIES --- */
+.grid-cards {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)) !important;
+  gap: 30px !important;
+  padding: 20px !important;
+  max-width: 1300px !important;
+  margin: 0 auto !important;
 }
-@keyframes gold-liquid {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-}
+
 @keyframes wobble-inverse {
-    0%, 100% { transform: rotate(-4deg); }
-    50% { transform: rotate(4deg); }
-}
-
-/* --- 7. MOBILE --- */
-@media (max-width: 768px) {
-  .logo-container-wrapper { top: 120px !important; left: 15px !important; }
-  .moving-header-logo { width: 100px !important; }
+  0%, 100% { transform: rotate(-4deg); }
+  50% { transform: rotate(4deg); }
 }
