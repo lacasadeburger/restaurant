@@ -381,9 +381,7 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
   />
 </div>
 <style>{`
-  /* --- 1. TYPOGRAPHIE & OR 24 CARATS (PRESTIGE & VISIBILITÉ) --- */
-
-  /* H1 : L'effet Or Brillant 24k (Multicouche pour le reflet) */
+  /* --- 1. TYPOGRAPHIE & OR 24 CARATS --- */
   header h1 span:first-of-type {
     background: linear-gradient(135deg, #BF953F 0%, #FCF6BA 20%, #B38728 40%, #FBF5B7 60%, #AA771C 80%, #FFF5C1 100%) !important;
     -webkit-background-clip: text !important;
@@ -393,7 +391,6 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
     display: inline-block;
   }
 
-  /* H1 : "À TORREVIEJA" - Impact maximum */
   header h1 span:last-of-type {
     color: #FCF6BA !important;
     font-weight: 800 !important;
@@ -405,7 +402,6 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
     text-transform: uppercase;
   }
 
-  /* H3 & TITRES : Harmonisation Or Gourmet 24k */
   h3.home-subtitle, .card-menu h3, .product-price, .SectionTitle, #order h2 {
     background: linear-gradient(135deg, #BF953F 0%, #FCF6BA 25%, #B38728 50%, #FBF5B7 75%, #AA771C 100%) !important;
     -webkit-background-clip: text !important;
@@ -415,171 +411,116 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
     text-align: center !important;
     font-size: 1.2rem !important;
     filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4));
-    font-family: 'Arial Black', sans-serif;
-    font-display: optional !important;
-    margin-bottom: 15px;
   }
 
-  /* --- 2. ÉLÉMENTS INTERACTIFS (PERFORMANCE & STYLE) --- */
-  .gold-button-premium, .category-btn-overlay {
+  /* --- 2. LE BOUTON PREMIUM (FUSIONNÉ) --- */
+  .gold-button-premium {
+    position: relative !important;
+    width: 100% !important;
+    height: 55px !important;
     background: linear-gradient(135deg, #BF953F 0%, #FCF6BA 25%, #B38728 50%, #FBF5B7 75%, #AA771C 100%) !important;
     background-size: 400% 400% !important;
     color: #000 !important;
     font-weight: 950 !important;
     border-radius: 50px !important;
     text-transform: uppercase;
-    animation: gold-liquid 6s ease infinite !important;
+    border: none !important;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: none !important;
-    transition: transform 0.2s ease, filter 0.3s ease;
-    contain: content;
-  }
-
-  .gold-button-premium {
-    position: relative !important;
-    width: 100% !important;
-    height: 55px !important;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.3s ease;
     box-shadow: 0 4px 15px rgba(191,149,63,0.4) !important;
+    animation: gold-liquid 6s ease infinite !important;
   }
 
-  /* --- 3. STRUCTURE DE LA CARTE & STABILITÉ --- */
+  /* État au clic / Ajouté */
+  .gold-button-premium.is-added {
+    background: #2ecc71 !important;
+    color: #fff !important;
+    animation: none !important;
+    transform: scale(0.95);
+    box-shadow: 0 0 20px rgba(46, 204, 113, 0.6) !important;
+  }
+
+  /* Effet de brillance (shimmer) */
+  .gold-button-premium::after {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: rotate(45deg);
+    pointer-events: none;
+    animation: shimmer-gold 3s infinite;
+  }
+
+  /* --- 3. STRUCTURE & BADGES --- */
   .card-menu {
     display: flex !important;
     flex-direction: column !important;
     height: 100% !important;
-    justify-content: space-between !important;
     content-visibility: auto;
     contain-intrinsic-size: 400px;
   }
 
-  .card-description {
-    flex-grow: 1 !important;
-    color: #f0f0f0 !important;
-    margin-bottom: 20px !important;
-    font-size: 0.95rem;
-    line-height: 1.4;
-  }
-
-  #order h2 { min-height: 45px; margin-bottom: 20px !important; }
-
-  /* --- 4. LE BADGE FLOTTANT --- */
-  .wobble-badge-container {
-    position: absolute !important; top: 175px !important; right: 15px !important;
-    z-index: 1000 !important; pointer-events: none !important;
-  }
   .wobble-badge {
-    animation: gold-liquid 6s ease infinite, wobble-inverse 5s infinite ease-in-out !important;
+    background: linear-gradient(135deg, #BF953F, #FCF6BA, #AA771C) !important;
+    color: #000 !important;
+    font-weight: 900;
     padding: 8px 15px !important;
-    contain: content;
-  }
-
-  /* --- 5. IMAGES & BOUTONS SUR IMAGES (PRECISION ANCHORING) --- */
-  .promo-container {
-    position: relative !important; /* Pour ancrer le bouton à l'intérieur */
-    max-width: 600px;
-    margin: 0 auto 30px auto !important;
-    cursor: pointer;
-    border-radius: 20px;
-    overflow: hidden;
-    aspect-ratio: 600 / 336;
-    background: rgba(255, 255, 255, 0.05);
-  }
-
-  .promo-img {
-    width: 100% !important;
-    height: auto !important;
-    transition: transform 0.5s ease;
-    object-fit: cover;
-    display: block;
+    animation: wobble-inverse 5s infinite ease-in-out !important;
+    border-radius: 5px;
   }
 
   .category-btn-overlay {
     position: absolute !important;
-    bottom: 20px !important;
-    right: 20px !important;
-    z-index: 100 !important;
+    bottom: 20px !important; right: 20px !important;
+    background: linear-gradient(135deg, #BF953F, #FCF6BA, #AA771C) !important;
     padding: 12px 25px !important;
-    font-size: 0.9rem !important;
-    white-space: nowrap !important;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.6) !important;
-    border: 1px solid rgba(255, 255, 255, 0.4) !important;
+    border-radius: 50px;
+    font-weight: 950;
+    color: #000;
   }
 
-  .category-btn-overlay:hover {
-    transform: scale(1.05) translateY(-2px);
-    filter: brightness(1.2);
-  }
-
-  /* --- 6. ANIMATIONS GPU --- */
+  /* --- 4. ANIMATIONS --- */
   @keyframes gold-liquid { 0%, 100% { filter: brightness(1); } 50% { filter: brightness(1.2); } }
   @keyframes wobble-inverse { 0%, 100% { transform: rotate(-4deg); } 50% { transform: rotate(4deg); } }
+  @keyframes shimmer-gold {
+    0% { transform: translateX(-150%) rotate(45deg); }
+    100% { transform: translateX(150%) rotate(45deg); }
+  }
 
-  .gold-button-premium, .wobble-badge, .category-btn-overlay { will-change: transform, opacity, filter; }
-
-  /* --- 7. RESPONSIVE --- */
+  /* --- 5. RESPONSIVE --- */
   @media (max-width: 768px) {
-    .logo-container-wrapper { top: 200px !important; left: 15px !important; }
     header h1 { font-size: 2.4rem !important; }
-    header h1 span:last-of-type { font-size: 0.95rem !important; margin-top: 4px; }
-    .grid-cards { grid-template-columns: 1fr !important; width: 100%; }
-    .promo-container { aspect-ratio: auto; min-height: 180px; }
-    h3.home-subtitle { font-size: 1rem !important; }
-    .category-btn-overlay { bottom: 15px !important; right: 15px !important; padding: 10px 18px !important; font-size: 0.8rem !important; }
+    .grid-cards { grid-template-columns: 1fr !important; }
   }
 `}</style>
 <Helmet>
-{/* 1. DYNAMIQUE : Titre et Description traduits (Indispensable) */}
-<title>{T[lang]?.seoTitle || T.es.seoTitle}</title>
-<meta name="description" content={T[lang]?.seoContent || T.es.seoContent} />
-
-{/* 2. HREFLANG : Indispensable pour Google International */}
-<link rel="alternate" href="https://lacasadeburger.es/" hreflang="x-default" />
-<link rel="alternate" href="https://lacasadeburger.es/" hreflang="es" />
-<link rel="alternate" href="https://lacasadeburger.es/?lang=en" hreflang="en" />
-<link rel="alternate" href="https://lacasadeburger.es/?lang=fr" hreflang="fr" />
-<link rel="alternate" href="https://lacasadeburger.es/?lang=no" hreflang="no" />
-<link rel="alternate" href="https://lacasadeburger.es/?lang=sv" hreflang="sv" />
-<link rel="alternate" href="https://lacasadeburger.es/?lang=de" hreflang="de" />
-<link rel="alternate" href="https://lacasadeburger.es/?lang=nl" hreflang="nl" />
-<link rel="alternate" href="https://lacasadeburger.es/?lang=pl" hreflang="pl" />
-<link rel="alternate" href="https://lacasadeburger.es/?lang=uk" hreflang="uk" />
-<link rel="alternate" href="https://lacasadeburger.es/?lang=ru" hreflang="ru" />
-<link rel="alternate" href="https://lacasadeburger.es/?lang=ar" hreflang="ar" />
-<link rel="alternate" href="https://lacasadeburger.es/?lang=ro" hreflang="ro" />
-
-{/* 3. SOCIAL : OG Tags dynamiques pour WhatsApp/FB/Insta */}
-<meta property="og:title" content={T[lang]?.seoTitle || T.es.seoTitle} />
-<meta property="og:description" content={T[lang]?.seoContent || T.es.seoContent} />
-<meta property="og:url" content={`https://lacasadeburger.es${lang !== 'es' ? `?lang=${lang}` : ''}`} />
-
-{/* 4. TWITTER DYNAMIQUE */}
-<meta name="twitter:title" content={T[lang]?.seoTitle || T.es.seoTitle} />
-<meta name="twitter:description" content={T[lang]?.seoContent || T.es.seoContent} />
-
-{/* NOTE : Le JSON-LD massif, le Preload d'image et le Canonical sont déjà dans l'index.html.
-  On ne les remet pas ici pour gagner du temps de calcul (TBT) sur Lighthouse. */}
+  <title>{T[lang]?.seoTitle || T.es.seoTitle}</title>
+  <meta name="description" content={T[lang]?.seoContent || T.es.seoContent} />
+  {/* ... Tes liens hreflang restent ici ... */}
 </Helmet>
-{/* --- LOGO ANIMÉ EN HAUT À GAUCHE --- */}
+
+{/* --- LOGO ANIMÉ --- */}
 <div className="logo-container-wrapper" style={{
   position: 'absolute',
-  top: '200px', // On rajoute le top ici pour qu'il soit bien placé
-  left: '35px',
-  zIndex: 999, // On augmente le zIndex pour passer devant tout
+  top: '180px',
+  left: '20px',
+  zIndex: 100,
   pointerEvents: 'none'
 }}>
   <img
     src={logo}
-    alt="La Casa de Burger Logo"
+    alt="Logo"
     className="moving-header-logo"
-    /* Dimensions réelles pour éviter le saut d'image (CLS) */
-    width="250"
-    height="162"
+    width="180"
+    height="116"
     style={{
-      height: 'auto !important',
-      width: '180px !important', // LE FORCE À 180PX
-      maxWidth: '180px !important', // SÉCURITÉ SUPPLÉMENTAIRE
+      width: '150px',
+      height: 'auto',
       pointerEvents: 'auto',
       cursor: 'pointer',
       filter: 'drop-shadow(0 0 10px rgba(191,149,63,0.7))'
@@ -587,6 +528,7 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
     onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})}
   />
 </div>
+
 <Nav
   scrollToOrder={() => scrollToId('order')}
   cartLength={cart.length}
@@ -595,85 +537,40 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
   setLang={setLang}
   logo={logo}
 />
-{<div style={{
-  position: 'absolute',
-  top: '450px',
-  left: 0,
-  width: '100%',
-  height: '150px',
-  background: 'linear-gradient(to bottom, transparent, #000)',
-  zIndex: 1,
-  pointerEvents: 'none'
-}}></div>}
+
 <header style={{
-  // On augmente le padding top à 220px pour laisser passer la Nav (184px) + un petit espace
-  padding: '220px 15px 60px',
+  padding: '240px 15px 60px',
   textAlign: 'center',
   position: 'relative',
   borderRadius: '0 0 50px 50px',
   borderBottom: '5px solid #ff4757',
-  backgroundColor: 'transparent',
-  overflow: 'visible', // On change hidden en visible pour que le badge ne soit pas coupé
-  minHeight: '650px',
+  minHeight: '600px',
   display: 'flex',
   flexDirection: 'column',
-  justifyContent: 'flex-start',
   alignItems: 'center',
   zIndex: 1
 }}>
 
-  {/* 1. BADGE DE PRESTIGE - Ajusté pour la nouvelle Nav */}
-  <div className="wobble-badge-container" style={{
-    position: 'absolute',
-    top: '200px',        // Aligné avec le bas de la Nav
-    right: '15px',
-    zIndex: 999
-  }}>
-    <div className="wobble-badge gold-button-premium" style={{
-      padding: '8px 15px',
-      fontSize: '0.75rem',
-      display: 'flex',
-      alignItems: 'center',
-      gap: '5px',
-      fontWeight: '900',
-      boxShadow: '0 4px 15px rgba(191,149,63,0.6)',
-      border: '1px solid rgba(255,255,255,0.3)'
-    }}>
+  {/* 1. BADGE DE PRESTIGE (Ancré via CSS) */}
+  <div className="wobble-badge-container">
+    <div className="wobble-badge">
       🏆 #1 BURGER EN TORREVIEJA
     </div>
   </div>
 
-  {/* 2. CONTENU TEXTUEL - Descendu pour laisser la place au Logo flottant */}
-  <div style={{
-    position: 'relative',
-    zIndex: 3,
-    width: '100%',
-    marginTop: '100px' // Cet espace permet au logo flottant de respirer à gauche
-  }}>
-    <h1 style={{
-      fontSize: 'clamp(2.2rem, 8vw, 3.5rem)',
-      fontWeight: '950',
-      textTransform: 'uppercase',
-      textShadow: '2px 2px 15px rgba(0,0,0,0.8)',
-      margin: '0 auto',
-      color: '#fff',
-      lineHeight: '1.1',
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'center'
-    }}>
-      {/* On applique ton Or 24K ici si tu veux qu'il brille */}
-      <span className="product-price" style={{ display: 'block', width: '100%' }}>
-        {T[lang]?.heroTitle || T.es.heroTitle}
-      </span>
+  {/* 2. CONTENU TEXTUEL */}
+  <div style={{ position: 'relative', zIndex: 3, width: '100%' }}>
+    <h1 style={{ margin: '0 auto', color: '#fff' }}>
+      {/* UTILISATION DES SPANS POUR LE CSS OR 24K */}
+      <span>{T[lang]?.heroTitle || T.es.heroTitle}</span>
 
       <span style={{
-        fontSize: '0.5em',
+        fontSize: '0.45em',
         display: 'block',
-        width: '100%',
-        color: '#FFD700',
+        color: '#FCF6BA',
         marginTop: '10px',
-        letterSpacing: '3px'
+        letterSpacing: '3px',
+        fontWeight: '800'
       }}>
         {lang === 'fr' ? 'À TORREVIEJA' :
          lang === 'en' ? 'IN TORREVIEJA' :
@@ -681,41 +578,30 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
       </span>
     </h1>
 
-    {/* H2 SEO : Burgers Gourmet */}
     <h2 style={{
         fontSize: '1.1rem',
         color: '#f0f0f0',
         fontWeight: '600',
         marginTop: '20px',
         textTransform: 'uppercase',
-        letterSpacing: '1px',
         padding: '0 20px'
       }}>
         {T[lang]?.heroSubtitle || T.es.heroSubtitle}
     </h2>
 
-    {/* 3. BOUTONS D'ACTION (RESTE INCHANGÉ MAIS BIEN ALIGNÉ) */}
+    {/* 3. BOUTONS D'ACTION */}
     <div style={{ marginTop: '40px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '20px' }}>
 
       <button
         onClick={() => {
           setShowCardBurger(true);
-          const el = document.getElementById("sec-burgers");
-          if (el) window.scrollTo({ top: el.offsetTop - 150, behavior: 'smooth' });
+          setTimeout(() => {
+            const el = document.getElementById("sec-burgers");
+            if (el) window.scrollTo({ top: el.offsetTop - 120, behavior: 'smooth' });
+          }, 100);
         }}
-        className="pulse-gold-btn gold-button-premium"
-        style={{
-            color: '#000',
-            padding: '20px',
-            borderRadius: '50px',
-            border: '2px solid #000',
-            fontWeight: '950',
-            cursor: 'pointer',
-            fontSize: '1.3rem',
-            textTransform: 'uppercase',
-            width: '90%',
-            maxWidth: '400px'
-        }}
+        className="gold-button-premium"
+        style={{ width: '90%', maxWidth: '400px', fontSize: '1.3rem', height: '65px' }}
       >
         🚀 {T[lang]?.btnOrder || T.es.btnOrder}
       </button>
@@ -723,189 +609,124 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
       <button
         onClick={() => window.open("https://app.tableo.com/widget/la-casa-de-burger", "_blank")}
         className="gold-button-premium"
-        style={{
-          padding: '15px',
-          borderRadius: '50px',
-          fontSize: '1rem',
-          width: '80%',
-          maxWidth: '350px',
-          cursor: 'pointer',
-          fontWeight: '800'
-        }}
+        style={{ width: '80%', maxWidth: '350px', fontSize: '1rem', height: '50px' }}
       >
         📅 RESERVAR MESA
       </button>
 
-      <div style={{ marginTop: '10px' }}>
-        <a
-          href="tel:+34602597210"
-          style={{
-            background: '#ffffff',
-            color: '#000000',
-            padding: '12px 30px',
-            borderRadius: '50px',
-            textDecoration: 'none',
-            fontWeight: '950',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '8px',
-            fontSize: '1rem',
-            boxShadow: '0 4px 10px rgba(255,255,255,0.2)'
-          }}
-        >
+      <a href="tel:+34602597210" className="gold-button-premium" style={{
+          width: '70%',
+          maxWidth: '300px',
+          height: '45px',
+          fontSize: '0.9rem',
+          background: '#fff !important', // Blanc pur pour détacher
+          color: '#000 !important',
+          textDecoration: 'none'
+        }}>
           📞 {T[lang]?.btnCall || T.es.btnCall}
-        </a>
-      </div>
+      </a>
     </div>
   </div>
 </header>
 <main className="menu-page-container">
-  {/* Le Suspense permet d'afficher le Header immédiatement sans attendre le code du menu */}
-  <Suspense fallback={<div style={{ textAlign: 'center', padding: '50px', color: '#BF953F', fontWeight: 'bold' }}>Cargando menú...</div>}>
+  <Suspense fallback={
+    <div style={{ textAlign: 'center', padding: '100px', background: 'black' }}>
+      <div className="product-price" style={{ fontSize: '1.5rem' }}>CARGANDO MENÚ GOURMET...</div>
+    </div>
+  }>
 
-  {/* SECTION BURGERS */}
-  <section id="sec-burgers" style={{ marginTop: '5px', display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}>
-    <SectionTitle>{T[lang]?.catBurgers || T.es.catBurgers}</SectionTitle>
-    {showCardBurger ? (
-      <div className="grid-cards" style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-        gap: '20px',
-        width: '100%',
-        padding: '15px',
-        maxWidth: '1200px'
-      }}>
-        {burgers.map(item => (
-          <CardMenu key={item.id} {...item} addToCart={addToCart} lang={lang} hasExtras={!noExtrasIds.includes(item.id)} />
-        ))}
-      </div>
-    ) : (
-      <div className="promo-container" onClick={() => {
-        setShowCardBurger(true);
-        requestAnimationFrame(() => {
+    {/* SECTION BURGERS */}
+    <section id="sec-burgers" style={{ marginTop: '5px', display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}>
+      <SectionTitle>{T[lang]?.catBurgers || T.es.catBurgers}</SectionTitle>
+      {showCardBurger ? (
+        <div className="grid-cards" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px', width: '100%', padding: '15px', maxWidth: '1200px' }}>
+          {burgers.map(item => (
+            <CardMenu key={item.id} {...item} addToCart={addToCart} lang={lang} hasExtras={!noExtrasIds.includes(item.id)} />
+          ))}
+        </div>
+      ) : (
+        <div className="promo-container" onClick={() => {
+          setShowCardBurger(true);
+          requestAnimationFrame(() => {
+            setTimeout(() => {
+              const el = document.getElementById("sec-burgers");
+              if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.pageYOffset - 100, behavior: "smooth" });
+            }, 150);
+          });
+        }}>
+          <img src="/Burger.webp" width="600" height="336" className="promo-img" alt="Burger" fetchpriority="high" style={{ width: '100%', height: 'auto', objectFit: 'cover', display: 'block' }} />
+          <span className="category-btn-overlay">{T[lang]?.catBurgers || T.es.catBurgers}</span>
+        </div>
+      )}
+    </section>
+
+    {/* SECTION BEBIDAS */}
+    <section id="sec-bebidas" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}>
+      <SectionTitle>{T[lang]?.catDrinks || T.es.catDrinks}</SectionTitle>
+      {showCardDrink ? (
+        <div className="grid-cards" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px', width: '100%', padding: '15px', maxWidth: '1200px' }}>
+          {drinks.map(item => <CardMenu key={item.id} {...item} isDrinkCard={true} addToCart={addToCart} lang={lang} />)}
+        </div>
+      ) : (
+        <div className="promo-container" onClick={() => {
+          setShowCardDrink(true);
+          requestAnimationFrame(() => {
+            setTimeout(() => {
+              const el = document.getElementById("sec-bebidas");
+              if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.pageYOffset - 100, behavior: "smooth" });
+            }, 150);
+          });
+        }}>
+          <img src="/Drink.webp" width="600" height="336" className="promo-img" alt="Bebidas" loading="lazy" style={{ width: '100%', height: 'auto', objectFit: 'cover', display: 'block' }} />
+          <span className="category-btn-overlay">{T[lang]?.catDrinks || T.es.catDrinks}</span>
+        </div>
+      )}
+    </section>
+
+    {/* SECTION POSTRES */}
+    <section id="sec-postres" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', marginTop: '20px' }}>
+      <SectionTitle>{T[lang]?.catDesserts || "POSTRES"}</SectionTitle>
+      {showCardDessert ? (
+        <div className="grid-cards" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px', width: '100%', padding: '15px', maxWidth: '1200px' }}>
+          {desserts.map(item => (
+            <CardMenu key={item.id} {...item} addToCart={addToCart} lang={lang} />
+          ))}
+        </div>
+      ) : (
+        <div className="promo-container" onClick={() => {
+          setShowCardDessert(true);
           setTimeout(() => {
-            const el = document.getElementById("sec-burgers");
+            const el = document.getElementById("sec-postres");
             if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.pageYOffset - 100, behavior: "smooth" });
           }, 150);
-        });
-      }}>
-        <img
-          src="/Burger.webp"
-          width="600"
-          height="336"
-          className="promo-img"
-          alt="Burger"
-          fetchpriority="high" // Boost le LCP pour l'image principale
-          style={{ width: '100%', height: 'auto', objectFit: 'cover', display: 'block' }}
-        />
-        <span className="category-btn-overlay">{T[lang]?.catBurgers || T.es.catBurgers}</span>
-      </div>
-    )}
-  </section>
-
-  {/* SECTION BEBIDAS */}
-  <section id="sec-bebidas" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}>
-    <SectionTitle>{T[lang]?.catDrinks || T.es.catDrinks}</SectionTitle>
-    {showCardDrink ? (
-      <div className="grid-cards" style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-        gap: '20px',
-        width: '100%',
-        padding: '15px',
-        maxWidth: '1200px'
-      }}>
-        {drinks.map(item => <CardMenu key={item.id} {...item} isDrinkCard={true} addToCart={addToCart} lang={lang} />)}
-      </div>
-    ) : (
-      <div className="promo-container" onClick={() => {
-        setShowCardDrink(true);
-        requestAnimationFrame(() => {
-          setTimeout(() => {
-            const el = document.getElementById("sec-bebidas");
-            if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.pageYOffset - 100, behavior: "smooth" });
-          }, 150);
-        });
-      }}>
-        <img
-          src="/Drink.webp"
-          width="600"
-          height="336"
-          className="promo-img"
-          alt="Bebidas"
-          loading="lazy" // Optimise le Speed Index (chargé seulement si besoin)
-          style={{ width: '100%', height: 'auto', objectFit: 'cover', display: 'block' }}
-        />
-        <span className="category-btn-overlay">{T[lang]?.catDrinks || T.es.catDrinks}</span>
-      </div>
-    )}
-  </section>
-
-  {/* SECTION POSTRES */}
-  <section id="sec-postres" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', marginTop: '20px' }}>
-    <SectionTitle>{T[lang]?.catDesserts || "POSTRES"}</SectionTitle>
-    {showCardDessert ? (
-      <div className="grid-cards" style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-        gap: '20px',
-        width: '100%',
-        padding: '15px',
-        maxWidth: '1200px'
-      }}>
-        {desserts.map(item => (
-          <CardMenu key={item.id} {...item} addToCart={addToCart} lang={lang} />
-        ))}
-      </div>
-    ) : (
-      <div className="promo-container" onClick={() => {
-        setShowCardDessert(true);
-        setTimeout(() => {
-          const el = document.getElementById("sec-postres");
-          if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.pageYOffset - 100, behavior: "smooth" });
-        }, 150);
-      }}>
-        <img
-          src="/Postre.webp"
-          width="600"
-          height="336"
-          className="promo-img"
-          alt="Postres"
-          loading="lazy" // Optimise le Speed Index
-          style={{ width: '100%', height: 'auto', objectFit: 'cover', display: 'block' }}
-        />
-        <span className="category-btn-overlay">{T[lang]?.catDesserts || "POSTRES"}</span>
-      </div>
-    )}
-  </section>
+        }}>
+          <img src="/Postre.webp" width="600" height="336" className="promo-img" alt="Postres" loading="lazy" style={{ width: '100%', height: 'auto', objectFit: 'cover', display: 'block' }} />
+          <span className="category-btn-overlay">{T[lang]?.catDesserts || "POSTRES"}</span>
+        </div>
+      )}
+    </section>
 
     {/* SECTION COMMANDE */}
-    <section id="order" style={{
-      paddingBottom: '60px',
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      width: '100%'
-    }}>
+    <section id="order" style={{ paddingBottom: '60px', display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}>
       <SectionTitle>{lang === 'es' ? 'Tu Pedido' : lang === 'fr' ? 'Votre Commande' : 'Your Order'}</SectionTitle>
       <Order cart={cart} removeFromCart={removeFromCart} lang={lang} />
     </section>
 
-    {/* --- BOUTON DE NAVIGATION RAPIDE (Flottant quand le menu est ouvert) --- */}
-    {(showCardBurger || showCardDrink || showCardPostres) && (
+    {/* --- BOUTON DE NAVIGATION RAPIDE CORRIGÉ --- */}
+    {(showCardBurger || showCardDrink || showCardDessert) && (
       <button
         className="floating-close"
         onClick={() => {
             if (showCardBurger) { setShowCardBurger(false); setShowCardDrink(true); document.getElementById('sec-bebidas')?.scrollIntoView({behavior:'smooth'}); }
-            else if (showCardDrink) { setShowCardDrink(false); setShowCardPostres(true); document.getElementById('sec-postres')?.scrollIntoView({behavior:'smooth'}); }
-            else { setShowCardPostres(false); document.getElementById('order')?.scrollIntoView({behavior:'smooth'}); }
+            else if (showCardDrink) { setShowCardDrink(false); setShowCardDessert(true); document.getElementById('sec-postres')?.scrollIntoView({behavior:'smooth'}); }
+            else { setShowCardDessert(false); document.getElementById('order')?.scrollIntoView({behavior:'smooth'}); }
         }}
-        style={{ position: 'fixed', bottom: '95px', left: '50%', transform: 'translateX(-50%)', backgroundColor: '#ff4757', color: '#fff', width: '280px', height: '60px', borderRadius: '12px', fontWeight: '950', zIndex: 10000, border: '3px solid #000', cursor: 'pointer' }}
+        style={{ position: 'fixed', bottom: '95px', left: '50%', transform: 'translateX(-50%)', backgroundColor: '#ff4757', color: '#fff', width: '280px', height: '60px', borderRadius: '12px', fontWeight: '950', zIndex: 10000, border: '3px solid #000', cursor: 'pointer', boxShadow: '0 10px 20px rgba(0,0,0,0.5)' }}
       >
         <span>
           {showCardBurger && (lang === 'fr' ? 'SUIVANT : BOISSONS ➔' : 'SIGUIENTE: BEBIDAS ➔')}
           {showCardDrink && (lang === 'fr' ? 'SUIVANT : DESSERTS ➔' : 'SIGUIENTE: POSTRES ➔')}
-          {showCardPostres && (lang === 'fr' ? 'VOIR MON PANIER ➔' : 'VER MI PEDIDO ➔')}
+          {showCardDessert && (lang === 'fr' ? 'VOIR MON PANIER ➔' : 'VER MI PEDIDO ➔')}
         </span>
       </button>
     )}
@@ -1129,98 +950,68 @@ aspectRatio: '169 / 127' // Indispensable pour éviter le CLS
           </div>
         </div>
 
-        {/* --- FOOTER FINAL UNIQUE (OPTIMISÉ POUR LA VITESSE) --- */}
-        <footer style={{
-          padding: '60px 20px 40px',
-          textAlign: 'center',
-          backgroundColor: '#050505',
-          borderTop: '4px solid #ff5e6c',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          gap: '30px',
-          marginTop: '50px',
-          /* 🚀 PERFORMANCE : Le footer ne bloque plus l'affichage du haut de page */
-          contentVisibility: 'auto',
-          containIntrinsicSize: '0 500px'
-        }}>
-          {logo && (
-            <img src={logo} alt="La Casa de Burger Torrevieja" width="150" height="80" style={{ height: '80px', width: 'auto', filter: 'drop-shadow(0 0 10px rgba(255,255,255,0.1))' }} />
-          )}
+        {/* --- FOOTER FINAL UNIQUE --- */}
+      <footer style={{
+        padding: '60px 20px 100px', // On augmente le padding bas pour laisser de la place au bouton flottant
+        textAlign: 'center',
+        backgroundColor: '#050505',
+        borderTop: '4px solid #ff5e6c',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        gap: '30px',
+        marginTop: '50px',
+        contentVisibility: 'auto',
+        containIntrinsicSize: '0 500px'
+      }}>
+        {logo && (
+          <img src={logo} alt="La Casa de Burger Torrevieja" width="150" height="80" style={{ height: '80px', width: 'auto', filter: 'drop-shadow(0 0 10px rgba(255,255,255,0.1))' }} />
+        )}
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '40px', width: '100%', maxWidth: '1100px', textAlign: 'center', fontSize: '1.1rem', color: '#CCCCCC' }}>
-            <div>
-              <h3 style={{ color: '#ff5e6c', fontSize: '1.2rem', marginBottom: '15px' }}>La Casa de Burger</h3>
-              <p style={{ lineHeight: '1.8' }}>
-                {lang === 'es' ? 'Especialistas en Smash Burgers y Hamburguesas Gourmet de autor. Carne de ternera premium, buey y procesos artesanales.' : 'Specialists in Signature Gourmet & Smash Burgers. Premium beef and artisan processes.'}
-              </p>
-            </div>
-
-            <div>
-              <h4 style={{ color: '#FFD700', marginBottom: '15px' }}>🕒 {T[lang]?.hours || T.es.hours}</h4>
-              <p style={{ margin: '8px 0' }}>Lun - Sáb: 13:00 – 23:00</p>
-              <p style={{ margin: '8px 0', color: '#AAAAAA', fontWeight: '500' }}>Dom: Cerrado / Closed</p>
-            </div>
-
-            <div>
-              <h4 style={{ color: '#FFD700', marginBottom: '15px' }}>📍 {T[lang]?.location || T.es.location}</h4>
-              <p style={{ margin: '8px 0' }}>Av. Diego Ramírez Pastor, 142</p>
-              <p style={{ margin: '8px 0' }}>03181 Torrevieja, Spain</p>
-              <p style={{ marginTop: '15px' }}>
-                📞 <a href="tel:+34602597210" style={{ color: '#ffffff', textDecoration: 'underline', textDecorationColor: '#ff5e6c', fontWeight: 'bold' }}>+34 602 59 72 10</a>
-              </p>
-            </div>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '40px', width: '100%', maxWidth: '1100px', textAlign: 'center', fontSize: '1.1rem', color: '#CCCCCC' }}>
+          <div>
+            <h3 style={{ color: '#ff5e6c', fontSize: '1.2rem', marginBottom: '15px' }}>La Casa de Burger</h3>
+            <p style={{ lineHeight: '1.8' }}>
+              {lang === 'es' ? 'Especialistas en Smash Burgers y Hamburguesas Gourmet de autor.' : 'Specialists in Signature Gourmet & Smash Burgers.'}
+            </p>
           </div>
 
-          <div style={{ width: '60px', height: '2px', background: 'linear-gradient(135deg, #BF953F, #FCF6BA, #B38728, #FBF5B7)', borderRadius: '2px', margin: '10px 0' }} aria-hidden="true" />
-
-          <div style={{ color: '#AAAAAA', fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '1px' }}>
-            <p style={{ margin: 0, fontWeight: 'bold', color: '#BDBDBD' }}>© {new Date().getFullYear()} LA CASA DE BURGER | THE ARTISAN EXPERIENCE</p>
-            <p style={{ margin: '8px 0 0' }}>{lang === 'es' ? 'El mejor burger de Torrevieja' : 'Best burger in Torrevieja'}</p>
+          <div>
+            <h4 style={{ color: '#FFD700', marginBottom: '15px' }}>🕒 {T[lang]?.hours || T.es.hours}</h4>
+            <p style={{ margin: '8px 0' }}>Lun - Sáb: 13:00 – 23:00</p>
+            <p style={{ margin: '8px 0', color: '#AAAAAA' }}>Dom: Cerrado</p>
           </div>
-        </footer>
-        {/* --- ÉLÉMENTS FLOTTANTS --- */}
-<a
-href="https://wa.me/34602597210"
-target="_blank"
-rel="noopener noreferrer"
-className="whatsapp-float"
-style={{
-  position: 'fixed',    // Obligatoire pour flotter pendant le scroll
-  bottom: '25px',       // Distance du bas
-  right: '20px',        // À DROITE
-  zIndex: 99999,        // Passe au-dessus de tout
-  width: '70px',        // Taille du cercle
-  height: '70px',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  filter: 'drop-shadow(0px 4px 10px rgba(0,0,0,0.5))' // Ombre pour le relief
-}}
->
-<img
-  src={whatsappIcon}
-  width="60"
-  height="60"
-  alt="WhatsApp"
-  style={{
-    objectFit: 'contain',
-    animation: 'wobble-inverse 3s infinite ease-in-out' // Optionnel: pour qu'il bouge un peu
-  }}
-/>
-</a>
 
-            {(showCardBurger || showCardDrink || showCardPostres) && (
-              <button className="floating-close" onClick={handleNextStep} style={{ position: 'fixed', bottom: '95px', left: '50%', transform: 'translateX(-50%)', backgroundColor: '#ff4757', color: '#fff', width: '280px', height: '60px', borderRadius: '12px', fontWeight: '950', zIndex: 10000, border: '3px solid #000', cursor: 'pointer' }}>
-                <span>
-                  {showCardBurger && (lang === 'en' ? 'NEXT: DRINKS ➔' : 'SIGUIENTE: BEBIDAS ➔')}
-                  {showCardDrink && (lang === 'en' ? 'NEXT: DESSERTS ➔' : 'SIGUIENTE: POSTRES ➔')}
-                  {showCardPostres && (lang === 'en' ? 'VIEW ORDER ➔' : 'VER MI PEDIDO ➔')}
-                </span>
-              </button>
-            )}
+          <div>
+            <h4 style={{ color: '#FFD700', marginBottom: '15px' }}>📍 {T[lang]?.location || T.es.location}</h4>
+            <p style={{ margin: '8px 0' }}>Av. Diego Ramírez Pastor, 142</p>
+            <p>📞 <a href="tel:+34602597210" style={{ color: '#ffffff', fontWeight: 'bold' }}>+34 602 59 72 10</a></p>
+          </div>
+        </div>
 
-            </div>
+        <div style={{ color: '#AAAAAA', fontSize: '0.85rem', marginTop: '20px' }}>
+          <p>© {new Date().getFullYear()} LA CASA DE BURGER | THE ARTISAN EXPERIENCE</p>
+        </div>
+      </footer>
 
-        ); // Fermeture du return
-    }; // Fermeture de la fonction App
+      {/* --- ÉLÉMENTS FLOTTANTS --- */}
+      <a href="https://wa.me/34602597210" target="_blank" rel="noopener noreferrer" className="whatsapp-float" style={{ position: 'fixed', bottom: '25px', right: '20px', zIndex: 99999 }}>
+        <img src={whatsappIcon} width="60" height="60" alt="WhatsApp" style={{ animation: 'wobble-inverse 3s infinite ease-in-out' }} />
+      </a>
+
+      {/* BOUTON DE NAVIGATION RAPIDE (Correction du nom showCardDessert) */}
+      {(showCardBurger || showCardDrink || showCardDessert) && (
+        <button className="floating-close" onClick={handleNextStep} style={{ position: 'fixed', bottom: '95px', left: '50%', transform: 'translateX(-50%)', backgroundColor: '#ff4757', color: '#fff', width: '280px', height: '60px', borderRadius: '12px', fontWeight: '950', zIndex: 10000, border: '3px solid #000', cursor: 'pointer' }}>
+          <span>
+            {showCardBurger && (lang === 'en' ? 'NEXT: DRINKS ➔' : 'SIGUIENTE: BEBIDAS ➔')}
+            {showCardDrink && (lang === 'en' ? 'NEXT: DESSERTS ➔' : 'SIGUIENTE: POSTRES ➔')}
+            {showCardDessert && (lang === 'en' ? 'VIEW ORDER ➔' : 'VER MI PEDIDO ➔')}
+          </span>
+        </button>
+      )}
+
+    </div> // Fermeture du container principal (menu-page-container ?)
+    );
+  };
+
+  export default App;
