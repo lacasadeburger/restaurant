@@ -465,9 +465,8 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
     animation: shimmer-gold-clean 3s infinite;
   }
 
-  /* --- 3. STRUCTURE, BADGES & LOGO ANIMÉ (RÉPARÉ) --- */
+  /* --- 3. STRUCTURE, BADGES & LOGO ANIMÉ --- */
 
-  /* Conteneur global du logo */
   .logo-container-wrapper {
     position: absolute !important;
     top: 180px;
@@ -476,14 +475,12 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
     pointer-events: none;
   }
 
-  /* L'image du logo elle-même */
   .moving-header-logo {
-    width: 150px; /* Taille sur PC */
+    width: 150px;
     height: auto;
     pointer-events: auto;
     cursor: pointer;
     filter: drop-shadow(0 0 10px rgba(191,149,63,0.7));
-    /* RÉACTIVATION DE L'ANIMATION DE MOUVEMENT */
     animation: float-logo 4s ease-in-out infinite !important;
     transition: all 0.3s ease;
   }
@@ -541,13 +538,10 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
   /* --- 4. ANIMATIONS --- */
   @keyframes gold-liquid { 0%, 100% { filter: brightness(1); } 50% { filter: brightness(1.15); } }
   @keyframes wobble-inverse { 0%, 100% { transform: rotate(-4deg); } 50% { transform: rotate(4deg); } }
-
-  /* NOUVELLE ANIMATION DE FLOTTAISON DU LOGO */
   @keyframes float-logo {
     0%, 100% { transform: translateY(0) rotate(0deg); }
     50% { transform: translateY(-10px) rotate(2deg); }
   }
-
   @keyframes shimmer-gold-clean {
     0% { transform: translateX(-100%) skewX(-25deg); opacity: 0; }
     5% { opacity: 1; }
@@ -556,30 +550,34 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
     100% { transform: translateX(250%) skewX(-25deg); opacity: 0; }
   }
 
-  /* --- 5. RESPONSIVE (CORRIGÉ POUR LE LOGO MOBILE) --- */
+  /* --- 5. RESPONSIVE --- */
   @media (max-width: 768px) {
     header h1 {
-      font-size: 2.2rem !important; /* Réduit encore un peu le titre */
-      padding-top: 30px; /* Pousse le titre vers le bas pour laisser de la place au logo */
+      font-size: 2.2rem !important;
+      padding-top: 30px;
     }
     .grid-cards { grid-template-columns: 1fr !important; }
-    .wobble-badge { font-size: 0.7rem; padding: 6px 10px !important; }
 
-    /* Repositionnement du badge mobile */
-    .wobble-badge-container { top: 120px; right: 10px; }
+    /* BADGE MOBILE : Redescendu pour éviter la nav */
+    .wobble-badge-container {
+      top: 180px !important;
+      right: 10px;
+    }
 
     .category-btn-overlay { bottom: 15px; right: 15px; font-size: 0.9rem; padding: 10px 20px !important; }
 
-    /* --- CORRECTION MOBILE DU LOGO --- */
+    /* LOGO MOBILE */
     .logo-container-wrapper {
-      top: 110px; /* Remonte le logo plus haut sur mobile */
-      left: 10px;  /* Le colle un peu plus au bord */
+      top: 165px !important;
+      left: 10px;
     }
 
     .moving-header-logo {
-      width: 90px !important; /* Réduit drastiquement la taille du logo sur mobile (90px au lieu de 150px) */
+      width: 90px !important;
       filter: drop-shadow(0 0 5px rgba(191,149,63,0.5));
     }
+
+    .wobble-badge { font-size: 0.7rem; padding: 6px 10px !important; }
   }
 `}</style>
 <Helmet>
