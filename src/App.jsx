@@ -381,62 +381,64 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
   />
 </div>
 <style>{`
-/* --- 1. NAVIGATION (RÉPARATION LARGEUR TOTALE) --- */
-nav {
-  background-color: #000 !important;
-  z-index: 10001 !important;
-  position: sticky !important;
-  top: 0;
-  left: 0 !important;
-  width: 100vw !important; /* Force la largeur sur tout l'écran */
-  margin-left: calc(-50vw + 50%) !important; /* Annule le centrage du parent */
-  display: flex !important;
-  flex-direction: row !important;
-  justify-content: space-around !important;
-  align-items: center !important;
-  padding: 10px 0 !important;
-  min-height: 70px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.9);
+/* --- 1. HIÉRARCHIE DES TEXTES & OR PRESTIGE --- */
+header h1 span:first-of-type {
+  color: #BF953F !important;
+  text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
+}
+header h1 span:last-of-type {
+  color: #FCF6BA !important;
+  font-weight: 300 !important;
 }
 
-/* --- 2. HIÉRARCHIE DES TEXTES LUXE --- */
-header h1 span:first-of-type { color: #BF953F !important; text-shadow: 2px 2px 10px rgba(0,0,0,0.8); }
-header h1 span:last-of-type { color: #FFD700 !important; font-weight: 300 !important; }
-header h2 { color: #ffffff !important; text-align: center !important; opacity: 0.9; }
-
-.card-menu h3 {
-  background: linear-gradient(135deg, #BF953F 0%, #FCF6BA 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-align: center !important;
+/* Titres de Cartes et Prix en Or Prestige */
+.card-menu h3, .product-price {
+  background: linear-gradient(135deg, #BF953F 0%, #FCF6BA 25%, #B38728 50%, #FBF5B7 75%, #AA771C 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
   font-weight: 950 !important;
   text-transform: uppercase;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
 }
-.card-menu p { color: #f0f0f0 !important; text-align: center !important; }
-.product-price { color: #FFD700 !important; font-weight: 900; text-align: center; font-size: 1.3rem; }
 
-/* --- 3. EXTRAS & QUITARS --- */
+.card-menu p { color: #f0f0f0 !important; text-align: center !important; }
+
+/* --- 2. EXTRAS (VERT) & QUITARS (ROUGE) --- */
 .extra-item { color: #2ecc71 !important; font-weight: bold !important; }
 .quitar-item { color: #e74c3c !important; font-weight: bold !important; text-decoration: line-through; }
 
-/* --- 4. BOUTONS OR & SHIMMER (ANTI-DÉBORDEMENT) --- */
+/* --- 3. BOUTONS & BADGES OR PRESTIGE (L'OR D'HIER) --- */
 .gold-button-premium, .category-btn-overlay, .wobble-badge {
-  background: linear-gradient(135deg, #BF953F 0%, #FCF6BA 45%, #B38728 55%, #FBF5B7 100%) !important;
+  background: linear-gradient(135deg,
+    #BF953F 0%,
+    #FCF6BA 25%,
+    #B38728 50%,
+    #FBF5B7 75%,
+    #AA771C 100%
+  ) !important;
   background-size: 400% 400% !important;
   color: #000 !important;
   font-weight: 950 !important;
   border-radius: 50px !important;
   position: relative !important;
-  overflow: hidden !important; /* Bloque les reflets à l'intérieur */
-  animation: gold-liquid 6s ease infinite 2.5s, wobble-inverse 5s infinite ease-in-out !important;
+  overflow: hidden !important;
+  box-shadow: 0 4px 15px rgba(191,149,63,0.4) !important;
+  /* Animation Or Liquide pour tous */
+  animation: gold-liquid 6s ease infinite !important;
 }
 
-.gold-button-premium::after, .category-btn-overlay::after {
+/* Seul le badge oscille, les autres restent fixes et élégants */
+.wobble-badge {
+  animation: gold-liquid 6s ease infinite, wobble-inverse 5s infinite ease-in-out !important;
+}
+
+/* Effet Shimmer (Reflet de lumière blanche) */
+.gold-button-premium::after, .category-btn-overlay::after, .wobble-badge::after {
   content: "" !important;
   display: block !important;
   position: absolute;
   top: -50%; left: -150%; width: 100%; height: 200%;
-  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.8) 50%, transparent 100%) !important;
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.9) 50%, transparent 100%) !important;
   transform: rotate(25deg);
   animation: shine-luxury 3s infinite ease-in-out 3s !important;
   z-index: 1;
@@ -444,15 +446,15 @@ header h2 { color: #ffffff !important; text-align: center !important; opacity: 0
 
 .gold-button-premium span { position: relative; z-index: 2; }
 
-/* --- 5. FIX CATEGORIES (CENTRAGE & BOUTONS) --- */
+/* --- 4. FIX CATEGORIES (CENTRAGE & BOUTONS) --- */
 .promo-container {
-  position: relative !important; /* Prison pour le bouton */
+  position: relative !important;
   display: flex !important;
   justify-content: center !important;
   align-items: center !important;
   width: 90% !important;
   max-width: 600px;
-  margin: 0 auto 30px auto !important; /* Centre le bloc sur la page */
+  margin: 0 auto 30px auto !important;
   cursor: pointer;
   border-radius: 20px;
   overflow: hidden;
@@ -465,24 +467,22 @@ header h2 { color: #ffffff !important; text-align: center !important; opacity: 0
   object-fit: cover;
   transition: transform 0.5s ease;
 }
-
 .promo-container:hover .promo-img { transform: scale(1.05); }
 
 .category-btn-overlay {
   position: absolute !important;
-  bottom: 20px !important; /* Fixé en bas de l'image */
+  bottom: 25px !important;
   left: 50% !important;
-  transform: translateX(-50%) !important; /* Centrage horizontal parfait */
+  transform: translateX(-50%) !important;
   width: auto !important;
   min-width: 200px !important;
   padding: 12px 25px !important;
   white-space: nowrap;
   z-index: 10;
   text-align: center;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.8);
 }
 
-/* --- 6. ANIMATIONS & RESPONSIVE --- */
+/* --- 5. ANIMATIONS & RESPONSIVE --- */
 @keyframes gold-liquid { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
 @keyframes shine-luxury { 0% { transform: translateX(-200%) rotate(25deg); } 30%, 100% { transform: translateX(300%) rotate(25deg); } }
 @keyframes wobble-inverse { 0%, 100% { transform: rotate(-4deg); } 50% { transform: rotate(4deg); } }
@@ -494,7 +494,6 @@ header h2 { color: #ffffff !important; text-align: center !important; opacity: 0
 }
 
 @media (max-width: 768px) {
-  nav { width: 100vw !important; }
   .logo-container-wrapper { top: 180px !important; left: 15px !important; }
   header h1 { font-size: 2.2rem !important; }
   .grid-cards { grid-template-columns: 1fr !important; }

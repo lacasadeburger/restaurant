@@ -4,12 +4,12 @@ import bgCard from "./assets/bg-c.jpg";
 export default function CardMenu(props) {
   const {
     image, name, object, description, precio, addToCart,
-    isDrinkCard, isPostreCard, lang, hasExtras, badge, category
+    isDrinkCard, isPostreCard, lang, hasExtras, badge, category,
+    isTop, isBestSeller // RÉCUPÉRATION DES BADGES
   } = props;
 
   const GOLD_BRIGHT = "#FFD700";
 
-  // --- LOGIQUE DE DÉTECTION SPÉCIALE ---
   const isSpecial = useMemo(() => {
     return (
       isDrinkCard ||
@@ -24,28 +24,12 @@ export default function CardMenu(props) {
     return name || object || "Producto";
   }, [name, object, lang]);
 
-  // --- SYSTÈME DE TRADUCTION INTÉGRAL (12 LANGUES) ---
+  // --- TON SYSTÈME DE TRADUCTION COMPLET ---
   const t = {
-    extra: {
-      es: "Extras", en: "Extras", fr: "Suppléments", de: "Extras",
-      ru: "Добавки", uk: "Добавки", pl: "Dodatki", ro: "Extra",
-      ar: "إضافات", no: "Ekstra", sv: "Extra", nl: "Extra's"
-    },
-    remove: {
-      es: "Quitar", en: "Remove", fr: "Retirer", de: "Entfernen",
-      ru: "Удалить", uk: "Видалити", pl: "Usuń", ro: "Elimină",
-      ar: "إزالة", no: "Fjern", sv: "Ta bort", nl: "Verwijderen"
-    },
-    add: {
-      es: "AÑADIR", en: "ADD", fr: "AJOUTER", de: "HINZUFÜGEN",
-      ru: "ДОБАВИТЬ", uk: "ДОДАТИ", pl: "DODAJ", ro: "ADAUGĂ",
-      ar: "إضافة", no: "LEGG TIL", sv: "LÄGG TILL", nl: "TOEVOEGEN"
-    },
-    ready: {
-      es: "¡LISTO!", en: "READY!", fr: "PRÊT !", de: "FERTIG!",
-      ru: "ГОТОВО!", uk: "ГОТОВО!", pl: "GOTOWE!", ro: "GATA!",
-      ar: "جاهز!", no: "KLAR!", sv: "KLAR!", nl: "KLAAR!"
-    },
+    extra: { es: "Extras", en: "Extras", fr: "Suppléments", de: "Extras", ru: "Добавки", uk: "Добавки", pl: "Dodatki", ro: "Extra", ar: "إضافات", no: "Ekstra", sv: "Extra", nl: "Extra's" },
+    remove: { es: "Quitar", en: "Remove", fr: "Retirer", de: "Entfernen", ru: "Удалить", uk: "Видалити", pl: "Usuń", ro: "Elimină", ar: "إزالة", no: "Fjern", sv: "Ta bort", nl: "Verwijderen" },
+    add: { es: "AÑADIR", en: "ADD", fr: "AJOUTER", de: "HINZUFÜGEN", ru: "ДОБАВИТЬ", uk: "ДОДАТИ", pl: "DODAJ", ro: "ADAUGĂ", ar: "إضافة", no: "LEGG TIL", sv: "LÄGG TILL", nl: "TOEVOEGEN" },
+    ready: { es: "¡LISTO!", en: "READY!", fr: "PRÊT !", de: "FERTIG!", ru: "ГОТОВО!", uk: "ГОТОВО!", pl: "GOTOWE!", ro: "GATA!", ar: "جاهز!", no: "KLAR!", sv: "KLAR!", nl: "KLAAR!" },
     ingredients: {
       "Extra Huevo": { es: "Extra Huevo", en: "Extra Egg", fr: "Œuf suppl.", de: "Extra Ei", ru: "Доп. яйцо", uk: "Дод. яйце", pl: "Dodatkowe jajko", ro: "Ou extra", ar: "بيضة إضافية", no: "Ekstra egg", sv: "Extra ägg", nl: "Extra ei" },
       "Extra Carne y Queso": { es: "Extra Carne y Queso", en: "Extra Meat & Cheese", fr: "Viande & Fromage suppl.", de: "Extra Fleisch & Käse", ru: "Доп. мясо и сыр", uk: "Дод. м'm'ясо та сир", pl: "Dodatkowe mięso i ser", ro: "Carne și brânză extra", ar: "لحم وجبن إضافي", no: "Ekstra kjøtt og ost", sv: "Extra kött och ost", nl: "Extra vlees en kaas" },
@@ -53,7 +37,7 @@ export default function CardMenu(props) {
       "Salsa Picante": { es: "Salsa Picante", en: "Hot Sauce", fr: "Sauce Piquante", de: "Scharfe Soße", ru: "Острый соус", uk: "Гострий соус", pl: "Ostry sos", ro: "Sos iute", ar: "صلصة حارة", no: "Sterk saus", sv: "Stark sås", nl: "Hete saus" },
       "Tomate": { es: "Tomate", en: "Tomato", fr: "Tomate", de: "Tomate", ru: "Помидор", uk: "Помідор", pl: "Pomidor", ro: "Roșie", ar: "طماطم", no: "Tomat", sv: "Tomat", nl: "Tomaat" },
       "Lechuga": { es: "Lechuga", en: "Lettuce", fr: "Laitue", de: "Salat", ru: "Салат", uk: "Салат", pl: "Sałata", ro: "Salată", ar: "خس", no: "Salat", sv: "Sallad", nl: "Sla" },
-      "Pepinillos": { es: "Pepinillos", en: "Pickles", fr: "Cornichons", de: "Essiggurken", ru: "Огурцы", uk: "Огірки", pl: "Ogórki", ro: "Castraveți murați", ar: "مخلل", no: "Sylteagurk", sv: "Gurka", nl: "Augurken" },
+      "Pepinillos": { es: "Pepinillos", en: "Pickles", fr: "Cornichons", de: "Essiggurken", ru: "Огурцы", uk: "Огірки", pl: "Ogórki", ro: "Castraveți murați", ar: "مخلл", no: "Sylteagurk", sv: "Gurka", nl: "Augurken" },
       "Cebolla": { es: "Cebolla", en: "Onion", fr: "Oignon", de: "Zwiebel", ru: "Лук", uk: "Цибуля", pl: "Cebula", ro: "Ceapă", ar: "بصل", no: "Løk", sv: "Lök", nl: "Ui" },
       "Queso": { es: "Queso", en: "Cheese", fr: "Fromage", de: "Käse", ru: "Сыр", uk: "Сир", pl: "Ser", ro: "Brânză", ar: "جبن", no: "Ost", sv: "Ost", nl: "Kaas" }
     }
@@ -70,6 +54,7 @@ export default function CardMenu(props) {
   const [removedIngredients, setRemovedIngredients] = useState([]);
   const [isAdded, setIsAdded] = useState(false);
 
+  // --- CALCUL DU PRIX IDENTIQUE ---
   const totalPrice = useMemo(() => {
     const numericValue = String(precio).replace(/[^0-9.,]/g, "").replace(",", ".");
     const base = parseFloat(numericValue) || 0;
@@ -89,24 +74,17 @@ export default function CardMenu(props) {
   const toggleExtra = (id) => setExtraIngredients(prev => prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id]);
   const toggleRemove = (id) => setRemovedIngredients(prev => prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id]);
 
-  // --- LOGIQUE D'AJOUT CORRIGÉE POUR WHATSAPP (FORCER L'ESPAGNOL) ---
+  // --- LOGIQUE WHATSAPP PRÉSERVÉE ---
   const handleAddClick = () => {
-    // Fonction pour toujours avoir la valeur "es" de l'ingrédient
-    const getSpanishIngredient = (id) => {
-        return t.ingredients[id] ? t.ingredients[id]['es'] : id;
-    };
-
+    const getSpanishIngredient = (id) => t.ingredients[id] ? t.ingredients[id]['es'] : id;
     const itemToAdd = {
       ...props,
       precio: `${totalPrice}€`,
-      // On force le nom du produit en ESPAGNOL
       object: extraIngredients.length > 0
         ? `${typeof name === 'object' ? name.es : stableName} (+${extraIngredients.map(id => getSpanishIngredient(id)).join(", ")})`
         : (typeof name === 'object' ? name.es : stableName),
-      // On force les ingrédients retirés en ESPAGNOL
       removed: removedIngredients.map(id => getSpanishIngredient(id))
     };
-
     addToCart(itemToAdd);
     setIsAdded(true);
     setTimeout(() => {
@@ -145,6 +123,14 @@ export default function CardMenu(props) {
       backgroundColor: '#000'
     }}>
 
+      {/* --- NOUVEAU BLOC BADGES OR --- */}
+      {(isTop || isBestSeller) && (
+        <div className="wobble-badge-container" style={{ zIndex: 100 }}>
+          {isTop && <div className="wobble-badge">TOP</div>}
+          {isBestSeller && <div className="wobble-badge">BEST SELLER</div>}
+        </div>
+      )}
+
       <div className="card-menu-image-container" style={{
         position: 'relative',
         height: '230px',
@@ -156,6 +142,7 @@ export default function CardMenu(props) {
         backgroundColor: 'rgba(0,0,0,0.2)',
         padding: isSpecial ? '15px' : '0px'
       }}>
+        {/* Badge manuel de data.js s'il existe */}
         {badge && (
           <div style={{ position: 'absolute', top: '10px', left: '10px', zIndex: 50 }}>
             <span className="wobble-badge">{badge}</span>
@@ -181,13 +168,7 @@ export default function CardMenu(props) {
           src={image}
           alt={stableName}
           className={isDrinkCard || category === "drink" ? "img-drink" : isPostreCard ? "img-postre" : "img-burger"}
-          style={{
-            width: '100%',
-            height: '100%',
-            objectFit: isSpecial ? 'contain' : 'cover',
-            display: 'block',
-            zIndex: 10
-          }}
+          style={{ width: '100%', height: '100%', objectFit: isSpecial ? 'contain' : 'cover', display: 'block', zIndex: 10 }}
         />
       </div>
 
@@ -225,11 +206,7 @@ export default function CardMenu(props) {
             <div style={labelGoldStyle}>{getT("remove")}</div>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', justifyContent: 'center' }}>
               {[
-                { id: "Tomate" },
-                { id: "Lechuga" },
-                { id: "Pepinillos" },
-                { id: "Cebolla" },
-                { id: "Queso" }
+                { id: "Tomate" }, { id: "Lechuga" }, { id: "Pepinillos" }, { id: "Cebolla" }, { id: "Queso" }
               ].map(ing => (
                 <button key={ing.id} onClick={() => toggleRemove(ing.id)}
                   style={{
@@ -250,14 +227,7 @@ export default function CardMenu(props) {
         <button
           onClick={handleAddClick}
           className={`gold-button-premium ${isAdded ? 'is-added' : ''}`}
-          style={{
-            width: '100%',
-            height: '55px',
-            border: 'none',
-            borderRadius: '12px',
-            cursor: 'pointer',
-            overflow: 'hidden'
-          }}
+          style={{ width: '100%', height: '55px', border: 'none', borderRadius: '12px', cursor: 'pointer', overflow: 'hidden' }}
         >
           {isAdded ? (
             <span style={{ fontWeight: '950' }}>{getT("ready")}</span>

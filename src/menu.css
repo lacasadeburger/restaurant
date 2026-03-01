@@ -1,4 +1,4 @@
-/* --- 1. RESET & NAVIGATION --- */
+/* --- 1. RESET & NAVIGATION (FORCE BRUTE LARGEUR TOTALE) --- */
 html, body {
   background-color: #000 !important;
   margin: 0; padding: 0;
@@ -10,8 +10,12 @@ html, body {
 nav {
   position: sticky !important;
   top: 0;
+  /* Technique pour ignorer les marges du parent */
   width: 100vw !important;
-  margin-left: calc(-50vw + 50%) !important;
+  left: 50% !important;
+  right: 50% !important;
+  margin-left: -50vw !important;
+  margin-right: -50vw !important;
   min-height: 70px;
   background-color: #000 !important;
   z-index: 10001 !important;
@@ -19,6 +23,7 @@ nav {
   align-items: center;
   justify-content: space-around;
   box-shadow: 0 4px 20px rgba(0,0,0,0.9);
+  box-sizing: border-box !important;
 }
 
 /* --- 2. FOND FIXE & VOILE NOIR --- */
@@ -60,24 +65,69 @@ nav {
   max-width: 180px !important;
 }
 
-/* --- 4. GRILLE DES PRODUITS --- */
-.grid-cards {
-  display: grid !important;
-  grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)) !important;
-  gap: 20px !important;
-  padding: 20px !important;
-  max-width: 1300px !important;
-  margin: 0 auto !important;
+/* --- 4. BOUTONS & BADGES OR PRESTIGE (L'OR D'HIER) --- */
+.gold-button-premium, .category-btn-overlay, .wobble-badge {
+  /* Dégradé Or 5 tons (comme hier) */
+  background: linear-gradient(135deg,
+    #BF953F 0%,
+    #FCF6BA 25%,
+    #B38728 50%,
+    #FBF5B7 75%,
+    #AA771C 100%
+  ) !important;
+  background-size: 400% 400% !important;
+  color: #000 !important;
+  font-weight: 950 !important;
+  text-transform: uppercase;
+  border-radius: 50px !important;
+  position: relative !important;
+  overflow: hidden !important;
+  box-shadow: 0 4px 15px rgba(191,149,63,0.5) !important;
+  animation: gold-liquid 6s ease infinite !important;
+  border: 1px solid rgba(255,255,255,0.2) !important;
 }
 
-/* --- 5. ANIMATIONS --- */
-@keyframes wobble-inverse {
-  0%, 100% { transform: rotate(-4deg); }
-  50% { transform: rotate(4deg); }
+/* SEUL LE BADGE reçoit l'oscillation */
+.wobble-badge {
+  padding: 4px 12px !important;
+  font-size: 0.75rem !important;
+  letter-spacing: 1px !important;
+  display: inline-block;
+  white-space: nowrap;
+  animation: gold-liquid 6s ease infinite, wobble-inverse 5s infinite ease-in-out !important;
 }
+
+/* Effet Shimmer (Reflet blanc luxueux) */
+.gold-button-premium::after, .category-btn-overlay::after, .wobble-badge::after {
+  content: "" !important;
+  display: block !important;
+  position: absolute;
+  top: -50%; left: -150%; width: 100%; height: 200%;
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.9) 50%, transparent 100%) !important;
+  transform: rotate(25deg);
+  animation: shine-luxury 3s infinite ease-in-out 3s !important;
+  z-index: 1;
+}
+
+/* --- 5. TITRES ET PRIX EN OR --- */
+.card-menu h3, .product-price {
+  background: linear-gradient(135deg, #BF953F 0%, #FCF6BA 45%, #B38728 55%, #FBF5B7 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  font-weight: 950 !important;
+}
+
+/* --- 6. ANIMATIONS & RESPONSIVE --- */
+@keyframes gold-liquid { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+@keyframes shine-luxury { 0% { transform: translateX(-200%) rotate(25deg); } 30%, 100% { transform: translateX(300%) rotate(25deg); } }
+@keyframes wobble-inverse { 0%, 100% { transform: rotate(-4deg); } 50% { transform: rotate(4deg); } }
 
 @media (max-width: 768px) {
-  nav { width: 100vw !important; }
+  nav {
+    width: 100vw !important;
+    left: 50% !important;
+    margin-left: -50vw !important;
+  }
   .logo-container-wrapper { top: 180px !important; left: 15px !important; }
   .moving-header-logo { width: 140px !important; }
 }
