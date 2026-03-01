@@ -415,7 +415,7 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
 
   /* --- 2. LE BOUTON PREMIUM --- */
   .gold-button-premium, .category-btn-overlay {
-    position: relative !important;
+    position: relative;
     background: linear-gradient(135deg, #BF953F 0%, #FCF6BA 25%, #B38728 50%, #FBF5B7 75%, #AA771C 100%) !important;
     background-size: 400% 400% !important;
     color: #000 !important;
@@ -447,23 +447,30 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
     box-shadow: 0 0 20px rgba(46, 204, 113, 0.6) !important;
   }
 
+  /* EFFET LUMINEUX CORRIGÉ */
   .gold-button-premium::after, .category-btn-overlay::after {
     content: '';
     position: absolute;
-    top: 0; left: -150%;
-    width: 100%; height: 100%;
-    background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%);
+    top: 0;
+    left: -150%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg,
+      rgba(255,255,255,0) 0%,
+      rgba(255,255,255,0.8) 50%,
+      rgba(255,255,255,0) 100%
+    );
     transform: skewX(-25deg);
     pointer-events: none;
-    opacity: 0;
-    animation: shimmer-gold-clean 4s infinite;
+    /* L'opacité est gérée par l'animation pour rester invisible entre les cycles */
+    animation: shimmer-gold-clean 3s infinite;
   }
 
-  /* --- 3. STRUCTURE & BADGES (CORRIGÉ POUR LA DROITE) --- */
+  /* --- 3. STRUCTURE, BADGES & PROMO --- */
   .wobble-badge-container {
     position: absolute !important;
-    top: 180px; /* Aligné sur la hauteur du logo */
-    right: 20px; /* Fixé à droite */
+    top: 180px;
+    right: 20px;
     z-index: 105;
     pointer-events: none;
   }
@@ -481,30 +488,44 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
     box-shadow: 0 4px 15px rgba(0,0,0,0.4);
   }
 
+  .promo-container {
+    position: relative !important;
+    width: 100%;
+    max-width: 600px;
+    margin: 10px auto;
+    border-radius: 20px;
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  .category-btn-overlay {
+    position: absolute !important;
+    bottom: 20px !important;
+    right: 20px !important;
+    padding: 12px 25px !important;
+    border-radius: 50px;
+    z-index: 20 !important;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    min-width: 180px;
+  }
+
   .card-menu {
     display: flex !important;
     flex-direction: column !important;
     height: 100% !important;
   }
 
-  .category-btn-overlay {
-    position: absolute !important;
-    bottom: 20px !important; right: 20px !important;
-    padding: 12px 25px !important;
-    border-radius: 50px;
-    z-index: 10;
-  }
-
   /* --- 4. ANIMATIONS --- */
   @keyframes gold-liquid { 0%, 100% { filter: brightness(1); } 50% { filter: brightness(1.15); } }
   @keyframes wobble-inverse { 0%, 100% { transform: rotate(-4deg); } 50% { transform: rotate(4deg); } }
 
+  /* ANIMATION DE L'ÉCLAIR CORRIGÉE */
   @keyframes shimmer-gold-clean {
     0% { transform: translateX(-100%) skewX(-25deg); opacity: 0; }
-    10% { opacity: 1; }
-    30% { transform: translateX(250%) skewX(-25deg); opacity: 1; }
-    31% { opacity: 0; }
-    100% { opacity: 0; }
+    5% { opacity: 1; } /* L'éclair devient visible dès qu'il commence */
+    25% { transform: translateX(250%) skewX(-25deg); opacity: 1; }
+    30% { opacity: 0; } /* Disparaît après la traversée */
+    100% { transform: translateX(250%) skewX(-25deg); opacity: 0; } /* Reste invisible jusqu'au prochain tour */
   }
 
   /* --- 5. RESPONSIVE --- */
@@ -513,6 +534,7 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
     .grid-cards { grid-template-columns: 1fr !important; }
     .wobble-badge { font-size: 0.7rem; padding: 6px 10px !important; }
     .wobble-badge-container { top: 185px; right: 10px; }
+    .category-btn-overlay { bottom: 15px; right: 15px; font-size: 0.9rem; padding: 10px 20px !important; }
   }
 `}</style>
 <Helmet>
