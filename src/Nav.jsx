@@ -47,37 +47,46 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang, setLa
   ];
 
   return (
-    <header style={{ width: '100%', overflow: 'hidden' }}>
-      {/* --- 1. NAV BAR (FIXE 80PX) --- */}
+    <header style={{ width: '100%', overflow: 'visible' }}>
+      {/* --- 1. NAV BAR (FIXE 80PX - LARGEUR TOTALE FORCÉE) --- */}
       <nav style={{
-        position: 'fixed', top: 0, left: 0,
-        width: '100%', height: '80px',
+        position: 'fixed',
+        top: 0,
+        left: '50%',
+        right: '50%',
+        marginLeft: '-50vw',
+        marginRight: '-50vw',
+        width: '100vw',
+        height: '80px',
         backgroundColor: '#000000',
-        display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-        padding: '0 10px', zIndex: 10000,
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        padding: '0 20px',
+        zIndex: 10000,
         borderBottom: `3px solid ${VIBRANT_RED}`,
-        boxSizing: 'border-box' // CRITIQUE : Empêche le débordement
+        boxSizing: 'border-box'
       }}>
         {/* BLOC GAUCHE */}
         <div style={{ width: '33%', display: 'flex', alignItems: 'center' }}>
-          <a href="tel:+34602597210" style={{ display: 'flex', alignItems: 'center', gap: '6px', textDecoration: 'none' }}>
+          <a href="tel:+34602597210" style={{ display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none' }}>
             <div style={{
-              background: GOLD_GRADIENT, width: '32px', height: '32px', borderRadius: '8px',
+              background: GOLD_GRADIENT, width: '36px', height: '36px', borderRadius: '8px',
               display: 'flex', justifyContent: 'center', alignItems: 'center', flexShrink: 0
             }}>
-              <span style={{ fontSize: '1rem' }}>📞</span>
+              <span style={{ fontSize: '1.2rem' }}>📞</span>
             </div>
-            <div style={{ display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
-              <span style={{ color: GOLD_BRIGHT, fontSize: '0.8rem', fontWeight: '900', lineHeight: '1' }}>602 597 210</span>
-              <span style={{ color: '#FFFFFF', fontSize: '0.6rem', fontWeight: '900' }}>CALL</span>
+            <div style={{ display: 'flex', flexDirection: 'column' }}>
+              <span style={{ color: GOLD_BRIGHT, fontSize: '0.9rem', fontWeight: '900', lineHeight: '1' }}>602 597 210</span>
+              <span style={{ color: '#FFFFFF', fontSize: '0.65rem', fontWeight: '900', letterSpacing: '1px' }}>CALL NOW</span>
             </div>
           </a>
         </div>
 
         {/* BLOC CENTRAL */}
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', minWidth: 0 }}>
-          <div style={{ width: '6px', height: '6px', backgroundColor: statusColor, borderRadius: '50%', marginBottom: '2px' }} />
-          <span style={{ color: statusColor, fontSize: '0.9rem', fontWeight: '900' }}>
+          <div style={{ width: '8px', height: '8px', backgroundColor: statusColor, borderRadius: '50%', marginBottom: '4px', boxShadow: `0 0 10px ${statusColor}` }} />
+          <span style={{ color: statusColor, fontSize: '0.85rem', fontWeight: '900', letterSpacing: '1px' }}>
             {isOpen ? "OPEN" : "CLOSED"}
           </span>
         </div>
@@ -85,22 +94,33 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang, setLa
         {/* BLOC DROITE */}
         <div onClick={scrollToOrder} style={{ width: '33%', display: 'flex', justifyContent: 'flex-end', cursor: 'pointer' }}>
           <div style={{
-            backgroundColor: '#e60023', padding: '6px 10px', borderRadius: '8px',
-            border: `2px solid ${GOLD_BRIGHT}`, whiteSpace: 'nowrap'
+            backgroundColor: '#e60023', padding: '8px 15px', borderRadius: '10px',
+            border: `2px solid ${GOLD_BRIGHT}`, whiteSpace: 'nowrap',
+            boxShadow: '0 4px 15px rgba(230,0,0,0.3)'
           }}>
-            <span style={{ color: '#fff', fontWeight: '950', fontSize: '1rem' }}>{totalPrice}€</span>
+            <span style={{ color: '#fff', fontWeight: '950', fontSize: '1.1rem' }}>{totalPrice}€</span>
           </div>
         </div>
       </nav>
 
-      {/* --- 2. BLOC DRAPEAUX (FIXE 68PX) --- */}
+      {/* --- 2. BLOC DRAPEAUX (LARGEUR TOTALE FORCÉE) --- */}
       <div style={{
-        marginTop: '80px', height: '68px',
-        display: 'flex', alignItems: 'center', gap: '10px',
-        backgroundColor: '#000', position: 'relative', zIndex: 9999,
+        marginTop: '80px',
+        height: '68px',
+        width: '100vw',
+        left: '50%',
+        marginLeft: '-50vw',
+        position: 'relative',
+        display: 'flex',
+        alignItems: 'center',
+        gap: '12px',
+        backgroundColor: '#000',
+        zIndex: 9999,
         borderBottom: '1px solid #222',
-        boxSizing: 'border-box', padding: '0 10px',
-        width: '100%', overflowX: 'auto', overflowY: 'hidden',
+        boxSizing: 'border-box',
+        padding: '0 20px',
+        overflowX: 'auto',
+        overflowY: 'hidden',
         WebkitOverflowScrolling: 'touch'
       }}>
         {languages.map((l) => (
@@ -109,27 +129,42 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang, setLa
             onClick={() => setLang(l.code)}
             style={{
               backgroundColor: 'transparent',
-              border: lang === l.code ? `2px solid ${GOLD_BRIGHT}` : '1px solid #444',
-              borderRadius: '6px', padding: '2px',
-              opacity: lang === l.code ? 1 : 0.5,
-              width: '40px', height: '28px', flexShrink: 0,
-              display: 'flex', justifyContent: 'center', alignItems: 'center'
+              border: lang === l.code ? `2px solid ${GOLD_BRIGHT}` : '1px solid #333',
+              borderRadius: '8px',
+              padding: '3px',
+              opacity: lang === l.code ? 1 : 0.4,
+              width: '44px', height: '30px', flexShrink: 0,
+              display: 'flex', justifyContent: 'center', alignItems: 'center',
+              transition: 'all 0.3s ease'
             }}
           >
-            <img src={`/flags/${l.flag}.webp`} width="30" height="20" alt={l.label} loading="eager" style={{ objectFit: 'cover' }} />
+            <img src={`/flags/${l.flag}.webp`} width="32" height="22" alt={l.label} loading="eager" style={{ objectFit: 'cover', borderRadius: '2px' }} />
           </button>
         ))}
       </div>
 
-      {/* --- 3. BLOC PROMO --- */}
+      {/* --- 3. BLOC PROMO (LARGEUR TOTALE FORCÉE) --- */}
       <div style={{
-        height: '36px', background: '#000', color: '#fff',
-        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        height: '40px',
+        background: '#000',
+        color: '#fff',
+        width: '100vw',
+        left: '50%',
+        marginLeft: '-50vw',
+        position: 'relative',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
         borderBottom: `2px solid ${GOLD_BRIGHT}`,
-        fontSize: '0.75rem', fontWeight: '900',
-        width: '100%', boxSizing: 'border-box', overflow: 'hidden'
+        fontSize: '0.8rem',
+        fontWeight: '900',
+        boxSizing: 'border-box',
+        overflow: 'hidden',
+        letterSpacing: '0.5px'
       }}>
-        <span style={{ whiteSpace: 'nowrap' }}>★ {promoTexts[lang] || promoTexts.en} ★</span>
+        <span style={{ whiteSpace: 'nowrap', color: GOLD_BRIGHT }}>★</span>
+        <span style={{ whiteSpace: 'nowrap', margin: '0 10px' }}>{promoTexts[lang] || promoTexts.en}</span>
+        <span style={{ whiteSpace: 'nowrap', color: GOLD_BRIGHT }}>★</span>
       </div>
     </header>
   );
