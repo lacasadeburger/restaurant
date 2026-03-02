@@ -564,27 +564,49 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
     100% { transform: translateX(250%) skewX(-25deg); opacity: 0; }
   }
 
-  /* --- 6. RESPONSIVE (OPTIMISÉ INSIGHTS) --- */
-  @media (max-width: 768px) {
-    header h1 {
-      font-size: 2.2rem !important;
-      padding-top: 35px;
-      min-height: 110px !important; /* VERROUILLAGE DE L'ESPACE TITRE */
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
+  /* --- 6. RESPONSIVE (ZERO CLS MOBILE) --- */
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2.1rem !important; /* Légèrement réduit pour éviter les retours à la ligne imprévus */
+        padding-top: 35px;
+        /* On augmente la zone de sécurité du titre */
+        min-height: 125px !important;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        line-height: 1.1 !important;
+      }
 
-    .promo-container { margin: 10px auto; }
-    .wobble-badge-container { top: 175px !important; right: 10px; }
-    .logo-container-wrapper { top: 165px !important; left: 10px; }
-    .moving-header-logo { width: 90px !important; }
-    .category-btn-overlay {
-      bottom: 15px; right: 15px;
-      font-size: 0.9rem; padding: 10px 20px !important;
-      min-width: 150px;
+      /* FORCE la hauteur du bloc qui contient tes boutons Order/Call */
+      /* Assure-toi que ton div React a bien la classe "mobile-actions-container" ou applique-le au div parent direct */
+      .mobile-actions-container {
+        height: 260px !important;
+        min-height: 260px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 15px !important;
+        contain: layout paint !important; /* Isole le bloc pour éviter les décalages en cascade */
+      }
+
+      .promo-container { margin: 10px auto; }
+
+      /* Stabilisation des éléments flottants */
+      .wobble-badge-container { top: 175px !important; right: 10px; height: 40px; }
+      .logo-container-wrapper { top: 165px !important; left: 10px; height: 90px; }
+
+      .moving-header-logo {
+        width: 90px !important;
+        height: 90px !important; /* Dimensions fixes pour le logo */
+        object-fit: contain;
+      }
+
+      .category-btn-overlay {
+        bottom: 15px; right: 15px;
+        font-size: 0.9rem; padding: 10px 20px !important;
+        min-width: 150px;
+      }
     }
-  }
 `}</style>
 <Helmet>
   {/* SEO Dynamique selon la langue sélectionnée */}
