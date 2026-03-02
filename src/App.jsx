@@ -708,11 +708,13 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
           flexDirection: 'column',
           alignItems: 'center',
           gap: '20px',
-          minHeight: '250px',        // Augmenté pour sécuriser l'espace total
+          height: '260px',
+          minHeight: '260px',        // Augmenté pour sécuriser l'espace total
           width: '100%',
           boxSizing: 'border-box',   // Important pour le calcul du padding
-          contain: 'layout'          // Verrouille le bloc pour le SEO
-        }}>
+          contain: 'strict',
+          overflow: 'hidden'
+      }}>
 
           <button
             onClick={(e) => {
