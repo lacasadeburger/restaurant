@@ -35,10 +35,7 @@ const data = [
     id: "prod_combo1",
     image: combo,
     badge: "BEST SELLER",
-    name: {
-      es: "Combo Signature 1", en: "Signature Combo 1", fr: "Combo Signature 1", nl: "Handtekening Combo 1", no: "Signature Kombo 1", pl: "Zestaw Signature 1",
-      uk: "КОМБО 1", ru: "КОМБО 1", ar: "كومبو 1", sv: "Signature Kombo 1", de: "Signature Kombo 1", ro: "Combo Signature 1"
-    },
+    name: { es: "Combo de Autor 1", en: "Signature Combo 1", fr: "Combo Signature 1", nl: "Handtekening Combo 1", no: "Signature Kombo 1", pl: "Zestaw Signature 1", uk: "КОМБО 1", ru: "КОМБО 1", ar: "كومبو 1", sv: "Signature Kombo 1", de: "Signature Kombo 1", ro: "Combo Signature 1" },
     description: {
       es: "La Inglesa (Signature) + Patatas Fritas caseras + 3 Nuggets Artesanales",
       en: "The English (Signature) + Homemade Fries + 3 Artisanal Nuggets",
@@ -60,10 +57,7 @@ const data = [
     id: "prod_combo3",
     image: combo3,
     badge: "BEST SELLER",
-    name: {
-      es: "Combo Signature 2", en: "Signature Combo 2", fr: "Combo Signature 2", nl: "Handtekening Combo 2", no: "Signature Kombo 2", pl: "Zestaw Signature 2",
-      uk: "КОМБО 2", ru: "КОМБО 2", ar: "كومبو 2", sv: "Signature Kombo 2", de: "Signature Kombo 2", ro: "Combo Signature 2"
-    },
+    name: { es: "Combo de Autor 2", en: "Signature Combo 2", fr: "Combo Signature 2", nl: "Handtekening Combo 2", no: "Signature Kombo 2", pl: "Zestaw Signature 2", uk: "КОМБО 2", ru: "КОМБО 2", ar: "كومبو 2", sv: "Signature Kombo 2", de: "Signature Kombo 2", ro: "Combo Signature 2" },
     description: {
       es: "La Inglesa (Signature) + Patatas Fritas caseras + 3 Croquetas Caseras",
       en: "The English (Signature) + Homemade Fries + 3 Homemade Croquettes",
@@ -84,23 +78,20 @@ const data = [
   {
     id: "prod_india",
     image: india,
-    name: {
-      es: "La India Gourmet", en: "The India Gourmet", fr: "L'Indienne Gourmet", nl: "De Indiase Gourmet", no: "La India", pl: "India",
-      uk: "Індія", ru: "Индия", ar: "الهندية", sv: "Indien", de: "Die Indische", ro: "India"
-    },
+    name: { es: "La India Gourmet", en: "The India Gourmet", fr: "L'Indienne Gourmet", nl: "De Indiase Gourmet", no: "La India", pl: "India", uk: "Індія", ru: "Индия", ar: "الهندية", sv: "Indien", de: "Die Indische", ro: "India" },
     description: {
       es: "Pollo Marinado con Especias Orientales, Cheddar, Tomate, Cebolla, Lechuga, Pepenillos",
       en: "Marinated Chicken with Oriental Spices, Cheddar, Tomato, Onion, Lettuce, Pickles",
       fr: "Poulet Mariné aux Épices Orientales, Cheddar, Tomate, Oignon, Laitue, Cornichons",
       nl: "Gemarineerde Kip met Oosterse Kruiden, Cheddar, Tomaat, Ui, Sla, Augurken",
-      no: "Marinert kylling med krydder, Cheddar, tomat, løk, salat, sylteagurk",
-      pl: "Marynowany kurczak z przyprawami, Cheddar, pomidor, cebula, sałata, ogórki",
-      uk: "Маринована курка зі спеціями, чеддер, томат, цибуля, салат, огірки",
-      ru: "Маринованная курица со специями, чеддер, томат, лук, салат, огурцы",
-      ar: "دجاج متبل بالتوابل، تشيدر، طماطم، بصل، خس، مخلل",
-      sv: "Marinerad kyckling med kryddor, Cheddar, tomat, lök, sallad, gurka",
-      de: "Mariniertes Hähnchen mit Gewürzen, Cheddar, Tomate, Zwiebel, Salat, Gewürzgurken",
-      ro: "Pui marinat cu condimente, Cheddar, roșii, ceapă, salată, murături"
+      no: "Marinert kylling, Cheddar, tomat, løk, salat, sylteagurk",
+      pl: "Marynowany kurczak, Cheddar, pomidor, cebula, sałata, ogórki",
+      uk: "Маринована курка, чеддер, томат, цибуля, салат, огірки",
+      ru: "Маринованная курица, чеддер, томат, лук, салат, огурцы",
+      ar: "دجاج متبل، تشيدر، طماطم، بصل، خس، مخلل",
+      sv: "Marinerad kyckling, Cheddar, tomat, lök, sallad, gurka",
+      de: "Mariniertes Hähnchen, Cheddar, Tomate, Zwiebel, Salat, Gewürzgurken",
+      ro: "Pui marinat, Cheddar, roșii, ceapă, salată, murături"
     },
     precio: "€9.00",
     category: "food"
@@ -109,23 +100,20 @@ const data = [
     id: "prod_francesa",
     image: francesa1,
     badge: "SIGNATURE",
-    name: {
-      es: "La Francesa Signature", en: "The French Signature", fr: "La Française Signature", nl: "De Franse Signature", no: "Den Franske", pl: "Francuska",
-      uk: "Французька", ru: "Французская", ar: "الفرنسية", sv: "Fransmannen", de: "Die Französische", ro: "Franceza"
-    },
+    name: { es: "La Francesa Insignia", en: "The French Signature", fr: "La Française Signature", nl: "De Franse Signature", no: "Den Franske", pl: "Francuska", uk: "Французька", ru: "Французская", ar: "الفرنسية", sv: "Fransmannen", de: "Die Französische", ro: "Franceza" },
     description: {
-      es: "Carne Premium, Hierbas Provenciales, Queso Reblochon, Purée de papa y tocino... Vegetales Frescos",
-      en: "Premium Beef, Provencal Herbs, Reblochon Cheese, Mashed Potatoes and Bacon... Fresh Veggies",
-      fr: "Bœuf Premium, Herbes de Provence, Reblochon, Purée de pomme de terre et bacon... Légumes Frais",
-      nl: "Premium Rundvlees, Provençaalse Kruiden, Reblochon Kaas, Aardappelpuree en Bacon... Verse Groenten",
-      no: "Kjøtt med urter, Reblochon, potetmos og bacon... Tomat, løk, salat, sylteagurk",
-      pl: "Wołowina z ziołami prowansalskimi, ser Reblochon, purée ziemniaczane i bekon... Pomidor, cebula, sałata, ogórki",
-      uk: "Яловичина з прованськими травами, сир реблошон, картопляне пюре та бекон... Томат, цибуля, салат, огірки",
-      ru: "Говядина с прованскими травами, сыр реблошон, картофельное пюре и бекон... Томат, лук, салат, огурцы",
-      ar: "لحم وأعشاب بروفنسال، جبنة ريبلوشون، هريس البطاطس ولحم مقدد... طماطم، بصل، خس، مخلل",
-      sv: "Nötkött med örter, Reblochon-ost, potatismos och bacon... Tomat, lök, sallad, gurka",
-      de: "Rindfleisch mit Kräutern der Provence, Reblochon-Käse, Kartoffelstampf und Speck... Tomate, Zwiebel, Salat, Gewürzgurken",
-      ro: "Vită cu ierburi de Provence, brânză Reblochon, piure de cartofi și bacon... Roșii, ceapă, salată, murături"
+      es: "Carne Premium, Hierbas Provenciales, Queso Reblochon, Purée de papa y tocino, Tomate, Cebolla, Lechuga, Pepenillos",
+      en: "Premium Beef, Provencal Herbs, Reblochon Cheese, Mashed Potatoes and Bacon, Tomato, Onion, Lettuce, Pickles",
+      fr: "Bœuf Premium, Herbes de Provence, Reblochon, Purée de pomme de terre et bacon, Tomate, Oignon, Laitue, Cornichons",
+      nl: "Premium Rundvlees, Provençaalse Kruiden, Reblochon Kaas, Aardappelpuree en Bacon, Tomaat, Ui, Sla, Augurken",
+      no: "Kjøtt, urter, Reblochon, potetmos og bacon, Tomat, løk, salat, sylteagurk",
+      pl: "Wołowina, zioła prowansalskie, ser Reblochon, purée i bekon, Pomidor, cebula, sałata, ogórki",
+      uk: "Яловичина, прованські трави, сир реблошон, пюре та бекон, Томат, цибуля, салат, огірки",
+      ru: "Говядина, прованские травы, сыр реблошон, пюре и бекон, Томат, лук, салат, огурцы",
+      ar: "لحم، أعشاب، جبنة ريبلوشون، هريس البطاطس ولحم مقدد، طماطم، بصل، خس، مخلل",
+      sv: "Nötkött, örter, Reblochon, potatismos och bacon, Tomat, lök, sallad, gurka",
+      de: "Rindfleisch, Kräuter, Reblochon, Kartoffelstampf und Speck, Tomate, Zwiebel, Salat, Gewürzgurken",
+      ro: "Vită, ierburi, brânză Reblochon, piure și bacon, Roșii, ceapă, salată, murături"
     },
     precio: "€12.00",
     category: "food"
@@ -133,23 +121,20 @@ const data = [
   {
     id: "prod_inglesa",
     image: inglesa,
-    name: {
-      es: "La Inglesa Classic", en: "The English Classic", fr: "L'Anglaise Classic", nl: "De Engelse Classic", no: "Den Engelske", pl: "Angielska",
-      uk: "Англійська", ru: "Английская", ar: "الإنجليزية", sv: "Engelsmannen", de: "Die Englische", ro: "Engleza"
-    },
+    name: { es: "La Inglesa Classic", en: "The English Classic", fr: "L'Anglaise Classic", nl: "De Engelse Classic", no: "Den Engelske", pl: "Angielska", uk: "Англійська", ru: "Английская", ar: "الإنجليزية", sv: "Engelsmannen", de: "Die Englische", ro: "Engleza" },
     description: {
-      es: "Carne Premium, Crema de Cheddar Casera, Cheddar fundido, Vegetales Frescos y Pepenillos",
-      en: "Premium Beef, Homemade Cheddar Cream, Melted Cheddar, Fresh Veggies and Pickles",
-      fr: "Bœuf Premium, Crème de Cheddar Maison, Cheddar Fondu, Légumes Frais et Cornichons",
-      nl: "Premium Rundvlees, Huisgemaakte Cheddar Crème, Gesmolten Cheddar, Verse Groenten en Augurken",
-      no: "Kjøtt, hjemmelaget cheddar-krem og cheddar, tomat, løk, salat, sylteagurk",
-      pl: "Wołowina, domowy krem cheddar i cheddar, pomidor, cebula, sałata, ogórki",
-      uk: "Яловичина, домашній сирний соус чеддер, томат, цибуля, салат, огірки",
-      ru: "Говядина, домашний сырный соус чеддер, томат, лук, салат, огурцы",
-      ar: "لحم، كريمة تشيدر منزلية وتشيدر، طماطم، بصل، خس، مخلل",
-      sv: "Nötkött, hemgjord cheddarkräm och cheddar, tomat, lök, sallad, gurka",
-      de: "Rindfleisch, hausgemachte Cheddar-Creme und Cheddar, Tomate, Zwiebel, Salat, Gewürzgurken",
-      ro: "Vită, cremă de Cheddar de casă și Cheddar, roșii, ceapă, salată, murături"
+      es: "Carne Premium, Crema de Cheddar Casera, Cheddar fundido, Tomate, Cebolla, Lechuga, Pepenillos",
+      en: "Premium Beef, Homemade Cheddar Cream, Melted Cheddar, Tomato, Onion, Lettuce, Pickles",
+      fr: "Bœuf Premium, Crème de Cheddar Maison, Cheddar Fondu, Tomate, Oignon, Laitue, Cornichons",
+      nl: "Premium Rundvlees, Huisgemaakte Cheddar Crème, Gesmolten Cheddar, Tomaat, Ui, Sla, Augurken",
+      no: "Kjøtt, cheddar-krem, cheddar, tomat, løk, salat, sylteagurk",
+      pl: "Wołowina, krem cheddar, cheddar, pomidor, cebula, sałata, ogórki",
+      uk: "Яловичина, сирний соус чеддер, томат, цибуля, салат, огірки",
+      ru: "Говядина, сырный соус чеддер, томат, лук, салат, огурцы",
+      ar: "لحم، كريمة تشيدر، تشيدر، طماطم، بصل، خس، مخلل",
+      sv: "Nötkött, cheddarkräm, cheddar, tomat, lök, sallad, gurka",
+      de: "Rindfleisch, Cheddar-Creme, Cheddar, Tomate, Zwiebel, Salat, Gewürzgurken",
+      ro: "Vită, cremă de Cheddar, Cheddar, roșii, ceapă, salată, murături"
     },
     precio: "€10.00",
     category: "food"
@@ -158,23 +143,20 @@ const data = [
     id: "prod_marroqi",
     image: marroqi,
     badge: "AUTHENTIC",
-    name: {
-      es: "La Marroqui Signature", en: "The Moroccan Signature", fr: "La Marocaine Signature", nl: "De Marokkaanse Signature", no: "Den Marokkanske", pl: "Marokańska",
-      uk: "Марокканська", ru: "Марокканская", ar: "المغربية", sv: "Marockanen", de: "Die Marokkanische", ro: "Marocana"
-    },
+    name: { es: "La Marroqui Autor", en: "The Moroccan Signature", fr: "La Marocaine Signature", nl: "De Marokkaanse Signature", no: "Den Marokkanske", pl: "Marokańska", uk: "Марокканська", ru: "Марокканская", ar: "المغربية", sv: "Marockanen", de: "Die Marokkanische", ro: "Marocana" },
     description: {
-      es: "Carne Especiada (Ajo, Perejil, Comino), Cheddar, Crema de Cheddar Casera y Vegetales Frescos",
-      en: "Spiced Beef (Garlic, Parsley, Cumin), Cheddar, Homemade Cheddar Cream and Fresh Veggies",
-      fr: "Bœuf Épicé (Ail, Persil, Cumin), Cheddar, Crème de Cheddar Maison et Légumes Frais",
-      nl: "Gekruid Rundvlees (Knoflook, Peterselie, Komijn), Cheddar, Huisgemaakte Cheddar Crème en Verse Groenten",
-      no: "Kjøtt med hvitløk, persille, løk og spisskummen, cheddar og hjemmelaget cheddar-krem, tomat, løk, salat, sylteagurk",
-      pl: "Wołowina z czosnkiem, pietruszką, cebulą i kuminem, cheddar i domowy krem cheddar, pomidor, cebula, sałata, ogórki",
-      uk: "Яловичина з часником, петрушкою, цибулею та кумином, чеддер та домашній сирний соус, томат, цибуля, салат, огірки",
-      ru: "Говядина с чесноком, петрушкой, луком и кумином, чеддер и домашний сырный соус, томат, лук, салат, огурцы",
-      ar: "لحم بالثوم، بقدونس، بصل وكمون، تشيدر وكريمة تشيدر منزلية، طماطم، بصل، خس، مخلل",
-      sv: "Nötkött med vitlök, persilja, lök och spiskummin, cheddar och hemgjord cheddarkräm, tomat, lök, sallad, gurka",
-      de: "Rindfleisch mit Knoblauch, Petersilie, Zwiebeln und Kreuzkümmel, Cheddar und hausgemachte Cheddar-Creme, Tomate, Zwiebel, Salat, Gewürzgurken",
-      ro: "Vită cu usturoi, pătrunjel, ceapă și chimion, Cheddar și cremă de Cheddar de casă, roșii, ceapă, salată, murături"
+      es: "Carne Especiada (Ajo, Perejil, Comino), Cheddar, Crema de Cheddar Casera, Tomate, Cebolla, Lechuga, Pepenillos",
+      en: "Spiced Beef (Garlic, Parsley, Cumin), Cheddar, Homemade Cheddar Cream, Tomato, Onion, Lettuce, Pickles",
+      fr: "Bœuf Épicé (Ail, Persil, Cumin), Cheddar, Crème de Cheddar Maison, Tomate, Oignon, Laitue, Cornichons",
+      nl: "Gekruid Rundvlees (Knoflook, Peterselie, Komijn), Cheddar, Huisgemaakte Cheddar Crème, Tomaat, Ui, Sla, Augurken",
+      no: "Kjøtt med krydder, cheddar, cheddar-krem, tomat, løk, salat, sylteagurk",
+      pl: "Wołowina z przyprawami, cheddar, krem cheddar, pomidor, cebula, sałata, ogórki",
+      uk: "Яловичина зі спеціями, чеддер, сирний соус, томат, цибуля, салат, огірки",
+      ru: "Говядина со специями, чеддер, сырный соус, томат, лук, салат, огурцы",
+      ar: "لحم بالتوابل، تشيدر، كريمة تشيدر، طماطم، بصل، خس، مخلل",
+      sv: "Nötkött med kryddor, cheddar, cheddarkräm, tomat, lök, sallad, gurka",
+      de: "Rindfleisch mit Gewürzen, Cheddar, Cheddar-Creme, Tomate, Zwiebel, Salat, Gewürzgurken",
+      ro: "Vită cu condimente, Cheddar, cremă de Cheddar, roșii, ceapă, salată, murături"
     },
     precio: "€12.00",
     category: "food"
@@ -183,23 +165,20 @@ const data = [
     id: "prod_smash",
     image: smash,
     badge: "TRENDING",
-    name: {
-      es: "La Smash Doble", en: "Double Smash Burger", fr: "Double Smash Burger", nl: "Double Smash Burger", no: "Dobbel Smash", pl: "Double Smash",
-      uk: "Подвійний Смеш", ru: "Двойной Смэш", ar: "سماش مزدوج", sv: "Dubbel Smash", de: "Doppelter Smash", ro: "Smash Dublu"
-    },
+    name: { es: "La Smash Doble", en: "Double Smash Burger", fr: "Double Smash Burger", nl: "Double Smash Burger", no: "Dobbel Smash", pl: "Double Smash", uk: "Подвійний Смеш", ru: "Двойной Смэш", ar: "سماش مزدوج", sv: "Dubbel Smash", de: "Doppelter Smash", ro: "Smash Dublu" },
     description: {
       es: "Doble Carne Smash Premium, Bacon, Cheddar fundido, nuestra Crema de Cheddar Casera, Cebolla y Pepenillos",
       en: "Double Premium Smash Beef, Bacon, Melted Cheddar, our Homemade Cheddar Cream, Onion and Pickles",
       fr: "Double Bœuf Smash Premium, Bacon, Cheddar fondu, notre Crème de Cheddar Maison, Oignon et Cornichons",
       nl: "Dubbel Premium Smash Rundvlees, Bacon, Gesmolten Cheddar, onze Huisgemaakte Cheddar Crème, Ui en Augurken",
-      no: "Dobbel burger, bacon, cheddar og hjemmelaget cheddar-krem, løk og sylteagurk",
-      pl: "Podwójna wołowina, bekon, cheddar i domowy krem cheddar, cebula i ogórki",
-      uk: "Подвійна котлета, бекон, чеддер та домашній сирний соус, цибуля та огірки",
-      ru: "Двойная котлета, бекон, чеддер и домашний сырный соус, лук и огурцы",
-      ar: "لحم مزدوج، لحم مقدد، تشيدر وكريمة تشيدر منزلية، بصل ومخلل",
-      sv: "Dubbelt nötkött, bacon, cheddar och hemgjord cheddarkräm, lök och gurka",
-      de: "Doppeltes Rindfleisch, Speck, Cheddar und hausgemachte Cheddar-Creme, Zwiebeln und Gewürzgurken",
-      ro: "Vită dublă, bacon, Cheddar și cremă de Cheddar de casă, ceapă și murături"
+      no: "Dobbel burger, bacon, cheddar, cheddar-krem, løk og sylteagurk",
+      pl: "Podwójna wołowina, bekon, cheddar, krem cheddar, cebula i ogórki",
+      uk: "Подвійна котлета, бекон, чеддер, сирний соус, цибуля та огірки",
+      ru: "Двойная котлета, бекон, чеддер, сирный соус, лук и огурцы",
+      ar: "لحم مزدوج، لحم مقدد، تشيدر، كريمة تشيدر، بصل ومخلل",
+      sv: "Dubbelt nötkött, bacon, cheddar, cheddarkräm, lök och gurka",
+      de: "Doppeltes Rindfleisch, Speck, Cheddar, Cheddar-Creme, Zwiebeln und Gewürzgurken",
+      ro: "Vită dublă, bacon, Cheddar, cremă de Cheddar, ceapă și murături"
     },
     precio: "€13.00",
     category: "food"
@@ -208,23 +187,20 @@ const data = [
     id: "prod_italiana",
     image: italiana,
     badge: "DELUXE",
-    name: {
-      es: "La Italiana Gourmet", en: "The Italian Gourmet", fr: "L'Italienne Gourmet", nl: "De Italiaanse Gourmet", no: "Den Italienske", pl: "Włoska",
-      uk: "Італійська", ru: "Итальянская", ar: "الإيطالية", sv: "Italienaren", de: "Die Italienische", ro: "Italiana"
-    },
+    name: { es: "La Italiana Gourmet", en: "The Italian Gourmet", fr: "L'Italienne Gourmet", nl: "De Italiaanse Gourmet", no: "Den Italienske", pl: "Włoska", uk: "Італійська", ru: "Итальянская", ar: "الإيطالية", sv: "Italienaren", de: "Die Italienische", ro: "Italiana" },
     description: {
-      es: "Carne al Tomillo, Mozza Burrata, Crema de Champiñones y Trufa Negra, Vegetales Frescos",
-      en: "Thyme Beef, Mozza Burrata, Mushroom and Black Truffle Cream, Fresh Veggies",
-      fr: "Bœuf au Thym, Mozza Burrata, Crème de Champignons et Truffe Noire, Légumes Frais",
-      nl: "Rundvlees met Tijm, Mozza Burrata, Champignon- en Zwarte Truffelcrème, Verse Groenten",
-      no: "Kjøtt og timian, Mozza Burrata, soppkrem med trøffel, tomat, løk, salat, sylteagurk",
-      pl: "Wołowina i tymianek, Mozza Burrata, krem pieczarkowy z truflą, pomidor, cebula, sałata, ogórki",
-      uk: "Яловичина з чебрецем, моцарела буррата, грибний соус з трюфелем, томат, цибуля, салат, огірки",
-      ru: "Говядина с тимьяном, моцарелла буррата, грибной соус с трюфелем, томат, лук, салат, огурцы",
-      ar: "لحم وزعتر، موزاريلا بوراتا، كريمة الفطر بالتروفل، طماطم، بصل، خس، مخلل",
-      sv: "Nötkött och timjan, Mozza Burrata, svampkräm med tryffel, tomat, lök, sallad, gurka",
-      de: "Rindfleisch und Thymian, Mozza Burrata, Pilzcreme mit Trüffel, Tomate, Zwiebel, Salat, Gewürzgurken",
-      ro: "Vită și cimbru, Mozza Burrata, cremă de ciuperci cu trufe, roșii, ceapă, salată, murături"
+      es: "Carne al Tomillo, Mozza Burrata, Crema de Champiñones con Trufa Negra, Tomate, Cebolla, Lechuga, Pepenillos",
+      en: "Thyme Beef, Mozza Burrata, Mushroom and Black Truffle Cream, Tomato, Onion, Lettuce, Pickles",
+      fr: "Bœuf au Thym, Mozza Burrata, Crème de Champignons et Truffe Noire, Tomate, Oignon, Laitue, Cornichons",
+      nl: "Rundvlees met Tijm, Mozza Burrata, Champignon- en Zwarte Truffelcrème, Tomaat, Ui, Sla, Augurken",
+      no: "Kjøtt, Mozza Burrata, soppkrem med trøffel, tomat, løk, salat, sylteagurk",
+      pl: "Wołowina, Mozza Burrata, krem pieczarkowy z truflą, pomidor, cebula, sałata, ogórki",
+      uk: "Яловичина, моцарела буррата, грибний соус з трюфелем, томат, цибуля, салат, огірки",
+      ru: "Говядина, моцарелла буррата, грибной соус с трюфелем, томат, лук, салат, огурцы",
+      ar: "لحم، موزاريلا بوراتا، كريمة الفطر بالتروفل, طماطم، بصل، خس، مخلل",
+      sv: "Nötkött, Mozza Burrata, svampkräm med tryffel, tomat, lök, sallad, gurka",
+      de: "Rindfleisch, Mozza Burrata, Pilzcreme mit Trüffel, Tomate, Zwiebel, Salat, Gewürzgurken",
+      ro: "Vită, Mozza Burrata, cremă de ciuperci cu trufe, roșii, ceapă, salată, murături"
     },
     precio: "€13.00",
     category: "food"
@@ -232,23 +208,20 @@ const data = [
   {
     id: "prod_suiza",
     image: suiza,
-    name: {
-      es: "La Auvergna Signature", en: "The Auvergne Signature", fr: "L'Auvergnate Signature", nl: "De Auvergne Signature", no: "L'Auvergna", pl: "Auvergna",
-      uk: "Овернь", ru: "Овернь", ar: "أوفرنيا", sv: "L'Auvergna", de: "Die Auvergner", ro: "Auvergna"
-    },
+    name: { es: "La Auvergna de la Casa", en: "The Auvergne Signature", fr: "L'Auvergnate Signature", nl: "De Auvergne Signature", no: "L'Auvergna", pl: "Auvergna", uk: "Овернь", ru: "Овернь", ar: "أوفرنيا", sv: "L'Auvergna", de: "Die Auvergner", ro: "Auvergna" },
     description: {
-      es: "Ternera caramelizada con Panela, Salsa Gourmet de Queso Azul de Francia y Vegetales Frescos",
-      en: "Caramelized Beef with Panela, Gourmet French Blue Cheese Sauce and Fresh Veggies",
-      fr: "Bœuf caramélisé à la Panela, Sauce Gourmet au Bleu de France et Légumes Frais",
-      nl: "Gekaramelliseerd Rundvlees met Panela, Gourmet Franse Blauwe Kaassaus en Verse Groenten",
-      no: "Karamellisert biff med panela, fransk blåmuggostsaus, tomat, løk, salat, sylteagurk",
-      pl: "Wołowina karmelizowana z panelą, francuski sos z niebieskiego sera, pomidor, cebula, sałata, ogórki",
-      uk: "Яловичина карамелізована з панелою, французький соус із блакитним сиром, томат, цибуля, салат, огірки",
-      ru: "Говядина карамелизованная с панелой, французский соус с голубым сыром, томат, лук, салат, огурцы",
+      es: "Ternera caramelizada con Panela, Salsa Gourmet de Queso Azul de Francia, Tomate, Cebolla, Lechuga, Pepenillos",
+      en: "Caramelized Beef with Panela, Gourmet French Blue Cheese Sauce, Tomato, Onion, Lettuce, Pickles",
+      fr: "Bœuf caramélisé à la Panela, Sauce Gourmet au Bleu de France, Tomate, Oignon, Laitue, Cornichons",
+      nl: "Gekaramelliseerd Rundvlees met Panela, Gourmet Franse Blauwe Kaassaus, Tomaat, Ui, Sla, Augurken",
+      no: "Karamellisert biff, fransk blåmuggostsaus, tomat, løk, salat, sylteagurk",
+      pl: "Wołowina karmelizowana, francuski sos z niebieskiego sera, pomidor, cebula, sałata, ogórki",
+      uk: "Яловичина карамелізована, французький соус із блакитним сиром, томат, цибуля, салат, огірки",
+      ru: "Говядина карамелизованная, французский соус с голубым сыром, томат, лук, салат, огурцы",
       ar: "لحم بقري مكرمل، صلصة الجبن الأزرق الفرنسي، طماطم، بصل، خس، مخلل",
-      sv: "Karamelliserat nötkött med panela, fransk blåmögelostsås, tomat, lök, sallad, gurka",
-      de: "Karamellisiertes Rindfleisch mit Panela, französische Blauschimmelkäse-Sauce, Tomate, Zwiebel, Salat, Gewürzgurken",
-      ro: "Vită caramelizată cu panela, sos de brânză albastră franceză, roșii, ceapă, salată, murături"
+      sv: "Karamelliserat nötkött, fransk blåmögelostsås, tomat, lök, sallad, gurka",
+      de: "Karamellisiertes Rindfleisch, französische Blauschimmelkäse-Sauce, Tomate, Zwiebel, Salat, Gewürzgurken",
+      ro: "Vită caramelizată, sos de brânză albastră franceză, roșii, ceapă, salată, murături"
     },
     precio: "€12.00",
     category: "food"
@@ -257,23 +230,20 @@ const data = [
     id: "prod_espanola",
     image: espanola,
     badge: "TOP SELLER",
-    name: {
-      es: "La Española Signature", en: "The Spanish Signature", fr: "L'Espagnole Signature", nl: "De Spaanse Signature", no: "Den Spanske", pl: "Hiszpańska",
-      uk: "Іспанська", ru: "Испанская", ar: "الإسبانية", sv: "Spanjoren", de: "Die Spanische", ro: "Spaniola"
-    },
+    name: { es: "La Española Auténtica", en: "The Spanish Signature", fr: "L'Espagnole Signature", nl: "De Spaanse Signature", no: "Den Spanske", pl: "Hiszpańska", uk: "Іспанська", ru: "Испанская", ar: "الإسبانية", sv: "Spanjoren", de: "Die Spanische", ro: "Spaniola" },
     description: {
-      es: "Carne Premium, Pimiento de Padrón, Cecina, Huevo Frito de corral, Cheddar y Vegetales",
-      en: "Premium Beef, Padrón Peppers, Cecina, Free-range Fried Egg, Cheddar and Veggies",
-      fr: "Bœuf Premium, Piment de Padrón, Cecina, Œuf au plat fermier, Cheddar et Légumes",
-      nl: "Premium Rundvlees, Padrón Peppers, Cecina, Scharrelei, Cheddar en Verse Groenten",
-      no: "Kjøtt med Padron-pepper, Cecina, stekt egg, cheddar, tomat, løk, salat, sylteagurk",
-      pl: "Wołowina z papryczkami Padrón, Cecina, jajko sadzone, cheddar, pomidor, cebula, sałata, ogórki",
-      uk: "Яловичина з перцем падрон, сесіна (в'ялене м'ясо), яєчня, чеддер, томат, цибуля, салат, огірки",
-      ru: "Говядина с перцем падрон, сесина (вяленое мясо), яичница, чеддер, томат, лук, салат, огурцы",
-      ar: "لحم مع فلفل بادرون، لحم جاف، بيض مقلي، تشيدر، طماطم، بصل، خس، مخلل",
-      sv: "Nötkött med Padron-peppar, Cecina, stekt ägg, cheddar, tomat, lök, sallad, gurka",
-      de: "Rindfleisch mit Padrón-Paprika, Cecina (Trockenfleisch), Spiegelei, Cheddar, Tomate, Zwiebel, Salat, Gewürzgurken",
-      ro: "Vită cu ardei Padron, Cecina, ou ochi, Cheddar, roșii, ceapă, salată, murături"
+      es: "Carne Premium, Pimiento de Padrón, Cecina, Huevo Frito de corral, Cheddar, Tomate, Cebolla, Lechuga, Pepenillos",
+      en: "Premium Beef, Padrón Peppers, Cecina, Free-range Fried Egg, Cheddar, Tomato, Onion, Lettuce, Pickles",
+      fr: "Bœuf Premium, Piment de Padrón, Cecina, Œuf au plat fermier, Cheddar, Tomate, Oignon, Laitue, Cornichons",
+      nl: "Premium Rundvlees, Padrón Peppers, Cecina, Scharrelei, Cheddar, Tomaat, Ui, Sla, Augurken",
+      no: "Kjøtt, Padron-pepper, Cecina, stekt egg, cheddar, tomat, løk, salat, sylteagurk",
+      pl: "Wołowina, papryczki Padrón, Cecina, jajko sadzone, cheddar, pomidor, cebula, sałata, ogórki",
+      uk: "Яловичина, перець падрон, сесіна, яєчня, чеддер, томат, цибуля, салат, огірки",
+      ru: "Говядина, перец падрон, сесина, яичница, чеддер, томат, лук, салат, огурцы",
+      ar: "لحم، فلفل بادرون، لحم جاف، بيض مقلي، تشيدر، طماطم، بصل، خس، مخلل",
+      sv: "Nötkött, Padron-peppar, Cecina, stekt ägg, cheddar, tomat, lök, sallad, gurka",
+      de: "Rindfleisch, Padrón-Paprika, Cecina, Spiegelei, Cheddar, Tomate, Zwiebel, Salat, Gewürzgurken",
+      ro: "Vită, ardei Padron, Cecina, ou ochi, Cheddar, roșii, ceapă, salată, murături"
     },
     precio: "€14.00",
     category: "food"
@@ -282,23 +252,20 @@ const data = [
     id: "prod_colombiana",
     image: colombiana,
     badge: "TOP SELLER",
-    name: {
-      es: "La Colombiana Signature", en: "The Colombian Signature", fr: "La Colombienne Signature", nl: "De Colombiaanse Signature", no: "Den Colombianske", pl: "Kolumbijska",
-      uk: "Колумбійська", ru: "Колумбийская", ar: "كولومبية", sv: "Colombianen", de: "Die Kolumbianische", ro: "Columbiana"
-    },
+    name: { es: "La Colombiana Auténtica", en: "The Colombian Signature", fr: "La Colombienne Signature", nl: "De Colombiaanse Signature", no: "Den Colombianske", pl: "Kolumbijska", uk: "Колумбійська", ru: "Колумбийская", ar: "كولومبية", sv: "Colombianen", de: "Die Kolumbianische", ro: "Columbiana" },
     description: {
-      es: "Receta de la casa: Carne especiada, Tocino, Papa, Piña natural, Vegetales frescos et Doble Cheddar",
-      en: "House Recipe: Spiced Beef, Bacon, Potato, Fresh Pineapple, Fresh Veggies and Double Cheddar",
-      fr: "Recette Maison : Bœuf épicé, Bacon, Pomme de Terre, Ananas frais, Légumes frais et Double Cheddar",
-      nl: "Huisrecept: Gekruid Rundvlees, Spek, Aardappel, Verse Ananas, Verse Groenten en Dubbele Cheddar",
-      no: "Kjøtt med hvitløk, persille, løk og spisskummen, bacon, potet, ananas, tomat, løk, salat, sylteagurk, cheddar",
-      pl: "Wołowina z czosnkiem, pietruszką, cebulą i kuminem, bekon, ziemniak, ananas, pomidor, cebula, sałata, ogórki, cheddar",
-      uk: "Яловичина з часником, петрушкою, цибулею та кумином, бекон, картопля, ананас, томат, цибуля, салат, огірки, чеддер",
-      ru: "Говядина с чесноком, петрушкой, луком и кумином, бекон, картофель, ананас, томат, лук, салат, огурцы, чеддер",
-      ar: "لحم بالثوم، بقدونس، بصل وكمون، لحم مقدد، بطاطس، أناناس، طماطم، بصل، خس، مخلل، جبنة تشيدر",
-      sv: "Nötkött med vitlök, persilja, lök och spiskummin, bacon, potatis, ananas, tomat, lök, sallad, gurka, cheddar",
-      de: "Rindfleisch mit Knoblauch, Petersilie, Zwiebeln und Kreuzkümmel, Speck, Kartoffel, Ananas, Tomate, Zwiebel, Salat, Gewürzgurken, Cheddar",
-      ro: "Vită cu usturoi, pătrunjel, ceapă și chimion, bacon, cartof, ananas, roșii, ceapă, salată, murături, Cheddar"
+      es: "Receta de la casa: Carne especiada, Tocino, Papa, Piña natural, Tomate, Cebolla, Lechuga, Pepenillos, Cheddar y crema de cheddar",
+      en: "House Recipe: Spiced Beef, Bacon, Potato, Fresh Pineapple, Tomato, Onion, Lettuce, Pickles, Double Cheddar",
+      fr: "Recette Maison : Bœuf épicé, Bacon, Pomme de Terre, Ananas frais, Tomate, Oignon, Laitue, Cornichons, Double Cheddar",
+      nl: "Huisrecept: Gekruid Rundvlees, Spek, Aardappel, Verse Ananas, Tomaat, Ui, Sla, Augurken, Dubbele Cheddar",
+      no: "Kjøtt, bacon, potet, ananas, tomat, løk, salat, sylteagurk, cheddar",
+      pl: "Wołowina, bekon, ziemniak, ananas, pomidor, cebula, sałata, ogórki, cheddar",
+      uk: "Яловичина, бекон, картопля, ананас, томат, цибуля, салат, огірки, чеддер",
+      ru: "Говядина, бекон, картофель, ананас, томат, лук, салат, огурцы, чеддер",
+      ar: "لحم، لحم مقدد، بطاطس، أناناس، طماطم، بصل، خس، مخلل، جبنة تشيدر",
+      sv: "Nötkött, bacon, potatis, ananas, tomat, lök, sallad, gurka, cheddar",
+      de: "Rindfleisch, Speck, Kartoffel, Ananas, Tomate, Zwiebel, Salat, Gewürzgurken, Cheddar",
+      ro: "Vită, bacon, cartof, ananas, roșii, ceapă, salată, murături, Cheddar"
     },
     precio: "€14.00",
     category: "food"
@@ -307,23 +274,20 @@ const data = [
     id: "prod_mexicana",
     image: mexicana,
     badge: "NUEVO",
-    name: {
-      es: "La Mexicana Signature", en: "The Mexican Signature", fr: "La Mexicaine Signature", nl: "De Mexicaanse Signature", no: "Den Meksikanske", pl: "Meksykańska",
-      uk: "Мексиканська", ru: "Мексиканская", ar: "المكسيكية", sv: "Mexikanen", de: "Die Mexikanische", ro: "Mexicana"
-    },
+    name: { es: "La Mexicana Artesanal", en: "The Mexican Signature", fr: "La Mexicaine Signature", nl: "De Mexicaanse Signature", no: "Den Meksikanske", pl: "Meksykańska", uk: "Мексиканська", ru: "Мексиканская", ar: "المكسيكية", sv: "Mexikanen", de: "Die Mexikanische", ro: "Mexicana" },
     description: {
-      es: "Carne Premium, Salsa de Pimiento Picante Casera, Crema de Maiz Artesanal, Cebolla Roja, Tocino y Cheddar fundido",
-      en: "Premium Beef, Homemade Hot Pepper Sauce, Artisanal Corn Cream, Red Onion, Bacon and Melted Cheddar",
-      fr: "Bœuf Premium, Sauce Piment Maison, Crème de Maïs Artisanale, Oignon Rouge, Bacon et Cheddar Fondu",
-      nl: "Premium Rundvlees, Huisgemaakte Hete Pepersaus, Ambachtelijke Maiscrème, Rode Ui, Spek en Gesmolten Cheddar",
-      no: "Kjøtt, hjemmelaget chilisaus, hjemmelaget maissaus, rødløk, bacon, tomat, salat, sylteagurk, cheddar",
-      pl: "Wołowina, domowy sos z ostrej papryki, domowy sos kukurydziany, czerwona cebula, bekon, pomidor, sałata, ogórki, cheddar",
-      uk: "Яловичина, домашній гострий соус, домашній кукурудзяний соус, червона цибуля, бекон, томат, салат, огірки, чеддер",
-      ru: "Говядина, домашний острый соус, домашний кукурузный соус, красный лук, бекон, томат, salat, огурцы, чеддер",
-      ar: "لحم، صلصة الفلفل الحار المنزلية، صلصة الذرة المنزلية، بصل أحمر، لحم مقدد، طماطم، خس، مخلل، جبنة تشيدر",
-      sv: "Nötkött, hemgjord stark paprikasås, hemgjord majssås, rödlök, bacon, tomat, sallad, gurka, cheddar",
-      de: "Rindfleisch, hausgemachte scharfe Paprikasauce, hausgemachte Maissauce, rote Zwiebel, Speck, Tomate, Salat, Gewürzgurken, Cheddar",
-      ro: "Vită, sos de ardei iute de casă, sos de porumb de casă, ceapă roșie, bacon, roșii, salată, murături, Cheddar"
+      es: "Carne Premium, Salsa de Pimiento Picante Casera, Crema de Maiz Artesanal, Tocino y Cheddar fundido, Tomate, Cebolla, Lechuga, Pepenillos",
+      en: "Premium Beef, Homemade Hot Pepper Sauce, Artisanal Corn Cream, Bacon and Melted Cheddar, Tomato, Onion, Lettuce, Pickles",
+      fr: "Bœuf Premium, Sauce Piment Maison, Crème de Maïs Artisanale, Bacon et Cheddar Fondu, Tomate, Oignon, Laitue, Cornichons",
+      nl: "Premium Rundvlees, Huisgemaakte Hete Pepersaus, Ambachtelijke Maiscrème, Spek en Gesmolten Cheddar, Tomaat, Ui, Sla, Augurken",
+      no: "Kjøtt, chilisaus, maissaus, bacon, cheddar, tomat, løk, salat, sylteagurk",
+      pl: "Wołowina, sos z papryki, sos kukurydziany, bekon, cheddar, pomidor, cebula, sałata, ogórki",
+      uk: "Яловичина, гострий соус, кукурудзяний соус, бекон, чеддер, томат, цибуля, салат, огірки",
+      ru: "Говядина, острый соус, кукурузный соус, бекон, чеддер, томат, лук, салат, огурцы",
+      ar: "لحم، صلصة حارة، صلصة الذرة، لحم مقدد، تشيدر، طماطم، بصل، خس، مخلل",
+      sv: "Nötkött, stark sås, majssås, bacon, cheddar, tomat, lök, sallad, gurka",
+      de: "Rindfleisch, scharfe Sauce, Maissauce, Speck, Cheddar, Tomate, Zwiebel, Salat, Gewürzgurken",
+      ro: "Vită, sos iute, sos de porumb, bacon, Cheddar, roșii, ceapă, salată, murături"
     },
     precio: "€14.00",
     category: "food"
@@ -331,10 +295,7 @@ const data = [
   {
     id: "prod_nuggets",
     image: nuggets,
-    name: {
-      es: "Nuggets de Pollo Artesanos", en: "Artisanal Chicken Nuggets", fr: "Nuggets de Poulet Artisanaux", nl: "Ambachtelijke Kipnuggets", no: "Kyllingnuggets", pl: "Nuggetsy z kurczaka",
-      uk: "Курячі нагетси", ru: "Куриные наггетса", ar: "ناجيتس دجاج", sv: "Kycklingnuggets", de: "Hähnchen-Nuggets", ro: "Nuggets de pui"
-    },
+    name: { es: "Nuggets de Pollo Artesanos", en: "Artisanal Chicken Nuggets", fr: "Nuggets de Poulet Artisanaux", nl: "Ambachtelijke Kipnuggets", no: "Kyllingnuggets", pl: "Nuggetsy z kurczaka", uk: "Курячі нагетси", ru: "Куриные наггетса", ar: "ناجيتس دجاج", sv: "Kycklingnuggets", de: "Hähnchen-Nuggets", ro: "Nuggets de pui" },
     description: {
       es: "3 Nuggets Caseros Crujientes", en: "3 Crunchy Homemade Nuggets", fr: "3 Nuggets Maison Croustillants", nl: "3 Krokante Huisgemaakte Nuggets", no: "3 hjemmelaget nuggets", pl: "3 domowe nuggetsy",
       uk: "3 домашні нагетси", ru: "3 домашних наггетса", ar: "3 قطع ناجيتس منزلية", sv: "3 hemgjorda nuggets", de: "3 hausgemachte Nuggets", ro: "3 Nuggets de casă"
@@ -345,10 +306,7 @@ const data = [
   {
     id: "prod_croquetas",
     image: croquetas,
-    name: {
-      es: "Croquetas Gourmet", en: "Gourmet Croquettes", fr: "Croquettes Gourmet", nl: "Gourmet Krokketten", no: "Kyllingkroketter", pl: "Krokiety z kurczaka",
-      uk: "Курячі крокети", ru: "Куриные крокеты", ar: "كروكيت دجاج", sv: "Kycklingkroketter", de: "Hähnchen-Kroketten", ro: "Crochete de pui"
-    },
+    name: { es: "Croquetas Gourmet", en: "Gourmet Croquettes", fr: "Croquettes Gourmet", nl: "Gourmet Krokketten", no: "Kyllingkroketter", pl: "Krokiety z kurczaka", uk: "Курячі крокети", ru: "Куриные крокеты", ar: "كروكيت دجاج", sv: "Kycklingkroketter", de: "Hähnchen-Kroketten", ro: "Crochete de pui" },
     description: {
       es: "3 Croquetas de Pollo Cremosas con Cheddar", en: "3 Creamy Chicken Croquettes with Cheddar", fr: "3 Croquettes de Poulet Crémeuses au Cheddar", nl: "3 Romige Kipkrokketten met Cheddar", no: "3 kyllingkroketter med cheddar", pl: "3 krokiety z kurczaka z cheddarem",
       uk: "3 курячі крокети з чеддером", ru: "3 куриных крокета с чеддером", ar: "3 قطع كروكيت دجاج مع تشيدر", sv: "3 kycklingkroketter med cheddar", de: "3 Hähnchen-Kroketten mit Cheddar", ro: "3 Crochete de pui cu Cheddar"
@@ -359,10 +317,7 @@ const data = [
   {
     id: "prod_fritas",
     image: fritas,
-    name: {
-      es: "Patatas Fritas Caseras", en: "Homemade French Fries", fr: "Frites Maison", nl: "Huisgemaakte Frieten", no: "Pommes frites", pl: "Frytki",
-      uk: "Картопля фрі", ru: "Картофель фри", ar: "بطاطس مقلية", sv: "Pommes frites", de: "Pommes Frites", ro: "Cartofi prăjiți"
-    },
+    name: { es: "Patatas Fritas Caseras", en: "Homemade French Fries", fr: "Frites Maison", nl: "Huisgemaakte Frieten", no: "Pommes frites", pl: "Frytki", uk: "Картопля фрі", ru: "Картофель фри", ar: "بطاطس مقلية", sv: "Pommes frites", de: "Pommes Frites", ro: "Cartofi prăjiți" },
     description: {
       es: "Papas fritas cortadas a mano", en: "Hand-cut French fries", fr: "Frites coupées à la main", nl: "Handgesneden frietjes", no: "Hjemmelaget pommes frites", pl: "Domowe frytki",
       uk: "Домашня картопля фрі", ru: "Домашний картофель фри", ar: "بطاطس مقلية منزلية", sv: "Hemgjorda pommes frites", de: "Hausgemachte Pommes", ro: "Cartofi prăjiți de casă"
@@ -374,10 +329,7 @@ const data = [
     id: "prod_gofre",
     image: gofre,
     badge: "DESSERT",
-    name: {
-      es: "Waffle XXL Nutella", en: "Waffle XXL Nutella", fr: "Gaufre XXL Nutella", nl: "Wafel XXL Nutella", no: "Vaffel XXL", pl: "Gofry XXL",
-      uk: "Вафлі XXL", ru: "Вафли XXL", ar: "وافل XXL", sv: "Våffla XXL", de: "Waffel XXL", ro: "Gofre XXL"
-    },
+    name: { es: "Waffle XXL Nutella", en: "Waffle XXL Nutella", fr: "Gaufre XXL Nutella", nl: "Wafel XXL Nutella", no: "Vaffel XXL", pl: "Gofry XXL", uk: "Вафлі XXL", ru: "Вафли XXL", ar: "وافل XXL", sv: "Våffla XXL", de: "Waffel XXL", ro: "Gofre XXL" },
     description: {
       es: "Waffle Casera con Nutella generosa", en: "Homemade Waffle with generous Nutella", fr: "Gaufre Maison au Nutella généreux", nl: "Huisgemaakte Wafel met royale Nutella", no: "Hjemmelaget vaffel med Nutella", pl: "Domowe gofry z Nutellą",
       uk: "Домашня вафля з Nutella", ru: "Домашняя вафля с Nutella", ar: "وافل منزلي مع نوتيلا", sv: "Hemgjord våffla med Nutella", de: "Hausgemachte Waffel mit Nutella", ro: "Gofre de casă cu Nutella"
@@ -388,10 +340,7 @@ const data = [
   {
     id: "prod_bravas",
     image: bravas,
-    name: {
-      es: "Patatas Bravas Casa", en: "House Patatas Bravas", fr: "Patatas Bravas Maison", nl: "Huisgemaakte Patatas Bravas", no: "Patatas Bravas", pl: "Patatas Bravas",
-      uk: "Пататас Бравас", ru: "Пататас Бравас", ar: "باتاتاس برافاس", sv: "Patatas Bravas", de: "Patatas Bravas", ro: "Patatas Bravas"
-    },
+    name: { es: "Patatas Bravas Casa", en: "House Patatas Bravas", fr: "Patatas Bravas Maison", nl: "Huisgemaakte Patatas Bravas", no: "Patatas Bravas", pl: "Patatas Bravas", uk: "Пататас Бравас", ru: "Пататас Бравас", ar: "باتاتاس برافاس", sv: "Patatas Bravas", de: "Patatas Bravas", ro: "Patatas Bravas" },
     description: {
       es: "Patatas Bravas Caseras con Salsa Secreta Picante",
       en: "Homemade Patatas Bravas with Secret Spicy Sauce",
@@ -413,10 +362,7 @@ const data = [
     id: "prod_cheddar-bacon",
     image: cheddarbacon,
     badge: "LOADED",
-    name: {
-      es: "Fritas Cheddar & Bacon", en: "Cheddar & Bacon Fries", fr: "Frites Cheddar & Bacon", nl: "Cheddar & Bacon Frieten", no: "Cheddar og bacon frites", pl: "Frytki z cheddarem i bekonem",
-      uk: "Картопля з чеддером та беконом", ru: "Картофель с чеддером и беконом", ar: "بطاطس بالتشيدر ولحم مقدد", sv: "Pommes med cheddar och bacon", de: "Cheddar-Speck-Pommes", ro: "Cartofi cu Cheddar și Bacon"
-    },
+    name: { es: "Fritas Cheddar & Bacon", en: "Cheddar & Bacon Fries", fr: "Frites Cheddar & Bacon", nl: "Cheddar & Bacon Frieten", no: "Cheddar og bacon frites", pl: "Frytki z cheddarem i bekonem", uk: "Картопля з чеддером та беконом", ru: "Картофель с чеддером и беконом", ar: "بطاطس بالتشيدر ولحم مقدد", sv: "Pommes med cheddar och bacon", de: "Cheddar-Speck-Pommes", ro: "Cartofi cu Cheddar și Bacon" },
     description: {
       es: "Patatas Fritas Caseras avec Salsa de Cheddar de la Casa y Bacon Crujiente",
       en: "Homemade Fries with Homemade Cheddar Sauce and Crunchy Bacon",
@@ -433,7 +379,8 @@ const data = [
     },
     precio: "€8.50",
     category: "food"
-  },
+  }
+];
   {
     id: "prod_cocacola",
     image: cocaCola,
