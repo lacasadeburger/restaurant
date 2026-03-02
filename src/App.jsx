@@ -732,107 +732,107 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
     </div>
   </div>
 </header>
-<main className="menu-page-container">
+<main className="menu-page-container" style={{ minHeight: '100vh' }}>
   <Suspense fallback={
-    <div style={{ textAlign: 'center', padding: '100px', background: 'black' }}>
+    <div style={{ textAlign: 'center', padding: '100px', background: 'black', minHeight: '80vh' }}>
       <div className="product-price" style={{ fontSize: '1.5rem' }}>CARGANDO MENÚ GOURMET...</div>
     </div>
   }>
 
-  {/* SECTION BURGERS */}
-<section id="sec-burgers" style={{ marginTop: '5px', display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}>
-  <SectionTitle>{T[lang]?.catBurgers || T.es.catBurgers}</SectionTitle>
-  {showCardBurger ? (
-    <div className="grid-cards" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px', width: '100%', padding: '15px', maxWidth: '1200px' }}>
-      {burgers.map(item => (
-        <CardMenu key={item.id} {...item} addToCart={addToCart} lang={lang} hasExtras={!noExtrasIds.includes(item.id)} />
-      ))}
-    </div>
-  ) : (
-    <div className="promo-container" onClick={() => {
-      setShowCardBurger(true);
-      setTimeout(() => {
-        const el = document.getElementById("sec-burgers");
-        if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.pageYOffset - 100, behavior: "smooth" });
-      }, 150);
-    }}>
-      {/* FORCE LES DIMENSIONS RÉELLES ICI */}
-      <img
-        src="/Burger.webp"
-        className="promo-img"
-        alt="Burger"
-        width="600"
-        height="336"
-        style={{ width: '600px', height: '336px', display: 'block', objectFit: 'cover' }}
-      />
-      <button className="category-btn-overlay">{T[lang]?.catBurgers || T.es.catBurgers} ➔</button>
-    </div>
-  )}
-</section>
-
-{/* SECTION BEBIDAS */}
-<section id="sec-bebidas" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}>
-  <SectionTitle>{T[lang]?.catDrinks || T.es.catDrinks}</SectionTitle>
-  {showCardDrink ? (
-    <div className="grid-cards" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px', width: '100%', padding: '15px', maxWidth: '1200px' }}>
-      {drinks.map(item => <CardMenu key={item.id} {...item} isDrinkCard={true} addToCart={addToCart} lang={lang} />)}
-    </div>
-  ) : (
-    <div className="promo-container" onClick={() => {
-      setShowCardDrink(true);
-      setTimeout(() => {
-        const el = document.getElementById("sec-bebidas");
-        if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.pageYOffset - 100, behavior: "smooth" });
-      }, 150);
-    }}>
-      <img
-        src="/Drink.webp"
-        className="promo-img"
-        alt="Bebidas"
-        width="600"
-        height="336"
-        style={{ width: '600px', height: '336px', display: 'block', objectFit: 'cover' }}
-      />
-      <button className="category-btn-overlay">{T[lang]?.catDrinks || T.es.catDrinks} ➔</button>
-    </div>
-  )}
-</section>
-
-{/* SECTION POSTRES */}
-<section id="sec-postres" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', marginTop: '20px' }}>
-  <SectionTitle>{T[lang]?.catDesserts || "POSTRES"}</SectionTitle>
-  {showCardPostres ? (
-    <div className="grid-cards" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px', width: '100%', padding: '15px', maxWidth: '1200px' }}>
-      {postres && postres.length > 0 ? (
-        postres.map(item => (
-          <CardMenu key={item.id} {...item} addToCart={addToCart} lang={lang} isPostreCard={true} />
-        ))
+    {/* SECTION BURGERS */}
+    <section id="sec-burgers" style={{ marginTop: '5px', display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', minHeight: '450px' }}>
+      <SectionTitle>{T[lang]?.catBurgers || T.es.catBurgers}</SectionTitle>
+      {showCardBurger ? (
+        <div className="grid-cards" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px', width: '100%', padding: '15px', maxWidth: '1200px' }}>
+          {burgers.map(item => (
+            <CardMenu key={item.id} {...item} addToCart={addToCart} lang={lang} hasExtras={!noExtrasIds.includes(item.id)} />
+          ))}
+        </div>
       ) : (
-        <p style={{ color: '#fff' }}>Cargando delicias...</p>
+        <div className="promo-container" onClick={() => {
+          setShowCardBurger(true);
+          setTimeout(() => {
+            const el = document.getElementById("sec-burgers");
+            if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.pageYOffset - 100, behavior: "smooth" });
+          }, 150);
+        }}>
+          <img
+            src="/Burger.webp"
+            className="promo-img"
+            alt="Burger"
+            width="600"
+            height="336"
+            style={{ width: '600px', height: '336px', display: 'block', objectFit: 'cover' }}
+          />
+          <button className="category-btn-overlay">{T[lang]?.catBurgers || T.es.catBurgers} ➔</button>
+        </div>
       )}
-    </div>
-  ) : (
-    <div className="promo-container" onClick={() => {
-      setShowCardPostres(true);
-      setTimeout(() => {
-        const el = document.getElementById("sec-postres");
-        if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.pageYOffset - 100, behavior: "smooth" });
-      }, 150);
-    }}>
-      <img
-        src="/Postre.webp"
-        className="promo-img"
-        alt="Postres"
-        width="600"
-        height="336"
-        style={{ width: '600px', height: '336px', display: 'block', objectFit: 'cover' }}
-      />
-      <button className="category-btn-overlay">{T[lang]?.catDesserts || "POSTRES"} ➔</button>
-    </div>
-  )}
-</section>
+    </section>
+
+    {/* SECTION BEBIDAS */}
+    <section id="sec-bebidas" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', minHeight: '450px' }}>
+      <SectionTitle>{T[lang]?.catDrinks || T.es.catDrinks}</SectionTitle>
+      {showCardDrink ? (
+        <div className="grid-cards" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px', width: '100%', padding: '15px', maxWidth: '1200px' }}>
+          {drinks.map(item => <CardMenu key={item.id} {...item} isDrinkCard={true} addToCart={addToCart} lang={lang} />)}
+        </div>
+      ) : (
+        <div className="promo-container" onClick={() => {
+          setShowCardDrink(true);
+          setTimeout(() => {
+            const el = document.getElementById("sec-bebidas");
+            if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.pageYOffset - 100, behavior: "smooth" });
+          }, 150);
+        }}>
+          <img
+            src="/Drink.webp"
+            className="promo-img"
+            alt="Bebidas"
+            width="600"
+            height="336"
+            style={{ width: '600px', height: '336px', display: 'block', objectFit: 'cover' }}
+          />
+          <button className="category-btn-overlay">{T[lang]?.catDrinks || T.es.catDrinks} ➔</button>
+        </div>
+      )}
+    </section>
+
+    {/* SECTION POSTRES */}
+    <section id="sec-postres" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', marginTop: '20px', minHeight: '450px' }}>
+      <SectionTitle>{T[lang]?.catDesserts || "POSTRES"}</SectionTitle>
+      {showCardPostres ? (
+        <div className="grid-cards" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px', width: '100%', padding: '15px', maxWidth: '1200px' }}>
+          {postres && postres.length > 0 ? (
+            postres.map(item => (
+              <CardMenu key={item.id} {...item} addToCart={addToCart} lang={lang} isPostreCard={true} />
+            ))
+          ) : (
+            <p style={{ color: '#fff' }}>Cargando delicias...</p>
+          )}
+        </div>
+      ) : (
+        <div className="promo-container" onClick={() => {
+          setShowCardPostres(true);
+          setTimeout(() => {
+            const el = document.getElementById("sec-postres");
+            if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.pageYOffset - 100, behavior: "smooth" });
+          }, 150);
+        }}>
+          <img
+            src="/Postre.webp"
+            className="promo-img"
+            alt="Postres"
+            width="600"
+            height="336"
+            style={{ width: '600px', height: '336px', display: 'block', objectFit: 'cover' }}
+          />
+          <button className="category-btn-overlay">{T[lang]?.catDesserts || "POSTRES"} ➔</button>
+        </div>
+      )}
+    </section>
+
     {/* SECTION COMMANDE */}
-    <section id="order" style={{ paddingBottom: '60px', display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}>
+    <section id="order" style={{ paddingBottom: '60px', display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', minHeight: '200px' }}>
       <SectionTitle>{lang === 'es' ? 'Tu Pedido' : lang === 'fr' ? 'Votre Commande' : 'Your Order'}</SectionTitle>
       <Order cart={cart} removeFromCart={removeFromCart} lang={lang} />
     </section>
@@ -868,149 +868,148 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
       </div>
     </section>
 
-  {/* REVIEWS */}
-  <section style={{ padding: '20px 0 80px' }}>
-    <h3 style={{ color: GOLD_BRIGHT, textTransform: 'uppercase', marginBottom: '30px', textAlign: 'center' }}>
-      {T[lang]?.reviewsTitle || T.es.reviewsTitle}
-    </h3>
-    <div className="grid-reviews" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px' }}>
-      {randomReviews.map((rev, index) => (
-        <div key={index} className="testimonial-card" style={{ padding: '20px', backgroundColor: '#111', borderRadius: '15px', border: '1px solid #222' }}>
-          <div style={{ color: GOLD_BRIGHT, marginBottom: '10px' }}>⭐⭐⭐⭐⭐</div>
-          <p style={{ fontStyle: 'italic', color: '#eee' }}>"{rev[lang] || rev.es}"</p>
-          <p style={{ fontWeight: 'bold', marginTop: '10px', color: '#ff4757' }}>— {rev.author}</p>
-        </div>
-      ))}
-    </div>
-  </section>
-
-{/* --- SECTION MAPS, VIDEO & SOCIALS --- */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '40px', alignItems: 'center', margin: '40px auto' }}>
-
-          {/* BLOC MAPS OPTIMISÉ */}
-          <div className="map-container" style={{ width: '100%', maxWidth: '1100px', borderRadius: '15px', overflow: 'hidden' }}>
-            {loadMaps ? (
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3143.543213567123!2d-0.6853244!3d37.9877443!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd63aa36e866a987%3A0x6b864a6f7b9f362!2sAv.%20Diego%20Ram%C3%ADrez%20Pastor%2C%20142%2C%2003181%20Torrevieja%2C%20Alicante!5e0!3m2!1sfr!2ses!4v1700000000000!5m2!1sfr!2ses"
-                width="100%"
-                height="350"
-                style={{ border: 0 }}
-                allowFullScreen=""
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title="Ubicación de La Casa de Burger"
-              ></iframe>
-            ) : (
-              <div className="map-placeholder" onClick={() => setLoadMaps(true)} style={{ height: '350px', backgroundColor: '#111', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', border: '1px solid #222', borderRadius: '15px' }}>
-                <p style={{ color: GOLD_BRIGHT }}>
-                  {lang === 'es' ? 'Cargando ubicación...' :
-                   lang === 'en' ? 'Loading location...' :
-                   lang === 'fr' ? 'Chargement de l\'emplacement...' :
-                   'Cargando ubicación...'}
-                </p>
-              </div>
-            )}
+    {/* REVIEWS */}
+    <section style={{ padding: '20px 0 80px', minHeight: '400px' }}>
+      <h3 style={{ color: GOLD_BRIGHT, textTransform: 'uppercase', marginBottom: '30px', textAlign: 'center' }}>
+        {T[lang]?.reviewsTitle || T.es.reviewsTitle}
+      </h3>
+      <div className="grid-reviews" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px' }}>
+        {randomReviews.map((rev, index) => (
+          <div key={index} className="testimonial-card" style={{ padding: '20px', backgroundColor: '#111', borderRadius: '15px', border: '1px solid #222' }}>
+            <div style={{ color: GOLD_BRIGHT, marginBottom: '10px' }}>⭐⭐⭐⭐⭐</div>
+            <p style={{ fontStyle: 'italic', color: '#eee' }}>"{rev[lang] || rev.es}"</p>
+            <p style={{ fontWeight: 'bold', marginTop: '10px', color: '#ff4757' }}>— {rev.author}</p>
           </div>
-
-          {/* BLOC YOUTUBE AVEC TON IMAGE SIGNATURE */}
-  <div
-    onClick={() => setLoadMedia(true)}
-    style={{
-      width: '90%', maxWidth: '800px', height: '400px', backgroundColor: '#050505',
-      borderRadius: '15px', overflow: 'hidden', border: `3px solid ${GOLD_BRIGHT || '#BF953F'}`,
-      margin: '30px auto', cursor: loadMedia ? 'default' : 'pointer', position: 'relative',
-      display: 'flex', alignItems: 'center', justifyContent: 'center',
-      boxShadow: '0 10px 30px rgba(0,0,0,0.5)', transition: 'transform 0.3s ease'
-    }}
-  >
-    {loadMedia === true ? (
-      <iframe
-        width="100%" height="100%"
-        src="https://www.youtube-nocookie.com/embed/qN6VZYBojLs?autoplay=1&mute=0"
-        title="Video de presentación"
-        frameBorder="0"
-        allow="autoplay; encrypted-media; picture-in-picture"
-        allowFullScreen
-      ></iframe>
-    ) : (
-      <div style={{
-        width: '100%', height: '100%', display: 'flex', flexDirection: 'column',
-        justifyContent: 'center', alignItems: 'center',
-        /* On utilise ton image spécifique ici */
-        backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/burger-signature-torrevieja2.webp')`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat'
-      }}>
-        <div style={{
-          fontSize: '4.5rem',
-          color: GOLD_BRIGHT || '#BF953F',
-          marginBottom: '10px',
-          filter: 'drop-shadow(0 0 15px rgba(0,0,0,0.8))',
-          lineHeight: 1
-        }}>▶</div>
-        <p style={{
-          fontSize: '1.1rem',
-          color: GOLD_BRIGHT || '#BF953F',
-          letterSpacing: '3px',
-          textTransform: 'uppercase',
-          fontWeight: '900',
-          margin: 0,
-          textAlign: 'center',
-          padding: '0 20px',
-          textShadow: '2px 2px 10px rgba(0,0,0,1)'
-        }}>
-          {lang === 'es' ? 'Ver video gourmet' : lang === 'fr' ? 'Voir la vidéo gourmet' : 'Watch gourmet video'}
-        </p>
+        ))}
       </div>
-    )}
-  </div>
+    </section>
 
-          {/* RÉSEAUX SOCIAUX & REVIEWS */}
-          <div style={{ display: 'flex', justifyContent: 'center', gap: '25px', flexWrap: 'wrap', marginBottom: '20px', marginTop: '20px', alignItems: 'center' }}>
-            <a href="https://www.facebook.com/profile.php?id=100094610793536" target="_blank" rel="noreferrer">
-              <img src={fb} width="45" height="45" alt="Facebook" loading="lazy" decoding="async" />
-            </a>
-            <a href="https://www.instagram.com/lacasadeburger.es/" target="_blank" rel="noreferrer">
-              <img src={instagramIcon} width="45" height="45" alt="Instagram" loading="lazy" decoding="async" />
-            </a>
-            <a href="https://www.google.com/search?q=la+casa+de+burger+torrevieja" target="_blank" rel="noreferrer">
-  <img
-    src={googleIcon}
-    width="118"
-    height="66"
-    alt="Google Reviews"
-    loading="lazy"
-    decoding="async"
-    style={{
-      objectFit: 'contain',
-      width: '118px',
-      height: '66px', // On fixe la taille exacte
-      aspectRatio: '118 / 66',
-      imageRendering: 'auto'
-    }}
-  />
-</a>
-<a href="https://www.tripadvisor.es/Restaurant_Review-g187527-d26835169-Reviews-La_Casa_De_Burger-Torrevieja" target="_blank" rel="noreferrer">
-<img
-src={tripadvisor}
-width="169"  // La dimension RÉELLE de ton nouveau fichier
-height="127" // La dimension RÉELLE de ton nouveau fichier
-alt="Tripadvisor"
-loading="lazy"
-decoding="async"
-style={{
-objectFit: 'contain',
-width: '110px', // On l'affiche un peu plus petit pour le design
-height: 'auto',
-aspectRatio: '169 / 127' // Indispensable pour éviter le CLS
-}}
-/>
-</a>
+    {/* --- SECTION MAPS, VIDEO & SOCIALS --- */}
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '40px', alignItems: 'center', margin: '40px auto' }}>
+
+      {/* BLOC MAPS OPTIMISÉ */}
+      <div className="map-container" style={{ width: '100%', maxWidth: '1100px', borderRadius: '15px', overflow: 'hidden', minHeight: '350px' }}>
+        {loadMaps ? (
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3143.543213567123!2d-0.6853244!3d37.9877443!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd63aa36e866a987%3A0x6b864a6f7b9f362!2sAv.%20Diego%20Ram%C3%ADrez%20Pastor%2C%20142%2C%2003181%20Torrevieja%2C%20Alicante!5e0!3m2!1sfr!2ses!4v1700000000000!5m2!1sfr!2ses"
+            width="100%"
+            height="350"
+            style={{ border: 0 }}
+            allowFullScreen=""
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            title="Ubicación de La Casa de Burger"
+          ></iframe>
+        ) : (
+          <div className="map-placeholder" onClick={() => setLoadMaps(true)} style={{ height: '350px', backgroundColor: '#111', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', border: '1px solid #222', borderRadius: '15px' }}>
+            <p style={{ color: GOLD_BRIGHT }}>
+              {lang === 'es' ? 'Cargando ubicación...' :
+               lang === 'en' ? 'Loading location...' :
+               lang === 'fr' ? 'Chargement de l\'emplacement...' :
+               'Cargando ubicación...'}
+            </p>
           </div>
-        </div>
-        </Suspense>
-      </main>
+        )}
+      </div>
+
+      {/* BLOC YOUTUBE AVEC TON IMAGE SIGNATURE */}
+      <div
+        onClick={() => setLoadMedia(true)}
+        style={{
+          width: '90%', maxWidth: '800px', height: '400px', backgroundColor: '#050505',
+          borderRadius: '15px', overflow: 'hidden', border: `3px solid ${GOLD_BRIGHT || '#BF953F'}`,
+          margin: '30px auto', cursor: loadMedia ? 'default' : 'pointer', position: 'relative',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          boxShadow: '0 10px 30px rgba(0,0,0,0.5)', transition: 'transform 0.3s ease'
+        }}
+      >
+        {loadMedia === true ? (
+          <iframe
+            width="100%" height="100%"
+            src="https://www.youtube-nocookie.com/embed/qN6VZYBojLs?autoplay=1&mute=0"
+            title="Video de presentación"
+            frameBorder="0"
+            allow="autoplay; encrypted-media; picture-in-picture"
+            allowFullScreen
+          ></iframe>
+        ) : (
+          <div style={{
+            width: '100%', height: '100%', display: 'flex', flexDirection: 'column',
+            justifyContent: 'center', alignItems: 'center',
+            backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/burger-signature-torrevieja2.webp')`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat'
+          }}>
+            <div style={{
+              fontSize: '4.5rem',
+              color: GOLD_BRIGHT || '#BF953F',
+              marginBottom: '10px',
+              filter: 'drop-shadow(0 0 15px rgba(0,0,0,0.8))',
+              lineHeight: 1
+            }}>▶</div>
+            <p style={{
+              fontSize: '1.1rem',
+              color: GOLD_BRIGHT || '#BF953F',
+              letterSpacing: '3px',
+              textTransform: 'uppercase',
+              fontWeight: '900',
+              margin: 0,
+              textAlign: 'center',
+              padding: '0 20px',
+              textShadow: '2px 2px 10px rgba(0,0,0,1)'
+            }}>
+              {lang === 'es' ? 'Ver video gourmet' : lang === 'fr' ? 'Voir la vidéo gourmet' : 'Watch gourmet video'}
+            </p>
+          </div>
+        )}
+      </div>
+
+      {/* RÉSEAUX SOCIAUX & REVIEWS */}
+      <div style={{ display: 'flex', justifyContent: 'center', gap: '25px', flexWrap: 'wrap', marginBottom: '20px', marginTop: '20px', alignItems: 'center' }}>
+        <a href="https://www.facebook.com/profile.php?id=100094610793536" target="_blank" rel="noreferrer">
+          <img src={fb} width="45" height="45" alt="Facebook" loading="lazy" decoding="async" />
+        </a>
+        <a href="https://www.instagram.com/lacasadeburger.es/" target="_blank" rel="noreferrer">
+          <img src={instagramIcon} width="45" height="45" alt="Instagram" loading="lazy" decoding="async" />
+        </a>
+        <a href="https://www.google.com/search?q=la+casa+de+burger+torrevieja" target="_blank" rel="noreferrer">
+          <img
+            src={googleIcon}
+            width="118"
+            height="66"
+            alt="Google Reviews"
+            loading="lazy"
+            decoding="async"
+            style={{
+              objectFit: 'contain',
+              width: '118px',
+              height: '66px',
+              aspectRatio: '118 / 66',
+              imageRendering: 'auto'
+            }}
+          />
+        </a>
+        <a href="https://www.tripadvisor.es/Restaurant_Review-g187527-d26835169-Reviews-La_Casa_De_Burger-Torrevieja" target="_blank" rel="noreferrer">
+          <img
+            src={tripadvisor}
+            width="169"
+            height="127"
+            alt="Tripadvisor"
+            loading="lazy"
+            decoding="async"
+            style={{
+              objectFit: 'contain',
+              width: '110px',
+              height: 'auto',
+              aspectRatio: '169 / 127'
+            }}
+          />
+        </a>
+      </div>
+    </div>
+  </Suspense>
+</main>
       {/* --- BLOC SEO MULTILINGUE (OPTIMISÉ POUR LA VITESSE) --- */}
         <div style={{
           maxWidth: '1100px',
