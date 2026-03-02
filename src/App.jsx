@@ -523,55 +523,63 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
     height: 100%;
     object-fit: cover;
   }
-
-  /* --- 4. DIMENSIONS PROMO 600x336 (VERROUILLÉES) --- */
-  .promo-container {
-    position: relative !important;
-    width: 100%;
-    max-width: 600px;
-    height: 336px !important;
-    margin: 15px auto;
-    border-radius: 20px;
-    overflow: hidden;
-    cursor: pointer;
-    z-index: 5;
-    background: #111;
-  }
-
-  .promo-img {
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: cover !important;
-    display: block;
-    transition: transform 0.5s ease;
-  }
-
-  .promo-container:hover .promo-img { transform: scale(1.05); }
-
-  /* --- 5. ANIMATIONS --- */
-  @keyframes gold-liquid { 0%, 100% { filter: brightness(1); } 50% { filter: brightness(1.15); } }
-  @keyframes wobble-inverse { 0%, 100% { transform: rotate(-4deg); } 50% { transform: rotate(4deg); } }
-  @keyframes float-logo { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-10px) rotate(2deg); } }
-  @keyframes shimmer-gold-clean {
-    0% { transform: translateX(-100%) skewX(-25deg); opacity: 0; }
-    5% { opacity: 1; }
-    25% { transform: translateX(250%) skewX(-25deg); opacity: 1; }
-    100% { transform: translateX(250%) skewX(-25deg); opacity: 0; }
-  }
-
-  /* --- 6. RESPONSIVE --- */
-  @media (max-width: 768px) {
-    header h1 { font-size: 2.2rem !important; padding-top: 35px; }
-    .promo-container { height: 200px !important; }
-    .wobble-badge-container { top: 175px !important; right: 10px; }
-    .logo-container-wrapper { top: 165px !important; left: 10px; }
-    .moving-header-logo { width: 90px !important; }
-    .category-btn-overlay {
-      bottom: 15px; right: 15px;
-      font-size: 0.9rem; padding: 10px 20px !important;
-      min-width: 150px;
+  /* --- 4. DIMENSIONS PROMO (STABILISÉES ANTI-CLS) --- */
+    .promo-container {
+      position: relative !important;
+      width: 100%;
+      max-width: 600px;
+      /* Ratio 600/336 = 1.785. Réserve l'espace exact avant chargement */
+      aspect-ratio: 600 / 336 !important;
+      height: auto !important;
+      margin: 15px auto;
+      border-radius: 20px;
+      overflow: hidden;
+      cursor: pointer;
+      z-index: 5;
+      background: #111;
     }
-  }
+
+    .promo-img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .promo-container:hover .promo-img { transform: scale(1.05); }
+
+    /* --- 5. ANIMATIONS --- */
+    @keyframes gold-liquid { 0%, 100% { filter: brightness(1); } 50% { filter: brightness(1.15); } }
+    @keyframes wobble-inverse { 0%, 100% { transform: rotate(-4deg); } 50% { transform: rotate(4deg); } }
+    @keyframes float-logo { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-10px) rotate(2deg); } }
+    @keyframes shimmer-gold-clean {
+      0% { transform: translateX(-100%) skewX(-25deg); opacity: 0; }
+      5% { opacity: 1; }
+      25% { transform: translateX(250%) skewX(-25deg); opacity: 1; }
+      100% { transform: translateX(250%) skewX(-25deg); opacity: 0; }
+    }
+
+    /* --- 6. RESPONSIVE (OPTIMISÉ INSIGHTS) --- */
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2.2rem !important;
+        padding-top: 35px;
+        min-height: 100px; /* Stabilise la zone du titre */
+      }
+
+      /* On ne force plus la hauteur fixe de 200px, l'aspect-ratio gère tout proprement */
+      .promo-container { margin: 10px auto; }
+
+      .wobble-badge-container { top: 175px !important; right: 10px; }
+      .logo-container-wrapper { top: 165px !important; left: 10px; }
+      .moving-header-logo { width: 90px !important; }
+      .category-btn-overlay {
+        bottom: 15px; right: 15px;
+        font-size: 0.9rem; padding: 10px 20px !important;
+        min-width: 150px;
+      }
+    }
 `}</style>
 <Helmet>
   {/* SEO Dynamique selon la langue sélectionnée */}
@@ -693,40 +701,51 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
         {T[lang]?.heroSubtitle || T.es.heroSubtitle}
     </h2>
 
-    {/* 3. BOUTONS D'ACTION - STABILISÉS POUR LE CLS */}
+    {/* 3. BOUTONS D'ACTION - SCORE CLS OPTIMISÉ À 0 */}
         <div style={{
-          marginTop: '40px',
+          paddingTop: '40px',        // Remplacé marginTop par paddingTop
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
           gap: '20px',
-          minHeight: '220px'
+          minHeight: '250px',        // Augmenté pour sécuriser l'espace total
+          width: '100%',
+          boxSizing: 'border-box',   // Important pour le calcul du padding
+          contain: 'layout'          // Verrouille le bloc pour le SEO
         }}>
 
-        <button
-    onClick={(e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      setShowCardBurger(true);
-      const forceScroll = (retryCount) => {
-        const el = document.getElementById("sec-burgers");
-        if (el) {
-          const targetScroll = el.getBoundingClientRect().top + window.pageYOffset - 120;
-          window.scrollTo({
-            top: targetScroll,
-            behavior: 'smooth'
-          });
-        } else if (retryCount > 0) {
-          setTimeout(() => forceScroll(retryCount - 1), 50);
-        }
-      };
-      setTimeout(() => forceScroll(10), 150);
-    }}
-    className="gold-button-premium"
-    style={{ width: '90%', maxWidth: '400px', fontSize: '1.3rem', height: '65px' }}
-  >
-    🚀 {T[lang]?.btnOrder || T.es.btnOrder}
-  </button>
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              setShowCardBurger(true);
+              const forceScroll = (retryCount) => {
+                const el = document.getElementById("sec-burgers");
+                if (el) {
+                  const targetScroll = el.getBoundingClientRect().top + window.pageYOffset - 120;
+                  window.scrollTo({
+                    top: targetScroll,
+                    behavior: 'smooth'
+                  });
+                } else if (retryCount > 0) {
+                  setTimeout(() => forceScroll(retryCount - 1), 50);
+                }
+              };
+              setTimeout(() => forceScroll(10), 150);
+            }}
+            className="gold-button-premium"
+            style={{
+              width: '90%',
+              maxWidth: '400px',
+              fontSize: '1.3rem',
+              height: '65px',
+              display: 'flex',          // Ajouté pour centrer le texte
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}
+          >
+            🚀 {T[lang]?.btnOrder || T.es.btnOrder}
+          </button>
           <button
             onClick={() => window.open("https://app.tableo.com/widget/la-casa-de-burger", "_blank")}
             className="gold-button-premium"
