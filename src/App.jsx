@@ -18,6 +18,7 @@ const SectionTitle = ({ children, id }) => (
     <h2 style={{ textTransform: 'uppercase', letterSpacing: '2px', fontSize: '1.8rem', color: '#FFD700' }}>{children}</h2>
   </header>
 );
+
 export default function App() {
   const [cart, setCart] = useState([]);
   const [showCardPostres, setShowCardPostres] = useState(false);
@@ -26,7 +27,8 @@ export default function App() {
   const [lang, setLang] = useState('es');
   const [view, setView] = useState('categories'); // 'categories', 'combos', 'burgers', 'sides'
   const [loadMedia, setLoadMedia] = useState(false); // Pour YouTube (Manuel)
-const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-différé)
+  const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-différé)
+
 // --- 2. GESTION DE LA LANGUE + MAPS + EFFET BACKGROUND ---
   useEffect(() => {
     // A. Logique de disparition de l'image (Performance GPU)
@@ -45,16 +47,18 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
 
-    // B. Gestion Langue
-    const params = new URLSearchParams(window.location.search);
-    const urlLang = params.get('lang');
-    if (urlLang && T[urlLang]) {
-      setLang(urlLang);
-    } else {
-      const browserLang = navigator.language || navigator.userLanguage;
-      const code = browserLang.substring(0, 2).toLowerCase();
-      setLang(T[code] ? code : 'es');
-    }
+    // B. Gestion Langue (Optimisée : différée de 50ms pour libérer le thread principal au démarrage)
+    const timeoutLang = setTimeout(() => {
+      const params = new URLSearchParams(window.location.search);
+      const urlLang = params.get('lang');
+      if (urlLang && T[urlLang]) {
+        setLang(urlLang);
+      } else {
+        const browserLang = navigator.language || navigator.userLanguage;
+        const code = browserLang.substring(0, 2).toLowerCase();
+        setLang(T[code] ? code : 'es');
+      }
+    }, 50);
 
     // C. Chargement Carte au Scroll
     const observer = new IntersectionObserver(
@@ -75,6 +79,7 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
     // Nettoyage complet
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      clearTimeout(timeoutLang);
       observer.disconnect();
     };
   }, []);
@@ -88,9 +93,15 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
     }, 0).toFixed(2);
   }, [cart]);
 
-  // --- LOGIC: MÉLANGE DES AVIS (CONSERVÉ) ---
+  // --- LOGIC: MÉLANGE DES AVIS (Optimisé : Algorithme Fisher-Yates pour stabilité CPU) ---
   const randomReviews = useMemo(() => {
-    return [...ALL_REVIEWS].sort(() => 0.5 - Math.random()).slice(0, 2);
+    if (!ALL_REVIEWS || ALL_REVIEWS.length === 0) return [];
+    const shuffled = [...ALL_REVIEWS];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled.slice(0, 2);
   }, []);
 
   const noExtrasIds = ["prod_nuggets", "prod_croquetas", "prod_fritas", "prod_bravas", "prod_cheddar-bacon"];
@@ -143,7 +154,6 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
   const GOLD_BRIGHT = "#FFD700";
   const GOLD_GRADIENT = "linear-gradient(135deg, #BF953F 0%, #FCF6BA 45%, #B38728 55%, #FBF5B7 100%)";
   const GOLD_SHADOW = "0 4px 15px rgba(255, 215, 0, 0.3)";
-
   return (
     <div className="app-main-wrapper" style={{
       position: 'relative',
