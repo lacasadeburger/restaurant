@@ -693,43 +693,53 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
         {T[lang]?.heroSubtitle || T.es.heroSubtitle}
     </h2>
 
-    {/* 3. BOUTONS D'ACTION */}
-    <div style={{ marginTop: '40px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '20px' }}>
-
-      <button
-        onClick={() => {
-          setShowCardBurger(true);
-          setTimeout(() => {
-            const el = document.getElementById("sec-burgers");
-            if (el) window.scrollTo({ top: el.offsetTop - 120, behavior: 'smooth' });
-          }, 100);
-        }}
-        className="gold-button-premium"
-        style={{ width: '90%', maxWidth: '400px', fontSize: '1.3rem', height: '65px' }}
-      >
-        🚀 {T[lang]?.btnOrder || T.es.btnOrder}
-      </button>
-
-      <button
-        onClick={() => window.open("https://app.tableo.com/widget/la-casa-de-burger", "_blank")}
-        className="gold-button-premium"
-        style={{ width: '80%', maxWidth: '350px', fontSize: '1rem', height: '50px' }}
-      >
-        📅 RESERVAR MESA
-      </button>
-
-      <a href="tel:+34602597210" className="gold-button-premium" style={{
-          width: '70%',
-          maxWidth: '300px',
-          height: '45px',
-          fontSize: '0.9rem',
-          background: '#fff !important', // Blanc pur pour détacher
-          color: '#000 !important',
-          textDecoration: 'none'
+    {/* 3. BOUTONS D'ACTION - STABILISÉS POUR LE CLS */}
+        <div style={{
+          marginTop: '40px',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          gap: '20px',
+          minHeight: '220px'
         }}>
-          📞 {T[lang]?.btnCall || T.es.btnCall}
-      </a>
-    </div>
+
+          <button
+            onClick={() => {
+              setShowCardBurger(true);
+              setTimeout(() => {
+                const el = document.getElementById("sec-burgers");
+                if (el) window.scrollTo({ top: el.offsetTop - 120, behavior: 'smooth' });
+              }, 100);
+            }}
+            className="gold-button-premium"
+            style={{ width: '90%', maxWidth: '400px', fontSize: '1.3rem', height: '65px' }}
+          >
+            🚀 {T[lang]?.btnOrder || T.es.btnOrder}
+          </button>
+
+          <button
+            onClick={() => window.open("https://app.tableo.com/widget/la-casa-de-burger", "_blank")}
+            className="gold-button-premium"
+            style={{ width: '80%', maxWidth: '350px', fontSize: '1rem', height: '50px' }}
+          >
+            📅 RESERVAR MESA
+          </button>
+
+          <a href="tel:+34602597210" className="gold-button-premium" style={{
+              width: '70%',
+              maxWidth: '300px',
+              height: '45px',
+              fontSize: '0.9rem',
+              background: '#fff',
+              color: '#000',
+              textDecoration: 'none',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}>
+              📞 {T[lang]?.btnCall || T.es.btnCall}
+          </a>
+        </div>
   </div>
 </header>
 <main className="menu-page-container" style={{ minHeight: '100vh' }}>
