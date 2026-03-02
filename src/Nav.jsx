@@ -4,14 +4,24 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang, setLa
   const now = new Date();
   const day = now.getDay();
   const currentHour = now.getHours() + now.getMinutes() / 60;
+  // Ouvert de 13h à 23h, sauf le dimanche (day 0)
   const isOpen = (currentHour >= 13 && currentHour < 23) && (day !== 0);
   const statusColor = isOpen ? '#2ed573' : '#ff4757';
 
+  // --- TOUTES TES LANGUES INTÉGRÉES ---
   const promoTexts = {
     es: "AHORRE HASTA UN 20% A VISITARNOS",
-    fr: "ÉCONOMISEZ JUSQU'À 20% EN NOUS VISITANT",
     en: "SAVE UP TO 20% BY VISITING US",
-    // ... tes autres traductions sont conservées
+    fr: "ÉCONOMISEZ JUSQU'À 20% EN NOUS VISITANT",
+    de: "SPAREN SIE BIS ZU 20% BEI IHREM BESUCH",
+    nl: "BESPAAR TOT 20% DOOR ONS TE BEZOEKEN",
+    no: "SPAR OPPTIL 20 % VED Å BESØKE OSS",
+    sv: "SPARA UPP TILL 20 % GENOM ATT BESÖKA OSS",
+    pl: "ZAOSZCZĘDŹ DO 20% ODWIEDZAJĄC NAS",
+    uk: "ЗЕКОНОМТЕ ДО 20% ПРИ ВІЗИТІ ДО НАС",
+    ru: "СЭКОНОМЬТЕ ДО 20% ПРИ ПОСЕЩЕНИИ НАС",
+    ro: "ECONOMISIȚI PÂNĂ LA 20% VIZITÂNDU-NE",
+    ar: "وفر حتى 20% عند زيارتنا"
   };
 
   const languages = [
@@ -32,7 +42,7 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang, setLa
       boxShadow: '0 4px 20px rgba(0,0,0,0.5)'
     }}>
 
-      {/* NIVEAU 1 : CONTACT & PANIER (Hauteur réduite à 70px pour gagner de l'air) */}
+      {/* NIVEAU 1 : CONTACT & PANIER */}
       <div style={{
         height: '70px',
         display: 'flex',
@@ -61,60 +71,27 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang, setLa
         </div>
       </div>
 
-      {/* NIVEAU 2 : DRAPEAUX (Hauteur 45px - Calage parfait) */}
-        <div style={{
-          height: '45px',
-          display: 'flex',
-          alignItems: 'center',
-          gap: '12px',
-          padding: '0 15px',
-          overflowX: 'auto',
-          backgroundColor: '#0a0a0a',
-          borderBottom: '1px solid #333',
-          WebkitOverflowScrolling: 'touch',
-          scrollbarWidth: 'none', // Cache la barre de scroll sur Firefox
-          msOverflowStyle: 'none'   // Cache la barre de scroll sur IE/Edge
-        }}>
-          {/* Style pour cacher la barre de scroll sur Chrome/Safari */}
-          <style>{`
-            div::-webkit-scrollbar { display: none; }
-          `}</style>
+      {/* NIVEAU 2 : DRAPEAUX (CORRIGÉ POUR INSIGHTS) */}
+      <div className="language-switcher-container">
+        {languages.map((l) => (
+          <button
+            key={l.code}
+            onClick={() => setLang(l.code)}
+            className={`flag-btn ${lang === l.code ? 'active' : ''}`}
+            aria-label={l.code}
+          >
+            <img
+              src={`/flags/${l.flag}.webp`}
+              width="32"
+              height="22"
+              alt={l.code}
+              className="flag-img"
+            />
+          </button>
+        ))}
+      </div>
 
-          {languages.map((l) => (
-            <button
-              key={l.code}
-              onClick={() => setLang(l.code)}
-              style={{
-                flexShrink: 0,
-                padding: '0', // On enlève le padding pour un contrôle total
-                backgroundColor: 'transparent',
-                border: lang === l.code ? '2px solid #BF953F' : '1px solid #444',
-                borderRadius: '4px',
-                opacity: lang === l.code ? 1 : 0.5,
-                transition: '0.3s',
-                overflow: 'hidden', // Pour que l'image respecte l'arrondi
-                width: '32px',      // Largeur fixe forcée
-                height: '22px'      // Hauteur fixe forcée
-              }}
-            >
-              <img
-                src={`/flags/${l.flag}.webp`}
-                width="32"
-                height="22"
-                alt={l.code}
-                style={{
-                  display: 'block',
-                  width: '100%',
-                  height: '100%',
-                  objectFit: 'cover', // Empêche la déformation (coupe l'excès)
-                  borderRadius: '2px'
-                }}
-              />
-            </button>
-          ))}
-        </div>
-
-      {/* NIVEAU 3 : BANDEAU PROMO (Hauteur 35px - Or Premium) */}
+      {/* NIVEAU 3 : BANDEAU PROMO */}
       <div style={{
         height: '35px',
         background: 'linear-gradient(90deg, #000, #1a1a1a, #000)',
@@ -129,7 +106,7 @@ export default function Nav({ scrollToOrder, cartLength, totalPrice, lang, setLa
       }}>
         <span style={{ color: '#FFD700', marginRight: '8px' }}>★</span>
         <span style={{ textTransform: 'uppercase', letterSpacing: '1px' }}>
-          {promoTexts[lang] || promoTexts.en}
+          {promoTexts[lang] || promoTexts.es}
         </span>
         <span style={{ color: '#FFD700', marginLeft: '8px' }}>★</span>
       </div>
