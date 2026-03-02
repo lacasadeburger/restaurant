@@ -703,20 +703,29 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
           minHeight: '220px'
         }}>
 
-          <button
-            onClick={() => {
-              setShowCardBurger(true);
-              setTimeout(() => {
-                const el = document.getElementById("sec-burgers");
-                if (el) window.scrollTo({ top: el.offsetTop - 120, behavior: 'smooth' });
-              }, 100);
-            }}
-            className="gold-button-premium"
-            style={{ width: '90%', maxWidth: '400px', fontSize: '1.3rem', height: '65px' }}
-          >
-            🚀 {T[lang]?.btnOrder || T.es.btnOrder}
-          </button>
-
+        <button
+    onClick={() => {
+      setShowCardBurger(true);
+      const forceScroll = (retryCount) => {
+        const el = document.getElementById("sec-burgers");
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          const targetScroll = rect.top + window.pageYOffset - 120;
+          window.scrollTo({
+            top: targetScroll,
+            behavior: 'smooth'
+          });
+        } else if (retryCount > 0) {
+          setTimeout(() => forceScroll(retryCount - 1), 50);
+        }
+      };
+      setTimeout(() => forceScroll(10), 100);
+    }}
+    className="gold-button-premium"
+    style={{ width: '90%', maxWidth: '400px', fontSize: '1.3rem', height: '65px' }}
+  >
+    🚀 {T[lang]?.btnOrder || T.es.btnOrder}
+  </button>
           <button
             onClick={() => window.open("https://app.tableo.com/widget/la-casa-de-burger", "_blank")}
             className="gold-button-premium"
