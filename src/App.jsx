@@ -146,7 +146,6 @@ export default function App() {
       setTimeout(() => scrollToId("order"), 100);
     }
   };
-
   const burgers = useMemo(() => data.filter(i => i.category === "food"), [data]);
   const drinks = useMemo(() => data.filter(i => i.category === "drink"), [data]);
   const postres = useMemo(() => data.filter(i => i.category === "postre"), [data]);
