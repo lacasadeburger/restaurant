@@ -379,8 +379,7 @@ const data = [
     },
     precio: "€8.50",
     category: "food"
-  }
-];
+  },
   {
     id: "prod_cocacola",
     image: cocaCola,
