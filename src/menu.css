@@ -85,6 +85,20 @@ nav {
   box-shadow: 0 4px 15px rgba(191,149,63,0.5) !important;
   animation: gold-liquid 6s ease infinite !important;
   border: 1px solid rgba(255,255,255,0.2) !important;
+  /* AJOUT LARGEUR TOTALE */
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* ÉTAT AJOUTÉ (VERT) */
+.gold-button-premium.is-added {
+  background: #2ecc71 !important;
+  animation: none !important;
+  color: #fff !important;
+}
+
+.gold-button-premium.is-added::after {
+  display: none !important;
 }
 
 /* SEUL LE BADGE reçoit l'oscillation */
@@ -95,6 +109,7 @@ nav {
   display: inline-block;
   white-space: nowrap;
   animation: gold-liquid 6s ease infinite, wobble-inverse 5s infinite ease-in-out !important;
+  width: auto !important; /* Le badge ne doit pas faire 100% */
 }
 
 /* Effet Shimmer (Reflet blanc luxueux) */
