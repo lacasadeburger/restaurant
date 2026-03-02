@@ -704,13 +704,14 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
         }}>
 
         <button
-    onClick={() => {
+    onClick={(e) => {
+      e.preventDefault();
+      e.stopPropagation();
       setShowCardBurger(true);
       const forceScroll = (retryCount) => {
         const el = document.getElementById("sec-burgers");
         if (el) {
-          const rect = el.getBoundingClientRect();
-          const targetScroll = rect.top + window.pageYOffset - 120;
+          const targetScroll = el.getBoundingClientRect().top + window.pageYOffset - 120;
           window.scrollTo({
             top: targetScroll,
             behavior: 'smooth'
@@ -719,7 +720,7 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
           setTimeout(() => forceScroll(retryCount - 1), 50);
         }
       };
-      setTimeout(() => forceScroll(10), 100);
+      setTimeout(() => forceScroll(10), 150);
     }}
     className="gold-button-premium"
     style={{ width: '90%', maxWidth: '400px', fontSize: '1.3rem', height: '65px' }}
