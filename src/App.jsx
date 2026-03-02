@@ -455,6 +455,9 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
     transform: skewX(-25deg);
     pointer-events: none;
     animation: shimmer-gold-clean 3s infinite;
+    content-visibility: auto;
+    contain-intrinsic-size: 100% 65px;
+    box-sizing: border-box !important;
   }
 
   /* --- 3. STRUCTURES FIXES & DRAPEAUX (ANTI-CLS & INSIGHTS) --- */
@@ -703,76 +706,55 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
         {T[lang]?.heroSubtitle || T.es.heroSubtitle}
     </h2>
 
-    {/* 3. BOUTONS D'ACTION - SCORE CLS OPTIMISÉ À 0 */}
-        <div style={{
-          paddingTop: '40px',        // Remplacé marginTop par paddingTop
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          gap: '20px',
-          height: '260px',
-          minHeight: '260px',        // Augmenté pour sécuriser l'espace total
-          width: '100%',
-          boxSizing: 'border-box',   // Important pour le calcul du padding
-          contain: 'strict',
-          overflow: 'hidden'
+    {/* 3. BLOC ACTIONS - ZERO CLS (VERROUILLÉ) */}
+  <div style={{
+    paddingTop: '40px',
+    display: 'grid',              // Grid est plus rigide que Flex
+    gridTemplateRows: '65px 50px 45px', // On définit la hauteur exacte de chaque ligne
+    justifyItems: 'center',       // Centre horizontalement
+    alignContent: 'start',        // Aligne au sommet
+    gap: '20px',
+    height: '280px',              // Hauteur fixe totale (boutons + gaps + padding)
+    minHeight: '280px',
+    width: '100%',
+    boxSizing: 'border-box',
+    contain: 'strict',            // Bloque tout recalcul du navigateur
+    overflow: 'hidden'
+  }}>
+
+    <button
+      onClick={(e) => {
+        e.preventDefault(); e.stopPropagation();
+        setShowCardBurger(true);
+        const forceScroll = (r) => {
+          const el = document.getElementById("sec-burgers");
+          if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.pageYOffset - 120, behavior: 'smooth' });
+          else if (r > 0) setTimeout(() => forceScroll(r - 1), 50);
+        };
+        setTimeout(() => forceScroll(10), 150);
+      }}
+      className="gold-button-premium"
+      style={{ width: '90%', maxWidth: '400px', fontSize: '1.3rem', height: '65px', margin: 0 }}
+    >
+      🚀 {T[lang]?.btnOrder || T.es.btnOrder}
+    </button>
+
+    <button
+      onClick={() => window.open("https://app.tableo.com/widget/la-casa-de-burger", "_blank")}
+      className="gold-button-premium"
+      style={{ width: '80%', maxWidth: '350px', fontSize: '1rem', height: '50px', margin: 0 }}
+    >
+      📅 RESERVAR MESA
+    </button>
+
+    <a href="tel:+34602597210" className="gold-button-premium" style={{
+        width: '70%', maxWidth: '300px', height: '45px', fontSize: '0.9rem',
+        background: '#fff', color: '#000', textDecoration: 'none', margin: 0,
+        display: 'flex', alignItems: 'center', justifyContent: 'center'
       }}>
-
-          <button
-            onClick={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              setShowCardBurger(true);
-              const forceScroll = (retryCount) => {
-                const el = document.getElementById("sec-burgers");
-                if (el) {
-                  const targetScroll = el.getBoundingClientRect().top + window.pageYOffset - 120;
-                  window.scrollTo({
-                    top: targetScroll,
-                    behavior: 'smooth'
-                  });
-                } else if (retryCount > 0) {
-                  setTimeout(() => forceScroll(retryCount - 1), 50);
-                }
-              };
-              setTimeout(() => forceScroll(10), 150);
-            }}
-            className="gold-button-premium"
-            style={{
-              width: '90%',
-              maxWidth: '400px',
-              fontSize: '1.3rem',
-              height: '65px',
-              display: 'flex',          // Ajouté pour centrer le texte
-              alignItems: 'center',
-              justifyContent: 'center'
-            }}
-          >
-            🚀 {T[lang]?.btnOrder || T.es.btnOrder}
-          </button>
-          <button
-            onClick={() => window.open("https://app.tableo.com/widget/la-casa-de-burger", "_blank")}
-            className="gold-button-premium"
-            style={{ width: '80%', maxWidth: '350px', fontSize: '1rem', height: '50px' }}
-          >
-            📅 RESERVAR MESA
-          </button>
-
-          <a href="tel:+34602597210" className="gold-button-premium" style={{
-              width: '70%',
-              maxWidth: '300px',
-              height: '45px',
-              fontSize: '0.9rem',
-              background: '#fff',
-              color: '#000',
-              textDecoration: 'none',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center'
-            }}>
-              📞 {T[lang]?.btnCall || T.es.btnCall}
-          </a>
-        </div>
+        📞 {T[lang]?.btnCall || T.es.btnCall}
+    </a>
+  </div>
   </div>
 </header>
 <main className="menu-page-container" style={{ minHeight: '100vh' }}>
