@@ -388,6 +388,7 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
     text-shadow: 0px 4px 15px rgba(0,0,0,0.5);
     font-weight: 950 !important;
     display: inline-block;
+    line-height: 1.2 !important; /* STABILISATION CLS */
   }
 
   header h1 span:last-of-type {
@@ -399,6 +400,7 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
     margin-top: 8px;
     text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
     text-transform: uppercase;
+    line-height: 1.2 !important; /* STABILISATION CLS */
   }
 
   h3.home-subtitle, .card-menu h3, .product-price, .SectionTitle, #order h2 {
@@ -410,6 +412,7 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
     text-align: center !important;
     font-size: 1.2rem !important;
     filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4));
+    line-height: 1.4 !important; /* STABILISATION CLS */
   }
 
   /* --- 2. BOUTONS & CLIC UNIQUE --- */
@@ -429,6 +432,7 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
     transition: all 0.3s ease;
     z-index: 1;
     animation: gold-liquid 6s ease infinite !important;
+    box-sizing: border-box !important;
   }
 
   .category-btn-overlay {
@@ -483,7 +487,6 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
     box-shadow: 0 4px 15px rgba(0,0,0,0.4);
   }
 
-  /* Nouvelle section Drapeaux corrigée */
   .language-switcher-container {
     height: 45px !important;
     display: flex !important;
@@ -501,7 +504,7 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
     flex-shrink: 0;
     padding: 0 !important;
     background: transparent !important;
-    border: none !important; /* CORRECTION INSIGHTS */
+    border: none !important;
     cursor: pointer;
     width: 32px;
     height: 22px;
@@ -513,7 +516,7 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
 
   .flag-btn.active {
     opacity: 1 !important;
-    transform: scale(1.15) !important; /* Animation GPU */
+    transform: scale(1.15) !important;
     box-shadow: 0 0 8px rgba(191,149,63,0.8);
   }
 
@@ -523,63 +526,62 @@ const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-dif
     height: 100%;
     object-fit: cover;
   }
+
   /* --- 4. DIMENSIONS PROMO (STABILISÉES ANTI-CLS) --- */
-    .promo-container {
-      position: relative !important;
-      width: 100%;
-      max-width: 600px;
-      /* Ratio 600/336 = 1.785. Réserve l'espace exact avant chargement */
-      aspect-ratio: 600 / 336 !important;
-      height: auto !important;
-      margin: 15px auto;
-      border-radius: 20px;
-      overflow: hidden;
-      cursor: pointer;
-      z-index: 5;
-      background: #111;
+  .promo-container {
+    position: relative !important;
+    width: 100%;
+    max-width: 600px;
+    aspect-ratio: 600 / 336 !important;
+    height: auto !important;
+    margin: 15px auto;
+    border-radius: 20px;
+    overflow: hidden;
+    cursor: pointer;
+    z-index: 5;
+    background: #111;
+  }
+
+  .promo-img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    display: block;
+    transition: transform 0.5s ease;
+  }
+
+  /* --- 5. ANIMATIONS --- */
+  @keyframes gold-liquid { 0%, 100% { filter: brightness(1); } 50% { filter: brightness(1.15); } }
+  @keyframes wobble-inverse { 0%, 100% { transform: rotate(-4deg); } 50% { transform: rotate(4deg); } }
+  @keyframes float-logo { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-10px) rotate(2deg); } }
+  @keyframes shimmer-gold-clean {
+    0% { transform: translateX(-100%) skewX(-25deg); opacity: 0; }
+    5% { opacity: 1; }
+    25% { transform: translateX(250%) skewX(-25deg); opacity: 1; }
+    100% { transform: translateX(250%) skewX(-25deg); opacity: 0; }
+  }
+
+  /* --- 6. RESPONSIVE (OPTIMISÉ INSIGHTS) --- */
+  @media (max-width: 768px) {
+    header h1 {
+      font-size: 2.2rem !important;
+      padding-top: 35px;
+      min-height: 110px !important; /* VERROUILLAGE DE L'ESPACE TITRE */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
-    .promo-img {
-      width: 100% !important;
-      height: 100% !important;
-      object-fit: cover !important;
-      display: block;
-      transition: transform 0.5s ease;
+    .promo-container { margin: 10px auto; }
+    .wobble-badge-container { top: 175px !important; right: 10px; }
+    .logo-container-wrapper { top: 165px !important; left: 10px; }
+    .moving-header-logo { width: 90px !important; }
+    .category-btn-overlay {
+      bottom: 15px; right: 15px;
+      font-size: 0.9rem; padding: 10px 20px !important;
+      min-width: 150px;
     }
-
-    .promo-container:hover .promo-img { transform: scale(1.05); }
-
-    /* --- 5. ANIMATIONS --- */
-    @keyframes gold-liquid { 0%, 100% { filter: brightness(1); } 50% { filter: brightness(1.15); } }
-    @keyframes wobble-inverse { 0%, 100% { transform: rotate(-4deg); } 50% { transform: rotate(4deg); } }
-    @keyframes float-logo { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-10px) rotate(2deg); } }
-    @keyframes shimmer-gold-clean {
-      0% { transform: translateX(-100%) skewX(-25deg); opacity: 0; }
-      5% { opacity: 1; }
-      25% { transform: translateX(250%) skewX(-25deg); opacity: 1; }
-      100% { transform: translateX(250%) skewX(-25deg); opacity: 0; }
-    }
-
-    /* --- 6. RESPONSIVE (OPTIMISÉ INSIGHTS) --- */
-    @media (max-width: 768px) {
-      header h1 {
-        font-size: 2.2rem !important;
-        padding-top: 35px;
-        min-height: 100px; /* Stabilise la zone du titre */
-      }
-
-      /* On ne force plus la hauteur fixe de 200px, l'aspect-ratio gère tout proprement */
-      .promo-container { margin: 10px auto; }
-
-      .wobble-badge-container { top: 175px !important; right: 10px; }
-      .logo-container-wrapper { top: 165px !important; left: 10px; }
-      .moving-header-logo { width: 90px !important; }
-      .category-btn-overlay {
-        bottom: 15px; right: 15px;
-        font-size: 0.9rem; padding: 10px 20px !important;
-        min-width: 150px;
-      }
-    }
+  }
 `}</style>
 <Helmet>
   {/* SEO Dynamique selon la langue sélectionnée */}
