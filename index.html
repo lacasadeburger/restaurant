@@ -7,8 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
     <meta name="theme-color" content="#000000" />
     <link rel="canonical" href="https://lacasadeburger.es/" />
-
-    <title>La Casa de Burger | Mejores Hamburguesas Gourmet de Torrevieja</title>
+    <link rel="alternate" hreflang="es" href="https://lacasadeburger.es/" />
+    <link rel="alternate" hreflang="en" href="https://lacasadeburger.es/?lang=en" />
+    <link rel="alternate" hreflang="fr" href="https://lacasadeburger.es/?lang=fr" />
+    <link rel="alternate" hreflang="de" href="https://lacasadeburger.es/?lang=de" />
+    <link rel="alternate" hreflang="sv" href="https://lacasadeburger.es/?lang=sv" />
+    <link rel="alternate" hreflang="nl" href="https://lacasadeburger.es/?lang=nl" />
+    <link rel="alternate" hreflang="no" href="https://lacasadeburger.es/?lang=no" />
+    <link rel="alternate" hreflang="pl" href="https://lacasadeburger.es/?lang=pl" />
+    <link rel="alternate" hreflang="ru" href="https://lacasadeburger.es/?lang=ru" />
+    <link rel="alternate" hreflang="uk" href="https://lacasadeburger.es/?lang=uk" />
+    <link rel="alternate" hreflang="ro" href="https://lacasadeburger.es/?lang=ro" />
+    <link rel="alternate" hreflang="ar" href="https://lacasadeburger.es/?lang=ar" />
+    <link rel="alternate" hreflang="x-default" href="https://lacasadeburger.es/" />
+  <title>La Casa de Burger | Mejores Hamburguesas Gourmet de Torrevieja</title>
     <meta name="description" content="Descubre las mejores burgers gourmet y smash burgers en Torrevieja. Carne 100% artesanal, combos signature y recetas únicas." />
     <style>
         /* CSS Critique pour affichage instantané */
@@ -82,8 +94,8 @@
     },
     "geo": {
       "@type": "GeoCoordinates",
-      "latitude": 37.981880,
-      "longitude": -0.678250
+      "latitude": 37.980480,
+      "longitude": -0.680650
     },
     "openingHoursSpecification": [
       {
@@ -131,7 +143,8 @@
           "@type": "MenuSection",
           "name": "Burgers & Combos",
           "hasMenuItem": [
-            {"@type":"MenuItem","name":"Combo Signature 1","offers":{"@type":"Offer","price":"18.00","priceCurrency":"EUR"}},
+            {"@type":"MenuItem","name":"Combo Gourmet 1","offers":{"@type":"Offer","price":"18.00","priceCurrency":"EUR"}},
+            {"@type":"MenuItem","name":"Combo Gourmet 2","offers":{"@type":"Offer","price":"18.00","priceCurrency":"EUR"}},
             {"@type":"MenuItem","name":"La Francesa Signature","offers":{"@type":"Offer","price":"12.00","priceCurrency":"EUR"}},
             {"@type":"MenuItem","name":"La Marroqui Signature","offers":{"@type":"Offer","price":"12.00","priceCurrency":"EUR"}},
             {"@type":"MenuItem","name":"La Smash Doble","offers":{"@type":"Offer","price":"13.00","priceCurrency":"EUR"}},
@@ -156,7 +169,31 @@
     <img src="/burger-signature-torrevieja.webp" alt="BEST BURGER TORREVIEJA" fetchpriority="high" loading="eager" decoding="sync" class="lcp-background">
 
     <div id="fallback-text">
-        <h1>LA MEJOR HAMBURGUESA & BURGER GOURMET 2026<br>EN TORREVIEJA</h1>
+        <h1 id="main-title">LA MEJOR HAMBURGUESA & BURGER GOURMET 2026<br>EN TORREVIEJA</h1>
+        <script>
+            (function() {
+                const p = new URLSearchParams(window.location.search);
+                const l = p.get('lang');
+                const t = {
+                    'es': 'LA MEJOR HAMBURGUESA & BURGER GOURMET 2026 EN TORREVIEJA',
+                    'en': 'THE BEST GOURMET BURGER 2026 IN TORREVIEJA',
+                    'fr': 'LE MEILLEUR BURGER GOURMET 2026 À TORREVIEJA',
+                    'de': 'DER BESTE GOURMET-BURGER 2026 IN TORREVIEJA',
+                    'sv': 'DEN BÄSTA GOURMETBURGAREN 2026 I TORREVIEJA',
+                    'nl': 'DE BESTE GOURMET BURGER 2026 IN TORREVIEJA',
+                    'no': 'DEN BESTE GOURMETBURGEREN 2026 I TORREVIEJA',
+                    'pl': 'NAJLEPSZY BURGER GOURMET 2026 W TORREVIEJA',
+                    'ru': 'ЛУЧШИЙ ГУРМЭ-БУРГЕР 2026 В ТОРРЕВЬЕХЕ',
+                    'uk': 'КРАЩИЙ ГУРМЕ-БУРГЕР 2026 У ТОРРЕВ\'ЄСІ',
+                    'ro': 'CEL MAI BUN BURGER GOURMET 2026 DIN TORREVIEJA',
+                    'ar': 'أفضل برجر جورميه 2026 في توريفايجا'
+                };
+                if (l && t[l]) {
+                    const el = document.getElementById('main-title');
+                    if (el) el.innerText = t[l];
+                }
+            })();
+        </script>
         <h2 style="font-size:1.2rem;color:#FFD700;font-weight:700;margin-top:10px;text-transform:uppercase">BEST BURGER & SMASH BURGER & RECETAS UNICAS & THE CHAMPIONS BURGER 2026 TORREVIEJA</h2>
     </div>
 
