@@ -743,10 +743,10 @@ export default function App() {
         ) : (
           <div className="map-placeholder" onClick={() => setLoadMaps(true)} style={{ height: '350px', backgroundColor: '#111', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', border: '1px solid #222', borderRadius: '15px' }}>
             <p style={{ color: GOLD_BRIGHT }}>
-              {lang === 'es' ? 'Cargando ubicación...' :
-               lang === 'en' ? 'Loading location...' :
-               lang === 'fr' ? 'Chargement de l\'emplacement...' :
-               'Cargando ubicación...'}
+              {lang === 'es' ? 'Cargando ubicación...has clic aqui' :
+               lang === 'en' ? 'Loading location...push here to open the Maps' :
+               lang === 'fr' ? 'Chargement de l\'emplacement...Clique ici pour voir la Maps' :
+               'Cargando ubicación...Has clic Aqui'}
             </p>
           </div>
         )}
