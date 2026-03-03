@@ -58,48 +58,99 @@
     <link rel="icon" type="image/webp" href="/logo.webp" />
 
     <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Restaurant",
-      "name": "La Casa de Burger",
-      "image": "https://lacasadeburger.es/burger-signature-torrevieja.webp",
-      "telephone": "+34602597210",
-      "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "AV. Diego Ramirez Pastor, 142",
-          "addressLocality": "Torrevieja",
-          "postalCode": "03181",
-          "addressCountry": "ES"
-      },
-      "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "reviewCount": "250", "bestRating": "5", "worstRating": "1" },
-      "hasMenu": {
-        "@type": "Menu",
-        "name": "Carta La Casa de Burger",
-        "hasMenuSection": [
-          {
-            "@type": "MenuSection",
-            "name": "Burgers & Combos",
-            "hasMenuItem": [
-              {"@type":"MenuItem","name":"Combo Signature 1","offers":{"@type":"Offer","price":"18.00","priceCurrency":"EUR"}},
-              {"@type":"MenuItem","name":"La Francesa Signature","offers":{"@type":"Offer","price":"12.00","priceCurrency":"EUR"}},
-              {"@type":"MenuItem","name":"La Marroqui Signature","offers":{"@type":"Offer","price":"12.00","priceCurrency":"EUR"}},
-              {"@type":"MenuItem","name":"La Smash Doble","offers":{"@type":"Offer","price":"13.00","priceCurrency":"EUR"}},
-              {"@type":"MenuItem","name":"La Italiana Gourmet","offers":{"@type":"Offer","price":"13.00","priceCurrency":"EUR"}},
-              {"@type":"MenuItem","name":"La Española Signature","offers":{"@type":"Offer","price":"14.00","priceCurrency":"EUR"}},
-              {"@type":"MenuItem","name":"La Colombiana Signature","offers":{"@type":"Offer","price":"14.00","priceCurrency":"EUR"}},
-              {"@type":"MenuItem","name":"La Mexicana Signature","offers":{"@type":"Offer","price":"14.00","priceCurrency":"EUR"}},
-              {"@type":"MenuItem","name":"La India Gourmet","offers":{"@type":"Offer","price":"9.00","priceCurrency":"EUR"}},
-              {"@type":"MenuItem","name":"La Auvergna Signature","offers":{"@type":"Offer","price":"12.00","priceCurrency":"EUR"}},
-              {"@type":"MenuItem","name":"Patatas Bravas Casa","offers":{"@type":"Offer","price":"5.50","priceCurrency":"EUR"}},
-              {"@type":"MenuItem","name":"Fritas Cheddar & Bacon","offers":{"@type":"Offer","price":"8.50","priceCurrency":"EUR"}},
-              {"@type":"MenuItem","name":"Nuggets Artesanos","offers":{"@type":"Offer","price":"6.00","priceCurrency":"EUR"}},
-              {"@type":"MenuItem","name":"Waffle XXL Nutella","offers":{"@type":"Offer","price":"7.00","priceCurrency":"EUR"}}
-            ]
-          }
-        ]
+  {
+    "@context": "https://schema.org",
+    "@type": "Restaurant",
+    "name": "La Casa de Burger",
+    "image": [
+      "https://lacasadeburger.es/burger-signature-torrevieja.webp",
+      "https://lacasadeburger.es/logo.webp"
+    ],
+    "url": "https://lacasadeburger.es",
+    "telephone": "+34602597210",
+    "priceRange": "$$",
+    "servesCuisine": ["Gourmet Burgers","Smash Burgers","American Cuisine","Artisanal Burgers","Handmade Burgers","Street Food","Fusion Cuisine"],
+    "description": "La mejor hamburguesería gourmet en Torrevieja. Carne artesanal, recetas únicas y smash burgers. ¡Reserva tu mesa online!",
+    "acceptsReservations": "true",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "AV. Diego Ramirez Pastor, 142",
+      "addressLocality": "Torrevieja",
+      "postalCode": "03181",
+      "addressRegion": "Alicante",
+      "addressCountry": "ES"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 37.981880,
+      "longitude": -0.678250
+    },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday"
+        ],
+        "opens": "13:00",
+        "closes": "23:00"
       }
+    ],
+    "potentialAction": {
+      "@type": "ReserveAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://app.tableo.com/widget/la-casa-de-burger-hamburguesa-gourmet-torrevieja-hamburgueseria-casero-best-burger-in-town-spain?bgColor=%23ff0000&textColor=%23000000&googleFont=Police+par+d%C3%A9faut&fontSize=14&cornerStyle=none&textAlignment=left&formControlBgColor=%23ffffff&formControlColor=%23000000&formControlBorderColor=%23444444&formControlBorderShadow=6&formControlBorderWidth=1&formControlBorderOpacity=0.1&buttonBgColor=%23000000&buttonTextColor=%23ffffff",
+        "inLanguage": "es",
+        "actionPlatform": [
+          "http://schema.org/DesktopWebPlatform",
+          "http://schema.org/MobileWebPlatform"
+        ]
+      },
+      "result": {
+        "@type": "FoodEstablishmentReservation",
+        "name": "Reserva tu mesa en La Casa de Burger"
+      }
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": "250",
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "hasMenu": {
+      "@type": "Menu",
+      "name": "Carta La Casa de Burger",
+      "hasMenuSection": [
+        {
+          "@type": "MenuSection",
+          "name": "Burgers & Combos",
+          "hasMenuItem": [
+            {"@type":"MenuItem","name":"Combo Signature 1","offers":{"@type":"Offer","price":"18.00","priceCurrency":"EUR"}},
+            {"@type":"MenuItem","name":"La Francesa Signature","offers":{"@type":"Offer","price":"12.00","priceCurrency":"EUR"}},
+            {"@type":"MenuItem","name":"La Marroqui Signature","offers":{"@type":"Offer","price":"12.00","priceCurrency":"EUR"}},
+            {"@type":"MenuItem","name":"La Smash Doble","offers":{"@type":"Offer","price":"13.00","priceCurrency":"EUR"}},
+            {"@type":"MenuItem","name":"La Italiana Gourmet","offers":{"@type":"Offer","price":"13.00","priceCurrency":"EUR"}},
+            {"@type":"MenuItem","name":"La Española Signature","offers":{"@type":"Offer","price":"14.00","priceCurrency":"EUR"}},
+            {"@type":"MenuItem","name":"La Colombiana Signature","offers":{"@type":"Offer","price":"14.00","priceCurrency":"EUR"}},
+            {"@type":"MenuItem","name":"La Mexicana Signature","offers":{"@type":"Offer","price":"14.00","priceCurrency":"EUR"}},
+            {"@type":"MenuItem","name":"La India Gourmet","offers":{"@type":"Offer","price":"9.00","priceCurrency":"EUR"}},
+            {"@type":"MenuItem","name":"La Auvergna Signature","offers":{"@type":"Offer","price":"12.00","priceCurrency":"EUR"}},
+            {"@type":"MenuItem","name":"Patatas Bravas Casa","offers":{"@type":"Offer","price":"5.50","priceCurrency":"EUR"}},
+            {"@type":"MenuItem","name":"Fritas Cheddar & Bacon","offers":{"@type":"Offer","price":"8.50","priceCurrency":"EUR"}},
+            {"@type":"MenuItem","name":"Nuggets Artesanos","offers":{"@type":"Offer","price":"6.00","priceCurrency":"EUR"}},
+            {"@type":"MenuItem","name":"Waffle XXL Nutella","offers":{"@type":"Offer","price":"7.00","priceCurrency":"EUR"}}
+          ]
+        }
+      ]
     }
-    </script>
+  }
+  </script>
 </head>
 <body>
     <img src="/burger-signature-torrevieja.webp" alt="BEST BURGER TORREVIEJA" fetchpriority="high" loading="eager" decoding="sync" class="lcp-background">
