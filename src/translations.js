@@ -1,44 +1,44 @@
 export const T = {
   es: {
     heroTitle: "La Casa de Burger",
-    heroSubtitle: "Burgers Gourmet de Autor: Recetas Unicas, Smash Burgers y Carne Premium al Mejor Precio",
+    heroSubtitle: "Hamburguesas : Recetas Unicas, Hamburguesas Gourmet y Smash Burgers con Carne Premium al Mejor Precio",
     btnOrder: "PEDIR A DOMICILIO",
     btnCall: "LLAMAR",
-    catBurgers: "Burgers Signature",
+    catBurgers: "Hamburguesas",
     catDrinks: "Bebidas",
     catDesserts: "Postres Caseros",
     btnSeeMenu: "VER CARTA",
     yourOrder: "Tu Pedido",
     reviewsTitle: "Lo que dicen nuestros clientes",
-    footerDesc: "La mejor experiencia de Burger Gourmet en Torrevieja. Recetas Signature, Smash Burgers y opciones Halal con calidad premium.",
+    footerDesc: "La mejor experiencia de Hamburguesas Gourmet en Torrevieja. Recetas Unicas, Hamburguesas Gourmet y Smash Burgers. Opciones Halal con calidad premium de Carne.",
     location: "Ubicación",
     hours: "Horario",
-    seoTitle: "La Casa de Burger | Mejor Hamburguesería Gourmet y Signature en Torrevieja",
-    seoContent: "Referente en Burgers Gourmet Signature en Torrevieja Centro. Disfruta de nuestras recetas originales, Smash Burgers y carne artesanal premium. Opciones Halal disponibles. Calidad imbatible cerca de Playa del Cura."
+    seoTitle: "La Casa de Burger | Mejor Hamburguesas y Hamburgueseria Gourmet en Torrevieja",
+    seoContent: "Referente en Hamburguesas y Hamburguesas Gourmet en Torrevieja Centro. Disfruta de nuestras recetas originales, Smash Burgers y carne artesanal premium. Opciones Halal disponibles. Calidad imbatible cerca de Playa del Cura."
   },
   en: {
     heroTitle: "La Casa de Burger",
-    heroSubtitle: "Signature Gourmet Burgers: Original Recipes, Smash Burgers & Premium Beef at Best Price",
+    heroSubtitle: "Best Burger & Signature Gourmet Burgers: Original Recipes, Smash Burgers & Premium Beef at Best Price",
     btnOrder: "ORDER DELIVERY",
     btnCall: "CALL",
-    catBurgers: "Signature Burgers",
+    catBurgers: "Burgers",
     catDrinks: "Drinks",
     catDesserts: "Homemade Desserts",
     btnSeeMenu: "SEE MENU",
     yourOrder: "Your Order",
     reviewsTitle: "What our customers say",
-    footerDesc: "The ultimate Gourmet Burger experience in Torrevieja. Signature recipes, Smash Burgers and Halal options at the best price.",
+    footerDesc: "The ultimate Burger & Gourmet Burger experience in Torrevieja. Signature recipes, Smash Burgers and Halal options at the best price.",
     location: "Location",
     hours: "Hours",
-    seoTitle: "La Casa de Burger | Best Signature Gourmet & Smash Burgers Torrevieja",
-    seoContent: "Discover Torrevieja's best Gourmet Signature Burgers. Unique recipes, premium selected beef, Smash Burgers and Halal options. Unbeatable value for money in the city center."
+    seoTitle: "La Casa de Burger | Best Burger & Signature Gourmet Burger & Smash Burgers in Torrevieja",
+    seoContent: "Discover Torrevieja's best burger & Gourmet Signature Burgers. Unique recipes, premium selected beef, Smash Burgers and Halal options. Unbeatable value for money in the city center."
   },
   fr: {
     heroTitle: "La Casa de Burger",
-    heroSubtitle: "Burgers Gourmet Signature : Recettes Originales, Smash et Viande Premium au Meilleur Prix",
+    heroSubtitle: "Burgers & Burgers Gourmet Signature : Recettes Originales, Smashburger et Viande Premium au Meilleur Prix",
     btnOrder: "COMMANDER",
     btnCall: "APPELER",
-    catBurgers: "Burgers Signature",
+    catBurgers: "Nos Burgers Signature",
     catDrinks: "Boissons",
     catDesserts: "Desserts Maison",
     btnSeeMenu: "VOIR LA CARTE",
@@ -69,7 +69,7 @@ export const T = {
   },
   sv: {
     heroTitle: "La Casa de Burger",
-    heroSubtitle: "Signature Gourmetburgare: Originalrecept, Smash Burgers & Premiumkött",
+    heroSubtitle: "Burgare & Gourmetburgare: Originalrecept, Smash Burgers & Premiumkött",
     btnOrder: "BESTÄLL",
     btnCall: "RING",
     catBurgers: "Signature Burgers",
@@ -86,7 +86,7 @@ export const T = {
   },
   nl: {
     heroTitle: "La Casa de Burger",
-    heroSubtitle: "Signature Gourmet Burgers: Originele Recepten, Smash Burgers & Premium Rundvlees",
+    heroSubtitle: "Burgers & Signature Gourmet Burgers: Originele Recepten, Smash Burgers & Premium Rundvlees",
     btnOrder: "BESTEL NU",
     btnCall: "BELLEN",
     catBurgers: "Signature Burgers",
@@ -98,12 +98,12 @@ export const T = {
     footerDesc: "De ultieme Gourmet Burger ervaring in Torrevieja. Signature recepten, Smash Burgers en Halal opties.",
     location: "Locatie",
     hours: "Openingstijden",
-    seoTitle: "La Casa de Burger | Beste Gourmet Signature & Smash Burgers Torrevieja",
+    seoTitle: "La Casa de Burger | Beste Burgers & Gourmet Signature & Smash Burgers Torrevieja",
     seoContent: "De referentie voor Gourmet Signature Burgers in Torrevieja. Originele recepten, premium vlees, Smash Burgers en Halal opties tegen de beste prijs."
   },
   no: {
     heroTitle: "La Casa de Burger",
-    heroSubtitle: "Signature Gourmet Burger: Originale Oppskrifter, Smash Burger & Premium Storfekjøtt",
+    heroSubtitle: "Beste Burger & Signature Gourmet Burger: Originale Oppskrifter, Smash Burger & Premium Storfekjøtt",
     btnOrder: "BESTILL",
     btnCall: "RING",
     catBurgers: "Signature Burgers",
@@ -115,12 +115,12 @@ export const T = {
     footerDesc: "Den beste Gourmet Burger opplevelsen i Torrevieja. Signature oppskrifter, Smash Burgers og Halal.",
     location: "Plassering",
     hours: "Åpningstider",
-    seoTitle: "La Casa de Burger | Beste Gourmet Signature & Smash Burger Torrevieja",
-    seoContent: "Torreviejas ledende restaurant for Gourmet Signature Burgers. Unike oppskrifter, premium kjøtt, Smash Burgers og Halal til byens beste pris."
+    seoTitle: "La Casa de Burger | Beste Burger,  Gourmet Signature & Smash Burger Torrevieja",
+    seoContent: "Torreviejas ledende restaurant for Burgers & Gourmet Signature Burgers. Unike oppskrifter, premium kjøtt, Smash Burgers og Halal til byens beste pris."
   },
   pl: {
     heroTitle: "La Casa de Burger",
-    heroSubtitle: "Burgery Gourmet Signature: Oryginalne Przepisy, Smash Burgers i Wołowina Premium",
+    heroSubtitle: "Burgery i Burgery Gourmet Signature: Oryginalne Przepisy, Smash Burgers i Wołowina Premium",
     btnOrder: "ZAMÓW",
     btnCall: "ZADZWOŃ",
     catBurgers: "Burgery Signature",
@@ -129,11 +129,11 @@ export const T = {
     btnSeeMenu: "ZOBACZ MENU",
     yourOrder: "Twoje Zamówienie",
     reviewsTitle: "Opinie",
-    footerDesc: "Najlepsze Burgery Gourmet w Torrevieja. Przepisy Signature, Smash Burgers i opcje Halal.",
+    footerDesc: "Najlepsze Burgery i Burgery Gourmet w Torrevieja. Przepisy Signature, Smash Burgers i opcje Halal.",
     location: "Lokalizacja",
     hours: "Godziny",
-    seoTitle: "La Casa de Burger | Najlepsze Burgery Gourmet Signature w Torrevieja",
-    seoContent: "Wyjątkowe Burgery Gourmet Signature w centrum Torrevieja. Autorskie przepisy, wołowina premium, Smash Burgers i opcje Halal w najlepszej cenie."
+    seoTitle: "La Casa de Burger | Najlepsze Burgery i Burgery Gourmet Signature w Torrevieja",
+    seoContent: "Wyjątkowe Burgery i Burgery Gourmet Signature w centrum Torrevieja. Autorskie przepisy, wołowina premium, Smash Burgers i opcje Halal w najlepszej cenie."
   },
   ru: {
     heroTitle: "La Casa de Burger",
@@ -205,7 +205,7 @@ export const T = {
   }
 };
 export const ALL_REVIEWS = [
-  { es: "¡La mejor Smash de Torrevieja! Carne de calidad y entrega rápida.", en: "Best Smash in Torrevieja! Quality meat and fast delivery.", author: "Carlos R." },
+  { es: "¡La mejor Hamburguesa y Smashburger de Torrevieja! Carne de calidad y entrega rápida.", en: "Best Burger & Smashbureger in Torrevieja! Quality meat and fast delivery.", author: "Carlos R." },
   { es: "Increíble atención. Las patatas caseras son obligatorias. 10/10.", en: "Amazing service. Homemade fries are a must. 10/10.", author: "Sarah M." },
   { es: "La burger 'La Casa' es de otro planeta. La mejor que he probado.", en: "The 'La Casa' burger is from another planet. The best I've had.", author: "Juan P." },
   { es: "Sabor auténtico y productos frescos. Se nota la diferencia.", en: "Authentic flavor and fresh products. You can taste the difference.", author: "Elena G." },

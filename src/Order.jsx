@@ -7,7 +7,7 @@ export default function Order({ cart, removeFromCart, lang }) {
   const [address, setAddress] = useState("");
   const [paymentOption, setPaymentOption] = useState("");
 
-  // --- SYSTÈME DE TRADUCTION POUR LE CLIENT (12 LANGUES) ---
+  // --- SYSTÈME DE TRADUCTION COMPLET (12 LANGUES) ---
   const translations = {
     empty: { es: "Tu carrito está vacío", en: "Your cart is empty", fr: "Votre panier est vide", de: "Ihr Warenkorb ist leer", ru: "Ваша корзина пуста", uk: "Ваш кошик порожній", pl: "Twój koszyk jest pusty", ro: "Coșul tău este gol", ar: "عربة التسوق فارغة", no: "Handlevognen er tom", sv: "Varukorgen är tom", nl: "Uw winkelwagen is leeg" },
     placeholderName: { es: "Tu Nombre", en: "Full Name", fr: "Votre Nom", de: "Ihr Name", ru: "Ваше имя", uk: "Ваше ім'я", pl: "Twoje imię", ro: "Numele tău", ar: "اسمك", no: "Ditt navn", sv: "Ditt namn", nl: "Uw Naam" },
@@ -19,13 +19,26 @@ export default function Order({ cart, removeFromCart, lang }) {
     btnSend: { es: "🚀 ENVIAR POR WHATSAPP", en: "🚀 SEND VIA WHATSAPP", fr: "🚀 ENVOYER PAR WHATSAPP", de: "🚀 PER WHATSAPP SENDEN", ru: "🚀 ОТПРАВИТЬ В WHATSAPP", uk: "🚀 ВІДПРАВИТИ В WHATSAPP", pl: "🚀 WYŚLIJ PRZEZ WHATSAPP", ro: "🚀 TRIMITE PE WHATSAPP", ar: "🚀 إرسال عبر واتساب", no: "🚀 SEND VIA WHATSAPP", sv: "🚀 SKICKA VIA WHATSAPP", nl: "🚀 VERSTUREN VIA WHATSAPP" },
     btnSelectPay: { es: "ELIJA MÉTODO DE PAGO", en: "CHOOSE PAYMENT METHOD", fr: "CHOISIR LE PAIEMENT", de: "ZAHLUNGSART WÄHLEN", ru: "ВЫБЕРИТЕ ОПЛАТУ", uk: "ВИБЕРІТЬ ОПЛАТУ", pl: "WYBIERZ PŁATNOŚĆ", ro: "ALEGE PLATA", ar: "اختر طريقة الدفع", no: "VELG BETALINGSMETODE", sv: "VÄLJ BETALNINGSMETOD", nl: "KIES BETAALMETHODE" },
     sin: { es: "SIN", en: "WITHOUT", fr: "SANS", de: "OHNE", ru: "БЕЗ", uk: "БЕЗ", pl: "BEZ", ro: "FĂRĂ", ar: "بدون", no: "UTEN", sv: "UTAN", nl: "ZONDER" },
+    extraLabel: { es: "EXTRAS", en: "EXTRAS", fr: "SUPPLÉMENTS", de: "EXTRAS", ru: "ДОБАВКИ", uk: "ДОДАТКИ", pl: "DODATKI", ro: "EXTRA", ar: "إضافات", no: "EKSTRA", sv: "EXTRA", nl: "EXTRA'S" },
     pickup: { es: "Recogida en local", en: "Local pickup", fr: "Retrait sur place", de: "Abholung", ru: "Самовывоз", uk: "Самовивіз", pl: "Odbiór osobisty", ro: "Ridicare personală", ar: "استلام محلي", no: "Henting i butikk", sv: "Hämtning i butik", nl: "Afhalen in de zaak" },
-    whatsappHeader: { es: "NUEVO PEDIDO", en: "NEW ORDER", fr: "NOUVELLE COMMANDE", de: "NEUE BESTELLUNG", ru: "НОВЫЙ ЗАКАЗ", uk: "НОВЕ ЗАМОВЛЕННЯ", pl: "NOWE ZAMÓWIENIE", ro: "COMANDĂ NOUĂ", ar: "طلب جديد", no: "NY BESTILLING", sv: "NY BESTÄLLNING", nl: "NIEUWE BESTELLING" }
+    whatsappHeader: { es: "NUEVO PEDIDO", en: "NEW ORDER", fr: "NOUVELLE COMMANDE", de: "NEUE BESTELLUNG", ru: "НОВЫЙ ЗАКАЗ", uk: "НОВЕ ЗАМОВЛЕННЯ", pl: "NOWE ZAMÓWIENIE", ro: "COMANDĂ NOUĂ", ar: "طلب جديد", no: "NY BESTILLING", sv: "NY BESTÄLLNING", nl: "NIEUWE BESTELLING" },
+    ingredients: {
+      Tomate: { es: "Tomate", en: "Tomato", fr: "Tomate", de: "Tomate", ru: "Помидор", uk: "Помідор", pl: "Pomidor", ro: "Roșie", ar: "طماطم", no: "Tomat", sv: "Tomat", nl: "Tomaat" },
+      Lechuga: { es: "Lechuga", en: "Lettuce", fr: "Laitue", de: "Salat", ru: "Салат", uk: "Салат", pl: "Sałata", ro: "Salată", ar: "خس", no: "Salat", sv: "Sallad", nl: "Sla" },
+      Pepinillos: { es: "Pepinillos", en: "Pickles", fr: "Cornichons", de: "Gurken", ru: "Огурцы", uk: "Огірки", pl: "Ogórki", ro: "Castraveți", ar: "مخلل", no: "Sylteagurk", sv: "Gurka", nl: "Augurken" },
+      Cebolla: { es: "Cebolla", en: "Onion", fr: "Oignon", de: "Zwiebel", ru: "Лук", uk: "Цибуля", pl: "Cebula", ro: "Ceapă", ar: "بصل", no: "Løk", sv: "Lök", nl: "Ui" },
+      Queso: { es: "Queso", en: "Cheese", fr: "Fromage", de: "Käse", ru: "Сыр", uk: "Сир", pl: "Ser", ro: "Brânză", ar: "جبنة", no: "Ost", sv: "Ost", nl: "Kaas" }
+    }
   };
 
   const t = (key) => {
     if (!translations[key]) return "";
-    return translations[key][lang] || translations[key]['es'] || translations[key]['en'];
+    return translations[key][lang] || translations[key]['es'];
+  };
+
+  // Helper pour traduire un ingrédient
+  const translateIng = (id) => {
+    return translations.ingredients[id]?.[lang] || translations.ingredients[id]?.['es'] || id;
   };
 
   const getTotalPrice = () => {
@@ -41,36 +54,39 @@ export default function Order({ cart, removeFromCart, lang }) {
   const handleOrder = (e) => {
     e.preventDefault();
     if (!name || !phone) {
-      Swal.fire({ title: 'Atención', text: 'Nombre y teléfono son obligatorios', icon: "warning", confirmButtonColor: "#ff4757" });
+      Swal.fire({ title: 'Attention', text: 'Nom et téléphone obligatoires', icon: "warning", confirmButtonColor: "#ff4757" });
       return;
     }
     if (!paymentOption) {
-      Swal.fire({ title: 'Pago', text: 'Selecciona un método de pago', icon: "warning", confirmButtonColor: "#ff4757" });
+      Swal.fire({ title: 'Paiement', text: 'Sélectionnez un mode de paiement', icon: "warning", confirmButtonColor: "#ff4757" });
       return;
     }
 
     let orderList = "";
     cart.forEach((item, index) => {
       const displayPrice = item.precio || item.totalPrice || "0€";
-
-      // --- FORCE LE NOM DU BURGER EN ESPAGNOL ---
-      const itemName = (typeof item.name === 'object' ? (item.name.es || item.object) : item.object || "Producto").toUpperCase();
+      // --- FORCE ESPAGNOL POUR LE MESSAGE WHATSAPP ---
+      const itemName = (item.name?.es || item.object?.es || item.object || "PRODUCTO").toUpperCase();
 
       orderList += `\n*${index + 1}. ${itemName}* - ${displayPrice}\n`;
+
+      // Ingrédients retirés (Forcé en espagnol)
       if (item.removed && item.removed.length > 0) {
-        // --- ICI ON FORCE "SIN" EN ESPAGNOL POUR LE WHATSAPP ---
-        orderList += `    ❌ SIN: ${item.removed.join(", ").toUpperCase()}\n`;
+        const removedInSpanish = item.removed.map(id => (translations.ingredients[id]?.es || id).toUpperCase());
+        orderList += `    ❌ SIN: ${removedInSpanish.join(", ")}\n`;
+      }
+
+      // Extras (Forcé en espagnol)
+      if (item.extras && item.extras.length > 0) {
+        orderList += `    ➕ EXTRAS: ${item.extras.join(", ").toUpperCase()}\n`;
       }
     });
 
-    // --- ÉTIQUETTES WHATSAPP FORCÉES EN ESPAGNOL ---
-    const headerWa = translations.whatsappHeader.es;
-    const pickupWa = translations.pickup.es;
-
-    const message = `*${headerWa} - LA CASA DE BURGER*\n\n` +
+    // En-têtes forcés en Espagnol pour la cuisine
+    const message = `*NUEVO PEDIDO - LA CASA DE BURGER*\n\n` +
                     `👤 *Cliente:* ${name}\n` +
                     `📞 *Tel:* ${phone}\n` +
-                    `📍 *Entrega:* ${address || pickupWa}\n\n` +
+                    `📍 *Entrega:* ${address || "Recogida en local"}\n\n` +
                     `📝 *DETALLE:*\n${orderList}\n` +
                     `💰 *TOTAL:* ${getTotalPrice()}€\n` +
                     `💳 *PAGO:* ${paymentOption.toUpperCase()}`;
@@ -80,30 +96,35 @@ export default function Order({ cart, removeFromCart, lang }) {
   };
 
   return (
-    <div className="container-items" id="order" style={{
-      padding: '20px 10px',
-      fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
-    }}>
+    <div className="container-items" id="order" style={{ padding: '20px 10px', fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif' }}>
       <div className="item menuBurgers" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', margin: '0 auto', backgroundColor: '#1a1a1a', borderRadius: '20px', padding: '20px 0' }}>
 
         <ul style={{ padding: 0, width: '100%', maxWidth: '600px', margin: '0 auto', listStyle: 'none' }}>
           {cart.length === 0 ? (
-            <li style={{ color: '#888', fontStyle: 'italic', textAlign: 'center', padding: '20px' }}>
-              ({t('empty')})
-            </li>
+            <li style={{ color: '#888', fontStyle: 'italic', textAlign: 'center', padding: '20px' }}>({t('empty')})</li>
           ) : (
             cart.map((item, index) => (
-              <li key={index} style={{ fontSize: "18px", color: "#ff4757", listStyle: "none", textAlign: "left", padding: "15px 15px", borderBottom: "1px solid #333", display: "flex", flexDirection: "column", gap: "5px", width: '100%', boxSizing: 'border-box', fontWeight: "bold" }}>
+              <li key={index} style={{ fontSize: "18px", color: "#ff4757", padding: "15px 15px", borderBottom: "1px solid #333", display: "flex", flexDirection: "column", gap: "5px", width: '100%', boxSizing: 'border-box', fontWeight: "bold" }}>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
-                  <span translate="no" style={{ flex: 1, paddingRight: '10px' }}>{item.object}</span>
+                  <span style={{ flex: 1, paddingRight: '10px' }}>{item.name?.[lang] || item.name?.['es'] || item.object}</span>
                   <button className="btn-cart" onClick={() => removeFromCart(index)} style={{ minWidth: '30px', cursor: 'pointer', background: 'none', border: 'none', color: '#fff', fontSize: '1.2rem' }}>✕</button>
                 </div>
+
+                {/* AFFICHAGE DES INGRÉDIENTS RETIRÉS TRADUITS POUR LE CLIENT */}
                 {item.removed && item.removed.length > 0 && (
                   <span style={{ fontSize: "13px", color: "#ffffff", backgroundColor: "#ff4757", padding: "4px 10px", borderRadius: "50px", width: "fit-content", marginTop: '5px' }}>
-                    ❌ {t('sin')}: {item.removed.join(", ")}
+                    ❌ {t('sin')}: {item.removed.map(id => translateIng(id)).join(", ")}
                   </span>
                 )}
-                <span translate="no" style={{ fontSize: "16px", color: "#fff", opacity: 0.8 }}>{item.precio || item.totalPrice}</span>
+
+                {/* AFFICHAGE DES EXTRAS TRADUITS POUR LE CLIENT */}
+                {item.extras && item.extras.length > 0 && (
+                  <span style={{ fontSize: "13px", color: "#000", backgroundColor: "#FFD700", padding: "4px 10px", borderRadius: "50px", width: "fit-content", marginTop: '5px' }}>
+                    ➕ {t('extraLabel')}: {item.extras.join(", ")}
+                  </span>
+                )}
+
+                <span style={{ fontSize: "16px", color: "#fff", opacity: 0.8 }}>{item.precio || item.totalPrice}</span>
               </li>
             ))
           )}
@@ -111,15 +132,7 @@ export default function Order({ cart, removeFromCart, lang }) {
 
         {cart.length > 0 && (
           <div className="info-product" style={{ width: '100%', maxWidth: '500px', padding: '0 20px', boxSizing: 'border-box' }}>
-            <p translate="no" style={{
-              color:"#ff4757",
-              fontWeight: '900',
-              fontSize: '2.2rem',
-              margin: '25px 0',
-              textAlign: 'center',
-              textTransform: 'uppercase',
-              fontFamily: 'Georgia, serif'
-            }}>
+            <p style={{ color:"#ff4757", fontWeight: '900', fontSize: '2.2rem', margin: '25px 0', textAlign: 'center', textTransform: 'uppercase' }}>
               Total: {getTotalPrice()}€
             </p>
 

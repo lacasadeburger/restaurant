@@ -16,18 +16,18 @@ export default function Footer({ lang }) {
       sv: "Telefon", ro: "Telefon", ar: "الهاتف", nl: "Telefoon"
     },
     delivery: {
-      es: "Burgers Gourmet & Signature: A domicilio y para llevar",
-      en: "Gourmet & Signature Burgers: Delivery and takeaway",
-      fr: "Burgers Gourmet & Signature : Livraison et à emporter",
-      de: "Gourmet & Signature Burgers: Lieferung und zum Mitnehmen",
-      ru: "Гурме и Signature Бургеры: Доставка и навынос",
-      uk: "Гурме та Signature Бургери: Доставка та самовивіз",
-      pl: "Burgery Gourmet i Signature: Dostawa i na wynos",
-      no: "Gourmet & Signature Burgere: Levering og takeaway",
-      sv: "Gourmet & Signature Burgare: Leverans och takeaway",
-      ro: "Burgeri Gourmet și Signature: Livrare și la pachet",
+      es: "hamburguesa y Hamburguesa Gourmet : A domicilio y para llevar",
+      en: "Burger and Gourmet Burgers & Signature Burgers: Delivery and takeaway",
+      fr: "Burgers & Burgers Gourmet & Signature : Livraison et à emporter",
+      de: "Burgers & Gourmet Burgers: Lieferung und zum Mitnehmen",
+      ru: "Гурме Бургеры: Доставка и навынос",
+      uk: "Гурме Бургери: Доставка та самовивіз",
+      pl: "Burgery i Burgery Gourmet : Dostawa i na wynos",
+      no: "Gourmet & Signature Burgere : Levering og takeaway",
+      sv: "Gourmet & Signature Burgare : Leverans och takeaway",
+      ro: "Burgeri și Burgeri Gourmet : Livrare și la pachet",
       ar: "برجر غوارميه وسيجنتشر: التوصيل والاستلام",
-      nl: "Gourmet & Signature Burgers: Bezorging en afhalen"
+      nl: "Burgers & Gourmet Burgers: Bezorging en afhalen"
     },
     booking: {
       es: "Reservas por Teléfono o WhatsApp",
@@ -154,7 +154,7 @@ export default function Footer({ lang }) {
           letterSpacing: '2px',
           fontWeight: 'bold'
         }}>
-          {lang === 'es' ? 'La mejor hamburguesa gourmet de autor' : 'The best signature gourmet burger'}
+          {lang === 'es' ? 'La mejor hamburguesa y Hamburguesa gourmet de autor' : 'The best signature gourmet burger'}
         </p>
       </div>
     </footer>

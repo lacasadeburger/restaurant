@@ -555,7 +555,7 @@ export default function App() {
     </button>
 
     <button
-      onClick={() => window.open("https://app.tableo.com/widget/la-casa-de-burger", "_blank")}
+      onClick={() => window.open("https://app.tableo.com/widget/la-casa-de-burger-hamburguesa-gourmet-torrevieja-hamburgueseria-casero-best-burger-in-town-spain?bgColor=%23ff0000&textColor=%23000000&googleFont=Police+par+d%C3%A9faut&fontSize=14&cornerStyle=none&textAlignment=left&formControlBgColor=%23ffffff&formControlColor=%23000000&formControlBorderColor=%23444444&formControlBorderShadow=6&formControlBorderWidth=1&formControlBorderOpacity=0.1&buttonBgColor=%23000000&buttonTextColor=%23ffffff")}
       className="gold-button-premium"
       style={{ width: '80%', maxWidth: '350px', fontSize: '1rem', height: '50px', margin: 0 }}
     >
@@ -862,32 +862,32 @@ export default function App() {
           <div style={{ backgroundColor: '#0a0a0a', padding: '35px', borderRadius: '15px', border: '1px solid #222', textAlign: 'justify' }}>
             <div style={{ color: '#aaa', fontSize: '0.85rem', lineHeight: '1.6', margin: 0 }}>
 
-              <p><strong>🇪🇸 ESPAÑOL:</strong> <strong>La Casa de Burger</strong> – Tu hamburguesería de referencia y el mejor restaurante de <strong>burger en Torrevieja</strong>. Especialistas en <strong>Smash Burgers</strong> y <strong>Burger Gourmet de Autor</strong> 100% artesanal con carne picada a diario. Opciones <strong>Halal y Vegetarianas (bajo reserva)</strong>. Disfruta de nuestra terraza y fácil aparcamiento. Servicio a domicilio (delivery) en todo Torrevieja.</p>
+              <p><strong>🇪🇸 ESPAÑOL:</strong> <strong>La Casa de Burger</strong> – Tu hamburguesa y Tu hamburguesería de referencia, el mejor restaurante de <strong>burger en Torrevieja</strong>. Especialistas en <strong>Burger Gourmet de Autor</strong> y <strong>Smash Burgers</strong> 100% artesanal con carne picada a diario. Opciones <strong>Halal y Vegetarianas (bajo reserva)</strong>. Disfruta de nuestra terraza y fácil aparcamiento. Servicio a domicilio (delivery) en todo Torrevieja.</p>
 
-              <p><strong>🇬🇧 ENGLISH:</strong> <strong>Best gourmet burgers in Torrevieja</strong>. Specialists in 100% artisan <strong>Signature Burgers</strong> and <strong>Smash Burgers</strong> with freshly minced beef. <strong>Halal and Vegetarian options available (on request)</strong>. Enjoy our terrace and easy parking near the city center.</p>
+              <p><strong>🇬🇧 ENGLISH:</strong> <strong>Best burgers in Torrevieja</strong>. Specialists in 100% artisan <strong>Gourmet Burgers</strong> and <strong>Smash Burgers</strong> with freshly minced beef. <strong>Halal and Vegetarian options available (on request)</strong>. Enjoy our terrace and easy parking near the city center.</p>
 
-              <p><strong>🇳🇴 NORSK:</strong> <strong>Beste gourmetburger i Torrevieja</strong>. 100% håndlagde <strong>Signature Burgers</strong> og <strong>Smash Burgers</strong>. <strong>Halal og vegetariske alternativer (ved bestilling)</strong>. Vi har terrasse og enkel parkering i nærheten av havnen.</p>
+              <p><strong>🇳🇴 NORSK:</strong> <strong>Beste burger i Torrevieja</strong>. 100% håndlagde <strong>Signature Burgers</strong> og <strong>Smash Burgers</strong>. <strong>Halal og vegetariske alternativer (ved bestilling)</strong>. Vi har terrasse og enkel parkering i nærheten av havnen.</p>
 
-              <p><strong>🇵🇱 POLSKI:</strong> <strong>Najlepsze burgery gourmet w Torrevieja</strong>. Specjalność: 100% rzemieślnicze <strong>Signature Burgers</strong> i <strong>Smash Burgers</strong>. <strong>Opcje Halal i wegetariańskie (na zamówienie)</strong>. Zapraszamy na nasz taras i łatwy parking.</p>
+              <p><strong>🇵🇱 POLSKI:</strong> <strong>Najlepsze burgery w Torrevieja</strong>. Specjalność: 100% rzemieślnicze <strong>Signature Burgers</strong> i <strong>Smash Burgers</strong>. <strong>Opcje Halal i wegetariańskie (na zamówienie)</strong>. Zapraszamy na nasz taras i łatwy parking.</p>
 
               <p style={{ direction: 'rtl', textAlign: 'right' }}><strong>🇲🇦 ARABIC:</strong> <strong>أفضل مطعم برجر في توريفايجا</strong>. متخصصون في <strong>البرجر الحرفي 100%</strong> و <strong>سماش برجر</strong>. تتوفر <strong>خيارات حلال ونباتية (عند الحجز مسبقاً)</strong>. استمتع بجلساتنا الخارجية (تراس) وسهولة ركن السيارات في وسط المدينة.</p>
 
               <p><strong>🇺🇦 UKRAINIAN:</strong> <strong>Найкращі гурме-бургери в Торрев'єсі</strong>. 100% крафтові <strong>Signature Burgers</strong> та <strong>Smash Burgers</strong>. <strong>Халяльні та вегетаріанські страви (за попереднім замовленням)</strong>. Є тераса та зручна парковка.</p>
 
-              <p><strong>🇫🇷 FRANÇAIS:</strong> <strong>Meilleur Burger Gourmet Torrevieja</strong>. Spécialiste du <strong>Smash Burger</strong> et <strong>Burger Signature</strong> 100% artisanal. <strong>Options Halal et Végétarien disponibles (sur réservation)</strong>. Profitez de notre terrasse et du parking facile au centre-ville.</p>
+              <p><strong>🇫🇷 FRANÇAIS:</strong> <strong>Meilleur Burger de Torrevieja</strong>. Spécialiste du <strong>Burger Gourmet</strong> et <strong>Smashburger</strong> 100% artisanal. <strong>Options Halal et Végétarien disponibles (sur réservation)</strong>. Profitez de notre terrasse et du parking facile au centre-ville.</p>
 
-              <p><strong>🇷🇺 RUSSIAN:</strong> <strong>Лучшие гурме-бургеры в Торревьехе</strong>. 100% авторские <strong>Signature Burgers</strong> и <strong>Smash Burgers</strong>. <strong>Халяльное и вегетарианское меню (по запросу)</strong>. Уютная терраса и удобная парковка рядом с вами.</p>
+              <p><strong>🇷🇺 RUSSIAN:</strong> <strong>Лучшие гурме-бургеры в Торревьехе</strong>. 100% авторские <strong>Gourmet Burgers</strong> и <strong>Smash Burgers</strong>. <strong>Халяльное и вегетарианское меню (по запросу)</strong>. Уютная терраса и удобная парковка рядом с вами.</p>
 
-              <p><strong>🇸🇪 SVENSKA:</strong> <strong>Bästa gourmetburgare i Torrevieja</strong>. 100% hantverksmässiga <strong>Signature Burgers</strong> och <strong>Smash Burgers</strong>. <strong>Halal och vegetariska alternativ (vid bokning)</strong>. Vi erbjuder terrass och smidig parkering.</p>
+              <p><strong>🇸🇪 SVENSKA:</strong> <strong>Bästa burgare i Torrevieja</strong>. 100% hantverksmässiga <strong>Gourmet Burgers</strong> och <strong>Smash Burgers</strong>. <strong>Halal och vegetariska alternativ (vid bokning)</strong>. Vi erbjuder terrass och smidig parkering.</p>
 
-              <p><strong>🇩🇪 DEUTSCH:</strong> <strong>Beste Gourmet-Burger in Torrevieja</strong>. 100% handgemachte <strong>Signature Burgers</strong> und <strong>Smash Burgers</strong>. <strong>Halal und vegetarische Optionen (auf Voranmeldung)</strong>. Mit Terrasse und guten Parkmöglichkeiten im Zentrum.</p>
+              <p><strong>🇩🇪 DEUTSCH:</strong> <strong>Beste Burger in Torrevieja</strong>. 100% handgemachte <strong>Gourmet Burgers</strong> und <strong>Smash Burgers</strong>. <strong>Halal und vegetarische Optionen (auf Voranmeldung)</strong>. Mit Terrasse und guten Parkmöglichkeiten im Zentrum.</p>
 
-              <p><strong>🇳🇱 NEDERLANDS:</strong> <strong>Beste gourmet burgers in Torrevieja</strong>. 100% ambachtelijke <strong>Signature Burgers</strong> en <strong>Smash Burgers</strong>. <strong>Halal en vegetarische opties (op aanvraag)</strong>. Geniet van ons terras en gemakkelijk parkeren.</p>
+              <p><strong>🇳🇱 NEDERLANDS:</strong> <strong>Beste burgers in Torrevieja</strong>. 100% ambachtelijke <strong>Gourmet Burgers</strong> en <strong>Smash Burgers</strong>. <strong>Halal en vegetarische opties (op aanvraag)</strong>. Geniet van ons terras en gemakkelijk parkeren.</p>
 
               <div style={{ marginTop: '25px', borderTop: '1px solid #222', paddingTop: '25px' }}>
                 <div style={{ textAlign: 'center', marginBottom: '20px' }}>
                   <h4 style={{ color: '#fff', fontSize: '1.1rem', marginBottom: '5px', textTransform: 'uppercase', letterSpacing: '1px' }}>
-                    Especialistas en <span style={{ color: '#FFD700' }}>Burger Gourmet Signature</span> & <span style={{ color: '#FFD700' }}>Smash Burgers</span>
+                    Especialistas en <span style={{ color: '#FFD700' }}>Hamburguesas de alta calidad</span> & <span style={{ color: '#FFD700' }}>Smash Burgers</span>
                   </h4>
                   <p style={{ color: '#888', fontSize: '0.85rem', fontStyle: 'italic' }}>
                     Experiencia 100% Artesanal • Carne fresca picada a diario
@@ -936,7 +936,7 @@ export default function App() {
           <div>
             <h3 style={{ color: '#ff5e6c', fontSize: '1.2rem', marginBottom: '15px' }}>La Casa de Burger</h3>
             <p style={{ lineHeight: '1.8' }}>
-              {lang === 'es' ? 'Especialistas en Smash Burgers y Hamburguesas Gourmet de autor.' : 'Specialists in Signature Gourmet & Smash Burgers.'}
+              {lang === 'es' ? 'Especialistas en Hamburguesas y Hamburguesas Gourmet de autor.' : 'Specialists in Hamburguesas Gourmet & Smash Burgers.'}
             </p>
           </div>
 
