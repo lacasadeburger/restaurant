@@ -12,13 +12,11 @@ const logo = "/logo.webp";
 const instagramIcon = "/instagram.png";
 const whatsappIcon = "/wha2026.webp";
 const hero = "/burger-signature-torrevieja.webp";
-
 const SectionTitle = ({ children, id }) => (
   <header className="menuBurgers" id={id} style={{ margin: '10px 0 20px' }}>
     <h2 style={{ textTransform: 'uppercase', letterSpacing: '2px', fontSize: '1.8rem', color: '#FFD700' }}>{children}</h2>
   </header>
 );
-
 export default function App() {
   const [cart, setCart] = useState([]);
   const [showCardPostres, setShowCardPostres] = useState(false);
