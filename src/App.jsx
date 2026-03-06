@@ -111,53 +111,57 @@ export default function App() {
   const removeFromCart = (idx) => setCart(p => p.filter((_, i) => i !== idx));
 
   // --- FONCTION DE SCROLL UNIQUE ET ROBUSTE ---
-  const scrollToId = (id) => {
-    // On réessaie en boucle jusqu'à ce que l'élément soit dans le DOM
-    const attemptScroll = () => {
-      const el = document.getElementById(id);
-      if (el) {
-        const elementPosition = el.getBoundingClientRect().top + window.scrollY;
-        window.scrollTo({
-          top: elementPosition - 120, // Ajustez votre offset de header ici
-          behavior: "smooth"
-        });
-      } else {
-        requestAnimationFrame(attemptScroll);
+    const scrollToId = (id) => {
+      // On réessaie en boucle jusqu'à ce que l'élément soit dans le DOM ET qu'il ait une hauteur réelle
+      const attemptScroll = () => {
+        const el = document.getElementById(id);
+
+        // On vérifie l'existence ET la hauteur calculée (pour éviter le scroll à 0px)
+        if (el && el.offsetHeight > 50) {
+          const elementPosition = el.getBoundingClientRect().top + window.scrollY;
+          window.scrollTo({
+            top: elementPosition - 120, // Ton offset de header
+            behavior: "smooth"
+          });
+        } else {
+          // Sinon, on redemande au prochain cycle de rafraîchissement
+          requestAnimationFrame(attemptScroll);
+        }
+      };
+
+      // On lance la première tentative
+      requestAnimationFrame(attemptScroll);
+    };
+
+    const handleStartOrder = () => {
+      setShowCardBurger(true);
+      // On appelle notre fonction robuste
+      scrollToId("sec-burgers");
+    };
+
+    const handleNextStep = () => {
+      if (showCardBurger) {
+        setShowCardBurger(false);
+        setShowCardDrink(true);
+        scrollToId("sec-bebidas");
+      } else if (showCardDrink) {
+        setShowCardDrink(false);
+        setShowCardPostres(true);
+        scrollToId("sec-postres");
+      } else if (showCardPostres) {
+        setShowCardPostres(false);
+        scrollToId("order");
       }
     };
 
-    // On lance la première tentative au prochain cycle de rendu
-    requestAnimationFrame(attemptScroll);
-  };
+    const burgers = useMemo(() => data.filter(i => i.category === "food"), [data]);
+    const drinks = useMemo(() => data.filter(i => i.category === "drink"), [data]);
+    const postres = useMemo(() => data.filter(i => i.category === "postre"), [data]);
 
-  const handleStartOrder = () => {
-    setShowCardBurger(true);
-    scrollToId("sec-burgers");
-  };
-
-  const handleNextStep = () => {
-    if (showCardBurger) {
-      setShowCardBurger(false);
-      setShowCardDrink(true);
-      scrollToId("sec-bebidas");
-    } else if (showCardDrink) {
-      setShowCardDrink(false);
-      setShowCardPostres(true);
-      scrollToId("sec-postres");
-    } else if (showCardPostres) {
-      setShowCardPostres(false);
-      scrollToId("order");
-    }
-  };
-
-  const burgers = useMemo(() => data.filter(i => i.category === "food"), [data]);
-  const drinks = useMemo(() => data.filter(i => i.category === "drink"), [data]);
-  const postres = useMemo(() => data.filter(i => i.category === "postre"), [data]);
-
-  const GOLD_BRIGHT = "#FFD700";
-  const GOLD_GRADIENT = "linear-gradient(135deg, #BF953F 0%, #FCF6BA 45%, #B38728 55%, #FBF5B7 100%)";
-  const GOLD_GRADIENT_ALT = "linear-gradient(135deg, #BF953F 0%, #FCF6BA 25%, #B38728 50%, #FBF5B7 75%, #AA771C 100%)";
-  const GOLD_SHADOW = "0 4px 15px rgba(255, 215, 0, 0.3)";
+    const GOLD_BRIGHT = "#FFD700";
+    const GOLD_GRADIENT = "linear-gradient(135deg, #BF953F 0%, #FCF6BA 45%, #B38728 55%, #FBF5B7 100%)";
+    const GOLD_GRADIENT_ALT = "linear-gradient(135deg, #BF953F 0%, #FCF6BA 25%, #B38728 50%, #FBF5B7 75%, #AA771C 100%)";
+    const GOLD_SHADOW = "0 4px 15px rgba(255, 215, 0, 0.3)";
   return (
     <div className="app-main-wrapper" style={{
       position: 'relative',
@@ -543,33 +547,35 @@ export default function App() {
   }}>
 
   <button
-  onClick={(e) => {
-    e.preventDefault();
-    e.stopPropagation();
+    onClick={(e) => {
+      e.preventDefault();
+      e.stopPropagation();
 
-    // 1. On active l'affichage
-    setShowCardBurger(true);
+      // 1. On active l'affichage
+      setShowCardBurger(true);
 
-    // 2. Fonction de scroll synchronisée
-    const performScroll = () => {
-      const el = document.getElementById("sec-burgers");
-      if (el) {
-        const y = el.getBoundingClientRect().top + window.scrollY - 120;
-        window.scrollTo({ top: y, behavior: 'smooth' });
-      } else {
-        // Si l'élément n'est pas encore là, on réessaie au prochain cycle
-        requestAnimationFrame(performScroll);
-      }
-    };
+      // 2. On utilise une fonction de scroll qui vérifie la hauteur réelle
+      const performScroll = () => {
+        const el = document.getElementById("sec-burgers");
 
-    // On lance la boucle de recherche dès que React a traité la mise à jour
-    requestAnimationFrame(performScroll);
-  }}
-  className="gold-button-premium"
-  style={{ width: '90%', maxWidth: '400px', fontSize: '1.3rem', height: '65px', margin: 0 }}
->
-  🚀 {T[lang]?.btnOrder || T.es.btnOrder}
-</button>
+        // On s'assure que l'élément est dans le DOM et qu'il a une hauteur (chargé)
+        if (el && el.offsetHeight > 50) {
+          const y = el.getBoundingClientRect().top + window.scrollY - 120;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        } else {
+          // Sinon, on redemande au prochain cycle du navigateur
+          requestAnimationFrame(performScroll);
+        }
+      };
+
+      // On lance la boucle de recherche immédiatement
+      requestAnimationFrame(performScroll);
+    }}
+    className="gold-button-premium"
+    style={{ width: '90%', maxWidth: '400px', fontSize: '1.3rem', height: '65px', margin: 0 }}
+  >
+    🚀 {T[lang]?.btnOrder || T.es.btnOrder}
+  </button>
 
     <button
       onClick={() => window.open("https://app.tableo.com/widget/la-casa-de-burger-hamburguesa-gourmet-torrevieja-hamburgueseria-casero-best-burger-in-town-spain?bgColor=%23ff0000&textColor=%23000000&googleFont=Police+par+d%C3%A9faut&fontSize=14&cornerStyle=none&textAlignment=left&formControlBgColor=%23ffffff&formControlColor=%23000000&formControlBorderColor=%23444444&formControlBorderShadow=6&formControlBorderWidth=1&formControlBorderOpacity=0.1&buttonBgColor=%23000000&buttonTextColor=%23ffffff")}
@@ -596,36 +602,49 @@ export default function App() {
     </div>
   }>
 
-    {/* SECTION BURGERS */}
-    <section id="sec-burgers" style={{ marginTop: '5px', display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', minHeight: '450px' }}>
-      <SectionTitle>{T[lang]?.catBurgers || T.es.catBurgers}</SectionTitle>
-      {showCardBurger ? (
-        <div className="grid-cards" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px', width: '100%', padding: '15px', maxWidth: '1200px' }}>
-          {burgers.map(item => (
-            <CardMenu key={item.id} {...item} addToCart={addToCart} lang={lang} hasExtras={!noExtrasIds.includes(item.id)} />
-          ))}
-        </div>
-      ) : (
-        <div className="promo-container" onClick={() => {
-          setShowCardBurger(true);
-          setTimeout(() => {
-            const el = document.getElementById("sec-burgers");
-            if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.pageYOffset - 100, behavior: "smooth" });
-          }, 150);
-        }}>
-          <img
-            src="/Burger.webp"
-            className="promo-img"
-            alt="Burger"
-            width="600"
-            height="336"
-            style={{ width: '600px', height: '336px', display: 'block', objectFit: 'cover' }}
-          />
-          <button className="category-btn-overlay">{T[lang]?.catBurgers || T.es.catBurgers} ➔</button>
-        </div>
-      )}
-    </section>
+  {/* SECTION BURGERS */}
+<section
+  id="sec-burgers"
+  style={{
+    marginTop: '5px',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    width: '100%',
+    minHeight: '450px' // Important pour la stabilité du scroll
+  }}
+>
+  <SectionTitle>{T[lang]?.catBurgers || T.es.catBurgers}</SectionTitle>
 
+  {showCardBurger ? (
+    <div className="grid-cards" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px', width: '100%', padding: '15px', maxWidth: '1200px' }}>
+      {burgers.map(item => (
+        <CardMenu key={item.id} {...item} addToCart={addToCart} lang={lang} hasExtras={!noExtrasIds.includes(item.id)} />
+      ))}
+    </div>
+  ) : (
+    <div
+      className="promo-container"
+      onClick={() => {
+        // 1. On change l'état pour afficher les cartes
+        setShowCardBurger(true);
+
+        // 2. On appelle la fonction robuste qui gère l'attente du rendu
+        scrollToId("sec-burgers");
+      }}
+    >
+      <img
+        src="/Burger.webp"
+        className="promo-img"
+        alt="Burger"
+        width="600"
+        height="336"
+        style={{ width: '600px', height: '336px', display: 'block', objectFit: 'cover' }}
+      />
+      <button className="category-btn-overlay">{T[lang]?.catBurgers || T.es.catBurgers} ➔</button>
+    </div>
+  )}
+</section>
     {/* SECTION BEBIDAS */}
     <section id="sec-bebidas" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', minHeight: '450px' }}>
       <SectionTitle>{T[lang]?.catDrinks || T.es.catDrinks}</SectionTitle>
