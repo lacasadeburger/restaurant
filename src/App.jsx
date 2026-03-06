@@ -676,24 +676,54 @@ export default function App() {
     </section>
 
     {/* --- BOUTON DE NAVIGATION RAPIDE CORRIGÉ --- */}
-    {(showCardBurger || showCardDrink || showCardPostres) && (
-      <button
-        className="floating-close"
-        onClick={() => {
-            if (showCardBurger) { setShowCardBurger(false); setShowCardDrink(true); document.getElementById('sec-bebidas')?.scrollIntoView({behavior:'smooth'}); }
-            else if (showCardDrink) { setShowCardDrink(false); setShowCardPostres(true); document.getElementById('sec-postres')?.scrollIntoView({behavior:'smooth'}); }
-            else { setShowCardPostres(false); document.getElementById('order')?.scrollIntoView({behavior:'smooth'}); }
-        }}
-        style={{ position: 'fixed', bottom: '95px', left: '50%', transform: 'translateX(-50%)', backgroundColor: '#ff4757', color: '#fff', width: '280px', height: '60px', borderRadius: '12px', fontWeight: '950', zIndex: 10000, border: '3px solid #000', cursor: 'pointer', boxShadow: '0 10px 20px rgba(0,0,0,0.5)' }}
-      >
-        <span>
-          {showCardBurger && (lang === 'fr' ? 'SUIVANT : BOISSONS ➔' : 'SIGUIENTE: BEBIDAS ➔')}
-          {showCardDrink && (lang === 'fr' ? 'SUIVANT : DESSERTS ➔' : 'SIGUIENTE: POSTRES ➔')}
-          {showCardPostres && (lang === 'fr' ? 'VOIR MON PANIER ➔' : 'VER MI PEDIDO ➔')}
-        </span>
-      </button>
-    )}
-
+  {(showCardBurger || showCardDrink || showCardPostres) && (
+    <button
+      type="button"
+      className="floating-close"
+      onClick={() => {
+        if (showCardBurger) {
+          setShowCardBurger(false);
+          setShowCardDrink(true);
+          requestAnimationFrame(() => {
+            document.getElementById('sec-bebidas')?.scrollIntoView({ behavior: 'smooth' });
+          });
+        } else if (showCardDrink) {
+          setShowCardDrink(false);
+          setShowCardPostres(true);
+          requestAnimationFrame(() => {
+            document.getElementById('sec-postres')?.scrollIntoView({ behavior: 'smooth' });
+          });
+        } else {
+          setShowCardPostres(false);
+          requestAnimationFrame(() => {
+            document.getElementById('order')?.scrollIntoView({ behavior: 'smooth' });
+          });
+        }
+      }}
+      style={{
+        position: 'fixed',
+        bottom: '95px',
+        left: '50%',
+        transform: 'translateX(-50%)',
+        backgroundColor: '#ff4757',
+        color: '#fff',
+        width: '280px',
+        height: '60px',
+        borderRadius: '12px',
+        fontWeight: '950',
+        zIndex: 10000,
+        border: '3px solid #000',
+        cursor: 'pointer',
+        boxShadow: '0 10px 20px rgba(0,0,0,0.5)'
+      }}
+    >
+      <span>
+        {showCardBurger && (lang === 'fr' ? 'SUIVANT : BOISSONS ➔' : 'SIGUIENTE: BEBIDAS ➔')}
+        {showCardDrink && (lang === 'fr' ? 'SUIVANT : DESSERTS ➔' : 'SIGUIENTE: POSTRES ➔')}
+        {showCardPostres && (lang === 'fr' ? 'VOIR MON PANIER ➔' : 'VER MI PEDIDO ➔')}
+      </span>
+    </button>
+  )}
     {/* SECTION SEO DYNAMIQUE */}
     <section style={{ padding: '40px 20px', backgroundColor: 'rgba(255,255,255,0.02)', borderRadius: '20px', marginBottom: '40px', textAlign: lang === 'ar' ? 'right' : 'left', border: '1px solid #222' }}>
       <div style={{ maxWidth: '900px', margin: '0 auto' }}>
