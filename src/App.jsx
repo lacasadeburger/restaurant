@@ -27,7 +27,7 @@ export default function App() {
   const [loadMedia, setLoadMedia] = useState(false); // Pour YouTube (Manuel)
   const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-différé)
 
-// --- 2. GESTION DE LA LANGUE + MAPS + EFFET BACKGROUND ---
+  // --- 2. GESTION DE LA LANGUE + MAPS + EFFET BACKGROUND ---
   useEffect(() => {
     // A. Logique de disparition de l'image (Performance GPU)
     const bgImg = document.getElementById('hero-bg-perf');
@@ -110,54 +110,42 @@ export default function App() {
 
   const removeFromCart = (idx) => setCart(p => p.filter((_, i) => i !== idx));
 
+  // --- FONCTION DE SCROLL UNIQUE ET ROBUSTE ---
   const scrollToId = (id) => {
     const el = document.getElementById(id);
     if (el) {
-      const offset = 110;
-      const bodyRect = document.body.getBoundingClientRect().top;
-      const elementRect = el.getBoundingClientRect().top;
-      window.scrollTo({
-        top: elementRect - bodyRect - offset,
-        behavior: "smooth"
+      // requestAnimationFrame garantit que le DOM a été mis à jour par React
+      requestAnimationFrame(() => {
+        const elementPosition = el.getBoundingClientRect().top + window.scrollY;
+        window.scrollTo({
+          top: elementPosition - 120, // Ajustez votre offset de header ici
+          behavior: "smooth"
+        });
       });
     }
   };
 
-  const scrollToId = (id) => {
-  const el = document.getElementById(id);
-  if (el) {
-    // requestAnimationFrame garantit que le DOM a été mis à jour par React
-    requestAnimationFrame(() => {
-      const elementPosition = el.getBoundingClientRect().top + window.scrollY;
-      window.scrollTo({
-        top: elementPosition - 120, // Ajustez votre offset de header ici
-        behavior: "smooth"
-      });
-    });
-  }
-};
-
-const handleStartOrder = () => {
-  setShowCardBurger(true);
-  // On laisse React terminer le rendu de CardMenu avant de scroller
-  setTimeout(() => scrollToId("sec-burgers"), 50);
-};
-
-const handleNextStep = () => {
-  if (showCardBurger) {
-    setShowCardBurger(false);
-    setShowCardDrink(true);
-    setTimeout(() => scrollToId("sec-bebidas"), 50);
-  } else if (showCardDrink) {
-    setShowCardDrink(false);
-    setShowCardPostres(true);
-    setTimeout(() => scrollToId("sec-postres"), 50);
-  } else if (showCardPostres) {
-    setShowCardPostres(false);
-    setTimeout(() => scrollToId("order"), 50);
-  }
-};
+  const handleStartOrder = () => {
+    setShowCardBurger(true);
+    // On laisse React terminer le rendu de CardMenu avant de scroller
+    setTimeout(() => scrollToId("sec-burgers"), 50);
   };
+
+  const handleNextStep = () => {
+    if (showCardBurger) {
+      setShowCardBurger(false);
+      setShowCardDrink(true);
+      setTimeout(() => scrollToId("sec-bebidas"), 50);
+    } else if (showCardDrink) {
+      setShowCardDrink(false);
+      setShowCardPostres(true);
+      setTimeout(() => scrollToId("sec-postres"), 50);
+    } else if (showCardPostres) {
+      setShowCardPostres(false);
+      setTimeout(() => scrollToId("order"), 50);
+    }
+  };
+
   const burgers = useMemo(() => data.filter(i => i.category === "food"), [data]);
   const drinks = useMemo(() => data.filter(i => i.category === "drink"), [data]);
   const postres = useMemo(() => data.filter(i => i.category === "postre"), [data]);
@@ -165,6 +153,7 @@ const handleNextStep = () => {
   const GOLD_BRIGHT = "#FFD700";
   const GOLD_GRADIENT = "linear-gradient(135deg, #BF953F 0%, #FCF6BA 45%, #B38728 55%, #FBF5B7 100%)";
   const GOLD_SHADOW = "0 4px 15px rgba(255, 215, 0, 0.3)";
+
   return (
     <div className="app-main-wrapper" style={{
       position: 'relative',
@@ -174,16 +163,16 @@ const handleNextStep = () => {
       width: '100%'
     }}>
       {/* --- BACKGROUND FIXE (PERFORMANCE) --- */}
-<div className="hero-fixed-container">
-  <img
-    id="hero-bg-perf"
-    src={hero}
-    className="hero-fixed-bg"
-    alt="La Casa de Burger Background"
-    /* On force l'image à rester au niveau 1 pour que le voile (niveau 2) soit devant elle */
-    style={{ zIndex: 1 }}
-  />
-</div>
+      <div className="hero-fixed-container">
+        <img
+          id="hero-bg-perf"
+          src={hero}
+          className="hero-fixed-bg"
+          alt="La Casa de Burger Background"
+          /* On force l'image à rester au niveau 1 pour que le voile (niveau 2) soit devant elle */
+          style={{ zIndex: 1 }}
+        />
+      </div>
 <style>{`
   /* --- 1. TYPOGRAPHIE & EFFETS OR --- */
   header h1 span:first-of-type {
