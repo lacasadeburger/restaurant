@@ -112,37 +112,41 @@ export default function App() {
 
   // --- FONCTION DE SCROLL UNIQUE ET ROBUSTE ---
   const scrollToId = (id) => {
-    const el = document.getElementById(id);
-    if (el) {
-      // requestAnimationFrame garantit que le DOM a été mis à jour par React
-      requestAnimationFrame(() => {
+    // On réessaie en boucle jusqu'à ce que l'élément soit dans le DOM
+    const attemptScroll = () => {
+      const el = document.getElementById(id);
+      if (el) {
         const elementPosition = el.getBoundingClientRect().top + window.scrollY;
         window.scrollTo({
           top: elementPosition - 120, // Ajustez votre offset de header ici
           behavior: "smooth"
         });
-      });
-    }
+      } else {
+        requestAnimationFrame(attemptScroll);
+      }
+    };
+
+    // On lance la première tentative au prochain cycle de rendu
+    requestAnimationFrame(attemptScroll);
   };
 
   const handleStartOrder = () => {
     setShowCardBurger(true);
-    // On laisse React terminer le rendu de CardMenu avant de scroller
-    setTimeout(() => scrollToId("sec-burgers"), 50);
+    scrollToId("sec-burgers");
   };
 
   const handleNextStep = () => {
     if (showCardBurger) {
       setShowCardBurger(false);
       setShowCardDrink(true);
-      setTimeout(() => scrollToId("sec-bebidas"), 50);
+      scrollToId("sec-bebidas");
     } else if (showCardDrink) {
       setShowCardDrink(false);
       setShowCardPostres(true);
-      setTimeout(() => scrollToId("sec-postres"), 50);
+      scrollToId("sec-postres");
     } else if (showCardPostres) {
       setShowCardPostres(false);
-      setTimeout(() => scrollToId("order"), 50);
+      scrollToId("order");
     }
   };
 
@@ -152,8 +156,8 @@ export default function App() {
 
   const GOLD_BRIGHT = "#FFD700";
   const GOLD_GRADIENT = "linear-gradient(135deg, #BF953F 0%, #FCF6BA 45%, #B38728 55%, #FBF5B7 100%)";
+  const GOLD_GRADIENT_ALT = "linear-gradient(135deg, #BF953F 0%, #FCF6BA 25%, #B38728 50%, #FBF5B7 75%, #AA771C 100%)";
   const GOLD_SHADOW = "0 4px 15px rgba(255, 215, 0, 0.3)";
-
   return (
     <div className="app-main-wrapper" style={{
       position: 'relative',

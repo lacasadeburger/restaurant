@@ -1,12 +1,25 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import bgCard from "./assets/bg-c.jpg";
 
 export default function CardMenu(props) {
   const {
     image, name, object, description, precio, addToCart,
     isDrinkCard, isPostreCard, lang, hasExtras, badge, category,
-    isTop, isBestSeller // RÉCUPÉRATION DES BADGES
+    isTop, isBestSeller, sectionId // <--- Ajout de sectionId attendu
   } = props;
+
+  // --- LOGIQUE DE SCROLL AUTOMATIQUE AU MONTAGE ---
+  useEffect(() => {
+    if (sectionId) {
+      requestAnimationFrame(() => {
+        const el = document.getElementById(sectionId);
+        if (el) {
+          const y = el.getBoundingClientRect().top + window.scrollY - 120;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        }
+      });
+    }
+  }, [sectionId]);
 
   const GOLD_BRIGHT = "#FFD700";
 
@@ -24,7 +37,7 @@ export default function CardMenu(props) {
     return name || object || "Producto";
   }, [name, object, lang]);
 
-  // --- TON SYSTÈME DE TRADUCTION COMPLET ---
+  // --- TRADUCTIONS ET LOGIQUE (INCHANGÉS) ---
   const t = {
     extra: { es: "Extras", en: "Extras", fr: "Suppléments", de: "Extras", ru: "Добавки", uk: "Добавки", pl: "Dodatki", ro: "Extra", ar: "إضافات", no: "Ekstra", sv: "Extra", nl: "Extra's" },
     remove: { es: "Quitar", en: "Remove", fr: "Retirer", de: "Entfernen", ru: "Удалить", uk: "Видалити", pl: "Usuń", ro: "Elimină", ar: "إزالة", no: "Fjern", sv: "Ta bort", nl: "Verwijderen" },
@@ -32,12 +45,12 @@ export default function CardMenu(props) {
     ready: { es: "¡LISTO!", en: "READY!", fr: "PRÊT !", de: "FERTIG!", ru: "ГОТОВО!", uk: "ГОТОВО!", pl: "GOTOWE!", ro: "GATA!", ar: "جاهز!", no: "KLAR!", sv: "KLAR!", nl: "KLAAR!" },
     ingredients: {
       "Extra Huevo": { es: "Extra Huevo", en: "Extra Egg", fr: "Œuf suppl.", de: "Extra Ei", ru: "Доп. яйцо", uk: "Дод. яйце", pl: "Dodatkowe jajko", ro: "Ou extra", ar: "بيضة إضافية", no: "Ekstra egg", sv: "Extra ägg", nl: "Extra ei" },
-      "Extra Carne y Queso": { es: "Extra Carne y Queso", en: "Extra Meat & Cheese", fr: "Viande & Fromage suppl.", de: "Extra Fleisch & Käse", ru: "Доп. мясо и сыр", uk: "Дод. м'ясо та сир", pl: "Dodatkowe mięso i ser", ro: "Carne și brânză extra", ar: "لحم وجبن إضافي", no: "Ekstra kjøtt og ost", sv: "Extra kött och ost", nl: "Extra vlees en kaas" },
+      "Extra Carne y Queso": { es: "Extra Carne y Queso", en: "Extra Meat & Cheese", fr: "Viande & Fromage suppl.", de: "Extra Fleisch & Käse", ru: "Доп. мясо и сыр", uk: "Дод. м'ясо та сир", pl: "Dodatkowe mięso i ser", ro: "Carne și brânză extra", ar: "لحم وجبن إضافي", no: "Ekstra kjøtt och ost", sv: "Extra kött och ost", nl: "Extra vlees en kaas" },
       "Extra Tocino": { es: "Extra Tocino", en: "Extra Bacon", fr: "Bacon suppl.", de: "Extra Speck", ru: "Доп. бекон", uk: "Дод. бекон", pl: "Dodatkowy bekon", ro: "Bacon extra", ar: "لحم قديد إضافي", no: "Ekstra bacon", sv: "Extra bacon", nl: "Extra spek" },
       "Salsa Picante": { es: "Salsa Picante", en: "Hot Sauce", fr: "Sauce Piquante", de: "Scharfe Soße", ru: "Острый соус", uk: "Гострий соус", pl: "Ostry sos", ro: "Sos iute", ar: "صلصة حارة", no: "Sterk saus", sv: "Stark sås", nl: "Hete saus" },
       "Tomate": { es: "Tomate", en: "Tomato", fr: "Tomate", de: "Tomate", ru: "Помидор", uk: "Помідор", pl: "Pomidor", ro: "Roșie", ar: "طماطم", no: "Tomat", sv: "Tomat", nl: "Tomaat" },
       "Lechuga": { es: "Lechuga", en: "Lettuce", fr: "Laitue", de: "Salat", ru: "Салат", uk: "Салат", pl: "Sałata", ro: "Salată", ar: "خس", no: "Salat", sv: "Sallad", nl: "Sla" },
-      "Pepinillos": { es: "Pepinillos", en: "Pickles", fr: "Cornichons", de: "Essiggurken", ru: "Огурцы", uk: "Огірки", pl: "Ogórki", ro: "Castraveți murați", ar: "مخلл", no: "Sylteagurk", sv: "Gurka", nl: "Augurken" },
+      "Pepinillos": { es: "Pepinillos", en: "Pickles", fr: "Cornichons", de: "Essiggurken", ru: "Огурцы", uk: "Огірки", pl: "Ogórki", ro: "Castraveți murați", ar: "مخلل", no: "Sylteagurk", sv: "Gurka", nl: "Augurken" },
       "Cebolla": { es: "Cebolla", en: "Onion", fr: "Oignon", de: "Zwiebel", ru: "Лук", uk: "Цибуля", pl: "Cebula", ro: "Ceapă", ar: "بصل", no: "Løk", sv: "Lök", nl: "Ui" },
       "Queso": { es: "Queso", en: "Cheese", fr: "Fromage", de: "Käse", ru: "Сыр", uk: "Сир", pl: "Ser", ro: "Brânză", ar: "جبن", no: "Ost", sv: "Ost", nl: "Kaas" }
     }
@@ -54,7 +67,6 @@ export default function CardMenu(props) {
   const [removedIngredients, setRemovedIngredients] = useState([]);
   const [isAdded, setIsAdded] = useState(false);
 
-  // --- CALCUL DU PRIX IDENTIQUE ---
   const totalPrice = useMemo(() => {
     const numericValue = String(precio).replace(/[^0-9.,]/g, "").replace(",", ".");
     const base = parseFloat(numericValue) || 0;
@@ -74,7 +86,6 @@ export default function CardMenu(props) {
   const toggleExtra = (id) => setExtraIngredients(prev => prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id]);
   const toggleRemove = (id) => setRemovedIngredients(prev => prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id]);
 
-  // --- LOGIQUE WHATSAPP PRÉSERVÉE ---
   const handleAddClick = () => {
     const getSpanishIngredient = (id) => t.ingredients[id] ? t.ingredients[id]['es'] : id;
     const itemToAdd = {
@@ -108,6 +119,7 @@ export default function CardMenu(props) {
     boxShadow: '0 4px 10px rgba(0,0,0,0.4)'
   };
 
+  // --- RENDER ---
   return (
     <div className="card-menu" style={{
       backgroundImage: `url(${bgCard})`,
