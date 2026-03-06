@@ -123,26 +123,40 @@ export default function App() {
     }
   };
 
-  const handleStartOrder = () => {
-    setShowCardBurger(true);
-    setTimeout(() => scrollToId("sec-burgers"), 150);
-  };
+  const scrollToId = (id) => {
+  const el = document.getElementById(id);
+  if (el) {
+    // requestAnimationFrame garantit que le DOM a été mis à jour par React
+    requestAnimationFrame(() => {
+      const elementPosition = el.getBoundingClientRect().top + window.scrollY;
+      window.scrollTo({
+        top: elementPosition - 120, // Ajustez votre offset de header ici
+        behavior: "smooth"
+      });
+    });
+  }
+};
 
-  const handleNextStep = () => {
-    if (showCardBurger) {
-      setShowCardBurger(false);
-      setShowCardDrink(true);
-      setTimeout(() => scrollToId("sec-bebidas"), 100);
-    }
-    else if (showCardDrink) {
-      setShowCardDrink(false);
-      setShowCardPostres(true);
-      setTimeout(() => scrollToId("sec-postres"), 100);
-    }
-    else if (showCardPostres) {
-      setShowCardPostres(false);
-      setTimeout(() => scrollToId("order"), 100);
-    }
+const handleStartOrder = () => {
+  setShowCardBurger(true);
+  // On laisse React terminer le rendu de CardMenu avant de scroller
+  setTimeout(() => scrollToId("sec-burgers"), 50);
+};
+
+const handleNextStep = () => {
+  if (showCardBurger) {
+    setShowCardBurger(false);
+    setShowCardDrink(true);
+    setTimeout(() => scrollToId("sec-bebidas"), 50);
+  } else if (showCardDrink) {
+    setShowCardDrink(false);
+    setShowCardPostres(true);
+    setTimeout(() => scrollToId("sec-postres"), 50);
+  } else if (showCardPostres) {
+    setShowCardPostres(false);
+    setTimeout(() => scrollToId("order"), 50);
+  }
+};
   };
   const burgers = useMemo(() => data.filter(i => i.category === "food"), [data]);
   const drinks = useMemo(() => data.filter(i => i.category === "drink"), [data]);
@@ -535,22 +549,34 @@ export default function App() {
     overflow: 'hidden'
   }}>
 
-    <button
-      onClick={(e) => {
-        e.preventDefault(); e.stopPropagation();
-        setShowCardBurger(true);
-        const forceScroll = (r) => {
-          const el = document.getElementById("sec-burgers");
-          if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.pageYOffset - 120, behavior: 'smooth' });
-          else if (r > 0) setTimeout(() => forceScroll(r - 1), 50);
-        };
-        setTimeout(() => forceScroll(10), 150);
-      }}
-      className="gold-button-premium"
-      style={{ width: '90%', maxWidth: '400px', fontSize: '1.3rem', height: '65px', margin: 0 }}
-    >
-      🚀 {T[lang]?.btnOrder || T.es.btnOrder}
-    </button>
+  <button
+  onClick={(e) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    // 1. On active l'affichage
+    setShowCardBurger(true);
+
+    // 2. Fonction de scroll synchronisée
+    const performScroll = () => {
+      const el = document.getElementById("sec-burgers");
+      if (el) {
+        const y = el.getBoundingClientRect().top + window.scrollY - 120;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      } else {
+        // Si l'élément n'est pas encore là, on réessaie au prochain cycle
+        requestAnimationFrame(performScroll);
+      }
+    };
+
+    // On lance la boucle de recherche dès que React a traité la mise à jour
+    requestAnimationFrame(performScroll);
+  }}
+  className="gold-button-premium"
+  style={{ width: '90%', maxWidth: '400px', fontSize: '1.3rem', height: '65px', margin: 0 }}
+>
+  🚀 {T[lang]?.btnOrder || T.es.btnOrder}
+</button>
 
     <button
       onClick={() => window.open("https://app.tableo.com/widget/la-casa-de-burger-hamburguesa-gourmet-torrevieja-hamburgueseria-casero-best-burger-in-town-spain?bgColor=%23ff0000&textColor=%23000000&googleFont=Police+par+d%C3%A9faut&fontSize=14&cornerStyle=none&textAlignment=left&formControlBgColor=%23ffffff&formControlColor=%23000000&formControlBorderColor=%23444444&formControlBorderShadow=6&formControlBorderWidth=1&formControlBorderOpacity=0.1&buttonBgColor=%23000000&buttonTextColor=%23ffffff")}
