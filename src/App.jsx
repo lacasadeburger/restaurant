@@ -176,7 +176,7 @@ export default function App() {
           id="hero-bg-perf"
           src={hero}
           className="hero-fixed-bg"
-          alt="La Casa de Burger Background"
+          alt="La mejor hamburguesa gourmet y smash burger artesanal de Torrevieja — La Casa de Burger"
           /* On force l'image à rester au niveau 1 pour que le voile (niveau 2) soit devant elle */
           style={{ zIndex: 1 }}
         />
@@ -414,31 +414,33 @@ export default function App() {
   {/* SEO Dynamique selon la langue sélectionnée */}
   <title>{T[lang]?.seoTitle || T.es.seoTitle}</title>
   <meta name="description" content={T[lang]?.seoContent || T.es.seoContent} />
-  <link rel="canonical" href="https://lacasadeburger.es" />
+  <link rel="canonical" href="https://lacasadeburger.es/" />
 
   {/* --- CONFIGURATION HREFLANG POUR TES 12 LANGUES --- */}
-  <link rel="alternate" href="https://lacasadeburger.es" hreflang="es" />
-  <link rel="alternate" href="https://lacasadeburger.es" hreflang="en" />
-  <link rel="alternate" href="https://lacasadeburger.es" hreflang="fr" />
-  <link rel="alternate" href="https://lacasadeburger.es" hreflang="de" />
-  <link rel="alternate" href="https://lacasadeburger.es" hreflang="sv" />
-  <link rel="alternate" href="https://lacasadeburger.es" hreflang="nl" />
-  <link rel="alternate" href="https://lacasadeburger.es" hreflang="no" />
-  <link rel="alternate" href="https://lacasadeburger.es" hreflang="pl" />
-  <link rel="alternate" href="https://lacasadeburger.es" hreflang="ru" />
-  <link rel="alternate" href="https://lacasadeburger.es" hreflang="uk" />
-  <link rel="alternate" href="https://lacasadeburger.es" hreflang="ro" />
-  <link rel="alternate" href="https://lacasadeburger.es" hreflang="ar" />
+  <link rel="alternate" href="https://lacasadeburger.es/" hreflang="es" />
+  <link rel="alternate" href="https://lacasadeburger.es/?lang=en" hreflang="en" />
+  <link rel="alternate" href="https://lacasadeburger.es/?lang=fr" hreflang="fr" />
+  <link rel="alternate" href="https://lacasadeburger.es/?lang=de" hreflang="de" />
+  <link rel="alternate" href="https://lacasadeburger.es/?lang=sv" hreflang="sv" />
+  <link rel="alternate" href="https://lacasadeburger.es/?lang=nl" hreflang="nl" />
+  <link rel="alternate" href="https://lacasadeburger.es/?lang=no" hreflang="no" />
+  <link rel="alternate" href="https://lacasadeburger.es/?lang=pl" hreflang="pl" />
+  <link rel="alternate" href="https://lacasadeburger.es/?lang=ru" hreflang="ru" />
+  <link rel="alternate" href="https://lacasadeburger.es/?lang=uk" hreflang="uk" />
+  <link rel="alternate" href="https://lacasadeburger.es/?lang=ro" hreflang="ro" />
+  <link rel="alternate" href="https://lacasadeburger.es/?lang=ar" hreflang="ar" />
 
   {/* Langue par défaut (Espagnol) pour les autres zones */}
-  <link rel="alternate" href="https://lacasadeburger.es" hreflang="x-default" />
+  <link rel="alternate" href="https://lacasadeburger.es/" hreflang="x-default" />
 
   {/* Open Graph pour WhatsApp, Facebook & Partages */}
   <meta property="og:title" content={T[lang]?.seoTitle || T.es.seoTitle} />
   <meta property="og:description" content={T[lang]?.seoContent || T.es.seoContent} />
-  <meta property="og:image" content="https://lacasadeburger.es/logo.webp" />
+  <meta property="og:image" content="https://lacasadeburger.es/burger-signature-torrevieja.webp" />
+  <meta property="og:image:alt" content="La mejor hamburguesa gourmet de Torrevieja — La Casa de Burger" />
   <meta property="og:url" content="https://lacasadeburger.es" />
-  <meta property="og:type" content="website" />
+  <meta property="og:type" content="restaurant" />
+  <meta property="og:site_name" content="La Casa de Burger Torrevieja" />
 
   {/* Meta pour les langues s'écrivant de droite à gauche (Arabe) */}
   {lang === 'ar' && <html lang="ar" dir="rtl" />}
@@ -455,7 +457,7 @@ export default function App() {
 }}>
   <img
     src={logo}
-    alt="Logo"
+    alt="La Casa de Burger — Hamburguesería Gourmet Torrevieja"
     className="moving-header-logo"
     width="180"
     height="116"
@@ -636,7 +638,7 @@ export default function App() {
       <img
         src="/Burger.webp"
         className="promo-img"
-        alt="Burger"
+        alt="Carta de Hamburguesas Gourmet y Smash Burgers artesanales — La Casa de Burger Torrevieja"
         width="600"
         height="336"
         style={{ width: '600px', height: '336px', display: 'block', objectFit: 'cover' }}
@@ -663,7 +665,7 @@ export default function App() {
           <img
             src="/Drink.webp"
             className="promo-img"
-            alt="Bebidas"
+            alt="Carta de Bebidas — Refrescos, Vinos y Cervezas en La Casa de Burger Torrevieja"
             width="600"
             height="336"
             style={{ width: '600px', height: '336px', display: 'block', objectFit: 'cover' }}
@@ -697,7 +699,7 @@ export default function App() {
           <img
             src="/Postre.webp"
             className="promo-img"
-            alt="Postres"
+            alt="Postres Caseros — Waffle XXL Nutella artesanal en La Casa de Burger Torrevieja"
             width="600"
             height="336"
             style={{ width: '600px', height: '336px', display: 'block', objectFit: 'cover' }}
@@ -804,7 +806,7 @@ export default function App() {
             allowFullScreen=""
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
-            title="Ubicación de La Casa de Burger"
+            title="La Casa de Burger — Hamburguesería Gourmet, AV. Diego Ramírez Pastor 142, Torrevieja"
           ></iframe>
         ) : (
           <div className="map-placeholder" onClick={() => setLoadMaps(true)} style={{ height: '350px', backgroundColor: '#111', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', border: '1px solid #222', borderRadius: '15px' }}>
@@ -833,7 +835,7 @@ export default function App() {
           <iframe
             width="100%" height="100%"
             src="https://www.youtube-nocookie.com/embed/qN6VZYBojLs?autoplay=1&mute=0"
-            title="Video de presentación"
+            title="La Casa de Burger Torrevieja — Mejor Hamburguesa Gourmet & Smash Burger Artesanal"
             frameBorder="0"
             allow="autoplay; encrypted-media; picture-in-picture"
             allowFullScreen
@@ -874,17 +876,17 @@ export default function App() {
       {/* RÉSEAUX SOCIAUX & REVIEWS */}
       <div style={{ display: 'flex', justifyContent: 'center', gap: '25px', flexWrap: 'wrap', marginBottom: '20px', marginTop: '20px', alignItems: 'center' }}>
         <a href="https://www.facebook.com/profile.php?id=100094610793536" target="_blank" rel="noreferrer">
-          <img src={fb} width="45" height="45" alt="Facebook" loading="lazy" decoding="async" />
+          <img src={fb} width="45" height="45" alt="La Casa de Burger sur Facebook — Hamburguesería Gourmet Torrevieja" loading="lazy" decoding="async" />
         </a>
         <a href="https://www.instagram.com/lacasadeburger.es/" target="_blank" rel="noreferrer">
-          <img src={instagramIcon} width="45" height="45" alt="Instagram" loading="lazy" decoding="async" />
+          <img src={instagramIcon} width="45" height="45" alt="La Casa de Burger sur Instagram — @lacasadeburger.es Torrevieja" loading="lazy" decoding="async" />
         </a>
         <a href="https://www.google.com/search?q=la+casa+de+burger+torrevieja" target="_blank" rel="noreferrer">
           <img
             src={googleIcon}
             width="118"
             height="66"
-            alt="Google Reviews"
+            alt="Avis Google — La Casa de Burger Torrevieja 4.9★ Mejor Hamburguesería"
             loading="lazy"
             decoding="async"
             style={{
@@ -901,7 +903,7 @@ export default function App() {
             src={tripadvisor}
             width="169"
             height="127"
-            alt="Tripadvisor"
+            alt="TripAdvisor — La Casa de Burger Torrevieja, meilleur burger restaurant"
             loading="lazy"
             decoding="async"
             style={{
@@ -995,7 +997,7 @@ export default function App() {
         containIntrinsicSize: '0 500px'
       }}>
         {logo && (
-          <img src={logo} alt="La Casa de Burger Torrevieja" width="150" height="80" style={{ height: '80px', width: 'auto', filter: 'drop-shadow(0 0 10px rgba(255,255,255,0.1))' }} />
+          <img src={logo} alt="La Casa de Burger — Hamburguesería Gourmet & Smash Burger Torrevieja" width="150" height="80" style={{ height: '80px', width: 'auto', filter: 'drop-shadow(0 0 10px rgba(255,255,255,0.1))' }} />
         )}
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '40px', width: '100%', maxWidth: '1100px', textAlign: 'center', fontSize: '1.1rem', color: '#CCCCCC' }}>
@@ -1026,7 +1028,7 @@ export default function App() {
 
       {/* --- ÉLÉMENTS FLOTTANTS --- */}
       <a href="https://wa.me/34602597210" target="_blank" rel="noopener noreferrer" className="whatsapp-float" style={{ position: 'fixed', bottom: '25px', right: '20px', zIndex: 99999 }}>
-        <img src={whatsappIcon} width="60" height="60" alt="WhatsApp" style={{ animation: 'wobble-inverse 3s infinite ease-in-out' }} />
+        <img src={whatsappIcon} width="60" height="60" alt="Commander ou contacter La Casa de Burger Torrevieja sur WhatsApp" style={{ animation: 'wobble-inverse 3s infinite ease-in-out' }} />
       </a>
 
       {/* BOUTON DE NAVIGATION RAPIDE (Correction du nom showCardpostre) */}
