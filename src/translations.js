@@ -13,8 +13,8 @@ export const T = {
     footerDesc: "La mejor experiencia de Hamburguesas Gourmet en Torrevieja. Recetas Unicas, Hamburguesas Gourmet y Smash Burgers. Opciones Halal con calidad premium de Carne.",
     location: "Ubicación",
     hours: "Horario",
-    seoTitle: "La Casa de Burger | Mejor Hamburguesas y Hamburgueseria Gourmet en Torrevieja",
-    seoContent: "Referente en Hamburguesas y Hamburguesas Gourmet en Torrevieja Centro. Disfruta de nuestras recetas originales, Smash Burgers y carne artesanal premium. Opciones Halal disponibles. Calidad imbatible cerca de Playa del Cura."
+    seoTitle: "La Casa de Burger Torrevieja | Mejor Hamburguesa Gourmet & Smash Burger 2026",
+    seoContent: "🍔 La mejor hamburguesa gourmet en Torrevieja. Smash burgers artesanales, recetas únicas y carne 100% casera. Champions Burger 2026. Reserva tu mesa — AV. Diego Ramírez Pastor 142, Torrevieja."
   },
   en: {
     heroTitle: "La Casa de Burger",
@@ -30,8 +30,8 @@ export const T = {
     footerDesc: "The ultimate Burger & Gourmet Burger experience in Torrevieja. Signature recipes, Smash Burgers and Halal options at the best price.",
     location: "Location",
     hours: "Hours",
-    seoTitle: "La Casa de Burger | Best Burger & Signature Gourmet Burger & Smash Burgers in Torrevieja",
-    seoContent: "Discover Torrevieja's best burger & Gourmet Signature Burgers. Unique recipes, premium selected beef, Smash Burgers and Halal options. Unbeatable value for money in the city center."
+    seoTitle: "La Casa de Burger Torrevieja | Best Gourmet Burger & Artisan Smash Burger 2026",
+    seoContent: "🍔 Best gourmet burger in Torrevieja. Artisan smash burgers, unique recipes and 100% fresh daily-ground beef. Champions Burger 2026. Book your table — AV. Diego Ramírez Pastor 142, Torrevieja."
   },
   fr: {
     heroTitle: "La Casa de Burger",
@@ -47,8 +47,8 @@ export const T = {
     footerDesc: "L'expérience Burger Gourmet ultime à Torrevieja. Recettes Signature, Smash Burgers et options Halal au meilleur prix.",
     location: "Emplacement",
     hours: "Horaires",
-    seoTitle: "La Casa de Burger | Meilleur Burger Gourmet Signature à Torrevieja",
-    seoContent: "La référence du Burger Gourmet Signature à Torrevieja. Recettes originales, viande premium, Smash Burgers et options Halal. Le meilleur rapport qualité-prix artisanal du centre-ville."
+    seoTitle: "La Casa de Burger Torrevieja | Meilleur Burger Gourmet & Smash Burger Artisanal 2026",
+    seoContent: "🍔 Le meilleur burger gourmet à Torrevieja. Smash burgers artisanaux, recettes uniques et viande 100% fraîche hachée chaque jour. Champions Burger 2026. Réservez votre table — AV. Diego Ramírez Pastor 142, Torrevieja."
   },
   de: {
     heroTitle: "La Casa de Burger",
@@ -64,8 +64,8 @@ export const T = {
     footerDesc: "Gourmet-Burger-Erlebnis in Torrevieja. Signature-Rezepte, Smash Burgers und Halal-Optionen zum Bestpreis.",
     location: "Standort",
     hours: "Öffnungszeiten",
-    seoTitle: "La Casa de Burger | Beste Gourmet Signature Burgers Torrevieja",
-    seoContent: "Premium Gourmet Signature Burgers in Torrevieja Centro. Einzigartige Rezepte, Smash Burgers und Halal-Fleisch. Unschlagbares Preis-Leistungs-Verhältnis."
+    seoTitle: "La Casa de Burger Torrevieja | Bester Gourmet Burger & Handgemachter Smash Burger 2026",
+    seoContent: "🍔 Der beste Gourmet-Burger in Torrevieja. Handgemachte Smash Burgers, einzigartige Rezepte und 100% täglich frisch gemahlenes Rindfleisch. Champions Burger 2026. Tisch reservieren — AV. Diego Ramírez Pastor 142, Torrevieja."
   },
   sv: {
     heroTitle: "La Casa de Burger",
@@ -81,8 +81,8 @@ export const T = {
     footerDesc: "Bästa Gourmetburgaren i Torrevieja. Signature-recept, Smash Burgers och Halal-alternativ.",
     location: "Plats",
     hours: "Öppettider",
-    seoTitle: "La Casa de Burger | Gourmet Signature & Smash Burgers Torrevieja",
-    seoContent: "Ledande inom Gourmet Signature Burgers i Torrevieja. Unika recept, utvalt premiumkött, Smash Burgers och Halal. Oslagbart pris nära Playa del Cura."
+    seoTitle: "La Casa de Burger Torrevieja | Bästa Gourmetburgare & Smash Burger 2026",
+    seoContent: "🍔 Den bästa gourmetburgaren i Torrevieja. Hantverksmässiga Smash Burgers, unika recept och 100% dagligen nymalet nötkött. Champions Burger 2026. Boka bord — AV. Diego Ramírez Pastor 142, Torrevieja."
   },
   nl: {
     heroTitle: "La Casa de Burger",
@@ -98,8 +98,8 @@ export const T = {
     footerDesc: "De ultieme Gourmet Burger ervaring in Torrevieja. Signature recepten, Smash Burgers en Halal opties.",
     location: "Locatie",
     hours: "Openingstijden",
-    seoTitle: "La Casa de Burger | Beste Burgers & Gourmet Signature & Smash Burgers Torrevieja",
-    seoContent: "De referentie voor Gourmet Signature Burgers in Torrevieja. Originele recepten, premium vlees, Smash Burgers en Halal opties tegen de beste prijs."
+    seoTitle: "La Casa de Burger Torrevieja | Beste Gourmet Burger & Ambachtelijke Smash Burger 2026",
+    seoContent: "🍔 De beste gourmet burger in Torrevieja. Ambachtelijke Smash Burgers, unieke recepten en 100% dagelijks vers gemalen rundvlees. Champions Burger 2026. Tafel reserveren — AV. Diego Ramírez Pastor 142, Torrevieja."
   },
   no: {
     heroTitle: "La Casa de Burger",
@@ -115,8 +115,8 @@ export const T = {
     footerDesc: "Den beste Gourmet Burger opplevelsen i Torrevieja. Signature oppskrifter, Smash Burgers og Halal.",
     location: "Plassering",
     hours: "Åpningstider",
-    seoTitle: "La Casa de Burger | Beste Burger,  Gourmet Signature & Smash Burger Torrevieja",
-    seoContent: "Torreviejas ledende restaurant for Burgers & Gourmet Signature Burgers. Unike oppskrifter, premium kjøtt, Smash Burgers og Halal til byens beste pris."
+    seoTitle: "La Casa de Burger Torrevieja | Beste Gourmet Burger & Smash Burger 2026",
+    seoContent: "🍔 Den beste gourmet burgeren i Torrevieja. Håndlagde Smash Burgers, unike oppskrifter og 100% daglig nymalt storfekjøtt. Champions Burger 2026. Reserver bord — AV. Diego Ramírez Pastor 142, Torrevieja."
   },
   pl: {
     heroTitle: "La Casa de Burger",
@@ -132,8 +132,8 @@ export const T = {
     footerDesc: "Najlepsze Burgery i Burgery Gourmet w Torrevieja. Przepisy Signature, Smash Burgers i opcje Halal.",
     location: "Lokalizacja",
     hours: "Godziny",
-    seoTitle: "La Casa de Burger | Najlepsze Burgery i Burgery Gourmet Signature w Torrevieja",
-    seoContent: "Wyjątkowe Burgery i Burgery Gourmet Signature w centrum Torrevieja. Autorskie przepisy, wołowina premium, Smash Burgers i opcje Halal w najlepszej cenie."
+    seoTitle: "La Casa de Burger Torrevieja | Najlepszy Burger Gourmet & Smash Burger 2026",
+    seoContent: "🍔 Najlepszy burger gourmet w Torrevieja. Rzemieślnicze Smash Burgers, unikalne przepisy i 100% świeżo mielona wołowina. Champions Burger 2026. Zarezerwuj stolik — AV. Diego Ramírez Pastor 142, Torrevieja."
   },
   ru: {
     heroTitle: "La Casa de Burger",
@@ -149,8 +149,8 @@ export const T = {
     footerDesc: "Лучшие Гурме Бургеры в Торревьехе. Signature рецепты, Смэш-бургеры и Халяль.",
     location: "Локация",
     hours: "График",
-    seoTitle: "La Casa de Burger | Лучшие Гурме и Signature Бургеры Торревьеха",
-    seoContent: "Лучшие Гурме Бургеры в центре Торревьехи. Авторские Signature рецепты, премиальное мясо, Смэш-бургеры и Халяль по лучшей цене."
+    seoTitle: "La Casa de Burger Торревьеха | Лучший Гурме Бургер & Смэш Бургер 2026",
+    seoContent: "🍔 Лучший гурме-бургер в Торревьехе. Авторские Смэш-бургеры, уникальные рецепты и 100% свежий ежедневный фарш. Champions Burger 2026. Забронировать стол — AV. Diego Ramírez Pastor 142, Torrevieja."
   },
   uk: {
     heroTitle: "La Casa de Burger",
@@ -166,8 +166,8 @@ export const T = {
     footerDesc: "Найкращі Гурме Бургери в Торрев'єсі. Signature рецепти, Смеш-бургери та Халяль.",
     location: "Локація",
     hours: "Години",
-    seoTitle: "La Casa de Burger | Найкращі Гурме та Signature Бургери Торрев'єха",
-    seoContent: "Еталон Гурме Бургерів у Торрев'єсі. Авторські Signature рецепти, яловичина преміум-класу, Смеш-бургери та Халяль за найкращою ціною."
+    seoTitle: "La Casa de Burger Торрев'єса | Найкращий Гурме Бургер & Смеш Бургер 2026",
+    seoContent: "🍔 Найкращий гурме-бургер у Торрев'єсі. Авторські Смеш-бургери, унікальні рецепти та 100% свіжий щоденний фарш. Champions Burger 2026. Забронювати стіл — AV. Diego Ramírez Pastor 142, Torrevieja."
   },
   ro: {
     heroTitle: "La Casa de Burger",
@@ -183,8 +183,8 @@ export const T = {
     footerDesc: "Cea mai bună experiență Burger Gourmet din Torrevieja. Rețete Signature, Smash Burgers și Halal.",
     location: "Locație",
     hours: "Program",
-    seoTitle: "La Casa de Burger | Cel mai bun Burger Gourmet Signature din Torrevieja",
-    seoContent: "Punctul de referință pentru Burgeri Gourmet Signature în Torrevieja. Rețete originale, carne premium, Smash Burgers și opțiuni Halal la cel mai bun preț."
+    seoTitle: "La Casa de Burger Torrevieja | Cel Mai Bun Burger Gourmet & Smash Burger 2026",
+    seoContent: "🍔 Cel mai bun burger gourmet din Torrevieja. Smash Burgers artizanale, rețete unice și carne 100% proaspătă măcinată zilnic. Champions Burger 2026. Rezervă masa — AV. Diego Ramírez Pastor 142, Torrevieja."
   },
   ar: {
     heroTitle: "La Casa de Burger",
@@ -200,8 +200,8 @@ export const T = {
     footerDesc: "أفضل تجربة برجر غوارميه في توريفايجا. وصفات سيجنتشر، سماش برجر ولحم حلال فاخر.",
     location: "الموقع",
     hours: "ساعات العمل",
-    seoTitle: "La Casa de Burger | أفضل برجر غوارميه وسيجنتشر في توريفايجا",
-    seoContent: "مطعم البرجر الغوارميه الأول في وسط توريفايجا. وصفات سيجنتشر أصلية، سماش برجر، ولحم حلال ممتاز بأفضل الأسعار بالقرب من بلايا ديل كورا."
+    seoTitle: "La Casa de Burger توريفايجا | أفضل برجر جورميه وسماش برجر 2026",
+    seoContent: "🍔 أفضل برجر جورميه في توريفايجا. سماش برجر حرفي، وصفات فريدة ولحم طازج 100% يُطحن يومياً. Champions Burger 2026. احجز طاولتك — AV. Diego Ramírez Pastor 142, Torrevieja."
   }
 };
 export const ALL_REVIEWS = [
