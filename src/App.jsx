@@ -26,7 +26,6 @@ export default function App() {
   const [view, setView] = useState('categories'); // 'categories', 'combos', 'burgers', 'sides'
   const [loadMedia, setLoadMedia] = useState(false); // Pour YouTube (Manuel)
   const [loadMaps, setLoadMaps] = useState(false);   // Pour Google Maps (Auto-différé)
-
   // --- 2. GESTION DE LA LANGUE + MAPS + EFFET BACKGROUND ---
   useEffect(() => {
     // A. Logique de disparition de l'image (Performance GPU)
