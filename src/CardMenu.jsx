@@ -85,7 +85,6 @@ export default function CardMenu(props) {
 
   const toggleExtra = (id) => setExtraIngredients(prev => prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id]);
   const toggleRemove = (id) => setRemovedIngredients(prev => prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id]);
-
   const handleAddClick = () => {
     const getSpanishIngredient = (id) => t.ingredients[id] ? t.ingredients[id]['es'] : id;
     const itemToAdd = {
