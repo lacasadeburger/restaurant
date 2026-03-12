@@ -91,6 +91,7 @@ export default function CardMenu(props) {
     const itemToAdd = {
       ...props,
       precio: `${totalPrice}€`,
+      extras: extraIngredients.map(id => getSpanishIngredient(id)),
       object: extraIngredients.length > 0
         ? `${typeof name === 'object' ? name.es : stableName} (+${extraIngredients.map(id => getSpanishIngredient(id)).join(", ")})`
         : (typeof name === 'object' ? name.es : stableName),
