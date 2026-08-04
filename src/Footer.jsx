@@ -144,6 +144,7 @@ export default function Footer({ lang }) {
           fontWeight: '500'
         }}>
           LA CASA DE BURGER &copy; {currentYear} | Torrevieja | THE ARTISAN EXPERIENCE
+          Sitio Web optmizado por LocalPatron
         </p>
 
         <p style={{
