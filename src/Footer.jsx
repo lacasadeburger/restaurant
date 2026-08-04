@@ -126,6 +126,7 @@ export default function Footer({ lang }) {
         </div>
 
       </div>
+      
 
       {/* DIVIDER GOLD LUXE */}
       <div style={{
@@ -134,7 +135,6 @@ export default function Footer({ lang }) {
         background: 'linear-gradient(90deg, transparent, #BF953F, #FCF6BA, #B38728, transparent)',
         margin: '40px auto 20px',
       }} aria-hidden="true" />
-
 
       {/* COPYRIGHT & BRANDING */}
       <div style={{ textAlign: 'center' }}>
