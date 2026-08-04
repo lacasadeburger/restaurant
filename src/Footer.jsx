@@ -143,7 +143,7 @@ export default function Footer({ lang }) {
           margin: '0',
           fontWeight: '500'
         }}>
-          LA CASA DE BURGER &copy; {currentYear} | Torrevieja | Sitio Web optmizado por LocalPatron
+          LA CASA DE BURGER &copy; {currentYear} | Torrevieja | Sitio web optimizado por <a href="https://localpatron.app" target="_blank" rel="noopener noreferrer" style={{ color: '#8bdbdb', textDecoration: 'underline' }}>LocalPatron</a>
         </p>
 
         <p style={{
