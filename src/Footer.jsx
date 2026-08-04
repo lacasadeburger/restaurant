@@ -135,6 +135,7 @@ export default function Footer({ lang }) {
         margin: '40px auto 20px',
       }} aria-hidden="true" />
 
+
       {/* COPYRIGHT & BRANDING */}
       <div style={{ textAlign: 'center' }}>
         <p className="copyright" style={{
