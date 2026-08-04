@@ -1021,7 +1021,7 @@ export default function App() {
         </div>
 
         <div style={{ color: '#AAAAAA', fontSize: '0.85rem', marginTop: '20px' }}>
-          <p>© {new Date().getFullYear()} LA CASA DE BURGER | THE ARTISAN EXPERIENCE</p>
+          <p>LA CASA DE BURGER &copy; {new Date().getFullYear()} | Torrevieja | Sitio web optimizado por <a href="https://localpatron.app" target="_blank" rel="noopener noreferrer" style={{ color: '#8bdbdb', textDecoration: 'underline' }}>LocalPatron</a></p>
         </div>
       </footer>
 
