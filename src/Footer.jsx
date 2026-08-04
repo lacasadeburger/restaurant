@@ -127,6 +127,7 @@ export default function Footer({ lang }) {
 
       </div>
 
+
       {/* DIVIDER GOLD LUXE */}
       <div style={{
         width: '120px',
