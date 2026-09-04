@@ -1,0 +1,14 @@
+# La Casa de Burger
+
+> Artisanal gourmet burger restaurant in Torrevieja, Spain. Handmade burgers, homemade fries, and a signature selection of themed burgers inspired by different countries.
+
+La Casa de Burger is a local burger restaurant located in the city center of Torrevieja (Alicante, Spain). The menu features artisanal gourmet burgers (signature combos, smash burgers, and country-inspired creations such as India, French, English, Moroccan, Italian, Spanish, Colombian, and Mexican burgers), sides (homemade fries, cheddar & bacon fries, patatas bravas, chicken nuggets, croquettes), desserts (XXL Nutella waffle), and drinks (sodas, water, wine, beer).
+
+- Address: Av. Diego Ramírez Pastor, 142, 03181 Torrevieja (Centro), Spain
+- Phone / WhatsApp: +34 602 597 210
+- Hours: Monday–Saturday, 13:00–23:00 (closed Sunday)
+
+## Pages
+
+- [Homepage](https://lacasadeburger.es/): Menu, online ordering, reservations, and location
+- [Sitemap](https://lacasadeburger.es/sitemap.xml): Full list of indexed pages
