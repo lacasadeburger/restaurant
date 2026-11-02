@@ -1,7 +1,31 @@
 {
   "permissions": {
     "allow": [
-      "Bash(git diff *)"
+      "Bash(git diff *)",
+      "WebFetch(domain:lacasadeburger.es)",
+      "Bash(curl -s https://lacasadeburger.es/ -o /tmp/claude-1000/index.html)",
+      "Bash(mkdir -p /tmp/claude-1000/-mnt-c-Users-ADMIN-Desktop-bureau-burgers-La-Casa-de-Burger-Frontend/4c548806-ce6d-4001-9906-c5e58ad5844d/scratchpad)",
+      "Bash(curl -s https://lacasadeburger.es/)",
+      "Bash(curl -s https://lacasadeburger.es/assets/index-00791147.js -o \"/tmp/claude-1000/-mnt-c-Users-ADMIN-Desktop-bureau-burgers-La-Casa-de-Burger-Frontend/4c548806-ce6d-4001-9906-c5e58ad5844d/scratchpad/bundle.js\")",
+      "Bash(npm run *)",
+      "Bash(npm install *)",
+      "Bash(curl -sI https://lacasadeburger.es/)",
+      "Bash(curl -sI \"https://lacasadeburger.es/?nocache=$\\(date +%s\\)\")",
+      "Bash(curl -s \"https://lacasadeburger.es/?nocache=$\\(date +%s\\)\")",
+      "Bash(git fetch *)",
+      "Bash(curl -s \"https://76702f3d.lacasadeburger.pages.dev/\")",
+      "Bash(curl -s \"https://lacasadeburger.es/?nc=$\\(date +%s\\)\")",
+      "Bash(curl -s \"https://76702f3d.lacasadeburger.pages.dev/assets/index-00791147.js\" -o /tmp/bundle_new.js)",
+      "Read(//tmp/**)",
+      "Bash(git ls-tree *)",
+      "Bash(schtasks.exe /query /fo LIST /v)",
+      "Bash(git reset *)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git push *)",
+      "Bash(git config *)",
+      "Bash(curl -s \"https://lacasadeburger.es/?nc=$\\(date +%s%N\\)\")",
+      "Bash(curl -s \"https://lacasadeburger.es/assets/index-2ce69691.js\" -o /tmp/bundle_check.js)"
     ]
   }
 }
